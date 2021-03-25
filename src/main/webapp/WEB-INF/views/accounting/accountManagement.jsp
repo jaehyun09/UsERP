@@ -14,10 +14,9 @@
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="${project}img/favicon.ico">
-
+<link rel="stylesheet" href="${project}css/board.css">
 <!-- Template -->
 <link rel="stylesheet" href="${project}css/graindashboard.css">
-<link rel="stylesheet" href="${project}css/board.css">
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -145,27 +144,30 @@
 					</span> <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
 				</a> <!-- UI Components: subComponents -->
 					<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
-					<li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/foundationcode">기초 코드</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/statementlist">전표 관리</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/inventorystatus">재고 현황</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/movewarehouse">재고 이동</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/inventoryadjustment">재고 조정</a>
-                       </li>    
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/inventorysupply">재고 수불부</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/warehouselist">창고 현황</a>
-                       </li>    
+						<li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/accountinquiry">거래처 조회</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/productinquiry">상품 조회</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/inventorystatus">재고 현황</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/statementlist">전표 리스트</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/inventorysupply">재고 수불부</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/warehouselist">창고 리스트</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/movewarehouse">창고 이동</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/inventoryadjustment">재고 조정</a>
+                    </li>    
 					</ul> <!-- End UI Components: subComponents --></li>
 				<!-- End UI Components -->
 				<!-- Users -->
@@ -213,57 +215,49 @@
 							</ol>
 						</nav>
 						<div class="row">
-
 							<div class="col-xl-12">
-
 								<div id="example" class="mb-9">
-									<h4 class="h4">
-										계정 관리 <a class="anchorjs-link" href="#example"
+									<h4 class="h1 text-dark"><b>
+										계정 관리 </b><a class="anchorjs-link" href="#example"
 											aria-label="Anchor" data-anchorjs-icon="#"></a>
 									</h4>
 									<div class="mb-3">
 										<!-- Nav Classic -->
-										<ul class="nav nav-v2 nav-primary d-block d-xl-flex h4"
-											id="pills-tab-1" role="tablist">
-											<li class="nav-item border-bottom border-xl-bottom-0 h4"><a
-												class="nav-link d-flex align-items-center py-2 px-3 active h4"
-												id="pills-result-tab-1" data-toggle="pill"
-												href="#pills-result-1" role="tab"
-												aria-controls="pills-result-1" aria-selected="true"> 계정
-													리스트</a></li>
-											<li class="nav-item border-bottom border-xl-bottom-0 h4"><a
-												class="nav-link d-flex align-items-center py-2 px-3"
-												id="pills-html-tab-1" data-toggle="pill"
-												href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-												aria-selected="false">계정 등록 </a></li>
+										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark" id="pills-tab-1" role="tablist">
+											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light">
+												<a class="nav-link d-flex align-items-center py-2 px-3 active"	id="pills-result-tab-1" data-toggle="pill"	href="#pills-result-1" role="tab"aria-controls="pills-result-1" aria-selected="true"> 계정리스트</a>
+												</li>
+											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light">
+												<a class="nav-link d-flex align-items-center py-2 px-3" id="pills-html-tab-1" data-toggle="pill" href="#pills-html-1" role="tab" aria-controls="pills-html-1" aria-selected="false">계정 등록 </a>
+												</li>
 										</ul>
 										<!-- End Nav Classic -->
 
 										<!-- Tab Content -->
-										<div class="tab-content bg-lighter border border-primary" id="pills-tabContent-1">
+										<div class="tab-content bg-lighter" id="pills-tabContent-1">
 											<div class="tab-pane fade p-4 show active"
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
 												<div class="bg-white">
-												<table class="table table-bordered" style="text-align: center">
+												<table class="table bg-white text-dark center ass2 table-striped">
+													<thead class="text-white table-bordered tap">
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">계정명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">계정금액</th>
+														</tr>
+													</thead>
 													<tbody>
 														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-2 text-dark" style="background-color:#B5D3FF;">계정명</th>
-															<th class="font-weight-semi-bold border-top-0 py-2 text-dark" style="background-color:#B5D3FF;">계정금액</th>
-														</tr>
-													
-													
-														<tr>
-															<td class="py-3">보통예금</td>
-															<td class="py-3">0</td>
+															<td class="py-3" style="vertical-align: middle">보통예금</td>
+															<td class="py-3" style="vertical-align: middle">0</td>
 														</tr>
 														<tr>
-															<td class="py-3">외상매출금</td>
-															<td class="py-3">0</td>
+															<td class="py-3" style="vertical-align: middle">외상매출금</td>
+															<td class="py-3" style="vertical-align: middle">0</td>
 														</tr>
 														<tr>
-															<td class="py-3">매출액</td>
-															<td class="py-3">0</td>
+															<td class="py-3" style="vertical-align: middle">매출액</td>
+															<td class="py-3" style="vertical-align: middle">0</td>
 														</tr>
 													</tbody>
 												</table>
@@ -273,11 +267,16 @@
 											<div class="tab-pane fade p-4" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
 												<div class="bg-white">
-												<table class="table table-bordered" style="text-align: center">
-													<tbody>
+												<table class="table bg-white text-dark ass2 center">
+													<thead class="text-white table-bordered tap ass2">
+														<tr>
+                                            				 <th colspan="3">계정 등록 </th>
+                                          				</tr>
+                                          			</thead>
+                                          			<tbody>	
 														<tr>
 															<th class="font-weight-semi-bold border-top-0 py-2 text-dark"
-																colspan="2" style="vertical-align: middle; background-color:#B5D3FF;">계정명</th>
+																colspan="2" style="vertical-align: middle;"><b>계정명</b></th>
 															<th class="font-weight-semi-bold border-top-0 py-2"
 																colspan="2"><input class="form-control" type="text"
 																placeholder="계정명을 입력하세요"></th>
@@ -285,18 +284,17 @@
 													
 													
 														<tr>
-															<th class="py-3 text-dark" colspan="2" style="vertical-align: middle; background-color:#B5D3FF;">금액</th>
+															<th class="py-3 text-dark" colspan="2" style="vertical-align: middle;"><b>금액</b></th>
 															<td class="py-3" colspan="2"><input
 																class="form-control" type="text" disabled></td>
 														</tr>
-
 													</tbody>
 												</table>
-												<button type="button" class="btn btn-outline-dark"
-													style='float: right;background-color:#B5D3FF;'>등록하기</button>
+												</div>
+												<div align=center>
+			                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+			                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>                         			
 											</div>
-											</div>
-</div>
 										</div>
 									</div>
 								</div>
@@ -305,6 +303,8 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
 	</main>
 
 	<%@ include file="../common/footer.jsp"%>

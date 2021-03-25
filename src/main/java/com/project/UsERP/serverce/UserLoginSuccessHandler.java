@@ -38,7 +38,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		String msg = authentication.getName() + "님 환영합니다";
 		System.out.println("아이디 ==> " + authentication.getName());
 		
-		String grade = sqlSession.selectOne("spring.mvc.planet.persistence.ClientDAO.gradeCheck", authentication.getName());
+		String grade = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.gradeCheck", authentication.getName());
 		int gradeCnt = 0;
 		
 		if(grade.equals("ROLE_USER")) {

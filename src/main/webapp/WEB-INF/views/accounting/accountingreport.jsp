@@ -14,15 +14,9 @@
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="${project}img/favicon.ico">
-<style>
-	.bluetext {
-		color : pink; /* 글자색 */
-	}
-	
-</style>
+<link rel="stylesheet" href="${project}css/board.css">
 <!-- Template -->
 <link rel="stylesheet" href="${project}css/graindashboard.css">
-<link rel="stylesheet" href="${project}css/board.css">
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -56,7 +50,7 @@
                     <li class="side-nav-menu-item">
                         <a class="side-nav-menu-link ass2" href="${path}/personnelCard">인사 카드</a>
                     </li>
-                    <li class="side-nav-menu-item">
+                    <li class="side-nav-menu-item"> 
                         <a class="side-nav-menu-link ass2" href="${path}/personnelSalary">급여</a>
                     </li>
                 </ul> <!-- End UI Components: subComponents --></li>
@@ -151,26 +145,29 @@
 				</a> <!-- UI Components: subComponents -->
 					<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
 						<li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/foundationcode">기초 코드</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/statementlist">전표 관리</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/inventorystatus">재고 현황</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/movewarehouse">재고 이동</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/inventoryadjustment">재고 조정</a>
-                       </li>    
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/inventorysupply">재고 수불부</a>
-                       </li>
-                       <li class="side-nav-menu-item">
-                           <a class="side-nav-menu-link ass2" href="${path}/warehouselist">창고 현황</a>
-                       </li>   
+                        <a class="side-nav-menu-link ass2" href="${path}/accountinquiry">거래처 조회</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/productinquiry">상품 조회</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/inventorystatus">재고 현황</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/statementlist">전표 리스트</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/inventorysupply">재고 수불부</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/warehouselist">창고 리스트</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/movewarehouse">창고 이동</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/inventoryadjustment">재고 조정</a>
+                    </li>    
 					</ul> <!-- End UI Components: subComponents --></li>
 				<!-- End UI Components -->
 				<!-- Users -->
@@ -218,30 +215,26 @@
 							</ol>
 						</nav>
 						<div class="row">
-
 							<div class="col-xl-12">
-
 								<div id="example" class="mb-9">
-								
-									
-									<h4 class="h4">
-										회계 보고서 <a class="anchorjs-link" href="#example"
+									<h4 class="h1 text-dark">
+										<b>회계 보고서</b> <a class="anchorjs-link" href="#example"
 											aria-label="Anchor" data-anchorjs-icon="#"></a>
 									</h4>
 									
 									<div class="mb-3">
 										<!-- Nav Classic -->
-										<ul class="nav nav-v2 nav-primary d-block d-xl-flex h4"
+										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
 											id="pills-tab-1" role="tablist">
-											<li class="nav-item border-bottom border-xl-bottom-1 h4"><a
+											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
 												class="nav-link d-flex align-items-center py-2 px-3 active"
 												id="pills-result-tab-1" data-toggle="pill"
 												href="#pills-result-1" role="tab"
 												aria-controls="pills-result-1" aria-selected="true"
 												>재무상태표</a>
 											</li>
-											<li class="nav-item border-bottom border-xl-bottom-1 h4"><a
-												class="nav-link d-flex align-items-center py-2 px-3 h4"
+											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
+												class="nav-link d-flex align-items-center py-2 px-3"
 												id="pills-html-tab-1" data-toggle="pill"
 												href="#pills-html-1" role="tab" aria-controls="pills-html-1"
 												aria-selected="false">손익계산서</a></li>
@@ -250,74 +243,72 @@
 
 										<!-- Tab Content -->
 										
-										<div class="tab-content bg-lighter border border-primary" id="pills-tabContent-1">
+										<div class="tab-content bg-lighter border " id="pills-tabContent-1">
 											<div class="tab-pane fade p-4 show active"
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
 												제 1기 2021.03.31 현재<br> <br>
 												<div class="bg-white">
-												<table class="table table-bordered" style="text-align: center">
+												<table class="table table-bordered bg-white text-dark ass2 center">
+													<thead class="text-white table-bordered tap">
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-3">과목</th>
+															<th class="font-weight-semi-bold border-top-0 py-3"
+																colspan="2">금액</th>
+															<th class="font-weight-semi-bold border-top-0 py-3">과목</th>
+															<th class="font-weight-semi-bold border-top-0 py-3"
+																colspan="2">금액</th>
+														</tr>
+													</thead>
 													<tbody>
-														<tr class=" text-dark" style="background-color:#B5D3FF">
-														
-															<th class="font-weight-semi-bold border-top-0 py-2">과목</th>
-															<th class="font-weight-semi-bold border-top-0 py-2"
-																colspan="2">금액</th>
-															<th class="font-weight-semi-bold border-top-0 py-2">과목</th>
-															<th class="font-weight-semi-bold border-top-0 py-2"
-																colspan="2">금액</th>
-																
-														</tr>
-													
 														<tr>
-															<td class="py-3">보통예금</td>
+															<td class="py-3"><b>보통예금</b></td>
 															<td class="py-3"></td>
 															<td class="py-3">0</td>
-															<td class="py-3">외상매입금</td>
+															<td class="py-3"><b>외상매입금</b></td>
 															<td class="py-3"></td>
 															<td class="py-3">0</td>
 														</tr>
 														<tr>
-															<td class="py-3">외상매출금</td>
+															<td class="py-3"><b>외상매출금</b></td>
 															<td class="py-3">0</td>
 															<td class="py-3">0</td>
-															<td class="py-3">지급어음</td>
+															<td class="py-3"><b>지급어음</b></td>
 															<td class="py-3"></td>
 															<td class="py-3">0</td>
 														</tr>
 														<tr>
-															<td class="py-3">받을어음</td>
+															<td class="py-3"><b>받을어음</b></td>
 															<td class="py-3">0</td>
 															<td class="py-3">0</td>
-															<td class="py-3">미지급금</td>
+															<td class="py-3"><b>미지급금</b></td>
 															<td class="py-3"></td>
 															<td class="py-3">0</td>
 														</tr>
 														<tr>
-															<td class="py-3">미수금</td>
+															<td class="py-3"><b>미수금</b></td>
 															<td class="py-3">0</td>
 															<td class="py-3">0</td>
-															<td class="py-3">예수금</td>
+															<td class="py-3"><b>예수금</b></td>
 															<td class="py-3"></td>
 															<td class="py-3">0</td>
 														</tr>
 														<tr>
-															<td class="py-3">상품</td>
+															<td class="py-3"><b>상품</b></td>
 															<td class="py-3">0</td>
 															<td class="py-3">0</td>
-															<td class="py-3">자본금</td>
+															<td class="py-3"><b>자본금</b></td>
 															<td class="py-3"></td>
 															<td class="py-3">0</td>
 														</tr>
 														<tr>
-															<td class="py-3">자산총계</td>
+															<td class="py-3"><b>자산총계</b></td>
 															<td class="py-3"></td>
 															<td class="py-3">0</td>
-															<td class="py-3">부채와 자본총계</td>
+															<td class="py-3"><b>부채와 자본총계</b></td>
 															<td class="py-3"></td>
 															<td class="py-3">0</td>
 														</tr>
-														
 													</tbody>
 												</table>
 											</div>
@@ -328,35 +319,37 @@
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
 												2021.03.31 ~ 2021.12.31(단위 : 천원) <br> <br>
 												<div class="bg-white">
-												<table class="table table-bordered" style="text-align: center">
-													<tbody>
-														<tr class="text-dark"style="background-color:#B5D3FF">
-															<th class="font-weight-semi-bold border-top-0 py-2"
+												<table class="table table-bordered bg-white text-dark ass2 center">
+													<thead class="text-white table-bordered tap">
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-3"
 																colspan="2">과목</th>
-															<th class="font-weight-semi-bold border-top-0 py-2">금액</th>
+															<th class="font-weight-semi-bold border-top-0 py-3">금액</th>
 														</tr>
+													</thead>
+													<tbody>	
 														<tr>
-															<td class="py-3" rowspan="5" style="vertical-align: middle">영업손익</td>
-															<td class="py-3">매출액</td>
+															<td class="py-3 asss" rowspan="5" style="vertical-align: middle"><b>영업손익</b></td>
+															<td class="py-3"><b>매출액</b></td>
 															<td class="py-3">0</td>
 														</tr>
 														<tr>
 															
-															<td class="py-3">매출원가</td>
+															<td class="py-3"><b>매출원가</b></td>
 															<td class="py-3">0</td>
 														<tr>
 															
-															<td class="py-3">매출총이익</td>
-															<td class="py-3">0</td>
-														</tr>
-														<tr>
-															
-															<td class="py-3">판매비와 관리비</td>
+															<td class="py-3"><b>매출총이익</b></td>
 															<td class="py-3">0</td>
 														</tr>
 														<tr>
 															
-															<td class="py-3">영업이익</td>
+															<td class="py-3"><b>판매비와 관리비</b></td>
+															<td class="py-3">0</td>
+														</tr>
+														<tr>
+															
+															<td class="py-3"><b>영업이익</b></td>
 															<td class="py-3">0</td>
 														</tr>
 													</tbody>
