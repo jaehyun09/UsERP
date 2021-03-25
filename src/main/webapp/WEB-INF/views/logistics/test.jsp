@@ -43,7 +43,10 @@
                  <!-- Users: subUsers -->
                 <ul id="subUsers" class="side-nav-menu side-nav-menu-second-level mb-0" style="display: block;">
                     <li class="side-nav-menu-item">
-                        <a class="side-nav-menu-link ass2" href="${path}/personnelCode">기초 등록</a>
+                        <a class="side-nav-menu-link ass2" href="${path}/personnelCode">인사코드 관리</a>
+                    </li>
+                    <li class="side-nav-menu-item">
+                        <a class="side-nav-menu-link ass2" href="${path}/personnelDep">부서 관리</a>
                     </li>
                     <li class="side-nav-menu-item">
                         <a class="side-nav-menu-link ass2" href="${path}/personnelAppointment">인사 발령</a>
@@ -56,8 +59,6 @@
                     </li>
                 </ul>
                 <!-- End Users: subUsers -->
-            </li>
-            <!-- End Users -->
             </li>
             <!-- End Users -->
           <!-- Authentication -->
@@ -373,7 +374,7 @@
                                        </tbody>
                                     </table>
                                  </div>
-                           </div>
+									</div>
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
                                     <form>
@@ -416,8 +417,10 @@
                                        </table>
                                     
                                     <div align=center>
+                                    
                                        <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+                                       <button type="button" type="reset" class="btn btn-outline-info">재작성</button>
+                                    
                                     </div>
                                     <br>
                                  </form>

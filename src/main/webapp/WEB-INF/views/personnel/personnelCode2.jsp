@@ -238,15 +238,15 @@
     </aside>
     <!-- End Sidebar Nav -->
     
-   <!-- 기초 등록 시작 -->
+   <!-- 인사코드 관리 시작 -->
 		<div class="content">
 			<div class="py-4 px-3 px-md-4">
 				<div class="card">
 					<div class="card-body">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">인사 관리</a></li>
-								<li class="breadcrumb-item active" aria-current="page">기초 등록</li>
+								<li class="breadcrumb-item"><a href="#">기초 등록</a></li>
+								<li class="breadcrumb-item active" aria-current="page">인사코드 관리</li>
 							</ol>
 						</nav>
 						<div class="row">
@@ -255,7 +255,7 @@
 
 								<div id="example" class="mb-9">
 									<h4 class="h1 text-dark"><b>
-										기초 등록 </b><a class="anchorjs-link" href="#example"
+										인사코드 관리 </b><a class="anchorjs-link" href="#example"
 											aria-label="Anchor" data-anchorjs-icon="#"></a></h4>
 											
 									<div class="mb-3">
@@ -265,15 +265,26 @@
 											<a class="nav-link d-flex align-items-center py-2 px-3 active"
 													id="pills-result-tab-1" data-toggle="pill"
 													href="#pills-result-1" role="tab"
-													aria-controls="pills-result-1" aria-selected="true">인사코드 관리</a>
+													aria-controls="pills-result-1" aria-selected="true">인사코드 그룹</a>
 											</li>
 											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
 											<a class="nav-link d-flex align-items-center py-2 px-3"
 													id="pills-html-tab-1" data-toggle="pill"
 													href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-													aria-selected="false">부서 관리</a>
+													aria-selected="false">인사코드 그룹 등록</a>
 											</li>
-												
+												<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light  ">
+											<a class="nav-link d-flex align-items-center py-2 px-3"
+													id="pills-html-tab-2" data-toggle="pill"
+													href="#pills-html-2" role="tab" aria-controls="pills-html-2"
+													aria-selected="false">인사코드</a>
+											</li>
+											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
+											<a class="nav-link d-flex align-items-center py-2 px-3"
+													id="pills-html-tab-3" data-toggle="pill"
+													href="#pills-html-3" role="tab" aria-controls="pills-html-3"
+													aria-selected="false">인사코드 등록</a>
+											</li>
 										</ul>
 										<!-- End Nav Classic -->
 
@@ -341,9 +352,11 @@
 													</table>
 												
 												<div align=center>
-                                       				<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                     				<button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                                   				 </div>
+												
+													<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+													<button type="button" type="reset" class="btn btn-outline-info">재작성</button>
+												
+												</div>
 												<br>
 											</form>
 											</div>
@@ -424,9 +437,11 @@
 												</table>
 												
 												<div align=center>
-                                       				<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                      				 <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                                    			</div>
+												
+													<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+													<button type="button" type="reset" class="btn btn-outline-info">재작성</button>
+												
+												</div>
 												<br>
 											</form>
 										</div>
@@ -439,7 +454,7 @@
 				</div>
 			</div>
 		</div>
-	<!-- 기초 등록 끝-->
+	<!-- 인사코드 관리 끝-->
 </main>
 
 <%@ include file = "../common/footer.jsp" %> 
