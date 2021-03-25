@@ -239,7 +239,7 @@
                                     <!-- Tab Content -->
                                     <div class="tab-content bg-lighter" id="tabs-tabContent-3">
                                         <div class="tab-pane fade show active" id="tabs-result-3" role="tabpanel" aria-labelledby="tabs-result-tab-3">
-                                            <div class="px-3">
+                                            <div class="px-3 p-4">
                                                 <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-2" role="tablist">
                                                     <li class="nav-item">
                                                         <a class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab1" role="tab" aria-selected="true"
@@ -252,7 +252,7 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                                <div id="tabsContent2" class="card-body tab-content p-4">
+                                                <div id="tabsContent2" class="card-body tab-content p-3">
                                                     <div class="tab-pane fade show active" id="tabs2-tab1" role="tabpanel">
                                             <div class="row">
                                        <div class="col">
@@ -379,8 +379,8 @@
                                        </table>
                                                     </div>
                                     </div>
-                                                    <div class="tab-pane fade" id="tabs2-tab2" role="tabpanel">
-                                                       <div class="row">
+                                    <div class="tab-pane fade" id="tabs2-tab2" role="tabpanel">
+                                       <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample2">
@@ -432,16 +432,15 @@
                                                       </tr>
                                                    </tbody>
                                                 </table>
-                                                <button type="button" class="btn btn-outline-info"
-                                                   style='float: right;'>승인거부</button>
-                                                <button type="button" class="btn btn-outline-info"
-                                                   style='float: right;'>승인하기</button>
-                                                   <br><br>
-                                             </div>
+                                                </div>
+                                                     <div align=center>
+                                                   <button type="button" type="submit" class="btn btn-outline-info">승인</button>&nbsp;&nbsp;&nbsp;
+                                                   <button type="button" type="reset" class="btn btn-outline-info">승인거부</button>                                  
+                                       </div>
                                              <br><br><br>
                                           </div>
                                        </div>
-                                       <table class="mm table bg-white text-dark center ass2 table-striped">
+                                       <table class="table bg-white text-dark center ass2 table-striped">
                                           <thead class="text-white table-bordered tap">
                                              <tr>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
@@ -490,8 +489,8 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tabs-html-3" role="tabpanel" aria-labelledby="tabs-html-tab-3">
-                                 <div class="tab-pane fade py-4 show active" id="tabs-result-3" role="tabpanel" aria-labelledby="tabs-result-tab-3">
-                                            <div class="px-3">
+                                          <div class="tab-pane fade show active" id="tabs-result-3" role="tabpanel" aria-labelledby="tabs-result-tab-3">
+                                            <div class="px-3 p-4">
                                                 <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3" role="tablist">
                                                     <li class="nav-item">
                                                         <a class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab3" role="tab" aria-selected="true"
@@ -504,14 +503,13 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                                <div id="tabsContent2" class="card-body tab-content p-0">
+                                                <div id="tabsContent2" class="card-body tab-content p-3">
                                                     <div class="tab-pane fade show active" id="tabs2-tab3" role="tabpanel">
                                             <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample1">
                                                 <table class="table table-bordered bg-white text-dark ass2 center">
-                                                   
                                                    <tbody>
                                                       <tr class="text-white con">
                                                          <th colspan="4">입금전표</th>
@@ -630,12 +628,10 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                                    </div>
-                                 
-                                                    </div>
-
-                                                    <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
-                                                          <div class="row">
+                                      </div>
+                                      </div>
+                                      <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
+                                       <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample2">
@@ -687,12 +683,11 @@
                                                       </tr>
                                                    </tbody>
                                                 </table>
-                                                <button type="button" class="btn btn-outline-info"
-                                                   style='float: right;'>승인거부</button>
-                                                <button type="button" class="btn btn-outline-info"
-                                                   style='float: right;'>승인하기</button>
-                                                   <br><br>
-                                             </div>
+                                                </div>
+                                                     <div align=center>
+                                                   <button type="button" type="submit" class="btn btn-outline-info">승인</button>&nbsp;&nbsp;&nbsp;
+                                                   <button type="button" type="reset" class="btn btn-outline-info">승인거부</button>                                  
+                                       </div>
                                              <br><br><br>
                                           </div>
                                        </div>
@@ -707,10 +702,10 @@
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
                                              </tr>
                                           </thead>
-                                          <tbody>
+                                         <tbody>
                                              <tr>
                                                 <td class="py-1">
-                                                   <p style="vertical-align: middle">
+                                                   <p>
                                                       <a class="btn" data-toggle="collapse"
                                                          href="#multiCollapseExample2" role="button"
                                                          aria-expanded="false"
@@ -739,23 +734,21 @@
                                           </tbody>
                                        </table>
                                     </div>
-                                 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Tab Content -->
+                                  </div>
                                 </div>
+                             </div>
                             </div>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                           
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                  <!-- End Tab Content -->
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+           </div>
    </main>
 
    <%@ include file="../common/footer.jsp"%>
