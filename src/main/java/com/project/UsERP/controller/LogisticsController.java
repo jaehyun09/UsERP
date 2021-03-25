@@ -10,22 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //물류관리
 @Controller
 public class LogisticsController {
-   private static final Logger logger = LoggerFactory.getLogger(LogisticsController.class);
    
-      // 거래처 조회
-      @RequestMapping("/accountinquiry")
-      public String accountinquiry(HttpServletRequest req, Model model) {
-         logger.info("url ==> 거래처 조회");
+	private static final Logger logger = LoggerFactory.getLogger(LogisticsController.class);
+   
+      // 기초 코드
+      @RequestMapping("/foundationcode")
+      public String foundationcode(HttpServletRequest req, Model model) {
+         logger.info("url ==> 기초 코드");
 
-         return "logistics/accountinquiry";
+         return "logistics/foundationcode";
       }
       
-      // 상품 조회
-      @RequestMapping("/productinquiry")
-      public String productinquiry(HttpServletRequest req, Model model) {
-         logger.info("url ==> 상품조회");
-         
-         return "logistics/productinquiry";
+      // 전표 관리
+      @RequestMapping("/statementlist")
+      public String statementlist(HttpServletRequest req, Model model) {
+    	  logger.info("url ==> 전표 관리");
+    	  
+    	  return "logistics/statementlist";
       }
       
       // 재고 현황
@@ -36,56 +37,47 @@ public class LogisticsController {
          return "logistics/inventorystatus";
       }
       
-      // 전표리스트
-      @RequestMapping("/statementlist")
-      public String statementlist(HttpServletRequest req, Model model) {
-         logger.info("url ==> 전표리스트");
-         
-         return "logistics/statementlist";
+      // 재고 이동
+      @RequestMapping("/movewarehouse")
+      public String movewarehouse(HttpServletRequest req, Model model) {
+    	  logger.info("url ==> 재고 이동");
+    	  
+    	  return "logistics/movewarehouse";
       }
       
-      // 재고수불부
+      // 재고 조정
+      @RequestMapping("/inventoryadjustment")
+      public String inventoryadjustment(HttpServletRequest req, Model model) {
+    	  logger.info("url ==> 재고 조정");
+    	  
+    	  return "logistics/inventoryadjustment";
+      }
+      
+      // 재고 수불부
       @RequestMapping("/inventorysupply")
       public String inventorysupply(HttpServletRequest req, Model model) {
-         logger.info("url ==> 재고수불부");
+         logger.info("url ==> 재고 수불부");
          
          return "logistics/inventorysupply";
       }
             
-      // 창고리스트
+      // 창고 현황
       @RequestMapping("/warehouselist")
       public String warehouselist(HttpServletRequest req, Model model) {
-         logger.info("url ==> 창고리스트");
+         logger.info("url ==> 창고 현황");
          
          return "logistics/warehouselist";
       }      
       
-      // 창고이동
-      @RequestMapping("/movewarehouse")
-      public String movewarehouse(HttpServletRequest req, Model model) {
-         logger.info("url ==> 창고이동");
-         
-         return "logistics/movewarehouse";
-      }
+      // ------------- 밑에는 테스트 입니다 ----------------
       
       // 재고조정
-      @RequestMapping("/inventoryadjustment")
-      public String inventoryadjustment(HttpServletRequest req, Model model) {
-         logger.info("url ==> 재고조정");
+      @RequestMapping("/test")
+      public String test(HttpServletRequest req, Model model) {
+         logger.info("url ==> test");
          
-         return "logistics/inventoryadjustment";
+         return "logistics/test";
       }
-      
-      
-      // 재고조정
-      @RequestMapping("/test2")
-      public String test2(HttpServletRequest req, Model model) {
-         logger.info("url ==> test2");
-         
-         return "logistics/test2";
-      }
-      
-      
       
       
 }
