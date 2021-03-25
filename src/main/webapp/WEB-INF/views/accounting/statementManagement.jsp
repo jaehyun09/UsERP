@@ -491,7 +491,7 @@
                                         <div class="tab-pane fade" id="tabs-html-3" role="tabpanel" aria-labelledby="tabs-html-tab-3">
                                           <div class="tab-pane fade show active" id="tabs-result-3" role="tabpanel" aria-labelledby="tabs-result-tab-3">
                                             <div class="px-3 p-4">
-                                                <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3" role="tablist">
+                                                <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-2" role="tablist">
                                                     <li class="nav-item">
                                                         <a class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab3" role="tab" aria-selected="true"
                                                            data-toggle="tab">승인 전표
