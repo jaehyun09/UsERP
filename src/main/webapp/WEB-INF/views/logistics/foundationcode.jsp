@@ -257,7 +257,6 @@
 														<div class="collapse multi-collapse"
 															id="multiCollapseExample1">
 																<table class="table table-bordered bg-white text-dark ass2 th20">
-																	
 																	<tbody>
 																		<tr class="text-white con center">
 																			<th colspan="2">거래처명1</th>

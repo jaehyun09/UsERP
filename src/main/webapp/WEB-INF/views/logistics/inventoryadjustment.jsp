@@ -390,10 +390,9 @@
 																			</td>
 																		</tr>
 																	</table>
-																		<div align=center>
-									                                     <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-									                                     <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-									                                  </div>
+																		<input type="reset" class="btn btn-outline-info" style='float: right;' value="취소" >
+																		<input type="submit" class="btn btn-outline-info" style='float: right;' value="확인" >
+																		<br><br>
 																</div>
 															</div>
 												  		</td>
