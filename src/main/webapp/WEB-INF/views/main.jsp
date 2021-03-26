@@ -249,6 +249,12 @@
     <!-- End Sidebar Nav -->
 
     <div class="content">
+   <c:if test = "${msg != null}">
+      <script type="text/javascript">
+         alert("${msg}");
+      </script>
+</c:if>
+   
         <div class="py-4 px-3 px-md-4">
             <div class="card mb-3 mb-md-4">
 
@@ -258,17 +264,20 @@
 					<div class="card-wrapper col-12 col-md-4 mt-5">
 						<div class="card">
 							<div class="card-body">
+							 <c:if test="${sessionScope.mem_id == null}">
 								<h4 class="card-title">Login</h4>
-								<form>
+								
+								<form action="loginPro.do" method="post" name="mainform" onsubmit="return mainCheck();">
+								<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 									<div class="form-group">
-										<label for="email">E-Mail Address</label>
-										<input id="email" type="email" class="form-control" name="email" required="" autofocus="">
+										<label for="emp_code">Employee number</label>
+										<input id="emp_code" type="text" class="form-control" name="emp_code" >
 									</div>
 
 									<div class="form-group">
-										<label for="password">Password
+										<label for="emp_pwd">Password
 										</label>
-										<input id="password" type="password" class="form-control" name="password" required="">
+										<input id="emp_pwd" type="password" class="form-control" name="emp_pwd" >
 										<div class="text-right">
 											<a href="password-reset.html" class="small">
 												Forgot Your Password?
@@ -285,14 +294,16 @@
 									</div>
 
 									<div class="form-group no-margin">
-										<a href="/index.html" class="btn btn-primary btn-block">
-											Sign In
-										</a>
+										<input class="btn btn-primary btn-block" type="submit" value="Sign In">		
 									</div>
 									<div class="text-center mt-3 small">
 										Don't have an account? <a href="register.html">Sign Up</a>
 									</div>
 								</form>
+								</c:if>
+								<c:if test="${sessionScope.mem_id != null}">
+									로그인 성공 !!
+								</c:if>
 							</div>
 						</div>
 						<footer class="footer mt-3">
@@ -306,7 +317,6 @@
 				</div>
 
 
-
 			</div>
 
       </div>
@@ -315,8 +325,7 @@
 
         </div>
 
-        
-    </div>
+    
 </main>
 
 <%@ include file = "./common/footer.jsp" %> 

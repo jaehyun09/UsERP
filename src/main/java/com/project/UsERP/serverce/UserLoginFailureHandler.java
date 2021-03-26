@@ -34,13 +34,13 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler{
 			AuthenticationException exception) throws IOException, ServletException {
 	
 		System.out.println("실패 ");
-		String strId =  request.getParameter("id");
-		String strPwd = request.getParameter("pwd");
+		String strId =  request.getParameter("emp_code");
+		String strPwd = request.getParameter("emp_pwd");
 		
-		int cnt = sqlSession.selectOne("spring.mvc.planet.persistence.ClientDAO.idCheck",strId);
+		int cnt = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.idCheck",strId);
 		if(cnt!=0) {
 			
-			String pwd = sqlSession.selectOne("spring.mvc.planet.persistence.ClientDAO.pwdCheck",strId);
+			String pwd = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.pwdCheck",strId);
 			System.out.println(strPwd);
 			System.out.println(pwd);
 			System.out.println(passwordEncoder.matches(strPwd, pwd));
@@ -55,7 +55,7 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler{
 			request.setAttribute("errMsg", "아이디가 일치하지 않습니다.");
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/login.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/main.jsp");
 		rd.forward(request, response);
 	}
 

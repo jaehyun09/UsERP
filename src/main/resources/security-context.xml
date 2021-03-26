@@ -21,11 +21,11 @@
 		<security:intercept-url pattern="/client/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_GUEST')"/>	
 			
 		<!-- 로그인폼 -->
-		<security:form-login login-page="/login.do"
+		<security:form-login login-page="/"
 			login-processing-url="/loginPro.do"
 			authentication-success-handler-ref="userLoginSuccessHandler"
 			authentication-failure-handler-ref="userLoginFailureHandler"
-			username-parameter="id" password-parameter="pwd"	/>
+			username-parameter="emp_code" password-parameter="emp_pwd"	/>
 		
 		<security:session-management>
 			<!-- max-sessions="1":  같은 브라우저의 여러 창에서 동시 접속 막기 

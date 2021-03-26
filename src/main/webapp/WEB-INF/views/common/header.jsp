@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
+<%@ include file = "../setting.jsp" %>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,7 +90,7 @@
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
                         <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
                         <span class="mr-md-2 avatar-placeholder">J</span>
-                        <span class="d-none d-md-block">John Doe</span>
+                        <span class="d-none d-md-block">${sessionScope.mem_id}</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
                     </a>
 
@@ -103,7 +104,7 @@
                             </a>
                         </li>
                         <li class="unfold-item unfold-item-has-divider">
-                            <a class="unfold-link d-flex align-items-center text-nowrap" href="#">
+                            <a class="unfold-link d-flex align-items-center text-nowrap" href="${path}/logout.do">
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-power-off"></i>
                     </span>

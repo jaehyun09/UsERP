@@ -14,14 +14,6 @@ public class AccountController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
-	// 메인화면
-	@RequestMapping("/main.do")
-	public String main2(HttpServletRequest req, Model model) {
-		logger.info("url ==> 인사관리");
-
-		return "main";
-	}
-
 	// 회계보고서
 	@RequestMapping("/accountingreport")
 	public String Accountingreport(HttpServletRequest req, Model model) {
