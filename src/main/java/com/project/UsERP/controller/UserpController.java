@@ -17,14 +17,14 @@ public class UserpController {
 	// 메인화면
 	@RequestMapping("/")
 	public String main(HttpServletRequest req, Model model) {
-		logger.info("url ==> 인사관리");
+		logger.info("url ==> 메인화면");
 
 		return "main";
 	}
 
 	@RequestMapping("/main.do")
 	public String main2(HttpServletRequest req, Model model) {
-		logger.info("url ==> 인사관리");
+		logger.info("url ==> 메인화면");
 
 		return "main";
 	}

@@ -13,20 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PurchasingController {
 private static final Logger logger = LoggerFactory.getLogger(PurchasingController.class);
 	
-	// 거래처 
+	// 기초등록 
 	@RequestMapping("/client2")
 	public String client2(HttpServletRequest req, Model model) {
-		logger.info("url ==> 거래처");
+		logger.info("url ==> 기초등록");
 	
 		return "purchasing/client2";
-	}
-
-	// 상품
-	@RequestMapping("/purchproduct")
-	public String purchproduct(HttpServletRequest req, Model model) {
-		logger.info("url ==> 상품");
-		
-		return "purchasing/purchproduct";
 	}
 
 	// 재고 현황

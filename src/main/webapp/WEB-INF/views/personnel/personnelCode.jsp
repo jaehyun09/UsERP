@@ -13,7 +13,7 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
-	<link rel="stylesheet" href="${project}css/board.css">
+   <link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
 </head>
@@ -58,7 +58,7 @@
                 <!-- End Users: subUsers -->
             </li>
             <!-- End Users -->
-			 <!-- Authentication -->
+          <!-- Authentication -->
             <li class="side-nav-menu-item side-nav-has-menu">
                 <a class="side-nav-menu-link media align-items-center" href="#"
                    data-target="#subPages">
@@ -100,7 +100,7 @@
 
                 <!-- UI Components: subComponents -->
                 <ul id="subComponents" class="side-nav-menu side-nav-menu-second-level mb-0">
-                	<li class="side-nav-menu-item">
+                   <li class="side-nav-menu-item">
                         <a class="side-nav-menu-link ass2" href="${path}/client">거래처</a>
                     </li>
                     <li class="side-nav-menu-item">
@@ -136,7 +136,7 @@
 
                 <!-- Utils: subUtils -->
                 <ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
-                	<li class="side-nav-menu-item">
+                   <li class="side-nav-menu-item">
                         <a class="side-nav-menu-link ass2" href="${path}/client2">거래처</a>
                     </li>
                     <li class="side-nav-menu-item">
@@ -171,7 +171,7 @@
 
                 <!-- UI Components: subComponents -->
                 <ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
-                	<li class="side-nav-menu-item">
+                   <li class="side-nav-menu-item">
                         <a class="side-nav-menu-link ass2" href="${path}/accountinquiry">거래처 조회</a>
                     </li>
                     <li class="side-nav-menu-item">
@@ -237,95 +237,316 @@
         </ul>
     </aside>
     <!-- End Sidebar Nav -->
-    
+
    <!-- 기초 등록 시작 -->
-		<div class="content">
-			<div class="py-4 px-3 px-md-4">
-				<div class="card">
-					<div class="card-body">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">인사 관리</a></li>
-								<li class="breadcrumb-item active" aria-current="page">기초 등록</li>
-							</ol>
-						</nav>
-						<div class="row">
+      <div class="content">
+         <div class="py-4 px-3 px-md-4">
+            <div class="card">
+               <div class="card-body">
+                  <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">인사 관리</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">기초 등록</li>
+                     </ol>
+                  </nav>
+                  <div class="row">
 
-							<div class="col-xl-12">
+                     <div class="col-xl-12">
 
-								<div id="example" class="mb-9">
-									<h4 class="h1 text-dark"><b>
-										기초 등록 </b><a class="anchorjs-link" href="#example"
-											aria-label="Anchor" data-anchorjs-icon="#"></a></h4>
-											
-									<div class="mb-3">
-										<!-- Nav Classic -->
-										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark" id="tabs-tab-3" role="tablist">
-											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
-											<a class="nav-link d-flex align-items-center py-2 px-3 active"
-													id="pills-result-tab-1" data-toggle="pill"
-													href="#pills-result-1" role="tab"
-													aria-controls="pills-result-1" aria-selected="true">인사코드 관리</a>
-											</li>
-											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
-											<a class="nav-link d-flex align-items-center py-2 px-3"
-													id="pills-html-tab-1" data-toggle="pill"
-													href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-													aria-selected="false">부서 관리</a>
-											</li>
-												
-										</ul>
-										<!-- End Nav Classic -->
+                        <div id="example" class="mb-9">
+                           <h4 class="h1 text-dark"><b>
+                              기초 등록 </b><a class="anchorjs-link" href="#example"
+                                 aria-label="Anchor" data-anchorjs-icon="#"></a></h4>
+                                 
+                           <div class="mb-3">
+                           
+                              <!-- Nav Classic -->
+                                    <ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark" id="tabs-tab-3" role="tablist">
+                                        <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light  ">
+                                            <a class="nav-link d-flex align-items-center py-2 px-3 active  " id="tabs-result-tab-3" data-toggle="pill" href="#tabs-result-3" role="tab" aria-controls="tabs-result-3" aria-selected="true">인사코드 관리</a>
+                                        </li>
+                                        <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
+                                            <a class="nav-link d-flex align-items-center py-2 px-3 " id="tabs-html-tab-3" data-toggle="pill" href="#tabs-html-3" role="tab" aria-controls="tabs-html-3" aria-selected="false">부서 관리</a>
+                                        </li>
+                                    </ul>
+                                    <!-- End Nav Classic -->
 
-										<!-- Tab Content -->
-										<div class="tab-content bg-lighter" id="pills-tabContent-1">
-											<div class="tab-pane fade p-4 show active"
-												id="pills-result-1" role="tabpanel"
-												aria-labelledby="pills-result-tab-1">
-												<table class="table table-striped bg-white text-dark center ass2" style="text-align:center">
-													<thead class="text-white table-bordered tap">
-														<tr>
-															<th class="font-weight-semi-bold  py-3 h4">그룹번호</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">그룹명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
+                                    <!-- Tab Content -->
+                                    <div class="tab-content bg-lighter" id="tabs-tabContent-3">
+                                        <div class="tab-pane fade show active" id="tabs-result-3" role="tabpanel" aria-labelledby="tabs-result-tab-3">
+                                            <div class="px-3 p-4">
+                                                <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-2" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab1" role="tab" aria-selected="true"
+                                                           data-toggle="tab">인사코드 그룹
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item ml-4">
+                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs2-tab2" role="tab" aria-selected="false"
+                                                           data-toggle="tab">인사코드 그룹 등록
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item ml-4">
+                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs2-tab3" role="tab" aria-selected="true"
+                                                           data-toggle="tab">인사코드
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item ml-4">
+                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs2-tab4" role="tab" aria-selected="false"
+                                                           data-toggle="tab">인사코드 등록
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                
+                                         <div id="tabsContent2" class="card-body tab-content p-3">
+                                            <!-- 탭 1 -->
+                                           <div class="tab-pane fade show active" id="tabs2-tab1" role="tabpanel">
+                                            <div class="row">
+                                       
+                                          <table class="table table-striped bg-white text-dark center ass2" style="text-align:center">
+                                       <thead class="text-white table-bordered tap">
+                                          <tr>
+                                             <th class="font-weight-semi-bold  py-3 h4">그룹번호</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 h4">그룹명</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr>
+                                             <td class="py-1">1</td>
+                                             <td class="py-1">직급</td>
+                                             <td class="py-1">사용</td>
+                                          </tr>
+                                          <tr>
+                                             <td class="py-1">2</td>
+                                             <td class="py-1">휴가</td>
+                                             <td class="py-1">사용</td>
+                                          </tr>
+                                          <tr>
+                                             <td class="py-1">3</td>
+                                             <td class="py-1">급여</td>
+                                             <td class="py-1">사용</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                       </div>
+                                    </div>
+                                    <!-- 탭1 -->
+                                    
+                                    <!-- 탭2 -->
+                                    <div class="tab-pane fade" id="tabs2-tab2" role="tabpanel">
+                                       <div class="row">
+                                 
+                              <table class="table bg-white text-dark center ass2" style="text-align:center">
+                                 <tr class="text-white table-bordered tap">
+                                    <th colspan="3"> 인사코드 그룹 등록 </th>
+                                 </tr>
+                                 <tr>
+                                    <th>그룹명 </th>
+                                    <td><input id="text" type="text" class="form-control" name="password" required=""></td>
+                                    <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 그룹번호 </th>
+                                    <td> <input id="text" type="text" class="form-control" name="password" required=""></td>
+                                    <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 사용상태 </th>
+                                    <td>    
+                                    <div class="form-group">
+                                         <select class="form-control" id="exampleFormControlSelect1">
+                                           <option>사용</option>
+                                           <option>비사용</option>
+                                         </select>
+                                       </div>
+                                     </td>
+                                 </tr>
+                              </table>
+                           </div>
+                           <div align=center>
+                              <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                              <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+                           </div>
+                                 </div>
+                                  <!-- 탭2 -->
+                                  
+                                  <!-- 탭3 -->
+                                    <div class="tab-pane fade" id="tabs2-tab3" role="tabpanel">
+                                       <div class="row">
+                                 
+                                       <table class="table table-striped bg-white text-dark center ass2"> 
+                                 <thead>
+                                    <tr class="text-white table-bordered tap">
+                                       <th class="font-weight-semi-bold border-top-0 py-2">그룹번호</th>
+                                       <th class="font-weight-semi-bold border-top-0 py-2">인사코드</th>
+                                       <th class="font-weight-semi-bold border-top-0 py-2">인사코드명</th>
+                                       <th class="font-weight-semi-bold border-top-0 py-2">사용상태</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td class="py-3">1</td>
+                                       <td class="py-3">Mark</td>
+                                       <td class="py-3">Otto</td>
+                                       <td class="py-3">@mdo</td>
+                                    </tr>
+                                    <tr>
+                                       <td class="py-3">2</td>
+                                       <td class="py-3">Jacob</td>
+                                       <td class="py-3">Thornton</td>
+                                       <td class="py-3">@fat</td>
+                                    </tr>
+                                    <tr>
+                                       <td class="py-3">3</td>
+                                       <td class="py-3">Larry</td>
+                                       <td class="py-3">the Bird</td>
+                                       <td class="py-3">@twitter</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                                    </div>
+                                  </div>
+                                  <!-- 탭3 -->
+                                  
+                                  <!-- 탭4 -->
+                                    <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
+                                       <div class="row">
+                                 
+                                       <table class="table bg-white text-dark center ass2" style="text-align:center">
+                                       <tr class="text-white table-bordered tap">
+                                             <th colspan="3"> 인사코드  등록 </th>
+                                       </tr>
+                                       <tr>
+                                          <th>그룹번호 </th>
+                                          <td>    
+                                          <div class="form-group">
+                                               <select class="form-control" id="exampleFormControlSelect1">
+                                                 <option>1</option>
+                                                 <option>2</option>
+                                                 <option>3</option>
+                                                 <option>4</option>
+                                               </select>
+                                             </div>
+                                           </td>
+                                       </tr>
+                                       <tr>
+                                          <th> 인사코드 </th>
+                                          <td> <input id="text" type="text" class="form-control" name="password" required=""></td>
+                                          <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
+                                       </tr>
+                                       <tr>
+                                          <th> 인사코드명 </th>
+                                          <td> <input id="text" type="text" class="form-control" name="password" required=""></td>
+                                          <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
+                                       </tr>
+                                       <tr>
+                                          <th> 사용상태 </th>
+                                          <td>    
+                                          <div class="form-group">
+                                               <select class="form-control" id="exampleFormControlSelect1">
+                                                 <option>사용</option>
+                                                 <option>비사용</option>
+                                               </select>
+                                             </div>
+                                           </td>
+                                       </tr>
+                                    </table>
+                                    </div>
+                                    <div class="center">
+                                                   <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                                                   <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+                                             </div>
+                                  </div>
+                                  <!-- 탭4 -->
+                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="tab-pane fade" id="tabs-html-3" role="tabpanel" aria-labelledby="tabs-html-tab-3">
+                                            <div class="px-3 p-4">
+                                                <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-2" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link px-2 pb-2 active ass2" href="#tabs3-tab3" role="tab" aria-selected="true"
+                                                           data-toggle="tab">부서
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item ml-4">
+                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs3-tab4" role="tab" aria-selected="false"
+                                                           data-toggle="tab">부서 등록
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                
+                                         <div id="tabsContent2" class="card-body tab-content p-3">
+                                           <!-- 탭 1 -->
+                                           <div class="tab-pane fade show active" id="tabs3-tab3" role="tabpanel">
+                                            <div class="row">
+                                       
+                                       <table class="table table-striped bg-white text-dark center ass2" style="text-align:center">
+													<thead>
+														<tr class="text-white table-bordered tap">
+															<th class="font-weight-semi-bold border-top-0 py-2">부서번호</th>
+															<th class="font-weight-semi-bold border-top-0 py-2">부서명</th>
+															<th class="font-weight-semi-bold border-top-0 py-2">접근권한</th>
+															<th class="font-weight-semi-bold border-top-0 py-2">사용상태</th>
 														</tr>
 													</thead>
 													<tbody>
 														<tr>
-															<td class="py-1">1</td>
-															<td class="py-1">직급</td>
-															<td class="py-1">사용</td>
+															<td class="py-3">01</td>
+															<td class="py-3">영업부</td>
+															<td class="py-3">관리자</td>
+															<td class="py-3">사용</td>
 														</tr>
 														<tr>
-															<td class="py-1">2</td>
-															<td class="py-1">휴가</td>
-															<td class="py-1">사용</td>
+															<td class="py-3">02</td>
+															<td class="py-3">인사부</td>
+															<td class="py-3">관리자</td>
+															<td class="py-3">사용</td>
 														</tr>
 														<tr>
-															<td class="py-1">3</td>
-															<td class="py-1">급여</td>
-															<td class="py-1">사용</td>
+															<td class="py-3">03</td>
+															<td class="py-3">회계부</td>
+															<td class="py-3">관리자</td>
+															<td class="py-3">사용</td>
 														</tr>
 													</tbody>
 												</table>
-											</div>
-
-											<div class="tab-pane fade p-4" id="pills-html-1"
-												role="tabpanel" aria-labelledby="pills-html-tab-1">
-												<form>
+                                       </div>
+                                    </div>
+                                    <!-- 탭1 -->
+                                      
+                                      
+                                      <!-- 탭 1 -->
+                                           <div class="tab-pane fade" id="tabs3-tab4" role="tabpanel">
+                                            <div class="row">
+                                       
 													<table class="table bg-white text-dark center ass2" style="text-align:center">
 														<tr class="text-white table-bordered tap">
-															<th colspan="3"> 인사코드 그룹 등록 </th>
+															<th colspan="3"> 부서 등록 </th>
 														</tr>
 														<tr>
-															<th>그룹명 </th>
+															<th>부서번호 </th>
 															<td><input id="text" type="text" class="form-control" name="password" required=""></td>
 															<td><button type="button" class="btn btn-outline-info">중복확인</button></td>
 														</tr>
 														<tr>
-															<th> 그룹번호 </th>
+															<th> 부서명 </th>
 															<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
 															<td><button type="button" class="btn btn-outline-info">중복확인</button></td>
+														</tr>
+														<tr>
+															<th> 접근권한 </th>
+															<td>	 
+															<div class="form-group">
+															     <select class="form-control" id="exampleFormControlSelect1">
+															       <option>사원</option>
+															       <option>관리자</option>
+															     </select>
+															   </div>
+															 </td>
 														</tr>
 														<tr>
 															<th> 사용상태 </th>
@@ -339,112 +560,36 @@
 															 </td>
 														</tr>
 													</table>
+												</div>
 												
-												<div align=center>
-                                       				<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                     				<button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                                   				 </div>
-												<br>
-											</form>
-											</div>
-											<div class="tab-pane fade p-4" id="pills-html-2"
-												role="tabpanel" aria-labelledby="pills-html-tab-2">
-												<table class="table table-striped bg-white text-dark center ass2" style="text-align:center"> 
-													<thead>
-														<tr class="text-white table-bordered tap">
-															<th class="font-weight-semi-bold border-top-0 py-2">그룹번호</th>
-															<th class="font-weight-semi-bold border-top-0 py-2">인사코드</th>
-															<th class="font-weight-semi-bold border-top-0 py-2">인사코드명</th>
-															<th class="font-weight-semi-bold border-top-0 py-2">사용상태</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td class="py-3">1</td>
-															<td class="py-3">Mark</td>
-															<td class="py-3">Otto</td>
-															<td class="py-3">@mdo</td>
-														</tr>
-														<tr>
-															<td class="py-3">2</td>
-															<td class="py-3">Jacob</td>
-															<td class="py-3">Thornton</td>
-															<td class="py-3">@fat</td>
-														</tr>
-														<tr>
-															<td class="py-3">3</td>
-															<td class="py-3">Larry</td>
-															<td class="py-3">the Bird</td>
-															<td class="py-3">@twitter</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											<div class="tab-pane fade p-4" id="pills-html-3"
-												role="tabpanel" aria-labelledby="pills-html-tab-3">
-											<form>
-												<table class="table bg-white text-dark center ass2" style="text-align:center">
-													<tr class="text-white table-bordered tap">
-															<th colspan="3"> 인사코드  등록 </th>
-													</tr>
-													<tr>
-														<th>그룹번호 </th>
-														<td>	 
-														<div class="form-group">
-														     <select class="form-control" id="exampleFormControlSelect1">
-														       <option>1</option>
-														       <option>2</option>
-														       <option>3</option>
-														       <option>4</option>
-														     </select>
-														   </div>
-														 </td>
-													</tr>
-													<tr>
-														<th> 인사코드 </th>
-														<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
-														<td><button type="button" class="btn btn-outline-info">중복확인</button></td>
-													</tr>
-													<tr>
-														<th> 인사코드명 </th>
-														<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
-														<td><button type="button" class="btn btn-outline-info">중복확인</button></td>
-													</tr>
-													<tr>
-														<th> 사용상태 </th>
-														<td>	 
-														<div class="form-group">
-														     <select class="form-control" id="exampleFormControlSelect1">
-														       <option>사용</option>
-														       <option>비사용</option>
-														     </select>
-														   </div>
-														 </td>
-													</tr>
-												</table>
-												
-												<div align=center>
-                                       				<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                      				 <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                                    			</div>
-												<br>
-											</form>
+										<div align=center>
+											<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+											<button type="button" type="reset" class="btn btn-outline-info">재작성</button>
 										</div>
-										<!-- End Tab Content -->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	<!-- 기초 등록 끝-->
-</main>
+										
+										<br>
+										
+                                       </div>
+                                    </div>
+                                    <!-- 탭1 -->
+                                </div>
+                             </div>
+                            </div>
+                          </div>
+                         </div>
+                        </div>
+                  <!-- End Tab Content -->
+                 </div>
+                </div>
+               </div>
+</div>
+</div>
 
-<%@ include file = "../common/footer.jsp" %> 
-<script src="${project}js/graindashboard.js"></script>
-<script src="${project}js/graindashboard.vendor.js"></script>
+   </main>
+
+   <%@ include file="../common/footer.jsp"%>
+   <script src="${project}js/graindashboard.js"></script>
+   <script src="${project}js/graindashboard.vendor.js"></script>
 
 </body>
 </html>

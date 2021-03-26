@@ -275,9 +275,10 @@
 															</td>
 														</tr>
 													</table>
-														<input type="reset" class="btn btn-outline-info" style='float: right;' value="취소" >
-														<input type="submit" class="btn btn-outline-info" style='float: right;' value="확인" >
-														<br><br>				
+														<div align=center>
+					                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+					                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+					                                    </div>				
 												</div>
 												<br><br><br>
 											</div>
@@ -289,7 +290,7 @@
 													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고ID</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고명</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고주소</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h4">수정</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h4"></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -380,9 +381,10 @@
 												</td>
 											</tr>
 										</table>
-										<input type="reset" class="btn btn-outline-info" style='float: right;' value="취소" >
-										<input type="submit" class="btn btn-outline-info" style='float: right;' value="확인" >
-										<br><br>
+										<div align=center>
+	                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+	                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+	                                    </div>
 									</div>
 									<!-- 신규 등록 끝-->
 								</div>

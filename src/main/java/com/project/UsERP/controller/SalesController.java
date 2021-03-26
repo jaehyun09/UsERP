@@ -13,20 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SalesController {
 private static final Logger logger = LoggerFactory.getLogger(SalesController.class);
 	
-	// 거래처 
-	@RequestMapping("/client")
+	// 기초등록 
+	@RequestMapping("/client3")
 	public String client(HttpServletRequest req, Model model) {
-		logger.info("url ==> 거래처");
+		logger.info("url ==> 기초등록");
 	
-		return "sales/client";
-	}
-	
-	// 상품
-	@RequestMapping("/salesproduct")
-	public String salesproduct(HttpServletRequest req, Model model) {
-		logger.info("url ==> 상품");
-		
-		return "sales/salesproduct";
+		return "sales/client3";
 	}
 	
 	// 재고 현황
@@ -53,5 +45,12 @@ private static final Logger logger = LoggerFactory.getLogger(SalesController.cla
 		return "sales/releaseStatus";
 	}
 	
+	//테스트
+	@RequestMapping("/test33")
+	public String test33(HttpServletRequest req, Model model) {
+		logger.info("url ==> 테스트");
+		
+		return "sales/test";
+	}
 	
 }

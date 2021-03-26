@@ -59,9 +59,7 @@
                 <!-- End Users: subUsers -->
             </li>
             <!-- End Users -->
-            </li>
-            <!-- End Users -->
-			 <!-- Authentication -->
+			<!-- Authentication -->
             <li class="side-nav-menu-item side-nav-has-menu">
                 <a class="side-nav-menu-link media align-items-center" href="#"
                    data-target="#subPages">
@@ -347,7 +345,7 @@
 											<div class="tab-pane fade p-4" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
 												
-										<form>
+												<form>
 													<table class="table bg-white text-dark center ass2" style="text-align:center">
 														<tr class="text-white table-bordered tap">
 															<th colspan="3"> 인사 발령 </th>

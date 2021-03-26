@@ -388,118 +388,118 @@
                                           
                                        </tbody>
                                     </table>
+                                    
                                     <br>
+                                    
                                  </div>
 								</div>
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                 
-                                 <h3><center><b>인사카드</b></center></h3>
-                                 
-                                 <br>
-                                 
-                                 <form>
-                                 <table class="table" style="text-align:center">
-                                    <tr>
-                                       <td rowspan="2" style="vertical-align:middle">
-                                          <div class="form-group">
-                                             <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                          </div>
-                                       </td>
-                                       <th >* 사번</th>
-                                       <td><input type="text" class="form-control"></td>
-                                       <td><button type="button" class="btn btn-outline-info" style="width:100px">중복확인</button></td>
-                                    </tr>
-                                    <tr>
-                                       <th>* 사원명</th>
-                                       <td><input type="text" class="form-control"></td>
-                                    </tr>
-                                    <tr>
-                                       <th colspan="2">* 부서명</th>
-                                       <td><div class="form-group">
-                                               <select class="form-control" id="exampleFormControlSelect1">
-                                                 <option>영업부</option>
-                                                 <option>회계부</option>
-                                               </select>
-                                             </div>
-                                           </td>
-                                    </tr>
-                                    <tr>
-                                       <th colspan="2">* 직급</th>
-                                       <td><div class="form-group">
-                                               <select class="form-control" id="exampleFormControlSelect1">
-                                                 <option>인턴사원</option>
-                                                 <option>팀장</option>
-                                               </select>
-                                             </div>
-                                           </td>
-                                    </tr>
-                                      <tr>
-                                       <th colspan="2">* 주민등록번호</th>
-                                       <td><input type="text" class="form-control"></td>
-                                    </tr>
-                                    <tr>
-                                       <th colspan="2">* 입사일</th>
-                                       <td><input type="date" class="form-control"></td>
-                                    </tr>
-                                    <tr>
-                                       <th colspan="2">전화번호</th>
-                                       <td><input type="text" class="form-control"></td>
-                                    </tr>
-                                    <tr>
-                                       <th colspan="2">* 휴대전화</th>
-                                       <td><input type="tel" class="form-control"></td>
-                                    </tr>
-                                    <tr>
-                                       <th colspan="2">여권번호</th>
-                                       <td><input type="text" class="form-control"></td>
-                                    </tr>
-                                    <tr>                                    
-                                       <th colspan="2">* 이메일</th>
-                                       <td><input class="form-control" type="text" maxlength="20"
-                                                   style="width:60px">
-                                                @
-                                                <input class="form-control" type="text" maxlength="20"
-                                                   style="width:70px">
-                                                <select class="form-control" name="email3" onchange="selectEmailChk();">
-                                                   <option value="0">직접입력</option>
-                                                   <option value="naver.com">네이버</option>
-                                                   <option value="gmail.com">구글</option>
-                                                   <option value="nate.com">네이트</option>
-                                                   <option value="daum.com">다음</option>
-                                                </select>   </td>
-                                    </tr>
-                                    <tr>                                    
-                                       <th colspan="2">* 주소</th>
-                                       <td><input type="text" class="form-control"></td>
-                                    </tr>
-                                    <tr>                                    
-                                       <th colspan="2">근속년수</th>
-                                       <td><input type="text" class="form-control"></td>
-                                    </tr>
-                                    <tr>
-                                       <th colspan="2">* 급여계좌</th>
-                                       <td><input type="text" class="form-control"></td>
-                                    </tr>
-                                    <tr>
-                                       <th colspan="2">* 은행</th>
-                                       <td><div class="form-group">
-                                               <select class="form-control" id="exampleFormControlSelect1">
-                                                 <option>농협</option>
-                                                 <option>신한</option>
-                                               </select>
-                                             </div>
-                                       </td>
-                                    </tr>
-                              </table>
-                              
-                              <br>
-                              
-                              <div align=center>
-                                 <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                 <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                              </div>
-                                 </form>
+                                    
+                         <!-- 인사카드 폼 시작 -->     
+                          <form>
+							<table class="table bg-white text-dark center ass2" style="text-align:center">
+								<tr class="text-white table-bordered tap">
+									<th colspan="3"> 인사카드 </th>
+								</tr>
+								<tr>
+									<th>* 사번</th>
+									<td><input id="text" type="text" class="form-control" name="password" required=""></td>
+									<td><button type="button" class="btn btn-outline-info">중복확인</button></td>
+								</tr>
+								<tr>
+									<th>* 사원명</th>
+									<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
+								</tr>
+								<tr>
+									<th> * 부서명 </th>
+									<td>	 
+									<div class="form-group">
+									     <select class="form-control" id="exampleFormControlSelect1">
+									       <option>영업부</option>
+									       <option>인사부</option>
+									     </select>
+									   </div>
+									 </td>
+								</tr>
+								<tr>
+									<th> * 직급</th>
+									<td>	 
+									<div class="form-group">
+									     <select class="form-control" id="exampleFormControlSelect1">
+									         <option>인턴사원</option>
+                                              		 <option>팀장</option>
+									     </select>
+									   </div>
+									 </td>
+								</tr>
+								<tr>
+									<th> * 주민등록번호 </th>
+									<td><input id="text" type="text" class="form-control" name="password" required=""></td>
+								</tr>
+								<tr>
+									<th>* 입사일</th>
+									<td><input type="date" class="form-control"></td>
+								</tr>
+								<tr>
+                                      <th>전화번호</th>
+                                      <td><input type="text" class="form-control"></td>
+                                   </tr>
+                                   <tr>
+                                      <th>* 휴대전화</th>
+                                      <td><input type="tel" class="form-control"></td>
+                                   </tr>
+                                   <tr>
+                                      <th>여권번호</th>
+                                      <td><input type="text" class="form-control"></td>
+                                   </tr>
+                                   <tr>                                    
+                                      <th>* 이메일</th>
+                                      <td><input class="form-control" type="text" maxlength="20"
+                                                  style="width:60px">
+                                               @
+                                               <input class="form-control" type="text" maxlength="20"
+                                                  style="width:70px">
+                                               <select class="form-control" name="email3" onchange="selectEmailChk();">
+                                                  <option value="0">직접입력</option>
+                                                  <option value="naver.com">네이버</option>
+                                                  <option value="gmail.com">구글</option>
+                                                  <option value="nate.com">네이트</option>
+                                                  <option value="daum.com">다음</option>
+                                               </select>   </td>
+                                   </tr>
+                                   <tr>                                    
+                                      <th>* 주소</th>
+                                      <td><input type="text" class="form-control"></td>
+                                   </tr>
+                                   <tr>                                    
+                                      <th>근속년수</th>
+                                      <td><input type="text" class="form-control"></td>
+                                   </tr>
+                                   <tr>
+                                      <th>* 급여계좌</th>
+                                      <td><input type="text" class="form-control"></td>
+                                   </tr>
+                                   <tr>
+                                      <th>* 은행</th>
+                                      <td><div class="form-group">
+                                              <select class="form-control" id="exampleFormControlSelect1">
+                                                <option>농협</option>
+                                                <option>신한</option>
+                                              </select>
+                                            </div>
+                                      </td>
+                                   </tr>
+							</table>
+						
+							<div align=center>
+                               	<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                               	<button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+                            </div>
+						
+						</form>
+					 <!-- 인사카드 폼 끝 -->   
+					   
                                  </div>
                                  <div class="tab-pane fade p-4" id="pills-html-2"
                                     role="tabpanel" aria-labelledby="pills-html-tab-2">
@@ -552,8 +552,6 @@
                                  </div>
                                  <div class="tab-pane fade p-4" id="pills-html-3"
                                     role="tabpanel" aria-labelledby="pills-html-tab-3">
-                                 <form>
-                                 
                                  <!-- 검색창 시작 -->      
                                    <div class="input-group">
                                   <div class="input-group-append">
@@ -564,7 +562,7 @@
                                 <!-- 검색창 끝 -->   
                                    
                                  <br>
-                              
+                              	<form>
                                     <table class="table table-striped bg-white text-dark center ass2" style="text-align:center">
                                        <thead>
                                           <tr class="text-white table-bordered tap">
@@ -599,11 +597,10 @@
                                           </tr>
                                        </tbody>
                                     </table>
-                                    
+                                    </form>
                                     </div>
                                     <br>
-                                 </form>
-                              
+                              </div>
                               <!-- End Tab Content -->
                            </div>
                         </div>

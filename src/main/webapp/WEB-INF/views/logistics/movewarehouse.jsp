@@ -297,9 +297,10 @@
 														</td>
 													</tr>
 												</table>
-													<input type="reset" class="btn btn-outline-info" style='float: right;' value="취소" >
-													<input type="submit" class="btn btn-outline-info" style='float: right;' value="확인" >
-													<br><br>
+													<div align=center>
+				                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+				                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+				                                    </div>
 											</div>
 											<br><br><br>
 										</div>
@@ -317,9 +318,9 @@
 													<th class="font-weight-semi-bold border-top-0 py-3 h6">등록일</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h6">수정일</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h6">상태</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">수정</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">삭제</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">승인</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h6"></th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h6"></th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h6"></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -394,11 +395,6 @@
                        						</nav>
                    						</div>
                    						<!-- 페이지 넘버 이동 끝 -->
-										<!-- 신규등록버튼 -->
-										<div align="center">
-											<button type="button" class="btn btn-outline-dark">신규 등록</button>
-										</div>
-										<!-- 신규등록버튼종료 -->
 									</div>
 
 									<!-- 신규등록 -->
@@ -452,9 +448,10 @@
 												</td>
 											</tr>
 										</table>
-											<input type="reset" class="btn btn-outline-info" style='float: right;' value="취소" >
-											<input type="submit" class="btn btn-outline-info" style='float: right;' value="확인" >
-											<br><br>
+											<div align=center>
+		                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+		                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+		                                    </div>
 									</div>
 									<!-- 신규등록 끝 -->
 								</div>
