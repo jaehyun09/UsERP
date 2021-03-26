@@ -8,23 +8,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-// 매입 관리
+// 구매 관리
 @Controller
 public class PurchasingController {
-private static final Logger logger = LoggerFactory.getLogger(PurchasingController.class);
 	
-	// 기초등록 
-	@RequestMapping("/client2")
-	public String client2(HttpServletRequest req, Model model) {
-		logger.info("url ==> 기초등록");
+	private static final Logger logger = LoggerFactory.getLogger(PurchasingController.class);
 	
-		return "purchasing/client2";
+	// 기초 등록
+	@RequestMapping("/purBasicReg")
+	public String purBasicReg(HttpServletRequest req, Model model) {
+		logger.info("url: 기초 등록");
+	
+		return "purchasing/purBasicReg";
 	}
 
 	// 재고 현황
 	@RequestMapping("/purInvenStatus")
 	public String purInvenStatus(HttpServletRequest req, Model model) {
-		logger.info("url ==> 매입관리 > 재고 현황");
+		logger.info("url: 재고 현황");
 		
 		return "purchasing/purInvenStatus";
 	}
@@ -32,16 +33,16 @@ private static final Logger logger = LoggerFactory.getLogger(PurchasingControlle
 	// 구매 현황
 	@RequestMapping("/purStatus")
 	public String purStatus(HttpServletRequest req, Model model) {
-		logger.info("url ==> 구매 현황");
+		logger.info("url: 구매 현황");
 		
 		return "purchasing/purStatus";
 	}
 	
 	// 입고 현황
-	@RequestMapping("/receiveStatus")
-	public String receiveStatus(HttpServletRequest req, Model model) {
-		logger.info("url ==> 입고 현황");
+	@RequestMapping("/purRecStatus")
+	public String purRecStatus(HttpServletRequest req, Model model) {
+		logger.info("url: 입고 현황");
 		
-		return "purchasing/receiveStatus";
+		return "purchasing/purRecStatus";
 	}
 }

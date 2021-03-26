@@ -1,27 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file = "./setting.jsp" %> 
+<%@ include file="../setting.jsp"%>
 <head>
-    <!-- Title -->
-    <title>UsERP</title>
+<!-- Title -->
+<title>Users | Graindashboard UI Kit</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="${project}img/favicon.ico">
+<!-- Favicon -->
+<link rel="shortcut icon" href="${project}img/favicon.ico">
 <link rel="stylesheet" href="${project}css/board.css">
-    <!-- Template -->
-    <link rel="stylesheet" href="${project}css/graindashboard.css">
+<!-- Template -->
+<link rel="stylesheet" href="${project}css/graindashboard.css">
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
 
-<%@ include file = "./common/header.jsp" %> 
-<main class="main">
+	<%@ include file="../common/header.jsp"%>
+	<main class="main">
 	<!-- Start Sidebar Nav -->
 	<aside id="sidebar" class="js-custom-scroll side-nav">
 		<ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
@@ -127,7 +128,7 @@
 				<!-- 중메뉴 : 구매 관리 -->
 <!-- b -->		<ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
 <!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/salesBasicReg">기초 등록</a>
+						<a class="side-nav-menu-link ass2" href="${path}/purBasicReg">기초 등록</a>
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/purInvenStatus">재고 현황</a>
@@ -183,7 +184,7 @@
 			<!-- 물류 관리 종료 -->
 			
 			<!-- 대메뉴 : 회계 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subUsers">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-infinite"></i>
@@ -196,7 +197,7 @@
 				</a>
 				
 				<!-- 중메뉴 : 회계 관리 -->
-<!-- b -->		<ul id="subUsers" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- b -->		<ul id="subUsers" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
 <!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/accReport">회계보고서</a>
 					</li>
@@ -209,7 +210,7 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/accStatementManagement">전표 관리</a>
 					</li>
-					<li class="side-nav-menu-item">
+					<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/accBonddebtManagement">채권/채무 조회</a>
 					</li>
 				</ul>
@@ -220,81 +221,129 @@
 	</aside>
 	<!-- End Sidebar Nav -->
 
-    <div class="content">
-   <c:if test = "${msg != null}">
-      <script type="text/javascript">
-         alert("${msg}");
-      </script>
-	</c:if>
-   
-        <div class="py-4 px-3 px-md-4">
-            <div class="card mb-3 mb-md-4">
+		<div class="content">
+			<div class="py-4 px-3 px-md-4">
+				<div class="card">
+					<div class="card-body">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#">회계 관리</a></li>
+								<li class="breadcrumb-item active" aria-current="page">채권/채무
+									조회</li>
+							</ol>
+						</nav>
+						<div class="row">
+							<div class="col-xl-12">
+								<div id="example" class="mb-9">
+									<h4 class="h1 text-dark"><b>
+										채권/채무 조회</b> <a class="anchorjs-link" href="#example"
+											aria-label="Anchor" data-anchorjs-icon="#"></a>
+									</h4>
+									<div class="mb-3">
+										<!-- Nav Classic -->
+										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"id="pills-tab-1" role="tablist">
+											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light">
+												<a class="nav-link d-flex align-items-center py-2 px-3 active"
+												id="pills-result-tab-1" data-toggle="pill"
+												href="#pills-result-1" role="tab"
+												aria-controls="pills-result-1" aria-selected="true">전체
+													채권</a></li>
+											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
+												class="nav-link d-flex align-items-center py-2 px-3"
+												id="pills-html-tab-1" data-toggle="pill"
+												href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+												aria-selected="false">전체 채무</a></li>
+										</ul>
+										<!-- End Nav Classic -->
 
-              <div class="container-fluid pb-5">
-
-				 <div class="row justify-content-md-center">
-					<div class="card-wrapper col-12 col-md-4 mt-5">
-						<div class="card">
-						   <div class="card-body">
-							 <c:if test="${sessionScope.mem_id == null}">
-								<h4 class="card-title">로그인</h4>
-								
-								<form action="loginPro.do" method="post" name="mainform" onsubmit="return mainCheck();">
-								<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-									<div class="form-group">
-										<label for="emp_code">사원번호</label>
-										<input id="emp_code" type="text" class="form-control" name="emp_code" >
-									</div>
-
-									<div class="form-group">
-										<label for="emp_pwd">비밀번호</label>
-										<input id="emp_pwd" type="password" class="form-control" name="emp_pwd" >
-										<div class="text-right">
-											<a href="password-reset.html" class="small">
-												비밀번호 찾기
-											</a>
+										<!-- Tab Content -->
+										<div class="tab-content bg-lighter" id="pills-tabContent-1">
+											<div class="tab-pane fade p-4 show active"
+												id="pills-result-1" role="tabpanel"
+												aria-labelledby="pills-result-tab-1">
+												<div class="bg-white">
+												<table class="table bg-white text-dark center ass2 table-striped">
+													<thead class="text-white table-bordered tap">
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">금액</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">발행일</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상환일</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td class="py-3" style="vertical-align: middle">삼성</td>
+															<td class="py-3" style="vertical-align: middle">100000000</td>
+															<td class="py-3" style="vertical-align: middle">2021-03-21</td>
+															<td class="py-3" style="vertical-align: middle">2021-03-27</td>
+														</tr>
+														<tr>
+															<td class="py-3" style="vertical-align: middle">LG</td>
+															<td class="py-3" style="vertical-align: middle">50000000</td>
+															<td class="py-3" style="vertical-align: middle">2021-03-21</td>
+															<td class="py-3" style="vertical-align: middle">2021-04-21</td>
+														</tr>
+														<tr>
+															<td class="py-3" style="vertical-align: middle">애플</td>
+															<td class="py-3" style="vertical-align: middle">250000000</td>
+															<td class="py-3" style="vertical-align: middle">2021-03-21</td>
+															<td class="py-3" style="vertical-align: middle">2022-03-21</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
 										</div>
+											<div class="tab-pane fade p-4" id="pills-html-1"
+												role="tabpanel" aria-labelledby="pills-html-tab-1">
+												<div class="bg-white">
+												<table class="table bg-white text-dark center ass2 table-striped">
+													<thead class="text-white table-bordered tap">
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">금액</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">발행일</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">반환일</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td class="py-3" style="vertical-align: middle">명재사진관</td>
+															<td class="py-3" style="vertical-align: middle">1000000000</td>
+															<td class="py-3" style="vertical-align: middle">2021-03-23</td>
+															<td class="py-3" style="vertical-align: middle">2021-03-24</td>
+														</tr>
+														<tr>
+															<td class="py-3" style="vertical-align: middle">민수체육관</td>
+															<td class="py-3" style="vertical-align: middle">5000000</td>
+															<td class="py-3" style="vertical-align: middle">2021-03-24</td>
+															<td class="py-3" style="vertical-align: middle">2021-04-23</td>
+														</tr>
+														<tr>
+															<td class="py-3" style="vertical-align: middle">재현토스트</td>
+															<td class="py-3" style="vertical-align: middle">500000000</td>
+															<td class="py-3" style="vertical-align: middle">2021-03-25</td>
+															<td class="py-3" style="vertical-align: middle">2021-03-31</td>
+														</tr>
+													</tbody>
+												</table>
+												</div>
+											</div>
+										</div>
+										<!-- End Tab Content -->
 									</div>
-
-									<div class="form-group no-margin">
-										<input class="btn btn-primary btn-block" type="submit" value="로그인">		
-									</div>
-									<div class="text-center mt-3 small">
-										본인 인증하셨나요?&nbsp;&nbsp;&nbsp;<a href="register.html">본인인증</a>
-									</div>
-								</form>
-								</c:if>
-								<c:if test="${sessionScope.mem_id != null}">
-									
-									
-									
-									로그인 성공
-									
-									
-									
-								</c:if>
-							</div>
-						</div>
-						<footer class="footer mt-3">
-							<div class="container-fluid">
-								<div class="footer-content text-center small">
-									<span class="text-muted">&copy; 2021. Team UsERP. all rights reserved.</span>
 								</div>
 							</div>
-						</footer>
+						</div>
 					</div>
 				</div>
 			</div>
-      	</div>
-       </div>
-     </div>
+		</div>
+	</main>
 
-    
-</main>
-
-<%@ include file = "./common/footer.jsp" %> 
-<script src="${project}js/graindashboard.js"></script>
-<script src="${project}js/graindashboard.vendor.js"></script>
+	<%@ include file="../common/footer.jsp"%>
+	<script src="${project}js/graindashboard.js"></script>
+	<script src="${project}js/graindashboard.vendor.js"></script>
 
 </body>
 </html>

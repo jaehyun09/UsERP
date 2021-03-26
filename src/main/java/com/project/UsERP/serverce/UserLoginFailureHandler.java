@@ -13,9 +13,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-//로그인이 실패한 경우 자동으로 실행
-public class UserLoginFailureHandler implements AuthenticationFailureHandler{
-
+// 로그인이 실패한 경우 자동으로 실행
+public class UserLoginFailureHandler implements AuthenticationFailureHandler {
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
@@ -37,22 +36,18 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler{
 		String strId =  request.getParameter("emp_code");
 		String strPwd = request.getParameter("emp_pwd");
 		
-		int cnt = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.idCheck",strId);
+		int cnt = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.idCheck", strId);
 		if(cnt!=0) {
 			
-			String pwd = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.pwdCheck",strId);
+			String pwd = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.pwdCheck", strId);
 			System.out.println(strPwd);
 			System.out.println(pwd);
 			System.out.println(passwordEncoder.matches(strPwd, pwd));
-			if(passwordEncoder.matches(strPwd, pwd)) {
-				request.setAttribute("errMsg", "이메일 인증하세요.");
-			}else {
-				request.setAttribute("errMsg", "비밀번호가 일치하지 않습니다.");
-			}
+			
+			if(!passwordEncoder.matches(strPwd, pwd)) request.setAttribute("errMsg", "등록되지 않은 계정이거나, 사원번호 또는 비밀번호를 잘못 입력하셨습니다. \n확인 후 다시 시도해 주십시오.");
 			
 		}else {
-			System.out.println("dsaddsa");
-			request.setAttribute("errMsg", "아이디가 일치하지 않습니다.");
+			request.setAttribute("errMsg", "등록되지 않은 계정이거나, 사원번호 또는 비밀번호를 잘못 입력하셨습니다. \n확인 후 다시 시도해 주십시오.");
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/main.jsp");

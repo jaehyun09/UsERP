@@ -11,5 +11,4 @@ public interface AdminDAO {
 	// 관리자 or 게스트 확인
 	public int gradeCheck(String strId);
 	
-	
 }

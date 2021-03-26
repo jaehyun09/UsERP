@@ -26,11 +26,12 @@ public class AdminDAOImpl implements AdminDAO{
 	@Override
 	public int gradeCheck(String strId) {
 		String grade = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.gradeCheck", strId);
+		
 		int gradeCnt = 0;
 		
 		if(grade.equals("ROLE_USER")) {
 			gradeCnt = 1;
-		}else {
+		} else {
 			gradeCnt = 0;
 		}
 			

@@ -4,8 +4,8 @@
 <html>
 <body>
 <script type="text/javascript">
-	alert("로그아웃하였습니다.!!");
-	window.location = "main.do"
+	alert("로그아웃 되었습니다.");
+	window.location = "main"
 </script>
 </body>
 </html>

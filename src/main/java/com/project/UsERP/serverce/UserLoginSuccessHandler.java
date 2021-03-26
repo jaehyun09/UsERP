@@ -16,8 +16,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import com.project.UsERP.vo.UserVO;
 
-
-//로그인이 성공한 경우 자동으로 실행
+// 로그인이 성공한 경우 자동으로 실행
 public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Autowired
@@ -35,7 +34,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		UserVO vo = (UserVO)authentication.getPrincipal();
 		System.out.println("UserVO==> " + vo);
 		
-		String msg = authentication.getName() + "님 환영합니다";
+		String msg = authentication.getName() + "님 환영합니다.";
 		System.out.println("아이디 ==> " + authentication.getName());
 		
 		String grade = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.gradeCheck", authentication.getName());
@@ -51,7 +50,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		request.getSession().setAttribute("mem_id", authentication.getName());
 		request.getSession().setAttribute("grade", gradeCnt);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/main.do");
+		RequestDispatcher rd = request.getRequestDispatcher("/main");
 		
 		
 		rd.forward(request, response);

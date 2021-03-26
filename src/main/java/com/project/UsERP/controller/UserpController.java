@@ -13,30 +13,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserpController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserpController.class);
-
+	
 	// 메인화면
 	@RequestMapping("/")
 	public String main(HttpServletRequest req, Model model) {
-		logger.info("url ==> 메인화면");
+		logger.info("url: 메인화면");
 
 		return "main";
 	}
-
-	@RequestMapping("/main.do")
+	@RequestMapping("/main")
 	public String main2(HttpServletRequest req, Model model) {
-		logger.info("url ==> 메인화면");
+		logger.info("url: 메인화면");
 
 		return "main";
 	}
 	
 	// 로그아웃 
-	@RequestMapping("/logout.do")
+	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		logger.info("url ==> /logout");
+		logger.info("url: 로그아웃");
 
 		session.invalidate();
 
 		return "logout";
 	}
-		
+	
 }

@@ -17,13 +17,13 @@
     <nav class="navbar flex-nowrap p-0">
         <div class="navbar-brand-wrapper d-flex align-items-center col-auto">
             <!-- Logo For Mobile View -->
-            <a class="navbar-brand navbar-brand-mobile" href="${path}/main.do">
+            <a class="navbar-brand navbar-brand-mobile" href="${path}/main">
                 <img class="img-fluid w-100" src="${project}img/logo-mini.png" alt="Graindashboard">
             </a>
             <!-- End Logo For Mobile View -->
 
             <!-- Logo For Desktop View -->
-            <a class="navbar-brand navbar-brand-desktop" href="${path}/main.do">
+            <a class="navbar-brand navbar-brand-desktop" href="${path}/main">
                 <img class="side-nav-show-on-closed" src="${project}img/logo-mini.png" alt="Graindashboard" style="width: auto; height: 33px;">
                 <img class="side-nav-hide-on-closed" src="${project}img/logo.png" alt="Graindashboard" style="width: auto; height: 33px;">
             </a>
@@ -100,15 +100,15 @@
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-user"></i>
                     </span>
-                                My Profile
+                               	 내 정보
                             </a>
                         </li>
                         <li class="unfold-item unfold-item-has-divider">
-                            <a class="unfold-link d-flex align-items-center text-nowrap" href="${path}/logout.do">
+                            <a class="unfold-link d-flex align-items-center text-nowrap" href="${path}/logout">
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-power-off"></i>
                     </span>
-                                LOGOUT
+                          		로그아웃
                             </a>
                         </li>
                     </ul>
