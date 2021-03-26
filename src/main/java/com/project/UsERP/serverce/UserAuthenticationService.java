@@ -1,8 +1,6 @@
 package com.project.UsERP.serverce;
 
 import java.util.ArrayList;
-
-
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -14,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.project.UsERP.vo.ClientVO;
 import com.project.UsERP.vo.EmployeeVO;
 import com.project.UsERP.vo.UserVO;
 
