@@ -318,15 +318,16 @@
 													</tr>
 												</table>
 													<div align=center>
-				                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-				                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+				                                       <button type="button" type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
+				                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>&nbsp;&nbsp;&nbsp;
+				                                       <button type="button" class="btn btn-outline-info">삭제</button>
 				                                    </div>
 											</div>
 											<br><br><br>
 										</div>
 									</div>
 									<!-- 숨겨진 페이지 종료 -->
-										<table class="table bg-white text-dark center font16 table-striped">
+										<table class="table bg-white text-dark center table-striped">
 											<thead>
 												<tr class="text-white tap">
 													<th class="font-weight-semi-bold border-top-0 py-3 h6">주문번호</th>
@@ -339,14 +340,17 @@
 													<th class="font-weight-semi-bold border-top-0 py-3 h6">수정일</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h6">상태</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h6"></th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6"></th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6"></th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
 													<td class="py-1 middle">47531708</td>
-													<td class="py-1 middle">상품이름01</td>
+													<td class="py-1 middle">
+														<a class="btn" data-toggle="collapse"
+															href="#multiCollapseExample1" role="button"
+															aria-expanded="false" aria-controls="multiCollapseExample1">상품이름01
+														</a>
+													</td>
 													<td class="py-1 middle">10</td>
 													<td class="py-1 middle">양품창고</td>
 													<td class="py-1 middle">불량품창고</td>
@@ -354,19 +358,17 @@
 													<td class="py-1 middle">2021-03-21</td>
 													<td class="py-1 middle">2021-03-21</td>
 													<td class="py-1 middle">승인대기중</td>
-													<td class="py-1 middle">
-														<a class="btn btn-outline-info" data-toggle="collapse"
-														href="#multiCollapseExample1" role="button"
-														aria-expanded="false" aria-controls="multiCollapseExample1">수정
-														</a>
-													</td>
-													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">삭제</button></td>
 													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">이동승인</button></td>
 												</tr>
 												
 												<tr>
 													<td class="py-1 middle">47531708</td>
-													<td class="py-1 middle">상품이름01</td>
+													<td class="py-1 middle">
+														<a class="btn" data-toggle="collapse"
+															href="#multiCollapseExample1" role="button"
+															aria-expanded="false" aria-controls="multiCollapseExample1">상품이름01
+														</a>
+													</td>
 													<td class="py-1 middle">10</td>
 													<td class="py-1 middle">양품창고</td>
 													<td class="py-1 middle">불량품창고</td>
@@ -374,13 +376,6 @@
 													<td class="py-1 middle">2021-03-21</td>
 													<td class="py-1 middle">2021-03-21</td>
 													<td class="py-1 middle">승인대기중</td>
-													<td class="py-1 middle">
-														<a class="btn btn-outline-info" data-toggle="collapse"
-														href="#multiCollapseExample1" role="button"
-														aria-expanded="false" aria-controls="multiCollapseExample1">수정
-														</a>
-													</td>
-													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">삭제</button></td>
 													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">이동승인</button></td>
 												</tr>
 											</tbody>
@@ -420,8 +415,8 @@
 									<!-- 신규등록 -->
 									<div class="tab-pane fade p-4" id="pills-html-1"
 										role="tabpanel" aria-labelledby="pills-html-tab-1">
-										<table class="table table-bordered bg-white text-dark ass2 center th20">
-											<tr class="text-white con center">
+										<table class="table bg-white text-dark ass2 center th20">
+											<tr class="text-white table-bordered tap">
 												<th colspan="2">재고 이동 등록</th>
 											</tr>
 										
