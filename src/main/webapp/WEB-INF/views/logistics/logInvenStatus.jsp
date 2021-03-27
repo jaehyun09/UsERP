@@ -283,7 +283,7 @@
 					                                <br>
 					                                <!-- 검색창 끝 -->
 													<thead>
-														<tr class="text-white tap">
+														<tr class="text-white table-bordered tap">
 															<th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 h4">창고이름</th>

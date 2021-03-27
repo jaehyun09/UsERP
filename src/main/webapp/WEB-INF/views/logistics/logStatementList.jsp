@@ -244,7 +244,7 @@
                               <ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
                                  id="pills-tab-1" role="tablist">
                                  <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
-                                    class="nav-link d-flex align-items-center py-2 px-3"
+                                    class="nav-link d-flex align-items-center py-2 px-3 active"
                                     id="pills-html-tab-3" data-toggle="pill"
                                     href="#pills-html-3" role="tab" aria-controls="pills-html-3"
                                     aria-selected="false">입고 전표</a></li>
@@ -259,21 +259,7 @@
                               
                               <!-- Tab Content -->
                               <div class="tab-content bg-lighter" id="pills-tabContent-1">
-                                 <div class="tab-pane fade p-4 show active"
-                                    id="pills-result-1" role="tabpanel"
-                                    aria-labelledby="pills-result-tab-1">
-                                    <div class="row">
-                                       <div class="col">
-                                          <div class="collapse multi-collapse"
-                                             id="multiCollapseExample1">
-                                             <div class="bg-white p-4">
-                                                
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="tab-pane fade p-4" id="pills-html-3"
+                                 <div class="tab-pane fade p-4 show active" id="pills-html-3"
                                     role="tabpanel" aria-labelledby="pills-html-tab-3">
                                     <div class="px-3">
                                        <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3"

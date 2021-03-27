@@ -268,37 +268,41 @@
 											<div class="collapse multi-collapse"
 												id="multiCollapseExample1">
 												<div class="bg-white p-4">
-													<table class="table table-bordered bg-white text-dark ass2 center th20">
-														<tr class="text-white con center">
-															<th colspan="2">창고 목록 수정</th>
-														</tr>
-														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고종류</th>
-															<td>
+													<table class="table bg-white text-dark center ass2" style="text-align:center">
+			                                        	<tr class="text-white table-bordered tap">
+			                                            	<th colspan="3"> 창고 목록 수정 </th>
+			                                        	</tr>
+			                                        	
+			                                        	<tr>
+															<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+																colspan="2" style="vertical-align: middle;">창고종류</td>
+															<td class="font-weight-semi-bold border-top-0 py-2"
+																colspan="2">
 																<select class="custom-select custom-select-lg">
-			   														<option>양품창고</option>
-			   														<option>불량품창고</option>
-			   														<option>출고대기창고</option>
-			 													</select>
+																	<option>양품창고</option>
+																	<option>불량품창고</option>
+																	<option>출고대기창고</option>
+																</select>
 															</td>
 														</tr>
+														
 														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고명</th>
-															<td>
+															<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
+															<td class="py-2" colspan="2">
 																<input class="form-control form-control-icon-text" placeholder="창고명" type="text" value="양품창고">
 															</td>
 														</tr>
 														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고주소</th>
-															<td>
-																<input class="form-control form-control-icon-text" placeholder="창고주소" type="text" value="서울시 강남구 삼성동">
-															</td>
-														</tr>
-													</table>
-														<div align=center>
-					                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-					                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-					                                    </div>				
+					                                    	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
+					                                       <td class="py-2" colspan="2">
+					                                             <input class="form-control form-control-icon-text" placeholder="창고주소" type="text" value="서울시 강남구 삼성동">
+					                                       </td>
+					                                    </tr>
+												</table>
+													<div align=center>
+				                                       <button type="button" type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
+				                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+				                                    </div>				
 												</div>
 												<br><br><br>
 											</div>
@@ -306,36 +310,33 @@
 										<!-- 숨겨진 페이지 종료 -->
 										<table class="table  bg-white text-dark center ass2 table-striped">
 											<thead>
-												<tr class="text-white tap">
+												<tr class="text-white table-bordered tap">
 													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고ID</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고명</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고주소</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h4"></th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<td class="py-1 middle">1001</td>
-													<td class="py-1 middle">양품창고</td>
-													<td class="py-1 middle">서울시 강남구 삼성동</td>
-													<td class="py-1 middle">
-														<a class="btn btn-outline-info" data-toggle="collapse"
+													<td class="py-3 middle">1001</td>
+													<td class="py-3 middle">
+														<a class="btn" data-toggle="collapse"
 														href="#multiCollapseExample1" role="button"
-														aria-expanded="false" aria-controls="multiCollapseExample1">수정
-														</a>
+														aria-expanded="false" aria-controls="multiCollapseExample1">양품창고
+														</a></td>
+													<td class="py-3 middle">서울시 강남구 삼성동</td>
+														
 													</td>
 												</tr>
 												<tr>
-													<td class="py-1 middle">2001</td>
-													<td class="py-1 middle">불량품창고</td>
-													<td class="py-1 middle">서울시 강남구 삼성동</td>
-													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">수정</button></td>
+													<td class="py-3 middle">2001</td>
+													<td class="py-3 middle">불량품창고</td>
+													<td class="py-3 middle">서울시 강남구 삼성동</td>
 												</tr>
 												<tr>
-													<td class="py-1 middle">3001</td>
-													<td class="py-1 middle">출고대기창고</td>
-													<td class="py-1 middle">서울시 강남구 삼성동</td>
-													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">수정</button></td>
+													<td class="py-3 middle">3001</td>
+													<td class="py-3 middle">출고대기창고</td>
+													<td class="py-3 middle">서울시 강남구 삼성동</td>
 												</tr>
 											</tbody>
 										</table>
@@ -374,37 +375,42 @@
 									<!-- 신규 등록 -->
 									<div class="tab-pane fade p-4" id="pills-html-1"
 										role="tabpanel" aria-labelledby="pills-html-tab-1">
-										<table class="table table-bordered bg-white text-dark ass2 center th20">
-											<tr class="text-white con center">
-												<th colspan="2">창고 신규 등록</th>
-											</tr>
-											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">창고종류</th>
-												<td>
-													<select class="custom-select custom-select-lg">
-   														<option>양품창고</option>
-   														<option>불량품창고</option>
-   														<option>출고대기창고</option>
- 													</select>
-												</td>
-											</tr>
-											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">창고명</th>
-												<td>
-													<input class="form-control form-control-icon-text" placeholder="창고명" type="text">
-												</td>
-											</tr>
-											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">창고주소</th>
-												<td>
-													<input class="form-control form-control-icon-text" placeholder="창고주소" type="text">
-												</td>
-											</tr>
-										</table>
+										<table class="table bg-white text-dark center ass2" style="text-align:center">
+			                                        	<tr class="text-white table-bordered tap">
+			                                            	<th colspan="3"> 창고 목록 수정 </th>
+			                                        	</tr>
+			                                        	
+			                                        	<tr>
+															<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+																colspan="2" style="vertical-align: middle;">창고종류</td>
+															<td class="font-weight-semi-bold border-top-0 py-2"
+																colspan="2">
+																<select class="custom-select custom-select-lg">
+																	<option>양품창고</option>
+																	<option>불량품창고</option>
+																	<option>출고대기창고</option>
+																</select>
+															</td>
+														</tr>
+														
+														<tr>
+															<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
+															<td class="py-2" colspan="2">
+																<input class="form-control form-control-icon-text" name="warehouseName" placeholder="창고명" type="text">
+															</td>
+														</tr>
+														<tr>
+					                                    	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
+					                                       <td class="py-2" colspan="2">
+					                                             <input class="form-control form-control-icon-text" name="warehouseLoc" placeholder="창고주소" type="text">
+					                                       </td>
+					                                    </tr>
+												</table>
 										<div align=center>
 	                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
 	                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
 	                                    </div>
+										
 									</div>
 									<!-- 신규 등록 끝-->
 								</div>
