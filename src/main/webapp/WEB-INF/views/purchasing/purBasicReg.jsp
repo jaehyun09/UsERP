@@ -239,7 +239,7 @@
                               <a class="anchorjs-link" href="#example"
                                  aria-label="Anchor" data-anchorjs-icon="#"></a>
                            </h4>
-                           <div class="px-3">
+                           <div class="mb-3">
                               <!-- Nav Classic -->
                               <ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
                                  id="pills-tab-1" role="tablist">
@@ -252,7 +252,17 @@
                                     class="nav-link d-flex align-items-center py-2 px-3"
                                     id="pills-html-tab-1" data-toggle="pill"
                                     href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-                                    aria-selected="false">상품</a></li>
+                                    aria-selected="false">테스트1 구매 거래처 등록</a></li>   
+                                 <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
+                                    class="nav-link d-flex align-items-center py-2 px-3"
+                                    id="pills-html-tab-1" data-toggle="pill"
+                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+                                    aria-selected="false">상품</a></li><!-- 이거 복사해서 테스트1,2 탭 만들었음 -->
+                                 <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
+                                    class="nav-link d-flex align-items-center py-2 px-3"
+                                    id="pills-html-tab-1" data-toggle="pill"
+                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+                                    aria-selected="false">테스트2 상품 등록</a></li>   
                               </ul>
                               <!-- End Nav Classic -->
 
