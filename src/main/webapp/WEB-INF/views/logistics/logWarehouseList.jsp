@@ -311,32 +311,30 @@
 										<table class="table  bg-white text-dark center ass2 table-striped">
 											<thead>
 												<tr class="text-white table-bordered tap">
-													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고ID</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고명</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고주소</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">창고ID</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">창고주소</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<td class="py-3 middle">1001</td>
-													<td class="py-3 middle">
+													<td class="py-3" style="vertical-align:middle">1001</td>
+													<td class="py-3" style="vertical-align:middle">
 														<a class="btn" data-toggle="collapse"
 														href="#multiCollapseExample1" role="button"
 														aria-expanded="false" aria-controls="multiCollapseExample1">양품창고
 														</a></td>
-													<td class="py-3 middle">서울시 강남구 삼성동</td>
-														
-													</td>
+													<td class="py-3" style="vertical-align:middle">서울시 강남구 삼성동</td>
 												</tr>
 												<tr>
-													<td class="py-3 middle">2001</td>
-													<td class="py-3 middle">불량품창고</td>
-													<td class="py-3 middle">서울시 강남구 삼성동</td>
+													<td class="py-3" style="vertical-align:middle">2001</td>
+													<td class="py-3" style="vertical-align:middle">불량품창고</td>
+													<td class="py-3" style="vertical-align:middle">서울시 강남구 삼성동</td>
 												</tr>
 												<tr>
-													<td class="py-3 middle">3001</td>
-													<td class="py-3 middle">출고대기창고</td>
-													<td class="py-3 middle">서울시 강남구 삼성동</td>
+													<td class="py-3" style="vertical-align:middle">3001</td>
+													<td class="py-3" style="vertical-align:middle">출고대기창고</td>
+													<td class="py-3" style="vertical-align:middle">서울시 강남구 삼성동</td>
 												</tr>
 											</tbody>
 										</table>
@@ -414,7 +412,7 @@
 									</div>
 									<!-- 신규 등록 끝-->
 								</div>
-								<!— End Tab Content —>
+								<!--  End Tab Content-->
 							</div>
 						</div>
 					</div>

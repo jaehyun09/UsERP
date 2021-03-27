@@ -284,14 +284,14 @@
 					                                <!-- 검색창 끝 -->
 													<thead>
 														<tr class="text-white table-bordered tap">
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">창고이름</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">판매단가</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">재고수량</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">등록일자</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">창고이름</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">구매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">판매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">재고수량</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일자</th>
 														</tr>
 													</thead>
 													<tbody>

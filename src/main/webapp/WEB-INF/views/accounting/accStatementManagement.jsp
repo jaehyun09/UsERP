@@ -262,7 +262,7 @@
                                                            data-toggle="tab">승인 전표
                                                         </a>
                                                     </li>
-                                                    <li class="nav-item ml-4 ">
+                                                    <li class="nav-item ml-4">
                                                         <a class="nav-link px-2 pb-2 ass2" href="#tabs2-tab2" role="tab" aria-selected="false"
                                                            data-toggle="tab">미승인 전표
                                                         </a>
@@ -588,12 +588,12 @@
                                           <tbody>
                                              <tr>
                                                 <td class="py-1">
-                                                   <p>
+                                                	<p>
                                                       <a class="btn" data-toggle="collapse"
                                                          href="#multiCollapseExample1" role="button"
                                                          aria-expanded="false"
                                                          aria-controls="multiCollapseExample1">1234</a>
-                                                   </p>
+                                                 	</p>
                                                 </td>
                                                 <td class="py-1" style="vertical-align: middle">입금전표</td>
                                                 <td class="py-1" style="vertical-align: middle">Otto</td>

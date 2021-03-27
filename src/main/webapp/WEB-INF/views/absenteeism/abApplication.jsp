@@ -232,17 +232,13 @@
 							</ol>
 						</nav>
 						<div class="row">
-
 							<div class="col-xl-12">
-
 								<div id="example" class="mb-9">
 									<h4 class="h1 text-dark"><b>
 										신청 </b><a class="anchorjs-link" href="#example"
 											aria-label="Anchor" data-anchorjs-icon="#"></a>
 									</h4>
-									
 									<div class="mb-3">
-									
 										<!-- Tab Content -->
 										<div class="tab-content bg-lighter" id="pills-tabContent-1">
 											<div class="tab-pane fade p-4 show active"
@@ -250,17 +246,20 @@
 												aria-labelledby="pills-result-tab-1">
 											
 												<form>
-													<table class="table bg-white text-dark center ass2" style="text-align:center">
-														<tr class="text-white table-bordered tap">
-															<th colspan="3">근태 신청 </th>
-														</tr>
+													<table class="table bg-white text-dark center ass2">
+														<thead class="text-white table-bordered tap font-weight-semi-bold border-top-0 ass2">
 														<tr>
-															<th>사원명 </th>
+															<th colspan="3"> 근태 신청 </th>
+														</tr>
+														</thead>
+														<tbody>
+														<tr>
+															<th style="vertical-align: middle">사원명 </th>
 															<td><input id="text" type="text" class="form-control" name="password" required=""></td>
 															<td><button type="button"  class="btn btn-outline-info">사원확인</button></td>
 														</tr>
 														<tr>
-															<th>부서명</th>
+															<th style="vertical-align: middle">부서명</th>
 															<td>	 
 															<div class="form-group">
 															     <select class="form-control" id="exampleFormControlSelect1">
@@ -272,7 +271,7 @@
 															 </td>
 														</tr>
 														<tr>
-															<th> 근태 유형</th>
+															<th style="vertical-align: middle"> 근태 유형</th>
 															<td>	 
 															<div class="form-group">
 															     <select class="form-control" id="exampleFormControlSelect1">
@@ -289,25 +288,22 @@
 															<th> <label> 종료일&nbsp;&nbsp;&nbsp;</label>  <input type="date" > </th>
 														</tr>
 														<tr>
-															<th> 사유 </th>
+															<th style="vertical-align: middle"> 사유 </th>
 															<td>
 																<div class="form-group">
       																<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
    															 	</div>
 															</td>
 														</tr>
-														
+													</tbody>
 													</table>
-													
 													<br>
-												
 												<div align=center>
 			                                       <button type="button" type="submit" class="btn btn-outline-info">신청</button>&nbsp;&nbsp;&nbsp;
 			                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
 			                                    </div>
 												<br>
 											</form>
-											 
 											</div>
 										</div>
 										<!-- End Tab Content -->

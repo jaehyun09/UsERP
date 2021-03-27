@@ -465,13 +465,13 @@
 												<table class="table  bg-white text-dark center ass2 table-striped">
 													<thead>
 														<tr class="text-white table-bordered tap">
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">주문번호</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">창고명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">담당자명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">조정 재고</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">조정 후 재고</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">조정 재고</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">조정 후 재고</th>
 														</tr>
 													</thead>
 													<tbody>

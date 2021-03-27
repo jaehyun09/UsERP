@@ -274,22 +274,21 @@
 										  <!-- 검색창 끝 -->		
 										  <br>
 										  
-											<table class="table table-striped bg-white text-dark center" style="text-align:center">
-											    <thead>
-											      <tr class="text-white table-bordered tap">
-											        <th class="font-weight-semi-bold border-top-0 py-2">사번</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">사원명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">부서명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">직급</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">출근시간</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">퇴근시간</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">야간근무</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2"></th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">처리 상태</th>
-											        
+											<table class="table table-striped bg-white text-dark center ass2">
+											    <thead class="text-white table-bordered tap">
+											      <tr>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사번</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">직급</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">출근시간</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">퇴근시간</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">야간근무</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">처리 상태</th>
 											      </tr>
 											    </thead>
-											    <tbody>
+											    <tbody style="vertical-align: middle">
 											      <tr>
 											      	<td class="py-3">001</td>
 											      	<td class="py-3">장그래</td>
@@ -331,18 +330,18 @@
 										  <!-- 검색창 끝 -->		
 										  <br>
 										  
-											<table class="table table-striped bg-white text-dark center ass" style="text-align:center">
-											    <thead>
-											      <tr class="text-white table-bordered tap">
-											        <th class="font-weight-semi-bold border-top-0 py-2">사번</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">사원명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">부서명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">직급</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">근태 유형</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">신청일</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">시작일</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">종료일</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">처리 상태</th>
+											<table class="table table-striped bg-white text-dark center ass2">
+											    <thead class="text-white table-bordered tap">
+											      <tr>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사번</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">직급</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">근태 유형</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">신청일</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">시작일</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">종료일</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">처리 상태</th>
 											        
 											      </tr>
 											    </thead>
@@ -386,6 +385,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	<!-- 부서 관리 끝-->
 </main>
 

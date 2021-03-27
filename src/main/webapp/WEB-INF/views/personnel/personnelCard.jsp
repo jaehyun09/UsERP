@@ -289,7 +289,7 @@
                                        <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample1">
-                                                <table class="table table-bordered bg-white text-dark ass2 center">
+                                                <table class="table table-bordered bg-white text-dark ass2 center ">
                                                    <tbody>
                                                       <tr class="text-white con center">
                                                          <th colspan="2">유재석</th>
@@ -360,17 +360,14 @@
                                                 </td>
                                              <td class="py-3 middle">2005-11-23</td>
                                           </tr>
-                                          
                                        </tbody>
                                     </table>
-                                    
                                     <br>
-                                    
                                  </div>
 								</div>
-                                 <div class="tab-pane fade p-4" id="pills-html-1"
-                                    role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    
+								
+                         <div class="tab-pane fade p-4" id="pills-html-1"
+                            role="tabpanel" aria-labelledby="pills-html-tab-1">
                          <!-- 인사카드 폼 시작 -->     
                           <form>
 							<table class="table bg-white text-dark center ass2" style="text-align:center">
@@ -378,16 +375,16 @@
 									<th class="text-white table-bordered tap py-3 con2"colspan="3"> 인사카드 </th>
 								</tr>
 								<tr>
-									<th>* 사번</th>
+									<th style="vertical-align:middle">* 사번</th>
 									<td><input id="text" type="text" class="form-control" name="password" required=""></td>
 									<td><button type="button" class="btn btn-outline-info">중복확인</button></td>
 								</tr>
 								<tr>
-									<th>* 사원명</th>
+									<th style="vertical-align:middle">* 사원명</th>
 									<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
 								</tr>
 								<tr>
-									<th> * 부서명 </th>
+									<th style="vertical-align:middle"> * 부서명 </th>
 									<td>	 
 									<div class="form-group">
 									     <select class="form-control" id="exampleFormControlSelect1">
@@ -398,7 +395,7 @@
 									 </td>
 								</tr>
 								<tr>
-									<th> * 직급</th>
+									<th style="vertical-align:middle"> * 직급</th>
 									<td>	 
 									<div class="form-group">
 									     <select class="form-control" id="exampleFormControlSelect1">
@@ -409,27 +406,27 @@
 									 </td>
 								</tr>
 								<tr>
-									<th> * 주민등록번호 </th>
+									<th style="vertical-align:middle"> * 주민등록번호 </th>
 									<td><input id="text" type="text" class="form-control" name="password" required=""></td>
 								</tr>
 								<tr>
-									<th>* 입사일</th>
+									<th style="vertical-align:middle">* 입사일</th>
 									<td><input type="date" class="form-control"></td>
 								</tr>
 								<tr>
-                                      <th>전화번호</th>
+                                      <th style="vertical-align:middle">전화번호</th>
                                       <td><input type="text" class="form-control"></td>
                                    </tr>
                                    <tr>
-                                      <th>* 휴대전화</th>
+                                      <th style="vertical-align:middle">* 휴대전화</th>
                                       <td><input type="tel" class="form-control"></td>
                                    </tr>
                                    <tr>
-                                      <th>여권번호</th>
+                                      <th style="vertical-align:middle">여권번호</th>
                                       <td><input type="text" class="form-control"></td>
                                    </tr>
                                    <tr>                                    
-                                      <th>* 이메일</th>
+                                      <th style="vertical-align:middle">* 이메일</th>
                                       <td><input class="form-control" type="text" maxlength="20"
                                                   style="width:60px">
                                                @
@@ -444,19 +441,19 @@
                                                </select>   </td>
                                    </tr>
                                    <tr>                                    
-                                      <th>* 주소</th>
+                                      <th style="vertical-align:middle">* 주소</th>
                                       <td><input type="text" class="form-control"></td>
                                    </tr>
                                    <tr>                                    
-                                      <th>근속년수</th>
+                                      <th style="vertical-align:middle">근속년수</th>
                                       <td><input type="text" class="form-control"></td>
                                    </tr>
                                    <tr>
-                                      <th>* 급여계좌</th>
+                                      <th style="vertical-align:middle">* 급여계좌</th>
                                       <td><input type="text" class="form-control"></td>
                                    </tr>
                                    <tr>
-                                      <th>* 은행</th>
+                                      <th style="vertical-align:middle">* 은행</th>
                                       <td><div class="form-group">
                                               <select class="form-control" id="exampleFormControlSelect1">
                                                 <option>농협</option>

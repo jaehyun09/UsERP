@@ -287,7 +287,6 @@
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">현재직급</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">이전부서</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">이전직급</th>
-											        
 											      </tr>
 											    </thead>
 											    <tbody>
@@ -408,6 +407,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	<!-- 부서 관리 끝-->
 </main>
 

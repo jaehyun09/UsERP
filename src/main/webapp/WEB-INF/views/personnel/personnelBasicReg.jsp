@@ -324,17 +324,17 @@
                                     <th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3"> 인사코드 그룹 등록 </th>
                                  </tr>
                                  <tr>
-                                    <th>그룹명 </th>
+                                    <th style="vertical-align: middle"> 그룹명 </th>
                                     <td><input id="text" type="text" class="form-control" name="password" required=""></td>
                                     <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
                                  </tr>
                                  <tr>
-                                    <th> 그룹번호 </th>
+                                    <th style="vertical-align: middle"> 그룹번호 </th>
                                     <td> <input id="text" type="text" class="form-control" name="password" required=""></td>
                                     <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
                                  </tr>
                                  <tr>
-                                    <th> 사용상태 </th>
+                                    <th style="vertical-align: middle"> 사용상태 </th>
                                     <td>    
                                     <div class="form-group">
                                          <select class="form-control" id="exampleFormControlSelect1">
@@ -400,7 +400,7 @@
                                              <th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3"> 인사코드  등록 </th>
                                        </tr>
                                        <tr>
-                                          <th>그룹번호</th>
+                                          <th style="vertical-align: middle">그룹번호</th>
                                           <td>    
                                           <div class="form-group">
                                                <select class="form-control" id="exampleFormControlSelect1">
@@ -413,17 +413,17 @@
                                            </td>
                                        </tr>
                                        <tr>
-                                          <th> 인사코드 </th>
+                                          <th style="vertical-align: middle"> 인사코드 </th>
                                           <td> <input id="text" type="text" class="form-control" name="password" required=""></td>
                                           <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
                                        </tr>
                                        <tr>
-                                          <th> 인사코드명 </th>
+                                          <th style="vertical-align: middle"> 인사코드명 </th>
                                           <td> <input id="text" type="text" class="form-control" name="password" required=""></td>
                                           <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
                                        </tr>
                                        <tr>
-                                          <th> 사용상태 </th>
+                                          <th style="vertical-align: middle"> 사용상태 </th>
                                           <td>    
                                           <div class="form-group">
                                                <select class="form-control" id="exampleFormControlSelect1">

@@ -311,49 +311,47 @@
 											
 											<div class="tab-pane fade p-4" id="pills-html-1"
 		                                    role="tabpanel" aria-labelledby="pills-html-tab-1">
-		                                       <table class="table bg-white text-dark center ass2" style="text-align:center">
+		                                       <table class="table bg-white text-dark center ass2">
 		                                          <tr class="text-white table-bordered tap">
 		                                             <th colspan="3"> 계좌 등록 </th>
 		                                          </tr>
-		                                          <tr>
-															<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-																colspan="2" style="vertical-align: middle;">계좌명</td>
-															<td class="font-weight-semi-bold border-top-0 py-2"
-																colspan="2"><input class="form-control" type="text"
-																placeholder="계좌명을 입력하세요"></td>
-														</tr>
-													
-													
+		                                         	 <tr>
+														<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+															colspan="2" style="vertical-align: middle">계좌명</td>
+														<td class="font-weight-semi-bold border-top-0 py-2"
+															colspan="2"><input class="form-control" type="text"
+															placeholder="계좌명을 입력하세요"></td>
+													</tr>
+													<tr>
+														<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>계좌번호</b></td>
+														<td class="py-3" colspan="2"><input
+															class="form-control" type="text"
+															placeholder="계좌번호를 입력하세요"></td>
+													</tr>
+													<tr>
+				                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle"><b>은행</b></td>
+				                                       <td><div class="form-group">
+				                                               <select class="form-control" id="exampleFormControlSelect1">
+				                                                 <option>농협</option>
+				                                                 <option>신한</option>
+				                                                 <option>국민</option>
+				                                               </select>
+				                                             </div>
+				                                       </td>
+				                                    </tr>
+													<tr>
+														<td class="py-3" colspan="2" style="vertical-align: middle"><b>잔액</b></td>
+														<td class="py-3" colspan="2"><input
+															class="form-control" type="text" disabled></td>
+													</tr>
+													<tr>
+														<td class="py-3" colspan="2" style="vertical-align: middle"><b>개설목적</b></td>
+														<td class="py-3" colspan="2"><input
+															class="form-control" type="text"
+															placeholder="개설목적을 입력하세요"></td>
+													</tr>
 														<tr>
-															<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>계좌번호</b></td>
-															<td class="py-3" colspan="2"><input
-																class="form-control" type="text"
-																placeholder="계좌번호를 입력하세요"></td>
-														</tr>
-														<tr>
-					                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>은행</b></td>
-					                                       <td><div class="form-group">
-					                                               <select class="form-control" id="exampleFormControlSelect1">
-					                                                 <option>농협</option>
-					                                                 <option>신한</option>
-					                                                 <option>국민</option>
-					                                               </select>
-					                                             </div>
-					                                       </td>
-					                                    </tr>
-														<tr>
-															<td class="py-3" colspan="2" style="vertical-align: middle;"><b>잔액</b></td>
-															<td class="py-3" colspan="2"><input
-																class="form-control" type="text" disabled></td>
-														</tr>
-														<tr>
-															<td class="py-3" colspan="2" style="vertical-align: middle; "><b>개설목적</b></td>
-															<td class="py-3" colspan="2"><input
-																class="form-control" type="text"
-																placeholder="개설목적을 입력하세요"></td>
-														</tr>
-														<tr>
-															<td class="py-3" colspan="2" style="vertical-align: middle;"><b>사용상태</b></td>
+															<td class="py-3" colspan="2" style="vertical-align: middle"><b>사용상태</b></td>
 															<td>
 																<div class="form-check form-check-inline">
 																	<input class="form-check-input" type="radio"
