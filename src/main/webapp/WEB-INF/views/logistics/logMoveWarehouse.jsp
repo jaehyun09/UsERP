@@ -270,7 +270,7 @@
 										<div class="collapse multi-collapse"
 											id="multiCollapseExample1">
 											<div class="bg-white p-4">
-												<table class="table table-bordered bg-white text-dark ass2 center th20" >
+												<table class="table bg-white text-dark ass2 center th20" >
 													<tr class="text-white con center">
 														<th colspan="2">상품이름1</th>
 													</tr>
