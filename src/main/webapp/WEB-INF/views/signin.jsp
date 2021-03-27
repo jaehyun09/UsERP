@@ -221,74 +221,41 @@
 	<!-- End Sidebar Nav -->
 
     <div class="content">
-   <c:if test = "${msg != null}">
-      <script type="text/javascript">
-         alert("${msg}");
-      </script>
-	</c:if>
-   
-        <div class="py-4 px-3 px-md-4">
-            <div class="card mb-3 mb-md-4">
-
-              <div class="container-fluid pb-5">
-
-				 <div class="row justify-content-md-center">
-					<div class="card-wrapper col-12 col-md-4 mt-5">
-						<div class="card">
-						   <div class="card-body">
-							 <c:if test="${sessionScope.mem_id == null}">
-								<h4 class="card-title">로그인</h4>
+    <div class="py-2 p-6">
+   		<form>
+							<table class="table bg-white text-dark center ass2" style="text-align:center">
+								<tr class="text-white table-bordered tap">
+									<th colspan="3"> 사원확인 </th>
+								</tr>
+								<tr>
+									<th>* 사번</th>
+									<td><input id="text" type="text" class="form-control" name="password" required=""></td>
+									<td><button type="button" class="btn btn-outline-info">중복확인</button></td>
+								</tr>
+								<tr>
+									<th>* 비밀번호</th>
+									<td> <input id="text" type="text" class="form-control" name="password"></td>
+								</tr>
+								<tr>
+									<th>* 비밀번호 확인</th>
+									<td> <input id="text" type="text" class="form-control" name="repassword" ></td>
+								</tr>
+								<tr>
+									<th> * 주민등록번호 </th>
+									<td><input id="text" type="text" class="form-control" name="password"></td>
+								</tr>
 								
-								<form action="loginPro.do" method="post" name="mainform" onsubmit="return mainCheck();">
-								<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-									<div class="form-group">
-										<label for="emp_code">사원번호</label>
-										<input id="emp_code" type="text" class="form-control" name="emp_code" >
-									</div>
-
-									<div class="form-group">
-										<label for="emp_pwd">비밀번호</label>
-										<input id="emp_pwd" type="password" class="form-control" name="emp_pwd" >
-										<div class="text-right">
-											<a href="password-reset.html" class="small">
-												비밀번호 찾기
-											</a>
-										</div>
-									</div>
-
-									<div class="form-group no-margin">
-										<input class="btn btn-primary btn-block" type="submit" value="로그인">		
-									</div>
-									<div class="text-center mt-3 small">
-										사원 확인하셨나요?&nbsp;&nbsp;&nbsp;<a href="${path}/signin">사원확인</a>
-									</div>
-								</form>
-								</c:if>
-								<c:if test="${sessionScope.mem_id != null}">
-									
-									
-									
-									로그인 성공
-									
-									
-									
-								</c:if>
-							</div>
-						</div>
-						<footer class="footer mt-3">
-							<div class="container-fluid">
-								<div class="footer-content text-center small">
-									<span class="text-muted">&copy; 2021. Team UsERP. all rights reserved.</span>
-								</div>
-							</div>
-						</footer>
-					</div>
-				</div>
-			</div>
-      	</div>
-       </div>
+							</table>
+						
+							<div align=center>
+                               	<button type="button" type="submit" class="btn btn-outline-info">확인</button>&nbsp;&nbsp;&nbsp;
+                               	<button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+                            </div>
+						
+						</form>
+					 <!-- 인사카드 폼 끝 --> 
      </div>
-
+</div>
     
 </main>
 
