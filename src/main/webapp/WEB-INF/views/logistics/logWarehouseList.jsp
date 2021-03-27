@@ -375,6 +375,8 @@
 									<!-- 신규 등록 -->
 									<div class="tab-pane fade p-4" id="pills-html-1"
 										role="tabpanel" aria-labelledby="pills-html-tab-1">
+										<form action="insertWareAction" method="post">
+										<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 										<table class="table bg-white text-dark center ass2" style="text-align:center">
 			                                        	<tr class="text-white table-bordered tap">
 			                                            	<th colspan="3"> 창고 목록 수정 </th>
@@ -385,10 +387,10 @@
 																colspan="2" style="vertical-align: middle;">창고종류</td>
 															<td class="font-weight-semi-bold border-top-0 py-2"
 																colspan="2">
-																<select class="custom-select custom-select-lg">
-																	<option>양품창고</option>
-																	<option>불량품창고</option>
-																	<option>출고대기창고</option>
+																<select class="custom-select custom-select-lg" name="wareState">
+																	<option value="1">양품창고</option>
+																	<option value="2">불량품창고</option>
+																	<option value="3">출고대기창고</option>
 																</select>
 															</td>
 														</tr>
@@ -410,6 +412,7 @@
 	                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
 	                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
 	                                    </div>
+										</form>
 										
 									</div>
 									<!-- 신규 등록 끝-->
