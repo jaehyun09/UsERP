@@ -21,6 +21,14 @@ public class LogisticsController {
 		
 		return "logistics/logBasicReg";
 	}
+	
+	// 리액트 창고 등록
+	@RequestMapping("/warehouseadd")
+	public String codeadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 창고 등록");
+
+		return "logistics/warehouse";
+	}
 	  
 	// 전표 관리
 	@RequestMapping("/logStatementList")

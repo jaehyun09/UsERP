@@ -21,6 +21,30 @@ public class PersonnelController {
 		
 		return "personnel/personnelBasicReg";
 	}
+
+	// 리액트 계좌 등록
+	@RequestMapping("/codeadd")
+	public String codeadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 인사코드 등록");
+
+		return "personnel/code";
+	}
+
+	// 리액트 계좌 등록
+	@RequestMapping("/codegroupadd")
+	public String codegroupadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 인사코드그룹 등록");
+
+		return "personnel/codegroup";
+	}
+
+	// 리액트 계좌 등록
+	@RequestMapping("/departmentadd")
+	public String departmentadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 부서 등록");
+
+		return "personnel/department";
+	}
 	
 	// 인사 발령
 	@RequestMapping("/personnelAppointment")

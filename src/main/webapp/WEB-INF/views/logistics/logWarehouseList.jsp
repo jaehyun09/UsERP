@@ -6,7 +6,22 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
-
+<script type="text/javascript">
+function warehouseadd() {
+	$.ajax({
+      // sendRequest(콜백함수명, url, method, params)
+      url: "warehouseadd", // 전송 페이지 => 컨트롤러 "basic_next"
+      type: 'GET', // 전송방식('GET', 'POST') - method
+      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+         $('#warehouse').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -253,7 +268,7 @@
 									<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
 										class="nav-link d-flex align-items-center py-2 px-3"
 										id="pills-html-tab-1" data-toggle="pill"
-										href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+										href="#pills-html-1" onclick="warehouseadd()" role="tab" aria-controls="pills-html-1"
 										aria-selected="false">창고 등록</a></li>
 								</ul>
 								<!-- End Nav Classic -->
@@ -374,41 +389,11 @@
 									<!-- 신규 등록 -->
 									<div class="tab-pane fade p-4" id="pills-html-1"
 										role="tabpanel" aria-labelledby="pills-html-tab-1">
-										<table class="table table-bordered bg-white text-dark ass2 center th20">
-											<tr class="text-white con center">
-												<th colspan="2">창고 신규 등록</th>
-											</tr>
-											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">창고종류</th>
-												<td>
-													<select class="custom-select custom-select-lg">
-   														<option>양품창고</option>
-   														<option>불량품창고</option>
-   														<option>출고대기창고</option>
- 													</select>
-												</td>
-											</tr>
-											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">창고명</th>
-												<td>
-													<input class="form-control form-control-icon-text" placeholder="창고명" type="text">
-												</td>
-											</tr>
-											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">창고주소</th>
-												<td>
-													<input class="form-control form-control-icon-text" placeholder="창고주소" type="text">
-												</td>
-											</tr>
-										</table>
-										<div align=center>
-	                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-	                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-	                                    </div>
+										<div id="warehouse"></div>
 									</div>
 									<!-- 신규 등록 끝-->
 								</div>
-								<!— End Tab Content —>
+								
 							</div>
 						</div>
 					</div>
