@@ -396,13 +396,13 @@
 														<tr>
 															<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
 															<td class="py-2" colspan="2">
-																<input class="form-control form-control-icon-text" placeholder="창고명" type="text">
+																<input class="form-control form-control-icon-text" name="warehouseName" placeholder="창고명" type="text">
 															</td>
 														</tr>
 														<tr>
 					                                    	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
 					                                       <td class="py-2" colspan="2">
-					                                             <input class="form-control form-control-icon-text" placeholder="창고주소" type="text">
+					                                             <input class="form-control form-control-icon-text" name="warehouseLoc" placeholder="창고주소" type="text">
 					                                       </td>
 					                                    </tr>
 												</table>
@@ -410,6 +410,7 @@
 	                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
 	                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
 	                                    </div>
+										
 									</div>
 									<!-- 신규 등록 끝-->
 								</div>
