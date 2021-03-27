@@ -285,29 +285,29 @@
                                            <div class="tab-pane fade show active" id="tabs2-tab1" role="tabpanel">
                                             <div class="row">
                                        
-                                          <table class="table table-striped bg-white text-dark center ass2" style="text-align:center">
-                                       <thead class="text-white table-bordered tap">
+                                          <table class="table table-striped bg-white text-dark center ass2">
+                                       		<thead class="text-white table-bordered tap">
                                           <tr>
-                                             <th class="font-weight-semi-bold  py-3 h4">그룹번호</th>
-                                             <th class="font-weight-semi-bold border-top-0 py-3 h4">그룹명</th>
-                                             <th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">그룹번호</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">그룹명</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
                                           </tr>
-                                       </thead>
+                                      		 </thead>
                                        <tbody>
                                           <tr>
-                                             <td class="py-1">1</td>
-                                             <td class="py-1">직급</td>
-                                             <td class="py-1">사용</td>
+                                             <td class="py-3">1</td>
+                                             <td class="py-3">직급</td>
+                                             <td class="py-3">사용</td>
                                           </tr>
                                           <tr>
-                                             <td class="py-1">2</td>
-                                             <td class="py-1">휴가</td>
-                                             <td class="py-1">사용</td>
+                                             <td class="py-3">2</td>
+                                             <td class="py-3">휴가</td>
+                                             <td class="py-3">사용</td>
                                           </tr>
                                           <tr>
-                                             <td class="py-1">3</td>
-                                             <td class="py-1">급여</td>
-                                             <td class="py-1">사용</td>
+                                             <td class="py-3">3</td>
+                                             <td class="py-3">급여</td>
+                                             <td class="py-3">사용</td>
                                           </tr>
                                        </tbody>
                                     </table>
@@ -319,9 +319,9 @@
                                     <div class="tab-pane fade" id="tabs2-tab2" role="tabpanel">
                                        <div class="row">
                                  
-                              <table class="table bg-white text-dark center ass2" style="text-align:center">
+                              <table class="table bg-white text-dark center ass2">
                                  <tr class="text-white table-bordered tap">
-                                    <th colspan="3"> 인사코드 그룹 등록 </th>
+                                    <th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3"> 인사코드 그룹 등록 </th>
                                  </tr>
                                  <tr>
                                     <th>그룹명 </th>
@@ -360,10 +360,10 @@
                                        <table class="table table-striped bg-white text-dark center ass2"> 
                                  <thead>
                                     <tr class="text-white table-bordered tap">
-                                       <th class="font-weight-semi-bold border-top-0 py-2">그룹번호</th>
-                                       <th class="font-weight-semi-bold border-top-0 py-2">인사코드</th>
-                                       <th class="font-weight-semi-bold border-top-0 py-2">인사코드명</th>
-                                       <th class="font-weight-semi-bold border-top-0 py-2">사용상태</th>
+                                       <th class="font-weight-semi-bold border-top-0 py-3 con2">그룹번호</th>
+                                       <th class="font-weight-semi-bold border-top-0 py-3 con2">인사코드</th>
+                                       <th class="font-weight-semi-bold border-top-0 py-3 con2">인사코드명</th>
+                                       <th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -395,12 +395,12 @@
                                     <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
                                        <div class="row">
                                  
-                                       <table class="table bg-white text-dark center ass2" style="text-align:center">
+                                       <table class="table bg-white text-dark center ass2">
                                        <tr class="text-white table-bordered tap">
-                                             <th colspan="3"> 인사코드  등록 </th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3"> 인사코드  등록 </th>
                                        </tr>
                                        <tr>
-                                          <th>그룹번호 </th>
+                                          <th>그룹번호</th>
                                           <td>    
                                           <div class="form-group">
                                                <select class="form-control" id="exampleFormControlSelect1">
@@ -466,13 +466,13 @@
                                            <div class="tab-pane fade show active" id="tabs3-tab3" role="tabpanel">
                                             <div class="row">
                                        
-                                       <table class="table table-striped bg-white text-dark center ass2" style="text-align:center">
+                                       <table class="table table-striped bg-white text-dark center ass2">
 													<thead>
 														<tr class="text-white table-bordered tap">
-															<th class="font-weight-semi-bold border-top-0 py-2">부서번호</th>
-															<th class="font-weight-semi-bold border-top-0 py-2">부서명</th>
-															<th class="font-weight-semi-bold border-top-0 py-2">접근권한</th>
-															<th class="font-weight-semi-bold border-top-0 py-2">사용상태</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">부서번호</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">접근권한</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -505,22 +505,22 @@
                                            <div class="tab-pane fade" id="tabs3-tab4" role="tabpanel">
                                             <div class="row">
                                        
-													<table class="table bg-white text-dark center ass2" style="text-align:center">
+													<table class="table bg-white text-dark center ass2">
 														<tr class="text-white table-bordered tap">
-															<th colspan="3"> 부서 등록 </th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3"> 부서 등록 </th>
 														</tr>
 														<tr>
-															<th>부서번호 </th>
+															<th style="vertical-align: middle">부서번호 </th>
 															<td><input id="text" type="text" class="form-control" name="password" required=""></td>
 															<td><button type="button" class="btn btn-outline-info">중복확인</button></td>
 														</tr>
 														<tr>
-															<th> 부서명 </th>
+															<th style="vertical-align: middle"> 부서명 </th>
 															<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
 															<td><button type="button" class="btn btn-outline-info">중복확인</button></td>
 														</tr>
 														<tr>
-															<th> 접근권한 </th>
+															<th style="vertical-align: middle"> 접근권한 </th>
 															<td>	 
 															<div class="form-group">
 															     <select class="form-control" id="exampleFormControlSelect1">

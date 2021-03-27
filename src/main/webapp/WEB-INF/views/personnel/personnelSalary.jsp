@@ -278,7 +278,7 @@
                                        <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample1">
-                                                <table class="table table-bordered bg-white text-dark ass2 th20">
+                                                <table class="table table-bordered bg-white text-dark ass2">
                                                    
                                                    <tbody>
                                                       <tr class="text-white con center">
@@ -326,19 +326,19 @@
                                           </div>
                                        </div>
                                              
-                                    <table class="table table-striped bg-white text-dark center ass2" style="text-align:center">
+                                    <table class="table table-striped bg-white text-dark center ass2">
                                        <thead>
                                           <tr class="text-white table-bordered tap">
-                                             <th class="font-weight-semi-bold border-top-0 py-2">부서번호</th>
-                                             <th class="font-weight-semi-bold border-top-0 py-2">부서명</th>
-                                             <th class="font-weight-semi-bold border-top-0 py-2">접근권한</th>
-                                             <th class="font-weight-semi-bold border-top-0 py-2">사용상태</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">부서번호</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">접근권한</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
                                           </tr>
                                        </thead>
                                        <tbody>
                                           <tr>
-                                             <td class="py-1 middle">01</td>
-                                             <td class="py-1 middle">
+                                             <td class="py-3 middle">01</td>
+                                             <td class="py-3 middle">
                                                             <p>
                                                                <a class="btn" data-toggle="collapse"
                                                                   href="#multiCollapseExample1" role="button"
@@ -346,8 +346,8 @@
                                                                   aria-controls="multiCollapseExample1">유재석</a>
                                                             </p>
                                                          </td>
-                                             <td class="py-1 middle">관리자</td>
-                                             <td class="py-1 middle">사용</td>
+                                             <td class="py-3 middle">관리자</td>
+                                             <td class="py-3 middle">사용</td>
                                           </tr>
                                           
                                        </tbody>
@@ -357,22 +357,22 @@
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
                                     <form>
-                                       <table class="table bg-white text-dark center ass2" style="text-align:center">
+                                       <table class="table bg-white text-dark center ass2">
                                           <tr class="text-white table-bordered tap">
-                                             <th colspan="3"> 급여 전표 등록 </th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3"> 급여 전표 등록 </th>
                                           </tr>
                                           <tr>
-                                             <th>부서번호 </th>
+                                             <th style="vertical-align: middle">부서번호 </th>
                                              <td><input id="text" type="text" class="form-control" name="password" required=""></td>
                                              <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
                                           </tr>
                                           <tr>
-                                             <th> 부서명 </th>
+                                             <th style="vertical-align: middle"> 부서명 </th>
                                              <td> <input id="text" type="text" class="form-control" name="password" required=""></td>
                                              <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
                                           </tr>
                                           <tr>
-                                             <th> 접근권한 </th>
+                                             <th style="vertical-align: middle"> 접근권한 </th>
                                              <td>    
                                              <div class="form-group">
                                                   <select class="form-control" id="exampleFormControlSelect1">
@@ -383,7 +383,7 @@
                                               </td>
                                           </tr>
                                           <tr>
-                                             <th> 사용상태 </th>
+                                             <th style="vertical-align: middle"> 사용상태 </th>
                                              <td>    
                                              <div class="form-group">
                                                   <select class="form-control" id="exampleFormControlSelect1">
