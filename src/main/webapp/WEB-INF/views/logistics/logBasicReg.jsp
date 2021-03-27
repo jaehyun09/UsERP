@@ -324,7 +324,7 @@
 													</div>
 													<table class="table  bg-white text-dark center ass2 table-striped">
 														<thead>
-															<tr class="text-white tap">
+															<tr class="text-white table-bordered tap">
 																<th class="font-weight-semi-bold border-top-0 py-3 h4">거래처번호</th>
 																<th class="font-weight-semi-bold border-top-0 py-3 h4">거래처명</th>
 																<th class="font-weight-semi-bold border-top-0 py-3 h4">대표자명</th>
@@ -400,7 +400,7 @@
 												<div class="row">
 													<table class="table  bg-white text-dark center ass2 table-striped">
 														<thead>
-															<tr class="text-white tap">
+															<tr class="text-white table-bordered tap">
 																<th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
 																<th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
 																<th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>

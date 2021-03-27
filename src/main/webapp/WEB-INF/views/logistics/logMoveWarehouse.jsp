@@ -269,67 +269,72 @@
 									<div class="col">
 										<div class="collapse multi-collapse"
 											id="multiCollapseExample1">
-											<div class="bg-white p-4">
-												<table class="table table-bordered bg-white text-dark ass2 center th20" >
-													<tr class="text-white con center">
-														<th colspan="2">상품이름1</th>
-													</tr>
-													<tr>
-														<th class="font-weight-semi-bold border-top-0 py-4 h4">출발창고명</th>
-														<td>
+											<div class="bg-white p-2">
+												<table class="table bg-white text-dark center ass2" style="text-align:center">
+		                                        	<tr class="text-white table-bordered tap">
+		                                            	<th colspan="3"> 재고 이동 등록 </th>
+		                                        	</tr>
+		                                        	
+		                                        	<tr>
+														<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+															colspan="2" style="vertical-align: middle;">출발창고명</td>
+														<td class="font-weight-semi-bold border-top-0 py-2"
+															colspan="2">
 															<select class="custom-select custom-select-lg">
-		   														<option>양품창고</option>
-		   														<option>불량품창고</option>
-		   														<option>출고대기창고</option>
-		 													</select>
+																<option>양품창고</option>
+																<option>불량품창고</option>
+																<option>출고대기창고</option>
+															</select>
 														</td>
 													</tr>
+													
 													<tr>
-														<th class="font-weight-semi-bold border-top-0 py-4 h4">도착창고명</th>
-														<td>
+														<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>도착창고명</b></td>
+														<td class="py-2" colspan="2">
 															<select class="custom-select custom-select-lg">
-		   														<option>양품창고</option>
-		   														<option>불량품창고</option>
-		   														<option>출고대기창고</option>
-		 													</select>
+																<option>양품창고</option>
+																<option>불량품창고</option>
+																<option>출고대기창고</option>
+															</select>
 														</td>
 													</tr>
 													<tr>
-														<th class="font-weight-semi-bold border-top-0 py-4 h4">상품명</th>
-														<td>
-															<select class="custom-select custom-select-lg">
-		   														<option>상품01</option>
-		   														<option>상품02</option>
-		   														<option>상품03</option>
-		 													</select>
-														</td>
-													</tr>	
+				                                    	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
+				                                       <td class="py-2" colspan="2">
+				                                               <select class="custom-select custom-select-lg">
+		   															<option>상품01</option>
+		   															<option>상품02</option>
+		   															<option>상품03</option>
+		 														</select>
+				                                       </td>
+				                                    </tr>
 													<tr>
-														<th class="font-weight-semi-bold border-top-0 py-4 h4">수량</th>	
-														<td>
-															<input class="form-control form-control-icon-text" placeholder="수량" type="text" value="10">
+														<td class="py-2" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
+														<td class="py-2" colspan="2">
+															<input class="form-control form-control-icon-text" placeholder="수량" type="text">
 														</td>
 													</tr>
 													<tr>
-														<th class="font-weight-semi-bold border-top-0 py-4 h4">담당자명</th>	
-														<td>
+														<td class="py-2" colspan="2" style="vertical-align: middle; "><b>담당자</b></td>
+														<td class="py-2" colspan="2">
 															<input class="form-control form-control-icon-text" type="text" value="최유성" readonly>
 														</td>
 													</tr>
-												</table>
-													<div align=center>
-				                                       <button type="button" type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
-				                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>&nbsp;&nbsp;&nbsp;
-				                                       <button type="button" class="btn btn-outline-info">삭제</button>
-				                                    </div>
+											</table>
 											</div>
+											<br>
+											<div align=center>
+			                                       <button type="button" type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
+			                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>&nbsp;&nbsp;&nbsp;
+			                                       <button type="button" class="btn btn-outline-info">삭제</button>
+			                                    </div>
 											<br><br><br>
 										</div>
 									</div>
 									<!-- 숨겨진 페이지 종료 -->
 										<table class="table bg-white text-dark center table-striped">
 											<thead>
-												<tr class="text-white tap">
+												<tr class="text-white table-bordered tap">
 													<th class="font-weight-semi-bold border-top-0 py-3 h6">주문번호</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h6">상품명</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h6">수량</th>
@@ -415,58 +420,62 @@
 									<!-- 신규등록 -->
 									<div class="tab-pane fade p-4" id="pills-html-1"
 										role="tabpanel" aria-labelledby="pills-html-tab-1">
-										<table class="table bg-white text-dark ass2 center th20">
-											<tr class="text-white table-bordered tap">
-												<th colspan="2">재고 이동 등록</th>
-											</tr>
-										
-											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">출발창고명</th>
-												<td>
+										<table class="table bg-white text-dark center ass2" style="text-align:center">
+                                        	<tr class="text-white table-bordered tap">
+                                            	<th colspan="3"> 재고 이동 등록 </th>
+                                        	</tr>
+                                        	
+                                        	<tr>
+												<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+													colspan="2" style="vertical-align: middle;">출발창고명</td>
+												<td class="font-weight-semi-bold border-top-0 py-2"
+													colspan="2">
 													<select class="custom-select custom-select-lg">
-   														<option>양품창고</option>
-   														<option>불량품창고</option>
-   														<option>출고대기창고</option>
- 													</select>
+														<option>양품창고</option>
+														<option>불량품창고</option>
+														<option>출고대기창고</option>
+													</select>
+												</td>
+											</tr>
+											
+											<tr>
+												<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>도착창고명</b></td>
+												<td class="py-2" colspan="2">
+													<select class="custom-select custom-select-lg">
+														<option>양품창고</option>
+														<option>불량품창고</option>
+														<option>출고대기창고</option>
+													</select>
 												</td>
 											</tr>
 											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">도착창고명</th>
-												<td>
-													<select class="custom-select custom-select-lg">
-   														<option>양품창고</option>
-   														<option>불량품창고</option>
-   														<option>출고대기창고</option>
- 													</select>
-												</td>
-											</tr>
+		                                    	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
+		                                       <td class="py-2" colspan="2">
+		                                               <select class="custom-select custom-select-lg">
+   															<option>상품01</option>
+   															<option>상품02</option>
+   															<option>상품03</option>
+ 														</select>
+		                                       </td>
+		                                    </tr>
 											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">상품명</th>
-												<td>
-													<select class="custom-select custom-select-lg">
-   														<option>상품01</option>
-   														<option>상품02</option>
-   														<option>상품03</option>
- 													</select>
-												</td>
-											</tr>	
-											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">수량</th>	
-												<td>
+												<td class="py-2" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
+												<td class="py-2" colspan="2">
 													<input class="form-control form-control-icon-text" placeholder="수량" type="text">
 												</td>
 											</tr>
 											<tr>
-												<th class="font-weight-semi-bold border-top-0 py-4 h4">담당자명</th>	
-												<td>
+												<td class="py-2" colspan="2" style="vertical-align: middle; "><b>담당자</b></td>
+												<td class="py-2" colspan="2">
 													<input class="form-control form-control-icon-text" type="text" value="최유성" readonly>
 												</td>
 											</tr>
-										</table>
-											<div align=center>
-		                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-		                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-		                                    </div>
+										</tbody>
+									</table>
+										<div align=center>
+	                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+	                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+	                                    </div>
 									</div>
 									<!-- 신규등록 끝 -->
 								</div>
