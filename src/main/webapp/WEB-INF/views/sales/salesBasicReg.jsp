@@ -226,7 +226,7 @@
                <div class="card-body">
                   <nav aria-label="breadcrumb">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">구매 관리</a></li>
+                        <li class="breadcrumb-item"><a href="#">판매 관리</a></li>
                         <li class="breadcrumb-item active" aria-current="page">기초 등록</li>
                      </ol>
                   </nav>
@@ -239,7 +239,7 @@
                               <a class="anchorjs-link" href="#example"
                                  aria-label="Anchor" data-anchorjs-icon="#"></a>
                            </h4>
-                           <div class="px-3">
+                           <div class="mb-3">
                               <!-- Nav Classic -->
                               <ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
                                  id="pills-tab-1" role="tablist">
@@ -247,12 +247,22 @@
                                     class="nav-link d-flex align-items-center py-2 px-3 active"
                                     id="pills-result-tab-1" data-toggle="pill"
                                     href="#pills-result-1" role="tab"
-                                    aria-controls="pills-result-1" aria-selected="false">구매 거래처</a></li>
+                                    aria-controls="pills-result-1" aria-selected="false">판매 거래처</a></li>
                                  <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
                                     id="pills-html-tab-1" data-toggle="pill"
                                     href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-                                    aria-selected="false">상품</a></li>
+                                    aria-selected="false">테스트1 판매 거래처 등록</a></li>   
+                                 <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
+                                    class="nav-link d-flex align-items-center py-2 px-3"
+                                    id="pills-html-tab-1" data-toggle="pill"
+                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+                                    aria-selected="false">상품</a></li><!-- 이거 복사해서 테스트1,2 탭 만들었음 -->
+                                 <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
+                                    class="nav-link d-flex align-items-center py-2 px-3"
+                                    id="pills-html-tab-1" data-toggle="pill"
+                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+                                    aria-selected="false">테스트2 상품 등록</a></li>   
                               </ul>
                               <!-- End Nav Classic -->
 
@@ -277,7 +287,7 @@
                                                  <table class="table table-bordered bg-white text-dark ass2 th20">
                                                    <tbody>
                                                       <tr class="text-white con center">
-                                                         <th colspan="2">거래처명1이라네~~~~~~</th>
+                                                         <th colspan="2">거래처명1</th>
                                                       </tr>
                                                       <tr>
                                                          <th>NO.</th>
@@ -392,6 +402,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
+                                       
                                        <!-- 리액트화면으로 등록 -->
                                        <table class="table">
                                        		<tr>
@@ -401,6 +412,7 @@
                                           	</tr>
 										</table>
 										<!-- 리액트화면으로 등록-->
+										
                                     </div>
                                  </div>
 
@@ -507,7 +519,7 @@
                                                       <a data-toggle="collapse" style="text-decoration:none; color: #000"
                                                          href="#multiCollapseExample2" role="button"
                                                          aria-expanded="false"
-                                                         aria-controls="multiCollapseExample2" >상품명이라네2~~~</a>
+                                                         aria-controls="multiCollapseExample2" >상품명이라네~~~</a>
                                                 </td>
                                                 <td class="py-3 middle" style="vertical-align: middle">10000</td>
                                                 <td class="py-3 middle" style="vertical-align: middle">15000</td>
