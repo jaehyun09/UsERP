@@ -22,6 +22,23 @@ public class SalesController {
 		return "sales/salesBasicReg";
 	}
 	
+	// 리액트 거래처 등록 
+	@RequestMapping("/clientadd")
+	public String clientadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 거래처 관리");
+			
+		return "sales/client";
+	}
+	
+	// 리액트 상품 등록 
+	@RequestMapping("/productadd")
+	public String accountadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 상품 관리");
+			
+		return "sales/product";
+	}
+			
+	
 	// 재고 현황
 	@RequestMapping("/salesInvenStatus")
 	public String salesInvenStatus(HttpServletRequest req, Model model) {

@@ -6,7 +6,38 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
+<script type="text/javascript">
+function clientadd() {
+	$.ajax({
+      // sendRequest(콜백함수명, url, method, params)
+      url: "clientadd", // 전송 페이지 => 컨트롤러 "basic_next"
+      type: 'GET', // 전송방식('GET', 'POST') - method
+      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+         $('#client').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
 
+function productadd() {
+	$.ajax({
+      // sendRequest(콜백함수명, url, method, params)
+      url: "productadd", // 전송 페이지 => 컨트롤러 "basic_next"
+      type: 'GET', // 전송방식('GET', 'POST') - method
+      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+         $('#product').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+</script> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -221,7 +252,7 @@
 	<!-- End Sidebar Nav -->
 
     <div class="content">
-         <div class="py-4 px-3 px-md-4">
+                  <div class="py-4 px-3 px-md-4">
             <div class="card">
                <div class="card-body">
                   <nav aria-label="breadcrumb">
@@ -248,21 +279,24 @@
                                     id="pills-result-tab-1" data-toggle="pill"
                                     href="#pills-result-1" role="tab"
                                     aria-controls="pills-result-1" aria-selected="false">구매 거래처</a></li>
+                                    
                                  <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
-                                    id="pills-html-tab-1" data-toggle="pill"
-                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-                                    aria-selected="false">테스트1 구매 거래처 등록</a></li>   
+                                    id="pills-html-tab-2" data-toggle="pill"
+                                    href="#pills-html-2" onclick="clientadd()"  role="tab" aria-controls="pills-html-2"
+                                    aria-selected="false"> 구매 거래처 등록</a></li>   
+                                    
                                  <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
-                                    id="pills-html-tab-1" data-toggle="pill"
-                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+                                    id="pills-html-tab-3" data-toggle="pill"
+                                    href="#pills-html-3" role="tab" aria-controls="pills-html-3"
                                     aria-selected="false">상품</a></li><!-- 이거 복사해서 테스트1,2 탭 만들었음 -->
+                                    
                                  <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
-                                    id="pills-html-tab-1" data-toggle="pill"
-                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-                                    aria-selected="false">테스트2 상품 등록</a></li>   
+                                    id="pills-html-tab-4" data-toggle="pill"
+                                    href="#pills-html-4" onclick="productadd()" role="tab" aria-controls="pills-html-4"
+                                    aria-selected="false">상품 등록</a></li>   
                               </ul>
                               <!-- End Nav Classic -->
 
@@ -346,7 +380,7 @@
                                              <tr>
                                                 <td class="py-3 middle">10</td>
                                                 <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
+                                                      <!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
                                                       <a data-toggle="collapse" style="text-decoration:none; color: #000"
                                                          href="#multiCollapseExample1" role="button"
                                                          aria-expanded="false"
@@ -357,15 +391,15 @@
                                                 <td class="py-3 middle">사용중</td>
                                                 <td class="py-3 middle">2017-08-21</td>
                                                 <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                                     <button type="button" class="btn btn btn-outline-info" style='float: middle;'>
+                                                        수정
+                                                     </button>
+                                      </td>
                                              </tr>
                                              <tr>
                                                 <td class="py-3 middle">11</td>
                                                 <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
+                                                      <!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
                                                       <a data-toggle="collapse" style="text-decoration:none; color: #000"
                                                          href="#multiCollapseExample1" role="button"
                                                          aria-expanded="false"
@@ -376,15 +410,15 @@
                                                 <td class="py-3 middle">사용중</td>
                                                 <td class="py-3 middle">2017-08-21</td>
                                                 <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                                     <button type="button" class="btn btn btn-outline-info" style='float: middle;'>
+                                                        수정
+                                                     </button>
+                                      </td>
                                              </tr>
                                              <tr>
                                                 <td class="py-3 middle">12</td>
                                                 <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
+                                                      <!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
                                                       <a data-toggle="collapse" style="text-decoration:none; color: #000"
                                                          href="#multiCollapseExample1" role="button"
                                                          aria-expanded="false"
@@ -395,27 +429,32 @@
                                                 <td class="py-3 middle">사용중</td>
                                                 <td class="py-3 middle">2017-08-21</td>
                                                 <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                                     <button type="button" class="btn btn btn-outline-info" style='float: middle;'>
+                                                        수정
+                                                     </button>
+                                      </td>
                                              </tr>
                                           </tbody>
                                        </table>
                                        <!-- 리액트화면으로 등록 -->
                                        <table class="table">
-                                       		<tr>
-                                       			<td align="center">
-	                                       			<button type="button" type="submit" class="btn btn-outline-info">등록</button>
-                                          		</td>
-                                          	</tr>
-										</table>
-										<!-- 리액트화면으로 등록-->
+                                             <tr>
+                                                <td align="center">
+                                                   <button type="button" type="submit" class="btn btn-outline-info">등록</button>
+                                                </td>
+                                             </tr>
+                              </table>
+                              <!-- 리액트화면으로 등록-->
                                     </div>
                                  </div>
-
-                                 <div class="tab-pane fade p-4" id="pills-html-1"
-                                    role="tabpanel" aria-labelledby="pills-html-tab-1">
+								 <div class="tab-pane fade p-4 " id="pills-html-2"
+									role="tabpanel" aria-labelledby="pills-html-tab-1">
+										<div class="bg-white"id="client"></div>
+												
+												
+								</div>
+                                 <div class="tab-pane fade p-4" id="pills-html-3"
+                                    role="tabpanel" aria-labelledby="pills-html-tab-3">
                                     <!-- 검색창 시작 -->      
                                             <div class="input-group">
                                                <div class="input-group-append">
@@ -428,7 +467,7 @@
                                     <div class="row">
                                     <!-- 테스트 -->
                                     <div class="col">
-                                    	<div class="collapse multi-collapse"
+                                       <div class="collapse multi-collapse"
                                              id="multiCollapseExample2">
                                                  <table class="table table-bordered bg-white text-dark ass2 th20">
                                                    <tbody>
@@ -475,7 +514,7 @@
                                                    </tbody>
                                                 </table><br><br><br>
                                           </div>
-									</div>
+                           </div>
                                     <!-- 테스트 -->
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead>
@@ -494,7 +533,7 @@
                                              <tr class="tablein">
                                                 <td class="py-3 middle">110123</td>
                                                 <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
+                                                      <!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
                                                       <a data-toggle="collapse" style="text-decoration:none; color: #000"
                                                          href="#multiCollapseExample2" role="button"
                                                          aria-expanded="false"
@@ -505,15 +544,15 @@
                                                 <td class="py-3 middle" style="vertical-align: middle">사용중</td>
                                                 <td class="py-3 middle" style="vertical-align: middle">2017-08-30</td>
                                                 <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                                     <button type="button" class="btn btn btn-outline-info" style='float: middle;'>
+                                                        수정
+                                                     </button>
+                                      </td>
                                              </tr>
                                              <tr>
                                                 <td class="py-3 middle">110123</td>
                                                 <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
+                                                      <!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
                                                       <a data-toggle="collapse" style="text-decoration:none; color: #000"
                                                          href="#multiCollapseExample2" role="button"
                                                          aria-expanded="false"
@@ -524,25 +563,30 @@
                                                 <td class="py-3 middle" style="vertical-align: middle">사용중</td>
                                                 <td class="py-3 middle" style="vertical-align: middle">2017-08-30</td>
                                                 <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                                     <button type="button" class="btn btn btn-outline-info" style='float: middle;'>
+                                                        수정
+                                                     </button>
+                                      </td>
                                              </tr>
                                           </tbody>
                                        </table>
                                        <!-- 리액트화면으로 등록 -->
                                        <table class="table">
-                                       		<tr>
-                                       			<td align="center">
-	                                       			<button type="button" type="submit" class="btn btn-outline-info">등록</button>
-                                          		</td>
-                                          	</tr>
-										</table>
-										<!-- 리액트화면으로 등록-->
+                                             <tr>
+                                                <td align="center">
+                                                   <button type="button" type="submit" class="btn btn-outline-info">등록</button>
+                                                </td>
+                                             </tr>
+                              </table>
+                              <!-- 리액트화면으로 등록-->
                                     </div>
                                  </div>
-                                 
+                                 <div class="tab-pane fade p-4" id="pills-html-4"
+												role="tabpanel" aria-labelledby="pills-html-tab-1">
+												<div id="product"></div>
+												
+												
+								 </div>
                               </div>
                               <!-- End Tab Content -->
                            </div>
@@ -553,6 +597,7 @@
             </div>
          </div>
       </div>
+    
     
     
 </main>

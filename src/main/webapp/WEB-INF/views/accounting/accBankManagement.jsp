@@ -6,7 +6,22 @@
 <head>
 <!-- Title -->
 <title>Users | Graindashboard UI Kit</title>
-
+<script type="text/javascript">
+function bankadd() {
+	$.ajax({
+      // sendRequest(콜백함수명, url, method, params)
+      url: "bankadd", // 전송 페이지 => 컨트롤러 "basic_next"
+      type: 'GET', // 전송방식('GET', 'POST') - method
+      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+         $('#bank').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+</script>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -253,7 +268,7 @@
 											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
 												class="nav-link d-flex align-items-center py-2 px-3"
 												id="pills-html-tab-1" data-toggle="pill"
-												href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+												href="#pills-html-1" onclick="bankadd()" role="tab" aria-controls="pills-html-1"
 												aria-selected="false">계좌 등록 </a></li>
 										</ul>
 										<!-- End Nav Classic -->
@@ -311,68 +326,7 @@
 											
 											<div class="tab-pane fade p-4" id="pills-html-1"
 		                                    role="tabpanel" aria-labelledby="pills-html-tab-1">
-		                                       <table class="table bg-white text-dark center ass2">
-		                                          <tr class="text-white table-bordered tap">
-		                                             <th colspan="3"> 계좌 등록 </th>
-		                                          </tr>
-		                                         	 <tr>
-														<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-															colspan="2" style="vertical-align: middle">계좌명</td>
-														<td class="font-weight-semi-bold border-top-0 py-2"
-															colspan="2"><input class="form-control" type="text"
-															placeholder="계좌명을 입력하세요"></td>
-													</tr>
-													<tr>
-														<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>계좌번호</b></td>
-														<td class="py-3" colspan="2"><input
-															class="form-control" type="text"
-															placeholder="계좌번호를 입력하세요"></td>
-													</tr>
-													<tr>
-				                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle"><b>은행</b></td>
-				                                       <td><div class="form-group">
-				                                               <select class="form-control" id="exampleFormControlSelect1">
-				                                                 <option>농협</option>
-				                                                 <option>신한</option>
-				                                                 <option>국민</option>
-				                                               </select>
-				                                             </div>
-				                                       </td>
-				                                    </tr>
-													<tr>
-														<td class="py-3" colspan="2" style="vertical-align: middle"><b>잔액</b></td>
-														<td class="py-3" colspan="2"><input
-															class="form-control" type="text" disabled></td>
-													</tr>
-													<tr>
-														<td class="py-3" colspan="2" style="vertical-align: middle"><b>개설목적</b></td>
-														<td class="py-3" colspan="2"><input
-															class="form-control" type="text"
-															placeholder="개설목적을 입력하세요"></td>
-													</tr>
-														<tr>
-															<td class="py-3" colspan="2" style="vertical-align: middle"><b>사용상태</b></td>
-															<td>
-																<div class="form-check form-check-inline">
-																	<input class="form-check-input" type="radio"
-																		name="inlineRadioOptions" id="inlineRadio1"
-																		value="option1"> <label
-																		class="form-check-label" for="inlineRadio1">사용</label>
-																</div>
-																<div class="form-check form-check-inline">
-																	<input class="form-check-input" type="radio"
-																		name="inlineRadioOptions" id="inlineRadio2"
-																		value="option2"> <label
-																		class="form-check-label" for="inlineRadio2">미사용</label>
-																</div>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-												<div align=center>
-                                       				<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                       				 <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                                    			</div>
+		                                    <div id="bank"></div>
 											</div>
 										</div>
 										<!-- End Tab Content -->

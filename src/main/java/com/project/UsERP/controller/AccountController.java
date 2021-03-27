@@ -30,12 +30,28 @@ public class AccountController {
 		return "accounting/accBankManagement";
 	}
 	
+	// 리액트 계좌 등록 
+	@RequestMapping("/bankadd")
+	public String bankadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 계좌 등록");
+		
+		return "accounting/bank";
+	}
+	
 	// 계정 관리
 	@RequestMapping("/accManagement")
 	public String accManagement(HttpServletRequest req, Model model) {
 		logger.info("url: 계정 관리");
 		
 		return "accounting/accManagement";
+	}
+	
+	// 리액트 계정 등록 
+	@RequestMapping("/accountadd")
+	public String accountadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 계정 등록");
+			
+		return "accounting/account";
 	}
 	
 	// 전표 관리
