@@ -26,7 +26,7 @@
 	<aside id="sidebar" class="js-custom-scroll side-nav">
 		<ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
 			<!-- 대메뉴 : 인사 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#gg">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-themify-favicon"></i>
@@ -39,11 +39,11 @@
 				</a>
 				
 				<!-- 중메뉴 : 인사 관리 -->
-<!-- b -->		<ul id="gg" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
+<!-- b -->		<ul id="gg" class="side-nav-menu side-nav-menu-second-level mb-0">
 <!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/personnelBasicReg">기초 등록</a>
 					</li>
-					<li class="side-nav-menu-item active">
+					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/personnelAppointment">인사 발령</a>
                     </li>
                     <li class="side-nav-menu-item">
@@ -143,7 +143,7 @@
 			<!-- 구매 관리 종료 -->
 			
 			<!-- 대메뉴 : 물류 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#zxc">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-truck"></i>
@@ -156,8 +156,8 @@
 				</a>
 				
 				<!-- 중메뉴 : 물류 관리 -->
-<!-- b -->		<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->			<li class="side-nav-menu-item">
+<!-- b -->		<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
+<!-- a -->			<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/logBasicReg">기초 코드</a>
 					</li>
 					<li class="side-nav-menu-item">
@@ -220,15 +220,15 @@
 	</aside>
 	<!-- End Sidebar Nav -->
 
-   <!-- 인사 발령 시작 -->
-    		<div class="content">
+    <div class="content">
 			<div class="py-4 px-3 px-md-4">
 				<div class="card">
 					<div class="card-body">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">인사 관리</a></li>
-								<li class="breadcrumb-item active" aria-current="page">인사 발령</li>
+								<li class="breadcrumb-item"><a href="#">물류 관리</a></li>
+								<li class="breadcrumb-item active" aria-current="page">기초
+									코드</li>
 							</ol>
 						</nav>
 						<div class="row">
@@ -237,168 +237,202 @@
 
 								<div id="example" class="mb-9">
 									<h4 class="h1 text-dark"><b>
-										인사 발령 </b><a class="anchorjs-link" href="#example"
+										기초 코드 </b><a class="anchorjs-link" href="#example"
 											aria-label="Anchor" data-anchorjs-icon="#"></a>
 									</h4>
-									
 									<div class="mb-3">
-									
 										<!-- Nav Classic -->
-										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark" id="tabs-tab-3" role="tablist">
-											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
-											<a class="nav-link d-flex align-items-center py-2 px-3 active"
+										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
+											id="pills-tab-1" role="tablist">
+											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light " ><a
+												class="nav-link d-flex align-items-center py-2 px-3 active"
 												id="pills-result-tab-1" data-toggle="pill"
 												href="#pills-result-1" role="tab"
-												aria-controls="pills-result-1" aria-selected="true">인사 발령 조회</a>
-											</li>
-											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
-											<a class="nav-link d-flex align-items-center py-2 px-3"
+												aria-controls="pills-result-1" aria-selected="true"> 거래처
+													조회</a></li>
+											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
+												class="nav-link d-flex align-items-center py-2 px-3"
 												id="pills-html-tab-1" data-toggle="pill"
 												href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-												aria-selected="false">인사 발령</a>
-											</li>
+												aria-selected="false">상품 조회 </a></li>
 										</ul>
 										<!-- End Nav Classic -->
 
 										<!-- Tab Content -->
-										<div class="tab-content bg-lighter" id="pills-tabContent-1">
-											<div class="tab-pane fade p-4 show active"
+										<div class="tab-content bg-lighter " id="pills-tabContent-1">
+											<div class="tab-pane fade p-6 show active"
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
-											
-										<!-- 검색창 시작 -->		
-									   	  <div class="input-group">
-										    <div class="input-group-append">
-										      <i class="gd-search icon-text icon-text-sm"></i>
-										    </div>
-										    
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" >
-										  </div>
-										  <!-- 검색창 끝 -->		
-										  <br>
-										  
-											<table class="table table-striped bg-white text-dark center ass2" style="text-align:center">
-											    <thead>
-											      <tr class="text-white table-bordered tap">
-											        <th class="font-weight-semi-bold border-top-0 py-2">발령일</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">사번</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">사원명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">현재부서</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">현재직급</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">이전부서</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">이전직급</th>
-											        
-											      </tr>
-											    </thead>
-											    <tbody>
-											      <tr>
-											        <td class="py-3">2021-03-14</td>
-													<td class="py-3">001</td>
-													<td class="py-3">김그래</td>
-													<td class="py-3">영업부</td>
-													<td class="py-3">대리</td>
-													<td class="py-3">발령대기</td>
-													<td class="py-3">인턴사원</td>
-											      </tr>
-											      <tr>
-											        <td class="py-3">2021-03-11</td>
-													<td class="py-3">004</td>
-													<td class="py-3">장그래</td>
-													<td class="py-3">판매부</td>
-													<td class="py-3">주임</td>
-													<td class="py-3">발령대기</td>
-													<td class="py-3">인턴사원</td>
-											      </tr>
-											      <tr>
-											        <td class="py-3">2021-03-21</td>
-													<td class="py-3">003</td>
-													<td class="py-3">장그래</td>
-													<td class="py-3">경리부</td>
-													<td class="py-3">대리</td>
-													<td class="py-3">발령대기</td>
-													<td class="py-3">인턴사원</td>
-											      </tr>
-											    </tbody>
-											  </table>
-											 
+												<!-- 검색창 시작 -->
+			                                	<div class="input-group">
+				                                	<div class="input-group-append">
+				                                    <i class="gd-search icon-text icon-text-sm"></i>
+				                                  	</div>
+				                                  	<input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
+				                                </div>
+				                                <br>
+				                                <!-- 검색창 끝 --> 
+												<div class="row">
+													<div class="col">
+														<div class="collapse multi-collapse"
+															id="multiCollapseExample1">
+																<table class="table table-bordered bg-white text-dark ass2 th20">
+																	<tbody>
+																		<tr class="text-white con center">
+																			<th colspan="2">거래처명1</th>
+																		</tr>
+																		<tr>
+																			<th>NO.</th>
+																			<td>10</td>
+																		</tr>
+																		<tr>
+																			<th>사업자등록번호</th>
+																			<td>1234567890</td>
+																		</tr>
+																		<tr>
+																			<th>대표자명</th>
+																			<td>최유성</td>
+																		</tr>
+																		<tr>
+																			<th>업태</th>
+																			<td>업태1</td>
+
+																		</tr>
+																		<tr>
+																			<th>회사규모</th>
+																			<td>n명</td>
+																		</tr>
+																		<tr>
+																			<th>사용상태</th>
+																			<td>사용중</td>
+																		</tr>
+																		<tr>
+																			<th rowspan="4" style="vertical-align:middle">주요 거래 품목</th>
+																		</tr>
+																		<tr>
+																			<td>거래처명1 - 주요 거래 품목1</td>
+																		</tr>
+																		<tr>
+																			<td>거래처명1 - 주요 거래 품목2</td>
+																		</tr>
+																		<tr>
+																			<td>거래처명1 - 주요 거래 품목3</td>
+																		</tr>
+																	</tbody>
+																</table><br><br><br>
+														</div>
+													</div>
+													<table class="table  bg-white text-dark center ass2 table-striped">
+														<thead>
+															<tr class="text-white tap">
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">거래처번호</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">거래처명</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">대표자명</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">업태</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td class="py-1 middle">10</td>
+																<td class="py-1 middle">
+																	<p>
+																		<a class="btn" data-toggle="collapse"
+																			href="#multiCollapseExample1" role="button"
+																			aria-expanded="false"
+																			aria-controls="multiCollapseExample1">거래처명1</a>
+																	</p>
+																</td>
+																<td class="py-1 middle">최유성</td>
+																<td class="py-1 middle">업태1</td>
+																<td class="py-1 middle">사용중</td>
+																<td class="py-1 middle">2017-08-21</td>
+															</tr>
+															<tr>
+																<td class="py-1 middle">11</td>
+																<td class="py-1 middle">
+																	<p>
+																		<a class="btn" data-toggle="collapse"
+																			href="#multiCollapseExample1" role="button"
+																			aria-expanded="false"
+																			aria-controls="multiCollapseExample1">거래처명2</a>
+																	</p>
+																</td>
+																<td class="py-1 middle">조명재</td>
+																<td class="py-1 middle">업태2</td>
+																<td class="py-1 middle">사용중</td>
+																<td class="py-1 middle">2018-01-01</td>
+															</tr>
+															<tr>
+																<td class="py-1 middle">12</td>
+																<td class="py-1 middle">
+																	<p>
+																		<a class="btn" data-toggle="collapse"
+																			href="#multiCollapseExample1" role="button"
+																			aria-expanded="false"
+																			aria-controls="multiCollapseExample1">거래처명3</a>
+																	</p>
+																</td>
+																<td class="py-1 middle">김은희</td>
+																<td class="py-1 middle">업태3</td>
+																<td class="py-1 middle">사용중</td>
+																<td class="py-1 middle">2018-02-22</td>
+															</tr>
+														</tbody>
+													</table>
+
+
+												</div>
 											</div>
 
-											<div class="tab-pane fade p-4" id="pills-html-1"
+											<div class="tab-pane fade p-6" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
-												
-												<form>
-													<table class="table bg-white text-dark center ass2" style="text-align:center">
-														<tr class="text-white table-bordered tap">
-															<th colspan="3"> 인사 발령 </th>
-														</tr>
-														<tr>
-															<th>사번</th>
-															<td><input id="text" type="text" class="form-control" name="password" required=""></td>
-															<td><button type="button" class="btn btn-outline-info">사번확인</button></td>
-														</tr>
-														<tr>
-															<th> 사원명 </th>
-															<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
-															<td><button type="button" class="btn btn-outline-info">사원확인</button></td>
-														</tr>
-														<tr>
-															<th> 현재 부서 </th>
-															<td>	 
-															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>영업부</option>
-															       <option>인사부</option>
-															     </select>
-															   </div>
-															 </td>
-														</tr>
-														<tr>
-															<th> 발령 부서</th>
-															<td>	 
-															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>영업부</option>
-															       <option>영업부</option>
-															     </select>
-															   </div>
-															 </td>
-														</tr>
-														<tr>
-															<th> 현재 직급 </th>
-															<td>	 
-															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>팀장</option>
-															       <option>대리</option>
-															     </select>
-															   </div>
-															 </td>
-														</tr>
-														<tr>
-															<th> 발령 후 직급</th>
-															<td>	 
-															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>팀장</option>
-															       <option>대리</option>
-															     </select>
-															   </div>
-															 </td>
-														</tr>
+												<!-- 검색창 시작 -->      
+			                                	<div class="input-group">
+				                                	<div class="input-group-append">
+				                                    <i class="gd-search icon-text icon-text-sm"></i>
+				                                  	</div>
+				                                  	<input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" >
+				                                </div>
+				                                <br>
+				                                <!-- 검색창 끝 --> 
+												<div class="row">
+													<table class="table  bg-white text-dark center ass2 table-striped">
+														<thead>
+															<tr class="text-white tap">
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">판매단가</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
+															</tr>
+														</thead>
 														
+														<tbody>
+															<tr>
+																<td class="py-3">100001</td>
+																<td class="py-3">상품명1</td>
+																<td class="py-3">10000</td>
+																<td class="py-3">15000</td>
+																<td class="py-3">사용중</td>
+																<td class="py-3">2017-08-30</td>
+															</tr>
+															<tr>
+																<td class="py-3">100001</td>
+																<td class="py-3">상품명1</td>
+																<td class="py-3">10000</td>
+																<td class="py-3">15000</td>
+																<td class="py-3">사용중</td>
+																<td class="py-3">2017-08-30</td>
+															</tr>
+														</tbody>
 													</table>
-												
-												<div align=center>
-												
-													<button type="button" type="submit" class="btn btn-outline-info">발령</button>&nbsp;&nbsp;&nbsp;
-													<button type="button" type="reset" class="btn btn-outline-info">재작성</button>
-												
 												</div>
-												<br>
-												<br>
-											</form>
 											</div>
 											
+										</div>
 										<!-- End Tab Content -->
 									</div>
 								</div>
@@ -408,7 +442,8 @@
 				</div>
 			</div>
 		</div>
-	<!-- 부서 관리 끝-->
+    
+    
 </main>
 
 <%@ include file = "../common/footer.jsp" %> 

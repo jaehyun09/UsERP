@@ -129,13 +129,13 @@
 <!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/purBasicReg">기초 등록</a>
 					</li>
-					<li class="side-nav-menu-item active">
+					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/purInvenStatus">재고 현황</a>
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/purStatus">구매 현황</a>
 					</li>
-					<li class="side-nav-menu-item">
+					<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/purRecStatus">입고 현황</a>
 					</li>
 				</ul> 

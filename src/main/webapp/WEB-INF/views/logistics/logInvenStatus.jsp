@@ -57,7 +57,7 @@
 			<!-- 인사 관리 종료 -->
 			
 			<!-- 대메뉴 : 근태 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subPages">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-timer"></i>
@@ -70,8 +70,8 @@
 				</a>
 
                 <!-- 중메뉴 : 근태 관리 -->
-<!-- b -->		<ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
-<!-- a -->			<li class="side-nav-menu-item active">
+<!-- b -->		<ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/abSelect">조회</a>
 					</li>
 					<li class="side-nav-menu-item">
@@ -143,7 +143,7 @@
 			<!-- 구매 관리 종료 -->
 			
 			<!-- 대메뉴 : 물류 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#zxc">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-truck"></i>
@@ -156,14 +156,14 @@
 				</a>
 				
 				<!-- 중메뉴 : 물류 관리 -->
-<!-- b -->		<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- b -->		<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
 <!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/logBasicReg">기초 코드</a>
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/logStatementList">전표 관리</a>
 					</li>
-					<li class="side-nav-menu-item">
+					<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/logInvenStatus">재고 현황</a>
 					</li>
 					<li class="side-nav-menu-item">
@@ -220,15 +220,14 @@
 	</aside>
 	<!-- End Sidebar Nav -->
 
-  <!-- 근태 조회 시작 -->
-    <div class="content">
+	<div class="content">
 			<div class="py-4 px-3 px-md-4">
 				<div class="card">
 					<div class="card-body">
-						<nav aria-label="breadcrumb">
+					<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">근태 관리</a></li>
-								<li class="breadcrumb-item active" aria-current="page">조회</li>
+								<li class="breadcrumb-item"><a href="#">물류 관리</a></li>
+								<li class="breadcrumb-item active" aria-current="page">재고 현황</li>
 							</ol>
 						</nav>
 						<div class="row">
@@ -237,25 +236,18 @@
 
 								<div id="example" class="mb-9">
 									<h4 class="h1 text-dark"><b>
-										조회</b><a class="anchorjs-link" href="#example"
+										재고 현황 </b><a class="anchorjs-link" href="#example"
 											aria-label="Anchor" data-anchorjs-icon="#"></a>
 									</h4>
 									<div class="mb-3">
-									
 										<!-- Nav Classic -->
-										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark" id="tabs-tab-3" role="tablist">
-											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
-											<a class="nav-link d-flex align-items-center py-2 px-3 active"
+										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
+											id="pills-tab-1" role="tablist">
+											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light" ><a
+												class="nav-link d-flex align-items-center py-2 px-3 active"
 												id="pills-result-tab-1" data-toggle="pill"
 												href="#pills-result-1" role="tab"
-												aria-controls="pills-result-1" aria-selected="true">출퇴근</a>
-											</li>
-											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
-											<a class="nav-link d-flex align-items-center py-2 px-3"
-												id="pills-html-tab-1" data-toggle="pill"
-												href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-												aria-selected="false">근퇴 조회</a>
-											</li>
+												aria-controls="pills-result-1" aria-selected="true">재고현황</a></li>
 										</ul>
 										<!-- End Nav Classic -->
 
@@ -264,120 +256,145 @@
 											<div class="tab-pane fade p-4 show active"
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
-										 <!-- 검색창 시작 -->		
-									   	  <div class="input-group">
-										    <div class="input-group-append">
-										      <i class="gd-search icon-text icon-text-sm"></i>
-										    </div>
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" >
-										  </div>
-										  <!-- 검색창 끝 -->		
-										  <br>
-										  
-											<table class="table table-striped bg-white text-dark center" style="text-align:center">
-											    <thead>
-											      <tr class="text-white table-bordered tap">
-											        <th class="font-weight-semi-bold border-top-0 py-2">사번</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">사원명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">부서명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">직급</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">출근시간</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">퇴근시간</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">야간근무</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2"></th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">처리 상태</th>
-											        
-											      </tr>
-											    </thead>
-											    <tbody>
-											      <tr>
-											      	<td class="py-3">001</td>
-											      	<td class="py-3">장그래</td>
-											      	<td class="py-3">영업부</td>
-													<td class="py-3">대리</td>
-													<td class="py-3">연차</td>
-											        <td class="py-3">2021-03-21</td>
-											        <td class="py-3">2021-03-22</td>
-											        <td class="py-3">2021-03-25</td>
-													<td class="py-3">완료</td>
-											      </tr>
-											      <tr>
-											        <td class="py-3">012</td>
-											      	<td class="py-3">김은희</td>
-											      	<td class="py-3">회계부</td>
-													<td class="py-3">팀장</td>
-													<td class="py-3">병가</td>
-											        <td class="py-3">2021-03-19</td>
-											        <td class="py-3">2021-03-24</td>
-											        <td class="py-3">2021-03-26</td>
-													<td class="py-3">완료</td>
-											      </tr>
-											      
-											    </tbody>
-											  </table>
-											 
+												<table class="table  bg-white text-dark center ass2 table-striped">
+												
+													<!-- 체크박스 시작 -->
+													<div class="form-check form-check-inline">
+													    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+													    <label class="form-check-label" for="inlineCheckbox1">양품창고</label>
+													</div>
+													<div class="form-check form-check-inline">
+													    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+													    <label class="form-check-label" for="inlineCheckbox2">불량품창고</label>
+												    </div>
+												    <div class="form-check form-check-inline">
+													    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+													    <label class="form-check-label" for="inlineCheckbox1">출고대기창고</label>
+													</div>
+													<!-- 체크박스 끝 -->
+													
+													<!-- 검색창 시작 -->      
+				                                	<div class="input-group">
+					                                	<div class="input-group-append">
+					                                    <i class="gd-search icon-text icon-text-sm"></i>
+					                                  	</div>
+					                                  	<input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" >
+					                                </div>
+					                                <br>
+					                                <!-- 검색창 끝 -->
+													<thead>
+														<tr class="text-white tap">
+															<th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 h4">창고이름</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 h4">판매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 h4">재고수량</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 h4">등록일자</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td class="py-3">100001</td>
+															<td class="py-3">상품명1</td>
+															<td class="py-3">양품창고</td>
+															<td class="py-3">10000</td>
+															<td class="py-3">15000</td>
+															<td class="py-3">100</td>
+															<td class="py-3">사용중</td>
+															<td class="py-3">2017-09-02</td>
+														</tr>
+														<tr>
+															<td class="py-3">100001</td>
+															<td class="py-3">상품명1</td>
+															<td class="py-3">불량품창고</td>
+															<td class="py-3">10000</td>
+															<td class="py-3">15000</td>
+															<td class="py-3">0</td>
+															<td class="py-3">사용중</td>
+															<td class="py-3">2017-09-02</td>
+														</tr>
+														<tr>
+															<td class="py-3">100001</td>
+															<td class="py-3">상품명1</td>
+															<td class="py-3">출고대기창고</td>
+															<td class="py-3">10000</td>
+															<td class="py-3">15000</td>
+															<td class="py-3">0</td>
+															<td class="py-3">사용중</td>
+															<td class="py-3">2017-09-02</td>
+														</tr>
+														<tr>
+															<td class="py-3">100002</td>
+															<td class="py-3">상품명2</td>
+															<td class="py-3">양품창고</td>
+															<td class="py-3">9000</td>
+															<td class="py-3">15000</td>
+															<td class="py-3">100</td>
+															<td class="py-3">사용중</td>
+															<td class="py-3">2017-09-15</td>
+														</tr>
+														<tr>
+															<td class="py-3">100002</td>
+															<td class="py-3">상품명2</td>
+															<td class="py-3">불량품창고</td>
+															<td class="py-3">9000</td>
+															<td class="py-3">13000</td>
+															<td class="py-3">0</td>
+															<td class="py-3">사용중</td>
+															<td class="py-3">2017-09-15</td>
+														</tr>
+														<tr>
+															<td class="py-3">100002</td>
+															<td class="py-3">상품명2</td>
+															<td class="py-3">출고대기창고</td>
+															<td class="py-3">9000</td>
+															<td class="py-3">13000</td>
+															<td class="py-3">0</td>
+															<td class="py-3">사용중</td>
+															<td class="py-3">2017-09-15</td>
+														</tr>
+														<tr>
+															<td class="py-3">100003</td>
+															<td class="py-3">상품명3</td>
+															<td class="py-3">양품창고</td>
+															<td class="py-3">22000</td>
+															<td class="py-3">30000</td>
+															<td class="py-3">100</td>
+															<td class="py-3">사용중</td>
+															<td class="py-3">2017-09-21</td>
+														</tr>
+														<tr>
+															<td class="py-3">100003</td>
+															<td class="py-3">상품명3</td>
+															<td class="py-3">불량품창고</td>
+															<td class="py-3">22000</td>
+															<td class="py-3">30000</td>
+															<td class="py-3">0</td>
+															<td class="py-3">사용중</td>
+															<td class="py-3">2017-09-21</td>
+														</tr>
+														<tr>
+															<td class="py-3">100003</td>
+															<td class="py-3">상품명3</td>
+															<td class="py-3">출고대기창고</td>
+															<td class="py-3">22000</td>
+															<td class="py-3">30000</td>
+															<td class="py-3">0</td>
+															<td class="py-3">사용중</td>
+															<td class="py-3">2017-09-21</td>
+														</tr>
+													</tbody>
+												</table>
 											</div>
+										</div>
+										<!— End Tab Content —>
+											<div class="card-footer d-block d-md-flex align-items-center d-print-none">
+                            <!-- <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div> -->
 
-											<div class="tab-pane fade p-4" id="pills-html-1"
-												role="tabpanel" aria-labelledby="pills-html-tab-1">
-												<form>
-													<!-- 검색창 시작 -->		
-									   	  <div class="input-group">
-										    <div class="input-group-append">
-										      <i class="gd-search icon-text icon-text-sm"></i>
-										    </div>
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" >
-										  </div>
-										  <!-- 검색창 끝 -->		
-										  <br>
-										  
-											<table class="table table-striped bg-white text-dark center ass" style="text-align:center">
-											    <thead>
-											      <tr class="text-white table-bordered tap">
-											        <th class="font-weight-semi-bold border-top-0 py-2">사번</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">사원명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">부서명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">직급</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">근태 유형</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">신청일</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">시작일</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">종료일</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">처리 상태</th>
-											        
-											      </tr>
-											    </thead>
-											    <tbody>
-											      <tr>
-											      	<td class="py-3">001</td>
-											      	<td class="py-3">장그래</td>
-											      	<td class="py-3">영업부</td>
-													<td class="py-3">대리</td>
-													<td class="py-3">연차</td>
-											        <td class="py-3">2021-03-21</td>
-											        <td class="py-3">2021-03-22</td>
-											        <td class="py-3">2021-03-25</td>
-													<td class="py-3">완료</td>
-											      </tr>
-											      <tr>
-											        <td class="py-3">012</td>
-											      	<td class="py-3">김은희</td>
-											      	<td class="py-3">회계부</td>
-													<td class="py-3">팀장</td>
-													<td class="py-3">병가</td>
-											        <td class="py-3">2021-03-19</td>
-											        <td class="py-3">2021-03-24</td>
-											        <td class="py-3">2021-03-26</td>
-													<td class="py-3">완료</td>
-											      </tr>
-											      
-											    </tbody>
-											  </table>
-											 
-												<br>
-											</form>
-											</div>
-											
-										<!-- End Tab Content -->
+                            <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination"><ul class="pagination justify-content-end font-weight-semi-bold mb-0">				<li class="page-item">				<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous"><i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				</li><li class="page-item d-none d-md-block"><a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a></li><li class="page-item">				<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next"><i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				</li>				</ul></nav>
+                        </div>
 									</div>
 								</div>
 							</div>
@@ -386,7 +403,8 @@
 				</div>
 			</div>
 		</div>
-	<!-- 부서 관리 끝-->
+    
+    
 </main>
 
 <%@ include file = "../common/footer.jsp" %> 

@@ -8,31 +8,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//출고 관리
+// 판매 관리
 @Controller
 public class SalesController {
-private static final Logger logger = LoggerFactory.getLogger(SalesController.class);
 	
-	// 거래처 
-	@RequestMapping("/client")
-	public String client(HttpServletRequest req, Model model) {
-		logger.info("url ==> 거래처");
+	private static final Logger logger = LoggerFactory.getLogger(SalesController.class);
 	
-		return "sales/client";
-	}
-	
-	// 상품
-	@RequestMapping("/salesproduct")
-	public String salesproduct(HttpServletRequest req, Model model) {
-		logger.info("url ==> 상품");
+	// 기초 등록 
+	@RequestMapping("/salesBasicReg")
+	public String salesBasicReg(HttpServletRequest req, Model model) {
+		logger.info("url: 기초 등록 ");
 		
-		return "sales/salesproduct";
+		return "sales/salesBasicReg";
 	}
 	
 	// 재고 현황
 	@RequestMapping("/salesInvenStatus")
 	public String salesInvenStatus(HttpServletRequest req, Model model) {
-		logger.info("url ==> 매입관리 > 재고 현황");
+		logger.info("url: 재고 현황");
 		
 		return "sales/salesInvenStatus";
 	}
@@ -40,18 +33,17 @@ private static final Logger logger = LoggerFactory.getLogger(SalesController.cla
 	// 판매 현황
 	@RequestMapping("/salesStatus")
 	public String salesStatus(HttpServletRequest req, Model model) {
-		logger.info("url ==> 판매현황");
+		logger.info("url: 판매 현황");
 		
 		return "sales/salesStatus";
 	}
 	
 	// 출고 현황
-	@RequestMapping("/releaseStatus")
-	public String releaseStatus(HttpServletRequest req, Model model) {
-		logger.info("url ==> 출고현황");
+	@RequestMapping("/salesRelStatus")
+	public String salesRelStatus(HttpServletRequest req, Model model) {
+		logger.info("url: 출고 현황");
 		
-		return "sales/releaseStatus";
+		return "sales/salesRelStatus";
 	}
-	
 	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
+<%@ include file = "../setting.jsp" %>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +17,13 @@
     <nav class="navbar flex-nowrap p-0">
         <div class="navbar-brand-wrapper d-flex align-items-center col-auto">
             <!-- Logo For Mobile View -->
-            <a class="navbar-brand navbar-brand-mobile" href="/">
+            <a class="navbar-brand navbar-brand-mobile" href="${path}/main">
                 <img class="img-fluid w-100" src="${project}img/logo-mini.png" alt="Graindashboard">
             </a>
             <!-- End Logo For Mobile View -->
 
             <!-- Logo For Desktop View -->
-            <a class="navbar-brand navbar-brand-desktop" href="/">
+            <a class="navbar-brand navbar-brand-desktop" href="${path}/main">
                 <img class="side-nav-show-on-closed" src="${project}img/logo-mini.png" alt="Graindashboard" style="width: auto; height: 33px;">
                 <img class="side-nav-hide-on-closed" src="${project}img/logo.png" alt="Graindashboard" style="width: auto; height: 33px;">
             </a>
@@ -89,7 +90,7 @@
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
                         <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
                         <span class="mr-md-2 avatar-placeholder">J</span>
-                        <span class="d-none d-md-block">John Doe</span>
+                        <span class="d-none d-md-block">${sessionScope.mem_id}</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
                     </a>
 
@@ -99,15 +100,15 @@
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-user"></i>
                     </span>
-                                My Profile
+                               	 내 정보
                             </a>
                         </li>
                         <li class="unfold-item unfold-item-has-divider">
-                            <a class="unfold-link d-flex align-items-center text-nowrap" href="#">
+                            <a class="unfold-link d-flex align-items-center text-nowrap" href="${path}/logout">
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-power-off"></i>
                     </span>
-                                LOGOUT
+                          		로그아웃
                             </a>
                         </li>
                     </ul>

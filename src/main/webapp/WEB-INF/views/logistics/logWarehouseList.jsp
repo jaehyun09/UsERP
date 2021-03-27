@@ -57,7 +57,7 @@
 			<!-- 인사 관리 종료 -->
 			
 			<!-- 대메뉴 : 근태 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subPages">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-timer"></i>
@@ -70,11 +70,11 @@
 				</a>
 
                 <!-- 중메뉴 : 근태 관리 -->
-<!-- b -->		<ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
+<!-- b -->		<ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
 <!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/abSelect">조회</a>
 					</li>
-					<li class="side-nav-menu-item active">
+					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/abApplication">신청</a>
 					</li>
 				</ul>
@@ -143,7 +143,7 @@
 			<!-- 구매 관리 종료 -->
 			
 			<!-- 대메뉴 : 물류 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#zxc">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-truck"></i>
@@ -156,7 +156,7 @@
 				</a>
 				
 				<!-- 중메뉴 : 물류 관리 -->
-<!-- b -->		<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- b -->		<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
 <!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/logBasicReg">기초 코드</a>
 					</li>
@@ -175,7 +175,7 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/logInvenSupply">재고 수불부</a>
 					</li>
-					<li class="side-nav-menu-item">
+					<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/logWarehouseList">창고 현황</a>
 					</li>
 				</ul>
@@ -220,106 +220,205 @@
 	</aside>
 	<!-- End Sidebar Nav -->
 
-    <!-- 근태 신청 시작 -->
-    <div class="content">
-			<div class="py-4 px-3 px-md-4">
-				<div class="card">
-					<div class="card-body">
-						<nav aria-label="breadcrumb">
+<!-- 창고 리스트 -->
+ <div class="content">
+	<div class="py-4 px-3 px-md-4">
+		<div class="card">
+			<div class="card-body">
+			<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">근태 관리</a></li>
-								<li class="breadcrumb-item active" aria-current="page">신청</li>
+								<li class="breadcrumb-item"><a href="#">물류 관리</a></li>
+								<li class="breadcrumb-item active" aria-current="page">창고 현황</li>
 							</ol>
 						</nav>
-						<div class="row">
+				<div class="row">
 
-							<div class="col-xl-12">
+					<div class="col-xl-12">
 
-								<div id="example" class="mb-9">
-									<h4 class="h1 text-dark"><b>
-										신청 </b><a class="anchorjs-link" href="#example"
+						<div id="example" class="mb-9">
+							<h4 class="h1 text-dark"><b>
+										창고 현황</b><a class="anchorjs-link" href="#example"
 											aria-label="Anchor" data-anchorjs-icon="#"></a>
-									</h4>
-									
-									<div class="mb-3">
-									
-										<!-- Tab Content -->
-										<div class="tab-content bg-lighter" id="pills-tabContent-1">
-											<div class="tab-pane fade p-4 show active"
-												id="pills-result-1" role="tabpanel"
-												aria-labelledby="pills-result-tab-1">
-											
-												<form>
-													<table class="table bg-white text-dark center ass2" style="text-align:center">
-														<tr class="text-white table-bordered tap">
-															<th colspan="3">근태 신청 </th>
+							</h4>
+							<div class="mb-3">
+								<!-- Nav Classic -->
+								<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
+									id="pills-tab-1" role="tablist">
+									<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
+										class="nav-link d-flex align-items-center py-2 px-3 active"
+										id="pills-result-tab-1" data-toggle="pill"
+										href="#pills-result-1" role="tab"
+										aria-controls="pills-result-1" aria-selected="true">
+											창고 목록</a></li>
+									<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
+										class="nav-link d-flex align-items-center py-2 px-3"
+										id="pills-html-tab-1" data-toggle="pill"
+										href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+										aria-selected="false">창고 등록</a></li>
+								</ul>
+								<!-- End Nav Classic -->
+
+								<!-- Tab Content -->
+								<div class="tab-content bg-lighter" id="pills-tabContent-1">
+									<div class="tab-pane fade p-4 show active"
+										id="pills-result-1" role="tabpanel"
+										aria-labelledby="pills-result-tab-1">
+										<!-- 숨겨진 페이지 -->
+										<div class="col">
+											<div class="collapse multi-collapse"
+												id="multiCollapseExample1">
+												<div class="bg-white p-4">
+													<table class="table table-bordered bg-white text-dark ass2 center th20">
+														<tr class="text-white con center">
+															<th colspan="2">창고 목록 수정</th>
 														</tr>
 														<tr>
-															<th>사원명 </th>
-															<td><input id="text" type="text" class="form-control" name="password" required=""></td>
-															<td><button type="button"  class="btn btn-outline-info">사원확인</button></td>
-														</tr>
-														<tr>
-															<th>부서명</th>
-															<td>	 
-															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>영업부</option>
-															       <option>인사부</option>
-															       <option>회계부</option>
-															     </select>
-															   </div>
-															 </td>
-														</tr>
-														<tr>
-															<th> 근태 유형</th>
-															<td>	 
-															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>병가</option>
-															       <option>조퇴</option>
-															       <option>연차</option>
-															       <option>경조사</option>
-															     </select>
-															   </div>
-															 </td>
-														</tr>
-														<tr>
-															<th> <label> 시작일 &nbsp;&nbsp;&nbsp; </label> <input type="date" width=""></th>
-															<th> <label> 종료일&nbsp;&nbsp;&nbsp;</label>  <input type="date" > </th>
-														</tr>
-														<tr>
-															<th> 사유 </th>
+															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고종류</th>
 															<td>
-																<div class="form-group">
-      																<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-   															 	</div>
+																<select class="custom-select custom-select-lg">
+			   														<option>양품창고</option>
+			   														<option>불량품창고</option>
+			   														<option>출고대기창고</option>
+			 													</select>
 															</td>
 														</tr>
-														
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고명</th>
+															<td>
+																<input class="form-control form-control-icon-text" placeholder="창고명" type="text" value="양품창고">
+															</td>
+														</tr>
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고주소</th>
+															<td>
+																<input class="form-control form-control-icon-text" placeholder="창고주소" type="text" value="서울시 강남구 삼성동">
+															</td>
+														</tr>
 													</table>
-													
-													<br>
-												
-												<div align=center>
-			                                       <button type="button" type="submit" class="btn btn-outline-info">신청</button>&nbsp;&nbsp;&nbsp;
-			                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-			                                    </div>
-												<br>
-											</form>
-											 
+														<div align=center>
+					                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+					                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+					                                    </div>				
+												</div>
+												<br><br><br>
 											</div>
 										</div>
-										<!-- End Tab Content -->
+										<!-- 숨겨진 페이지 종료 -->
+										<table class="table  bg-white text-dark center ass2 table-striped">
+											<thead>
+												<tr class="text-white tap">
+													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고ID</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고주소</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h4"></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="py-1 middle">1001</td>
+													<td class="py-1 middle">양품창고</td>
+													<td class="py-1 middle">서울시 강남구 삼성동</td>
+													<td class="py-1 middle">
+														<a class="btn btn-outline-info" data-toggle="collapse"
+														href="#multiCollapseExample1" role="button"
+														aria-expanded="false" aria-controls="multiCollapseExample1">수정
+														</a>
+													</td>
+												</tr>
+												<tr>
+													<td class="py-1 middle">2001</td>
+													<td class="py-1 middle">불량품창고</td>
+													<td class="py-1 middle">서울시 강남구 삼성동</td>
+													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">수정</button></td>
+												</tr>
+												<tr>
+													<td class="py-1 middle">3001</td>
+													<td class="py-1 middle">출고대기창고</td>
+													<td class="py-1 middle">서울시 강남구 삼성동</td>
+													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">수정</button></td>
+												</tr>
+											</tbody>
+										</table>
+										<!-- 페이지 넘버 이동 -->
+										<div class="card-footer d-block d-md-flex align-items-center d-print-none">
+                       						<!-- <div class="d-flex mb-2 mb-md-0">
+                       							Showing 1 to 8 of 24 Entries
+                       						</div> -->
+                       						<nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
+                       							<ul class="pagination justify-content-end font-weight-semi-bold mb-0">
+                       								<li class="page-item">
+                       									<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous">
+                       										<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i>
+                       									</a>				
+                       								</li>
+                       								<li class="page-item d-none d-md-block">
+                       									<a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a>
+                       								</li>
+                       								<li class="page-item d-none d-md-block">
+                       									<a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a>
+                       								</li>
+                       								<li class="page-item d-none d-md-block">
+                       									<a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a>
+                       								</li>
+                       								<li class="page-item">
+                       									<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next">
+                       										<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i>
+                       									</a>				
+                       								</li>				
+                       							</ul>
+                       						</nav>
+                   						</div>
+                   						<!-- 페이지 넘버 이동 끝 -->
 									</div>
+									
+									<!-- 신규 등록 -->
+									<div class="tab-pane fade p-4" id="pills-html-1"
+										role="tabpanel" aria-labelledby="pills-html-tab-1">
+										<table class="table table-bordered bg-white text-dark ass2 center th20">
+											<tr class="text-white con center">
+												<th colspan="2">창고 신규 등록</th>
+											</tr>
+											<tr>
+												<th class="font-weight-semi-bold border-top-0 py-4 h4">창고종류</th>
+												<td>
+													<select class="custom-select custom-select-lg">
+   														<option>양품창고</option>
+   														<option>불량품창고</option>
+   														<option>출고대기창고</option>
+ 													</select>
+												</td>
+											</tr>
+											<tr>
+												<th class="font-weight-semi-bold border-top-0 py-4 h4">창고명</th>
+												<td>
+													<input class="form-control form-control-icon-text" placeholder="창고명" type="text">
+												</td>
+											</tr>
+											<tr>
+												<th class="font-weight-semi-bold border-top-0 py-4 h4">창고주소</th>
+												<td>
+													<input class="form-control form-control-icon-text" placeholder="창고주소" type="text">
+												</td>
+											</tr>
+										</table>
+										<div align=center>
+	                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+	                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+	                                    </div>
+									</div>
+									<!-- 신규 등록 끝-->
 								</div>
+								<!— End Tab Content —>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	<!-- 근태 신청 끝-->
+	</div>
+</div>
+<!-- 창고 리스트 끝 -->    
+    
 </main>
 
 <%@ include file = "../common/footer.jsp" %> 
