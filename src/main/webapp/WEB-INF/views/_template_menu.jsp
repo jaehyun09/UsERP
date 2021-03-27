@@ -1,27 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<%@ include file = "./setting.jsp" %> 
-<head>
-    <!-- Title -->
-    <title>UsERP</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="${project}img/favicon.ico">
-<link rel="stylesheet" href="${project}css/board.css">
-    <!-- Template -->
-    <link rel="stylesheet" href="${project}css/graindashboard.css">
-</head>
-
-<body class="has-sidebar has-fixed-sidebar-and-header">
-
-<%@ include file = "./common/header.jsp" %> 
-<main class="main">
 	<!-- Start Sidebar Nav -->
 	<aside id="sidebar" class="js-custom-scroll side-nav">
 		<ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
@@ -127,7 +103,7 @@
 				<!-- 중메뉴 : 구매 관리 -->
 <!-- b -->		<ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
 <!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/salesBasicReg">기초 등록</a>
+						<a class="side-nav-menu-link ass2" href="${path}/purBasicReg">기초 등록</a>
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/purInvenStatus">재고 현황</a>
@@ -220,81 +196,4 @@
 	</aside>
 	<!-- End Sidebar Nav -->
 
-    <div class="content">
-   <c:if test = "${msg != null}">
-      <script type="text/javascript">
-         alert("${msg}");
-      </script>
-	</c:if>
-   
-        <div class="py-4 px-3 px-md-4">
-            <div class="card mb-3 mb-md-4">
-
-              <div class="container-fluid pb-5">
-
-				 <div class="row justify-content-md-center">
-					<div class="card-wrapper col-12 col-md-4 mt-5">
-						<div class="card">
-						   <div class="card-body">
-							 <c:if test="${sessionScope.mem_id == null}">
-								<h4 class="card-title">로그인</h4>
-								
-								<form action="loginPro.do" method="post" name="mainform" onsubmit="return mainCheck();">
-								<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-									<div class="form-group">
-										<label for="emp_code">사원번호</label>
-										<input id="emp_code" type="text" class="form-control" name="emp_code" >
-									</div>
-
-									<div class="form-group">
-										<label for="emp_pwd">비밀번호</label>
-										<input id="emp_pwd" type="password" class="form-control" name="emp_pwd" >
-										<div class="text-right">
-											<a href="password-reset.html" class="small">
-												비밀번호 찾기
-											</a>
-										</div>
-									</div>
-
-									<div class="form-group no-margin">
-										<input class="btn btn-primary btn-block" type="submit" value="로그인">		
-									</div>
-									<div class="text-center mt-3 small">
-										본인 인증하셨나요?&nbsp;&nbsp;&nbsp;<a href="register.html">본인인증</a>
-									</div>
-								</form>
-								</c:if>
-								<c:if test="${sessionScope.mem_id != null}">
-									
-									
-									
-									로그인 성공
-									
-									
-									
-								</c:if>
-							</div>
-						</div>
-						<footer class="footer mt-3">
-							<div class="container-fluid">
-								<div class="footer-content text-center small">
-									<span class="text-muted">&copy; 2021. Team UsERP. all rights reserved.</span>
-								</div>
-							</div>
-						</footer>
-					</div>
-				</div>
-			</div>
-      	</div>
-       </div>
-     </div>
-
-    
-</main>
-
-<%@ include file = "./common/footer.jsp" %> 
-<script src="${project}js/graindashboard.js"></script>
-<script src="${project}js/graindashboard.vendor.js"></script>
-
-</body>
-</html>
+ side-nav-opened style="display:block;"

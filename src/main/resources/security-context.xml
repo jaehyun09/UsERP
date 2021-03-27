@@ -18,21 +18,21 @@
 		<security:intercept-url pattern="/**" access="permitAll"/>	
 		
 		<!-- 로그인한 사용자 영역 -->
-		<security:intercept-url pattern="/client/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_GUEST')"/>	
+		<security:intercept-url pattern="/client/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>	
 			
 		<!-- 로그인폼 -->
-		<security:form-login login-page="/login.do"
+		<security:form-login login-page="/"
 			login-processing-url="/loginPro.do"
 			authentication-success-handler-ref="userLoginSuccessHandler"
 			authentication-failure-handler-ref="userLoginFailureHandler"
-			username-parameter="id" password-parameter="pwd"	/>
+			username-parameter="emp_code" password-parameter="emp_pwd"	/>
 		
 		<security:session-management>
 			<!-- max-sessions="1":  같은 브라우저의 여러 창에서 동시 접속 막기 
 				 expired-url="/user/login.do": 세션 만료시 이동할 주소
 				 error-if-maximum-exceeded="true" : 최대 세션 초과시 에러 옵션	-->
 			<security:concurrency-control max-sessions="1"
-				expired-url="/login.do"
+				expired-url="/"
 				error-if-maximum-exceeded="true"
 			/>
 		</security:session-management>

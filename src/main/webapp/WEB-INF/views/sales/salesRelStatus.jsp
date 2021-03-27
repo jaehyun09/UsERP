@@ -102,10 +102,10 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/salesInvenStatus">재고 현황</a>
 					</li>
-					<li class="side-nav-menu-item active">
+					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/salesStatus">판매 현황</a>
 					</li>
-					<li class="side-nav-menu-item">
+					<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/salesRelStatus">출고 현황</a>
 					</li>
 				</ul>

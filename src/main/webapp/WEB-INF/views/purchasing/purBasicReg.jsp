@@ -82,7 +82,7 @@
 			<!-- 근태 관리 종료 -->
 			
 			<!-- 대메뉴 : 판매 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subComponents">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-money"></i>
@@ -95,14 +95,14 @@
 				</a>
 				
 				<!-- 중메뉴 : 판매 관리 -->
-<!-- b -->		<ul id="subComponents" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
+<!-- b -->		<ul id="subComponents" class="side-nav-menu side-nav-menu-second-level mb-0">
 <!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/salesBasicReg">기초 등록</a>
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/salesInvenStatus">재고 현황</a>
 					</li>
-					<li class="side-nav-menu-item active">
+					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/salesStatus">판매 현황</a>
 					</li>
 					<li class="side-nav-menu-item">
@@ -113,7 +113,7 @@
 			<!-- 판매 관리 종료 -->
 			
 			<!-- 대메뉴 : 구매 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#asd">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-shopping-cart"></i>
@@ -125,8 +125,8 @@
 				</a>
 				
 				<!-- 중메뉴 : 구매 관리 -->
-<!-- b -->		<ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->			<li class="side-nav-menu-item">
+<!-- b -->		<ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
+<!-- a -->			<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/purBasicReg">기초 등록</a>
 					</li>
 					<li class="side-nav-menu-item">

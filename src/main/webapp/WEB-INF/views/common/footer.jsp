@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col-lg text-center text-lg-right">
-                    &copy; 2019 Graindashboard. All Rights Reserved.
+                    &copy; 2021. Team UsERP. all rights reserved.
                 </div>
             </div>
         </footer>
