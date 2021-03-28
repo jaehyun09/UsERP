@@ -1,12 +1,12 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class StatementVO {
 	
 	private int stm_code;			// 전표번호
 	private int stm_bill;			// 어음
-	private DATE stm_reg_date;		// 발행일
+	private Date stm_reg_date;		// 발행일
 	private int stm_spprove_state;	// 승인상태
 	private int stm_type;			// 전표유형
 	private String stm_content;		// 상세내용
@@ -46,11 +46,11 @@ public class StatementVO {
 		this.stm_bill = stm_bill;
 	}
 
-	public DATE getStm_reg_date() {
+	public Date getStm_reg_date() {
 		return stm_reg_date;
 	}
 
-	public void setStm_reg_date(DATE stm_reg_date) {
+	public void setStm_reg_date(Date stm_reg_date) {
 		this.stm_reg_date = stm_reg_date;
 	}
 

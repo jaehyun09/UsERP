@@ -1,5 +1,7 @@
 package com.project.UsERP.vo;
 
+import java.util.Date;
+
 import oracle.sql.DATE;
 
 public class BankVO {
@@ -11,7 +13,7 @@ public class BankVO {
 	private String bank_balance;	// 잔액
 	private String bank_object;		// 개설목적
 	private int bank_use_state;		// 사용상태
-	private DATE bank_reg_date;		// 등록일
+	private Date bank_reg_date;		// 등록일
 	
 	public String getBank_balance() {
 		return bank_balance;
@@ -69,11 +71,11 @@ public class BankVO {
 		this.bank_use_state = bank_use_state;
 	}
 
-	public DATE getBank_reg_date() {
+	public Date getBank_reg_date() {
 		return bank_reg_date;
 	}
 
-	public void setBank_reg_date(DATE bank_reg_date) {
+	public void setBank_reg_date(Date bank_reg_date) {
 		this.bank_reg_date = bank_reg_date;
 	}
 	

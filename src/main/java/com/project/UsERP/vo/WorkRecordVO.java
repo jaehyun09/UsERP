@@ -1,14 +1,14 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class WorkRecordVO {
 
 	private int wr_code;			// 근태코드
 	private String wr_type;			// 근태유형
-	private DATE wr_ap_date;		// 근태신청일
-	private DATE wr_va_start;		// 시작일
-	private DATE wr_va_end;			// 종료일
+	private Date wr_ap_date;		// 근태신청일
+	private Date wr_va_start;		// 시작일
+	private Date wr_va_end;			// 종료일
 	private String wr_va_reason;	// 사유
 	private int emp_code;			// 사원번호
 	private int per_code;			// 인사코드
@@ -32,27 +32,27 @@ public class WorkRecordVO {
 		this.wr_type = wr_type;
 	}
 	
-	public DATE getWr_ap_date() {
+	public Date getWr_ap_date() {
 		return wr_ap_date;
 	}
 	
-	public void setWr_ap_date(DATE wr_ap_date) {
+	public void setWr_ap_date(Date wr_ap_date) {
 		this.wr_ap_date = wr_ap_date;
 	}
 	
-	public DATE getWr_va_start() {
+	public Date getWr_va_start() {
 		return wr_va_start;
 	}
 	
-	public void setWr_va_start(DATE wr_va_start) {
+	public void setWr_va_start(Date wr_va_start) {
 		this.wr_va_start = wr_va_start;
 	}
 	
-	public DATE getWr_va_end() {
+	public Date getWr_va_end() {
 		return wr_va_end;
 	}
 	
-	public void setWr_va_end(DATE wr_va_end) {
+	public void setWr_va_end(Date wr_va_end) {
 		this.wr_va_end = wr_va_end;
 	}
 	

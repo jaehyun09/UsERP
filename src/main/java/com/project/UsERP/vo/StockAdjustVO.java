@@ -1,12 +1,12 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class StockAdjustVO {
 	
 	private int adj_modify;		// 조정재고
 	private int adj_complete;	// 조정 후 재고
-	private DATE adj_reg_date;	// 등록일
+	private Date adj_reg_date;	// 등록일
 	private int adj_state;		// 조정상태
 	private int ware_code;		// 창고번호
 	private int pro_code;		// 상품코드
@@ -31,11 +31,11 @@ public class StockAdjustVO {
 		this.adj_modify = adj_modify;
 	}
 
-	public DATE getAdj_reg_date() {
+	public Date getAdj_reg_date() {
 		return adj_reg_date;
 	}
 
-	public void setAdj_reg_date(DATE adj_reg_date) {
+	public void setAdj_reg_date(Date adj_reg_date) {
 		this.adj_reg_date = adj_reg_date;
 	}
 

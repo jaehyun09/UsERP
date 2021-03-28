@@ -1,10 +1,10 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class StockSupplyVO {
 
-	private DATE sup_reg_date;		// 일자
+	private Date sup_reg_date;		// 일자
 	private int sup_classify;		// 분류
 	private int sup_plus;			// 수량증가
 	private int sup_minus;			// 수량감소
@@ -24,11 +24,11 @@ public class StockSupplyVO {
 		this.order_code = order_code;
 	}
 
-	public DATE getSup_reg_date() {
+	public Date getSup_reg_date() {
 		return sup_reg_date;
 	}
 
-	public void setSup_reg_date(DATE sup_reg_date) {
+	public void setSup_reg_date(Date sup_reg_date) {
 		this.sup_reg_date = sup_reg_date;
 	}
 

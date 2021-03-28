@@ -1,11 +1,13 @@
 package com.project.UsERP.vo;
 
+import java.util.Date;
+
 import oracle.sql.DATE;
 
 public class AppointHistoryVO {
 	
 	private int ap_code;				// 이력코드
-	private DATE ap_date;				// 발령일
+	private Date ap_date;				// 발령일
 	private String ap_cur_dep;			// 현재부서
 	private String ap_cur_position;		// 현재직급
 	private String ap_pre_dep;			// 이전부서
@@ -25,11 +27,11 @@ public class AppointHistoryVO {
 		this.ap_code = ap_code;
 	}
 	
-	public DATE getAp_date() {
+	public Date getAp_date() {
 		return ap_date;
 	}
 	
-	public void setAp_date(DATE ap_date) {
+	public void setAp_date(Date ap_date) {
 		this.ap_date = ap_date;
 	}
 	
