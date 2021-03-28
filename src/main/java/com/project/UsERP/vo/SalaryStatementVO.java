@@ -4,13 +4,20 @@ import oracle.sql.DATE;
 
 public class SalaryStatementVO {
 	
+	private int ss_code;		// 급여전표번호
 	private int ss_total_sal;	// 총 급여
 	private DATE ss_sal_date;	// 지급일
 	private int sal_code;		// 급여코드
-	private int stm_code;		// 전표번호
 	SalaryVO salary;
-	StatementVO statement;
 	
+	public int getSs_code() {
+		return ss_code;
+	}
+
+	public void setSs_code(int ss_code) {
+		this.ss_code = ss_code;
+	}
+
 	public int getSal_code() {
 		return sal_code;
 	}
@@ -35,28 +42,12 @@ public class SalaryStatementVO {
 		this.ss_sal_date = ss_sal_date;
 	}
 
-	public int getStm_code() {
-		return stm_code;
-	}
-
-	public void setStm_code(int stm_code) {
-		this.stm_code = stm_code;
-	}
-
 	public SalaryVO getSalary() {
 		return salary;
 	}
 
 	public void setSalary(SalaryVO salary) {
 		this.salary = salary;
-	}
-
-	public StatementVO getStatement() {
-		return statement;
-	}
-
-	public void setStatement(StatementVO statement) {
-		this.statement = statement;
 	}
 	
 }

@@ -7,7 +7,6 @@ public class StockInOrderVO {
 	private int in_count;		// 구매수량
 	private DATE in_date;		// 입고일자
 	private int order_code;		// 재고전표번호
-	StockOrderVO stockOrder;
 	
 	public int getIn_count() {
 		return in_count;
@@ -31,14 +30,6 @@ public class StockInOrderVO {
 
 	public void setOrder_code(int order_code) {
 		this.order_code = order_code;
-	}
-
-	public StockOrderVO getStockOrder() {
-		return stockOrder;
-	}
-
-	public void setStockOrder(StockOrderVO stockOrder) {
-		this.stockOrder = stockOrder;
 	}
 	
 }

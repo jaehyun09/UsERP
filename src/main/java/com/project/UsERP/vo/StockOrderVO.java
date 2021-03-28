@@ -18,6 +18,8 @@ public class StockOrderVO {
 	WarehouseVO warehouse;
 	ProductVO product;
 	EmployeeVO employee;
+	StockInOrderVO stockInOrder;
+	StockOutOrderVO stockOutOrder;
 	
 	public int getComp_code() {
 		return comp_code;
@@ -129,6 +131,22 @@ public class StockOrderVO {
 
 	public void setEmployee(EmployeeVO employee) {
 		this.employee = employee;
+	}
+
+	public StockInOrderVO getStockInOrder() {
+		return stockInOrder;
+	}
+
+	public void setStockInOrder(StockInOrderVO stockInOrder) {
+		this.stockInOrder = stockInOrder;
+	}
+
+	public StockOutOrderVO getStockOutOrder() {
+		return stockOutOrder;
+	}
+
+	public void setStockOutOrder(StockOutOrderVO stockOutOrder) {
+		this.stockOutOrder = stockOutOrder;
 	}
 	
 }

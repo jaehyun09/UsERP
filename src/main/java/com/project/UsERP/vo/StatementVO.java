@@ -8,7 +8,7 @@ public class StatementVO {
 	private int stm_bill;			// 어음
 	private DATE stm_reg_date;		// 발행일
 	private int stm_spprove_state;	// 승인상태
-	private String stm_type;		// 전표유형
+	private int stm_type;			// 전표유형
 	private String stm_content;		// 상세내용
 	private int stm_price;			// 단가
 	private int emp_code;			// 사원번호
@@ -62,11 +62,11 @@ public class StatementVO {
 		this.stm_spprove_state = stm_spprove_state;
 	}
 
-	public String getStm_type() {
+	public int getStm_type() {
 		return stm_type;
 	}
 
-	public void setStm_type(String stm_type) {
+	public void setStm_type(int stm_type) {
 		this.stm_type = stm_type;
 	}
 
