@@ -282,7 +282,7 @@ function warehouseadd() {
 										<!-- 숨겨진 페이지 -->
 										<div class="col">
 											<div class="collapse multi-collapse"
-												id="multiCollapseExample1">
+												id="multiCollapseExample1"> 
 												<div class="bg-white p-4">
 													<table class="table table-bordered bg-white text-dark ass2 center th20">
 														<tr class="text-white con center">
