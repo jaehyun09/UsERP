@@ -9,4 +9,7 @@ public interface LogisticsService {
 	// 창고 등록
 	public void insertWarehouse(HttpServletRequest req, Model model);
 	
+	// 창고 목록
+	public void warehouseList(HttpServletRequest req, Model model);
+	
 }

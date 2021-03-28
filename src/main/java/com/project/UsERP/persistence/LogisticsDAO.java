@@ -1,5 +1,7 @@
 package com.project.UsERP.persistence;
 
+import java.util.List;
+
 import com.project.UsERP.vo.WarehouseVO;
 
 public interface LogisticsDAO {
@@ -12,4 +14,7 @@ public interface LogisticsDAO {
 	
 	// 출고대기창고 등록
 	public int insertWaitWare(WarehouseVO vo);
+	
+	// 창고 목록
+	public List<WarehouseVO> warehouseList();
 }

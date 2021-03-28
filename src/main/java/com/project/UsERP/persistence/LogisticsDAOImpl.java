@@ -1,5 +1,7 @@
 package com.project.UsERP.persistence;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,6 +31,12 @@ public class LogisticsDAOImpl implements LogisticsDAO {
 	@Override
 	public int insertWaitWare(WarehouseVO vo) {
 		return sqlSession.insert("com.project.UsERP.persistence.LogisticsDAO.insertWaitWare", vo);
+	}
+
+	// 창고 목록
+	@Override
+	public List<WarehouseVO> warehouseList() {
+		return sqlSession.selectList("com.project.UsERP.persistence.LogisticsDAO.warehouseList");
 	}
 
 }

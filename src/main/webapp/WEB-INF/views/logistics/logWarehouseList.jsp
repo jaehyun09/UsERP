@@ -317,59 +317,20 @@
 												</tr>
 											</thead>
 											<tbody>
+										<c:forEach var="houseVo" items="${warehouseList}">
 												<tr>
-													<td class="py-3 middle">1001</td>
+													<td class="py-3 middle">${houseVo.ware_code}</td>
 													<td class="py-3 middle">
 														<a class="btn" data-toggle="collapse"
 														href="#multiCollapseExample1" role="button"
-														aria-expanded="false" aria-controls="multiCollapseExample1">양품창고
+														aria-expanded="false" aria-controls="multiCollapseExample1">${houseVo.ware_name}
 														</a></td>
-													<td class="py-3 middle">서울시 강남구 삼성동</td>
-														
-													</td>
+													<td class="py-3 middle">${houseVo.ware_location}</td>
 												</tr>
-												<tr>
-													<td class="py-3 middle">2001</td>
-													<td class="py-3 middle">불량품창고</td>
-													<td class="py-3 middle">서울시 강남구 삼성동</td>
-												</tr>
-												<tr>
-													<td class="py-3 middle">3001</td>
-													<td class="py-3 middle">출고대기창고</td>
-													<td class="py-3 middle">서울시 강남구 삼성동</td>
-												</tr>
+										</c:forEach>
 											</tbody>
 										</table>
-										<!-- 페이지 넘버 이동 -->
-										<div class="card-footer d-block d-md-flex align-items-center d-print-none">
-                       						<!-- <div class="d-flex mb-2 mb-md-0">
-                       							Showing 1 to 8 of 24 Entries
-                       						</div> -->
-                       						<nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
-                       							<ul class="pagination justify-content-end font-weight-semi-bold mb-0">
-                       								<li class="page-item">
-                       									<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous">
-                       										<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i>
-                       									</a>				
-                       								</li>
-                       								<li class="page-item d-none d-md-block">
-                       									<a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a>
-                       								</li>
-                       								<li class="page-item d-none d-md-block">
-                       									<a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a>
-                       								</li>
-                       								<li class="page-item d-none d-md-block">
-                       									<a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a>
-                       								</li>
-                       								<li class="page-item">
-                       									<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next">
-                       										<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i>
-                       									</a>				
-                       								</li>				
-                       							</ul>
-                       						</nav>
-                   						</div>
-                   						<!-- 페이지 넘버 이동 끝 -->
+										
 									</div>
 									
 									<!-- 신규 등록 -->
@@ -409,8 +370,8 @@
 					                                    </tr>
 												</table>
 										<div align=center>
-	                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-	                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+	                                       <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+	                                       <button type="reset" class="btn btn-outline-info">재입력</button>
 	                                    </div>
 										</form>
 										

@@ -9,20 +9,24 @@
 	<!-- 양품창고 등록 -->
 	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location)
-	VALUES (ware_good_seq.nextval, #{warehouseName}, #{warehouseLoc})
+	VALUES (ware_good_seq.nextval, #{ware_name}, #{ware_location})
 	</insert>
 	
 	<!-- 불량품창고 등록 -->
 	<insert id="insertBadWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location)
-	VALUES (ware_bad_seq.nextval, #{warehouseName}, #{warehouseLoc})
+	VALUES (ware_bad_seq.nextval, #{ware_name}, #{ware_location})
 	</insert>
 	
 	<!-- 출고대기창고 등록 -->
 	<insert id="insertWaitWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location)
-	VALUES (ware_wait_seq.nextval, #{warehouseName}, #{warehouseLoc})
+	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location})
 	</insert>
 	
+	<!-- 창고 목록 -->
+	<select id="warehouseList" resultType="com.project.UsERP.vo.WarehouseVO">
+		SELECT * FROM warehouse ORDER BY ware_code
+	</select>
 	
 </mapper>

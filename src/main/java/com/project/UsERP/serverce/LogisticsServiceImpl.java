@@ -1,5 +1,7 @@
 package com.project.UsERP.serverce;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,16 @@ public class LogisticsServiceImpl implements LogisticsService {
 		}
 		
 		model.addAttribute("insertCnt", insertCnt);
+		model.addAttribute("wareState", wareState);
 		
+	}
+
+	// 창고 목록
+	@Override
+	public void warehouseList(HttpServletRequest req, Model model) {
+		List<WarehouseVO> list = dao.warehouseList();
+		
+		model.addAttribute("warehouseList", list);
 	}
 	
 }
