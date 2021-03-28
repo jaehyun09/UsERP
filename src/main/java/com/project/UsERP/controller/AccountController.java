@@ -84,6 +84,26 @@ public class AccountController {
 		return "accounting/accStatementManagement";
 	}
 	
+	// 회계 관리
+	@RequestMapping("/accountinglist")
+	public String accountinglist(HttpServletRequest req, Model model) {
+		logger.info("url: 회계 관리");
+
+		accountservice.statementList(req, model);
+
+		return "accounting/ajax/accountinglist";
+	}
+	
+	// 급여 관리
+	@RequestMapping("/salarylist")
+	public String salarylist(HttpServletRequest req, Model model) {
+		logger.info("url: 급여 관리");
+
+		accountservice.salarystatementList(req, model);
+
+		return "accounting/ajax/salarylist";
+	}
+	
 	// 채권채무 현황
 	@RequestMapping("/accBonddebtManagement")
 	public String accBonddebtManagement(HttpServletRequest req, Model model) {

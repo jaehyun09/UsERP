@@ -47,10 +47,12 @@ public class AccountServiceImpl implements AccountService {
 
 		model.addAttribute("statement", list);
 	}
+	// 전표 관리 - 회계 전표 상세페이지 
+	
 
 	// 전표 관리 - 회계 전표 (승인)
 
-	// 전표 관리 - 회계 전표 (미승인)
+	// 전표 관리 - 회계 전표 (승인거부)
 
 	// 전표 관리 - 급여 전표
 	public void salarystatementList(HttpServletRequest req, Model model) {
@@ -59,10 +61,12 @@ public class AccountServiceImpl implements AccountService {
 		model.addAttribute("salarystatement", list);
 	}
 
+	// 전표 관리 - 급여 전표 상세페이지
+	
 	// 전표 관리 - 급여 전표 (승인)
 
-	// 전표 관리 - 급여 전표 (미승인)
-
+	// 전표 관리 - 급여 전표 (승인거부)
+	
 	// 채권/채무 조회
 
 }

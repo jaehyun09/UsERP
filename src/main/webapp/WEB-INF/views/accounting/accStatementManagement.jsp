@@ -542,70 +542,29 @@
                                           <thead class="text-white table-bordered tap">
                                              <tr>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">전표종류</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">연결
-                                                   ID</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
                                              </tr>
                                           </thead>
                                           <tbody>
+                                          <c:forEach var="vo" items="${salarystatement}">
+        									<c:if test="${vo.ss_use_state == 1 }">
                                              <tr>
                                                 <td class="py-1">
                                                 	<p>
                                                       <a class="btn" data-toggle="collapse"
                                                          href="#multiCollapseExample1" role="button"
                                                          aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">1234</a>
+                                                         aria-controls="multiCollapseExample1">${vo.ss_code}</a>
                                                  	</p>
                                                 </td>
-                                                <td class="py-1" style="vertical-align: middle">입금전표</td>
-                                                <td class="py-1" style="vertical-align: middle">Otto</td>
-                                                <td class="py-1" style="vertical-align: middle">21-03-21</td>
-                                                <td class="py-1" style="vertical-align: middle">대기중</td>
+                                                <td class="py-1" style="vertical-align: middle">${vo.employee}</td>
+                                                <td class="py-1" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_sal_date}" /></td>
+                                                <td class="py-1" style="vertical-align: middle">승인</td>
                                              </tr>
-                                             <tr>
-                                                <td class="py-1">
-                                                   <p>
-                                                      <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample12" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">1235</a>
-                                                   </p>
-                                                </td>
-                                                <td class="py-1" style="vertical-align: middle">출금전표</td>
-                                                <td class="py-1" style="vertical-align: middle">Thornton</td>
-                                                <td class="py-1" style="vertical-align: middle">21-03-21</td>
-                                                <td class="py-1" style="vertical-align: middle">대기중</td>
-                                             </tr>
-                                             <tr>
-                                                <td class="py-1">
-                                                   <p>
-                                                      <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample13" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">0987</a>
-                                                   </p>
-                                                </td>
-                                                <td class="py-1" style="vertical-align: middle">입금전표</td>
-                                                <td class="py-1" style="vertical-align: middle">Otto</td>
-                                                <td class="py-1" style="vertical-align: middle">21-03-21</td>
-                                                <td class="py-1" style="vertical-align: middle">승인완료</td>
-                                             </tr>
-                                             <tr>
-                                                <td class="py-1" >
-                                                   <p >
-                                                      <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample14" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">0988</a>
-                                                   </p>
-                                                </td>
-                                                <td class="py-1" style="vertical-align: middle">출금전표</td>
-                                                <td class="py-1" style="vertical-align: middle">Thornton</td>
-                                                <td class="py-1" style="vertical-align: middle">21-03-21</td>
-                                                <td class="py-1" style="vertical-align: middle">승인완료</td>
-                                             </tr>
+                                             </c:if>
+                                             </c:forEach>
                                           </tbody>
                                        </table>
                                       </div>
@@ -675,42 +634,29 @@
                                           <thead class="text-white table-bordered tap">
                                              <tr>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">전표종류</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">연결
-                                                   ID</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
                                              </tr>
                                           </thead>
                                          <tbody>
+                                             <c:forEach var="vo" items="${salarystatement}">
+        									<c:if test="${vo.ss_use_state == 0 }">
                                              <tr>
                                                 <td class="py-1">
-                                                   <p>
+                                                	<p>
                                                       <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample2" role="button"
+                                                         href="#multiCollapseExample1" role="button"
                                                          aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">1234</a>
-                                                   </p>
+                                                         aria-controls="multiCollapseExample1">${vo.ss_code}</a>
+                                                 	</p>
                                                 </td>
-                                                <td class="py-1" style="vertical-align: middle">입금전표</td>
-                                                <td class="py-1" style="vertical-align: middle">Otto</td>
-                                                <td class="py-1" style="vertical-align: middle">21-03-21</td>
-                                                <td class="py-1" style="vertical-align: middle">대기중</td>
+                                                <td class="py-1" style="vertical-align: middle">${vo.employee}</td>
+                                                <td class="py-1" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_sal_date}" /></td>
+                                                <td class="py-1" style="vertical-align: middle">미승인</td>
                                              </tr>
-                                             <tr>
-                                                <td class="py-1">
-                                                   <p>
-                                                      <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample21" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">1235</a>
-                                                   </p>
-                                                </td>
-                                                <td class="py-1" style="vertical-align: middle">출금전표</td>
-                                                <td class="py-1" style="vertical-align: middle">Thornton</td>
-                                                <td class="py-1" style="vertical-align: middle">21-03-21</td>
-                                                <td class="py-1" style="vertical-align: middle">대기중</td>
-                                             </tr>
+                                             </c:if>
+                                             </c:forEach>
                                           </tbody>
                                        </table>
                                     </div>
