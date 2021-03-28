@@ -18,7 +18,6 @@ public class StockOrderVO {
 	WarehouseVO warehouse;
 	ProductVO product;
 	EmployeeVO employee;
-	StatementVO statement;
 	
 	public int getComp_code() {
 		return comp_code;
@@ -130,14 +129,6 @@ public class StockOrderVO {
 
 	public void setEmployee(EmployeeVO employee) {
 		this.employee = employee;
-	}
-
-	public StatementVO getStatement() {
-		return statement;
-	}
-
-	public void setStatement(StatementVO statement) {
-		this.statement = statement;
 	}
 	
 }
