@@ -1,6 +1,6 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class EmployeeVO {
 	
@@ -10,7 +10,7 @@ public class EmployeeVO {
 	private String emp_enabled;		// 등급
 	private String emp_position;	// 직급
 	private String emp_name;		// 사원명 
-	private DATE emp_hire_date;		// 입사일
+	private Date emp_hire_date;		// 입사일
 	private int emp_cos;			// 근속년수
 	private String emp_photo;		// 사진
 	private String emp_jumin;		// 주민등록번호
@@ -76,11 +76,11 @@ public class EmployeeVO {
 		this.emp_name = emp_name;
 	}
 	
-	public DATE getEmp_hire_date() {
+	public Date getEmp_hire_date() {
 		return emp_hire_date;
 	}
 	
-	public void setEmp_hire_date(DATE emp_hire_date) {
+	public void setEmp_hire_date(Date emp_hire_date) {
 		this.emp_hire_date = emp_hire_date;
 	}
 	

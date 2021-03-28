@@ -1,14 +1,15 @@
 package com.project.UsERP.vo;
 
+
+import java.util.Date;
+
 public class StatementVO {
 	
 	private int stm_code;			// 전표번호
 	private int stm_bill;			// 어음
-
 	private Date stm_reg_date;		// 발행일
 	private int stm_approve_state;	// 승인상태
-	private String stm_type;		// 전표유형
-
+	private int stm_type;			// 전표유형
 	private String stm_content;		// 상세내용
 	private int stm_price;			// 단가
 	private int emp_code;			// 사원번호

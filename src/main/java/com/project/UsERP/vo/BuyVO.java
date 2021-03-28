@@ -1,12 +1,12 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class BuyVO {
 	
 	private int buy_code;			// 구매코드
-	private DATE buy_reg_date;		// 등록일
-	private DATE buy_update_date;	// 최근수정일
+	private Date buy_reg_date;		// 등록일
+	private Date buy_update_date;	// 최근수정일
 	private int buy_count;			// 구매수량
 	private int buy_state;			// 구매상태
 	private int comp_code;			// 거래처코드
@@ -24,19 +24,19 @@ public class BuyVO {
 		this.buy_code = buy_code;
 	}
 
-	public DATE getBuy_reg_date() {
+	public Date getBuy_reg_date() {
 		return buy_reg_date;
 	}
 
-	public void setBuy_reg_date(DATE buy_reg_date) {
+	public void setBuy_reg_date(Date buy_reg_date) {
 		this.buy_reg_date = buy_reg_date;
 	}
 
-	public DATE getBuy_update_date() {
+	public Date getBuy_update_date() {
 		return buy_update_date;
 	}
 
-	public void setBuy_update_date(DATE buy_update_date) {
+	public void setBuy_update_date(Date buy_update_date) {
 		this.buy_update_date = buy_update_date;
 	}
 
