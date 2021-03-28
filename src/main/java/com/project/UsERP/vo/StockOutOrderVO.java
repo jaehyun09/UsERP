@@ -1,13 +1,13 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class StockOutOrderVO {
 	
 	private int out_count;			// 판매수량
 	private int out_possible;		// 출고가능수량
 	private int out_impossible;		// 부족수량
-	private DATE out_date;			// 출고일자
+	private Date out_date;			// 출고일자
 	private int order_code;			// 재고전표번호
 	
 	public int getOrder_code() {
@@ -42,11 +42,11 @@ public class StockOutOrderVO {
 		this.out_impossible = out_impossible;
 	}
 
-	public DATE getOut_date() {
+	public Date getOut_date() {
 		return out_date;
 	}
 
-	public void setOut_date(DATE out_date) {
+	public void setOut_date(Date out_date) {
 		this.out_date = out_date;
 	}
 	

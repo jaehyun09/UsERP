@@ -6,6 +6,14 @@
     
 <mapper namespace="com.project.UsERP.persistence.LogisticsDAO">
 
+	<!-- 입고 미승인 전표 -->
+	<!-- <select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
+		select * from company where comp_use_state = 1
+	</select> -->
 	
+	<!-- 입고 승인 전표 -->
+	<!-- <select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
+		select * from product
+	</select> -->
 
 </mapper>

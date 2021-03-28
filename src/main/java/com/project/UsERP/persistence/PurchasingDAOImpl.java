@@ -1,15 +1,33 @@
 package com.project.UsERP.persistence;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class PurchasingDAOImpl implements PurchasingDAO {
+import com.project.UsERP.vo.CompanyVO;
+import com.project.UsERP.vo.ProductVO;
 
+//최유성
+@Repository
+public class PurchasingDAOImpl implements PurchasingDAO{
+	
 	@Autowired
 	SqlSession sqlSession;
 
+	//구매 거래처 목록
+	@Override
+	public List<CompanyVO> purchasingCompanySelect() {
+		
+		return sqlSession.selectList("com.project.UsERP.persistence.PurchasingDAO.purchasingCompanySelect");
+	}
 	
+	//구매 거래처 목록
+	@Override
+	public List<ProductVO> purchasingProductSelect() {
+		
+		return sqlSession.selectList("com.project.UsERP.persistence.PurchasingDAO.purchasingProductSelect");
+	}
 
 }
