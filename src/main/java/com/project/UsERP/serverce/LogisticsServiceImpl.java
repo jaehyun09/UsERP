@@ -50,5 +50,17 @@ public class LogisticsServiceImpl implements LogisticsService {
 		
 		model.addAttribute("warehouseList", list);
 	}
+
+	// 창고 상세 목록
+	@Override
+	public void warehouseDetail(HttpServletRequest req, Model model) {
+		int code = Integer.parseInt(req.getParameter("code"));
+		
+		WarehouseVO vo = dao.warehouseDetail(code);
+		
+		model.addAttribute("wareDetailVo", vo);
+	}
+	
+	
 	
 }

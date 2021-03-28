@@ -29,4 +29,9 @@
 		SELECT * FROM warehouse ORDER BY ware_code
 	</select>
 	
+	<!-- 창고 상세 목록 -->
+	<select id="warehouseDetail" resultType="com.project.UsERP.vo.WarehouseVO">
+		SELECT * FROM warehouse WHERE ware_code = #{ware_code}
+	</select>
+	
 </mapper>

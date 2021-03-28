@@ -37,5 +37,11 @@ public class LogisticsDAOImpl implements LogisticsDAO {
 	public List<WarehouseVO> warehouseList() {
 		return sqlSession.selectList("com.project.UsERP.persistence.LogisticsDAO.warehouseList");
 	}
+
+	// 창고 상세 목록
+	@Override
+	public WarehouseVO warehouseDetail(int code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LogisticsDAO.warehouseDetail", code);
+	}
 	
 }

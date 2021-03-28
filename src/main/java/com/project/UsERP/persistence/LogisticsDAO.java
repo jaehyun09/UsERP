@@ -17,5 +17,8 @@ public interface LogisticsDAO {
 	
 	// 창고 목록
 	public List<WarehouseVO> warehouseList();
+
+	// 창고 상세 목록
+	public WarehouseVO warehouseDetail(int code);
 	
 }
