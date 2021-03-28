@@ -21,22 +21,6 @@ public class StockOrderVO {
 	StockInOrderVO stockInOrder;
 	StockOutOrderVO stockOutOrder;
 	
-	public StockInOrderVO getStockInOrder() {
-		return stockInOrder;
-	}
-
-	public void setStockInOrder(StockInOrderVO stockInOrder) {
-		this.stockInOrder = stockInOrder;
-	}
-
-	public StockOutOrderVO getStockOutOrder() {
-		return stockOutOrder;
-	}
-
-	public void setStockOutOrder(StockOutOrderVO stockOutOrder) {
-		this.stockOutOrder = stockOutOrder;
-	}
-
 	public int getComp_code() {
 		return comp_code;
 	}
