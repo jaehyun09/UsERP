@@ -26,7 +26,7 @@ public class SalesController {
 	public String salesBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록 ");
 		
-		salesService.salesBasicReg(req, model);
+		salesService.salesBasicReg(req, model); 
 		
 		return "sales/salesBasicReg";
 	}
