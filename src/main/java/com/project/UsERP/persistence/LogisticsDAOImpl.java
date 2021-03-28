@@ -14,7 +14,6 @@ public class LogisticsDAOImpl implements LogisticsDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	
 	// 양품창고 등록
 	@Override
 	public int insertGoodWare(WarehouseVO vo) {
@@ -38,5 +37,5 @@ public class LogisticsDAOImpl implements LogisticsDAO {
 	public List<WarehouseVO> warehouseList() {
 		return sqlSession.selectList("com.project.UsERP.persistence.LogisticsDAO.warehouseList");
 	}
-
+	
 }

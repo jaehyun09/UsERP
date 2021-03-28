@@ -21,6 +21,12 @@ public class EmployeeVO {
 	private int emp_port_num;		// 여권번호
 	private String emp_bank;		// 급여은행
 	private String emp_account;		// 급여계좌
+	private int per_code;			// 인사코드
+	private int dep_code;			// 부서코드
+	private int sal_code;			// 급여코드
+	PerCodeVO perCode;
+	DepartmentVO department;
+	SalaryVO salary;
 	
 	public String getEmp_code() {
 		return emp_code;
@@ -156,6 +162,30 @@ public class EmployeeVO {
 	
 	public void setEmp_account(String emp_account) {
 		this.emp_account = emp_account;
+	}
+
+	public int getPer_code() {
+		return per_code;
+	}
+
+	public void setPer_code(int per_code) {
+		this.per_code = per_code;
+	}
+
+	public int getDep_code() {
+		return dep_code;
+	}
+
+	public void setDep_code(int dep_code) {
+		this.dep_code = dep_code;
+	}
+
+	public int getSal_code() {
+		return sal_code;
+	}
+
+	public void setSal_code(int sal_code) {
+		this.sal_code = sal_code;
 	}
 	
 }
