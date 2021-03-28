@@ -4,8 +4,44 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="spring.mvc.prozen_store.persistence.LogisticsDAO">
+<mapper namespace = "com.project.UsERP.persistence.LogisticsDAO">
 
+	<!-- 양품창고 등록 -->
+	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
+	INSERT INTO warehouse(ware_code, ware_name, ware_location)
+	VALUES (ware_good_seq.nextval, #{ware_name}, #{ware_location})
+	</insert>
 	
+	<!-- 불량품창고 등록 -->
+	<insert id="insertBadWare" parameterType="com.project.UsERP.vo.WarehouseVO">
+	INSERT INTO warehouse(ware_code, ware_name, ware_location)
+	VALUES (ware_bad_seq.nextval, #{ware_name}, #{ware_location})
+	</insert>
+	
+	<!-- 출고대기창고 등록 -->
+	<insert id="insertWaitWare" parameterType="com.project.UsERP.vo.WarehouseVO">
+	INSERT INTO warehouse(ware_code, ware_name, ware_location)
+	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location})
+	</insert>
+	
+	<!-- 창고 목록 -->
+	<select id="warehouseList" resultType="com.project.UsERP.vo.WarehouseVO">
+		SELECT * FROM warehouse ORDER BY ware_code
+	</select>
+	
+	<!-- 창고 상세 목록 -->
+	<select id="warehouseDetail" resultType="com.project.UsERP.vo.WarehouseVO">
+		SELECT * FROM warehouse WHERE ware_code = #{ware_code}
+	</select>
+	
+	<!-- 입고 미승인 전표 -->
+	<!-- <select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
+		select * from company where comp_use_state = 1
+	</select> -->
+	
+	<!-- 입고 승인 전표 -->
+	<!-- <select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
+		select * from product
+	</select> -->
 
 </mapper>

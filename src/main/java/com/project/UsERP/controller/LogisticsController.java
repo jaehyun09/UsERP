@@ -4,16 +4,22 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.UsERP.serverce.LogisticsService;
 
 // 물류 관리
 @Controller
 public class LogisticsController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LogisticsController.class);
-	   
+	
+	@Autowired
+	LogisticsService service;
+	
 	// 기초 코드
 	@RequestMapping("/logBasicReg")
 	public String logBasicReg(HttpServletRequest req, Model model) {
@@ -34,6 +40,8 @@ public class LogisticsController {
 	@RequestMapping("/logStatementList")
 	public String logStatementList(HttpServletRequest req, Model model) {
 		logger.info("url: 전표 관리");
+		
+		service.logStatementList(req, model);
 		  
 		return "logistics/logStatementList";
 	}
@@ -75,7 +83,19 @@ public class LogisticsController {
 	public String logWarehouseList(HttpServletRequest req, Model model) {
 		logger.info("url: 창고 현황");
 		 
+		service.warehouseList(req, model);
+		
 		return "logistics/logWarehouseList";
+	}
+	
+	// 창고 등록
+	@RequestMapping("/insertWareAction")
+	public String insertWareAction(HttpServletRequest req, Model model) {
+		logger.info("url: 창고 등록");
+		
+		service.insertWarehouse(req, model);
+		
+		return "logistics/insertWareAction";
 	}
 
 }

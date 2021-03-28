@@ -38,10 +38,10 @@ public class UserpController {
 		return "logout";
 	}
 	
-	// 회원가입
+	// 사원확인
 	@RequestMapping("/signin")
 	public String signin(HttpSession session) {
-		logger.info("url: 회원가입");
+		logger.info("url: 사원확인");
 
 		return "signin";
 	}

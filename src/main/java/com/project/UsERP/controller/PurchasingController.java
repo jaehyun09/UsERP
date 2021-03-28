@@ -4,9 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.UsERP.serverce.PurchasingServiceImpl;
 
 // 구매 관리
 @Controller
@@ -14,10 +17,16 @@ public class PurchasingController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PurchasingController.class);
 	
-	// 기초 등록
+	//최유성
+	@Autowired
+	PurchasingServiceImpl purchasingService;
+	
+	//기초 등록 - 최유성
 	@RequestMapping("/purBasicReg")
 	public String purBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록");
+		
+		purchasingService.purBasicReg(req, model);
 	
 		return "purchasing/purBasicReg";
 	}
@@ -38,10 +47,12 @@ public class PurchasingController {
 		return "purchasing/purStatus";
 	}
 	
-	// 입고 현황
+	// 입고 현황 - 최유성
 	@RequestMapping("/purRecStatus")
 	public String purRecStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 입고 현황");
+		
+		purchasingService.purRecStatus(req, model);
 		
 		return "purchasing/purRecStatus";
 	}

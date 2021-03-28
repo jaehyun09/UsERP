@@ -1,13 +1,12 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class StockInOrderVO {
 	
 	private int in_count;		// 구매수량
-	private DATE in_date;		// 입고일자
+	private Date in_date;		// 입고일자
 	private int order_code;		// 재고전표번호
-	StockOrderVO stockOrder;
 	
 	public int getIn_count() {
 		return in_count;
@@ -17,11 +16,11 @@ public class StockInOrderVO {
 		this.in_count = in_count;
 	}
 
-	public DATE getIn_date() {
+	public Date getIn_date() {
 		return in_date;
 	}
 
-	public void setIn_date(DATE in_date) {
+	public void setIn_date(Date in_date) {
 		this.in_date = in_date;
 	}
 
@@ -31,14 +30,6 @@ public class StockInOrderVO {
 
 	public void setOrder_code(int order_code) {
 		this.order_code = order_code;
-	}
-
-	public StockOrderVO getStockOrder() {
-		return stockOrder;
-	}
-
-	public void setStockOrder(StockOrderVO stockOrder) {
-		this.stockOrder = stockOrder;
 	}
 	
 }
