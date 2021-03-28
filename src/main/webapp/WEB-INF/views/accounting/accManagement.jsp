@@ -7,6 +7,21 @@
 <!-- Title -->
 <title>Users | Graindashboard UI Kit</title>
 <script type="text/javascript">
+function accountlist() {
+	$.ajax({
+      // sendRequest(콜백함수명, url, method, params)
+      url: "accountlist", // 전송 페이지 => 컨트롤러 "basic_next"
+      type: 'GET', // 전송방식('GET', 'POST') - method
+      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+         $('#accountlist').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
 function accountadd() {
 	$.ajax({
       // sendRequest(콜백함수명, url, method, params)
@@ -34,7 +49,7 @@ function accountadd() {
 <link rel="stylesheet" href="${project}css/graindashboard.css">
 </head>
 
-<body class="has-sidebar has-fixed-sidebar-and-header">
+<body class="has-sidebar has-fixed-sidebar-and-header" onload="accountlist()">
 
 	<%@ include file="../common/header.jsp"%>
 	<main class="main">
@@ -258,7 +273,7 @@ function accountadd() {
 										<!-- Nav Classic -->
 										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark" id="pills-tab-1" role="tablist">
 											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light">
-												<a class="nav-link d-flex align-items-center py-2 px-3 active"	id="pills-result-tab-1" data-toggle="pill"	href="#pills-result-1" role="tab"aria-controls="pills-result-1" aria-selected="true"> 계정리스트</a>
+												<a class="nav-link d-flex align-items-center py-2 px-3 active"	id="pills-result-tab-1" data-toggle="pill"	href="#pills-result-1" onclick="accountlist()" role="tab"aria-controls="pills-result-1" aria-selected="true"> 계정리스트</a>
 												</li>
 											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light">
 												<a class="nav-link d-flex align-items-center py-2 px-3" id="pills-html-tab-1" data-toggle="pill" href="#pills-html-1" onclick="accountadd()" role="tab" aria-controls="pills-html-1" aria-selected="false">계정 등록 </a>
@@ -272,35 +287,18 @@ function accountadd() {
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
 												<div class="bg-white">
-												<table class="table bg-white text-dark center ass2 table-striped">
-													<thead class="text-white table-bordered tap">
-														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">계정명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">계정금액</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td class="py-3" style="vertical-align: middle">보통예금</td>
-															<td class="py-3" style="vertical-align: middle">0</td>
-														</tr>
-														<tr>
-															<td class="py-3" style="vertical-align: middle">외상매출금</td>
-															<td class="py-3" style="vertical-align: middle">0</td>
-														</tr>
-														<tr>
-															<td class="py-3" style="vertical-align: middle">매출액</td>
-															<td class="py-3" style="vertical-align: middle">0</td>
-														</tr>
-													</tbody>
-												</table>
+												
+												<div id="accountlist"></div>
+												
 											</div>		
 											</div>
 
 											<div class="tab-pane fade p-4" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
+												
 												<div id="account"></div>
 												
+											</div>
 										</div>
 									</div>
 								</div>
@@ -310,7 +308,6 @@ function accountadd() {
 				</div>
 			</div>
 		</div>
-	</div>
 	</main>
 
 	<%@ include file="../common/footer.jsp"%>

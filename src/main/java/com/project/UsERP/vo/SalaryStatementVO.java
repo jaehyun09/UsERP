@@ -1,11 +1,11 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class SalaryStatementVO {
 	
 	private int ss_total_sal;	// 총 급여
-	private DATE ss_sal_date;	// 지급일
+	private Date ss_sal_date;	// 지급일
 	private int sal_code;		// 급여코드
 	private int stm_code;		// 전표번호
 	SalaryVO salary;
@@ -27,11 +27,11 @@ public class SalaryStatementVO {
 		this.ss_total_sal = ss_total_sal;
 	}
 
-	public DATE getSs_sal_date() {
+	public Date getSs_sal_date() {
 		return ss_sal_date;
 	}
 
-	public void setSs_sal_date(DATE ss_sal_date) {
+	public void setSs_sal_date(Date ss_sal_date) {
 		this.ss_sal_date = ss_sal_date;
 	}
 

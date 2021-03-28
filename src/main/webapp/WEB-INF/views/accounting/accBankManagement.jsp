@@ -292,33 +292,23 @@ function bankadd() {
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td class="py-3">주계좌</td>
-															<td class="py-3">1111-1111-1111</td>
-															<td class="py-3">농협</td>
-															<td class="py-3">10,000,000,000</td>
-															<td class="py-3">주계좌</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">21-01-01</td>
-														</tr>
-														<tr>
-															<td class="py-3">급여</td>
-															<td class="py-3">2222-2222-2222</td>
-															<td class="py-3">신한</td>
-															<td class="py-3">10,000,000,000</td>
-															<td class="py-3">급여</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">21-01-01</td>
-														</tr>
-														<tr>
-															<td class="py-3">세금납부</td>
-															<td class="py-3">3333-3333-3333</td>
-															<td class="py-3">국민</td>
-															<td class="py-3">10,000,000,000</td>
-															<td class="py-3">세금납부</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">21-01-01</td>
-														</tr>
+														<c:forEach var="vo" items="${bank}">
+															<tr>
+																<td class="py-3">${vo.bank_name}</td>
+																<td class="py-3">${vo.bank_number}</td>
+																<td class="py-3">${vo.bank_bank}</td>
+																<td class="py-3">${vo.bank_balance}</td>
+																<td class="py-3">${vo.bank_object}</td>
+																<c:if test="${vo.bank_use_state == 0 }">
+																<td class="py-3">미사용</td>
+																</c:if>
+																<c:if test="${vo.bank_use_state == 1 }">
+																<td class="py-3">사용중</td>
+																</c:if>
+																<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.bank_reg_date}" /></td>
+															</tr>
+														</c:forEach>
+														
 													</tbody>
 												</table>
 											</div>
