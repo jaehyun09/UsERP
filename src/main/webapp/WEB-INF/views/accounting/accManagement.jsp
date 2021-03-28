@@ -6,7 +6,22 @@
 <head>
 <!-- Title -->
 <title>Users | Graindashboard UI Kit</title>
-
+<script type="text/javascript">
+function accountadd() {
+	$.ajax({
+      // sendRequest(콜백함수명, url, method, params)
+      url: "accountadd", // 전송 페이지 => 컨트롤러 "basic_next"
+      type: 'GET', // 전송방식('GET', 'POST') - method
+      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+         $('#account').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+</script>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -246,7 +261,7 @@
 												<a class="nav-link d-flex align-items-center py-2 px-3 active"	id="pills-result-tab-1" data-toggle="pill"	href="#pills-result-1" role="tab"aria-controls="pills-result-1" aria-selected="true"> 계정리스트</a>
 												</li>
 											<li class="nav-item border-bottom border-xl-bottom-0 asss bg-light">
-												<a class="nav-link d-flex align-items-center py-2 px-3" id="pills-html-tab-1" data-toggle="pill" href="#pills-html-1" role="tab" aria-controls="pills-html-1" aria-selected="false">계정 등록 </a>
+												<a class="nav-link d-flex align-items-center py-2 px-3" id="pills-html-tab-1" data-toggle="pill" href="#pills-html-1" onclick="accountadd()" role="tab" aria-controls="pills-html-1" aria-selected="false">계정 등록 </a>
 												</li>
 										</ul>
 										<!-- End Nav Classic -->
@@ -284,35 +299,8 @@
 
 											<div class="tab-pane fade p-4" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
-												<div class="bg-white">
-												<table class="table bg-white text-dark ass2 center">
-													<thead class="text-white table-bordered tap ass2">
-														<tr>
-                                            				 <th colspan="3">계정 등록 </th>
-                                          				</tr>
-                                          			</thead>
-                                          			<tbody>	
-														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-2 text-dark"
-																colspan="2" style="vertical-align: middle;"><b>계정명</b></th>
-															<th class="font-weight-semi-bold border-top-0 py-2"
-																colspan="2"><input class="form-control" type="text"
-																placeholder="계정명을 입력하세요"></th>
-														</tr>
-													
-													
-														<tr>
-															<th class="py-3 text-dark" colspan="2" style="vertical-align: middle;"><b>금액</b></th>
-															<td class="py-3" colspan="2"><input
-																class="form-control" type="text" disabled></td>
-														</tr>
-													</tbody>
-												</table>
-												</div>
-												<div align=center>
-			                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-			                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>                         			
-											</div>
+												<div id="account"></div>
+												
 										</div>
 									</div>
 								</div>

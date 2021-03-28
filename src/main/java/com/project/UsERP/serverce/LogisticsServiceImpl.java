@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 
 import com.project.UsERP.persistence.LogisticsDAOImpl;
 import com.project.UsERP.vo.WarehouseVO;
-import com.sun.scenario.effect.Blend.Mode;
 
 @Service
 public class LogisticsServiceImpl implements LogisticsService {
@@ -51,5 +50,17 @@ public class LogisticsServiceImpl implements LogisticsService {
 		
 		model.addAttribute("warehouseList", list);
 	}
+
+	// 창고 상세 목록
+	@Override
+	public void warehouseDetail(HttpServletRequest req, Model model) {
+		int code = Integer.parseInt(req.getParameter("code"));
+		
+		WarehouseVO vo = dao.warehouseDetail(code);
+		
+		model.addAttribute("wareDetailVo", vo);
+	}
+	
+	
 	
 }

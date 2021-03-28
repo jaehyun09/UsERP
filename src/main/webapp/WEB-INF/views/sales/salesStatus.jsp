@@ -226,8 +226,8 @@
                <div class="card-body">
                   <nav aria-label="breadcrumb">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">구매 관리</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">기초 등록</li>
+                        <li class="breadcrumb-item"><a href="#">판매 관리</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">판매 현황</li>
                      </ol>
                   </nav>
                   <div class="row">
@@ -235,11 +235,11 @@
                      <div class="col-xl-12">
 
                         <div id="example" class="mb-9">
-                           <h4 class="h1 text-dark"><b>기초 등록</b>
+                           <h4 class="h1 text-dark"><b>판매 현황</b>
                               <a class="anchorjs-link" href="#example"
                                  aria-label="Anchor" data-anchorjs-icon="#"></a>
                            </h4>
-                           <div class="px-3">
+                           <div class="mb-3">
                               <!-- Nav Classic -->
                               <ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
                                  id="pills-tab-1" role="tablist">
@@ -247,12 +247,18 @@
                                     class="nav-link d-flex align-items-center py-2 px-3 active"
                                     id="pills-result-tab-1" data-toggle="pill"
                                     href="#pills-result-1" role="tab"
-                                    aria-controls="pills-result-1" aria-selected="false">구매 거래처</a></li>
+                                    aria-controls="pills-result-1" aria-selected="false">판매 내역</a></li>
                                  <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
                                     id="pills-html-tab-1" data-toggle="pill"
                                     href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-                                    aria-selected="false">상품</a></li>
+                                    aria-selected="false">판매 전표 등록</a></li>
+                                 <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light  ">
+									<a class="nav-link d-flex align-items-center py-2 px-3"
+									id="pills-html-tab-2" data-toggle="pill"
+									href="#pills-html-2" role="tab" aria-controls="pills-html-2"
+									aria-selected="false">승인 내역</a>
+								</li> 
                               </ul>
                               <!-- End Nav Classic -->
 
@@ -261,276 +267,159 @@
                                  <div class="tab-pane fade p-4 show active"
                                     id="pills-result-1" role="tabpanel"
                                     aria-labelledby="pills-result-tab-1">
-                                    <!-- 검색창 시작 -->      
-                                            <div class="input-group">
-                                               <div class="input-group-append">
-                                                <i class="gd-search icon-text icon-text-sm"></i>
-                                                 </div>
-                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
-                                            </div>
-                                            <br>
-                                    <!-- 검색창 끝 --> 
                                     <div class="row">
                                        <div class="col">
-                                          <div class="collapse multi-collapse"
-                                             id="multiCollapseExample1">
-                                                 <table class="table table-bordered bg-white text-dark ass2 th20">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="2">거래처명1이라네~~~~~~</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>NO.</th>
-                                                         <td>10</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>사업자등록번호</th>
-                                                         <td>1234567890</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>대표자명</th>
-                                                         <td>최유성</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>업태</th>
-                                                         <td>업태1</td>
-
-                                                      </tr>
-                                                      <tr>
-                                                         <th>회사규모</th>
-                                                         <td>n명</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>사용상태</th>
-                                                         <td>사용중</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th rowspan="4" style="vertical-align:middle">주요 거래 품목</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목1</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목2</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목3</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table><br><br><br>
-                                          </div>
-                                       </div>
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead class="text-white table-bordered tap">
-                                             <tr class="text-white table-bordered tap">
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">거래처번호</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">거래처명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">대표자명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">업태</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">수정</th>
+                                             <tr>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">판매번호</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">단가</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
                                              </tr>
                                           </thead>
                                           <tbody>
                                              <tr>
                                                 <td class="py-3 middle">10</td>
-                                                <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
-                                                      <a data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1" >거래처명1</a>
-                                                </td>
-                                                <td class="py-3 middle">최유성</td>
-                                                <td class="py-3 middle">업태1</td>
-                                                <td class="py-3 middle">사용중</td>
-                                                <td class="py-3 middle">2017-08-21</td>
-                                                <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                                <td class="py-3 middle">은희네국밥</td>
+                                                <td class="py-3 middle">돼지국밥</td>
+                                                <td class="py-3 middle">10000</td>
+                                                <td class="py-3 middle">10</td>
+                                                <td class="py-3 middle">강재현</td>
+                                                <td class="py-3 middle">2021-03-27</td>
+                                                <td class="py-3 middle">승인완료</td>
                                              </tr>
                                              <tr>
                                                 <td class="py-3 middle">11</td>
-                                                <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
-                                                      <a data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1" >거래처명1</a>
-                                                </td>
-                                                <td class="py-3 middle">최유성</td>
-                                                <td class="py-3 middle">업태1</td>
-                                                <td class="py-3 middle">사용중</td>
-                                                <td class="py-3 middle">2017-08-21</td>
-                                                <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                                <td class="py-3 middle">명재네버거</td>
+                                                <td class="py-3 middle">치즈버거</td>
+                                                <td class="py-3 middle">20000</td>
+                                                <td class="py-3 middle">20</td>
+                                                <td class="py-3 middle">김민수</td>
+                                                <td class="py-3 middle">2021-03-28</td>
+                                                <td class="py-3 middle">승인불가</td>
                                              </tr>
                                              <tr>
                                                 <td class="py-3 middle">12</td>
-                                                <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
-                                                      <a data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1" >거래처명1</a>
-                                                </td>
+                                                <td class="py-3 middle">민수네김밥</td>
+                                                <td class="py-3 middle">참치김밥</td>
+                                                <td class="py-3 middle">30000</td>
+                                                <td class="py-3 middle">30</td>
                                                 <td class="py-3 middle">최유성</td>
-                                                <td class="py-3 middle">업태1</td>
-                                                <td class="py-3 middle">사용중</td>
-                                                <td class="py-3 middle">2017-08-21</td>
-                                                <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                                <td class="py-3 middle">2021-03-29</td>
+                                                <td class="py-3 middle">승인대기</td>
                                              </tr>
                                           </tbody>
                                        </table>
-                                       <!-- 리액트화면으로 등록 -->
-                                       <table class="table">
-                                       		<tr>
-                                       			<td align="center">
-	                                       			<button type="button" type="submit" class="btn btn-outline-info">등록</button>
-                                          		</td>
-                                          	</tr>
-										</table>
-										<!-- 리액트화면으로 등록-->
                                     </div>
+                                 </div>
                                  </div>
 
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    <!-- 검색창 시작 -->      
-                                            <div class="input-group">
-                                               <div class="input-group-append">
-                                                <i class="gd-search icon-text icon-text-sm"></i>
-                                                 </div>
-                                                 <input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" >
-                                            </div>
-                                            <br>
-                                            <!-- 검색창 끝 --> 
                                     <div class="row">
                                     <!-- 테스트 -->
                                     <div class="col">
-                                    	<div class="collapse multi-collapse"
-                                             id="multiCollapseExample2">
-                                                 <table class="table table-bordered bg-white text-dark ass2 th20">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="2">상품명1이라네~~~~~~</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>NO.</th>
-                                                         <td>10</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>사업자등록번호</th>
-                                                         <td>1234567890</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>대표자명</th>
-                                                         <td>최유성</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>업태</th>
-                                                         <td>업태1</td>
-
-                                                      </tr>
-                                                      <tr>
-                                                         <th>회사규모</th>
-                                                         <td>n명</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>사용상태</th>
-                                                         <td>사용중</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th rowspan="4" style="vertical-align:middle">주요 거래 품목</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목1</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목2</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목3</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table><br><br><br>
-                                          </div>
+                                         	<div class="bg-white p-2">
+                                                <table class="table bg-white text-dark center ass2">
+		                                          <tr class="text-white table-bordered tap">
+		                                             <th colspan="3"> 판매 전표 등록 </th>
+		                                          </tr>
+	                                          		<tr>
+														<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+															colspan="2" style="vertical-align: middle;">거래처명</td>
+														<td class="font-weight-semi-bold border-top-0 py-2"
+															colspan="2"><input class="form-control" type="text"
+															placeholder="거래처명을 입력하세요"></td>
+													</tr>
+														<tr>
+															<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
+															<td class="py-3" colspan="2"><input
+																class="form-control" type="text"
+																placeholder="상품명을 입력하세요"></td>
+														</tr>
+														<tr>
+					                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>단가</b></td>
+					                                       <td class="py-3" colspan="2"><input
+																class="form-control" type="text"
+																placeholder="단가를 입력하세요"></td>
+					                                    </tr>
+														<tr>
+															<td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
+															<td class="py-3" colspan="2"><input
+																class="form-control" type="text" placeholder="수량을 입력하세요"></td>
+														</tr>
+														<tr>
+															<td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td>
+															<td class="py-3" colspan="2"><input
+																class="form-control" type="text"
+																placeholder="담당자를 입력하세요"></td>
+														</tr>
+													</tbody>
+												</table>
+                                                </div>
+                                                     <div align=center>
+                                                   <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                                                   <button type="button" type="reset" class="btn btn-outline-info">재입력</button>                                  
+                                       </div>
 									</div>
-                                    <!-- 테스트 -->
-                                       <table class="table  bg-white text-dark center ass2 table-striped">
-                                          <thead>
-                                             <tr class="text-white table-bordered tap">
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">판매단가</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">수정</th>
+                                    </div>
+                                   </div> 
+                              
+                                   <div class="tab-pane fade p-4" id="pills-html-2"
+                                    role="tabpanel" aria-labelledby="pills-html-tab-2">
+                                    <table class="table  bg-white text-dark center ass2 table-striped">
+                                          <thead class="text-white table-bordered tap">
+                                             <tr>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">판매번호</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">단가</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
                                              </tr>
                                           </thead>
-                                          
                                           <tbody>
-                                             <tr class="tablein">
-                                                <td class="py-3 middle">110123</td>
-                                                <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
-                                                      <a data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample2" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample2" >상품명이라네~~~</a>
-                                                </td>
-                                                <td class="py-3 middle" style="vertical-align: middle">10000</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">15000</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">사용중</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">2017-08-30</td>
-                                                <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                             <tr>
+                                                <td class="py-3 middle">10</td>
+                                                <td class="py-3 middle">은희네국밥</td>
+                                                <td class="py-3 middle">돼지국밥</td>
+                                                <td class="py-3 middle">10000</td>
+                                                <td class="py-3 middle">10</td>
+                                                <td class="py-3 middle">강재현</td>
+                                                <td class="py-3 middle">2021-03-27</td>
+                                                <td class="py-3 middle">승인완료</td>
                                              </tr>
                                              <tr>
-                                                <td class="py-3 middle">110123</td>
-                                                <td class="py-3 middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
-                                                      <a data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample2" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample2" >상품명이라네2~~~</a>
-                                                </td>
-                                                <td class="py-3 middle" style="vertical-align: middle">10000</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">15000</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">사용중</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">2017-08-30</td>
-                                                <td class="py-2 middle">
-	                                               	<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		수정
-	                                               	</button>
-											  	</td>
+                                                <td class="py-3 middle">11</td>
+                                                <td class="py-3 middle">명재네버거</td>
+                                                <td class="py-3 middle">치즈버거</td>
+                                                <td class="py-3 middle">20000</td>
+                                                <td class="py-3 middle">20</td>
+                                                <td class="py-3 middle">김민수</td>
+                                                <td class="py-3 middle">2021-03-28</td>
+                                                <td class="py-3 middle">승인불가</td>
+                                             </tr>
+                                             <tr>
+                                                <td class="py-3 middle">12</td>
+                                                <td class="py-3 middle">민수네김밥</td>
+                                                <td class="py-3 middle">참치김밥</td>
+                                                <td class="py-3 middle">30000</td>
+                                                <td class="py-3 middle">30</td>
+                                                <td class="py-3 middle">최유성</td>
+                                                <td class="py-3 middle">2021-03-29</td>
+                                                <td class="py-3 middle">승인대기</td>
                                              </tr>
                                           </tbody>
                                        </table>
-                                       <!-- 리액트화면으로 등록 -->
-                                       <table class="table">
-                                       		<tr>
-                                       			<td align="center">
-	                                       			<button type="button" type="submit" class="btn btn-outline-info">등록</button>
-                                          		</td>
-                                          	</tr>
-										</table>
-										<!-- 리액트화면으로 등록-->
-                                    </div>
+                                 </div> 
+                                    
                                  </div>
                                  
                               </div>
@@ -541,10 +430,8 @@
                   </div>
                </div>
             </div>
-         </div>
-      </div>
-    
-    
+          </div>
+ 
 </main>
 
 <%@ include file = "../common/footer.jsp" %> 

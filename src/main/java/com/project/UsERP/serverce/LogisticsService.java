@@ -12,4 +12,7 @@ public interface LogisticsService {
 	// 창고 목록
 	public void warehouseList(HttpServletRequest req, Model model);
 	
+	// 창고 상세 목록
+	public void warehouseDetail(HttpServletRequest req, Model model);
+
 }

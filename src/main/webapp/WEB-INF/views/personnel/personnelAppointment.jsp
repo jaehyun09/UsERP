@@ -277,17 +277,16 @@
 										  <!-- 검색창 끝 -->		
 										  <br>
 										  
-											<table class="table table-striped bg-white text-dark center ass2" style="text-align:center">
-											    <thead>
-											      <tr class="text-white table-bordered tap">
-											        <th class="font-weight-semi-bold border-top-0 py-2">발령일</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">사번</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">사원명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">현재부서</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">현재직급</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">이전부서</th>
-											        <th class="font-weight-semi-bold border-top-0 py-2">이전직급</th>
-											        
+											<table class="table table-striped bg-white text-dark center ass2">
+											    <thead class="text-white table-bordered tap">
+											      <tr>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">발령일</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사번</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">현재부서</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">현재직급</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">이전부서</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">이전직급</th>
 											      </tr>
 											    </thead>
 											    <tbody>
@@ -327,22 +326,22 @@
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
 												
 												<form>
-													<table class="table bg-white text-dark center ass2" style="text-align:center">
+													<table class="table bg-white text-dark center ass2">
 														<tr class="text-white table-bordered tap">
-															<th colspan="3"> 인사 발령 </th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3"> 인사 발령 </th>
 														</tr>
 														<tr>
-															<th>사번</th>
+															<th style="vertical-align: middle">사번</th>
 															<td><input id="text" type="text" class="form-control" name="password" required=""></td>
 															<td><button type="button" class="btn btn-outline-info">사번확인</button></td>
 														</tr>
 														<tr>
-															<th> 사원명 </th>
+															<th style="vertical-align: middle"> 사원명 </th>
 															<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
 															<td><button type="button" class="btn btn-outline-info">사원확인</button></td>
 														</tr>
 														<tr>
-															<th> 현재 부서 </th>
+															<th style="vertical-align: middle"> 현재 부서 </th>
 															<td>	 
 															<div class="form-group">
 															     <select class="form-control" id="exampleFormControlSelect1">
@@ -353,7 +352,7 @@
 															 </td>
 														</tr>
 														<tr>
-															<th> 발령 부서</th>
+															<th style="vertical-align: middle"> 발령 부서</th>
 															<td>	 
 															<div class="form-group">
 															     <select class="form-control" id="exampleFormControlSelect1">
@@ -364,7 +363,7 @@
 															 </td>
 														</tr>
 														<tr>
-															<th> 현재 직급 </th>
+															<th style="vertical-align: middle"> 현재 직급 </th>
 															<td>	 
 															<div class="form-group">
 															     <select class="form-control" id="exampleFormControlSelect1">
@@ -375,7 +374,7 @@
 															 </td>
 														</tr>
 														<tr>
-															<th> 발령 후 직급</th>
+															<th style="vertical-align: middle"> 발령 후 직급</th>
 															<td>	 
 															<div class="form-group">
 															     <select class="form-control" id="exampleFormControlSelect1">
@@ -408,6 +407,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	<!-- 부서 관리 끝-->
 </main>
 

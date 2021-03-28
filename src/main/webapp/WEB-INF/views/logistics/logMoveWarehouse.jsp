@@ -270,7 +270,7 @@
 										<div class="collapse multi-collapse"
 											id="multiCollapseExample1">
 											<div class="bg-white p-2">
-												<table class="table bg-white text-dark center ass2" style="text-align:center">
+												<table class="table bg-white text-dark center ass2">
 		                                        	<tr class="text-white table-bordered tap">
 		                                            	<th colspan="3"> 재고 이동 등록 </th>
 		                                        	</tr>
@@ -335,53 +335,53 @@
 										<table class="table bg-white text-dark center table-striped">
 											<thead>
 												<tr class="text-white table-bordered tap">
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">주문번호</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">상품명</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">수량</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">출발창고명</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">도착창고명</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">담당자명</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">등록일</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">수정일</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6">상태</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 h6"></th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">출발창고명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">도착창고명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">수정일</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<td class="py-1 middle">47531708</td>
-													<td class="py-1 middle">
+													<td class="py-3 con2" style="vertical-align:middle">47531708</td>
+													<td class="py-3 con2" style="vertical-align:middle">
 														<a class="btn" data-toggle="collapse"
 															href="#multiCollapseExample1" role="button"
 															aria-expanded="false" aria-controls="multiCollapseExample1">상품이름01
 														</a>
 													</td>
-													<td class="py-1 middle">10</td>
-													<td class="py-1 middle">양품창고</td>
-													<td class="py-1 middle">불량품창고</td>
-													<td class="py-1 middle">최유성</td>
-													<td class="py-1 middle">2021-03-21</td>
-													<td class="py-1 middle">2021-03-21</td>
-													<td class="py-1 middle">승인대기중</td>
-													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">이동승인</button></td>
+													<td class="py-3 con2" style="vertical-align:middle">10</td>
+													<td class="py-3 con2" style="vertical-align:middle">양품창고</td>
+													<td class="py-3 con2" style="vertical-align:middle">불량품창고</td>
+													<td class="py-3 con2" style="vertical-align:middle">최유성</td>
+													<td class="py-3 con2" style="vertical-align:middle">2021-03-21</td>
+													<td class="py-3 con2" style="vertical-align:middle">2021-03-21</td>
+													<td class="py-3 con2" style="vertical-align:middle">승인대기중</td>
+													<td class="py-3 con2" style="vertical-align:middle"><button type="button" class="btn btn-outline-info">이동승인</button></td>
 												</tr>
 												
 												<tr>
-													<td class="py-1 middle">47531708</td>
-													<td class="py-1 middle">
+													<td class="py-3 con2">47531708</td>
+													<td class="py-3 con2">
 														<a class="btn" data-toggle="collapse"
 															href="#multiCollapseExample1" role="button"
 															aria-expanded="false" aria-controls="multiCollapseExample1">상품이름01
 														</a>
 													</td>
-													<td class="py-1 middle">10</td>
-													<td class="py-1 middle">양품창고</td>
-													<td class="py-1 middle">불량품창고</td>
-													<td class="py-1 middle">최유성</td>
-													<td class="py-1 middle">2021-03-21</td>
-													<td class="py-1 middle">2021-03-21</td>
-													<td class="py-1 middle">승인대기중</td>
-													<td class="py-1 middle"><button type="button" class="btn btn-outline-info">이동승인</button></td>
+													<td class="py-3 con2" style="vertical-align:middle">10</td>
+													<td class="py-3 con2" style="vertical-align:middle">양품창고</td>
+													<td class="py-3 con2" style="vertical-align:middle">불량품창고</td>
+													<td class="py-3 con2" style="vertical-align:middle">최유성</td>
+													<td class="py-3 con2" style="vertical-align:middle">2021-03-21</td>
+													<td class="py-3 con2" style="vertical-align:middle">2021-03-21</td>
+													<td class="py-3 con2" style="vertical-align:middle">승인대기중</td>
+													<td class="py-3 con2" style="vertical-align:middle"><button type="button" class="btn btn-outline-info">이동승인</button></td>
 												</tr>
 											</tbody>
 										</table>

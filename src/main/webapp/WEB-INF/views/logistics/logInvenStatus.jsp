@@ -22,7 +22,7 @@
 
 <%@ include file = "../common/header.jsp" %> 
 <main class="main">
-	<!-- Start Sidebar Nav -->
+<!-- Start Sidebar Nav -->
 	<aside id="sidebar" class="js-custom-scroll side-nav">
 		<ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
 			<!-- 대메뉴 : 인사 관리 -->
@@ -219,7 +219,7 @@
 		</ul>
 	</aside>
 	<!-- End Sidebar Nav -->
-
+	
 	<div class="content">
 			<div class="py-4 px-3 px-md-4">
 				<div class="card">
@@ -284,14 +284,14 @@
 					                                <!-- 검색창 끝 -->
 													<thead>
 														<tr class="text-white table-bordered tap">
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">창고이름</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">판매단가</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">재고수량</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 h4">등록일자</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">창고이름</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">구매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">판매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">재고수량</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일자</th>
 														</tr>
 													</thead>
 													<tbody>

@@ -5,8 +5,7 @@
 <%@ include file = "../setting.jsp" %> 
 <head>
     <!-- Title -->
-    <title>Users | Graindashboard UI Kit</title>
-
+    <title>Users | Graindashboard UI Kit</title> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -260,7 +259,7 @@
 
 										<!-- Tab Content -->
 										<div class="tab-content bg-lighter " id="pills-tabContent-1">
-											<div class="tab-pane fade p-6 show active"
+											<div class="tab-pane fade p-4 show active"
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
 												<!-- 검색창 시작 -->
@@ -325,18 +324,18 @@
 													<table class="table  bg-white text-dark center ass2 table-striped">
 														<thead>
 															<tr class="text-white table-bordered tap">
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">거래처번호</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">거래처명</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">대표자명</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">업태</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처번호</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">대표자명</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">업태</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
-																<td class="py-1 middle">10</td>
-																<td class="py-1 middle">
+																<td class="py-1" style="vertical-align: middle">10</td>
+																<td class="py-1" style="vertical-align: middle">
 																	<p>
 																		<a class="btn" data-toggle="collapse"
 																			href="#multiCollapseExample1" role="button"
@@ -344,14 +343,14 @@
 																			aria-controls="multiCollapseExample1">거래처명1</a>
 																	</p>
 																</td>
-																<td class="py-1 middle">최유성</td>
-																<td class="py-1 middle">업태1</td>
-																<td class="py-1 middle">사용중</td>
-																<td class="py-1 middle">2017-08-21</td>
+																<td class="py-1" style="vertical-align: middle">최유성</td>
+																<td class="py-1" style="vertical-align: middle">업태1</td>
+																<td class="py-1" style="vertical-align: middle">사용중</td>
+																<td class="py-1" style="vertical-align: middle">2017-08-21</td>
 															</tr>
 															<tr>
-																<td class="py-1 middle">11</td>
-																<td class="py-1 middle">
+																<td class="py-1" style="vertical-align: middle">11</td>
+																<td class="py-1" style="vertical-align: middle">
 																	<p>
 																		<a class="btn" data-toggle="collapse"
 																			href="#multiCollapseExample1" role="button"
@@ -359,14 +358,14 @@
 																			aria-controls="multiCollapseExample1">거래처명2</a>
 																	</p>
 																</td>
-																<td class="py-1 middle">조명재</td>
-																<td class="py-1 middle">업태2</td>
-																<td class="py-1 middle">사용중</td>
-																<td class="py-1 middle">2018-01-01</td>
+																<td class="py-1" style="vertical-align: middle">조명재</td>
+																<td class="py-1" style="vertical-align: middle">업태2</td>
+																<td class="py-1" style="vertical-align: middle">사용중</td>
+																<td class="py-1" style="vertical-align: middle">2018-01-01</td>
 															</tr>
 															<tr>
-																<td class="py-1 middle">12</td>
-																<td class="py-1 middle">
+																<td class="py-1" style="vertical-align: middle">12</td>
+																<td class="py-1">
 																	<p>
 																		<a class="btn" data-toggle="collapse"
 																			href="#multiCollapseExample1" role="button"
@@ -374,19 +373,17 @@
 																			aria-controls="multiCollapseExample1">거래처명3</a>
 																	</p>
 																</td>
-																<td class="py-1 middle">김은희</td>
-																<td class="py-1 middle">업태3</td>
-																<td class="py-1 middle">사용중</td>
-																<td class="py-1 middle">2018-02-22</td>
+																<td class="py-1" style="vertical-align: middle">김은희</td>
+																<td class="py-1" style="vertical-align: middle">업태3</td>
+																<td class="py-1" style="vertical-align: middle">사용중</td>
+																<td class="py-1" style="vertical-align: middle">2018-02-22</td>
 															</tr>
 														</tbody>
 													</table>
-
-
 												</div>
 											</div>
 
-											<div class="tab-pane fade p-6" id="pills-html-1"
+											<div class="tab-pane fade p-4" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
 												<!-- 검색창 시작 -->      
 			                                	<div class="input-group">
@@ -401,12 +398,12 @@
 													<table class="table  bg-white text-dark center ass2 table-striped">
 														<thead>
 															<tr class="text-white table-bordered tap">
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">판매단가</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">사용상태</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">구매단가</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">판매단가</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
 															</tr>
 														</thead>
 														
