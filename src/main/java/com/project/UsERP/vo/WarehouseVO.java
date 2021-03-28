@@ -30,6 +30,4 @@ public class WarehouseVO {
 		this.ware_location = ware_location;
 	}
 	
-	
-
 }
