@@ -277,7 +277,7 @@ function warehouseadd() {
 								<div class="tab-content bg-lighter" id="pills-tabContent-1">
 									
 									<div class="tab-pane fade p-4 show active"
-										id="pills-result-1" role="tabpanel"
+										id="pills-result-1" role="tabpanel" 
 										aria-labelledby="pills-result-tab-1">
 										<!-- 숨겨진 페이지 -->
 										<div class="col">

@@ -108,7 +108,7 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/salesRelStatus">출고 현황</a>
 					</li>
-				</ul>
+				</ul> 
 			</li>
 			<!-- 판매 관리 종료 -->
 			
