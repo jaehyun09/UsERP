@@ -8,14 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.project.UsERP.persistence.LogisticsDAOImpl;
+import com.project.UsERP.persistence.LogisticsDAO;
+import com.project.UsERP.vo.StockOrderVO;
 import com.project.UsERP.vo.WarehouseVO;
 
 @Service
 public class LogisticsServiceImpl implements LogisticsService {
 
 	@Autowired
-	LogisticsDAOImpl dao;
+	LogisticsDAO dao;
 
 	// 창고 등록
 	@Override
@@ -50,7 +51,7 @@ public class LogisticsServiceImpl implements LogisticsService {
 		
 		model.addAttribute("warehouseList", list);
 	}
-
+	
 	// 창고 상세 목록
 	@Override
 	public void warehouseDetail(HttpServletRequest req, Model model) {
@@ -61,6 +62,26 @@ public class LogisticsServiceImpl implements LogisticsService {
 		model.addAttribute("wareDetailVo", vo);
 	}
 	
-	
+	//전표관리
+	@Override
+	public void logStatementList(HttpServletRequest req, Model model) {
+		
+		//입고내역 미승인
+		List<StockOrderVO> SIlist1 = dao.stockInOrder1();
+		
+		//입고내역 승인
+		List<StockOrderVO> SIlist2 = dao.stockInOrder2();
+		
+		//출고내역 미승인
+		List<StockOrderVO> SOlist1 = dao.stockOutOrder1();
+		
+		//출고내역 승인
+		List<StockOrderVO> SOlist2 = dao.stockOutOrder2();
+		
+		model.addAttribute("SIlist1", SIlist1);
+		model.addAttribute("SOlist1", SOlist1);
+		model.addAttribute("SIlist2", SIlist2);
+		model.addAttribute("SOlist2", SOlist2);
+	}
 	
 }

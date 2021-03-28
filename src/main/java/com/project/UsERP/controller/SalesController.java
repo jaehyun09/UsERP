@@ -4,9 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.UsERP.serverce.SalesServiceImpl;
 
 // 판매 관리
 @Controller
@@ -14,30 +17,19 @@ public class SalesController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SalesController.class);
 	
+	//최유성
+	@Autowired
+	SalesServiceImpl salesService;
+	
 	// 기초 등록 
 	@RequestMapping("/salesBasicReg")
 	public String salesBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록 ");
 		
+		salesService.salesBasicReg(req, model);
+		
 		return "sales/salesBasicReg";
 	}
-	
-	// 리액트 거래처 등록 
-	@RequestMapping("/clientadd")
-	public String clientadd(HttpServletRequest req, Model model) {
-		logger.info("url: 리액트 거래처 관리");
-			
-		return "sales/client";
-	}
-	
-	// 리액트 상품 등록 
-	@RequestMapping("/productadd")
-	public String accountadd(HttpServletRequest req, Model model) {
-		logger.info("url: 리액트 상품 관리");
-			
-		return "sales/product";
-	}
-			
 	
 	// 재고 현황
 	@RequestMapping("/salesInvenStatus")

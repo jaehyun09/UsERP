@@ -127,7 +127,7 @@
 				<!-- 중메뉴 : 구매 관리 -->
 <!-- b -->		<ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
 <!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/salesBasicReg">기초 등록</a>
+						<a class="side-nav-menu-link ass2" href="${path}/purBasicReg">기초 등록</a>
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/purInvenStatus">재고 현황</a>

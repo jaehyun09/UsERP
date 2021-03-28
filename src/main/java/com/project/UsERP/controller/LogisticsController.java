@@ -9,16 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.UsERP.serverce.LogisticsServiceImpl;
+import com.project.UsERP.serverce.LogisticsService;
 
 // 물류 관리
 @Controller
 public class LogisticsController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LogisticsController.class);
-	  
+	
 	@Autowired
-	LogisticsServiceImpl service;
+	LogisticsService service;
 	
 	// 기초 코드
 	@RequestMapping("/logBasicReg")
@@ -40,6 +40,8 @@ public class LogisticsController {
 	@RequestMapping("/logStatementList")
 	public String logStatementList(HttpServletRequest req, Model model) {
 		logger.info("url: 전표 관리");
+		
+		service.logStatementList(req, model);
 		  
 		return "logistics/logStatementList";
 	}

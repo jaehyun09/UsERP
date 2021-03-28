@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 public interface LogisticsService {
+	
+	//전표 관리
+	public void logStatementList(HttpServletRequest req, Model model);
 
 	// 창고 등록
 	public void insertWarehouse(HttpServletRequest req, Model model);

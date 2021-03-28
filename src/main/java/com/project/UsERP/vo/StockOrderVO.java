@@ -1,13 +1,13 @@
 package com.project.UsERP.vo;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class StockOrderVO {
 	
 	private int order_code;				// 재고전표번호
 	private String order_type;			// 주문형태
-	private DATE order_reg_date;		// 등록일자
-	private DATE order_update_date;		// 수정일자
+	private Date order_reg_date;		// 등록일자
+	private Date order_update_date;		// 수정일자
 	private int order_state;			// 재고상태
 	private int comp_code;				// 거래처코드
 	private int ware_code;				// 창고번호
@@ -21,6 +21,22 @@ public class StockOrderVO {
 	StockInOrderVO stockInOrder;
 	StockOutOrderVO stockOutOrder;
 	
+	public StockInOrderVO getStockInOrder() {
+		return stockInOrder;
+	}
+
+	public void setStockInOrder(StockInOrderVO stockInOrder) {
+		this.stockInOrder = stockInOrder;
+	}
+
+	public StockOutOrderVO getStockOutOrder() {
+		return stockOutOrder;
+	}
+
+	public void setStockOutOrder(StockOutOrderVO stockOutOrder) {
+		this.stockOutOrder = stockOutOrder;
+	}
+
 	public int getComp_code() {
 		return comp_code;
 	}
@@ -45,19 +61,19 @@ public class StockOrderVO {
 		this.order_type = order_type;
 	}
 
-	public DATE getOrder_reg_date() {
+	public Date getOrder_reg_date() {
 		return order_reg_date;
 	}
 
-	public void setOrder_reg_date(DATE order_reg_date) {
+	public void setOrder_reg_date(Date order_reg_date) {
 		this.order_reg_date = order_reg_date;
 	}
 
-	public DATE getOrder_update_date() {
+	public Date getOrder_update_date() {
 		return order_update_date;
 	}
 
-	public void setOrder_update_date(DATE order_update_date) {
+	public void setOrder_update_date(Date order_update_date) {
 		this.order_update_date = order_update_date;
 	}
 
