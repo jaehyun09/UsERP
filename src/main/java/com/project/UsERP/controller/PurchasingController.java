@@ -14,20 +14,20 @@ import com.project.UsERP.serverce.PurchasingServiceImpl;
 // 구매 관리
 @Controller
 public class PurchasingController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(PurchasingController.class);
-	
-	//최유성
+
+	// 최유성
 	@Autowired
 	PurchasingServiceImpl purchasingService;
-	
-	//기초 등록 - 최유성
+
+	// 기초 등록 - 최유성
 	@RequestMapping("/purBasicReg")
 	public String purBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록");
-		
+
 		purchasingService.purBasicReg(req, model);
-	
+
 		return "purchasing/purBasicReg";
 	}
 
@@ -51,25 +51,27 @@ public class PurchasingController {
 	@RequestMapping("/purInvenStatus")
 	public String purInvenStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 현황");
-		
+
 		return "purchasing/purInvenStatus";
 	}
-	
+
 	// 구매 현황
 	@RequestMapping("/purStatus")
 	public String purStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 구매 현황");
+
+		purchasingService.purStatus(req, model);
 		
 		return "purchasing/purStatus";
 	}
-	
+
 	// 입고 현황 - 최유성
 	@RequestMapping("/purRecStatus")
 	public String purRecStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 입고 현황");
-		
+
 		purchasingService.purRecStatus(req, model);
-		
+
 		return "purchasing/purRecStatus";
 	}
 }

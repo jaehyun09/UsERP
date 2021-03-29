@@ -12,5 +12,8 @@ public interface PurchasingService {
 	
 	//입고현황
 	public void purRecStatus(HttpServletRequest req, Model model);
+	
+	//구매현황 ㅈㅎ
+    public void purStatus(HttpServletRequest req, Model model);
 
 }

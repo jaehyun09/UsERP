@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.project.UsERP.persistence.PurchasingDAO;
+import com.project.UsERP.vo.BuyVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.ProductVO;
 
@@ -43,13 +44,22 @@ public class PurchasingServiceImpl implements PurchasingService{
 		
 		//상품 목록
 		//List<StockInOrderVO> SIOlist = dao.();
-				
-		
-		
-		
-		
+
 	}
 	
+	//구매현황 -ㅈㅎ
+   @Override
+   public void purStatus(HttpServletRequest req, Model model) {
+      
+      // 구매내역
+      List<BuyVO> list = dao.buyList();
+      
+      // 판매전표등록
+      
+      model.addAttribute("buy", list);
+         
+   }
+	 
 	
 
 }

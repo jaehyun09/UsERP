@@ -15,5 +15,10 @@
 	<select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
 		select * from product
 	</select>
-
+	
+	<!-- 구매,승인내역 -->
+   <select id = "buyList" resultType = "com.project.UsERP.vo.BuyVO">
+      select * from buy ORDER BY buy_code
+   </select>
+   
 </mapper>

@@ -14,46 +14,47 @@ import com.project.UsERP.serverce.SalesServiceImpl;
 // 판매 관리
 @Controller
 public class SalesController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(SalesController.class);
-	
-	//최유성
+
+	// 최유성
 	@Autowired
 	SalesServiceImpl salesService;
-	
-	// 기초 등록 
+
+	// 기초 등록
 	@RequestMapping("/salesBasicReg")
 	public String salesBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록 ");
-		
-		salesService.salesBasicReg(req, model); 
-		
+
+		salesService.salesBasicReg(req, model);
+
 		return "sales/salesBasicReg";
 	}
-	
-	
+
 	// 재고 현황
 	@RequestMapping("/salesInvenStatus")
 	public String salesInvenStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 현황");
-		
+
 		return "sales/salesInvenStatus";
 	}
-	
-	// 판매 현황
+
+	// 판매 현황 ㅈㅎ
 	@RequestMapping("/salesStatus")
 	public String salesStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 판매 현황");
-		
+
+		salesService.salesStatus(req, model);
+
 		return "sales/salesStatus";
 	}
-	
+
 	// 출고 현황
 	@RequestMapping("/salesRelStatus")
 	public String salesRelStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 출고 현황");
-		
+
 		return "sales/salesRelStatus";
 	}
-	
+
 }

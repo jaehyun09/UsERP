@@ -13,8 +13,8 @@ public interface SalesService {
 	//출고현황
 	public void salesRecStatus(HttpServletRequest req, Model model);
 	
-	
-	
+	//판매현황
+   public void salesStatus(HttpServletRequest req, Model model);
 	
 	
 	
