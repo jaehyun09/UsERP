@@ -318,6 +318,7 @@ function warehouseadd() {
 													</div>
 												<br><br><br>
 											</div>
+											
 										</div>
 										<!-- 숨겨진 페이지 종료 -->
 										<table class="table  bg-white text-dark center ass2 table-striped">
@@ -334,8 +335,8 @@ function warehouseadd() {
 												<tr>
 													<td class="py-3 middle">
 													<a class="btn" data-toggle="collapse"
-														href="#multiCollapseExample1" role="button"
-														aria-expanded="false" aria-controls="multiCollapseExample1">${houseVo.ware_code}
+														href="'#'+${houseVo.ware_code}" role="button"
+														aria-expanded="false" aria-controls="${houseVo.ware_code}">${houseVo.ware_code}
 														</a></td>
 													<td class="py-3 middle">${houseVo.ware_name}</td>
 													<td class="py-3 middle">${houseVo.ware_location}</td>
@@ -370,5 +371,4 @@ function warehouseadd() {
 <script src="${project}js/graindashboard.vendor.js"></script>
 
 </body>
->>>>>>> origin/master
 </html>

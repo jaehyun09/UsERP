@@ -15,9 +15,43 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    <script type="text/javascript">
+    function compSearchList() {
+    	
+    	$.ajax({
+    		url: "compSearchList?${_csrf.parameterName}=${_csrf.token}&compKeyword="+$('#compKeyword').val(),
+    		type: 'GET',
+    		dataType: 'text',
+    		success: function(result) {
+    			$('#compList').html(result);
+    		},
+    		error: function() {
+    			alert('오류');
+    		}
+    		
+    	});
+    }
+    
+    function proSearchList() {
+    	
+    	$.ajax({
+    		url: "proSearchList?${_csrf.parameterName}=${_csrf.token}&proKeyword="+$('#proKeyword').val(),
+    		type: 'GET',
+    		dataType: 'text',
+    		success: function(result) {
+    			$('#proList').html(result);
+    		},
+    		error: function() {
+    			alert('오류');
+    		}
+    		
+    	});
+    }
+    
+    </script>
 </head>
 
-<body class="has-sidebar has-fixed-sidebar-and-header">
+<body class="has-sidebar has-fixed-sidebar-and-header" onload="compSearchList()">
 
 <%@ include file = "../common/header.jsp" %> 
 <main class="main">
@@ -246,13 +280,13 @@
 											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light " ><a
 												class="nav-link d-flex align-items-center py-2 px-3 active"
 												id="pills-result-tab-1" data-toggle="pill"
-												href="#pills-result-1" role="tab"
+												href="#pills-result-1" onclick="compSearchList()" role="tab"
 												aria-controls="pills-result-1" aria-selected="true"> 거래처
 													조회</a></li>
 											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
 												class="nav-link d-flex align-items-center py-2 px-3"
 												id="pills-html-tab-1" data-toggle="pill"
-												href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+												href="#pills-html-1" onclick="proSearchList()" role="tab" aria-controls="pills-html-1"
 												aria-selected="false">상품 조회 </a></li>
 										</ul>
 										<!-- End Nav Classic -->
@@ -267,11 +301,14 @@
 				                                	<div class="input-group-append">
 				                                    <i class="gd-search icon-text icon-text-sm"></i>
 				                                  	</div>
-				                                  	<input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
+				                                  	<input class="form-control form-control-icon-text" id="compKeyword" name="compKeyword" placeholder="거래처코드/거래처명 검색" type="text" >
 				                                </div>
 				                                <br>
 				                                <!-- 검색창 끝 --> 
-												<div class="row">
+				                                
+												<div id="compList"></div>
+												
+												<%-- <div class="row">
 													<div class="col">
 														<div class="collapse multi-collapse"
 															id="multiCollapseExample1">
@@ -325,76 +362,62 @@
 														<thead>
 															<tr class="text-white table-bordered tap">
 																<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처번호</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">분류</th>
 																<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
 																<th class="font-weight-semi-bold border-top-0 py-3 con2">대표자명</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 con2">업태</th>
-																<th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">사업자등록번호</th>
+																<th class="font-weight-semi-bold border-top-0 py-3 con2">업종코드</th>
 																<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
 															</tr>
 														</thead>
 														<tbody>
+														<c:forEach var="complist" items="${complist}">
 															<tr>
-																<td class="py-1" style="vertical-align: middle">10</td>
+																<td class="py-1" style="vertical-align: middle">${complist.comp_code}</td>
+																<c:choose>
+																	<c:when test="${complist.comp_use_state == 0}">
+																		<td class="py-1" style="vertical-align: middle">판매거래처</td>
+																	</c:when>
+																	<c:when test="${complist.comp_use_state == 1}">
+																		<td class="py-1" style="vertical-align: middle">구매거래처</td>
+																	</c:when>
+																</c:choose>
 																<td class="py-1" style="vertical-align: middle">
 																	<p>
 																		<a class="btn" data-toggle="collapse"
 																			href="#multiCollapseExample1" role="button"
 																			aria-expanded="false"
-																			aria-controls="multiCollapseExample1">거래처명1</a>
+																			aria-controls="multiCollapseExample1">${complist.comp_name}</a>
 																	</p>
 																</td>
-																<td class="py-1" style="vertical-align: middle">최유성</td>
-																<td class="py-1" style="vertical-align: middle">업태1</td>
-																<td class="py-1" style="vertical-align: middle">사용중</td>
-																<td class="py-1" style="vertical-align: middle">2017-08-21</td>
-															</tr>
-															<tr>
-																<td class="py-1" style="vertical-align: middle">11</td>
+																<td class="py-1" style="vertical-align: middle">${complist.comp_ceo_name}</td>
+																<td class="py-1" style="vertical-align: middle">${complist.comp_reg_no}</td>
+																<td class="py-1" style="vertical-align: middle">${complist.comp_biz_reg_no}</td>
 																<td class="py-1" style="vertical-align: middle">
-																	<p>
-																		<a class="btn" data-toggle="collapse"
-																			href="#multiCollapseExample1" role="button"
-																			aria-expanded="false"
-																			aria-controls="multiCollapseExample1">거래처명2</a>
-																	</p>
+																	<fmt:formatDate pattern="yyyy-MM-dd" value="${complist.comp_write_reg_date}"/>
 																</td>
-																<td class="py-1" style="vertical-align: middle">조명재</td>
-																<td class="py-1" style="vertical-align: middle">업태2</td>
-																<td class="py-1" style="vertical-align: middle">사용중</td>
-																<td class="py-1" style="vertical-align: middle">2018-01-01</td>
 															</tr>
-															<tr>
-																<td class="py-1" style="vertical-align: middle">12</td>
-																<td class="py-1">
-																	<p>
-																		<a class="btn" data-toggle="collapse"
-																			href="#multiCollapseExample1" role="button"
-																			aria-expanded="false"
-																			aria-controls="multiCollapseExample1">거래처명3</a>
-																	</p>
-																</td>
-																<td class="py-1" style="vertical-align: middle">김은희</td>
-																<td class="py-1" style="vertical-align: middle">업태3</td>
-																<td class="py-1" style="vertical-align: middle">사용중</td>
-																<td class="py-1" style="vertical-align: middle">2018-02-22</td>
-															</tr>
+														</c:forEach>
 														</tbody>
 													</table>
-												</div>
+												</div> --%>
 											</div>
 
 											<div class="tab-pane fade p-4" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
-												<!-- 검색창 시작 -->      
+												<!-- 검색창 시작 -->
 			                                	<div class="input-group">
 				                                	<div class="input-group-append">
 				                                    <i class="gd-search icon-text icon-text-sm"></i>
 				                                  	</div>
-				                                  	<input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" >
+				                                  	<input class="form-control form-control-icon-text" id="proKeyword" name="proKeyword" placeholder="상품코드/상품명 검색" type="text" >
 				                                </div>
 				                                <br>
-				                                <!-- 검색창 끝 --> 
-												<div class="row">
+				                                <!-- 검색창 끝 -->
+				                                
+				                                <div id="proList"></div>
+				                                
+												<%-- <div class="row">
 													<table class="table  bg-white text-dark center ass2 table-striped">
 														<thead>
 															<tr class="text-white table-bordered tap">
@@ -408,29 +431,72 @@
 														</thead>
 														
 														<tbody>
+														<c:forEach var="productList" items="${prolist}">
 															<tr>
-																<td class="py-3">100001</td>
-																<td class="py-3">상품명1</td>
-																<td class="py-3">10000</td>
-																<td class="py-3">15000</td>
-																<td class="py-3">사용중</td>
-																<td class="py-3">2017-08-30</td>
+																<td class="py-3">${productList.pro_code}</td>
+																<td class="py-3">${productList.pro_name}</td>
+																<td class="py-3">${productList.pro_purchase_unit_price}</td>
+																<td class="py-3">${productList.pro_sale_unit_price}</td>
+																<c:choose>
+																	<c:when test="${productList.pro_use_state == 1}">
+																		<td class="py-3">사용중</td>
+																	</c:when>
+																	<c:when test="${productList.pro_use_state == 0}">
+																		<td class="py-3">사용중지</td>
+																	</c:when>
+																</c:choose>
+																<td class="py-3">
+																	<fmt:formatDate pattern="yyyy-MM-dd" value="${productList.pro_reg_date}"/>
+																</td>
+																
 															</tr>
-															<tr>
-																<td class="py-3">100001</td>
-																<td class="py-3">상품명1</td>
-																<td class="py-3">10000</td>
-																<td class="py-3">15000</td>
-																<td class="py-3">사용중</td>
-																<td class="py-3">2017-08-30</td>
-															</tr>
+														</c:forEach>
 														</tbody>
 													</table>
-												</div>
+												</div> --%>
 											</div>
 											
 										</div>
 										<!-- End Tab Content -->
+				                       <%--  <div class="card-footer d-block d-md-flex align-items-center d-print-none">
+				                            <!-- <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div> -->
+				                            <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
+					                            <ul class="pagination justify-content-end font-weight-semi-bold mb-0">
+					                            	
+						                            <c:if test="${cnt > 0}">
+						                            	<c:if test="${startPage > pageBlock}">
+							                            <li class="page-item">				
+							                            	<a id="datatablePaginationPrev" class="page-link" href="logBasicReg?pageNum=${startPage - pageBlock}&keyword=${keyword}" aria-label="Previous">
+							                            	<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
+							                            </li>
+						                            	</c:if>
+						                            	
+						                            	<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						                            		<c:if test="${i == currentPage}">
+									                            <li class="page-item d-none d-md-block">
+									                            	<a id="datatablePaginationPage0" class="page-link active" href="logBasicReg?pageNum=${i}&keyword=${keyword}">${i}</a>
+									                            </li>
+						                            		</c:if>
+						                            		<c:if test="${i != currentPage}">
+									                            <li class="page-item d-none d-md-block">
+									                            	<a id="datatablePaginationPage0" class="page-link" href="logBasicReg?pageNum=${i}&keyword=${keyword}">${i}</a>
+									                            </li>
+						                            		</c:if>
+						                            	</c:forEach>
+							                            
+						                            	<c:if test="${pageCnt > endPage}">
+								                            <li class="page-item">
+								                            	<a id="datatablePaginationNext" class="page-link" href="logBasicReg?pageNum=${startPage + pageBlock}&keyword=${keyword}" aria-label="Next">
+								                            	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
+								                            </li>
+						                            	</c:if>
+					                            	</c:if>
+					                            	
+					                            </ul>
+				                            </nav>
+				                        </div> --%>
+				                        
+				                        
 									</div>
 								</div>
 							</div>
@@ -438,6 +504,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
     
     

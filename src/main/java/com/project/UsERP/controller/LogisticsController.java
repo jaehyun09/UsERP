@@ -25,7 +25,30 @@ public class LogisticsController {
 	public String logBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 코드");
 		
+		//service.companyList(req, model);
+		//service.productList(req, model);
+		
 		return "logistics/logBasicReg";
+	}
+	
+	// 검색 거래처 조회
+	@RequestMapping("/compSearchList")
+	public String compSearchList(HttpServletRequest req, Model model) {
+		logger.info("url : 검색 거래처 조회 ");
+		
+		service.companyList(req, model);
+		
+		return "logistics/ajax/compSearchList";
+	}
+	
+	// 검색 상품 조회
+	@RequestMapping("/proSearchList")
+	public String proSearchList(HttpServletRequest req, Model model) {
+		logger.info("url : 검색 상품 조회 ");
+		
+		service.productList(req, model);
+		
+		return "logistics/ajax/proSearchList";
 	}
 	
 	// 리액트 창고 등록
@@ -93,7 +116,7 @@ public class LogisticsController {
 		
 		service.insertWarehouse(req, model);
 		
-		return "logistics/insertWareAction";
+		return "logistics/logPro/insertWareAction";
 	}
 
 }
