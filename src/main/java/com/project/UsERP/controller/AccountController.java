@@ -20,7 +20,7 @@ public class AccountController {
 	@Autowired
 	AccountServiceImpl accountservice;
 	
-	// 회계 보고서
+	// 강재현 / 이재홍 - 회계 보고서
 	@RequestMapping("/accReport")
 	public String accReport(HttpServletRequest req, Model model) {
 		logger.info("url: 회계 보고서");
@@ -28,7 +28,7 @@ public class AccountController {
 		return "accounting/accReport";
 	}
 
-	// 계좌 관리
+	// 이재홍 - 계좌 관리
 	@RequestMapping("/accBankManagement")
 	public String accBankManagement(HttpServletRequest req, Model model) {
 		logger.info("url: 계좌 관리");
@@ -38,7 +38,7 @@ public class AccountController {
 		return "accounting/accBankManagement";
 	}
 	
-	// 리액트 계좌 등록 
+	// 이재홍 - 리액트 계좌 등록 
 	@RequestMapping("/bankadd")
 	public String bankadd(HttpServletRequest req, Model model) {
 		logger.info("url: 리액트 계좌 등록");
@@ -46,7 +46,7 @@ public class AccountController {
 		return "accounting/ajax/bank";
 	}
 	
-	// 계정 관리
+	// 강재현 - 계정 관리
 	@RequestMapping("/accManagement")
 	public String accManagement(HttpServletRequest req, Model model) {
 		logger.info("url: 계정 관리");
@@ -55,7 +55,7 @@ public class AccountController {
 		return "accounting/accManagement";
 	}
 	
-	// 계정 관리 - 계정 리스트  
+	// 강재현 - 계정 관리 - 계정 리스트  
 	@RequestMapping("/accountlist")
 		public String accountlist(HttpServletRequest req, Model model) {
 		logger.info("url: 계정 관리 - 계정 리스트");
@@ -65,7 +65,7 @@ public class AccountController {
 		return "accounting/ajax/accountList";
 	}
 
-	// 리액트 계정 등록 
+	// 강재현 - 계정 관리 - 리액트 계정 등록 
 	@RequestMapping("/accountadd")
 	public String accountadd(HttpServletRequest req, Model model) {
 		logger.info("url: 리액트 계정 등록");
@@ -73,7 +73,7 @@ public class AccountController {
 		return "accounting/ajax/account";
 	}
 	
-	// 전표 관리
+	// 강재현 - 전표 관리
 	@RequestMapping("/accStatementManagement")
 	public String accStatementManagement(HttpServletRequest req, Model model) {
 		logger.info("url: 전표 관리");
@@ -84,7 +84,7 @@ public class AccountController {
 		return "accounting/accStatementManagement";
 	}
 	
-	// 회계 관리
+	// 강재현 - 전표 관리 - 회계 관리
 	@RequestMapping("/accountinglist")
 	public String accountinglist(HttpServletRequest req, Model model) {
 		logger.info("url: 회계 관리");
@@ -94,7 +94,7 @@ public class AccountController {
 		return "accounting/ajax/accountinglist";
 	}
 	
-	// 급여 관리
+	// 강재현 - 전표 관리 - 급여 관리
 	@RequestMapping("/salarylist")
 	public String salarylist(HttpServletRequest req, Model model) {
 		logger.info("url: 급여 관리");
@@ -104,7 +104,7 @@ public class AccountController {
 		return "accounting/ajax/salarylist";
 	}
 	
-	// 채권채무 현황
+	// 이재홍 - 채권채무 현황
 	@RequestMapping("/accBonddebtManagement")
 	public String accBonddebtManagement(HttpServletRequest req, Model model) {
 		logger.info("url: 채권채무 현황");

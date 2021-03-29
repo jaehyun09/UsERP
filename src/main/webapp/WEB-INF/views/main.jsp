@@ -266,8 +266,7 @@
 								</c:if>
 								<c:if test="${sessionScope.mem_id != null}">
 									
-									<img src="${project}img/userp.png" alt="Graindashboard" style="width: 500px; height: 500px;">
-									
+									login!
 									
 								</c:if>
 							</div>

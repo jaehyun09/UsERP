@@ -20,7 +20,7 @@ public class SalesServiceImpl implements SalesService{
 	@Autowired
 	SalesDAO dao;
 	
-	//기초등록
+	// 최유성 - 기초등록
 	@Override
 	public void salesBasicReg(HttpServletRequest req, Model model) {
 		//판매 거래처 목록
@@ -34,14 +34,14 @@ public class SalesServiceImpl implements SalesService{
 		
 	}
 
-	//출고현황
+	// 최유성 - 출고현황
 	@Override
 	public void salesRecStatus(HttpServletRequest req, Model model) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	//판매현황 -ㅈㅎ
+	// 이재홍 - 판매현황
    @Override
    public void salesStatus(HttpServletRequest req, Model model) {
       

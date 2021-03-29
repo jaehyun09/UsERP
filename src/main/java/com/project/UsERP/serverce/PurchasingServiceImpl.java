@@ -20,7 +20,7 @@ public class PurchasingServiceImpl implements PurchasingService{
 	@Autowired
 	PurchasingDAO dao;
 	
-	//기초등록 - 최유성
+	// 최유성 - 기초등록
 	@Override
 	public void purBasicReg(HttpServletRequest req, Model model) {
 		
@@ -35,7 +35,7 @@ public class PurchasingServiceImpl implements PurchasingService{
 		
 	}
 
-	//입고현황 - 최유성
+	// 최유성 - 입고현황
 	@Override
 	public void purRecStatus(HttpServletRequest req, Model model) {
 		
@@ -47,7 +47,7 @@ public class PurchasingServiceImpl implements PurchasingService{
 
 	}
 	
-	//구매현황 -ㅈㅎ
+	// 이재홍 - 구매현황 
    @Override
    public void purStatus(HttpServletRequest req, Model model) {
       

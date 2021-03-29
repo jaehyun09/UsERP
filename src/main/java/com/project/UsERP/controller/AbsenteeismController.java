@@ -14,7 +14,7 @@ public class AbsenteeismController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AbsenteeismController.class);
 	
-	// 조회
+	// 김은희 - 조회
 	@RequestMapping("/abSelect")
 	public String abSelect(HttpServletRequest req, Model model) {
 		logger.info("url: 조회");
@@ -22,7 +22,7 @@ public class AbsenteeismController {
 		return "absenteeism/abSelect";
 	}
 	
-	// 신청
+	// 김은희 - 신청
 	@RequestMapping("/abApplication")
 	public String abApplication(HttpServletRequest req, Model model) {
 		logger.info("url: 신청");

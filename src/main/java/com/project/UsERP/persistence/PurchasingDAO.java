@@ -8,12 +8,12 @@ import com.project.UsERP.vo.ProductVO;
 
 public interface PurchasingDAO {
 
-	// 구매 거래처 목록
+	// 최유성 - 구매 거래처 목록
 	public List<CompanyVO> purchasingCompanySelect();
 
-	// 상품 목록
+	// 최유성 - 상품 목록
 	public List<ProductVO> purchasingProductSelect();
 
-	// 구매 내역
+	// 이재홍 - 구매 내역
 	public List<BuyVO> buyList();
 }

@@ -18,7 +18,7 @@ public class LogisticsServiceImpl implements LogisticsService {
 	@Autowired
 	LogisticsDAO dao;
 
-	// 창고 등록
+	// 최유성 - 창고 등록
 	@Override
 	public void insertWarehouse(HttpServletRequest req, Model model) {
 		int wareState = Integer.parseInt(req.getParameter("wareState"));
@@ -44,7 +44,7 @@ public class LogisticsServiceImpl implements LogisticsService {
 		
 	}
 
-	// 창고 목록
+	// 김민수 - 창고 목록
 	@Override
 	public void warehouseList(HttpServletRequest req, Model model) {
 		List<WarehouseVO> list = dao.warehouseList();
@@ -52,7 +52,7 @@ public class LogisticsServiceImpl implements LogisticsService {
 		model.addAttribute("warehouseList", list);
 	}
 	
-	// 창고 상세 목록
+	// 김민수 - 창고 상세 목록
 	@Override
 	public void warehouseDetail(HttpServletRequest req, Model model) {
 		int code = Integer.parseInt(req.getParameter("code"));
@@ -62,7 +62,7 @@ public class LogisticsServiceImpl implements LogisticsService {
 		model.addAttribute("wareDetailVo", vo);
 	}
 	
-	//전표관리
+	// 최유성 - 전표관리
 	@Override
 	public void logStatementList(HttpServletRequest req, Model model) {
 		

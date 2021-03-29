@@ -14,7 +14,7 @@ public class UserpController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserpController.class);
 	
-	// 메인화면
+	// 강재현 - 메인화면
 	@RequestMapping("/")
 	public String main(HttpServletRequest req, Model model) {
 		logger.info("url: 메인화면");
@@ -28,7 +28,7 @@ public class UserpController {
 		return "main";
 	}
 	
-	// 로그아웃 
+	// 강재현 - 로그아웃 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		logger.info("url: 로그아웃");
@@ -38,7 +38,7 @@ public class UserpController {
 		return "logout";
 	}
 	
-	// 사원확인
+	// 강재현 - 사원확인
 	@RequestMapping("/signin")
 	public String signin(HttpSession session) {
 		logger.info("url: 사원확인");

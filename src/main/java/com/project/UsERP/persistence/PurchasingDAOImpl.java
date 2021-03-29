@@ -17,21 +17,21 @@ public class PurchasingDAOImpl implements PurchasingDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	// 구매 거래처 목록
+	// 최유성 - 구매 거래처 목록
 	@Override
 	public List<CompanyVO> purchasingCompanySelect() {
 
 		return sqlSession.selectList("com.project.UsERP.persistence.PurchasingDAO.purchasingCompanySelect");
 	}
 
-	// 구매 거래처 목록
+	// 최유성 - 구매 거래처 목록
 	@Override
 	public List<ProductVO> purchasingProductSelect() {
 
 		return sqlSession.selectList("com.project.UsERP.persistence.PurchasingDAO.purchasingProductSelect");
 	}
 
-	// 구매내역 -ㅈㅎ
+	// 이재홍 - 구매내역
 	@Override
 	public List<BuyVO> buyList() {
 

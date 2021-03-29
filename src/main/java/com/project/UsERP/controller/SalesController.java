@@ -17,11 +17,10 @@ public class SalesController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SalesController.class);
 
-	// 최유성
 	@Autowired
 	SalesServiceImpl salesService;
 
-	// 기초 등록
+	// 최유성 - 기초 등록
 	@RequestMapping("/salesBasicReg")
 	public String salesBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록 ");
@@ -31,7 +30,7 @@ public class SalesController {
 		return "sales/salesBasicReg";
 	}
 
-	// 재고 현황
+	// 최유성 - 재고 현황
 	@RequestMapping("/salesInvenStatus")
 	public String salesInvenStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 현황");
@@ -39,7 +38,7 @@ public class SalesController {
 		return "sales/salesInvenStatus";
 	}
 
-	// 판매 현황 ㅈㅎ
+	// 이재홍 - 판매 현황 
 	@RequestMapping("/salesStatus")
 	public String salesStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 판매 현황");
@@ -49,7 +48,7 @@ public class SalesController {
 		return "sales/salesStatus";
 	}
 
-	// 출고 현황
+	// 최유성 - 출고 현황
 	@RequestMapping("/salesRelStatus")
 	public String salesRelStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 출고 현황");

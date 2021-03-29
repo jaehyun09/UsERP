@@ -20,7 +20,7 @@ public class LogisticsController {
 	@Autowired
 	LogisticsService service;
 	
-	// 기초 코드
+	// 김민수 - 기초 코드
 	@RequestMapping("/logBasicReg")
 	public String logBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 코드");
@@ -28,7 +28,7 @@ public class LogisticsController {
 		return "logistics/logBasicReg";
 	}
 	
-	// 리액트 창고 등록
+	// 김민수 - 창고 관리 - 리액트 창고 등록
 	@RequestMapping("/warehouseadd")
 	public String codeadd(HttpServletRequest req, Model model) {
 		logger.info("url: 리액트 창고 등록");
@@ -36,7 +36,7 @@ public class LogisticsController {
 		return "logistics/warehouse";
 	}
 	  
-	// 전표 관리
+	// 최유성 - 전표 관리
 	@RequestMapping("/logStatementList")
 	public String logStatementList(HttpServletRequest req, Model model) {
 		logger.info("url: 전표 관리");
@@ -46,7 +46,7 @@ public class LogisticsController {
 		return "logistics/logStatementList";
 	}
 	  
-	// 재고 현황
+	// 김민수 - 재고 현황
 	@RequestMapping("/logInvenStatus")
 	public String logInvenStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 현황");
@@ -54,7 +54,7 @@ public class LogisticsController {
 		return "logistics/logInvenStatus";
 	}
 	  
-	// 재고 이동
+	// 김민수 - 재고 이동
 	@RequestMapping("/logMoveWarehouse")
 	public String logMoveWarehouse(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 이동");
@@ -62,7 +62,7 @@ public class LogisticsController {
 		return "logistics/logMoveWarehouse";
 	}
 	  
-	// 재고 조정
+	// 김민수 - 재고 조정
 	@RequestMapping("/logInvenAdjustment")
 	public String logInvenAdjustment(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 조정");
@@ -70,7 +70,7 @@ public class LogisticsController {
 		return "logistics/logInvenAdjustment";
 	}
 	  
-	// 재고 수불부
+	// 김민수 - 재고 수불부
 	@RequestMapping("/logInvenSupply")
 	public String logInvenSupply(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 수불부");
@@ -78,7 +78,7 @@ public class LogisticsController {
 		return "logistics/logInvenSupply";
 	}
 	        
-	// 창고 현황
+	// 김민수 - 창고 현황
 	@RequestMapping("/logWarehouseList")
 	public String logWarehouseList(HttpServletRequest req, Model model) {
 		logger.info("url: 창고 현황");
@@ -88,7 +88,7 @@ public class LogisticsController {
 		return "logistics/logWarehouseList";
 	}
 	
-	// 창고 등록
+	// 김민수 - 창고 현황 - 리액트 창고 등록
 	@RequestMapping("/insertWareAction")
 	public String insertWareAction(HttpServletRequest req, Model model) {
 		logger.info("url: 창고 등록");

@@ -16,21 +16,21 @@ public class PersonnelDAOImpl implements PersonnelDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	// 인사 코드 그룹 조회
+	// 김은희 - 인사 코드 그룹 조회
 	@Override
 	public List<PerCodeGroupVO> perCgList() {
 
 		return sqlSession.selectList("com.project.UsERP.persistence.PersonnelDAO.perCgList");
 	}
 
-	// 인사 코드 조회
+	// 김은희 - 인사 코드 조회
 	@Override
 	public List<PerCodeVO> perCList() {
 
 		return sqlSession.selectList("com.project.UsERP.persistence.PersonnelDAO.perCList");
 	}
 
-	// 부서 조회
+	// 조명재 - 부서 조회
 	@Override
 	public List<DepartmentVO> depList() {
 

@@ -7,13 +7,13 @@ import org.springframework.ui.Model;
 //최유성
 public interface PurchasingService {
 	
-	//기초등록
+	// 최유성 - 기초등록
 	public void purBasicReg(HttpServletRequest req, Model model);
 	
-	//입고현황
+	// 최유성 - 입고현황
 	public void purRecStatus(HttpServletRequest req, Model model);
 	
-	//구매현황 ㅈㅎ
+	// 이재홍 - 구매현황
     public void purStatus(HttpServletRequest req, Model model);
 
 }

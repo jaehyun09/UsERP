@@ -17,11 +17,10 @@ public class PurchasingController {
 
 	private static final Logger logger = LoggerFactory.getLogger(PurchasingController.class);
 
-	// 최유성
 	@Autowired
 	PurchasingServiceImpl purchasingService;
 
-	// 기초 등록 - 최유성
+	// 최유성 - 기초 등록
 	@RequestMapping("/purBasicReg")
 	public String purBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록");
@@ -31,7 +30,7 @@ public class PurchasingController {
 		return "purchasing/purBasicReg";
 	}
 
-	// 리액트 거래처 등록
+	// 최유성 - 기초 등록 - 리액트 거래처 등록
 	@RequestMapping("/clientadd")
 	public String clientadd(HttpServletRequest req, Model model) {
 		logger.info("url: 리액트 거래처 등록");
@@ -39,7 +38,7 @@ public class PurchasingController {
 		return "purchasing/ajax/client";
 	}
 
-	// 리액트 상품 등록
+	// 최유성 - 기초 등록 - 리액트 상품 등록
 	@RequestMapping("/productadd")
 	public String accountadd(HttpServletRequest req, Model model) {
 		logger.info("url: 리액트 상품 등록");
@@ -47,7 +46,7 @@ public class PurchasingController {
 		return "purchasing/ajax/product";
 	}
 
-	// 재고 현황
+	// 최유성 - 재고 현황
 	@RequestMapping("/purInvenStatus")
 	public String purInvenStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 현황");
@@ -55,7 +54,7 @@ public class PurchasingController {
 		return "purchasing/purInvenStatus";
 	}
 
-	// 구매 현황
+	// 이재홍 - 구매 현황
 	@RequestMapping("/purStatus")
 	public String purStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 구매 현황");
@@ -65,7 +64,7 @@ public class PurchasingController {
 		return "purchasing/purStatus";
 	}
 
-	// 입고 현황 - 최유성
+	// 최유성 - 입고 현황
 	@RequestMapping("/purRecStatus")
 	public String purRecStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 입고 현황");
