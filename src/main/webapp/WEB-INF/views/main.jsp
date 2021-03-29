@@ -266,10 +266,7 @@
 								</c:if>
 								<c:if test="${sessionScope.mem_id != null}">
 									
-									
-									
-									로그인 성공
-									
+									<img src="${project}img/userp.png" alt="Graindashboard" style="width: 500px; height: 500px;">
 									
 									
 								</c:if>

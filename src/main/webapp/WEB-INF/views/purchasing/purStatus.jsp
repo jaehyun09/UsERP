@@ -291,7 +291,7 @@
                                                 <td class="py-3 middle">10</td>
                                                 <td class="py-3 middle">강재현</td>
                                                 <td class="py-3 middle">2021-03-27</td>
-                                                <td class="py-3 middle">승인완료</td>
+                                                <td class="py-3 middle">0 전표승인대기중</td>
                                              </tr>
                                              <tr>
                                                 <td class="py-3 middle">11</td>
@@ -301,7 +301,7 @@
                                                 <td class="py-3 middle">20</td>
                                                 <td class="py-3 middle">김민수</td>
                                                 <td class="py-3 middle">2021-03-28</td>
-                                                <td class="py-3 middle">승인불가</td>
+                                                <td class="py-3 middle">1 출고대기중</td>
                                              </tr>
                                              <tr>
                                                 <td class="py-3 middle">12</td>
@@ -311,7 +311,17 @@
                                                 <td class="py-3 middle">30</td>
                                                 <td class="py-3 middle">최유성</td>
                                                 <td class="py-3 middle">2021-03-29</td>
-                                                <td class="py-3 middle">승인대기</td>
+                                                <td class="py-3 middle">2 출고대기중</td>
+                                             </tr>
+                                             <tr>
+                                                <td class="py-3 middle">13</td>
+                                                <td class="py-3 middle">애퓰</td>
+                                                <td class="py-3 middle">퉤</td>
+                                                <td class="py-3 middle">1000000</td>
+                                                <td class="py-3 middle">30</td>
+                                                <td class="py-3 middle">김은희</td>
+                                                <td class="py-3 middle">2021-03-29</td>
+                                                <td class="py-3 middle">3 출고완료</td>
                                              </tr>
                                           </tbody>
                                        </table>
@@ -396,7 +406,7 @@
                                                 <td class="py-3 middle">10</td>
                                                 <td class="py-3 middle">강재현</td>
                                                 <td class="py-3 middle">2021-03-27</td>
-                                                <td class="py-3 middle">승인완료</td>
+                                                <td class="py-3 middle">0 승인대기중</td>
                                              </tr>
                                              <tr>
                                                 <td class="py-3 middle">11</td>
@@ -406,17 +416,7 @@
                                                 <td class="py-3 middle">20</td>
                                                 <td class="py-3 middle">김민수</td>
                                                 <td class="py-3 middle">2021-03-28</td>
-                                                <td class="py-3 middle">승인불가</td>
-                                             </tr>
-                                             <tr>
-                                                <td class="py-3 middle">12</td>
-                                                <td class="py-3 middle">민수네김밥</td>
-                                                <td class="py-3 middle">참치김밥</td>
-                                                <td class="py-3 middle">30000</td>
-                                                <td class="py-3 middle">30</td>
-                                                <td class="py-3 middle">최유성</td>
-                                                <td class="py-3 middle">2021-03-29</td>
-                                                <td class="py-3 middle">승인대기</td>
+                                                <td class="py-3 middle">1 승인완료</td>
                                              </tr>
                                           </tbody>
                                        </table>

@@ -300,10 +300,10 @@ function bankadd() {
 																<td class="py-3">${vo.bank_balance}</td>
 																<td class="py-3">${vo.bank_object}</td>
 																<c:if test="${vo.bank_use_state == 0 }">
-																<td class="py-3">미사용</td>
+																	<td class="py-3">미사용</td>
 																</c:if>
 																<c:if test="${vo.bank_use_state == 1 }">
-																<td class="py-3">사용중</td>
+																	<td class="py-3">사용중</td>
 																</c:if>
 																<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.bank_reg_date}" /></td>
 															</tr>

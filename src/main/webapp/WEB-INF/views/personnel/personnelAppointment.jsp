@@ -338,7 +338,6 @@
 														<tr>
 															<th style="vertical-align: middle"> 사원명 </th>
 															<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
-															<td><button type="button" class="btn btn-outline-info">사원확인</button></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle"> 현재 부서 </th>

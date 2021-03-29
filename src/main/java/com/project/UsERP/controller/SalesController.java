@@ -31,6 +31,7 @@ public class SalesController {
 		return "sales/salesBasicReg";
 	}
 	
+	
 	// 재고 현황
 	@RequestMapping("/salesInvenStatus")
 	public String salesInvenStatus(HttpServletRequest req, Model model) {

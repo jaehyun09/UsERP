@@ -18,15 +18,15 @@
         <div class="navbar-brand-wrapper d-flex align-items-center col-auto">
             <!-- Logo For Mobile View -->
             <a class="navbar-brand navbar-brand-mobile" href="${path}/main">
-                <img class="img-fluid w-100" src="${project}img/logo-mini.png" alt="Graindashboard">
+                <img class="img-fluid w-100" src="${project}img/u_logo.jpeg" alt="Graindashboard" style="width: auto; height: 33px;">
             </a>
             <!-- End Logo For Mobile View -->
 
             <!-- Logo For Desktop View -->
             <a class="navbar-brand navbar-brand-desktop" href="${path}/main">
-                <img class="side-nav-show-on-closed" src="${project}img/logo-mini.png" alt="Graindashboard" style="width: auto; height: 33px;">
-                <img class="side-nav-hide-on-closed" src="${project}img/logo.png" alt="Graindashboard" style="width: auto; height: 33px;">
+                <img class="side-nav-hide-on-closed" src="${project}img/userp.png" alt="Graindashboard" style="width: 150px; height: 50px;">
             </a>
+            
             <!-- End Logo For Desktop View -->
         </div>
 
@@ -90,7 +90,7 @@
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
                         <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
                         <span class="mr-md-2 avatar-placeholder">J</span>
-                        <span class="d-none d-md-block">${sessionScope.mem_id}</span>
+                        <span class="d-none d-md-block">${sessionScope.userName}</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
                     </a>
 

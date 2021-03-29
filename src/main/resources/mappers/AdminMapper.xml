@@ -22,4 +22,13 @@
 	<select id = "readMember" resultType = "com.project.UsERP.vo.EmployeeVO">
 		SELECT * FROM employee WHERE emp_code = #{str_id}
 	</select>
+	
+	<select id="getAuthority" resultType="String">
+		SELECT emp_authority FROM employee WHERE emp_code = #{id}
+	</select>
+	
+	<select id="getUsersInfo" resultType="com.project.UsERP.vo.UserVO">
+		SELECT * FROM employee WHERE emp_code = #{id}
+	</select>
+	
 </mapper>	

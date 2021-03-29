@@ -279,20 +279,23 @@ function productadd() {
                                     id="pills-result-tab-1" data-toggle="pill"
                                     href="#pills-result-1" role="tab"
                                     aria-controls="pills-result-1" aria-selected="false">구매 거래처</a></li>
+                                    
                                  <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
-                                    id="pills-html-tab-1" data-toggle="pill"
-                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+                                    id="pills-html-tab-2" data-toggle="pill"
+                                    href="#pills-html-2" onclick="clientadd()" role="tab" aria-controls="pills-html-2"
                                     aria-selected="false">구매 거래처 등록</a></li>   
+                                    
                                  <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
-                                    id="pills-html-tab-1" data-toggle="pill"
-                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+                                    id="pills-html-tab-3" data-toggle="pill"
+                                    href="#pills-html-3" role="tab" aria-controls="pills-html-3"
                                     aria-selected="false">상품</a></li><!-- 이거 복사해서 테스트1,2 탭 만들었음 -->
+                                    
                                  <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
-                                    id="pills-html-tab-1" data-toggle="pill"
-                                    href="#pills-html-1" role="tab" aria-controls="pills-html-1"
+                                    id="pills-html-tab-4" data-toggle="pill"
+                                    href="#pills-html-4" onclick="productadd()" role="tab" aria-controls="pills-html-4"
                                     aria-selected="false">상품 등록</a></li>   
                               </ul>
                               <!-- End Nav Classic -->
@@ -400,9 +403,12 @@ function productadd() {
                                        </table>
                                     </div>
                                  </div>
-
-                                 <div class="tab-pane fade p-4" id="pills-html-1"
-                                    role="tabpanel" aria-labelledby="pills-html-tab-1">
+								<div class="tab-pane fade p-4" id="pills-html-2"
+                                    role="tabpanel" aria-labelledby="pills-html-tab-2">
+                                    <div id="client"></div>
+                                </div>    
+                                 <div class="tab-pane fade p-4" id="pills-html-3"
+                                    role="tabpanel" aria-labelledby="pills-html-tab-3">
                                     <!-- 검색창 시작 -->      
                                             <div class="input-group">
                                                <div class="input-group-append">
@@ -510,7 +516,10 @@ function productadd() {
 										<!-- 리액트화면으로 등록-->
                                     </div>
                                  </div>
-                                 
+                                 <div class="tab-pane fade p-4" id="pills-html-4"
+                                    role="tabpanel" aria-labelledby="pills-html-tab-4">
+                                    <div id="product"></div>
+                                </div>
                               </div>
                               <!-- End Tab Content -->
                            </div>

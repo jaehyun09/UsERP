@@ -389,7 +389,6 @@
 												</table>
 											</div>
 										</div>
-										<!— End Tab Content —>
 											<div class="card-footer d-block d-md-flex align-items-center d-print-none">
                             <!-- <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div> -->
 

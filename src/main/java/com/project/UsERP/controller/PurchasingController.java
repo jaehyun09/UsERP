@@ -31,6 +31,22 @@ public class PurchasingController {
 		return "purchasing/purBasicReg";
 	}
 
+	// 리액트 계정 등록
+	@RequestMapping("/clientadd")
+	public String clientadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 계정 등록");
+
+		return "purchasing/ajax/client";
+	}
+
+	// 리액트 계정 등록
+	@RequestMapping("/productadd")
+	public String accountadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 계정 등록");
+
+		return "purchasing/ajax/product";
+	}
+
 	// 재고 현황
 	@RequestMapping("/purInvenStatus")
 	public String purInvenStatus(HttpServletRequest req, Model model) {

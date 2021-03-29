@@ -446,16 +446,6 @@
 													<input class="form-control" type="text" value="세션아이디 값으로 들어가는 값" readonly>
 												</td>
 											</tr>
-											<tr>
-												<td class="py-3" colspan="4" style="vertical-align: middle;">
-													<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		등록
-	                                               	</button>&nbsp;&nbsp;&nbsp;
-													<button type="reset" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		재입력
-	                                               	</button>											
-												</td>
-											</tr>
 										</tbody>
 									</table>
                                     </div>
