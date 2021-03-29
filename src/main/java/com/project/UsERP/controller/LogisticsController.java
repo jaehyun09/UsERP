@@ -95,7 +95,7 @@ public class LogisticsController {
 		
 		service.insertWarehouse(req, model);
 		
-		return "logistics/insertWareAction";
+		return "logistics/ajax/insertWareAction";
 	}
 
 }

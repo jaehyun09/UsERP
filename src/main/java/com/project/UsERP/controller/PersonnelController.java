@@ -37,7 +37,7 @@ public class PersonnelController {
       public String codegroupadd(HttpServletRequest req, Model model) {
          logger.info("url: 리액트 인사 코드그룹 등록");
 
-         return "personnel/codegroup";
+         return "personnel/ajax/codegroup";
       }
 
    // 리액트 인사코드 등록
@@ -45,16 +45,16 @@ public class PersonnelController {
    public String codeadd(HttpServletRequest req, Model model) {
       logger.info("url: 리액트 인사코드 등록");
 
-      return "personnel/code";
+      return "personnel/ajax/code";
    }
 
 
-   // 리액트 계좌 등록
+   // 리액트 부서 등록
    @RequestMapping("/departmentadd")
    public String departmentadd(HttpServletRequest req, Model model) {
       logger.info("url: 리액트 부서 등록");
 
-      return "personnel/department";
+      return "personnel/ajax/department";
    }
    
    // 인사 발령
