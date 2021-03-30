@@ -153,11 +153,4 @@ public class EmployeeVO {
 	public void setDepartment(DepartmentVO department) {
 		this.department = department;
 	}
-	public SalaryVO getSalary() {
-		return salary;
-	}
-	public void setSalary(SalaryVO salary) {
-		this.salary = salary;
-	}
-	
 }
