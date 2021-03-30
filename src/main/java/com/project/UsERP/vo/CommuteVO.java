@@ -2,6 +2,7 @@ package com.project.UsERP.vo;
 
 import java.util.Date;
 
+// 출퇴근기록
 public class CommuteVO {
 	
 	private int cm_code;			// 출퇴근코드

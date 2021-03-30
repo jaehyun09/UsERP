@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.UsERP.persistence.HrDAO">
+
+	<resultMap id="hrCodeMap" type="com.project.UsERP.vo.HrCodeVO">
+	      <id     property="hr_code"   column="hr_code" />  
+	      <result property="hr_code_name" column="hr_code_name" />
+	      <result property="hr_state"  column="hr_state" />
+       <association property="hrCodeGroup" javaType="com.project.UsERP.vo.HrCodeGroupVO">
+	      <id      property="hcg_code"   column="hcg_code" />  
+	      <result property="hcg_name" column="hcg_name" />
+	      <result property="hcg_state"  column="hcg_state" />
+       </association> 
+    </resultMap> 
+	
+	<!-- 인사 코드 그룹 조회 -->
+	<select id="hrCgList" resultType="com.project.UsERP.vo.HrCodeGroupVO">
+		SELECT * FROM hr_code_group ORDER BY hcg_code
+	</select>
+	
+	<!-- 인사 코드 조회 -->
+	<select id="hrCList" resultMap="hrCodeMap">
+		SELECT * FROM hr_code ORDER BY hr_code 
+	</select>
+	
+	<!-- 부서 조회 -->
+	<select id="depList" resultType="com.project.UsERP.vo.DepartmentVO">
+		SELECT * FROM department ORDER BY dep_code
+	</select>
+
+</mapper>

@@ -1,0 +1,88 @@
+package com.project.UsERP.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.UsERP.serverce.AdServiceImpl;
+
+// 회계 관리
+@Controller
+public class AdController {
+
+	private static final Logger logger = LoggerFactory.getLogger(AdController.class);
+
+	@Autowired
+	AdServiceImpl adservice;
+	
+	// 기초 등록
+	@RequestMapping("/adBasicReg")
+	public String adBasicReg(HttpServletRequest req, Model model) {
+		logger.info("url: 기초 등록");
+
+		
+		return "ad/adBasicReg";
+	}
+	// 이재홍 : 기초 등록 - 계좌 관리 - 계좌 리스트
+	@RequestMapping("/banklist")
+	public String banklist(HttpServletRequest req, Model model) {
+		logger.info("url: 계정 관리 - 계정 리스트");
+
+		adservice.bankList(req, model);
+
+		return "ad/ajax/banklist";
+	}
+	// 이재홍 : 기초 등록 - 계좌 관리 - 리액트 계좌 등록
+	@RequestMapping("/bankadd")
+	public String bankadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 계좌 등록");
+
+		return "ad/ajax/bank";
+	}
+
+	// 강재현 : 기초 등록 - 계정 관리 - 계정 리스트  
+	@RequestMapping("/accountlist")
+		public String accountlist(HttpServletRequest req, Model model) {
+		logger.info("url: 계정 관리 - 계정 리스트");
+			
+		adservice.accountList(req, model);
+		
+		return "ad/ajax/accountList";
+	}
+
+	// 강재현 : 기초 등록 - 계정 관리 - 리액트 계정 등록 
+	@RequestMapping("/accountadd")
+	public String accountadd(HttpServletRequest req, Model model) {
+		logger.info("url: 리액트 계정 등록");
+			
+		return "ad/ajax/account";
+	}
+
+	// 회계보고서
+	@RequestMapping("/adReport")
+	public String adReport(HttpServletRequest req, Model model) {
+		logger.info("url: 회계 보고서");
+
+		return "ad/adReport";
+	}
+
+	// 전표 관리
+	@RequestMapping("/adStatementManagement")
+	public String adStatementManagement(HttpServletRequest req, Model model) {
+		logger.info("url: 전표 관리");
+
+		// 강재현 : 회계 전표 리스트 
+		adservice.statementList(req, model);
+
+		// 강재현 : 급여 전표 리스트 
+		adservice.salarystatementList(req, model);
+		
+		return "ad/adStatementManagement";
+	}
+
+}

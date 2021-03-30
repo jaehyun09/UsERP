@@ -2,8 +2,7 @@ package com.project.UsERP.vo;
 
 import java.util.Date;
 
-import oracle.sql.DATE;
-
+// 발행이력
 public class AppointHistoryVO {
 	
 	private int ap_code;				// 이력코드
@@ -13,10 +12,10 @@ public class AppointHistoryVO {
 	private String ap_pre_dep;			// 이전부서
 	private String ap_pre_position;		// 이전직급
 	private int emp_code;				// 사원번호
-	private int per_code;				// 인사코드
+	private int hr_code;				// 인사코드
 	private int dep_code;				// 부서코드
 	EmployeeVO employee;
-	PerCodeVO perCode;
+	HrCodeVO hrCode;
 	DepartmentVO department;
 	
 	public int getAp_code() {
@@ -75,14 +74,14 @@ public class AppointHistoryVO {
 		this.emp_code = emp_code;
 	}
 	
-	public int getPer_code() {
-		return per_code;
+	public int getHr_code() {
+		return hr_code;
 	}
-	
-	public void setPer_code(int per_code) {
-		this.per_code = per_code;
+
+	public void setHr_code(int hr_code) {
+		this.hr_code = hr_code;
 	}
-	
+
 	public int getDep_code() {
 		return dep_code;
 	}
@@ -99,14 +98,14 @@ public class AppointHistoryVO {
 		this.employee = employee;
 	}
 	
-	public PerCodeVO getPerCode() {
-		return perCode;
+	public HrCodeVO getHrCode() {
+		return hrCode;
 	}
-	
-	public void setPerCode(PerCodeVO perCode) {
-		this.perCode = perCode;
+
+	public void setHrCode(HrCodeVO hrCode) {
+		this.hrCode = hrCode;
 	}
-	
+
 	public DepartmentVO getDepartment() {
 		return department;
 	}

@@ -2,6 +2,8 @@ package com.project.UsERP.serverce;
 
 import java.io.IOException;
 
+
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +15,6 @@ import org.springframework.security.core.Authentication;
 
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import com.project.UsERP.persistence.AdminDAO;
 import com.project.UsERP.vo.UserVO;
 
 // 로그인이 성공한 경우 자동으로 실행

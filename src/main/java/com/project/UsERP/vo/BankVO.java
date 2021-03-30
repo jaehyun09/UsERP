@@ -2,16 +2,17 @@ package com.project.UsERP.vo;
 
 import java.util.Date;
 
+// 계좌
 public class BankVO {
 	
 	private int bank_code;			// 계좌코드
 	private String bank_name;		// 계좌명
-	private String bank_number;		// 계좌번호
+	private String bank_no;		// 계좌번호
 	private String bank_bank;		// 은행
 	private String bank_balance;	// 잔액
 	private String bank_object;		// 개설목적
-	private int bank_use_state;		// 사용상태
 	private Date bank_reg_date;		// 등록일
+	private int bank_state;			// 상태
 	
 	public String getBank_balance() {
 		return bank_balance;
@@ -37,12 +38,12 @@ public class BankVO {
 		this.bank_name = bank_name;
 	}
 
-	public String getBank_number() {
-		return bank_number;
+	public String getBank_no() {
+		return bank_no;
 	}
 
-	public void setBank_number(String bank_number) {
-		this.bank_number = bank_number;
+	public void setBank_no(String bank_no) {
+		this.bank_no = bank_no;
 	}
 
 	public String getBank_bank() {
@@ -61,20 +62,20 @@ public class BankVO {
 		this.bank_object = bank_object;
 	}
 
-	public int getBank_use_state() {
-		return bank_use_state;
-	}
-
-	public void setBank_use_state(int bank_use_state) {
-		this.bank_use_state = bank_use_state;
-	}
-
 	public Date getBank_reg_date() {
 		return bank_reg_date;
 	}
 
 	public void setBank_reg_date(Date bank_reg_date) {
 		this.bank_reg_date = bank_reg_date;
+	}
+	
+	public int getbank_state() {
+		return bank_state;
+	}
+
+	public void setbank_state(int bank_state) {
+		this.bank_state = bank_state;
 	}
 	
 }
