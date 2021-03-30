@@ -28,6 +28,7 @@ public class LogisticsServiceImpl implements LogisticsService {
 		String warehouseName = req.getParameter("warehouseName");
 		String warehouseLoc = req.getParameter("warehouseLoc");
 		
+		
 		WarehouseVO vo = new WarehouseVO();
 		vo.setWare_name(warehouseName);
 		vo.setWare_location(warehouseLoc);
@@ -46,7 +47,8 @@ public class LogisticsServiceImpl implements LogisticsService {
 		model.addAttribute("wareState", wareState);
 		
 	}
-
+	
+	
 	// 창고 목록
 	@Override
 	public void warehouseList(HttpServletRequest req, Model model) {

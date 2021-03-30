@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file = "../setting.jsp" %> 
+<%@ include file = "../../setting.jsp" %> 
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
@@ -20,7 +20,7 @@
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
 
-<%@ include file = "../common/header.jsp" %> 
+<%@ include file = "../../common/header.jsp" %> 
 <main class="main">
 	<!-- Start Sidebar Nav -->
 	<aside id="sidebar" class="js-custom-scroll side-nav">
@@ -494,7 +494,7 @@
     
 </main>
 
-<%@ include file = "../common/footer.jsp" %> 
+<%@ include file = "../../common/footer.jsp" %> 
 <script src="${project}js/graindashboard.js"></script>
 <script src="${project}js/graindashboard.vendor.js"></script>
 

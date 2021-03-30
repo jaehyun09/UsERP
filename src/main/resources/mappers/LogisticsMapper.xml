@@ -8,20 +8,20 @@
 
 	<!-- 양품창고 등록 -->
 	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
-	INSERT INTO warehouse(ware_code, ware_name, ware_location)
-	VALUES (ware_good_seq.nextval, #{ware_name}, #{ware_location})
+	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
+	VALUES (ware_good_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 불량품창고 등록 -->
 	<insert id="insertBadWare" parameterType="com.project.UsERP.vo.WarehouseVO">
-	INSERT INTO warehouse(ware_code, ware_name, ware_location)
-	VALUES (ware_bad_seq.nextval, #{ware_name}, #{ware_location})
+	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
+	VALUES (ware_bad_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 출고대기창고 등록 -->
 	<insert id="insertWaitWare" parameterType="com.project.UsERP.vo.WarehouseVO">
-	INSERT INTO warehouse(ware_code, ware_name, ware_location)
-	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location})
+	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
+	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 창고 목록 -->

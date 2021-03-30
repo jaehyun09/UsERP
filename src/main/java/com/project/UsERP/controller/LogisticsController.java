@@ -21,14 +21,15 @@ public class LogisticsController {
 	LogisticsServiceImpl service;
 	
 	// 기초 코드
-	@RequestMapping("/logBasicReg")
+	@RequestMapping("/ldBasicReg")
 	public String logBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 코드");
 		
 		//service.companyList(req, model);
 		//service.productList(req, model);
+		service.warehouseList(req, model);
 		
-		return "logistics/logBasicReg";
+		return "ld/ldBasicReg";
 	}
 	
 	// 검색 거래처 조회
@@ -38,7 +39,7 @@ public class LogisticsController {
 		
 		service.companyList(req, model);
 		
-		return "logistics/ajax/compSearchList";
+		return "ld/ajax/compSearchList";
 	}
 	
 	// 검색 상품 조회
@@ -48,7 +49,7 @@ public class LogisticsController {
 		
 		service.productList(req, model);
 		
-		return "logistics/ajax/proSearchList";
+		return "ld/ajax/proSearchList";
 	}
 	
 	// 리액트 창고 등록
@@ -56,67 +57,75 @@ public class LogisticsController {
 	public String codeadd(HttpServletRequest req, Model model) {
 		logger.info("url: 리액트 창고 등록");
 
-		return "logistics/warehouse";
+		return "ld/warehouse";
 	}
 	  
 	// 전표 관리
-	@RequestMapping("/logStatementList")
+	@RequestMapping("/ldStatementManagement")
 	public String logStatementList(HttpServletRequest req, Model model) {
 		logger.info("url: 전표 관리");
 		  
-		return "logistics/logStatementList";
+		return "ld/ldStatementManagement";
+	}
+	
+	// 재고 관리
+	@RequestMapping("/ldInventoryControl")
+	public String logsInventoryControl(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 관리");
+		  
+		return "ld/ldInventoryControl";
 	}
 	  
-	// 재고 현황
+	// 재고 현황 AJAX
 	@RequestMapping("/logInvenStatus")
 	public String logInvenStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 현황");
 		 
-		return "logistics/logInvenStatus";
+		return "ld/ajax/logInvenStatus";
 	}
 	  
-	// 재고 이동
-	@RequestMapping("/logMoveWarehouse")
-	public String logMoveWarehouse(HttpServletRequest req, Model model) {
+	// 재고 이동 AJAX
+	@RequestMapping("/logMoveWareInsert")
+	public String logMoveWareInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 이동");
 		  
-		return "logistics/logMoveWarehouse";
+		return "ld/ajax/logMoveWareInsert";
 	}
 	  
-	// 재고 조정
+	// 재고 조정 AJAX
 	@RequestMapping("/logInvenAdjustment")
 	public String logInvenAdjustment(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 조정");
 		  
-		return "logistics/logInvenAdjustment";
+		return "ld/ajax/logInvenAdjustment";
 	}
 	  
-	// 재고 수불부
+	// 재고 수불부 AJAX
 	@RequestMapping("/logInvenSupply")
 	public String logInvenSupply(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 수불부");
 		 
-		return "logistics/logInvenSupply";
+		return "ld/ajax/logInvenSupply";
 	}
-	        
-	// 창고 현황
-	@RequestMapping("/logWarehouseList")
-	public String logWarehouseList(HttpServletRequest req, Model model) {
-		logger.info("url: 창고 현황");
-		 
-		service.warehouseList(req, model);
-		
-		return "logistics/logWarehouseList";
-	}
-	
-	// 창고 등록
-	@RequestMapping("/insertWareAction")
-	public String insertWareAction(HttpServletRequest req, Model model) {
-		logger.info("url: 창고 등록");
-		
-		service.insertWarehouse(req, model);
-		
-		return "logistics/logPro/insertWareAction";
-	}
+//	        
+//	// 창고 현황
+//	@RequestMapping("/logWarehouseList")
+//	public String logWarehouseList(HttpServletRequest req, Model model) {
+//		logger.info("url: 창고 현황");
+//		 
+//		service.warehouseList(req, model);
+//		
+//		return "logistics/logWarehouseList";
+//	}
+//	
+//	// 창고 등록
+//	@RequestMapping("/insertWareAction")
+//	public String insertWareAction(HttpServletRequest req, Model model) {
+//		logger.info("url: 창고 등록");
+//		
+//		service.insertWarehouse(req, model);
+//		
+//		return "logistics/logPro/insertWareAction";
+//	}
 
 }

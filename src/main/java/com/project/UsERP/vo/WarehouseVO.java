@@ -1,11 +1,21 @@
 package com.project.UsERP.vo;
 
+// 창고목록
 public class WarehouseVO {
 	
 	private int ware_code;			// 창고코드
 	private String ware_name;		// 창고명
-	private String ware_location;	// 창고위치
+	private String ware_location;	// 창고주소
+	private int ware_state;			// 상태
 	
+	public int getWare_state() {
+		return ware_state;
+	}
+
+	public void setWare_state(int ware_state) {
+		this.ware_state = ware_state;
+	}
+
 	public int getWare_code() {
 		return ware_code;
 	}

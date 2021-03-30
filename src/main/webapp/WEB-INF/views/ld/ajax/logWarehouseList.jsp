@@ -2,11 +2,26 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file = "../setting.jsp" %> 
+<%@ include file = "../../setting.jsp" %> 
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
-
+<script type="text/javascript">
+function warehouseadd() {
+	$.ajax({
+      // sendRequest(콜백함수명, url, method, params)
+      url: "warehouseadd", // 전송 페이지 => 컨트롤러 "basic_next"
+      type: 'GET', // 전송방식('GET', 'POST') - method
+      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+         $('#warehouse').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -20,9 +35,9 @@
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
 
-<%@ include file = "../common/header.jsp" %> 
+<%@ include file = "../../common/header.jsp" %> 
 <main class="main">
-<!-- Start Sidebar Nav -->
+	<!-- Start Sidebar Nav -->
 	<aside id="sidebar" class="js-custom-scroll side-nav">
 		<ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
 			<!-- 대메뉴 : 인사 관리 -->
@@ -108,7 +123,7 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/salesRelStatus">출고 현황</a>
 					</li>
-				</ul> 
+				</ul>
 			</li>
 			<!-- 판매 관리 종료 -->
 			
@@ -163,7 +178,7 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/logStatementList">전표 관리</a>
 					</li>
-					<li class="side-nav-menu-item active">
+					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/logInvenStatus">재고 현황</a>
 					</li>
 					<li class="side-nav-menu-item">
@@ -175,7 +190,7 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/logInvenSupply">재고 수불부</a>
 					</li>
-					<li class="side-nav-menu-item">
+					<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/logWarehouseList">창고 현황</a>
 					</li>
 				</ul>
@@ -219,214 +234,140 @@
 		</ul>
 	</aside>
 	<!-- End Sidebar Nav -->
-	
-	<div class="content">
-			<div class="py-4 px-3 px-md-4">
-				<div class="card">
-					<div class="card-body">
-					<nav aria-label="breadcrumb">
+
+<!-- 창고 리스트 -->
+ <div class="content">
+	<div class="py-4 px-3 px-md-4">
+		<div class="card">
+			<div class="card-body">
+			<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="#">물류 관리</a></li>
-								<li class="breadcrumb-item active" aria-current="page">재고 현황</li>
+								<li class="breadcrumb-item active" aria-current="page">창고 현황</li>
 							</ol>
 						</nav>
-						<div class="row">
+				<div class="row">
 
-							<div class="col-xl-12">
+					<div class="col-xl-12">
 
-								<div id="example" class="mb-9">
-									<h4 class="h1 text-dark"><b>
-										재고 현황 </b><a class="anchorjs-link" href="#example"
+						<div id="example" class="mb-9">
+							<h4 class="h1 text-dark"><b>
+										창고 현황</b><a class="anchorjs-link" href="#example"
 											aria-label="Anchor" data-anchorjs-icon="#"></a>
-									</h4>
-									<div class="mb-3">
-										<!-- Nav Classic -->
-										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
-											id="pills-tab-1" role="tablist">
-											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light" ><a
-												class="nav-link d-flex align-items-center py-2 px-3 active"
-												id="pills-result-tab-1" data-toggle="pill"
-												href="#pills-result-1" role="tab"
-												aria-controls="pills-result-1" aria-selected="true">재고현황</a></li>
-										</ul>
-										<!-- End Nav Classic -->
+							</h4>
+							<div class="mb-3">
+								<!-- Nav Classic -->
+								<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
+									id="pills-tab-1" role="tablist">
+									<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
+										class="nav-link d-flex align-items-center py-2 px-3 active"
+										id="pills-result-tab-1" data-toggle="pill"
+										href="#pills-result-1" role="tab"
+										aria-controls="pills-result-1" aria-selected="true">
+											창고 목록</a></li>
+									<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
+										class="nav-link d-flex align-items-center py-2 px-3"
+										id="pills-html-tab-1" data-toggle="pill"
+										href="#pills-html-1" onclick="warehouseadd()" role="tab" aria-controls="pills-html-1"
+										aria-selected="false">창고 등록</a></li>
+								</ul>
+								<!-- End Nav Classic -->
 
-										<!-- Tab Content -->
-										<div class="tab-content bg-lighter" id="pills-tabContent-1">
-											<div class="tab-pane fade p-4 show active"
-												id="pills-result-1" role="tabpanel"
-												aria-labelledby="pills-result-tab-1">
-												<table class="table  bg-white text-dark center ass2 table-striped">
-												
-													<!-- 체크박스 시작 -->
-													<div class="form-check form-check-inline">
-													    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-													    <label class="form-check-label" for="inlineCheckbox1">양품창고</label>
+								<!-- Tab Content -->
+								<div class="tab-content bg-lighter" id="pills-tabContent-1">
+									
+									<div class="tab-pane fade p-4 show active"
+										id="pills-result-1" role="tabpanel" 
+										aria-labelledby="pills-result-tab-1">
+										<!-- 숨겨진 페이지 -->
+										<div class="col">
+											<div class="collapse multi-collapse"
+												id="multiCollapseExample1"> 
+												<div class="bg-white p-4">
+													<table class="table table-bordered bg-white text-dark ass2 center th20">
+														<tr class="text-white con center">
+															<th colspan="2">창고 목록 수정</th>
+														</tr>
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고종류</th>
+															<td>
+																<select class="custom-select custom-select-lg">
+			   														<option>양품창고</option>
+			   														<option>불량품창고</option>
+			   														<option>출고대기창고</option>
+			 													</select>
+															</td>
+														</tr>
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고명</th>
+															<td>
+																<input class="form-control form-control-icon-text" placeholder="창고명" type="text" value="창고명">
+															</td>
+														</tr>
+														<tr>
+															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고주소</th>
+															<td>
+																<input class="form-control form-control-icon-text" placeholder="창고주소" type="text" value="창고주소">
+															</td>
+														</tr>
+													</table>
+														<div align=center>
+					                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+					                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+					                                    </div>
 													</div>
-													<div class="form-check form-check-inline">
-													    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-													    <label class="form-check-label" for="inlineCheckbox2">불량품창고</label>
-												    </div>
-												    <div class="form-check form-check-inline">
-													    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-													    <label class="form-check-label" for="inlineCheckbox1">출고대기창고</label>
-													</div>
-													<!-- 체크박스 끝 -->
-													
-													<!-- 검색창 시작 -->      
-				                                	<div class="input-group">
-					                                	<div class="input-group-append">
-					                                    <i class="gd-search icon-text icon-text-sm"></i>
-					                                  	</div>
-					                                  	<input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" >
-					                                </div>
-					                                <br>
-					                                <!-- 검색창 끝 -->
-													<thead>
-														<tr class="text-white table-bordered tap">
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">창고이름</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">구매단가</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">판매단가</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">재고수량</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일자</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td class="py-3">100001</td>
-															<td class="py-3">상품명1</td>
-															<td class="py-3">양품창고</td>
-															<td class="py-3">10000</td>
-															<td class="py-3">15000</td>
-															<td class="py-3">100</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-02</td>
-														</tr>
-														<tr>
-															<td class="py-3">100001</td>
-															<td class="py-3">상품명1</td>
-															<td class="py-3">불량품창고</td>
-															<td class="py-3">10000</td>
-															<td class="py-3">15000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-02</td>
-														</tr>
-														<tr>
-															<td class="py-3">100001</td>
-															<td class="py-3">상품명1</td>
-															<td class="py-3">출고대기창고</td>
-															<td class="py-3">10000</td>
-															<td class="py-3">15000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-02</td>
-														</tr>
-														<tr>
-															<td class="py-3">100002</td>
-															<td class="py-3">상품명2</td>
-															<td class="py-3">양품창고</td>
-															<td class="py-3">9000</td>
-															<td class="py-3">15000</td>
-															<td class="py-3">100</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-15</td>
-														</tr>
-														<tr>
-															<td class="py-3">100002</td>
-															<td class="py-3">상품명2</td>
-															<td class="py-3">불량품창고</td>
-															<td class="py-3">9000</td>
-															<td class="py-3">13000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-15</td>
-														</tr>
-														<tr>
-															<td class="py-3">100002</td>
-															<td class="py-3">상품명2</td>
-															<td class="py-3">출고대기창고</td>
-															<td class="py-3">9000</td>
-															<td class="py-3">13000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-15</td>
-														</tr>
-														<tr>
-															<td class="py-3">100003</td>
-															<td class="py-3">상품명3</td>
-															<td class="py-3">양품창고</td>
-															<td class="py-3">22000</td>
-															<td class="py-3">30000</td>
-															<td class="py-3">100</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-21</td>
-														</tr>
-														<tr>
-															<td class="py-3">100003</td>
-															<td class="py-3">상품명3</td>
-															<td class="py-3">불량품창고</td>
-															<td class="py-3">22000</td>
-															<td class="py-3">30000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-21</td>
-														</tr>
-														<tr>
-															<td class="py-3">100003</td>
-															<td class="py-3">상품명3</td>
-															<td class="py-3">출고대기창고</td>
-															<td class="py-3">22000</td>
-															<td class="py-3">30000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-21</td>
-														</tr>
-													</tbody>
-												</table>
+												<br><br><br>
 											</div>
+											
 										</div>
-										<!— End Tab Content —>
-											<div class="card-footer d-block d-md-flex align-items-center d-print-none">
-                            <!-- <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div> -->
-
-                            <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
-	                            <ul class="pagination justify-content-end font-weight-semi-bold mb-0">				
-		                            <li class="page-item">				
-		                            	<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous">
-		                            	<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
-		                            </li>
-		                            <li class="page-item d-none d-md-block">
-		                            	<a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a>
-		                            </li>
-		                            <li class="page-item d-none d-md-block">
-		                            	<a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li>
-		                            <li class="page-item d-none d-md-block">
-		                            <a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a>
-		                            </li>
-		                            <li class="page-item">
-		                            	<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next">
-		                            	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
-		                            </li>				
-	                            </ul>
-                            </nav>
-                        </div>
+										<!-- 숨겨진 페이지 종료 -->
+										<table class="table  bg-white text-dark center ass2 table-striped">
+											<thead>
+												<tr class="text-white tap">
+													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고ID</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고주소</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 h4">상태</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="houseVo" items="${warehouseList}">
+												<tr>
+													<td class="py-3 middle">
+													<a class="btn" data-toggle="collapse"
+														href="'#'+${houseVo.ware_code}" role="button"
+														aria-expanded="false" aria-controls="${houseVo.ware_code}">${houseVo.ware_code}
+														</a></td>
+													<td class="py-3 middle">${houseVo.ware_name}</td>
+													<td class="py-3 middle">${houseVo.ware_location}</td>
+													<td class="py-3 middle">${houseVo.ware_state}</td>
+												</tr>
+												</c:forEach>
+											</tbody>
+										</table>
 									</div>
+									
+									<!-- 신규 등록 -->
+									<div class="tab-pane fade p-4" id="pills-html-1"
+										role="tabpanel" aria-labelledby="pills-html-tab-1">
+										<div id="warehouse"></div>
+									</div>
+									<!-- 신규 등록 끝-->
 								</div>
+								
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-    
+	</div>
+</div>
+<!-- 창고 리스트 끝 -->    
     
 </main>
 
-<%@ include file = "../common/footer.jsp" %> 
+<%@ include file = "../../common/footer.jsp" %> 
 <script src="${project}js/graindashboard.js"></script>
 <script src="${project}js/graindashboard.vendor.js"></script>
 
