@@ -27,7 +27,7 @@ public class StController {
 		logger.info("url: 기초 등록");
 		stService.salesBasicReg(req, model);
 		return "st/stBasicReg";
-	}
+	}  
 
 	// 재고 현황
 	@RequestMapping("/stInvenStatus")
