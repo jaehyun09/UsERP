@@ -10,12 +10,50 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    <script src="${project}js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+	
+	/* 창고 상세페이지 AJAX */
+	$(function() {
+		$('#ware_code').click(function() {
+			
+			
+			
+			$.ajax({
+				url: 'logWarehouseDetail?${_csrf.parameterName}=${_csrf.token}&ware_code=${wareCode}',
+				type: 'GET',
+				dataType: 'text',
+				success: function(result){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+	             $('#logWarehouseDetail').html(result);
+	          },
+	          error: function(){
+	             alert('오류');
+	          }
+			});
+		});
+	});
+	
+	/* 창고 상세페이지  */
+    function compSearchList() {
+    	$.ajax({
+    		url: "logWarehouseDetail?${_csrf.parameterName}=${_csrf.token}",
+    		type: 'GET',
+    		dataType: 'text',
+    		success: function(result) {
+    			$('#logWarehouseDetail').html(result);
+    		},
+    		error: function() {
+    			alert('오류');
+    		}
+    		
+    	});
+    }
+	</script>
 </head>
 
 <body>
@@ -26,7 +64,9 @@
           <div class="collapse multi-collapse"
              id="multiCollapseExample1"> 
              <div class="bg-white p-4">
-                <table class="table table-bordered bg-white text-dark ass2 center th20">
+             	<div id="logWarehouseDetail"></div>
+             
+                <!-- <table class="table table-bordered bg-white text-dark ass2 center th20">
                    <tr class="text-white con center">
                       <th colspan="2">창고 목록 수정</th>
                    </tr>
@@ -56,13 +96,13 @@
                    <div align=center>
                                <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
                                <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                            </div>
-                </div>
-                <br><br><br>
+                            </div> -->
+                	</div>
+                	<br><br><br>
                 </div>
              </div>
              <!-- 숨겨진 페이지 종료 -->
-                          <table class="table bg-white text-dark center ass2 table-striped">
+             <table class="table bg-white text-dark center ass2 table-striped">
                 <thead>
                    <tr class="text-white table-bordered tap">
                       <th class="font-weight-semi-bold border-top-0 py-3 h4">창고ID</th>
@@ -74,11 +114,13 @@
                 <tbody>
                    <c:forEach var="houseVo" items="${warehouseList}">
                    <tr>
+                      <c:if test="${wareCode == houseVo.ware_code}">
                       <td class="py-3 middle">
                       <a class="btn" data-toggle="collapse"
-                         href="'#'+${houseVo.ware_code}" role="button"
-                         aria-expanded="false" aria-controls="${houseVo.ware_code}">${houseVo.ware_code}
+                         href="#multiCollapseExample1" role="button"
+                         aria-expanded="false" aria-controls="multiCollapseExample1">${houseVo.ware_code}
                          </a></td>
+                      </c:if>
                       <td class="py-3 middle">${houseVo.ware_name}</td>
                       <td class="py-3 middle">${houseVo.ware_location}</td>
                       <c:choose>

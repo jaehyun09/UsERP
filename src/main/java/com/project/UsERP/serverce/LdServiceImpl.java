@@ -52,16 +52,19 @@ public class LdServiceImpl implements LdService {
 	@Override
 	public void warehouseList(HttpServletRequest req, Model model) {
 		List<WarehouseVO> list = lddao.warehouseList();
+		WarehouseVO vo = new WarehouseVO();
+		int wareCode = vo.getWare_code();
 		
+		model.addAttribute("wareCode", wareCode);
 		model.addAttribute("warehouseList", list);
 	}
 	
 	// 김민수 - 창고 상세 목록
 	@Override
 	public void warehouseDetail(HttpServletRequest req, Model model) {
-		int code = Integer.parseInt(req.getParameter("code"));
+		int ware_code = Integer.parseInt(req.getParameter("wareCode"));
 		
-		WarehouseVO vo = lddao.warehouseDetail(code);
+		WarehouseVO vo = lddao.warehouseDetail(ware_code);
 		
 		model.addAttribute("wareDetailVo", vo);
 	}

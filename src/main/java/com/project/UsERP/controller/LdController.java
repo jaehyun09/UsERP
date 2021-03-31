@@ -78,6 +78,16 @@ public class LdController {
 		return "ld/ajax/logWarehouseList";
 	}
 	
+	// 창고 목록 상세페이지 AJAX
+	@RequestMapping("/logWarehouseDetail")
+	public String logWarehouseDetail(HttpServletRequest req, Model model) {
+		logger.info("url: 창고 목록 상세페이지 AJAX");
+		 
+		ldservice.warehouseDetail(req, model);
+		
+		return "ld/ajax/logWarehouseDetail";
+	}
+	
 	// 김민수 - 창고 관리 - 리액트 창고 등록
 	@RequestMapping("/warehouseadd")
 	public String codeadd(HttpServletRequest req, Model model) {

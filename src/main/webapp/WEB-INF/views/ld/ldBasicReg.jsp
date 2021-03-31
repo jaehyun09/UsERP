@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     <script src="${project}js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
+    
+    /* 거래처 검색 JQuery */
     $(function() {
     	$('#compKeyword').keyup(function() {
     		var compKeyword = $('#compKeyword').val();
@@ -43,6 +45,7 @@
     	});
     });
     
+    /* 거래처 목록 */
     function compSearchList() {
     	$.ajax({
     		url: "compSearchList?${_csrf.parameterName}=${_csrf.token}&compKeyword=${compKeyword}",
@@ -58,6 +61,7 @@
     	});
     }
     
+    /* 상품 검색 JQuery */
     $(function() {
     	$('#proKeyword').keyup(function() {
     		var proKeyword = $('#proKeyword').val();
@@ -83,6 +87,7 @@
     	});
     });
    
+    /* 상품 목록 */
     function proSearchList() {
     	
     	$.ajax({
@@ -99,6 +104,7 @@
     	});
     } 
     
+    /* 창고 목록 */
     function logWarehouseList() {
    		$.ajax({
 	        // sendRequest(콜백함수명, url, method, params)
@@ -112,8 +118,9 @@
 	           alert('오류');
 	        }
 	     });
-   }
+   	}
     
+    /* 창고 등록 React */
     function warehouseadd() {
     	$.ajax({
           // sendRequest(콜백함수명, url, method, params)

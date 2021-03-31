@@ -70,8 +70,8 @@ public class LdDAOImpl implements LdDAO{
 
 	// 김민수 - 창고 상세 목록
 	@Override
-	public WarehouseVO warehouseDetail(int code) {
-		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.warehouseDetail", code);
+	public WarehouseVO warehouseDetail(int ware_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.warehouseDetail", ware_code);
 	}
 	
 	// 김민수 - 검색 거래처 갯수 구하기

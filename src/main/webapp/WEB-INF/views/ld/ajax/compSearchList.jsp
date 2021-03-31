@@ -75,7 +75,7 @@
 					<tr>
 						<td class="py-1" style="vertical-align: middle">${complist.com_code}</td>
 						<c:choose>
-							<c:when test="${complist.com_type == 1}">
+							<c:when test="${complist.com_type == 20}">
 								<td class="py-1" style="vertical-align: middle">판매거래처</td>
 							</c:when>
 							<c:when test="${complist.com_type == 10}">

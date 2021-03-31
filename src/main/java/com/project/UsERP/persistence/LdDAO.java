@@ -35,7 +35,7 @@ public interface LdDAO {
 	public List<WarehouseVO> warehouseList();
 
 	// 김민수 - 창고 상세 목록
-	public WarehouseVO warehouseDetail(int code);
+	public WarehouseVO warehouseDetail(int ware_code);
 	
 	// 김민수 - 검색 거래처 갯수 구하기
 	public int getCompanyCnt(String compKeyword);
