@@ -16,5 +16,8 @@ public interface StDAO {
 
 	// 이재홍 - 판매내역 
 	public List<AccountStatementVO> salesList();
+   
+    // 이재홍 - 상품등록
+    public int insertSalesStatement(AccountStatementVO vo);
 
 }

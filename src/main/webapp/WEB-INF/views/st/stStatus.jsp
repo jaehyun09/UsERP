@@ -261,6 +261,7 @@
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">총액</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상세내용</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
                                              </tr>
@@ -268,13 +269,14 @@
                                           <tbody>
                                              <c:forEach var="vo" items="${sales}">
                                              <tr>
-                                                <td class="py-3">${vo.pro_code}</td>
-                                                <td class="py-3">${vo.com_code}</td>
-                                                <td class="py-3">${vo.pro_code}</td>
-                                                <td class="py-3">${vo.accs_price}</td>
+                                                <td class="py-3">${vo.accs_code}</td>
+                                                <td class="py-3">${vo.company.com_name}</td>
+                                                <td class="py-3">${vo.product.pro_name}</td>
+                                                <td class="py-3">${vo.product.pro_sal_price}</td>
                                                 <td class="py-3">${vo.accs_quantity}</td>
-                                                  <td class="py-3">${vo.accs_sum}</td>
-                                                <td class="py-3">${vo.emp_code}</td>
+                                                <td class="py-3">${vo.accs_sum}</td>
+                                                <td class="py-3">${vo.employee.emp_name}</td>
+                                                <td class="py-3">${vo.accs_content}</td>
                                                 <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
                                                 <c:if test="${vo.accs_state == 0 }">
                                                    <td class="py-3">전표 승인 대기중</td>
@@ -320,8 +322,9 @@
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
                                              colspan="2" style="vertical-align: middle;">거래처명</td>
                                           <td class="font-weight-semi-bold border-top-0 py-2"
-                                             colspan="2"><input class="form-control" type="text"
-                                             placeholder="거래처명을 입력하세요"></td>
+                                             colspan="2"><input class="form-control" type="text" id=""
+                                             placeholder="거래처명을 입력하세요">
+                                             </td>
                                        </tr>
                                           <tr>
                                              <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>

@@ -7,7 +7,7 @@ public class CompanyVO {
 	
 	private int com_code;			// 거래처코드
 	private int com_type;			// 유형
-	private String comp_name;		// 거래처명
+	private String com_name;		// 거래처명
     private int com_biz_reg_no;	// 업종코드
     private String com_ceo_name;	// 대표자명
     private int com_reg_no;		// 사업자번호
@@ -57,11 +57,11 @@ public class CompanyVO {
 	public void setCom_type(int com_type) {
 		this.com_type = com_type;
 	}
-	public String getComp_name() {
-		return comp_name;
+	public String getCom_name() {
+		return com_name;
 	}
-	public void setComp_name(String comp_name) {
-		this.comp_name = comp_name;
+	public void setComp_name(String com_name) {
+		this.com_name = com_name;
 	}
 	
 }  

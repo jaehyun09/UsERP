@@ -16,4 +16,6 @@ public interface StService {
 	// 이재홍 - 판매현황
 	public void salesStatus(HttpServletRequest req, Model model);
 
+	// 이재홍 - 판매전표등록
+    public void insertSalesStatement(HttpServletRequest req, Model model);
 }

@@ -6,7 +6,27 @@
 <head>
 <!-- Title -->
 <title>Users | Graindashboard UI Kit</title>
+<script type="text/javascript">
+function content(${vo.accs_code}) {
 
+	var con = $('#con').val();
+	var param = "&${_csrf.parameterName}=${_csrf.token}&con=" + con;
+
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'content',
+      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+         $('#content').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+
+</script> 
 <meta charset="utf-8">
 <meta name="viewport"
    content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -257,45 +277,9 @@
                                                     <div class="tab-pane fade show active" id="tabs2-tab1" role="tabpanel">
                                             <div class="row">
                                        <div class="col">
-                                          <div class="collapse multi-collapse"
+                                       <div class="collapse multi-collapse"
                                              id="multiCollapseExample1">
-                                             
-                                                <table class="table table-bordered bg-white text-dark ass2 center">
-                                                   <tbody>
-                                                      <tr class="text-white con">
-                                                         <th colspan="4">입금전표</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th colspan="1" style="width:20%">NO.</th>
-                                                         <td colspan="3">1234</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th colspan="1">거래처명</th>
-                                                         <td colspan="3">1234</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th colspan="1">상품명</th>
-                                                         <td colspan="3">음?</td>
-
-                                                      </tr>
-                                                      <tr>
-                                                         <th colspan="1">담당자</th>
-                                                         <td colspan="3">??</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th colspan="1">단가</th>
-                                                         <th colspan="3">10,000</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th colspan="1">수량</th>
-                                                         <th colspan="3">10개</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th colspan="1">합계</th>
-                                                         <td colspan="3">30,000</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table><br><br><br>
+                                         <div id="content"></div>
                                           </div>
                                        </div>
                                             <table class="table bg-white text-dark center ass2 table-striped">
@@ -311,6 +295,7 @@
                                           <tbody>
                                           <c:forEach var="vo" items="${statement}">
         									<c:if test="${vo.accs_state == 1 }">
+        									
                                              <tr>
                                                 <td class="py-1 ">
                                                    <p>
@@ -318,18 +303,24 @@
                                                       <a class="btn" data-toggle="collapse"
                                                          href="#multiCollapseExample1" role="button"
                                                          aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">${vo.accs_code}</a>
+                                                         aria-controls="multiCollapseExample1" onclick="content()" id="con">${vo.accs_code}</a>
                                                    </p>
                                                 </td>
-                                                <c:if test="${vo.accs_type == 0 }">
+                                                <c:if test="${vo.accs_type == 1 }">
                                                 	<td class="py-1 "style="vertical-align: middle">판매 전표</td>
                                                 </c:if>
-                                                <c:if test="${vo.accs_type == 1 }">
-                                                	<td class="py-1 "style="vertical-align: middle">구매 전표</td>
+                                                <c:if test="${vo.accs_type == 3 }">
+                                                	<td class="py-1 "style="vertical-align: middle">채권 전표</td>
                                                 </c:if>
-                                                <td class="py-1 "style="vertical-align: middle">${vo.emp_code}</td>
+                                                <c:if test="${vo.accs_type == 2 }">
+                                                	<td class="py-1 "style="vertical-align: middle">판매 전표</td>
+                                                </c:if>
+                                                <c:if test="${vo.accs_type == 4 }">
+                                                	<td class="py-1 "style="vertical-align: middle">채무 전표</td>
+                                                </c:if>
+                                                <td class="py-1 "style="vertical-align: middle">${vo.employee.emp_name}</td>
                                                 <td class="py-1 "style="vertical-align: middle" ><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
-                                                <td class="py-1 "style="vertical-align: middle">승인완료</td>
+                                                <td class="py-1 "style="vertical-align: middle">승인완료  </td>
                                              </tr>
                                              </c:if>
                                              </c:forEach>
@@ -406,20 +397,26 @@
                                                    <p>
                                                    	
                                                       <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
+                                                         href="#multiCollapseExample2" role="button"
                                                          aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">${vo.accs_code}</a>
+                                                         aria-controls="multiCollapseExample2">${vo.accs_code}</a>
                                                    </p>
                                                 </td>
-                                                <c:if test="${vo.accs_type == 0 }">
+                                                <c:if test="${vo.accs_type == 1 }">
                                                 	<td class="py-1 "style="vertical-align: middle">판매 전표</td>
                                                 </c:if>
-                                                <c:if test="${vo.accs_type == 1 }">
-                                                	<td class="py-1 "style="vertical-align: middle">구매 전표</td>
+                                                <c:if test="${vo.accs_type == 3 }">
+                                                	<td class="py-1 "style="vertical-align: middle">채권 전표</td>
                                                 </c:if>
-                                                <td class="py-1 "style="vertical-align: middle">${vo.emp_code}</td>
+                                                <c:if test="${vo.accs_type == 2 }">
+                                                	<td class="py-1 "style="vertical-align: middle">판매 전표</td>
+                                                </c:if>
+                                                <c:if test="${vo.accs_type == 4 }">
+                                                	<td class="py-1 "style="vertical-align: middle">채무 전표</td>
+                                                </c:if>
+                                                <td class="py-1 "style="vertical-align: middle">${vo.employee.emp_name}</td>
                                                 <td class="py-1 "style="vertical-align: middle" ><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
-                                                <td class="py-1 "style="vertical-align: middle">대기중</td>
+                                                <td class="py-1 "style="vertical-align: middle">대기중  </td>
                                              </tr>
                                              </c:if>
                                              </c:forEach>
@@ -453,7 +450,7 @@
                                             <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
-                                             id="multiCollapseExample1">
+                                             id="multiCollapseExample3">
                                                 <table class="table table-bordered bg-white text-dark ass2 center">
                                                    <tbody>
                                                       <tr class="text-white con">
@@ -508,12 +505,12 @@
                                                 <td class="py-1">
                                                 	<p>
                                                       <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
+                                                         href="#multiCollapseExample3" role="button"
                                                          aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">${vo.ss_code}</a>
+                                                         aria-controls="multiCollapseExample3">${vo.ss_code}</a>
                                                  	</p>
                                                 </td>
-                                                <td class="py-1" style="vertical-align: middle">${vo.emp_code}</td>
+                                                <td class="py-1" style="vertical-align: middle">${vo.employee.emp_name}</td>
                                                 <td class="py-1" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_sal_date}" /></td>
                                                 <td class="py-1" style="vertical-align: middle">승인</td>
                                              </tr>
@@ -527,7 +524,7 @@
                                        <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
-                                             id="multiCollapseExample2">
+                                             id="multiCollapseExample4">
                                              <div class="bg-white p-2">
                                                 <table class="table table-bordered bg-white text-dark ass2 center">
                                                    <tbody>
@@ -589,12 +586,12 @@
                                                 <td class="py-1">
                                                 	<p>
                                                       <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
+                                                         href="#multiCollapseExample4" role="button"
                                                          aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">${vo.ss_code}</a>
+                                                         aria-controls="multiCollapseExample4">${vo.ss_code}</a>
                                                  	</p>
                                                 </td>
-                                                <td class="py-1" style="vertical-align: middle">${vo.emp_code}</td>
+                                                <td class="py-1" style="vertical-align: middle">${vo.employee.emp_name}</td>
                                                 <td class="py-1" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_sal_date}" /></td>
                                                 <td class="py-1" style="vertical-align: middle">미승인</td>
                                              </tr>
@@ -630,7 +627,7 @@
                                             <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
-                                             id="multiCollapseExample1">
+                                             id="multiCollapseExample5">
                                                 <table class="table table-bordered bg-white text-dark ass2 center">
                                                    <tbody>
                                                       <tr class="text-white con">
@@ -671,50 +668,41 @@
                                        </div>
                                            
                                        <table class="table bg-white text-dark center ass2 table-striped">
-													<thead class="text-white table-bordered tap">
-														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">금액</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">발행일</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">상환일</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td class="py-1" style="vertical-align: middle">
-															<p>
-			                                                      <a class="btn" data-toggle="collapse"
-			                                                         href="#multiCollapseExample1" role="button"
-			                                                         aria-expanded="false"
-			                                                         aria-controls="multiCollapseExample1">삼성</a>
-                                                 			</p>
-                                                 			</td>
-															<td class="py-1" style="vertical-align: middle">100000000</td>
-															<td class="py-1" style="vertical-align: middle">2021-03-21</td>
-															<td class="py-1" style="vertical-align: middle">2021-03-27</td>
-														</tr>
-														<tr>
-															<td class="py-1" style="vertical-align: middle">
-																<p>
-				                                                      <a class="btn" data-toggle="collapse"
-				                                                         href="#multiCollapseExample1" role="button"
-				                                                         aria-expanded="false"
-				                                                         aria-controls="multiCollapseExample1">LG</a>
-	                                                 			</p>
-                                                 			</td>
-															<td class="py-1" style="vertical-align: middle">50000000</td>
-															<td class="py-1" style="vertical-align: middle">2021-03-21</td>
-															<td class="py-1" style="vertical-align: middle">2021-04-21</td>
-														</tr>
-													</tbody>
-												</table>
+                                       <thead class="text-white table-bordered tap">
+                                          <tr>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">금액</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">발행일</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">반환일</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <c:forEach var="vo" items="${bondDebt}">
+                                          <c:if test="${vo.accs_type == 2 }">
+                                          <tr>
+                                             <td class="py-1" style="vertical-align: middle">
+                                             <p>
+                                                               <a class="btn" data-toggle="collapse"
+                                                                  href="#multiCollapseExample5" role="button"
+                                                                  aria-expanded="false"
+                                                                  aria-controls="multiCollapseExample5">${vo.com_code}</a>
+                                                          </p>
+                                                          </td>
+                                             <td class="py-1" style="vertical-align: middle">${vo.accs_price}</td>
+                                             <td class="py-1" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
+                                             <td class="py-1" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
+                                          </tr>
+                                          </c:if>
+                                          </c:forEach>
+                                       </tbody>
+                                    </table>
                                       </div>
                                       </div>
                                       <div class="tab-pane fade" id="tabs2-tab6" role="tabpanel">
                                        <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
-                                             id="multiCollapseExample2">
+                                             id="multiCollapseExample6">
                                              <div class="bg-white p-2">
                                                 <table class="table table-bordered bg-white text-dark ass2 center">
                                                    <tbody>
@@ -761,43 +749,34 @@
                                           </div>
                                        </div>
                                         <table class="table bg-white text-dark center ass2 table-striped">
-													<thead class="text-white table-bordered tap">
-														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">금액</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">발행일</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">반환일</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td class="py-1" style="vertical-align: middle">
-															<p>
-			                                                      <a class="btn" data-toggle="collapse"
-			                                                         href="#multiCollapseExample1" role="button"
-			                                                         aria-expanded="false"
-			                                                         aria-controls="multiCollapseExample1">명재사진관</a>
-                                                 			</p>
-                                                 			</td>
-															<td class="py-1" style="vertical-align: middle">100000000</td>
-															<td class="py-1" style="vertical-align: middle">2021-03-21</td>
-															<td class="py-1" style="vertical-align: middle">2021-03-27</td>
-														</tr>
-														<tr>
-															<td class="py-1" style="vertical-align: middle">
-																<p>
-				                                                      <a class="btn" data-toggle="collapse"
-				                                                         href="#multiCollapseExample1" role="button"
-				                                                         aria-expanded="false"
-				                                                         aria-controls="multiCollapseExample1">민수체육관</a>
-	                                                 			</p>
-                                                 			</td>
-															<td class="py-1" style="vertical-align: middle">50000000</td>
-															<td class="py-1" style="vertical-align: middle">2021-03-21</td>
-															<td class="py-1" style="vertical-align: middle">2021-04-21</td>
-														</tr>
-													</tbody>
-												</table>
+                                       <thead class="text-white table-bordered tap">
+                                          <tr>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">금액</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">발행일</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">반환일</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <c:forEach var="vo" items="${bondDebt}">
+                                          <c:if test="${vo.accs_type == 2 }">
+                                          <tr>
+                                             <td class="py-1" style="vertical-align: middle">
+                                             <p>
+                                                               <a class="btn" data-toggle="collapse"
+                                                                  href="#multiCollapseExample6" role="button"
+                                                                  aria-expanded="false"
+                                                                  aria-controls="multiCollapseExample6">${vo.com_code}</a>
+                                                          </p>
+                                                          </td>
+                                             <td class="py-1" style="vertical-align: middle">${vo.accs_price}</td>
+                                             <td class="py-1" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
+                                             <td class="py-1" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
+                                          </tr>
+                                          </c:if>
+                                          </c:forEach>
+                                       </tbody>
+                                    </table>
                                        
                                     </div>
                                   </div>
@@ -819,7 +798,7 @@
               </div>
              </div>
            </div>
-           </div>
+         </div>
    </main>
 
    <%@ include file="../common/footer.jsp"%>

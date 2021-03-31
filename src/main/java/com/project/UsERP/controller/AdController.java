@@ -82,7 +82,19 @@ public class AdController {
 		// 강재현 : 급여 전표 리스트 
 		adservice.salarystatementList(req, model);
 		
+		// 이재홍 : 채권,채무 전표 조회
+		adservice.bondDebtList(req, model);
 		return "ad/adStatementManagement";
 	}
+	
+	// 전표 관리 상세페이지
+	@RequestMapping("/content")
+	public String content(HttpServletRequest req, Model model) {
+		logger.info("url: 계정 관리 - 계정 리스트");
+		
+		
+	
+	return "ad/ajax/page";
+}
 
 }

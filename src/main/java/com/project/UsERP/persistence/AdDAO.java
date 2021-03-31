@@ -34,5 +34,5 @@ public interface AdDAO {
 	// 강재현 - 전표 관리 - 급여 전표 (미승인)
 	
 	// 이재홍 - 채권/채무 조회
-
+	public List<AccountStatementVO> bondDebtList(); 
 }

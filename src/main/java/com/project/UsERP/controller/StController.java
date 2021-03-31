@@ -41,7 +41,8 @@ public class StController {
 	@RequestMapping("/stStatus")
 	public String stStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 회계 보고서");
-
+		
+		// 판매내역 
 		stService.salesStatus(req, model);
 		
 		return "st/stStatus";

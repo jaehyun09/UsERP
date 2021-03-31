@@ -5,7 +5,36 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.project.UsERP.persistence.StDAO">
-
+	
+	<resultMap id="SalesMap" type="com.project.UsERP.vo.AccountStatementVO">
+      <id      property="accs_code"   column="accs_code"/>
+      <result   property="accs_type"   column="accs_type"/>
+      <result   property="accs_content"   column="accs_content"/>
+      <result   property="accs_price"   column="accs_price"/>
+      <result   property="accs_quantity" column="accs_quantity"/>
+      <result   property="accs_reg_date" column="accs_reg_date"/>
+      <result   property="accs_update_date"   column="accs_update_date"/>
+      <result   property="accs_content"   column="accs_content"/>
+      <result   property="accs_state"   column="accs_state"/>
+      <result   property="accs_sum"      column="accs_sum"/>
+      <result   property="emp_code"      column="emp_code"/>
+      <result   property="pro_code"      column="pro_code"/>
+      <result   property="com_code"      column="com_code"/>
+      <association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+         <id      property="emp_code"   column="emp_code"/>
+         <result   property="emp_name"   column="emp_name"/>
+      </association>
+      <association property="product" javaType="com.project.UsERP.vo.ProductVO">
+         <id      property="pro_code"   column="pro_code"/>
+         <result   property="pro_name"   column="pro_name"/>
+         <result   property="pro_sal_price" column="pro_sal_price"/>
+      </association>
+      <association property="company" javaType="com.project.UsERP.vo.CompanyVO">
+         <id      property="com_code"   column="com_code"/>
+         <result   property="com_name"   column="com_name"/>
+      </association>
+   </resultMap>
+   
 	<!-- 기초 등록 판매 거래처 목록 -->
 	<select id = "salesCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
 		select * from company where comp_use_state = 0
@@ -17,8 +46,18 @@
 	</select>
 
 	<!-- 판매,승인내역 -->
-   <select id = "salesList" resultType = "com.project.UsERP.vo.AccountStatementVO">
-      select * from account_statement ORDER BY accs_code
+   <select id = "salesList" resultMap = "SalesMap">
+        SELECT a.accs_code, c.com_name, p.pro_name, p.pro_sal_price, p.pro_pur_price, a.accs_quantity, a.accs_sum, e.emp_name, a.accs_content, a.accs_reg_date
+       	FROM account_statement a, company c, product p, employee e
+      	WHERE a.emp_code = e.emp_code
+        AND a.com_code = c.com_code
+        AND a.pro_code = p.pro_code
    </select>
+   
+   <!-- 판매전표등록
+   <insert id = "" parmeterType = "">
+      
+   </insert>
+   -->
 
 </mapper>

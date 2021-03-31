@@ -67,5 +67,10 @@ public class AdServiceImpl implements AdService{
 	// 강재현 - 전표 관리 - 급여 전표 (승인거부)
 	
 	// 이재홍 - 채권/채무 조회
+	// 이재홍 - 채권/채무 조회
+	public void bondDebtList(HttpServletRequest req, Model model) {
+		List<AccountStatementVO> list = addao.bondDebtList();
 
+		model.addAttribute("bondDebt", list);
+	}
 }

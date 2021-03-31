@@ -36,5 +36,12 @@ public class StDAOImpl implements StDAO{
 
 		return sqlSession.selectList("com.project.UsERP.persistence.StDAO.salesList");
 	}
+	
+	// 이재홍 - 판매전표등록 
+	@Override
+    public int insertSalesStatement(AccountStatementVO vo) {
+      
+       return sqlSession.insert("com.project.UsERP.persistence.StDAO.insertSalesStatement", vo);
+    }
 
 }

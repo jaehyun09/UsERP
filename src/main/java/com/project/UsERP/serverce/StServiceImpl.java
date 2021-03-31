@@ -58,4 +58,14 @@ public class StServiceImpl implements StService {
 		// model.addAttribute("insertCnt", insertCnt);
 
 	}
+	
+	// 이재홍 - 판매전표등록
+	@Override
+    public void insertSalesStatement(HttpServletRequest req, Model model) {
+      
+       AccountStatementVO vo = new AccountStatementVO();
+      
+       vo.setAccs_type(Integer.parseInt(req.getParameter("accs_type")));
+      
+    }
 }

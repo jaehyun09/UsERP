@@ -6,6 +6,38 @@
     
 <mapper namespace="com.project.UsERP.persistence.AdDAO">
 
+	<resultMap id="AccsMap" type="com.project.UsERP.vo.AccountStatementVO">
+      <id      property="accs_code"   column="accs_code"/>
+      <result   property="accs_type"   column="accs_type"/>
+      <result   property="accs_content"   column="accs_content"/>
+      <result   property="accs_price"   column="accs_price"/>
+      <result   property="accs_quantity" column="accs_quantity"/>
+      <result   property="accs_reg_date" column="accs_reg_date"/>
+      <result   property="accs_update_date"   column="accs_update_date"/>
+      <result   property="accs_sum"      column="accs_sum"/>
+      <result   property="accs_state"      column="accs_state"/>
+      <result   property="emp_code"      column="emp_code"/>
+      <result   property="pro_code"      column="pro_code"/>
+      <result   property="com_code"      column="com_code"/>
+      <association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+         <id      property="emp_code"   column="emp_code"/>
+         <result   property="emp_name"   column="emp_name"/>
+      </association>
+   </resultMap>
+   
+   <resultMap id="SalsMap" type="com.project.UsERP.vo.SalaryStatementVO">
+      <id      property="ss_code"   column="ss_code"/>
+      <result   property="ss_total_sal"   column="ss_total_sal"/>
+      <result   property="ss_state"   column="ss_state"/>
+      <result   property="ss_sal_date"   column="ss_sal_date"/>
+      <result   property="sal_code" column="sal_code"/>
+      <result   property="emp_code"      column="emp_code"/>
+      <association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+         <id      property="emp_code"   column="emp_code"/>
+         <result   property="emp_name"   column="emp_name"/>
+      </association>
+   </resultMap>
+   
 	<!-- 회계보고서 - 재무상태표 -->
 	
 	<!-- 회계보고서 - 손익계산서 -->
@@ -17,18 +49,36 @@
 	
 	<!-- 계정 관리 - 계정 리스트 -->
 	<select id = "accontList" resultType = "com.project.UsERP.vo.AccountVO">
-		SELECT * FROM accont ORDER BY acco_code
+		SELECT * FROM account ORDER BY acco_code
 	</select>
 	
 	<!-- 전표 관리 - 회계 전표 -->
-	<select id = "statementList" resultType = "com.project.UsERP.vo.AccountStatementVO">
-		SELECT * FROM account_statement ORDER BY accs_code
+	<select id = "statementList" resultMap = "AccsMap">
+		SELECT e.emp_name, a.*
+		    FROM employee e, account_statement a
+		    WHERE a.emp_code = e.emp_code
+		    ORDER BY accs_code
 	</select>
+	
+	<!-- 전표 상세 페이지 -->
+	<select id = "statmentcontent" resultMap = "SalsMap">
+		SELECT e.emp_name, s.*
+		    FROM employee e, salary_statement s
+		    WHERE e.emp_code = s.emp_code
+		    ORDER BY ss_code 
+	</select>
+	
 	<!-- 전표 관리 - 급여 전표 -->
-	<select id = "salarystatementList" resultType = "com.project.UsERP.vo.SalaryStatementVO">
-		SELECT * FROM salary_statement ORDER BY ss_code
+	<select id = "salarystatementList" resultMap = "SalsMap">
+		SELECT e.emp_name, s.*
+		    FROM employee e, salary_statement s
+		    WHERE e.emp_code = s.emp_code
+		    ORDER BY ss_code 
 	</select>
 	<!-- 전표 관리 - 채권/채무 조회 -->
-	
+	<!-- 전표 관리 - 채권/채무 조회 -->
+   <select id = "bondDebtList" resultType = "com.project.UsERP.vo.AccountStatementVO">
+      SELECT * FROM account_statement ORDER BY accs_code
+   </select>
 
 </mapper>
