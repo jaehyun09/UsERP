@@ -283,36 +283,26 @@
                                              </tr>
                                           </thead>
                                           <tbody>
+                                          	<c:forEach var="vo" items="${sales}">
                                              <tr>
-                                                <td class="py-3 middle">10</td>
-                                                <td class="py-3 middle">은희네국밥</td>
-                                                <td class="py-3 middle">돼지국밥</td>
-                                                <td class="py-3 middle">10000</td>
-                                                <td class="py-3 middle">10</td>
-                                                <td class="py-3 middle">강재현</td>
-                                                <td class="py-3 middle">2021-03-27</td>
-                                                <td class="py-3 middle">승인완료</td>
+                                                <td class="py-3">${vo.sales_code}</td>
+                                                <td class="py-3">${vo.comp_code}</td>
+                                                <td class="py-3">${vo.pro_code}</td>
+                                                <td class="py-3">${vo.pro_code}</td>
+                                                <td class="py-3">${vo.sales_count}</td>
+                                                <td class="py-3">${vo.emp_code}</td>
+                                                <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.sales_reg_date}"/></td>
+                                                <c:if test="${vo.sales_state == 0 }">
+                                              	  <td class="py-3">전표 승인 대기중</td>
+                                                </c:if>
+                                                <c:if test="${vo.sales_state == 1 }">
+                                              	  <td class="py-3">출고 대기중</td>
+                                                </c:if>
+                                                <c:if test="${vo.sales_state == 2 }">
+                                              	  <td class="py-3">출고 완료</td>
+                                                </c:if>
                                              </tr>
-                                             <tr>
-                                                <td class="py-3 middle">11</td>
-                                                <td class="py-3 middle">명재네버거</td>
-                                                <td class="py-3 middle">치즈버거</td>
-                                                <td class="py-3 middle">20000</td>
-                                                <td class="py-3 middle">20</td>
-                                                <td class="py-3 middle">김민수</td>
-                                                <td class="py-3 middle">2021-03-28</td>
-                                                <td class="py-3 middle">승인불가</td>
-                                             </tr>
-                                             <tr>
-                                                <td class="py-3 middle">12</td>
-                                                <td class="py-3 middle">민수네김밥</td>
-                                                <td class="py-3 middle">참치김밥</td>
-                                                <td class="py-3 middle">30000</td>
-                                                <td class="py-3 middle">30</td>
-                                                <td class="py-3 middle">최유성</td>
-                                                <td class="py-3 middle">2021-03-29</td>
-                                                <td class="py-3 middle">승인대기</td>
-                                             </tr>
+                                             </c:forEach>
                                           </tbody>
                                        </table>
                                     </div>
@@ -386,36 +376,29 @@
                                              </tr>
                                           </thead>
                                           <tbody>
+                                             <c:forEach var="vo" items="${sales}">
                                              <tr>
-                                                <td class="py-3 middle">10</td>
-                                                <td class="py-3 middle">은희네국밥</td>
-                                                <td class="py-3 middle">돼지국밥</td>
-                                                <td class="py-3 middle">10000</td>
-                                                <td class="py-3 middle">10</td>
-                                                <td class="py-3 middle">강재현</td>
-                                                <td class="py-3 middle">2021-03-27</td>
-                                                <td class="py-3 middle">승인완료</td>
+                                                <td class="py-3">${vo.sales_code}</td>
+                                                <td class="py-3">${vo.comp_code}</td>
+                                                <td class="py-3">${vo.pro_code}</td>
+                                                <td class="py-3">${vo.pro_code}</td>
+                                                <td class="py-3">${vo.sales_count}</td>
+                                                <td class="py-3">${vo.emp_code}</td>
+                                                <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.sales_reg_date}"/></td>
+                                                <c:if test="${vo.sales_state == 0 }">
+                                              	  <td class="py-3">전표 승인 대기중</td>
+                                                </c:if>
+                                                <c:if test="${vo.sales_state == 1 }">
+                                              	  <td class="py-3">출고 대기중</td>
+                                                </c:if>
+                                                <c:if test="${vo.sales_state == 2 }">
+                                              	  <td class="py-3">출고 대기중</td>
+                                                </c:if>
+                                                <c:if test="${vo.sales_state == 3 }">
+                                              	  <td class="py-3">출고 완료</td>
+                                                </c:if>
                                              </tr>
-                                             <tr>
-                                                <td class="py-3 middle">11</td>
-                                                <td class="py-3 middle">명재네버거</td>
-                                                <td class="py-3 middle">치즈버거</td>
-                                                <td class="py-3 middle">20000</td>
-                                                <td class="py-3 middle">20</td>
-                                                <td class="py-3 middle">김민수</td>
-                                                <td class="py-3 middle">2021-03-28</td>
-                                                <td class="py-3 middle">승인불가</td>
-                                             </tr>
-                                             <tr>
-                                                <td class="py-3 middle">12</td>
-                                                <td class="py-3 middle">민수네김밥</td>
-                                                <td class="py-3 middle">참치김밥</td>
-                                                <td class="py-3 middle">30000</td>
-                                                <td class="py-3 middle">30</td>
-                                                <td class="py-3 middle">최유성</td>
-                                                <td class="py-3 middle">2021-03-29</td>
-                                                <td class="py-3 middle">승인대기</td>
-                                             </tr>
+                                             </c:forEach>
                                           </tbody>
                                        </table>
                                  </div> 

@@ -277,45 +277,34 @@
                                                  <table class="table table-bordered bg-white text-dark ass2 th20">
                                                    <tbody>
                                                       <tr class="text-white con center">
-                                                         <th colspan="2">일단전표번호로</th>
+                                                         <th colspan="2" style="width:20%;">일단전표번호로</th>
                                                       </tr>
                                                       <tr>
-                                                         <th>NO.</th>
+                                                         <th style="width:20%;">NO.</th>
                                                          <td>10</td>
                                                       </tr>
                                                       <tr>
-                                                         <th>사업자등록번호</th>
+                                                         <th style="width:20%;">사업자등록번호</th>
                                                          <td>1234567890</td>
                                                       </tr>
                                                       <tr>
-                                                         <th>대표자명</th>
+                                                         <th style="width:20%;">대표자명</th>
                                                          <td>최유성</td>
                                                       </tr>
                                                       <tr>
-                                                         <th>업태</th>
-                                                         <td>업태1</td>
+                                                         <th style="width:20%;">업태</th>
+                                                         <td style="width:20%;">업태1</td>
 
                                                       </tr>
                                                       <tr>
-                                                         <th>회사규모</th>
+                                                         <th style="width:20%;">회사규모</th>
                                                          <td>n명</td>
                                                       </tr>
                                                       <tr>
-                                                         <th>사용상태</th>
-                                                         <td>사용중</td>
+                                                         <th style="width:20%;">구분</th>
+                                                         <td>구매</td>
                                                       </tr>
-                                                      <tr>
-                                                         <th rowspan="4" style="vertical-align:middle">주요 거래 품목</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목1</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목2</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목3</td>
-                                                      </tr>
+                                                      
                                                    </tbody>
                                                 </table><br><br><br>
                                           </div>
@@ -404,8 +393,9 @@
 
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
+                                    <form name="form1" method="post">
                                     <div class="row">
-                                       <table class="table bg-white text-dark center ass2" style="text-align:center">
+                                       	<table class="table bg-white text-dark center ass2" style="text-align:center">
 	                                         <tr class="text-white table-bordered tap">
 	                                            <th colspan="3">입고 전표</th>
 	                                         </tr>
@@ -433,38 +423,29 @@
 											<tr>
 		                                    	<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>구매 단가</b></td>
 		                                       <td style="vertical-align: middle;">
-		                                       		<input class = "form-control" type = "number" min = "1000" step = "100" value = "1000">
+		                                       		<input class = "form-control" type = "number" name="" min = "1000" step = "100" value = "1000">
 		                                       </td>
 		                                    </tr>
 											<tr>
 												<td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
 												<td align="center" colspan = "2">
-													<input class = "form-control"  type = "number" min = "1" step = "1" value = "1">
+													<input class="form-control"  type="number" name="in_count" min="1" step="1" value="1">
 												</td>
 											</tr>
 											<tr>
 												<td class="py-3" colspan="2" style="vertical-align: middle;"><b>담당자</b></td>
 												<td align="center" colspan = "2">
-													<input class="form-control" type="text" value="세션아이디 값으로 들어가는 값" readonly>
-												</td>
-											</tr>
-											<tr>
-												<td class="py-3" colspan="4" style="vertical-align: middle;">
-													<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		등록
-	                                               	</button>&nbsp;&nbsp;&nbsp;
-													<button type="reset" class="btn btn btn-outline-info" style='float: middle;'>
-	                                               		재입력
-	                                               	</button>											
+													<input class="form-control" name="emp_code" type="text"><!-- value="세션아이디 값으로 들어가는 값" readonly -->
 												</td>
 											</tr>
 										</tbody>
 									</table>
                                     </div>
                                     <div align="center">
-										<button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                     	<button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+										<button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                                     	<button type="reset" class="btn btn-outline-info">재입력</button>
 									</div>
+									</form>
                                  </div>
                               </div>
                               <!-- End Tab Content -->

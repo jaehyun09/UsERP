@@ -24,10 +24,8 @@ public class EmployeeVO {
 	private String emp_account;		// 급여계좌
 	private int hr_code;			// 인사코드
 	private int dep_code;			// 부서코드
-	private int sal_code;			// 급여코드
 	HrCodeVO hrCode;
 	DepartmentVO department;
-	SalaryVO salary;
 	
 	public String getEmp_code() {
 		return emp_code;
@@ -143,12 +141,6 @@ public class EmployeeVO {
 	public void setDep_code(int dep_code) {
 		this.dep_code = dep_code;
 	}
-	public int getSal_code() {
-		return sal_code;
-	}
-	public void setSal_code(int sal_code) {
-		this.sal_code = sal_code;
-	}
 	public HrCodeVO getHrCode() {
 		return hrCode;
 	}
@@ -161,11 +153,4 @@ public class EmployeeVO {
 	public void setDepartment(DepartmentVO department) {
 		this.department = department;
 	}
-	public SalaryVO getSalary() {
-		return salary;
-	}
-	public void setSalary(SalaryVO salary) {
-		this.salary = salary;
-	}
-	
 }

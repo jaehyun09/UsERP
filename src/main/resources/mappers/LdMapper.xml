@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.UsERP.persistence.LdDAO">
+
+	<!-- 양품창고 등록 -->
+	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
+	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
+	VALUES (ware_good_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	</insert>
+	
+	<!-- 불량품창고 등록 -->
+	<insert id="insertBadWare" parameterType="com.project.UsERP.vo.WarehouseVO">
+	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
+	VALUES (ware_bad_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	</insert>
+	
+	<!-- 출고대기창고 등록 -->
+	<insert id="insertWaitWare" parameterType="com.project.UsERP.vo.WarehouseVO">
+	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
+	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	</insert>
+	
+	<!-- 창고 목록 -->
+	<select id="warehouseList" resultType="com.project.UsERP.vo.WarehouseVO">
+		SELECT * FROM warehouse ORDER BY ware_code
+	</select>
+	
+	<!-- 창고 상세 목록 -->
+	<select id="warehouseDetail" resultType="com.project.UsERP.vo.WarehouseVO">
+		SELECT * FROM warehouse WHERE ware_code = #{ware_code}
+	</select>
+	
+	<!-- 거래처 갯수 구하기 -->
+	<select id="getCompanyCnt" resultType="int" parameterType="String">
+		SELECT COUNT(*) AS selectCnt 
+		FROM company 
+		WHERE comp_code LIKE '%'||#{compKeyword}||'%' 
+		OR comp_name LIKE '%'||#{compKeyword}||'%'
+	</select>
+	
+	
+	<!-- 거래처 조회 -->
+	<select id="CompanyList" parameterType="java.util.Map" resultType="com.project.UsERP.vo.CompanyVO">
+		<![CDATA[
+		SELECT *
+			FROM (SELECT comp_code, comp_name, comp_biz_reg_no, comp_ceo_name, 
+						comp_reg_no, comp_address, comp_use_state, comp_write_reg_date, rownum rnum
+    			FROM (SELECT * FROM company 
+	    				WHERE comp_code LIKE '%'||#{compKeyword}||'%' 
+						OR comp_name LIKE '%'||#{compKeyword}||'%'
+	    				ORDER BY comp_code))
+    			WHERE rnum >= #{start} 
+    			AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 상품 갯수 -->
+	<select id="getProductCnt" resultType="int" parameterType="String">
+		SELECT count(*) as cnt FROM product
+		WHERE pro_code LIKE '%'||#{proKeyword}||'%' 
+		OR pro_name LIKE '%'||#{proKeyword}||'%'
+	</select>
+	
+	<!-- 상품 조회 -->
+	<select id="ProductList" resultType="com.project.UsERP.vo.ProductVO" parameterType="java.util.Map">
+		<![CDATA[
+			SELECT *
+			FROM (SELECT pro_code, pro_name, pro_purchase_unit_price, pro_sale_unit_price, 
+						pro_use_state, pro_reg_date, rownum rnum
+			    FROM (SELECT * FROM product 
+					    WHERE pro_code LIKE '%'||#{proKeyword}||'%' 
+						OR pro_name LIKE '%'||#{proKeyword}||'%'
+					    ORDER BY pro_code))
+			    WHERE rnum >= #{start} 
+	  			AND rnum <= #{end}
+		]]>
+	</select>
+	
+	 <!-- 입고 미승인 전표 -->
+	<select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
+		select * from company where comp_use_state = 1
+	</select>
+	
+	<!-- 입고 승인 전표 -->
+	<select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
+		select * from product
+	</select> 
+	
+	
+</mapper>

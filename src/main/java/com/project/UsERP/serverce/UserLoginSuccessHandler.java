@@ -3,6 +3,7 @@ package com.project.UsERP.serverce;
 import java.io.IOException;
 
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,16 +22,35 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	
+
 	public UserLoginSuccessHandler(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
+
 	// 로그인이 성공한 경우에 실행한 코드
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		
+
+//		AdminDAO dao = sqlSession.getMapper(AdminDAO.class);
+//
+//		String authority = dao.getAuthority(authentication.getName());
+//
+//		int gradeCnt = 0;
+//		if (authority.equals("ROLE_USER")) {
+//			gradeCnt = 1;
+//		} else {
+//			gradeCnt = 0;
+//		}
+//
+//		UserVO vo = dao.getUsersInfo(authentication.getName());
+//		String msg = vo.getUsername() + "님 반갑습니다.";
+//
+//		request.setAttribute("msg", msg);
+//		request.getSession().setAttribute("userId", authentication.getName());
+//		request.getSession().setAttribute("userState", gradeCnt);
+//		request.getSession().setAttribute("userName", vo.getUsername());
+
 		UserVO vo = (UserVO)authentication.getPrincipal();
 		System.out.println("UserVO==> " + vo);
 		
@@ -49,11 +69,10 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		request.setAttribute("msg", msg);
 		request.getSession().setAttribute("mem_id", authentication.getName());
 		request.getSession().setAttribute("grade", gradeCnt);
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/main");
-		
-		
+
 		rd.forward(request, response);
 	}
-	
+
 }

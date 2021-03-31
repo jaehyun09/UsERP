@@ -6,22 +6,7 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
-<script type="text/javascript">
-function warehouseadd() {
-	$.ajax({
-      // sendRequest(콜백함수명, url, method, params)
-      url: "warehouseadd", // 전송 페이지 => 컨트롤러 "basic_next"
-      type: 'GET', // 전송방식('GET', 'POST') - method
-      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-         $('#warehouse').html(data);
-      },
-      error: function(){
-         alert('오류');
-      }
-   });
-}
-</script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -268,7 +253,7 @@ function warehouseadd() {
 									<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light"><a
 										class="nav-link d-flex align-items-center py-2 px-3"
 										id="pills-html-tab-1" data-toggle="pill"
-										href="#pills-html-1" onclick="warehouseadd()" role="tab" aria-controls="pills-html-1"
+										href="#pills-html-1" role="tab" aria-controls="pills-html-1"
 										aria-selected="false">창고 등록</a></li>
 								</ul>
 								<!-- End Nav Classic -->
@@ -282,40 +267,44 @@ function warehouseadd() {
 										<!-- 숨겨진 페이지 -->
 										<div class="col">
 											<div class="collapse multi-collapse"
-												id="multiCollapseExample1"> 
+												id="multiCollapseExample1">
 												<div class="bg-white p-4">
-													<table class="table table-bordered bg-white text-dark ass2 center th20">
-														<tr class="text-white con center">
-															<th colspan="2">창고 목록 수정</th>
-														</tr>
-														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고종류</th>
-															<td>
+													<table class="table bg-white text-dark center ass2" style="text-align:center">
+			                                        	<tr class="text-white table-bordered tap">
+			                                            	<th colspan="3"> 창고 목록 수정 </th>
+			                                        	</tr>
+			                                        	
+			                                        	<tr>
+															<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+																colspan="2" style="vertical-align: middle;">창고종류</td>
+															<td class="font-weight-semi-bold border-top-0 py-2"
+																colspan="2">
 																<select class="custom-select custom-select-lg">
-			   														<option>양품창고</option>
-			   														<option>불량품창고</option>
-			   														<option>출고대기창고</option>
-			 													</select>
+																	<option>양품창고</option>
+																	<option>불량품창고</option>
+																	<option>출고대기창고</option>
+																</select>
+															</td>
+														</tr>
+														
+														<tr>
+															<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
+															<td class="py-2" colspan="2">
+																<input class="form-control form-control-icon-text" placeholder="창고명" type="text" value="양품창고">
 															</td>
 														</tr>
 														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고명</th>
-															<td>
-																<input class="form-control form-control-icon-text" placeholder="창고명" type="text" value="창고명">
-															</td>
-														</tr>
-														<tr>
-															<th class="font-weight-semi-bold border-top-0 py-4 h4">창고주소</th>
-															<td>
-																<input class="form-control form-control-icon-text" placeholder="창고주소" type="text" value="창고주소">
-															</td>
-														</tr>
-													</table>
-														<div align=center>
-					                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-					                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-					                                    </div>
-													</div>
+					                                    	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
+					                                       <td class="py-2" colspan="2">
+					                                             <input class="form-control form-control-icon-text" placeholder="창고주소" type="text" value="서울시 강남구 삼성동">
+					                                       </td>
+					                                    </tr>
+												</table>
+													<div align=center>
+				                                       <button type="button" type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
+				                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+				                                    </div>				
+												</div>
 												<br><br><br>
 											</div>
 											
@@ -323,7 +312,7 @@ function warehouseadd() {
 										<!-- 숨겨진 페이지 종료 -->
 										<table class="table  bg-white text-dark center ass2 table-striped">
 											<thead>
-												<tr class="text-white tap">
+												<tr class="text-white table-bordered tap">
 													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고ID</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고명</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 h4">창고주소</th>
@@ -331,18 +320,18 @@ function warehouseadd() {
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="houseVo" items="${warehouseList}">
+										<c:forEach var="houseVo" items="${warehouseList}">
 												<tr>
+													<td class="py-3 middle">${houseVo.ware_code}</td>
 													<td class="py-3 middle">
 													<a class="btn" data-toggle="collapse"
 														href="'#'+${houseVo.ware_code}" role="button"
 														aria-expanded="false" aria-controls="${houseVo.ware_code}">${houseVo.ware_code}
 														</a></td>
-													<td class="py-3 middle">${houseVo.ware_name}</td>
 													<td class="py-3 middle">${houseVo.ware_location}</td>
 													<td class="py-3 middle">${houseVo.ware_state}</td>
 												</tr>
-												</c:forEach>
+										</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -350,11 +339,48 @@ function warehouseadd() {
 									<!-- 신규 등록 -->
 									<div class="tab-pane fade p-4" id="pills-html-1"
 										role="tabpanel" aria-labelledby="pills-html-tab-1">
-										<div id="warehouse"></div>
+										<form action="insertWareAction" method="post">
+										<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+										<table class="table bg-white text-dark center ass2" style="text-align:center">
+			                                        	<tr class="text-white table-bordered tap">
+			                                            	<th colspan="3"> 창고 목록 수정 </th>
+			                                        	</tr>
+			                                        	
+			                                        	<tr>
+															<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+																colspan="2" style="vertical-align: middle;">창고종류</td>
+															<td class="font-weight-semi-bold border-top-0 py-2"
+																colspan="2">
+																<select class="custom-select custom-select-lg" name="wareState">
+																	<option value="1">양품창고</option>
+																	<option value="2">불량품창고</option>
+																	<option value="3">출고대기창고</option>
+																</select>
+															</td>
+														</tr>
+														
+														<tr>
+															<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
+															<td class="py-2" colspan="2">
+																<input class="form-control form-control-icon-text" name="warehouseName" placeholder="창고명" type="text">
+															</td>
+														</tr>
+														<tr>
+					                                    	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
+					                                       <td class="py-2" colspan="2">
+					                                             <input class="form-control form-control-icon-text" name="warehouseLoc" placeholder="창고주소" type="text">
+					                                       </td>
+					                                    </tr>
+												</table>
+										<div align=center>
+	                                       <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+	                                       <button type="reset" class="btn btn-outline-info">재입력</button>
+	                                    </div>
+										</form>
+										
 									</div>
 									<!-- 신규 등록 끝-->
 								</div>
-								
 							</div>
 						</div>
 					</div>

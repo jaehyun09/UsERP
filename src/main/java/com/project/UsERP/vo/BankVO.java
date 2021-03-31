@@ -7,7 +7,7 @@ public class BankVO {
 	
 	private int bank_code;			// 계좌코드
 	private String bank_name;		// 계좌명
-	private String bank_number;		// 계좌번호
+	private String bank_no;		// 계좌번호
 	private String bank_bank;		// 은행
 	private String bank_balance;	// 잔액
 	private String bank_object;		// 개설목적
@@ -38,12 +38,12 @@ public class BankVO {
 		this.bank_name = bank_name;
 	}
 
-	public String getBank_number() {
-		return bank_number;
+	public String getBank_no() {
+		return bank_no;
 	}
 
-	public void setBank_number(String bank_number) {
-		this.bank_number = bank_number;
+	public void setBank_no(String bank_no) {
+		this.bank_no = bank_no;
 	}
 
 	public String getBank_bank() {

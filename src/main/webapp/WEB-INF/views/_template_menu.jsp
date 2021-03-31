@@ -134,25 +134,13 @@
 				<!-- 중메뉴 : 물류 관리 -->
 <!-- b -->		<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
 <!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/logBasicReg">기초 코드</a>
+						<a class="side-nav-menu-link ass2" href="${path}/logBasicReg">기초 등록</a>
 					</li>
 					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/logStatementList">전표 관리</a>
+						<a class="side-nav-menu-link ass2" href="${path}/logsStatementManagement">전표 관리</a>
 					</li>
 					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/logInvenStatus">재고 현황</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/logMoveWarehouse">재고 이동</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/logInvenAdjustment">재고 조정</a>
-					</li>    
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/logInvenSupply">재고 수불부</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/logWarehouseList">창고 현황</a>
+						<a class="side-nav-menu-link ass2" href="${path}/logsInventoryControl">재고 관리</a>
 					</li>
 				</ul>
 			</li>
@@ -174,19 +162,13 @@
 				<!-- 중메뉴 : 회계 관리 -->
 <!-- b -->		<ul id="subUsers" class="side-nav-menu side-nav-menu-second-level mb-0">
 <!-- a -->			<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/accBasicReg">기초 등록</a>
+					</li>
+<!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/accReport">회계보고서</a>
 					</li>
 					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/accBankManagement">계좌 관리</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/accManagement">계정 관리</a>
-					</li>
-					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/accStatementManagement">전표 관리</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/accBonddebtManagement">채권/채무 조회</a>
 					</li>
 				</ul>
 			</li>
