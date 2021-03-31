@@ -15,8 +15,6 @@ public class AppointHistoryVO {
 	private int hr_code;				// 인사코드
 	private int dep_code;				// 부서코드
 	EmployeeVO employee;
-	HrCodeVO hrCode;
-	DepartmentVO department;
 	
 	public int getAp_code() {
 		return ap_code;
@@ -96,22 +94,6 @@ public class AppointHistoryVO {
 	
 	public void setEmployee(EmployeeVO employee) {
 		this.employee = employee;
-	}
-	
-	public HrCodeVO getHrCode() {
-		return hrCode;
-	}
-
-	public void setHrCode(HrCodeVO hrCode) {
-		this.hrCode = hrCode;
-	}
-
-	public DepartmentVO getDepartment() {
-		return department;
-	}
-	
-	public void setDepartment(DepartmentVO department) {
-		this.department = department;
 	}
 	
 }

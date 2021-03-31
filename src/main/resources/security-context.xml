@@ -41,18 +41,18 @@
 		<security:access-denied-handler ref="userDeniedHandler" />
 		
 	</security:http>
-	<bean id="userLoginSuccessHandler" class="com.project.UsERP.serverce.UserLoginSuccessHandler" >
+	<bean id="userLoginSuccessHandler" class="com.project.UsERP.service.UserLoginSuccessHandler" >
 	<constructor-arg name = "sqlSession" ref = "sqlSession" />
 	</bean>
-	<bean id="userLoginFailureHandler" class="com.project.UsERP.serverce.UserLoginFailureHandler" >
+	<bean id="userLoginFailureHandler" class="com.project.UsERP.service.UserLoginFailureHandler" >
 	<constructor-arg name = "sqlSession" ref = "sqlSession" />
 		<constructor-arg name = "passwordEncoder" ref = "bcryptPasswordEncoder" />
 	</bean>		
-	<bean id="userDeniedHandler" class="com.project.UsERP.serverce.UserDeniedHandler"/>	
+	<bean id="userDeniedHandler" class="com.project.UsERP.service.UserDeniedHandler"/>	
 	
 	<!-- 로그인 인증 처리 하는 빈 -->
 	<!-- 주의 : 에러 => UserAuthenticationService에서 sqlSession 추가 안한 경우  -->
-	<bean id="userService" class="com.project.UsERP.serverce.UserAuthenticationService">
+	<bean id="userService" class="com.project.UsERP.service.UserAuthenticationService">
 		<constructor-arg name="sqlSession" ref="sqlSession"/>
 	</bean>
 	

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.UsERP.serverce.PdServiceImpl;
+import com.project.UsERP.service.PdServiceImpl;
 
 // 구매 관리
 @Controller

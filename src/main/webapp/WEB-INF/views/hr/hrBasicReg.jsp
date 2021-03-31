@@ -7,10 +7,10 @@
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
 <script type="text/javascript">
-function codeadd() {
+function hrCodeAdd() {
    $.ajax({
       // sendRequest(콜백함수명, url, method, params)
-      url: "codeadd", // 전송 페이지 => 컨트롤러 "basic_next"
+      url: "hrCodeAdd", // 전송 페이지 => 컨트롤러 "basic_next"
       type: 'GET', // 전송방식('GET', 'POST') - method
       dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
       success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
@@ -22,10 +22,10 @@ function codeadd() {
    });
 }
 
-function codegroupadd() {
+function hrCodeGroupAdd() {
    $.ajax({
       // sendRequest(콜백함수명, url, method, params)
-      url: "codegroupadd", // 전송 페이지 => 컨트롤러 "basic_next"
+      url: "hrCodeGroupAdd", // 전송 페이지 => 컨트롤러 "basic_next"
       type: 'GET', // 전송방식('GET', 'POST') - method
       dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
       success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
@@ -36,10 +36,10 @@ function codegroupadd() {
       }
    });
 }
-function departmentadd() {
+function departmentAdd() {
    $.ajax({
       // sendRequest(콜백함수명, url, method, params)
-      url: "departmentadd", // 전송 페이지 => 컨트롤러 "basic_next"
+      url: "departmentAdd", // 전송 페이지 => 컨트롤러 "basic_next"
       type: 'GET', // 전송방식('GET', 'POST') - method
       dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
       success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
@@ -291,7 +291,7 @@ function departmentadd() {
                                                         </a>
                                                     </li>
                                                     <li class="nav-item ml-4">
-                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs2-tab2" onclick="codegroupadd()" role="tab" aria-selected="false"
+                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs2-tab2" onclick="hrCodeGroupAdd()" role="tab" aria-selected="false"
                                                            data-toggle="tab">인사코드 그룹 등록
                                                         </a>
                                                     </li>
@@ -301,7 +301,7 @@ function departmentadd() {
                                                         </a>
                                                     </li>
                                                     <li class="nav-item ml-4">
-                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs2-tab4" onclick="codeadd()" role="tab" aria-selected="false"
+                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs2-tab4" onclick="hrCodeAdd()" role="tab" aria-selected="false"
                                                            data-toggle="tab">인사코드 등록
                                                         </a>
                                                     </li>
@@ -387,7 +387,7 @@ function departmentadd() {
                                                         </a>
                                                     </li>
                                                     <li class="nav-item ml-4">
-                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs3-tab4" onclick="departmentadd()" role="tab" aria-selected="false"
+                                                        <a class="nav-link px-2 pb-2 ass2" href="#tabs3-tab4" onclick="departmentAdd()" role="tab" aria-selected="false"
                                                            data-toggle="tab">부서 등록
                                                         </a>
                                                     </li>

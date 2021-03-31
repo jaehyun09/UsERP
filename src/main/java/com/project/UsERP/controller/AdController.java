@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.UsERP.serverce.AdServiceImpl;
+import com.project.UsERP.service.AdServiceImpl;
 
 // 회계 관리
 @Controller

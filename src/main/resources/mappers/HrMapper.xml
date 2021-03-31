@@ -7,29 +7,118 @@
 <mapper namespace="com.project.UsERP.persistence.HrDAO">
 
 	<resultMap id="hrCodeMap" type="com.project.UsERP.vo.HrCodeVO">
-	      <id     property="hr_code"   column="hr_code" />  
-	      <result property="hr_code_name" column="hr_code_name" />
-	      <result property="hr_state"  column="hr_state" />
-       <association property="hrCodeGroup" javaType="com.project.UsERP.vo.HrCodeGroupVO">
-	      <id      property="hcg_code"   column="hcg_code" />  
-	      <result property="hcg_name" column="hcg_name" />
-	      <result property="hcg_state"  column="hcg_state" />
-       </association> 
-    </resultMap> 
+		<id     property="hr_code"   column="hr_code" />  
+		<result property="hr_code_name" column="hr_code_name" />
+		<result property="hr_state"  column="hr_state" />
+		<association property="hrCodeGroup" javaType="com.project.UsERP.vo.HrCodeGroupVO">
+			<id      property="hcg_code"   column="hcg_code" />  
+			<result property="hcg_name" column="hcg_name" />
+			<result property="hcg_state"  column="hcg_state" />
+		</association> 
+	</resultMap>
 	
-	<!-- 인사 코드 그룹 조회 -->
+	<resultMap id="hrCardMap" type="com.project.UsERP.vo.EmployeeVO">
+		<id     property="emp_code"   column="emp_code" />  
+		<result property="emp_pwd" column="emp_pwd" />
+		<result property="emp_authority"  column="emp_authority" />
+		<result property="emp_enabled"  column="emp_enabled" />
+		<result property="emp_position"  column="emp_position" />
+		<result property="emp_name"  column="emp_name" />
+		<result property="emp_hire_date"  column="emp_hire_date" />
+		<result property="emp_cos"  column="emp_cos" />
+		<result property="emp_photo"  column="emp_photo" />
+		<result property="emp_jumin"  column="emp_jumin" />
+		<result property="emp_address"  column="emp_address" />
+		<result property="emp_tel"  column="emp_tel" />
+		<result property="emp_phone"  column="emp_phone" />
+		<result property="emp_email"  column="emp_email" />
+		<result property="emp_port_no"  column="emp_port_no" />
+		<result property="emp_bank"  column="emp_bank" />
+		<result property="emp_account"  column="emp_account" />
+		<association property="department" javaType="com.project.UsERP.vo.DepartmentVO">
+			<id      property="dep_code"   column="dep_code" />  
+			<result property="dep_name" column="dep_name" />
+			<result property="dep_state"  column="dep_state" />
+		</association> 
+		<association property="hrCode" javaType="com.project.UsERP.vo.HrCodeVO">
+			<id      property="hr_code"   column="hr_code" />  
+			<result property="hr_code_name" column="hr_code_name" />
+			<result property="hr_state"  column="hr_state" />
+			<result property="hcg_code"  column="hcg_code" />
+		</association> 
+	</resultMap>
+	
+	<resultMap id="appointHistoryMap" type="com.project.UsERP.vo.AppointHistoryVO">
+		<id     property="ap_code"		column="ap_code"/>  
+		<result property="ap_date"		column="ap_date"/>
+		<result property="ap_cur_dep"	column="ap_cur_dep"/>
+		<result property="ap_cur_position" column="ap_cur_position"/>
+		<result property="ap_pre_dep"	column="ap_pre_dep"/>
+		<result property="ap_pre_position" column="ap_pre_position"/>
+		<result property="emp_code"		column="emp_code"/>
+		<association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+			<id		property="emp_code" column="emp_code"/>  
+			<result property="emp_name" column="emp_name"/>
+		</association>
+	</resultMap>
+	
+	<!-- 김은희 - 인사 코드 그룹 조회 -->
 	<select id="hrCgList" resultType="com.project.UsERP.vo.HrCodeGroupVO">
 		SELECT * FROM hr_code_group ORDER BY hcg_code
 	</select>
 	
-	<!-- 인사 코드 조회 -->
+	<!-- 김은희 - 인사 코드 조회 -->
 	<select id="hrCList" resultMap="hrCodeMap">
-		SELECT * FROM hr_code ORDER BY hr_code 
+		SELECT * FROM hr_code ORDER BY hr_code
 	</select>
 	
-	<!-- 부서 조회 -->
+	<!-- 조명재 - 부서 조회 -->
 	<select id="depList" resultType="com.project.UsERP.vo.DepartmentVO">
 		SELECT * FROM department ORDER BY dep_code
 	</select>
+	
+	<!-- 조명재 - 인사 발령 목록 갯수 -->
+	<select id="getAppointmentCnt" resultType="int">
+		SELECT COUNT(*) FROM appoint_history
+	</select>
+	
+	<!-- 조명재 - 인사 발령 조회 -->
+	<select id="appointmentList" parameterType="java.util.Map" resultMap="appointHistoryMap">
+		<![CDATA[
+			SELECT * 
+			FROM(SELECT ap_code, ap_date, ap_cur_dep, ap_cur_position, ap_pre_dep, ap_pre_position, emp_code, emp_name, rownum rNum 
+				FROM(SELECT a.*, e.emp_name 
+						FROM appoint_history a, employee e 
+						WHERE a.emp_code = e.emp_code 
+						ORDER BY ap_date DESC
+					)
+				)
+			WHERE rNum >= #{start} 
+			AND rNum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 김은희 - 인사카드 조회 -->
+	<select id="hrCardList" resultMap="hrCardMap">
+		SELECT e.emp_code, d.dep_name, e.emp_position, e.emp_name, e.emp_hire_date
+		  FROM employee e JOIN department d
+		    ON e.dep_code = d.dep_code ORDER BY emp_code
+	</select>
+	
+	<!-- 김은희 - 인사카드 상세페이지 조회 -->
+	<select id="hrCardDetail" resultMap="hrCardMap">
+		SELECT e.emp_code, e.emp_name, d.dep_name, e.emp_position, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
+				e.emp_tel, e.emp_phone, e.emp_email, e.emp_bank, e.emp_account
+		  FROM employee e JOIN department d
+		    ON e.dep_code = d.dep_code
+		   AND emp_code = #{emp_code}
+	</select>
+	
+	<!-- 김은희 - 인사카드 등록 -->
+	<insert id="hrCardInsert" parameterType="com.project.UsERP.vo.EmployeeVO">
+		INSERT INTO employee(emp_photo, emp_code, emp_name, dep_code, emp_position, emp_hire_date, emp_cos
+				,emp_jumin, emp_address, emp_tel, emp_phone, emp_email, emp_port_no, emp_account, emp_bank)
+		VALUES (#{emp_photo}, #{emp_code}, #{emp_name}, #{dep_code}, #{emp_position}, #{emp_hire_date}, #{emp_cos}, #{emp_jumin}, #{emp_address}, #{emp_tel}, #{emp_phone}, #{emp_email}, #{emp_port_no}, #{emp_account}, #{emp_bank})
+	</insert>
 
 </mapper>
