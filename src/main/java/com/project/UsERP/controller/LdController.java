@@ -24,8 +24,58 @@ public class LdController {
 	@RequestMapping("/ldBasicReg")
 	public String ldBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록");
-
+		
 		return "ld/ldBasicReg";
+	}
+	
+	// 거래처 조회 검색
+	@RequestMapping("/compSearchList")
+	public String compSearchList(HttpServletRequest req, Model model) {
+		logger.info("url : 검색 거래처 조회 ");
+		
+		ldservice.companyList(req, model);
+		
+		return "ld/ajax/compSearchList";
+	}
+	
+//	// 거래처 조회 데이터 반환
+//	@RequestMapping("/compReturnData")
+//	public String compReturnData(HttpServletRequest req, Model model) {
+//		logger.info("url : 거래처 조회 데이터 반환");
+//		
+//		ldservice.companyList(req, model);
+//		
+//		return "ld/ldBasicReg";
+//	}
+	
+	// 검색 상품 조회
+	@RequestMapping("/proSearchList")
+	public String proSearchList(HttpServletRequest req, Model model) {
+		logger.info("url : 검색 상품 조회 ");
+		
+		ldservice.productList(req, model);
+		
+		return "ld/ajax/proSearchList";
+	}
+//	
+//	// 검색 조회 데이터 반환
+//	@RequestMapping("/proReturnData")
+//	public String proReturnData(HttpServletRequest req, Model model) {
+//		logger.info("url : 검색 조회 데이터 반환");
+//		
+//		ldservice.productList(req, model);
+//		
+//		return "ld/ldBasicReg";
+//	}
+	
+	 // 창고 목록 AJAX
+	@RequestMapping("/logWarehouseList")
+	public String logWarehouseList(HttpServletRequest req, Model model) {
+		logger.info("url: 창고 목록 AJAX");
+		 
+		ldservice.warehouseList(req, model);
+		
+		return "ld/ajax/logWarehouseList";
 	}
 	
 	// 김민수 - 창고 관리 - 리액트 창고 등록

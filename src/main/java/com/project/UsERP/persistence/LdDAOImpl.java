@@ -77,25 +77,25 @@ public class LdDAOImpl implements LdDAO{
 	// 김민수 - 검색 거래처 갯수 구하기
 	@Override
 	public int getCompanyCnt(String compKeyword) {
-		return sqlSession.selectOne("com.project.UsERP.persistence.LogisticsDAO.getCompanyCnt", compKeyword);
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getCompanyCnt", compKeyword);
 	}
 	
 	// 김민수 - 검색 거래처 조회
 	@Override
 	public List<CompanyVO> CompanyList(Map<String, Object> map) {
-		return sqlSession.selectList("com.project.UsERP.persistence.LogisticsDAO.CompanyList", map);
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.CompanyList", map);
 	}
 	
 	// 김민수 - 검색 상품 갯수 구하기
 	@Override
 	public int getProductCnt(String proKeyword) {
-		return sqlSession.selectOne("com.project.UsERP.persistence.LogisticsDAO.getProductCnt", proKeyword);
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getProductCnt", proKeyword);
 	}
 	
 	// 김민수 - 검색 상품 조회
 	@Override
 	public List<ProductVO> ProductList(Map<String, Object> map) {
-		return sqlSession.selectList("com.project.UsERP.persistence.LogisticsDAO.ProductList", map);
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.ProductList", map);
 	}
 	
 }

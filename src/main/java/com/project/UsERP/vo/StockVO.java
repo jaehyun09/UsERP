@@ -12,8 +12,8 @@ public class StockVO {
 	private int sto_state;			// 상태
 	private Date sto_reg_date;		// 등록일
 	private String sto_content; 	// 사유
-	private String logs_startwh;	// 출발창고
-	private String logs_arrivewh;	// 도착창고
+	private String sto_startwh;		// 출발창고
+	private String sto_arrivewh;	// 도착창고
 	private int ware_code;			// 창고번호
 	private int pro_code; 			// 상품코드
 	WarehouseVO warehouse;
@@ -61,17 +61,18 @@ public class StockVO {
 	public void setSto_content(String sto_content) {
 		this.sto_content = sto_content;
 	}
-	public String getLogs_startwh() {
-		return logs_startwh;
+
+	public String getSto_startwh() {
+		return sto_startwh;
 	}
-	public void setLogs_startwh(String logs_startwh) {
-		this.logs_startwh = logs_startwh;
+	public void setSto_startwh(String sto_startwh) {
+		this.sto_startwh = sto_startwh;
 	}
-	public String getLogs_arrivewh() {
-		return logs_arrivewh;
+	public String getSto_arrivewh() {
+		return sto_arrivewh;
 	}
-	public void setLogs_arrivewh(String logs_arrivewh) {
-		this.logs_arrivewh = logs_arrivewh;
+	public void setSto_arrivewh(String sto_arrivewh) {
+		this.sto_arrivewh = sto_arrivewh;
 	}
 	public int getWare_code() {
 		return ware_code;

@@ -5,6 +5,35 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.project.UsERP.persistence.LdDAO">
+	
+	<!-- 재고VO resultMap -->
+	<resultMap id="stockVOMap" type="com.project.UsERP.vo.StockVO">
+		<id property="sto_code" column="sto_code" />
+		<result property="sto_quantity" column="sto_quantity" />
+		<result property="sto_type" column="sto_type" />
+		<result property="sto_amount" column="sto_amount" />
+		<result property="sto_state" column="sto_state" />
+		<result property="sto_reg_date" column="sto_reg_date" />
+		<result property="sto_content" column="sto_content" />
+		<result property="sto_startwh" column="sto_startwh" />
+		<result property="sto_arrivewh" column="sto_arrivewh" />
+		<result property="ware_code" column="ware_code" />
+		<result property="pro_code" column="pro_code" />
+		<association property="warehouse" javaType="com.project.UsERP.vo.WarehouseVO">
+			<id property="ware_code" column="ware_code" />
+			<result property="ware_name" column="ware_name" />
+			<result property="ware_location" column="ware_location" />
+			<result property="ware_state" column="ware_state" />
+		</association>
+		<association property="product" javaType="com.project.UsERP.vo.ProductVO">
+			<id property="pro_code" column="pro_code" />
+			<result property="pro_name" column="pro_name" />
+			<result property="pro_pur_price" column="pro_pur_price" />
+			<result property="pro_sal_price" column="pro_sal_price" />
+			<result property="pro_state" column="pro_state" />
+			<result property="pro_reg_date" column="pro_reg_date" />
+		</association>
+	</resultMap>
 
 	<!-- 양품창고 등록 -->
 	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
@@ -38,8 +67,8 @@
 	<select id="getCompanyCnt" resultType="int" parameterType="String">
 		SELECT COUNT(*) AS selectCnt 
 		FROM company 
-		WHERE comp_code LIKE '%'||#{compKeyword}||'%' 
-		OR comp_name LIKE '%'||#{compKeyword}||'%'
+		WHERE com_code LIKE '%'||#{compKeyword}||'%' 
+		OR com_name LIKE '%'||#{compKeyword}||'%'
 	</select>
 	
 	
@@ -47,12 +76,12 @@
 	<select id="CompanyList" parameterType="java.util.Map" resultType="com.project.UsERP.vo.CompanyVO">
 		<![CDATA[
 		SELECT *
-			FROM (SELECT comp_code, comp_name, comp_biz_reg_no, comp_ceo_name, 
-						comp_reg_no, comp_address, comp_use_state, comp_write_reg_date, rownum rnum
+			FROM (SELECT com_code, com_type, com_name, com_ceo_name,
+						com_reg_no, com_address, com_reg_date, rownum rnum
     			FROM (SELECT * FROM company 
-	    				WHERE comp_code LIKE '%'||#{compKeyword}||'%' 
-						OR comp_name LIKE '%'||#{compKeyword}||'%'
-	    				ORDER BY comp_code))
+	    				WHERE com_code LIKE '%'||#{compKeyword}||'%' 
+						OR com_name LIKE '%'||#{compKeyword}||'%'
+	    				ORDER BY com_code))
     			WHERE rnum >= #{start} 
     			AND rnum <= #{end}
 		]]>
@@ -69,8 +98,8 @@
 	<select id="ProductList" resultType="com.project.UsERP.vo.ProductVO" parameterType="java.util.Map">
 		<![CDATA[
 			SELECT *
-			FROM (SELECT pro_code, pro_name, pro_purchase_unit_price, pro_sale_unit_price, 
-						pro_use_state, pro_reg_date, rownum rnum
+			FROM (SELECT pro_code, pro_name, pro_pur_price, pro_sal_price, 
+						pro_state, pro_reg_date, rownum rnum
 			    FROM (SELECT * FROM product 
 					    WHERE pro_code LIKE '%'||#{proKeyword}||'%' 
 						OR pro_name LIKE '%'||#{proKeyword}||'%'
@@ -89,6 +118,9 @@
 	<select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
 		select * from product
 	</select> 
+	
+	<!-- 재고 현황 목록 -->
+	<select id=""></select>
 	
 	
 </mapper>
