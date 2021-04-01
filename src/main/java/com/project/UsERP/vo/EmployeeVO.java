@@ -8,16 +8,15 @@ public class EmployeeVO {
 	private String emp_code;		// 사원번호
 	private String emp_pwd;			// 비밀번호
 	private String emp_authority;	// 권한
-	private String emp_enabled;		// 등급
-	private String emp_position;	// 직급
+	private String emp_enabled;		// 접속가능
 	private String emp_name;		// 사원명 
 	private Date emp_hire_date;		// 입사일
-	private int emp_cos;			// 근속년수
+	private Long emp_cos;			// 근속연수
 	private String emp_photo;		// 사진
 	private String emp_jumin;		// 주민등록번호
 	private String emp_address;		// 주소
-	private String emp_tel;			// 핸드폰 
-	private String emp_phone;		// 핸드폰 
+	private String emp_tel;			// 전화번호
+	private String emp_phone;		// 휴대전화
 	private String emp_email;		// 이메일 
 	private int emp_port_no;		// 여권번호
 	private String emp_bank;		// 급여은행
@@ -51,12 +50,6 @@ public class EmployeeVO {
 	public void setEmp_enabled(String emp_enabled) {
 		this.emp_enabled = emp_enabled;
 	}
-	public String getEmp_position() {
-		return emp_position;
-	}
-	public void setEmp_position(String emp_position) {
-		this.emp_position = emp_position;
-	}
 	public String getEmp_name() {
 		return emp_name;
 	}
@@ -69,10 +62,10 @@ public class EmployeeVO {
 	public void setEmp_hire_date(Date emp_hire_date) {
 		this.emp_hire_date = emp_hire_date;
 	}
-	public int getEmp_cos() {
+	public Long getEmp_cos() {
 		return emp_cos;
 	}
-	public void setEmp_cos(int emp_cos) {
+	public void setEmp_cos(Long emp_cos) {
 		this.emp_cos = emp_cos;
 	}
 	public String getEmp_photo() {
@@ -153,4 +146,6 @@ public class EmployeeVO {
 	public void setDepartment(DepartmentVO department) {
 		this.department = department;
 	}
+	
+	
 }

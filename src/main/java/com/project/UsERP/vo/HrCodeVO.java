@@ -40,4 +40,6 @@ public class HrCodeVO {
 		this.hrCodeGroup = hrCodeGroup;
 	}
 	
+	
+	
 }

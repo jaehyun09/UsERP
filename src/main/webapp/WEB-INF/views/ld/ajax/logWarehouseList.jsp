@@ -18,7 +18,7 @@
     <script src="${project}js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
 	
-	/* 창고 상세페이지 AJAX */
+	/* 창고 상세페이지 AJAX 
 	$(function() {
 		$('#ware_code').click(function() {
 			
@@ -28,24 +28,27 @@
 				url: 'logWarehouseDetail?${_csrf.parameterName}=${_csrf.token}&ware_code=${wareCode}',
 				type: 'GET',
 				dataType: 'text',
-				success: function(result){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-	             $('#logWarehouseDetail').html(result);
+				success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+	             $('#logWarehouseDetail').html(data);
 	          },
 	          error: function(){
 	             alert('오류');
 	          }
 			});
 		});
-	});
+	}); */
 	
 	/* 창고 상세페이지  */
-    function compSearchList() {
+    function waredetail() {
+		var ware_code = $('#ware_code').val();
+		var param = "${_csrf.parameterName}=${_csrf.token}&ware_code=" + ware_code;
+		
     	$.ajax({
-    		url: "logWarehouseDetail?${_csrf.parameterName}=${_csrf.token}",
-    		type: 'GET',
-    		dataType: 'text',
-    		success: function(result) {
-    			$('#logWarehouseDetail').html(result);
+    		url: "logWarehouseDetail",
+    		type: "POST",
+    		data: param,
+    		success: function(data) {
+    			$('#logWarehouseDetail').html(data);
     		},
     		error: function() {
     			alert('오류');
@@ -60,6 +63,7 @@
 
 <main>
  <!-- 숨겨진 페이지 -->
+ <div class="row">
        <div class="col">
           <div class="collapse multi-collapse"
              id="multiCollapseExample1"> 
@@ -114,13 +118,12 @@
                 <tbody>
                    <c:forEach var="houseVo" items="${warehouseList}">
                    <tr>
-                      <c:if test="${wareCode == houseVo.ware_code}">
                       <td class="py-3 middle">
+                      <input type="hidden" id="ware_code" value="${houseVo.ware_code}">
                       <a class="btn" data-toggle="collapse"
                          href="#multiCollapseExample1" role="button"
-                         aria-expanded="false" aria-controls="multiCollapseExample1">${houseVo.ware_code}
+                         aria-expanded="false" aria-controls="multiCollapseExample1" onclick="waredetail()">${houseVo.ware_code}
                          </a></td>
-                      </c:if>
                       <td class="py-3 middle">${houseVo.ware_name}</td>
                       <td class="py-3 middle">${houseVo.ware_location}</td>
                       <c:choose>
@@ -135,6 +138,7 @@
                    </c:forEach>
                 </tbody>
              </table>
+             </div>
     
 </main>
 

@@ -140,4 +140,6 @@ public class AccountStatementVO {
 		this.company = company;
 	}
 	
+	
+	
 }	

@@ -10,13 +10,7 @@
 	<resultMap id="stockVOMap" type="com.project.UsERP.vo.StockVO">
 		<id property="sto_code" column="sto_code" />
 		<result property="sto_quantity" column="sto_quantity" />
-		<result property="sto_type" column="sto_type" />
-		<result property="sto_amount" column="sto_amount" />
-		<result property="sto_state" column="sto_state" />
 		<result property="sto_reg_date" column="sto_reg_date" />
-		<result property="sto_content" column="sto_content" />
-		<result property="sto_startwh" column="sto_startwh" />
-		<result property="sto_arrivewh" column="sto_arrivewh" />
 		<result property="ware_code" column="ware_code" />
 		<result property="pro_code" column="pro_code" />
 		<association property="warehouse" javaType="com.project.UsERP.vo.WarehouseVO">
@@ -119,8 +113,36 @@
 		select * from product
 	</select> 
 	
-	<!-- 재고 현황 목록 -->
-	<select id=""></select>
+	<!-- 재고 현황 갯수 -->
+	<select id="getStockCnt" resultType="int">
+		SELECT COUNT(*) as cnt
+		FROM stock s,product p, warehouse w
+		WHERE s.pro_code = p.pro_code
+		AND s.ware_code = w.ware_code
+		AND p.pro_state = 1
+		AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
+	</select>
+	
+	<!-- 재고 현황 조회 -->
+	<select id="StockStatusList" resultMap="stockVOMap" parameterType="java.util.Map">
+		<![CDATA[
+			SELECT * 
+			FROM (SELECT sto_code, sto_quantity, sto_reg_date, ware_code, pro_code, wname, pname, 
+			        purprice, salprice, pstate, rownum rnum
+			    FROM(SELECT s.*, w.ware_name wname, p.pro_name pname, p.pro_pur_price purprice, 
+			            p.pro_sal_price salprice, p.pro_state pstate
+			        FROM stock s, warehouse w, product p
+			        WHERE s.ware_code = w.ware_code
+			        AND s.pro_code = p.pro_code
+			        AND p.pro_state = 1
+			        AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
+			        ORDER BY s.sto_code,s.pro_code, s.ware_code
+			        )
+				)
+			WHERE rnum >= #{start}
+			AND rnum <= #{end}
+		]]>
+	</select>
 	
 	
 </mapper>

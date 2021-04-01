@@ -22,6 +22,7 @@
 <body>
 
 <main>
+
                 <table class="table table-bordered bg-white text-dark ass2 center th20">
                    <tr class="text-white con center">
                       <th colspan="2">창고 목록 수정</th>
@@ -39,15 +40,29 @@
                    <tr>
                       <th class="font-weight-semi-bold border-top-0 py-4 h4">창고명</th>
                       <td>
-                         <input class="form-control form-control-icon-text" placeholder="창고명" type="text" value="1">
+                         <input class="form-control form-control-icon-text" placeholder="창고명" type="text" value="${wareDetailVo.ware_name}">
                       </td>
                    </tr>
                    <tr>
                       <th class="font-weight-semi-bold border-top-0 py-4 h4">창고주소</th>
                       <td>
-                         <input class="form-control form-control-icon-text" placeholder="창고주소" type="text" value="2">
+                         <input class="form-control form-control-icon-text" placeholder="창고주소" type="text" value="${wareDetailVo.ware_location}">
                       </td>
                    </tr>
+                   <tr>
+                      <th class="font-weight-semi-bold border-top-0 py-4 h4">사용상태</th>
+                      <td class="py-5">
+                         <div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="useWare" id="inlineRadio1" value="option1">
+						  <label class="form-check-label" for="inlineRadio1">사용</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="unUseWare" id="inlineRadio2" value="option2">
+						  <label class="form-check-label" for="inlineRadio2">미사용</label>
+						</div>
+                      </td>
+                   </tr>
+                   
                 </table>
                    <div align=center>
                        <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;

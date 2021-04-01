@@ -109,7 +109,7 @@
               <c:if test="${cnt > 0}">
               	<c:if test="${startPage > pageBlock}">
                <li class="page-item">				
-               	<a id="datatablePaginationPrev" class="page-link" href="logBasicReg?pageNum=${startPage - pageBlock}" aria-label="Previous">
+               	<a id="datatablePaginationPrev" class="page-link" href="logBasicReg?pageNum=${startPage - pageBlock}&compKeyword=${compKeyword}" aria-label="Previous">
                	<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
                </li>
               	</c:if>
@@ -122,14 +122,14 @@
               		</c:if>
               		<c:if test="${i != currentPage}">
                  <li class="page-item d-none d-md-block">
-                 	<a id="datatablePaginationPage0" class="page-link" href="logBasicReg?pageNum=${i}">${i}</a>
+                 	<a id="datatablePaginationPage0" class="page-link" href="logBasicReg?pageNum=${i}&compKeyword=${compKeyword}">${i}</a>
                  </li>
               		</c:if>
               	</c:forEach>
                
               	<c:if test="${pageCnt > endPage}">
                 <li class="page-item">
-                	<a id="datatablePaginationNext" class="page-link" href="logBasicReg?pageNum=${startPage + pageBlock}" aria-label="Next">
+                	<a id="datatablePaginationNext" class="page-link" href="logBasicReg?pageNum=${startPage + pageBlock}&compKeyword=${compKeyword}" aria-label="Next">
                 	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
                 </li>
               	</c:if>

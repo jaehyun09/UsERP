@@ -38,16 +38,6 @@ public class LdController {
 		return "ld/ajax/compSearchList";
 	}
 	
-//	// 거래처 조회 데이터 반환
-//	@RequestMapping("/compReturnData")
-//	public String compReturnData(HttpServletRequest req, Model model) {
-//		logger.info("url : 거래처 조회 데이터 반환");
-//		
-//		ldservice.companyList(req, model);
-//		
-//		return "ld/ldBasicReg";
-//	}
-	
 	// 검색 상품 조회
 	@RequestMapping("/proSearchList")
 	public String proSearchList(HttpServletRequest req, Model model) {
@@ -57,16 +47,6 @@ public class LdController {
 		
 		return "ld/ajax/proSearchList";
 	}
-//	
-//	// 검색 조회 데이터 반환
-//	@RequestMapping("/proReturnData")
-//	public String proReturnData(HttpServletRequest req, Model model) {
-//		logger.info("url : 검색 조회 데이터 반환");
-//		
-//		ldservice.productList(req, model);
-//		
-//		return "ld/ldBasicReg";
-//	}
 	
 	 // 창고 목록 AJAX
 	@RequestMapping("/logWarehouseList")
@@ -112,11 +92,13 @@ public class LdController {
 		return "ld/ldInventoryControl";
 	}
 	
-	// 재고 현황 AJAX
+	// 재고 현황 검색 조회 AJAX
 	@RequestMapping("/logInvenStatus")
 	public String logInvenStatus(HttpServletRequest req, Model model) {
-		logger.info("url: 재고 현황AJAX");
+		logger.info("url: 재고 현황 검색 조회 AJAX");
 		 
+		ldservice.inventoryStatusList(req, model);
+		
 		return "ld/ajax/logInvenStatus";
 	}
 	  

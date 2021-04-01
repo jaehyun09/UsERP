@@ -12,7 +12,7 @@ public class CommuteVO {
 	private Date cm_night_time;		// 야근시간
 	private Date cm_over_time;		// 특근시간
 	private String cm_address;		// MAC주소
-	private int emp_code;			// 사원번호
+	private String emp_code;		// 사원번호
 	EmployeeVO employee;
 	
 	public int getCm_code() {
@@ -71,11 +71,11 @@ public class CommuteVO {
 		this.cm_address = cm_address;
 	}
 	
-	public int getEmp_code() {
+	public String getEmp_code() {
 		return emp_code;
 	}
 	
-	public void setEmp_code(int emp_code) {
+	public void setEmp_code(String emp_code) {
 		this.emp_code = emp_code;
 	}
 	
