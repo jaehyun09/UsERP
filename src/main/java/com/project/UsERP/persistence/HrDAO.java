@@ -20,6 +20,9 @@ public interface HrDAO {
 	// 조명재 - 부서 조회
 	public List<DepartmentVO> depList();
 	
+	// 조명재 - 인사 코드 조회 - 직급
+	public List<HrCodeVO> hrCodePosList();
+	
 	// 조명재 - 인사 발령 목록 갯수
 	public int getAppointmentCnt();
 	

@@ -38,6 +38,14 @@ public class HrDAOImpl implements HrDAO {
 		return hrDao.depList();
 	}
 	
+	
+	// 조명재 - 인사 코드 조회 - 직급
+	@Override
+	public List<HrCodeVO> hrCodePosList() {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.hrCodePosList();
+	}
+	
 	// 조명재 - 인사 발령 목록 갯수
 	@Override
 	public int getAppointmentCnt() {

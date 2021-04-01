@@ -28,7 +28,7 @@ public class HrServiceImpl implements HrService {
 
 	// 김은희 - 인사 코드 그룹 조회
 	@Override
-	public void hrCgList(HttpServletRequest req, Model model) {
+	public void hrCodeGroupList(HttpServletRequest req, Model model) {
 		List<HrCodeGroupVO> list = hrDao.hrCgList();
 		
 		model.addAttribute("list", list);
@@ -37,13 +37,13 @@ public class HrServiceImpl implements HrService {
 	
 	// 김은희 - 인사 코드 조회
 	@Override 
-	public void hrCList(HttpServletRequest req, Model model) {
+	public void hrCodeList(HttpServletRequest req, Model model) {
 		List<HrCodeVO> list2 = hrDao.hrCList();
 		
-		model.addAttribute("list2", list2); 
+		model.addAttribute("list2", list2);
 	}
-
-	// 김은희 - 부서 조회
+	
+	// 조명재 - 부서 조회
 	@Override
 	public void depList(HttpServletRequest req, Model model) {
 		List<DepartmentVO> list3 = hrDao.depList();
@@ -51,12 +51,20 @@ public class HrServiceImpl implements HrService {
 		model.addAttribute("list3", list3);
 	}
 	
+	// 조명재 - 인사 코드 조회 - 직급
+	@Override
+	public void hrCodePosList(HttpServletRequest req, Model model) {
+		List<HrCodeVO> list4 = hrDao.hrCodePosList();
+		
+		model.addAttribute("list4", list4);
+	}
+	
 	// 김은희 - 인사카드 조회
 	@Override
 	public void hrCardList(HttpServletRequest req, Model model) {
-		List<EmployeeVO> list4 = hrDao.hrCardList();
+		List<EmployeeVO> list5 = hrDao.hrCardList();
 		
-		model.addAttribute("list4", list4);
+		model.addAttribute("list5", list5);
 	}
 	
 	// 김은희 - 인사카드 상세페이지 조회
@@ -168,8 +176,8 @@ public class HrServiceImpl implements HrService {
 			map.put("start", start);
 			map.put("end", end);
 			
-			List<AppointHistoryVO> list = hrDao.appointmentList(map);
-			model.addAttribute("list", list);
+			List<AppointHistoryVO> list6 = hrDao.appointmentList(map);
+			model.addAttribute("list6", list6);
 			
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("pageCnt", pageCnt);

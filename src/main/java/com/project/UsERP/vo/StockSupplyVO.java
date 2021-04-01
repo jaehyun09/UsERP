@@ -8,10 +8,12 @@ public class StockSupplyVO {
 	private int stsu_code;			// 재고수불부코드
 	private Date stsu_reg_date;		// 일자
 	private int stsu_type;			// 유형
-	private int ware_code;			// 창고번호
+	private String stsu_content;	// 사유
+	private int stsu_amount;		// 수량
+	private String stsu_startwh;	// 출발창고
+	private String stsu_arrivewh;	// 도착창고
 	private int sto_code;			// 재고코드
 	private int pro_code;			// 상품코드
-	WarehouseVO warehouse;
 	StockVO	stock;
 	ProductVO product;
 	
@@ -33,11 +35,29 @@ public class StockSupplyVO {
 	public void setStsu_type(int stsu_type) {
 		this.stsu_type = stsu_type;
 	}
-	public int getWare_code() {
-		return ware_code;
+	public String getStsu_content() {
+		return stsu_content;
 	}
-	public void setWare_code(int ware_code) {
-		this.ware_code = ware_code;
+	public void setStsu_content(String stsu_content) {
+		this.stsu_content = stsu_content;
+	}
+	public int getStsu_amount() {
+		return stsu_amount;
+	}
+	public void setStsu_amount(int stsu_amount) {
+		this.stsu_amount = stsu_amount;
+	}
+	public String getStsu_startwh() {
+		return stsu_startwh;
+	}
+	public void setStsu_startwh(String stsu_startwh) {
+		this.stsu_startwh = stsu_startwh;
+	}
+	public String getStsu_arrivewh() {
+		return stsu_arrivewh;
+	}
+	public void setStsu_arrivewh(String stsu_arrivewh) {
+		this.stsu_arrivewh = stsu_arrivewh;
 	}
 	public int getSto_code() {
 		return sto_code;
@@ -50,12 +70,6 @@ public class StockSupplyVO {
 	}
 	public void setPro_code(int pro_code) {
 		this.pro_code = pro_code;
-	}
-	public WarehouseVO getWarehouse() {
-		return warehouse;
-	}
-	public void setWarehouse(WarehouseVO warehouse) {
-		this.warehouse = warehouse;
 	}
 	public StockVO getStock() {
 		return stock;

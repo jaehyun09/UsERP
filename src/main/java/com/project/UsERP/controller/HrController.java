@@ -24,8 +24,8 @@ public class HrController {
 	@RequestMapping("/hrBasicReg")
 	public String hrBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록");
-		hrService.hrCgList(req, model);
-		hrService.hrCList(req, model);
+		hrService.hrCodeGroupList(req, model);
+		hrService.hrCodeList(req, model);
 		hrService.depList(req, model);
 		return "hr/hrBasicReg";
 	}
@@ -61,7 +61,7 @@ public class HrController {
 		
 		hrService.appointmentList(req, model);
 		hrService.depList(req, model);
-//		hrService
+		hrService.hrCodePosList(req, model);
 
 		return "hr/hrAppointment";
 	}

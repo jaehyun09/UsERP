@@ -11,9 +11,21 @@
 		<result property="hr_code_name" column="hr_code_name" />
 		<result property="hr_state"  column="hr_state" />
 		<association property="hrCodeGroup" javaType="com.project.UsERP.vo.HrCodeGroupVO">
-			<id      property="hcg_code"   column="hcg_code" />  
-			<result property="hcg_name" column="hcg_name" />
-			<result property="hcg_state"  column="hcg_state" />
+			<id		property="hcg_code"		column="hcg_code" />  
+			<result property="hcg_name"		column="hcg_name" />
+			<result property="hcg_state"	column="hcg_state" />
+		</association> 
+	</resultMap>
+
+	<resultMap id="hrCodePosMap" type="com.project.UsERP.vo.HrCodeVO">
+		<id     property="hr_code"		column="hr_code" />  
+		<result property="hr_code_name" column="hr_code_name" />
+		<result property="hr_state"		column="hr_state" />
+		<result property="hcg_code"		column="hcg_code" />
+		<association property="hrCodeGroup" javaType="com.project.UsERP.vo.HrCodeGroupVO">
+			<id      property="hcg_code" column="hcg_code" />  
+			<result property="hcg_name"  column="hcg_name" />
+			<result property="hcg_state" column="hcg_state" />
 		</association> 
 	</resultMap>
 	
@@ -70,6 +82,11 @@
 	<!-- 김은희 - 인사 코드 조회 -->
 	<select id="hrCList" resultMap="hrCodeMap">
 		SELECT * FROM hr_code ORDER BY hr_code
+	</select>
+	
+	<!-- 조명재 - 인사 코드 조회 - 직급 -->
+	<select id="hrCodePosList" resultType="com.project.UsERP.vo.HrCodeVO">
+		SELECT * FROM hr_code WHERE hcg_code = 1 ORDER BY hr_code
 	</select>
 	
 	<!-- 조명재 - 부서 조회 -->

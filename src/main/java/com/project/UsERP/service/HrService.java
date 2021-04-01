@@ -8,10 +8,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public interface HrService {
 
 	// 김은희 - 인사 코드 그룹 조회
-	public void hrCgList(HttpServletRequest req, Model model);
+	public void hrCodeGroupList(HttpServletRequest req, Model model);
 
 	// 김은희 - 인사 코드 조회
-	public void hrCList(HttpServletRequest req, Model model);
+	public void hrCodeList(HttpServletRequest req, Model model);
+	
+	// 조명재 - 인사 코드 조회 - 직급
+	public void hrCodePosList(HttpServletRequest req, Model model);
 
 	// 조명재 - 부서 조회
 	public void depList(HttpServletRequest req, Model model);

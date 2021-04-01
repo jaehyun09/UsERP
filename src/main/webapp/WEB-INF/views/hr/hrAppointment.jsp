@@ -272,7 +272,7 @@
 											      </tr>
 											    </thead>
 											    <tbody>
-											    	<c:forEach var="vo" items="${list}">
+											    	<c:forEach var="vo" items="${list6}">
 												      <tr>
 												        <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
 														<td class="py-3">${vo.emp_code}</td>
@@ -294,7 +294,7 @@
 																<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
 															</li>
 															<li class="page-item d-none d-md-block">
-																<a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a>
+																<a id="datatablePaginationPage0" class="page-link active" href="#" data-dt-page-to="0">1</a>
 															</li>
 															<li class="page-item d-none d-md-block">
 																<a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li>
@@ -308,6 +308,35 @@
 														</ul>
 													</nav>
 												</div>
+												<!-- 
+												<div class="card-footer d-block d-md-flex align-items-center d-print-none">
+													<nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
+														<c:if test="${cnt > 0}">
+															<ul class="pagination justify-content-end font-weight-semi-bold mb-0">
+																<c:if test="${startPage > pageBlock}">				
+																	<li class="page-item">				
+																		<a id="datatablePaginationPrev" class="page-link" href="#" aria-label="Previous"
+																			onclick=" return false;">
+																		<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
+																	</li>
+																</c:if>
+																<li class="page-item d-none d-md-block">
+																	<a id="datatablePaginationPage0" class="page-link active" href="#" data-dt-page-to="0">1</a>
+																</li>
+																<li class="page-item d-none d-md-block">
+																	<a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li>
+																<li class="page-item d-none d-md-block">
+																<a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a>
+																</li>
+																<li class="page-item">
+																	<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next">
+																	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
+																</li>				
+															</ul>
+														</c:if>
+													</nav>
+												</div>
+												-->
 												<!-- 페이징 처리 End -->
 											</div>
 
@@ -326,15 +355,14 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원명</th>
-															<td> <input id="text" type="text" class="form-control" name="emp_name" required></td>
+															<td><input id="text" type="text" class="form-control" name="emp_name" required></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">현재 부서</th>
 															<td>	 
 															<div class="form-group">
 															     <select name="ap_pre_dep" class="form-control" id="exampleFormControlSelect1">
-															       <option value="">영업부</option>
-															       <option>인사부</option>
+													       			<option value="">영업팀</option>
 															     </select>
 															   </div>
 															 </td>
@@ -344,8 +372,9 @@
 															<td>	 
 															<div class="form-group">
 															     <select name="ap_cur_dep" class="form-control" id="exampleFormControlSelect1">
-															       <option>영업부</option>
-															       <option>영업부</option>
+															    	<c:forEach var="vo" items="${list4}">
+														       			<option value="${hr_code_name}">${hr_code_name}</option>
+														       		</c:forEach>
 															     </select>
 															   </div>
 															 </td>
