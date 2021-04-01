@@ -40,7 +40,9 @@
                     <i class="gd-align-left"></i>
                 </a>
                 <!-- End Side Nav Toggle -->
-
+                <c:if test="${sessionScope.mem_id == null}">
+                </c:if>
+				<c:if test="${sessionScope.mem_id != null}">
                 <!-- User Notifications -->
                 <div class="dropdown ml-auto">
                     <a id="notificationsInvoker" class="header-invoker" href="#" aria-controls="notifications" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#notifications" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
@@ -96,11 +98,11 @@
 
                     <ul id="profileMenu" class="unfold unfold-user unfold-light unfold-top unfold-centered position-absolute pt-2 pb-1 mt-4 unfold-css-animation unfold-hidden fadeOut" aria-labelledby="profileMenuInvoker" style="animation-duration: 300ms;">
                         <li class="unfold-item">
-                            <a class="unfold-link d-flex align-items-center text-nowrap" href="#">
+                            <a class="unfold-link d-flex align-items-center text-nowrap" href="${path}/mypage">
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-user"></i>
                     </span>
-                               	 내 정보
+                                   내 정보
                             </a>
                         </li>
                         <li class="unfold-item unfold-item-has-divider">
@@ -108,11 +110,12 @@
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-power-off"></i>
                     </span>
-                          		로그아웃
+                                로그아웃
                             </a>
                         </li>
                     </ul>
                 </div>
+                </c:if>
                 <!-- End User Avatar -->
             </div>
         </div>

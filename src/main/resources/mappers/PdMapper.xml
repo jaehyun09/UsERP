@@ -8,7 +8,7 @@
 
 	<!-- 기초 등록 구매 거래처 목록 -->
 	<select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
-		select * from company where comp_use_state = 1
+		select * from company where com_state = 1
 	</select>
 	
 	<!-- 기초 등록 상품 목록 -->

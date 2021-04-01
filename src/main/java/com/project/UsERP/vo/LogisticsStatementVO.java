@@ -15,11 +15,13 @@ public class LogisticsStatementVO {
 	private int com_code;			// 거래처코드
 	private int sto_code;			// 재고코드
 	private int pro_code;			// 상품코드
-	private int emp_code;			// 사원번호
+	private String emp_code;		// 사원번호
+	private int ware_code;			// 창고번호
 	CompanyVO company;
 	StockVO stock;
 	ProductVO product;
 	EmployeeVO employee;
+	WarehouseVO warehouse;
 	
 	public int getLogs_code() {
 		return logs_code;
@@ -81,11 +83,17 @@ public class LogisticsStatementVO {
 	public void setPro_code(int pro_code) {
 		this.pro_code = pro_code;
 	}
-	public int getEmp_code() {
+	public String getEmp_code() {
 		return emp_code;
 	}
-	public void setEmp_code(int emp_code) {
+	public void setEmp_code(String emp_code) {
 		this.emp_code = emp_code;
+	}
+	public int getWare_code() {
+		return ware_code;
+	}
+	public void setWare_code(int ware_code) {
+		this.ware_code = ware_code;
 	}
 	public CompanyVO getCompany() {
 		return company;
@@ -110,6 +118,12 @@ public class LogisticsStatementVO {
 	}
 	public void setEmployee(EmployeeVO employee) {
 		this.employee = employee;
+	}
+	public WarehouseVO getWarehouse() {
+		return warehouse;
+	}
+	public void setWarehouse(WarehouseVO warehouse) {
+		this.warehouse = warehouse;
 	}
 	
 }

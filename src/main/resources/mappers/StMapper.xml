@@ -35,17 +35,51 @@
       </association>
    </resultMap>
    
+   <resultMap id="LogsMap" type="com.project.UsERP.vo.LogisticsStatementVO">
+      <id      property="logs_code"   column="logs_code"/>
+      <result   property="logs_type"   column="logs_type"/>
+      <result   property="logs_reg_date"   column="logs_reg_date"/>
+      <result   property="logs_update_date"   column="logs_update_date"/>
+      <result   property="logs_state" column="logs_state"/>
+      <result   property="logs_quantity" column="logs_quantity"/>
+      <result   property="logs_shortage"   column="logs_shortage"/>
+      <result   property="com_code"   column="com_code"/>
+      <result   property="sto_code"   column="sto_code"/>
+      <result   property="pro_code"      column="pro_code"/>
+      <result   property="emp_code"      column="emp_code"/>
+      <result   property="ware_code"      column="ware_code"/>
+      <association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+         <id      property="emp_code"   column="emp_code"/>
+         <result   property="emp_name"   column="emp_name"/>
+      </association>
+      <association property="product" javaType="com.project.UsERP.vo.ProductVO">
+         <id      property="pro_code"   column="pro_code"/>
+         <result   property="pro_name"   column="pro_name"/>
+         <result   property="pro_sal_price" column="pro_sal_price"/>
+      </association>
+      <association property="company" javaType="com.project.UsERP.vo.CompanyVO">
+         <id      property="com_code"   column="com_code"/>
+         <result   property="com_name"   column="com_name"/>
+      </association>
+      <association property="warehouse" javaType="com.project.UsERP.vo.WarehouseVO">
+         <id      property="ware_code"   column="ware_code"/>
+         <result   property="ware_name"   column="ware_name"/>
+      </association>
+   </resultMap>
+   
 	<!-- 기초 등록 판매 거래처 목록 -->
 	<select id = "salesCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
-		select * from company where comp_use_state = 0
+		select * from company
 	</select>
 	
-	<!-- 기초 등록 상품 목록 -->
+	<!-- 강재현 : 기초등록 - 상품 목록 -->
 	<select id = "salesProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
 		select * from product
 	</select>
 
-	<!-- 판매,승인내역 -->
+	<!-- 강재현 : 재고현황 -->
+	
+	<!-- 이재홍 : 판매 현황 - 판매 내역 & 승인 내역 -->
    <select id = "salesList" resultMap = "SalesMap">
         SELECT a.accs_code, c.com_name, p.pro_name, p.pro_sal_price, p.pro_pur_price, a.accs_quantity, a.accs_sum, e.emp_name, a.accs_content, a.accs_reg_date
        	FROM account_statement a, company c, product p, employee e
@@ -54,10 +88,19 @@
         AND a.pro_code = p.pro_code
    </select>
    
-   <!-- 판매전표등록
-   <insert id = "" parmeterType = "">
-      
-   </insert>
-   -->
+   <!-- 이재홍 : 판매 전표 등록 -->
+   
+   <!-- 강재현 : 출고현황 - 출고 내역 -->
+   <select id="logisticsList" resultMap = "LogsMap">
+	   SELECT l.*, c.com_name, e.emp_name, p.pro_name, w.ware_name
+		    FROM logistics_statement l, company c, employee e, product p, warehouse w
+		    WHERE l.com_code = c.com_code
+		    AND l.com_code = c.com_code
+		    AND l.pro_code = p.pro_code
+            AND l.ware_code = w.ware_code
+		    ORDER BY logs_code
+   </select>
+   
+   <!-- 강재현 : 출고현황 - 출고 전표 등록 -->
 
 </mapper>

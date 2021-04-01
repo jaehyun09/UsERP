@@ -1,6 +1,7 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.UsERP.vo.StockVO;
 import com.project.UsERP.vo.WarehouseVO;
@@ -33,5 +34,12 @@ public interface LdDAO {
 
 	// 김민수 - 창고 상세 목록
 	public WarehouseVO warehouseDetail(int code);
+	
+
+	// 김민수 - 검색 재고 현황 갯수 구하기
+	public int getStockCnt(String ssKeyword);
+	   
+	// 김민수 - 검색 재고 현황 조회(페이징)
+	public List<StockVO> StockStatusList(Map<String, Object> map);
 
 }

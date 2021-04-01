@@ -322,15 +322,20 @@
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
                                              colspan="2" style="vertical-align: middle;">거래처명</td>
                                           <td class="font-weight-semi-bold border-top-0 py-2"
-                                             colspan="2"><input class="form-control" type="text" id=""
-                                             placeholder="거래처명을 입력하세요">
-                                             </td>
+                                             colspan="2"><select class="form-control" id="exampleFormControlSelect1">
+		                                             		<c:forEach var="company" items="${company}">
+		                                                          <option value="${company.com_name}">${company.com_name}</option>
+		                                                    </c:forEach>
+                                                        </select>
+                                          </td>
                                        </tr>
                                           <tr>
                                              <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
-                                             <td class="py-3" colspan="2"><input
-                                                class="form-control" type="text"
-                                                placeholder="상품명을 입력하세요"></td>
+                                             <td class="py-3" colspan="2"><select class="form-control" id="exampleFormControlSelect1">
+		                                             		<c:forEach var="product" items="${product}">
+		                                                          <option value="${product.pro_name}">${product.pro_name}</option>
+		                                                    </c:forEach>
+                                                        </select>
                                           </tr>
                                           <tr>
                                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>단가</b></td>

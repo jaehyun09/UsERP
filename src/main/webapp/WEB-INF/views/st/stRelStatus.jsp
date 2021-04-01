@@ -258,13 +258,16 @@
                                              id="multiCollapseExample1">
                                                  <table class="table table-bordered bg-white text-dark ass2 th20">
                                                    <tbody>
+                                                   
+                                                   
                                                       <tr class="text-white con center">
                                                          <th colspan="2">일단전표번호로</th>
                                                       </tr>
                                                       <tr>
                                                          <th>NO.</th>
-                                                         <td>10</td>
+                                                         <td>000</td>
                                                       </tr>
+                                                      
                                                       <tr>
                                                          <th>사업자등록번호</th>
                                                          <td>1234567890</td>
@@ -305,82 +308,69 @@
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead class="text-white table-bordered tap">
                                              <tr class="text-white table-bordered tap">
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">일단전표번호로...</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+                                                
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">판매매수량</th>
+                                                
+                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">수량</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">창고명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">출고일</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">담당자명</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">최종수정일</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">출고일</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">상태</th>
                                              </tr>
                                           </thead>
                                           <tbody>
+                                           <c:forEach var="strel" items="${strel}">
+                                           <c:if test="${strel.logs_type == 1 }">
                                              <tr>
-                                                <td class="py-3 middle" style="vertical-align:middle">10</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거
-                                                      <a data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1" >거래처명1</a>-->
-                                                     <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">거래처명3</a>    
-                                                </td>
-                                                <td class="py-3 middle" style="vertical-align:middle">최유성</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">업태1</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">사용중</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">2017-08-21</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">김민수</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">2017-09-03</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">2017-09-03</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">입고준비</td>
+                                                <td class="py-3 middle" style="vertical-align:middle">${strel.logs_code}</td>
+                                                <td class="py-3 middle" style="vertical-align:middle">${strel.product.pro_name}</td>
+                                                <td class="py-3 middle" style="vertical-align:middle">${strel.logs_quantity}</td>
+                                                <td class="py-3 middle" style="vertical-align:middle">${strel.warehouse.ware_name}</td>
+                                                
+                                                <td class="py-3 middle" style="vertical-align:middle">${strel.employee.emp_name}</td>
+                                                
+                                                <td class="py-3 middle" style="vertical-align:middle"><fmt:formatDate value="${strel.logs_reg_date}" pattern="yyyy-MM-dd" /></td>
+                                                <c:if test="${strel.logs_update_date == null }">
+                                                <td class="py-3 middle" style="vertical-align:middle">출고 대기중</td>
+                                                </c:if>
+                                                <c:if test="${strel.logs_update_date != null }">
+                                                <td class="py-3 middle" style="vertical-align:middle">${strel.logs_update_date}</td>
+                                                </c:if>
+                                                <c:if test="${strel.logs_state == 0 }">
+                                                <td class="py-3 middle" style="vertical-align:middle">대기중</td>
+                                                </c:if>
+                                                <c:if test="${strel.logs_state == 1 }">
+                                                <td class="py-3 middle" style="vertical-align:middle">승인완료</td>
+                                                </c:if>
                                              </tr>
-                                             <tr>
-                                                <td class="py-3 middle">11</td>
-                                                <td class="py-3 middle">
-                                                   <!-- <p>
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가
-                                                      <a data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1" >거래처명1</a>
-                                                   </p>-->
-                                                   <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">거래처명2</a>
-                                                </td>
-                                                <td class="py-3 middle">최유성</td>
-                                                <td class="py-3 middle">업태1</td>
-                                                <td class="py-3 middle">사용중</td>
-                                                <td class="py-3 middle">2017-08-21</td>
-                                                <td class="py-3 middle">김민수</td>
-                                                <td class="py-3 middle">2017-09-03</td>
-                                                <td class="py-3 middle">2017-09-03</td>
-                                                <td class="py-3 middle">입고준비</td>
-                                             </tr>
-                                             <tr>
-                                                <td class="py-3 middle" style="vertical-align:middle">12</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">
-                                                      <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">거래처명3</a>
-                                                </td>
-                                                <td class="py-3 middle" style="vertical-align:middle">김은희</td>
-                                                <td class="py-3 middle">업태3</td>
-                                                <td class="py-3 middle">사용중</td>
-                                                <td class="py-3 middle">2018-02-22</td>
-                                             </tr>
+                                             </c:if>
+                                             </c:forEach>
                                           </tbody>
                                        </table>
                                     </div>
                                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">

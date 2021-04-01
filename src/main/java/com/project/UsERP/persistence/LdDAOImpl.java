@@ -1,6 +1,7 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +11,15 @@ import com.project.UsERP.vo.StockVO;
 import com.project.UsERP.vo.WarehouseVO;
 
 @Repository
-public class LdDAOImpl implements LdDAO{
-	
+public class LdDAOImpl implements LdDAO {
+
 	@Autowired
 	SqlSession sqlSession;
 
 	// 최유성 - 입고내역 미승인
 	@Override
 	public List<StockVO> stockInOrder1() {
-		
+
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.stockInOrder1");
 	}
 
@@ -27,11 +28,11 @@ public class LdDAOImpl implements LdDAO{
 	public List<StockVO> stockInOrder2() {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.stockInOrder2");
 	}
-	
+
 	// 최유성 - 출고내역 미승인
 	@Override
 	public List<StockVO> stockOutOrder1() {
-		
+
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.stockOutOrder1");
 	}
 
@@ -69,6 +70,18 @@ public class LdDAOImpl implements LdDAO{
 	@Override
 	public WarehouseVO warehouseDetail(int code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.warehouseDetail", code);
+	}
+
+	// 김민수 - 검색 재고 현황 갯수 구하기
+	@Override
+	public int getStockCnt(String ssKeyword) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getStockCnt", ssKeyword);
+	}
+
+	// 김민수 - 검색 재고 현황 조회(페이징)
+	@Override
+	public List<StockVO> StockStatusList(Map<String, Object> map) {
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.StockStatusList", map);
 	}
 
 }

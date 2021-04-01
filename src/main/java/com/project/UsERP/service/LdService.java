@@ -1,4 +1,4 @@
-package com.project.UsERP.serverce;
+package com.project.UsERP.service;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,4 +18,6 @@ public interface LdService {
 	// 김민수 - 창고 상세 목록
 	public void warehouseDetail(HttpServletRequest req, Model model);
 
+	// 김민수 - 재고 현황(검색포함)
+	public void inventoryStatusList(HttpServletRequest req, Model model);
 }
