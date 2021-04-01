@@ -52,7 +52,9 @@ public interface LdDAO {
 	// 김민수 - 검색 재고 현황 갯수 구하기
 	public int getStockCnt(String ssKeyword);
 	
-	// 김민수 - 검색 재고 현황 조회
+	// 김민수 - 검색 재고 현황 조회(페이징)
 	public List<StockVO> StockStatusList(Map<String, Object> map);
 	
+	// 김민수 - 검색 재고 현황 조회(페이징x)
+	public List<StockVO> stockList(Map<String, Object> map);
 }

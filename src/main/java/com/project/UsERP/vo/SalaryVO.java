@@ -9,10 +9,7 @@ public class SalaryVO {
    private int sal_over;   // 특근수당
    private int sal_cos;    // 근속수당
    private int sal_or;     // 직책수당
-   private int hr_code;    // 인사코드
-   private int cm_code;    // 출퇴근기록코드
-   HrCodeVO hrCode;      
-   CommuteVO commute;
+
    
    public int getSal_code() {
       return sal_code;
@@ -50,30 +47,7 @@ public class SalaryVO {
    public void setSal_or(int sal_or) {
       this.sal_or = sal_or;
    }
-   public int getHr_code() {
-      return hr_code;
-   }
-   public void setHr_code(int hr_code) {
-      this.hr_code = hr_code;
-   }
-   public HrCodeVO getHrCode() {
-      return hrCode;
-   }
-   public void setHrCode(HrCodeVO hrCode) {
-      this.hrCode = hrCode;
-   }
-   public int getCm_code() {
-      return cm_code;
-   }
-   public void setCm_code(int cm_code) {
-      this.cm_code = cm_code;
-   }
-   public CommuteVO getCommute() {
-      return commute;
-   }
-   public void setCommute(CommuteVO commute) {
-      this.commute = commute;
-   }
+
    
    
 }

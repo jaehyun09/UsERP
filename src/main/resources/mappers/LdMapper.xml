@@ -127,10 +127,10 @@
 	<select id="StockStatusList" resultMap="stockVOMap" parameterType="java.util.Map">
 		<![CDATA[
 			SELECT * 
-			FROM (SELECT sto_code, sto_quantity, sto_reg_date, ware_code, pro_code, wname, pname, 
-			        purprice, salprice, pstate, rownum rnum
-			    FROM(SELECT s.*, w.ware_name wname, p.pro_name pname, p.pro_pur_price purprice, 
-			            p.pro_sal_price salprice, p.pro_state pstate
+			FROM (SELECT sto_code, sto_quantity, sto_reg_date, ware_code, pro_code, ware_name, pro_name, 
+        			pro_pur_price, pro_sal_price, pro_state, rownum rnum
+			    FROM(SELECT s.*, w.ware_name, p.pro_name, p.pro_pur_price, 
+            			p.pro_sal_price, p.pro_state
 			        FROM stock s, warehouse w, product p
 			        WHERE s.ware_code = w.ware_code
 			        AND s.pro_code = p.pro_code
@@ -144,5 +144,8 @@
 		]]>
 	</select>
 	
+	<select id="stockList" resultMap="stockVOMap" parameterType="java.util.Map">
+	
+	</select>
 	
 </mapper>

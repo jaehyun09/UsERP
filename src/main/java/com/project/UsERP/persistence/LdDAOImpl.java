@@ -104,10 +104,16 @@ public class LdDAOImpl implements LdDAO{
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getStockCnt", ssKeyword);
 	}
 	
-	// 김민수 - 재고 현황 조회
+	// 김민수 - 검색 재고 현황 조회(페이징)
 	@Override
 	public List<StockVO> StockStatusList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.StockStatusList", map);
+	}
+
+	// 김민수 - 재고 현황 조회(페이징x)
+	@Override
+	public List<StockVO> stockList(Map<String, Object> map) {
+		return null;
 	}
 
 	
