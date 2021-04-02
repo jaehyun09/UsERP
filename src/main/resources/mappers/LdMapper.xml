@@ -28,6 +28,39 @@
 			<result property="pro_reg_date" column="pro_reg_date" />
 		</association>
 	</resultMap>
+	
+	<!-- 재고수불부VO resultMap -->
+	<resultMap id="supplyVOMap" type="com.project.UsERP.vo.StockSupplyVO" >
+		<id property="stsu_code" column="stsu_code" />
+		<result property="stsu_reg_date" column="stsu_reg_date" />
+		<result property="stsu_type" column="stsu_type" />
+		<result property="stsu_quantity" column="stsu_quantity" />
+		<result property="stsu_content" column="stsu_content" />
+		<result property="stsu_amount" column="stsu_amount" />
+		<result property="stsu_startwh" column="stsu_startwh" />
+		<result property="stsu_arrivewh" column="stsu_arrivewh" />
+		<result property="sto_code" column="sto_code" />
+		<result property="pro_code" column="pro_code" />
+		<result property="emp_code" column="emp_code" />
+		<association property="stock" javaType="com.project.UsERP.vo.StockVO">
+			<id property="sto_code" column="sto_code" />
+			<result property="sto_quantity" column="sto_quantity" />
+			<result property="sto_reg_date" column="sto_reg_date" />
+		</association>
+		<association property="product" javaType="com.project.UsERP.vo.ProductVO">
+			<id property="pro_code" column="pro_code" />
+			<result property="pro_name" column="pro_name" />
+			<result property="pro_pur_price" column="pro_pur_price" />
+			<result property="pro_sal_price" column="pro_sal_price" />
+			<result property="pro_state" column="pro_state" />
+			<result property="pro_reg_date" column="pro_reg_date" />
+		</association>
+		<association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+			<id property="emp_code" column="emp_code" />
+			<result property="emp_name" column="emp_name" />
+		</association>
+	
+	</resultMap>
 
 	<!-- 양품창고 등록 -->
 	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
@@ -152,19 +185,20 @@
 		SELECT * FROM product WHERE pro_state = 1
 	</select>
 	
-	<!-- 재고관리 - 상품 조회 -->
+	<!-- 재고관리 - 창고 조회 -->
 	<select id="selectWarehouse" resultType="com.project.UsERP.vo.WarehouseVO">
 		SELECT * FROM warehouse WHERE ware_state = 1
 	</select>
 	
+	<!-- 재고관리 - 재고 이동 재고테이블 여부 확인 -->
+	<select id="stockState" resultType="com.project.UsERP.vo.StockVO" parameterType="java.util.Map">
+		SELECT * FROM stock
+		WHERE ware_code = #{arrivewh}
+		AND pro_code = #{prod}
+	</select>
+	
 	<!-- 재고관리 - 재고 이동 재고 테이블 불량품 창고 등록 -->
 	<insert id="stockBadWare" parameterType="com.project.UsERP.vo.StockVO">
-		INSERT INTO stock(sto_code, sto_quantity, sto_reg_date, ware_code, pro_code)
-		VALUES (stock_seq.nextval, #{sto_quantity}, sysdate, #{ware_code}, #{pro_code})
-	</insert>
-	
-	<!-- 재고관리 - 재고 이동 재고 테이블 출고 대기 창고 등록 -->
-	<insert id="stockWaitWare" parameterType="com.project.UsERP.vo.StockVO">
 		INSERT INTO stock(sto_code, sto_quantity, sto_reg_date, ware_code, pro_code)
 		VALUES (stock_seq.nextval, #{sto_quantity}, sysdate, #{ware_code}, #{pro_code})
 	</insert>
@@ -182,6 +216,32 @@
 		WHERE ware_code = #{arrivewh}
 		AND pro_code = #{prod}
 	</update>
+	
+	<!-- 재고관리 - 재고 이동 재고테이블 수량 가져오기 -->
+	<select id="getStoQuantity" resultType="int" parameterType="java.util.Map">
+		SELECT sto_quantity
+		FROM stock
+		WHERE ware_code = #{startwh}
+		AND pro_code = #{prod}
+	</select>
+	
+	<!-- 재고관리 - 재고 이동  출발창고이름 가져오기 -->
+	<select id="getWareName" resultType="String" parameterType="int">
+		SELECT ware_name FROM warehouse WHERE ware_code = #{startwh}
+	</select>
+	
+	<!-- 재고관리 - 재고 이동  도착창고이름 가져오기 -->
+	<select id="getArriveWareName" resultType="String" parameterType="int">
+		SELECT ware_name FROM warehouse WHERE ware_code = #{arrivewh}
+	</select>
+	
+	<!-- 재고관리 - 재고 이동 재고수불부 등록 -->
+	<insert id="stsuMoveInsert" parameterType="com.project.UsERP.vo.StockSupplyVO">
+		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, 
+					stsu_amount, stsu_startwh, stsu_arrivewh, pro_code, emp_code)
+		VALUES (stock_supply_seq.nextval, sysdate, 3, #{stsu_quantity}, #{stsu_amount}, 
+						#{stsu_startwh}, #{stsu_arrivewh}, #{pro_code}, #{emp_code})
+	</insert>
 	
 	
 </mapper>

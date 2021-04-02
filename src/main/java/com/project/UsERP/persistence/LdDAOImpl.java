@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.ProductVO;
+import com.project.UsERP.vo.StockSupplyVO;
 import com.project.UsERP.vo.StockVO;
 import com.project.UsERP.vo.WarehouseVO;
 
@@ -121,17 +122,17 @@ public class LdDAOImpl implements LdDAO{
 	public List<WarehouseVO> selectWarehouse() {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.selectWarehouse");
 	}
+	
+	// 김민수 - 재고 이동 재고테이블 여부 확인
+	@Override
+	public StockVO stockState(Map<String, Object> stateMap) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.stockState", stateMap);
+	}
 
 	// 김민수 - 재고 이동 재고 테이블 불량품 창고 등록
 	@Override
 	public int stockBadWare(StockVO stockVo) {
 		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stockBadWare", stockVo);
-	}
-
-	// 김민수 - 재고 이동 재고 테이블 출고 대기 창고 등록
-	@Override
-	public int stockWaitWare(StockVO stockVo) {
-		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stockWaitWare", stockVo);
 	}
 
 	// 김민수 - 재고 이동 출발창고 수량 변경
@@ -145,6 +146,37 @@ public class LdDAOImpl implements LdDAO{
 	public int stoPlusUpdate(Map<String, Object> plusMap) {
 		return sqlSession.update("com.project.UsERP.persistence.LdDAO.stoPlusUpdate", plusMap);
 	}
+	
+	// 김민수 - 재고 이동 재고테이블 수량 가져오기
+	@Override
+	public int getStoQuantity(Map<String, Object> quantityMap) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getStoQuantity", quantityMap);
+	}
+
+	// 김민수 - 재고 이동 출발창고이름 가져오기
+	@Override
+	public String getStartWareName(int startwh) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getWareName", startwh);
+	}
+	
+	// 김민수 - 재고 이동 도착창고이름 가져오기
+	@Override
+	public String getArriveWareName(int arrivewh) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getArriveWareName", arrivewh);
+	}
+	
+	// 김민수 - 재고 이동 재고수불부 등록
+	@Override
+	public int stsuMoveInsert(StockSupplyVO stockSupplyVO) {
+		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stsuMoveInsert", stockSupplyVO);
+	}
+
+
+	
+
+
+
+
 
 
 

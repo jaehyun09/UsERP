@@ -70,37 +70,6 @@
              <div class="bg-white p-4">
              	<div id="logWarehouseDetail"></div>
              
-                <!-- <table class="table table-bordered bg-white text-dark ass2 center th20">
-                   <tr class="text-white con center">
-                      <th colspan="2">창고 목록 수정</th>
-                   </tr>
-                   <tr>
-                      <th class="font-weight-semi-bold border-top-0 py-4 h4">창고종류</th>
-                      <td>
-                         <select class="custom-select custom-select-lg">
-                               <option>양품창고</option>
-                               <option>불량품창고</option>
-                               <option>출고대기창고</option>
-                          </select>
-                      </td>
-                   </tr>
-                   <tr>
-                      <th class="font-weight-semi-bold border-top-0 py-4 h4">창고명</th>
-                      <td>
-                         <input class="form-control form-control-icon-text" placeholder="창고명" type="text" value="창고명">
-                      </td>
-                   </tr>
-                   <tr>
-                      <th class="font-weight-semi-bold border-top-0 py-4 h4">창고주소</th>
-                      <td>
-                         <input class="form-control form-control-icon-text" placeholder="창고주소" type="text" value="창고주소">
-                      </td>
-                   </tr>
-                </table>
-                   <div align=center>
-                               <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                               <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                            </div> -->
                 	</div>
                 	<br><br><br>
                 </div>

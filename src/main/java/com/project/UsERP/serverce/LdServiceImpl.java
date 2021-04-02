@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import com.project.UsERP.persistence.LdDAO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.ProductVO;
+import com.project.UsERP.vo.StockSupplyVO;
 import com.project.UsERP.vo.StockVO;
 import com.project.UsERP.vo.WarehouseVO;
 @Service
@@ -294,12 +295,12 @@ public class LdServiceImpl implements LdService {
 		int arrivewh = Integer.parseInt(req.getParameter("arrivewh"));
 		int prod = Integer.parseInt(req.getParameter("prod"));
 		int amount = Integer.parseInt(req.getParameter("amount"));
+		String empid = req.getParameter("empid");
 		
-		// 재고 이동시 재고테이블 없을경우 등록
-		StockVO stockVo = new StockVO();
-		stockVo.setSto_quantity(amount);
-		stockVo.setWare_code(arrivewh);
-		stockVo.setPro_code(prod);
+		// 재고 테이블 여부 확인
+		Map<String, Object> stateMap = new HashMap<String, Object>();
+		stateMap.put("arrivewh", arrivewh);
+		stateMap.put("prod", prod);
 		
 		// 출발창고 재고변경
 		Map<String, Object> minusMap = new HashMap<String, Object>();
@@ -313,26 +314,76 @@ public class LdServiceImpl implements LdService {
 		plusMap.put("arrivewh", arrivewh);
 		plusMap.put("prod", prod);
 		
-		int stockinsertCnt = 0;
+		int stockBadInsert = 0;
 		int stoMinusUpdate = 0;
+		int stoBadMinusUpdate = 0;
 		int stoPlusUpdate = 0;
-		if (arrivewh == 0 && prod == 0) {
-			if(arrivewh >= 2000 && arrivewh<=2999) {
-				stockinsertCnt = lddao.stockBadWare(stockVo);
-			} else if(arrivewh >= 3000 && arrivewh <= 3999) {
-				stockinsertCnt = lddao.stockWaitWare(stockVo);
+		int stsuMoveInsert = 0;
+		int state = 0;
+		
+			if (lddao.stockState(stateMap) == null) {
+				if(arrivewh >= 2000 && arrivewh<=2999) {
+					// 재고 이동시 재고테이블 없을경우 등록
+					StockVO stockVo = new StockVO();
+					stockVo.setSto_quantity(amount);
+					stockVo.setWare_code(arrivewh);
+					stockVo.setPro_code(prod);
+					
+					stockBadInsert = lddao.stockBadWare(stockVo);
+					System.out.println("stockBadInsert : " + stockBadInsert);
+					if(stockBadInsert == 1) {
+						stoBadMinusUpdate = lddao.stoMinusUpdate(minusMap);
+						System.out.println("stoBadMinusUpdate : " + stoBadMinusUpdate);
+						// 재고 이동 재고테이블 수량 가져오기
+						Map<String, Object> quantityMap = new HashMap<String, Object>();
+						quantityMap.put("startwh", startwh);
+						quantityMap.put("prod", prod);
+						int stsu_quantity = lddao.getStoQuantity(quantityMap);
+						
+						StockSupplyVO stockSupplyVO = new StockSupplyVO();
+						stockSupplyVO.setStsu_quantity(stsu_quantity);
+						stockSupplyVO.setStsu_amount(amount);
+						stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
+						stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
+						stockSupplyVO.setPro_code(prod);
+						stockSupplyVO.setEmp_code(empid);
+						
+						stsuMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
+						System.out.println("stsuMoveInsert : " + stsuMoveInsert);
+					}
+				}
 			}
 			
-			if(stockinsertCnt == 1) {
+		 else if(lddao.stockState(stateMap) != null) {
 				stoMinusUpdate = lddao.stoMinusUpdate(minusMap);
-				}
-		} else {
-			stoMinusUpdate = lddao.stoMinusUpdate(minusMap);
-			stoPlusUpdate = lddao.stoPlusUpdate(plusMap);
+				System.out.println("stoMinusUpdate : " + stoMinusUpdate);
+				stoPlusUpdate = lddao.stoPlusUpdate(plusMap);
+				System.out.println("stoPlusUpdate : " + stoPlusUpdate);
+				// 재고 이동 재고테이블 수량 가져오기
+				Map<String, Object> quantityMap = new HashMap<String, Object>();
+				quantityMap.put("startwh", startwh);
+				quantityMap.put("prod", prod);
+				int stsu_quantity = lddao.getStoQuantity(quantityMap);
+				
+				StockSupplyVO stockSupplyVO = new StockSupplyVO();
+				stockSupplyVO.setStsu_quantity(stsu_quantity);
+				stockSupplyVO.setStsu_amount(amount);
+				stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
+				stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
+				stockSupplyVO.setPro_code(prod);
+				stockSupplyVO.setEmp_code(empid);
+				
+				stsuMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
+				System.out.println("stsuMoveInsert : " + stsuMoveInsert);
+			}
+			model.addAttribute("state", state);
+			model.addAttribute("stockBadInsert", stockBadInsert);
+			model.addAttribute("stoBadMinusUpdate", stoBadMinusUpdate);
+			model.addAttribute("stoMinusUpdate",stoMinusUpdate);
+			model.addAttribute("stoPlusUpdate", stoPlusUpdate);
+			model.addAttribute("stsuMoveInsert", stsuMoveInsert);
 		}
 		
-		
-		
-	}
-
+	
 }
+

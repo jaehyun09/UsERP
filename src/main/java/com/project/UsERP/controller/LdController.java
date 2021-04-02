@@ -112,6 +112,16 @@ public class LdController {
 		
 		return "ld/ajax/logMoveWareInsert";
 	}
+	
+	// 김민수 - 재고 이동 등록
+	@RequestMapping("/moveStsuInsert")
+	public String moveStsuInsert(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 이동 등록");
+		
+		ldservice.moveWareInsert(req, model);
+		
+		return "ld/ldPro/moveStsuInsert";
+	}
 	  
 	// 김민수 - 재고 조정 AJAX
 	@RequestMapping("/logInvenAdjustment")

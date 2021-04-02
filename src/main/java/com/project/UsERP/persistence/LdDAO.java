@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.ProductVO;
+import com.project.UsERP.vo.StockSupplyVO;
 import com.project.UsERP.vo.StockVO;
 import com.project.UsERP.vo.WarehouseVO;
 
@@ -61,15 +62,27 @@ public interface LdDAO {
 	// 김민수 - 재고 관리 창고 조회
 	public List<WarehouseVO> selectWarehouse();
 	
+	// 김민수 - 재고 이동 재고테이블 여부 확인
+	public StockVO stockState (Map<String, Object> stateMap);
+	
 	// 김민수 - 재고 이동 재고 테이블 불량품 창고 등록
 	public int stockBadWare(StockVO stockVo);
-	
-	// 김민수 - 재고 이동 재고 테이블 출고 대기 창고 등록
-	public int stockWaitWare(StockVO stockVo);
 	
 	// 김민수 - 재고 이동 출발창고 수량 변경
 	public int stoMinusUpdate(Map<String, Object> minusMap);
 	
 	// 김민수 - 재고 이동 도착창고 수량 변경
 	public int stoPlusUpdate(Map<String, Object> plusMap);
+	
+	// 김민수 - 재고 이동 재고테이블 수량 가져오기
+	public int getStoQuantity(Map<String, Object> quantityMap);
+	
+	// 김민수 - 재고 이동 출발창고이름 가져오기
+	public String getStartWareName(int startwh);
+	
+	// 김민수 - 재고 이동 도착창고이름 가져오기
+	public String getArriveWareName(int arrivewh);
+	
+	// 김민수 - 재고 이동 재고수불부 등록
+	public int stsuMoveInsert(StockSupplyVO stockSupplyVO);
 }
