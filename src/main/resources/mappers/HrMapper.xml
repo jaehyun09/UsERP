@@ -10,6 +10,7 @@
 		<id     property="hr_code"   column="hr_code" />  
 		<result property="hr_code_name" column="hr_code_name" />
 		<result property="hr_state"  column="hr_state" />
+		<result property="hcg_code"  column="hcg_code" />
 		<association property="hrCodeGroup" javaType="com.project.UsERP.vo.HrCodeGroupVO">
 			<id		property="hcg_code"		column="hcg_code" />  
 			<result property="hcg_name"		column="hcg_name" />
@@ -46,6 +47,8 @@
 		<result property="emp_port_no"  column="emp_port_no" />
 		<result property="emp_bank"  column="emp_bank" />
 		<result property="emp_account"  column="emp_account" />
+		<result property="dep_code"  column="dep_code" />
+		<result property="hr_code"  column="hr_code" />
 		<association property="department" javaType="com.project.UsERP.vo.DepartmentVO">
 			<id      property="dep_code"   column="dep_code" />  
 			<result property="dep_name" column="dep_name" />
@@ -123,25 +126,70 @@
 	
 	<!-- 김은희 - 인사카드 조회 -->
 	<select id="hrCardList" resultMap="hrCardMap">
+<<<<<<< HEAD
 		SELECT e.emp_code, d.dep_name, e.emp_name, e.emp_hire_date
 		  FROM employee e JOIN department d
 		    ON e.dep_code = d.dep_code ORDER BY emp_code
+=======
+		SELECT e.emp_code, d.dep_name, c.hr_code_name, e.emp_name, e.emp_hire_date
+		  FROM employee e, department d, hr_code c
+		 WHERE e.dep_code = d.dep_code
+		 AND e.hr_code = c.hr_code 
+		 ORDER BY emp_code
+>>>>>>> 9f7c21d329809f88cc525428d021de02d68ec3ac
 	</select>
 	
 	<!-- 김은희 - 인사카드 상세페이지 조회 -->
 	<select id="hrCardDetail" resultMap="hrCardMap">
+<<<<<<< HEAD
 		SELECT e.emp_code, e.emp_name, d.dep_name, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
 				e.emp_tel, e.emp_phone, e.emp_email, e.emp_bank, e.emp_account
 		  FROM employee e JOIN department d
 		    ON e.dep_code = d.dep_code
+=======
+		SELECT e.emp_code, e.emp_name, d.dep_name, c.hr_code_name, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
+				e.emp_tel, e.emp_phone, e.emp_email, e.emp_bank, e.emp_account 
+		  FROM employee e, department d, hr_code c 
+		 WHERE e.dep_code = d.dep_code 
+		   AND e.hr_code = c.hr_code 
+>>>>>>> 9f7c21d329809f88cc525428d021de02d68ec3ac
 		   AND emp_code = #{emp_code}
 	</select>
 	
 	<!-- 김은희 - 인사카드 등록 -->
 	<insert id="hrCardInsert" parameterType="com.project.UsERP.vo.EmployeeVO">
+<<<<<<< HEAD
 		INSERT INTO employee(emp_photo, emp_code, emp_name, dep_code, emp_hire_date, emp_cos
 				,emp_jumin, emp_address, emp_tel, emp_phone, emp_email, emp_port_no, emp_account, emp_bank)
 		VALUES (#{emp_photo}, #{emp_code}, #{emp_name}, #{dep_code}, #{emp_hire_date}, #{emp_cos}, #{emp_jumin}, #{emp_address}, #{emp_tel}, #{emp_phone}, #{emp_email}, #{emp_port_no}, #{emp_account}, #{emp_bank})
+=======
+		INSERT INTO employee(emp_photo, emp_code, emp_name, dep_code, hr_code, emp_hire_date, emp_cos
+				, emp_jumin, emp_address, emp_tel, emp_phone, emp_email, emp_port_no, emp_account, emp_bank, emp_pwd, emp_authority, emp_enabled)
+		VALUES (#{emp_photo}, #{emp_code}, #{emp_name}, #{dep_code}, #{hr_code}, TO_DATE(#{emp_hire_date},'YY/MM/DD'), #{emp_cos}, #{emp_jumin}, #{emp_address}, #{emp_tel}, #{emp_phone}, #{emp_email}, #{emp_port_no}, #{emp_account}, #{emp_bank}, #{emp_pwd}, #{emp_authority}, #{emp_enabled})
+>>>>>>> 9f7c21d329809f88cc525428d021de02d68ec3ac
 	</insert>
+		
+	<!-- 김은희 - 인사 카드 사번 중복확인  -->
+ 	<select id="codeCheck" parameterType="int" resultType="int">
+ 		SELECT COUNT(*) FROM employee WHERE emp_code=#{emp_code}
+ 	</select>
+	
+	<!-- 조명재 - 휴직자 조회 -->
+	<select id="hrLeaveList" resultMap="appointHistoryMap">
+		SELECT * 
+		  FROM appoint_history a, employee e 
+		 WHERE a.emp_code = e.emp_code 
+		   AND e.dep_code = 70 
+		 ORDER BY a.ap_date DESC
+	</select>
+	
+	<!-- 조명재 - 퇴직자 조회 -->
+	<select id="hrRetireList" resultMap="appointHistoryMap">
+		SELECT * 
+		  FROM appoint_history a, employee e 
+		 WHERE a.emp_code = e.emp_code 
+		   AND e.dep_code = 80 
+		 ORDER BY a.ap_date DESC
+	</select>
 
 </mapper>

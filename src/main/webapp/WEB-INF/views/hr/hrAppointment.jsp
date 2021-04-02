@@ -16,6 +16,9 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+    <!-- Script -->
+    <script src="${spath}hr.js"></script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">

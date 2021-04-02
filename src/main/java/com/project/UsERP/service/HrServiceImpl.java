@@ -148,7 +148,9 @@ public class HrServiceImpl implements HrService {
 		vo.setAp_pre_position(ap_pre_position);
 		vo.setEmp_code(emp_code);
 		
-		int insertCnt = hrDao
+		int insertCnt = hrDao.hrAppointmentPro(vo);
+		
+		model.addAttribute("insertCnt", insertCnt);
 	}
 	
 	// 김은희 - 인사카드 등록
@@ -162,7 +164,10 @@ public class HrServiceImpl implements HrService {
 		String emp_code = req.getParameter("emp_code");
 		String emp_name = req.getParameter("emp_name");
 		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
-		String emp_position = req.getParameter("emp_position");
+		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
+		// Date emp_hire_date = req.getParameter("emp_hire_date");
+		String emp_hire_date = req.getParameter("emp_hire_date");
+		System.out.println("emp_hire_date : " + emp_hire_date);
 		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
 		String emp_jumin = req.getParameter("emp_jumin");
 		String emp_address = req.getParameter("emp_address");
@@ -172,17 +177,22 @@ public class HrServiceImpl implements HrService {
 		int emp_port_no = Integer.parseInt(req.getParameter("emp_port_no"));
 		String emp_account = req.getParameter("emp_account");
 		String emp_bank = req.getParameter("emp_bank");
+		String emp_authority = req.getParameter("emp_authority");
 		
 		try {
 			// null값과 공백 방지
 			if(image.getOriginalFilename() == null || image.getOriginalFilename().trim().equals("")) {
 				emp_photo = "-";
 			}
-			
+		
 			image.transferTo(new File(uploadPath + image));
 			
 			EmployeeVO vo = new EmployeeVO();
 			
+			// vo.setEmp_enabled(emp_enabled);
+			// vo.setEmp_pwd(emp_pwd);
+			// vo.setEmp_hire_date(emp_hire_date);
+			vo.setHr_code(hr_code);
 			vo.setEmp_code(emp_code);
 			vo.setEmp_name(emp_name);	
 			vo.setEmp_cos(emp_cos);
@@ -196,14 +206,42 @@ public class HrServiceImpl implements HrService {
 			vo.setEmp_bank(emp_bank);
 			vo.setEmp_account(emp_account);
 			vo.setDep_code(dep_code);
+			vo.setEmp_authority(emp_authority);
 			
 			int insertCnt = hrDao.hrCardInsert(vo);
 			
 			model.addAttribute("insertCnt", insertCnt);
-			
+				
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// 김은희 - 인사 카드 사번 중복확인
+	@Override
+	public void hrConfirmCode(HttpServletRequest req, Model model) {
+		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+  
+		int cnt = hrDao.codeCheck(emp_code);
+  
+		model.addAttribute("selectCnt", cnt);
+		model.addAttribute("emp_code", emp_code);
+	}
+	
+	// 조명재 - 휴직자 조회	
+	@Override
+	public void hrLeaveList(HttpServletRequest req, Model model) {
+		List<AppointHistoryVO> list7 = hrDao.hrLeaveList();
+		
+		model.addAttribute("list7", list7);
+	}
+	
+	// 조명재 - 퇴직자 조회
+	@Override
+	public void hrRetireList(HttpServletRequest req, Model model) {
+		List<AppointHistoryVO> list8 = hrDao.hrRetireList();
+		
+		model.addAttribute("list8", list8);
 	}
 	
 }

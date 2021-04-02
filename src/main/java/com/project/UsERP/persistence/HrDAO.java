@@ -44,5 +44,14 @@ public interface HrDAO {
 	
 	// 김은희 - 인사카드 등록
 	public int hrCardInsert(EmployeeVO vo);
+	
+	// 김은희 - 인사 카드 사번 중복확인
+	public int codeCheck(int emp_code);
 
+	// 조명재 - 휴직자 조회
+	public List<AppointHistoryVO> hrLeaveList();
+
+	// 조명재 - 퇴직자 조회
+	public List<AppointHistoryVO> hrRetireList();
+	
 }

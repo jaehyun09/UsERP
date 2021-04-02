@@ -6,5 +6,6 @@
 
 <c:set var="path" value="/UsERP"/>
 <c:set var = "project" value = "/UsERP/resources/graindashboard/" />
+<c:set var = "spath" value = "/UsERP/resources/script/" />
 
 <meta charset="utf-8" name = "viewport" content = "width=device-width, initial-scale = 1">
