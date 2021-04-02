@@ -92,7 +92,7 @@
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
                         <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
                         <span class="mr-md-2 avatar-placeholder">J</span>
-                        <span class="d-none d-md-block">${sessionScope.mem_id}</span>
+                        <span class="d-none d-md-block">${sessionScope.mem_name}</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
                     </a>
 

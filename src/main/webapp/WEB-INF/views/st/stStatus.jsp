@@ -272,7 +272,7 @@
                                                 <td class="py-3">${vo.accs_code}</td>
                                                 <td class="py-3">${vo.company.com_name}</td>
                                                 <td class="py-3">${vo.product.pro_name}</td>
-                                                <td class="py-3">${vo.product.pro_sal_price}</td>
+                                                <td class="py-3">${vo.accs_price}</td>
                                                 <td class="py-3">${vo.accs_quantity}</td>
                                                 <td class="py-3">${vo.accs_sum}</td>
                                                 <td class="py-3">${vo.employee.emp_name}</td>
@@ -353,14 +353,14 @@
                                                 class="form-control" type="text" id="accs_sum" name="accs_sum"></td>
                                           </tr>
                                           <tr>
-                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>사번</b></td> 
-                                             <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" id="emp_code" name="emp_code" value="${sessionScope.mem_id}" readonly></td>
+                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td> 
+                                             <td class="py-3" colspan="2" style="vertical-align: middle; text-align:left;">
+                                                <input type="hidden" name="emp_code" value="${sessionScope.mem_id}">
+                                                ${sessionScope.mem_name}</td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>내용</b></td>
-                                             <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" id="accs_content" name="accs_content" value=""></td>
+                                             <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_content" name="accs_content" value=""></td>
                                           </tr>
                                        </tbody>
                                     </table>                                 

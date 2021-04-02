@@ -20,7 +20,7 @@ public class StController {
 
 	@Autowired
 	StServiceImpl stService;
-	
+
 	@Autowired
 	LdServiceImpl ldService;
 
@@ -37,19 +37,18 @@ public class StController {
 	public String stInvenStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 강재현 : 재고 현황");
 
-		
 		return "st/stInvenStatus";
 	}
+
 	// 재고 현황 검색 조회 AJAX
-	   @RequestMapping("/logInvenStatus")
-	   public String logInvenStatus(HttpServletRequest req, Model model) {
-	      logger.info("url: 재고 현황 검색 조회 AJAX");
-	       
-	      ldService.inventoryStatusList(req, model);
-	      
-	      return "st/ajax/logInvenStatus";
-	   }
-	
+	@RequestMapping("/logInvenStatus")
+	public String logInvenStatus(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 현황 검색 조회 AJAX");
+
+		ldService.inventoryStatusList(req, model);
+
+		return "st/ajax/logInvenStatus";
+	}
 
 	// 강재현 : 기초 등록 - 계정 관리 - 리액트 계정 등록
 	@RequestMapping("/clientadd")
@@ -74,22 +73,22 @@ public class StController {
 
 		// 판매내역
 		stService.salesStatus(req, model);
-		
+
 		// 판매 거래처 목록 & 상품 목록
 		stService.salesBasicReg(req, model);
-		
-		//stService.proComfirm(req, model);
+
+		// stService.proComfirm(req, model);
 
 		return "st/stStatus";
 	}
-	
-	// 판매 전표 등록 
+
+	// 판매 전표 등록
 	@RequestMapping("/ststAppInsert")
 	public String ststAppInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 이재홍 : 판매 전표 등록");
 
 		stService.insertSalesStatement(req, model);
-		
+
 		return "st/stPro/ststaddAc";
 	}
 
@@ -98,8 +97,19 @@ public class StController {
 	public String stRelStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 강재현 : 출고 현황 - 출고 내역");
 
-		 stService.salesRecStatus(req, model);
-
+		stService.salesRecStatus(req, model);
+		stService.salesStatus(req, model);
+		stService.salesBasicReg(req, model);
 		return "st/stRelStatus";
+	}
+
+	// 강재현 : 출고 현황 - 출고 전표 등록
+	@RequestMapping("/logsstInsert")
+	public String logsstInsert(HttpServletRequest req, Model model) {
+		logger.info("url: 강재현 : 출고 전표 등록");
+		// 판매내역
+		stService.insertLogsStatement(req, model);
+
+		return "st/stPro/ststaddAc";
 	}
 }

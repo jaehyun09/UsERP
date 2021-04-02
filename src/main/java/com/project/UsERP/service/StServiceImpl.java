@@ -74,20 +74,20 @@ public class StServiceImpl implements StService {
 	}
 
 	// 강재현 : 출고현황 - 출고 전표 등록
-	// 김은희 - 근태 신청 사원 확인
-	@Override
-	public void proComfirm(HttpServletRequest req, Model model) {
-		int pro_code = Integer.parseInt(req.getParameter("pro_code"));
-
-		ProductVO vo = stdao.proComfirm(pro_code);
-
-		int selectCnt = 0;
-		if (vo != null)
-			selectCnt = 1;
-
-		model.addAttribute("selectCnt", selectCnt);
-		model.addAttribute("vo", vo);
-		model.addAttribute("pro_code", pro_code);
-
+	public void insertLogsStatement(HttpServletRequest req, Model model) {
+		LogisticsStatementVO vo = new LogisticsStatementVO();
+		
+		vo.setLogs_type(6);
+		vo.setLogs_reg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setLogs_state(0);
+		vo.setLogs_quantity(Integer.parseInt(req.getParameter("logs_quantity")));
+		vo.setEmp_code(req.getParameter("emp_code"));
+		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
+		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
+		
+		int insertCnt = stdao.insertLogsStatement(vo);
+		
+		model.addAttribute("insertCnt1", insertCnt);
+		
 	}
 }

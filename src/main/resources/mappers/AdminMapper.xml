@@ -6,29 +6,30 @@
     
 <mapper namespace = "com.project.UsERP.persistence.AdminDAO">
 
-	<!-- 회원가입, 로그인 -->
-	<select id = "idCheck" resultType = "int">
-		SELECT COUNT(*) FROM employee WHERE emp_code = #{strId}
-	</select>
+   <!-- 회원가입, 로그인 -->
+   <select id = "idCheck" resultType = "int">
+      SELECT COUNT(*) FROM employee WHERE emp_code = #{strId}
+   </select>
 
-	<select id = "pwdCheck" resultType = "String">
-		SELECT emp_pwd FROM employee WHERE emp_code = #{strId}
-	</select>
-	
-	<select id = "gradeCheck" resultType = "String">
-		SELECT emp_authority FROM employee WHERE emp_code = #{emp_code}
-	</select>
-	
-	<select id = "readMember" resultType = "com.project.UsERP.vo.EmployeeVO">
-		SELECT * FROM employee WHERE emp_code = #{str_id}
-	</select>
-	
-	<select id="getAuthority" resultType="String">
-		SELECT emp_authority FROM employee WHERE emp_code = #{id}
-	</select>
-	
-	<select id="getUsersInfo" resultType="com.project.UsERP.vo.UserVO">
-		SELECT * FROM employee WHERE emp_code = #{id}
-	</select>
-	
-</mapper>	
+   <select id = "pwdCheck" resultType = "String">
+      SELECT emp_pwd FROM employee WHERE emp_code = #{strId}
+   </select>
+   
+   <select id = "gradeCheck" resultType = "String">
+      SELECT emp_authority FROM employee WHERE emp_code = #{emp_code}
+   </select>
+   
+   <select id = "readMember" resultType = "com.project.UsERP.vo.EmployeeVO">
+      SELECT * FROM employee WHERE emp_code = #{str_id}
+   </select>
+   
+   <select id="getAuthority" resultType="String">
+      SELECT emp_authority FROM employee WHERE emp_code = #{id}
+   </select>
+   
+   <!-- 조명재 - 회원 정보를 반환한다 -->
+   <select id="getUsersInfo" resultType="com.project.UsERP.vo.EmployeeVO">
+      SELECT * FROM employee WHERE emp_code = #{id}
+   </select>
+   
+</mapper>   
