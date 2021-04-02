@@ -85,6 +85,12 @@ public class HrDAOImpl implements HrDAO {
 		return sqlSession.insert("com.project.UsERP.persistence.HrDAO.hrCardInsert", vo);
 	}
 	
+	// 김은희 - 인사 카드 사번 중복확인
+	@Override
+	public int codeCheck(int emp_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.codeCheck", emp_code);
+	}
+
 	// 조명재 - 휴직자 조회
 	@Override
 	public List<AppointHistoryVO> hrLeaveList() {

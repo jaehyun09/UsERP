@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.UsERP.service.HrService;
 
@@ -90,12 +91,24 @@ public class HrController {
 	
 	// 김은희 - 인사 카드 등록
 	@RequestMapping("/hrCardInsert")
-	public String hrCardInsert(HttpServletRequest req, Model model) {
+	public String hrCardInsert(MultipartHttpServletRequest req, Model model) {
 		logger.info("url: 인사 카드 등록");
-		
+  
+		hrService.hrCardInsert(req, model);
+  
 		return ":redirect/hrCardInsert";
 	}
-
+	
+	// 김은희 - 인사 카드 사번 중복확인
+	@RequestMapping("/hrConfirmCode")
+	public String hrConfirmCode(HttpServletRequest req, Model model) {
+		logger.info("url: 인사 카드/사번 중복확인");
+		
+		hrService.hrConfirmCode(req, model);
+		
+		return "hr/hrConfirmCode";
+	}
+	
 	// 조명재 - 급여
 	@RequestMapping("/hrSalary")
 	public String hrSalary(HttpServletRequest req, Model model) {

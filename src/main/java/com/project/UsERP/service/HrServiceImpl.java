@@ -208,6 +208,17 @@ public class HrServiceImpl implements HrService {
 		}
 	}
 	
+	// 김은희 - 인사 카드 사번 중복확인
+	@Override
+	public void hrConfirmCode(HttpServletRequest req, Model model) {
+		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+  
+		int cnt = hrDao.codeCheck(emp_code);
+  
+		model.addAttribute("selectCnt", cnt);
+		model.addAttribute("emp_code", emp_code);
+	}
+	
 	// 조명재 - 휴직자 조회	
 	@Override
 	public void hrLeaveList(HttpServletRequest req, Model model) {

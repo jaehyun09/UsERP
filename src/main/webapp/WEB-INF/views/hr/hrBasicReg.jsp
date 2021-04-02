@@ -267,7 +267,7 @@ function departmentAdd() {
 
                         <div id="example" class="mb-9">
                            <h4 class="h1 text-dark"><b>
-                              기초 등록 </b><a class="anchorjs-link" href="#example"
+                              	기초 등록 </b><a class="anchorjs-link" href="#example"
                                  aria-label="Anchor" data-anchorjs-icon="#"></a></h4>
                                  
                            <div class="mb-3">
@@ -314,6 +314,43 @@ function departmentAdd() {
                                             <!-- 탭 1 -->
                                            <div class="tab-pane fade show active" id="tabs2-tab1" role="tabpanel">
                                             <div class="row">
+                                            
+                                            <div class="col">
+                                          <div class="collapse multi-collapse"
+                                             id="multiCollapseExample1">
+                                                <table class="table table-bordered bg-white text-dark ass2">
+                                                   <tbody>
+                                                      <tr class="text-white con center">
+                                                         <th colspan="4">직급</th>
+                                                      </tr>
+                                                      <tr>
+                                                         <th>그룹번호</th>
+                                                         <th>인사코드</th>
+                                                         <th>인사코드명</th>
+                                                         <th>사용상태</th>
+                                                      </tr>
+                                                      <tr>
+                                                         <td>1</td>
+                                                         <td>100</td>
+                                                         <td>관리자</td>
+                                                         <td>사용</td>
+                                                      </tr>
+                                                      <tr>
+                                                         <td>1</td>
+                                                         <td>200</td>
+                                                         <td>팀장</td>
+                                                         <td>사용</td>
+                                                      </tr>
+                                                      <tr>
+                                                         <td>1</td>
+                                                         <td>300</td>
+                                                         <td>대리</td>
+                                                         <td>사용</td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table><br><br><br>
+                                          </div>
+                                       </div>
                                        
                                           <table class="table table-striped bg-white text-dark center ass2">
                                              <thead class="text-white table-bordered tap">
@@ -327,8 +364,20 @@ function departmentAdd() {
                                           <c:forEach var="vo" items="${list}">
                                           <tr>
                                              <td class="py-3">${vo.hcg_code}</td>
-                                             <td class="py-3">${vo.hcg_name}</td>
-                                             <td class="py-3">${vo.hcg_state}</td>
+                                             <td class="py-3">
+                                             				<p>
+                                                               <a class="btn" data-toggle="collapse"
+                                                                  href="#multiCollapseExample1" role="button"
+                                                                  aria-expanded="false"
+                                                                  aria-controls="multiCollapseExample1">${vo.hcg_name}</a>
+                                                            </p>
+                                             </td>
+                                            <c:if test="${vo.hcg_state == 1}">
+	                                       	 <td class="py-3">사용</td>
+	                                       	</c:if>
+	                                       	<c:if test="${vo.hcg_state == 0}">
+	                                       	 <td class="py-3">미사용</td>
+	                                       	</c:if>
                                           </tr>
                                         </c:forEach>
                                        </tbody>
@@ -362,7 +411,12 @@ function departmentAdd() {
                                        <td class="py-3">${vo.hrCodeGroup.hcg_code}</td>
                                        <td class="py-3">${vo.hr_code}</td>
                                        <td class="py-3">${vo.hr_code_name}</td>
-                                       <td class="py-3">${vo.hr_state}</td>
+                                      <c:if test="${vo.hr_state == 1}">
+                                       	<td class="py-3">사용</td>
+                                       </c:if>
+                                       <c:if test="${vo.hr_state == 0}">
+                                       	<td class="py-3">미사용</td>
+                                      </c:if>
                                     </tr>
                                    </c:forEach>
                                  </tbody>
@@ -406,18 +460,22 @@ function departmentAdd() {
                                           <tr class="text-white table-bordered tap">
                                              <th class="font-weight-semi-bold border-top-0 py-3 con2">부서번호</th>
                                              <th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
-                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">접근권한</th>
                                              <th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
                                           </tr>
                                        </thead>
                                        <tbody>
                                          <c:forEach var="vo" items="${list3}">
-			                                 <tr>
-			                                    <td class="py-3">${vo.dep_code}</td>
-			                                    <td class="py-3">${vo.dep_name}</td>
-			                                    <td class="py-3">${vo.dep_state}</td>
-			                                 </tr>
-			                         	 </c:forEach>
+		                                 <tr>
+		                                    <td class="py-3">${vo.dep_code}</td>
+		                                    <td class="py-3">${vo.dep_name}</td>
+		                                   <c:if test="${vo.dep_state == 1}">
+	                                       	<td class="py-3">사용</td>
+	                                       </c:if>
+	                                       <c:if test="${vo.dep_state == 0}">
+	                                       	<td class="py-3">미사용</td>
+	                                      </c:if>
+		                                 </tr>
+		                               </c:forEach>
                                        </tbody>
                                     </table>
                                        </div>

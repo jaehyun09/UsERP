@@ -34,6 +34,9 @@ public interface HrService {
 	// 김은희 - 인사카드 등록
 	public void hrCardInsert(MultipartHttpServletRequest req, Model model);
 	
+	// 김은희 - 인사 카드 사번 중복확인
+	public void hrConfirmCode(HttpServletRequest req, Model model); 
+	
 	// 조명재 - 휴직자 조회
 	public void hrLeaveList(HttpServletRequest req, Model model);
 	
