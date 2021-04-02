@@ -12,39 +12,22 @@
 	<script src="${spath}hr.js"></script>
 	
 </head>
-<body onload="confirmCodeFocus();">
+<body onload="confirmWaFocus();">
 <div align=center>
-<form action ="hrConfirmCode?${_csrf.parameterName}=${_csrf.token}" method="post" name="confirmform" onsubmit="return confirmCodeCheck();">
+<form action ="empComfirm?${_csrf.parameterName}=${_csrf.token}" method="post" name="confirmWaform" onsubmit="return confirmWaCheck();">
 <br>
 <br>
 <c:if test="${selectCnt != 1}">
-    <table class="table bg-white text-dark center ass2">
-		<thead class="text-white table-bordered tap font-weight-semi-bold border-top-0 ass2">
-			<tr>
-				<th>중복확인</th>
-			</tr>
-		</thead>
-		<tbody>
-		   <tr>
-		      <td style="vertical-align: middle">
-		        <strong>${emp_code}</strong> 은(는) 사용할 수 있습니다.
-		      </td>
-		   </tr>
-	   </tbody>
-	</table>
-	<button class="btn btn-outline-info" type="button" onclick="setCode('${emp_code}');">확인</button>
-</c:if>
-<c:if test="${selectCnt == 1}">
 	<table class="table bg-white text-dark center ass2">
 		<thead class="text-white table-bordered tap font-weight-semi-bold border-top-0 ass2">
 			<tr>
-				<th>중복확인</th>
+				<th>사원확인</th>
 			</tr>
 		</thead>
 		<tbody>
 		   <tr>
 		      <td style="vertical-align: middle">
-		           <strong>${emp_code}</strong> 은(는) 사용할 수 없습니다.
+		           <strong>${emp_code}</strong> 은(는) 존재하지 않는 사원번호입니다.
 		      </td>
 		   </tr>
 		   <tr>
@@ -56,6 +39,23 @@
 	</table>
     <button type="submit" class="btn btn-outline-info">확인</button>&nbsp;&nbsp;
     <button type="reset" class="btn btn-outline-info" onclick="self.close();">취소</button>
+</c:if>
+<c:if test="${selectCnt == 1}">
+	<table class="table bg-white text-dark center ass2">
+		<thead class="text-white table-bordered tap font-weight-semi-bold border-top-0 ass2">
+			<tr>
+				<th>사원확인</th>
+			</tr>
+		</thead>
+		<tbody>
+		   <tr>
+		      <td style="vertical-align: middle">
+		        <strong>${vo.emp_name}</strong>님, 사원번호를 확인했습니다.
+		      </td>
+		   </tr>
+	   </tbody>
+	</table>
+	<button class="btn btn-outline-info" type="button" onclick="setName('${vo.emp_name}');">확인</button>
 </c:if>
 </form>
 </div>

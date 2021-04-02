@@ -13,12 +13,7 @@
 
      <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
-<<<<<<< HEAD
-	<link rel="stylesheet" href="${project}css/board.css">
-=======
     <link rel="stylesheet" href="${project}css/board.css">
-    <script src="${spath}hr.js"></script>
->>>>>>> bd70883da1235d14d9dbf200c872a5f64a5c1274
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     

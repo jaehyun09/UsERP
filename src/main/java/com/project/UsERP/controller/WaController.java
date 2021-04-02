@@ -52,7 +52,7 @@ public class WaController {
 	
 		waService.empComfirm(req, model);
 		
-		return "wa/empComfirm";
+		return "wa/waComfirmEmp";
 	}
 	
 	// 김은희 - 근태 신청 

@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.UsERP.vo.UserVO;
+import com.project.UsERP.vo.EmployeeVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -39,18 +39,19 @@ public class AdminDAOImpl implements AdminDAO {
 
 		return gradeCnt;
 	}
-
-	// 강재현 - 사용자의 접근 권한을 반환한다
+	
+	// 조명재 - 회원 정보를 반환한다
 	@Override
-	public String getAuthority(String id) {
-		return sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.getAuthority", id);
+	public EmployeeVO getUsersInfo(String emp_code) {
+		AdminDAO dao = sqlSession.getMapper(AdminDAO.class);
+		return dao.getUsersInfo(emp_code);
 	}
-
-	// 강재현 - 회원 정보를 반환한다
+	
+	// 조명재 - 비밀번호를 생성한다
 	@Override
-	public UserVO getUsersInfo(String id) {
-		return sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.getUsersInfo", id);
-		
+	public int signinPro(String emp_code, String emp_pwd) {
+		AdminDAO dao = sqlSession.getMapper(AdminDAO.class);
+		return dao.signinPro(emp_code, emp_pwd);
 	}
-
+	
 }
