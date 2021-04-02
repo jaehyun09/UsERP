@@ -44,9 +44,16 @@ function confirmCheck() {
 
 // 조명재 - 사원확인 성공 시 사원명 자동입력
 function setEmpName(emp_code, emp_name) {
-	opener.document.confirmForm.emp_code.value = emp_code;
-	opener.document.confirmForm.emp_name.value = emp_name;
-	opener.document.confirmForm.confirm_code.value = 1;
+	$("input[name='emp_code']", opener.document).val(emp_code);
+	$("input[name='emp_name']", opener.document).val(emp_name);
+	$("input[name='confirm_code']", opener.document).val("1");
+	self.close();
+}
+
+function test() {
+	$("input[name='emp_code']", opener.document).val(emp_code);
+	$("input[name='emp_name']", opener.document).val(emp_name);
+	$("input[name='confirm_code']", opener.document).val("1");
 	self.close();
 }
 

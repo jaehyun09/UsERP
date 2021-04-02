@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div align=center>
-	<form action ="confirm?${_csrf.parameterName}=${_csrf.token}" name="confirmForm" method="post" onsubmit="return confirmCheck();">
+	<form action ="confirm?${_csrf.parameterName}=${_csrf.token}" method="post" onsubmit="return confirmCheck();">
 	<br>
 	<br>
 	<c:if test="${selectCnt == 0}">
@@ -56,7 +56,7 @@
 			   </tr>
 		   </tbody>
 		</table>
-		<button class="btn btn-outline-info" type="button" onclick="setEmpName('${emp_code}', ${vo.emp_name}')">확인</button>
+		<button class="btn btn-outline-info" type="button" onclick="setEmpName('${emp_code}', '${vo.emp_name}')">확인</button>
 	</c:if>
 	</form>
 	</div>
