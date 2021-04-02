@@ -49,7 +49,7 @@
 	<table>
 	   <tr>
 	      <td align="center">
-	        	사원 확인 되셨습니다.
+	        ${vo.emp_name}님, 사원 확인 되셨습니다.
 	      </td>
 	   </tr>
 	   <tr>
@@ -57,7 +57,7 @@
 	   </tr>
 	   <tr>
 	      <th>
-	         <input class="btn btn-outline-info" type="button" value="확인" onclick="setName('${emp_code}');">
+	         <input class="btn btn-outline-info" type="button" value="확인" onclick="setName('${vo.emp_name}');">
 	      </th>
 	   </tr>
 	</table>

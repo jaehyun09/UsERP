@@ -106,7 +106,7 @@
 			    }
 			
 			 if(document.waForm.hiddenEmp_code.value == "0") { 
-				 alert("중복확인을 해주세요.");
+				 alert("사번확인을 해주세요.");
 				 document.waForm.dupChk.focus();
 				 return false;
 			 }
@@ -136,8 +136,8 @@
 			}
 		 }
 		 
-		 function setName(emp_code) {
-			 opener.document.waForm.emp_code.value=emp_code; 
+		 function setName(emp_name) {
+			 opener.document.waForm.emp_name.value=emp_name; 
 			 opener.document.waForm.hiddenEmp_code.value=1; 
 			 self.close();
 		 }	

@@ -74,8 +74,8 @@
 	</select>
 	
 	<!-- 김은희 - 근태 신청 사번확인  -->
- 	<select id="empComfirm" parameterType="int" resultType="int">
- 		SELECT COUNT(*) FROM employee WHERE emp_code=#{emp_code}
+ 	<select id="empComfirm" parameterType="int" resultType="com.project.UsERP.vo.EmployeeVO">
+ 		SELECT emp_code, emp_name FROM employee WHERE emp_code=#{emp_code}
  	</select>
 
 </mapper>

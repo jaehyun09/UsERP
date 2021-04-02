@@ -2,11 +2,13 @@ package com.project.UsERP.persistence;
 
 import java.util.List;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.UsERP.vo.CommuteVO;
+import com.project.UsERP.vo.EmployeeVO;
 import com.project.UsERP.vo.WorkRecordVO;
 
 @Repository
@@ -29,7 +31,7 @@ public class WaDAOImpl implements WaDAO {
 	
 	// 김은희 - 근태 신청 사원 확인
 	@Override
-	public int empComfirm(int emp_code) {
+	public EmployeeVO empComfirm(int emp_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.WaDAO.empComfirm", emp_code);
 	}
 	

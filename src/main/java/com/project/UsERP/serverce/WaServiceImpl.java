@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 
 import com.project.UsERP.persistence.WaDAO;
 import com.project.UsERP.vo.CommuteVO;
+import com.project.UsERP.vo.EmployeeVO;
 import com.project.UsERP.vo.WorkRecordVO;
 
 @Service
@@ -42,9 +43,13 @@ public class WaServiceImpl implements WaService  {
 	public void empComfirm(HttpServletRequest req, Model model) {
 		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
 		
-		int cnt = waDao.empComfirm(emp_code);
+		EmployeeVO vo = waDao.empComfirm(emp_code);
 		
-		model.addAttribute("selectCnt", cnt);
+		int selectCnt = 0;
+		if(vo != null) selectCnt = 1;
+		
+		model.addAttribute("selectCnt", selectCnt);
+		model.addAttribute("vo", vo);
 		model.addAttribute("emp_code", emp_code);
 		
 	}

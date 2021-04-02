@@ -3,6 +3,7 @@ package com.project.UsERP.persistence;
 import java.util.List;
 
 import com.project.UsERP.vo.CommuteVO;
+import com.project.UsERP.vo.EmployeeVO;
 import com.project.UsERP.vo.WorkRecordVO;
 
 public interface WaDAO {
@@ -14,7 +15,7 @@ public interface WaDAO {
 	public List<WorkRecordVO> waList();
 	
 	// 김은희 - 근태 신청 사원 확인
-	public int empComfirm(int emp_code);
+	public EmployeeVO empComfirm(int emp_code);
 	
 
 }
