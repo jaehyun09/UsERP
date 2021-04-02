@@ -6,6 +6,29 @@
     
 <mapper namespace="com.project.UsERP.persistence.LdDAO">
 
+	<!-- 재고VO resultMap -->
+   <resultMap id="stockVOMap" type="com.project.UsERP.vo.StockVO">
+      <id property="sto_code" column="sto_code" />
+      <result property="sto_quantity" column="sto_quantity" />
+      <result property="sto_reg_date" column="sto_reg_date" />
+      <result property="ware_code" column="ware_code" />
+      <result property="pro_code" column="pro_code" />
+      <association property="warehouse" javaType="com.project.UsERP.vo.WarehouseVO">
+         <id property="ware_code" column="ware_code" />
+         <result property="ware_name" column="ware_name" />
+         <result property="ware_location" column="ware_location" />
+         <result property="ware_state" column="ware_state" />
+      </association>
+      <association property="product" javaType="com.project.UsERP.vo.ProductVO">
+         <id property="pro_code" column="pro_code" />
+         <result property="pro_name" column="pro_name" />
+         <result property="pro_pur_price" column="pro_pur_price" />
+         <result property="pro_sal_price" column="pro_sal_price" />
+         <result property="pro_state" column="pro_state" />
+         <result property="pro_reg_date" column="pro_reg_date" />
+      </association>
+   </resultMap>
+
 	<!-- 양품창고 등록 -->
 	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location)
@@ -44,17 +67,18 @@
 		select * from product
 	</select> 
 
-<!-- 재고 현황 갯수 
+<!-- 재고 현황 갯수 -->
    <select id="getStockCnt" resultType="int">
       SELECT COUNT(*) as cnt
       FROM stock s,product p, warehouse w
       WHERE s.pro_code = p.pro_code
       AND s.ware_code = w.ware_code
+      AND w.ware_state = 1
       AND p.pro_state = 1
       AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
    </select>
    
-   재고 현황 조회
+   <!-- 재고 현황 조회 -->
    <select id="StockStatusList" resultMap="stockVOMap" parameterType="java.util.Map">
       <![CDATA[
          SELECT * 
@@ -65,6 +89,7 @@
                  FROM stock s, warehouse w, product p
                  WHERE s.ware_code = w.ware_code
                  AND s.pro_code = p.pro_code
+                 AND w.ware_state = 1
                  AND p.pro_state = 1
                  AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
                  ORDER BY s.sto_code,s.pro_code, s.ware_code
@@ -73,6 +98,6 @@
          WHERE rnum >= #{start}
          AND rnum <= #{end}
       ]]>
-   </select> -->
+   </select>
 
 </mapper>

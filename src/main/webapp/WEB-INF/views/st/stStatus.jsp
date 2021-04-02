@@ -312,9 +312,9 @@
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
                                              colspan="2" style="vertical-align: middle;">전표유형</td>
                                           <td style="vertical-align: middle;">
-                                                        <select class="form-control" id="exampleFormControlSelect1">
-                                                          <option>판매전표</option>
-                                                          <option>채권전표</option>
+                                                        <select class="form-control" id="accs_type" name="accs_type">
+                                                          <option value="1">판매전표</option>
+                                                          <option value="2">채권전표</option>
                                                         </select>
                                           </td>
                                        </tr>   
@@ -322,41 +322,44 @@
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
                                              colspan="2" style="vertical-align: middle;">거래처명</td>
                                           <td class="font-weight-semi-bold border-top-0 py-2"
-                                             colspan="2"><select class="form-control" id="exampleFormControlSelect1">
+                                             colspan="2"><select class="form-control" id="com_code">
 		                                             		<c:forEach var="company" items="${company}">
-		                                                          <option value="${company.com_name}">${company.com_name}</option>
+		                                                          <option value="${company.com_code}">${company.com_name}</option>
 		                                                    </c:forEach>
                                                         </select>
                                           </td>
                                        </tr>
                                           <tr>
                                              <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
-                                             <td class="py-3" colspan="2"><select class="form-control" id="exampleFormControlSelect1">
+                                             <td class="py-3" colspan="2"><select class="form-control" id="pro_code">
 		                                             		<c:forEach var="product" items="${product}">
-		                                                          <option value="${product.pro_name}">${product.pro_name}</option>
+		                                                          <option value="${product.pro_code}">${product.pro_name}</option>
 		                                                    </c:forEach>
                                                         </select>
                                           </tr>
                                           <tr>
                                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>단가</b></td>
-                                                      <td class="py-3" colspan="2"><input
-                                                class="form-control" type="text"
+                                                      <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_price"
                                                 placeholder="단가를 입력하세요"></td>
                                                    </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-                                             <td class="py-3" colspan="2"><input
-                                                class="form-control" type="text" placeholder="수량을 입력하세요"></td>
+                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>총액</b></td>
                                              <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" value="단가x수량 = 값" readonly></td>
+                                                class="form-control" type="text" id="accs_sum" value="단가x수량 = 값" readonly></td>
                                           </tr>
                                           <tr>
-                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td>
+                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>사번</b></td> 
                                              <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" value="세션아이디 값으로 들어가는 값" readonly></td>
+                                                class="form-control" type="text" id="emp_code" value="<%=(String) session.getAttribute("mem_id")%>" readonly></td>
+                                          </tr>
+                                          <tr>
+                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>내용</b></td>
+                                             <td class="py-3" colspan="2"><input 
+                                                class="form-control" type="text" id="accs_content" value=""></td>
                                           </tr>
                                        </tbody>
                                     </table>

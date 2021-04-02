@@ -16,6 +16,8 @@ public class SalaryStatementVO {
 	SalaryVO salary;			
 	EmployeeVO employee;
 	DepartmentVO department;
+	BankVO bank;
+	AccountVO account;
 	
 	public int getSs_code() {
 		return ss_code;
@@ -82,6 +84,18 @@ public class SalaryStatementVO {
 	}
 	public void setDepartment(DepartmentVO department) {
 		this.department = department;
+	}
+	public BankVO getBank() {
+		return bank;
+	}
+	public void setBank(BankVO bank) {
+		this.bank = bank;
+	}
+	public AccountVO getAccount() {
+		return account;
+	}
+	public void setAccount(AccountVO account) {
+		this.account = account;
 	}
 	
 }

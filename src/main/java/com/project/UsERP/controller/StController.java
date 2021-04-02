@@ -40,16 +40,16 @@ public class StController {
 		
 		return "st/stInvenStatus";
 	}
-//	// 재고 현황 검색 조회 AJAX
-//	   @RequestMapping("/logInvenStatus")
-//	   public String logInvenStatus(HttpServletRequest req, Model model) {
-//	      logger.info("url: 재고 현황 검색 조회 AJAX");
-//	       
-//	      ldService.inventoryStatusList(req, model);
-//	      
-//	      return "st/ajax/logInvenStatus";
-//	   }
-//	
+	// 재고 현황 검색 조회 AJAX
+	   @RequestMapping("/logInvenStatus")
+	   public String logInvenStatus(HttpServletRequest req, Model model) {
+	      logger.info("url: 재고 현황 검색 조회 AJAX");
+	       
+	      ldService.inventoryStatusList(req, model);
+	      
+	      return "st/ajax/logInvenStatus";
+	   }
+	
 
 	// 강재현 : 기초 등록 - 계정 관리 - 리액트 계정 등록
 	@RequestMapping("/clientadd")
