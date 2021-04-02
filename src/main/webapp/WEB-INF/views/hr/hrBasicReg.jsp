@@ -58,9 +58,12 @@ function departmentAdd() {
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
-   <link rel="stylesheet" href="${project}css/board.css">
+	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+    <!-- Script -->
+    <script src="${spath}hr.js"></script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -409,13 +412,12 @@ function departmentAdd() {
                                        </thead>
                                        <tbody>
                                          <c:forEach var="vo" items="${list3}">
-                                 <tr>
-                                    <td class="py-3">${vo.dep_code}</td>
-                                    <td class="py-3">${vo.dep_name}</td>
-                                    <td class="py-3">접근권한</td>
-                                    <td class="py-3">${vo.dep_state}</td>
-                                 </tr>
-                               </c:forEach>
+			                                 <tr>
+			                                    <td class="py-3">${vo.dep_code}</td>
+			                                    <td class="py-3">${vo.dep_name}</td>
+			                                    <td class="py-3">${vo.dep_state}</td>
+			                                 </tr>
+			                         	 </c:forEach>
                                        </tbody>
                                     </table>
                                        </div>

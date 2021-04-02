@@ -54,10 +54,10 @@ public class HrController {
 		return "hr/ajax/department";
 	}
 	
-	// 조명재 - 인사 발령
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령 조회
 	@RequestMapping("/hrAppointment")
 	public String hrAppointment(HttpServletRequest req, Model model) {
-		logger.info("url: 인사 발령");
+		logger.info("url: 인사 발령 조회");
 		
 		hrService.appointmentList(req, model);
 		hrService.depList(req, model);
@@ -65,13 +65,25 @@ public class HrController {
 
 		return "hr/hrAppointment";
 	}
+	
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령
+	@RequestMapping("/hrAppointmentPro")
+	public String hrAppointmentPro(HttpServletRequest req, Model model) {
+		logger.info("url: 인사 발령");
+		
+		hrService.hrAppointmentPro(req, model);
+		
+		return "hr/hrPro/hrAppointmentPro";
+	}
 
-	// 김은희 - 인사 카드
+	// 인사 카드
 	@RequestMapping("/hrCard")
 	public String hrCard(HttpServletRequest req, Model model) {
 		logger.info("url: 인사 카드");
 		
 		hrService.hrCardList(req, model);
+		hrService.hrLeaveList(req, model);
+		hrService.hrRetireList(req, model);
 		
 		return "hr/hrCard";
 	}
@@ -81,7 +93,6 @@ public class HrController {
 	public String hrCardInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 인사 카드 등록");
 		
-		
 		return ":redirect/hrCardInsert";
 	}
 
@@ -89,7 +100,9 @@ public class HrController {
 	@RequestMapping("/hrSalary")
 	public String hrSalary(HttpServletRequest req, Model model) {
 		logger.info("url: 급여");
-
+		
+		hrService
+		
 		return "hr/hrSalary";
 	}
 }

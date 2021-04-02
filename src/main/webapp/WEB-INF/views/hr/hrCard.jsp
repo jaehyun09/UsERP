@@ -13,9 +13,12 @@
 
      <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
-   <link rel="stylesheet" href="${project}css/board.css">
+	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+    <!-- Script -->
+    <script src="${spath}hr.js"></script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -492,27 +495,15 @@
                                           </tr>
                                        </thead>
                                        <tbody>
+                                       	<c:forEach var="vo" items="${list7}">
                                           <tr>
-                                             <td class="py-3">001</td>
-                                             <td class="py-3">영업부</td>
-                                             <td class="py-3">대리</td>
-                                             <td class="py-3">유재석</td>
-                                             <td class="py-3">2005-11-23</td>
+                                             <td class="py-3">${vo.emp_code}</td>
+                                             <td class="py-3">${vo.ap_cur_dep}</td>
+                                             <td class="py-3">${vo.ap_cur_position}</td>
+                                             <td class="py-3">${vo.employee.emp_name}</td>
+                                             <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
                                           </tr>
-                                          <tr>
-                                             <td class="py-3">002</td>
-                                             <td class="py-3">회계부</td>
-                                             <td class="py-3">팀장</td>
-                                             <td class="py-3">강호동</td>
-                                             <td class="py-3">2013-04-15</td>
-                                          </tr>
-                                          <tr>
-                                             <td class="py-3">003</td>
-                                             <td class="py-3">경리부</td>
-                                             <td class="py-3">사원</td>
-                                             <td class="py-3">이상순</td>
-                                             <td class="py-3">2018-09-24</td>
-                                          </tr>
+                                        </c:forEach>
                                        </tbody>
                                     </table>
                                  </div>
@@ -540,27 +531,15 @@
                                           </tr>
                                        </thead>
                                        <tbody>
-                                          <tr>
-                                             <td class="py-3">001</td>
-                                             <td class="py-3">영업부</td>
-                                             <td class="py-3">대리</td>
-                                             <td class="py-3">유재석</td>
-                                             <td class="py-3">2005-11-23</td>
-                                          </tr>
-                                          <tr>
-                                             <td class="py-3">002</td>
-                                             <td class="py-3">회계부</td>
-                                             <td class="py-3">팀장</td>
-                                             <td class="py-3">강호동</td>
-                                             <td class="py-3">2013-04-15</td>
-                                          </tr>
-                                          <tr>
-                                             <td class="py-3">003</td>
-                                             <td class="py-3">경리부</td>
-                                             <td class="py-3">사원</td>
-                                             <td class="py-3">이상순</td>
-                                             <td class="py-3">2018-09-24</td>
-                                          </tr>
+                                          <c:forEach var="vo" items="${list8}">
+	                                         <tr>
+	                                            <td class="py-3">${vo.emp_code}</td>
+	                                            <td class="py-3">${vo.ap_cur_dep}</td>
+	                                            <td class="py-3">${vo.ap_cur_position}</td>
+	                                            <td class="py-3">${vo.employee.emp_name}</td>
+	                                            <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
+	                                         </tr>
+	                                      </c:forEach>
                                        </tbody>
                                     </table>
                                     </form>

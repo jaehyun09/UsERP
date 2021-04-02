@@ -16,6 +16,9 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+    <!-- Script -->
+    <script src="${spath}hr.js"></script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -343,7 +346,7 @@
 											<div class="tab-pane fade p-4" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
 												
-												<form action="hrAppointment" method="post">
+												<form action="hrAppointmentPro" method="post">
 													<table class="table bg-white text-dark center ass2">
 														<tr class="text-white table-bordered tap">
 															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">인사 발령</th>
@@ -351,29 +354,27 @@
 														<tr>
 															<th style="vertical-align: middle">사번</th>
 															<td><input id="text" type="text" class="form-control" name="emp_code" required></td>
-															<td><button type="button" class="btn btn-outline-info">사번확인</button></td>
+															<td>
+																<button type="button" class="btn btn-outline-info" onclick="empCodeCheck()">
+																	사번확인
+																</button>
+															</td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원명</th>
-															<td><input id="text" type="text" class="form-control" name="emp_name" required></td>
+															<td><input id="text" type="text" class="form-control" name="emp_name" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">현재 부서</th>
-															<td>	 
-															<div class="form-group">
-															     <select name="ap_pre_dep" class="form-control" id="exampleFormControlSelect1">
-													       			<option value="">영업팀</option>
-															     </select>
-															   </div>
-															 </td>
+															<td><input id="text" type="text" class="form-control" name="ap_pre_dep" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">발령 부서</th>
 															<td>	 
 															<div class="form-group">
 															     <select name="ap_cur_dep" class="form-control" id="exampleFormControlSelect1">
-															    	<c:forEach var="vo" items="${list4}">
-														       			<option value="${hr_code_name}">${hr_code_name}</option>
+															    	<c:forEach var="vo" items="${list3}">
+														       			<option value="${vo.dep_name}">${vo.dep_name}</option>
 														       		</c:forEach>
 															     </select>
 															   </div>
@@ -381,22 +382,16 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">현재 직급</th>
-															<td>	 
-															<div class="form-group">
-															     <select name="ap_pre_position" class="form-control" id="exampleFormControlSelect1">
-															       <option>팀장</option>
-															       <option>대리</option>
-															     </select>
-															   </div>
-															 </td>
+															<td><input id="text" type="text" class="form-control" name="ap_pre_position" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">발령 후 직급</th>
 															<td>	 
 															<div class="form-group">
 															     <select name="ap_cur_position" class="form-control" id="exampleFormControlSelect1">
-															       <option>팀장</option>
-															       <option>대리</option>
+															     	<c:forEach var="vo" items="${list4}">
+														       			<option value="${vo.hr_code_name}">${vo.hr_code_name}</option>
+														       		</c:forEach>
 															     </select>
 															   </div>
 															 </td>
