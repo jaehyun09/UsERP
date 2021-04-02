@@ -16,7 +16,7 @@
 <c:if test="${insertCnt == 1}">
 	<script type="text/javascript">
 		alert("구매 되었습니다.");
-		window.location='${path}/st/stStatus';
+		window.location='${path}/stStatus';
 	</script>
 </c:if>
 

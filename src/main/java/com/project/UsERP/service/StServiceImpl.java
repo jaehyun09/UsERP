@@ -57,7 +57,7 @@ public class StServiceImpl implements StService {
 		vo.setAccs_reg_date(new Timestamp(System.currentTimeMillis()));
 		vo.setAccs_sum(Integer.parseInt(req.getParameter("accs_sum")));
 		vo.setAccs_state(0);
-		vo.setEmp_code(Integer.parseInt(req.getParameter("emd_code")));
+		vo.setEmp_code(Integer.parseInt(req.getParameter("emp_code")));
 		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
 		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
 		System.out.println(vo + "vo");

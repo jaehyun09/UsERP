@@ -324,7 +324,7 @@
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
                                              colspan="2" style="vertical-align: middle;">거래처명</td>
                                           <td class="font-weight-semi-bold border-top-0 py-2"
-                                             colspan="2"><select class="form-control" id="com_code">
+                                             colspan="2"><select class="form-control" id="com_code" name="com_code">
 		                                             		<c:forEach var="company" items="${company}">
 		                                                          <option value="${company.com_code}">${company.com_name}</option>
 		                                                    </c:forEach>
@@ -333,7 +333,7 @@
                                        </tr>
                                           <tr>
                                              <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
-                                             <td class="py-3" colspan="2"><select class="form-control" id="pro_code">
+                                             <td class="py-3" colspan="2"><select class="form-control" id="pro_code" name="pro_code">
 		                                             		<c:forEach var="product" items="${product}">
 		                                                          <option value="${product.pro_code}">${product.pro_name}</option>
 		                                                    </c:forEach>
@@ -341,37 +341,36 @@
                                           </tr>
                                           <tr>
                                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>단가</b></td>
-                                                      <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_price"></td>
+                                                      <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_price" name="accs_price"></td>
                                                    </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1" id="accs_quantity"></td>
+                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1" id="accs_quantity" name="accs_quantity"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>총액</b></td>
                                              <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" id="accs_sum"></td>
+                                                class="form-control" type="text" id="accs_sum" name="accs_sum"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>사번</b></td> 
                                              <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" id="emp_code" value="<%=(String) session.getAttribute("mem_id")%>" readonly></td>
+                                                class="form-control" type="text" id="emp_code" name="emp_code" value="${sessionScope.mem_id}" readonly></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>내용</b></td>
                                              <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" id="accs_content" value=""></td>
+                                                class="form-control" type="text" id="accs_content" name="accs_content" value=""></td>
                                           </tr>
                                        </tbody>
-                                    </table>
-                                    
-                                               <br>
-                                                     <div align=center>
-                                                   <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                                   <button type="reset" class="btn btn-outline-info">재입력</button>                                  
-                                       </div>
+                                    </table>                                 
+                                        <br>
+                                         <div align=center>
+                                           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                                           <button type="reset" class="btn btn-outline-info">재입력</button>                                  
+                                         </div>
                                        </form>
-                           </div>
+                           			</div>
                                     </div>
                                    </div> 
                                    </div>
