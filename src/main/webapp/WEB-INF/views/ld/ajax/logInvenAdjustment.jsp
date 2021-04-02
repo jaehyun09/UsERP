@@ -16,6 +16,30 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    <script src="${project}js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    
+   	$(function() {
+   		$("#prod").click(function(){
+   			var procode = $("#prod").val();
+   			$("#prod_auto").val(procode);
+   		});
+   	});
+   	
+	$(function() {
+   		$("#wareh").click(function(){
+   			var warecode = $("#warehouse").val();
+   			$("#wareh_auto").val(warecode);
+   		});
+   	});
+    	
+    
+    // 창고명 자동입력
+	function productAutoInput(pro_code) {
+    	
+    }
+    
+    </script>
 </head>
 
 <body>
@@ -122,7 +146,7 @@
 						colspan="2" style="vertical-align: middle;">상품명</td>
 					<td class="font-weight-semi-bold border-top-0 py-2"
 						colspan="2">
-						<select class="custom-select custom-select-lg">
+						<select class="custom-select custom-select-lg" id="prod" name="prod" onclick="productAutoInput('${pro_code}')">
 							<c:forEach var="selectpro" items="${selprolist}">
                              	<option value="${selectpro.pro_code}">${selectpro.pro_name}</option>
 							</c:forEach>
@@ -133,7 +157,7 @@
 				<tr>
 					<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
 					<td class="py-2" colspan="2">
-						<select class="custom-select custom-select-lg">
+						<select class="custom-select custom-select-lg" id="wareh" name="wareh" onclick="wareAutoInput('${ware_code}')">
 							<c:forEach var="selectware" items="${selectware}">
 								<c:if test="${selectware.ware_code >=1000 && selectware.ware_code <= 1999 }">
 									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
@@ -164,14 +188,14 @@
 										colspan="2" style="vertical-align: middle;">상품명</td>
 									<td class="font-weight-semi-bold border-top-0 py-2"
 										colspan="2">
-										<input class="form-control form-control-icon-text" type="text" value="상품01" readonly>
+										<input class="form-control form-control-icon-text" id="prod_auto" name="prod_auto" type="text" readonly>
 									</td>
 								</tr>
 						
 								<tr>
 									<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
 									<td class="py-2" colspan="2">
-										<input class="form-control form-control-icon-text" type="text" value="양품창고" readonly>
+										<input class="form-control form-control-icon-text" id="wareh_auto" name="wareh_auto" type="text" readonly>
 									</td>
 								</tr>
 								
