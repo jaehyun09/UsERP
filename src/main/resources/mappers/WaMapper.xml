@@ -69,7 +69,7 @@
 		SELECT e.emp_code, e.emp_name, e.dep_code, w.wr_code, w.wr_type, w.wr_ap_date, w.wr_va_start, w.wr_va_end, w.wr_va_reason, d.dep_name
 		  FROM employee e, work_record w, department d
 		 WHERE e.emp_code = w.emp_code
-		  AND d.dep_code = w.dep_code
+		   AND d.dep_code = w.dep_code
 		 ORDER BY wr_ap_date
 	</select>
 	

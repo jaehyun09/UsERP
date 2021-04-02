@@ -114,7 +114,7 @@ public class HrController {
 	public String hrSalary(HttpServletRequest req, Model model) {
 		logger.info("url: 급여");
 		
-		hrService
+//		hrService
 		
 		return "hr/hrSalary";
 	}

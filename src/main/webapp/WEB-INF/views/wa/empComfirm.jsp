@@ -14,7 +14,7 @@
 </head>
 <body onload="confirmWaFocus();">
 <div align=center>
-<form action ="confirmEmp_Code?${_csrf.parameterName}=${_csrf.token}" method="post" name="confirmWaform" onsubmit="return confirmWaCheck();">
+<form action ="empComfirm?${_csrf.parameterName}=${_csrf.token}" method="post" name="confirmWaform" onsubmit="return confirmWaCheck();">
 <br>
 <br>
 <c:if test="${selectCnt != 1}">

@@ -17,5 +17,4 @@ public interface WaDAO {
 	// 김은희 - 근태 신청 사원 확인
 	public EmployeeVO empComfirm(int emp_code);
 	
-
 }

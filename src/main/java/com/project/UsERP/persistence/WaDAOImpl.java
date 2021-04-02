@@ -2,7 +2,6 @@ package com.project.UsERP.persistence;
 
 import java.util.List;
 
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,5 +34,4 @@ public class WaDAOImpl implements WaDAO {
 		return sqlSession.selectOne("com.project.UsERP.persistence.WaDAO.empComfirm", emp_code);
 	}
 	
-
 }

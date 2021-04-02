@@ -14,7 +14,7 @@
 </head>
 <body onload="confirmCodeFocus();">
 <div align=center>
-<form action ="confirmCode?${_csrf.parameterName}=${_csrf.token}" method="post" name="confirmform" onsubmit="return confirmCodeCheck();">
+<form action ="hrConfirmCode?${_csrf.parameterName}=${_csrf.token}" method="post" name="confirmform" onsubmit="return confirmCodeCheck();">
 <br>
 <br>
 <c:if test="${selectCnt == 1}">

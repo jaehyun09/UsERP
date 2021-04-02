@@ -244,7 +244,7 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원명 </th>
-															<td><input type="text" class="form-control" name="emp_name"></td>
+															<td><input type="text" class="form-control" name="emp_name" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">부서명</th>
