@@ -53,11 +53,18 @@ public class HrDAOImpl implements HrDAO {
 		return hrDao.getAppointmentCnt();
 	}
 	
-	// 조명재 - 인사 발령 조회
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령 조회
 	@Override
 	public List<AppointHistoryVO> appointmentList(Map<String, Object> map) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.appointmentList(map);
+	}
+	
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령
+	@Override
+	public int hrAppointmentPro(AppointHistoryVO vo) {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.hrAppointmentPro(vo);
 	}
 	
 	// 김은희 - 인사카드 조회

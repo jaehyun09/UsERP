@@ -54,16 +54,26 @@ public class HrController {
 		return "hr/ajax/department";
 	}
 	
-	// 조명재 - 인사 발령
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령 조회
 	@RequestMapping("/hrAppointment")
 	public String hrAppointment(HttpServletRequest req, Model model) {
-		logger.info("url: 인사 발령");
+		logger.info("url: 인사 발령 조회");
 		
 		hrService.appointmentList(req, model);
 		hrService.depList(req, model);
 		hrService.hrCodePosList(req, model);
 
 		return "hr/hrAppointment";
+	}
+	
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령
+	@RequestMapping("/hrAppointmentPro")
+	public String hrAppointmentPro(HttpServletRequest req, Model model) {
+		logger.info("url: 인사 발령");
+		
+		hrService.hrAppointmentPro(req, model);
+		
+		return "redirect:/hrAppointment";
 	}
 
 	// 김은희 - 인사 카드

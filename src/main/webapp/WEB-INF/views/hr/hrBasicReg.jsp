@@ -409,13 +409,12 @@ function departmentAdd() {
                                        </thead>
                                        <tbody>
                                          <c:forEach var="vo" items="${list3}">
-                                 <tr>
-                                    <td class="py-3">${vo.dep_code}</td>
-                                    <td class="py-3">${vo.dep_name}</td>
-                                    <td class="py-3">접근권한</td>
-                                    <td class="py-3">${vo.dep_state}</td>
-                                 </tr>
-                               </c:forEach>
+			                                 <tr>
+			                                    <td class="py-3">${vo.dep_code}</td>
+			                                    <td class="py-3">${vo.dep_name}</td>
+			                                    <td class="py-3">${vo.dep_state}</td>
+			                                 </tr>
+			                         	 </c:forEach>
                                        </tbody>
                                     </table>
                                        </div>

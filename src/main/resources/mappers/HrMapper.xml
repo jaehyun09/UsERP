@@ -34,7 +34,6 @@
 		<result property="emp_pwd" column="emp_pwd" />
 		<result property="emp_authority"  column="emp_authority" />
 		<result property="emp_enabled"  column="emp_enabled" />
-		<result property="emp_position"  column="emp_position" />
 		<result property="emp_name"  column="emp_name" />
 		<result property="emp_hire_date"  column="emp_hire_date" />
 		<result property="emp_cos"  column="emp_cos" />
@@ -99,7 +98,7 @@
 		SELECT COUNT(*) FROM appoint_history
 	</select>
 	
-	<!-- 조명재 - 인사 발령 조회 -->
+	<!-- 조명재 - 인사 발령(중메뉴) - 인사 발령 조회 -->
 	<select id="appointmentList" parameterType="java.util.Map" resultMap="appointHistoryMap">
 		<![CDATA[
 			SELECT * 
@@ -115,16 +114,23 @@
 		]]>
 	</select>
 	
+	<!-- 조명재 - 인사 발령(중메뉴) - 인사 발령 -->
+	<insert id="hrAppointmentPro" parameterType="com.project.UsERP.vo.AppointHistoryVO">
+		INSERT INTO appoint_history(ap_code, ap_date, ap_cur_dep, ap_cur_position, 
+			ap_pre_dep, ap_pre_position, emp_code)
+		VALUES (appoint_history_seq.nextval, DEFAULT, #{ap_cur_dep}, #{ap_cur_position}, #{ap_pre_dep}, #{ap_pre_position}, #{emp_code})
+	</insert>
+	
 	<!-- 김은희 - 인사카드 조회 -->
 	<select id="hrCardList" resultMap="hrCardMap">
-		SELECT e.emp_code, d.dep_name, e.emp_position, e.emp_name, e.emp_hire_date
+		SELECT e.emp_code, d.dep_name, e.emp_name, e.emp_hire_date
 		  FROM employee e JOIN department d
 		    ON e.dep_code = d.dep_code ORDER BY emp_code
 	</select>
 	
 	<!-- 김은희 - 인사카드 상세페이지 조회 -->
 	<select id="hrCardDetail" resultMap="hrCardMap">
-		SELECT e.emp_code, e.emp_name, d.dep_name, e.emp_position, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
+		SELECT e.emp_code, e.emp_name, d.dep_name, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
 				e.emp_tel, e.emp_phone, e.emp_email, e.emp_bank, e.emp_account
 		  FROM employee e JOIN department d
 		    ON e.dep_code = d.dep_code
@@ -133,9 +139,9 @@
 	
 	<!-- 김은희 - 인사카드 등록 -->
 	<insert id="hrCardInsert" parameterType="com.project.UsERP.vo.EmployeeVO">
-		INSERT INTO employee(emp_photo, emp_code, emp_name, dep_code, emp_position, emp_hire_date, emp_cos
+		INSERT INTO employee(emp_photo, emp_code, emp_name, dep_code, emp_hire_date, emp_cos
 				,emp_jumin, emp_address, emp_tel, emp_phone, emp_email, emp_port_no, emp_account, emp_bank)
-		VALUES (#{emp_photo}, #{emp_code}, #{emp_name}, #{dep_code}, #{emp_position}, #{emp_hire_date}, #{emp_cos}, #{emp_jumin}, #{emp_address}, #{emp_tel}, #{emp_phone}, #{emp_email}, #{emp_port_no}, #{emp_account}, #{emp_bank})
+		VALUES (#{emp_photo}, #{emp_code}, #{emp_name}, #{dep_code}, #{emp_hire_date}, #{emp_cos}, #{emp_jumin}, #{emp_address}, #{emp_tel}, #{emp_phone}, #{emp_email}, #{emp_port_no}, #{emp_account}, #{emp_bank})
 	</insert>
 
 </mapper>

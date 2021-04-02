@@ -3,6 +3,10 @@ package com.project.UsERP.persistence;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.ui.Model;
+
 import com.project.UsERP.vo.AppointHistoryVO;
 import com.project.UsERP.vo.DepartmentVO;
 import com.project.UsERP.vo.EmployeeVO;
@@ -26,8 +30,11 @@ public interface HrDAO {
 	// 조명재 - 인사 발령 목록 갯수
 	public int getAppointmentCnt();
 	
-	// 조명재 - 인사 발령 조회
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령 조회
 	public List<AppointHistoryVO> appointmentList(Map<String, Object> map);
+	
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령
+	public int hrAppointmentPro(AppointHistoryVO vo);
 	
 	// 김은희 - 인사카드 조회
 	public List<EmployeeVO> hrCardList();

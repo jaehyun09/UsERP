@@ -19,8 +19,11 @@ public interface HrService {
 	// 조명재 - 부서 조회
 	public void depList(HttpServletRequest req, Model model);
 	
-	// 조명재 - 인사 발령
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령 조회
 	public void appointmentList(HttpServletRequest req, Model model);
+	
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령
+	public void hrAppointmentPro(HttpServletRequest req, Model model);
 	
 	// 김은희 - 인사카드 조회
 	public void hrCardList(HttpServletRequest req, Model model); 

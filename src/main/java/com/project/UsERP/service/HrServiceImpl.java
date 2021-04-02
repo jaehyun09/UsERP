@@ -77,66 +77,11 @@ public class HrServiceImpl implements HrService {
 		model.addAttribute("vo", vo);
 	}
 	
-	// 김은희 - 인사카드 등록
-	@Override
-	public void hrCardInsert(MultipartHttpServletRequest req, Model model) {
-		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images";
-		
-		MultipartFile image = req.getFile("emp_photo");
-		String emp_photo = image.getOriginalFilename();
-		
-		String emp_code = req.getParameter("emp_code");
-		String emp_name = req.getParameter("emp_name");
-		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
-		String emp_position = req.getParameter("emp_position");
-		int emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
-		String emp_jumin = req.getParameter("emp_jumin");
-		String emp_address = req.getParameter("emp_address");
-		String emp_tel = req.getParameter("emp_tel");
-		String emp_phone = req.getParameter("emp_phone");
-		String emp_email = req.getParameter("emp_email");
-		int emp_port_no = Integer.parseInt(req.getParameter("emp_port_no"));
-		String emp_account = req.getParameter("emp_account");
-		String emp_bank = req.getParameter("emp_bank");
-		
-		try {
-			// null값과 공백 방지
-			if(image.getOriginalFilename() == null || image.getOriginalFilename().trim().equals("")) {
-				emp_photo = "-";
-			}
-			
-			image.transferTo(new File(uploadPath + image));
-			
-			EmployeeVO vo = new EmployeeVO();
-			
-			vo.setEmp_code(emp_code);
-			vo.setEmp_position(emp_position);
-			vo.setEmp_name(emp_name);	
-			vo.setEmp_cos(emp_cos);
-			vo.setEmp_photo(emp_photo);
-			vo.setEmp_jumin(emp_jumin);
-			vo.setEmp_address(emp_address);
-			vo.setEmp_tel(emp_tel);
-			vo.setEmp_phone(emp_phone);
-			vo.setEmp_email(emp_email);
-			vo.setEmp_port_no(emp_port_no);
-			vo.setEmp_bank(emp_bank);
-			vo.setEmp_account(emp_account);
-			vo.setDep_code(dep_code);
-			
-			int insertCnt = hrDao.hrCardInsert(vo);
-			
-			model.addAttribute("insertCnt", insertCnt);
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
-	// 조명재 - 인사 발령
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령 조회
 	@Override
 	public void appointmentList(HttpServletRequest req, Model model) {
-		int pageSize = 10;
+		int pageSize = 15;
 		int pageBlock = 3;
 		
 		int cnt = 0;
@@ -187,4 +132,78 @@ public class HrServiceImpl implements HrService {
 		}
 	}
 
+	// 조명재 - 인사 발령(중메뉴) - 인사 발령
+	@Override
+	public void hrAppointmentPro(HttpServletRequest req, Model model) {
+		String ap_cur_dep = req.getParameter("ap_cur_dep");
+		String ap_cur_position = req.getParameter("ap_cur_position");
+		String ap_pre_dep = req.getParameter("ap_pre_dep");
+		String ap_pre_position = req.getParameter("ap_pre_position");
+		String emp_code = req.getParameter("emp_code");
+		
+		AppointHistoryVO vo = new AppointHistoryVO();
+		vo.setAp_cur_dep(ap_cur_dep);
+		vo.setAp_cur_position(ap_cur_position);
+		vo.setAp_pre_dep(ap_pre_dep);
+		vo.setAp_pre_position(ap_pre_position);
+		vo.setEmp_code(emp_code);
+		
+		int insertCnt = hrDao
+	}
+	
+	// 김은희 - 인사카드 등록
+	@Override
+	public void hrCardInsert(MultipartHttpServletRequest req, Model model) {
+		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images";
+		
+		MultipartFile image = req.getFile("emp_photo");
+		String emp_photo = image.getOriginalFilename();
+		
+		String emp_code = req.getParameter("emp_code");
+		String emp_name = req.getParameter("emp_name");
+		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
+		String emp_position = req.getParameter("emp_position");
+		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
+		String emp_jumin = req.getParameter("emp_jumin");
+		String emp_address = req.getParameter("emp_address");
+		String emp_tel = req.getParameter("emp_tel");
+		String emp_phone = req.getParameter("emp_phone");
+		String emp_email = req.getParameter("emp_email");
+		int emp_port_no = Integer.parseInt(req.getParameter("emp_port_no"));
+		String emp_account = req.getParameter("emp_account");
+		String emp_bank = req.getParameter("emp_bank");
+		
+		try {
+			// null값과 공백 방지
+			if(image.getOriginalFilename() == null || image.getOriginalFilename().trim().equals("")) {
+				emp_photo = "-";
+			}
+			
+			image.transferTo(new File(uploadPath + image));
+			
+			EmployeeVO vo = new EmployeeVO();
+			
+			vo.setEmp_code(emp_code);
+			vo.setEmp_name(emp_name);	
+			vo.setEmp_cos(emp_cos);
+			vo.setEmp_photo(emp_photo);
+			vo.setEmp_jumin(emp_jumin);
+			vo.setEmp_address(emp_address);
+			vo.setEmp_tel(emp_tel);
+			vo.setEmp_phone(emp_phone);
+			vo.setEmp_email(emp_email);
+			vo.setEmp_port_no(emp_port_no);
+			vo.setEmp_bank(emp_bank);
+			vo.setEmp_account(emp_account);
+			vo.setDep_code(dep_code);
+			
+			int insertCnt = hrDao.hrCardInsert(vo);
+			
+			model.addAttribute("insertCnt", insertCnt);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
