@@ -302,6 +302,12 @@ public class LdServiceImpl implements LdService {
 		stateMap.put("arrivewh", arrivewh);
 		stateMap.put("prod", prod);
 		
+		// 재고 이동시 재고테이블 없을경우 등록
+		StockVO stockVo = new StockVO();
+		stockVo.setSto_quantity(amount);
+		stockVo.setWare_code(arrivewh);
+		stockVo.setPro_code(prod);
+		
 		// 출발창고 재고변경
 		Map<String, Object> minusMap = new HashMap<String, Object>();
 		minusMap.put("amount", amount);
@@ -319,54 +325,46 @@ public class LdServiceImpl implements LdService {
 		int stoBadMinusUpdate = 0;
 		int stoPlusUpdate = 0;
 		int stsuMoveInsert = 0;
+		int stsuBadMoveInsert = 0;
 		int state = 0;
 		
 			if (lddao.stockState(stateMap) == null) {
 				if(arrivewh >= 2000 && arrivewh<=2999) {
-					// 재고 이동시 재고테이블 없을경우 등록
-					StockVO stockVo = new StockVO();
-					stockVo.setSto_quantity(amount);
-					stockVo.setWare_code(arrivewh);
-					stockVo.setPro_code(prod);
 					
 					stockBadInsert = lddao.stockBadWare(stockVo);
-					System.out.println("stockBadInsert : " + stockBadInsert);
 					if(stockBadInsert == 1) {
 						stoBadMinusUpdate = lddao.stoMinusUpdate(minusMap);
-						System.out.println("stoBadMinusUpdate : " + stoBadMinusUpdate);
 						// 재고 이동 재고테이블 수량 가져오기
 						Map<String, Object> quantityMap = new HashMap<String, Object>();
 						quantityMap.put("startwh", startwh);
 						quantityMap.put("prod", prod);
-						int stsu_quantity = lddao.getStoQuantity(quantityMap);
+						String stsu_quantity = lddao.getStoQuantity(quantityMap);
 						
 						StockSupplyVO stockSupplyVO = new StockSupplyVO();
-						stockSupplyVO.setStsu_quantity(stsu_quantity);
+						stockSupplyVO.setStsu_quantity(Integer.parseInt(stsu_quantity));
 						stockSupplyVO.setStsu_amount(amount);
 						stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
 						stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
 						stockSupplyVO.setPro_code(prod);
 						stockSupplyVO.setEmp_code(empid);
 						
-						stsuMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
-						System.out.println("stsuMoveInsert : " + stsuMoveInsert);
+						stsuBadMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
 					}
 				}
 			}
 			
 		 else if(lddao.stockState(stateMap) != null) {
 				stoMinusUpdate = lddao.stoMinusUpdate(minusMap);
-				System.out.println("stoMinusUpdate : " + stoMinusUpdate);
 				stoPlusUpdate = lddao.stoPlusUpdate(plusMap);
-				System.out.println("stoPlusUpdate : " + stoPlusUpdate);
+				
 				// 재고 이동 재고테이블 수량 가져오기
 				Map<String, Object> quantityMap = new HashMap<String, Object>();
 				quantityMap.put("startwh", startwh);
 				quantityMap.put("prod", prod);
-				int stsu_quantity = lddao.getStoQuantity(quantityMap);
+				String stsu_quantity = lddao.getStoQuantity(quantityMap);
 				
 				StockSupplyVO stockSupplyVO = new StockSupplyVO();
-				stockSupplyVO.setStsu_quantity(stsu_quantity);
+				stockSupplyVO.setStsu_quantity(Integer.parseInt(stsu_quantity));
 				stockSupplyVO.setStsu_amount(amount);
 				stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
 				stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
@@ -374,7 +372,6 @@ public class LdServiceImpl implements LdService {
 				stockSupplyVO.setEmp_code(empid);
 				
 				stsuMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
-				System.out.println("stsuMoveInsert : " + stsuMoveInsert);
 			}
 			model.addAttribute("state", state);
 			model.addAttribute("stockBadInsert", stockBadInsert);
@@ -382,8 +379,62 @@ public class LdServiceImpl implements LdService {
 			model.addAttribute("stoMinusUpdate",stoMinusUpdate);
 			model.addAttribute("stoPlusUpdate", stoPlusUpdate);
 			model.addAttribute("stsuMoveInsert", stsuMoveInsert);
+			model.addAttribute("stsuBadMoveInsert", stsuBadMoveInsert);
+		}
+
+	// 김민수 - 재고 이동 내역
+	@Override
+	public void moveWarehouseList(HttpServletRequest req, Model model) {
+		int pageSize = 15;
+		int pageBlock = 3;
+		
+		int cnt = 0;
+		int start = 0;
+		int end = 0;
+		
+		int pageCnt = 0;
+		int startPage = 0;
+		int endPage = 0;
+		
+		String pageNum = "";
+		int currentPage = 0;
+		
+		cnt = lddao.getMoveWarehouse();
+		
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";
 		}
 		
-	
+		currentPage = Integer.parseInt(pageNum);
+		pageCnt = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
+		start = (currentPage - 1) * pageSize + 1;
+		end = start + pageSize - 1;
+		
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if(currentPage % pageBlock == 0 ) startPage -= pageBlock;
+		
+		endPage =  startPage + pageBlock - 1;
+		if(endPage > pageCnt) endPage = pageCnt;
+		
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("pageNum", pageNum);
+		
+		if(cnt > 0) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", start);
+			map.put("end", end);
+			
+			List<StockSupplyVO> list = lddao.moveWarehouseList(map);
+			model.addAttribute("movelist", list);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("pageCnt", pageCnt);
+			model.addAttribute("pageBlock", pageBlock);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+		}
+		
+	}
 }
 

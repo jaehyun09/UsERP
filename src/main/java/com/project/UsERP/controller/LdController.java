@@ -109,6 +109,7 @@ public class LdController {
 		
 		ldservice.selectWarehouse(req, model);
 		ldservice.selectProduct(req, model);
+		ldservice.moveWarehouseList(req, model);
 		
 		return "ld/ajax/logMoveWareInsert";
 	}
@@ -127,7 +128,10 @@ public class LdController {
 	@RequestMapping("/logInvenAdjustment")
 	public String logInvenAdjustment(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 조정AJAX");
-		  
+		
+		ldservice.selectWarehouse(req, model);
+		ldservice.selectProduct(req, model);
+		
 		return "ld/ajax/logInvenAdjustment";
 	}
 	  

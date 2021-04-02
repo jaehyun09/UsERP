@@ -123,10 +123,10 @@
 					<td class="font-weight-semi-bold border-top-0 py-2"
 						colspan="2">
 						<select class="custom-select custom-select-lg">
-                                             <option>상품01</option>
-                                             <option>상품02</option>
-                                             <option>상품03</option>
-                                        </select>
+							<c:forEach var="selectpro" items="${selprolist}">
+                             	<option value="${selectpro.pro_code}">${selectpro.pro_name}</option>
+							</c:forEach>
+                        </select>
 					</td>
 				</tr>
 				
@@ -134,9 +134,17 @@
 					<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
 					<td class="py-2" colspan="2">
 						<select class="custom-select custom-select-lg">
-							<option>양품창고</option>
-							<option>불량품창고</option>
-							<option>출고대기창고</option>
+							<c:forEach var="selectware" items="${selectware}">
+								<c:if test="${selectware.ware_code >=1000 && selectware.ware_code <= 1999 }">
+									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
+								</c:if>
+								<c:if test="${selectware.ware_code >=2000 && selectware.ware_code <= 2999 }">
+									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
+								</c:if>
+								<c:if test="${selectware.ware_code >=3000 && selectware.ware_code <= 3999 }">
+									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
+								</c:if>
+							</c:forEach>
 						</select>
 					</td>
 				</tr>
@@ -168,13 +176,13 @@
 								</tr>
 								
 								<tr>
-		                           	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>담당자</b></td>
+		                           	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>사번</b></td>
 		                             <td class="py-2" colspan="2">
-		                                    <input class="form-control form-control-icon-text" type="text" value="최유성" readonly>
+		                                    <input class="form-control form-control-icon-text" type="text" name="empid" value="${sessionScope.mem_id}" readonly>
 		                             </td>
 		                       </tr>
 								<tr>
-									<td class="py-2" colspan="2" style="vertical-align: middle;"><b>창고 재고</b></td>
+									<td class="py-2" colspan="2" style="vertical-align: middle;"><b>조정 재고</b></td>
 									<td class="py-2" colspan="2">
 										<input class="form-control form-control-icon-text" type="text" placeholder="조정 재고">
 									</td>

@@ -123,6 +123,12 @@ public class LdDAOImpl implements LdDAO{
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.selectWarehouse");
 	}
 	
+	// 김민수 - 재고 이동 재고테이블 가져오기
+	@Override
+	public StockVO stockDefaultList() {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.stockDefaultList");
+	}
+	
 	// 김민수 - 재고 이동 재고테이블 여부 확인
 	@Override
 	public StockVO stockState(Map<String, Object> stateMap) {
@@ -149,7 +155,7 @@ public class LdDAOImpl implements LdDAO{
 	
 	// 김민수 - 재고 이동 재고테이블 수량 가져오기
 	@Override
-	public int getStoQuantity(Map<String, Object> quantityMap) {
+	public String getStoQuantity(Map<String, Object> quantityMap) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getStoQuantity", quantityMap);
 	}
 
@@ -170,6 +176,20 @@ public class LdDAOImpl implements LdDAO{
 	public int stsuMoveInsert(StockSupplyVO stockSupplyVO) {
 		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stsuMoveInsert", stockSupplyVO);
 	}
+
+	// 김민수 - 재고 이동 갯수 구하기
+	@Override
+	public int getMoveWarehouse() {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getMoveWarehouse");
+	}
+
+	// 김민수 - 재고 이동 내역 조회
+	@Override
+	public List<StockSupplyVO> moveWarehouseList(Map<String, Object> map) {
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.moveWarehouseList", map);
+	}
+	
+	
 
 
 	

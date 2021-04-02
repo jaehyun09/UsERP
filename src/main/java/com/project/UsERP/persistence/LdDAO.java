@@ -62,6 +62,9 @@ public interface LdDAO {
 	// 김민수 - 재고 관리 창고 조회
 	public List<WarehouseVO> selectWarehouse();
 	
+	// 김민수 - 재고 이동 재고테이블 가져오기
+	public StockVO stockDefaultList();
+	
 	// 김민수 - 재고 이동 재고테이블 여부 확인
 	public StockVO stockState (Map<String, Object> stateMap);
 	
@@ -75,7 +78,7 @@ public interface LdDAO {
 	public int stoPlusUpdate(Map<String, Object> plusMap);
 	
 	// 김민수 - 재고 이동 재고테이블 수량 가져오기
-	public int getStoQuantity(Map<String, Object> quantityMap);
+	public String getStoQuantity(Map<String, Object> quantityMap);
 	
 	// 김민수 - 재고 이동 출발창고이름 가져오기
 	public String getStartWareName(int startwh);
@@ -85,4 +88,11 @@ public interface LdDAO {
 	
 	// 김민수 - 재고 이동 재고수불부 등록
 	public int stsuMoveInsert(StockSupplyVO stockSupplyVO);
+	
+	// 김민수 - 재고 이동 갯수 구하기
+	public int getMoveWarehouse();
+	
+	// 김민수 - 재고 이동 내역 조회
+	public List<StockSupplyVO> moveWarehouseList(Map<String, Object> map);
+	
 }

@@ -35,4 +35,7 @@ public interface LdService {
 	
 	// 김민수 - 재고 이동 등록, 창고등록(불량품,출고대기), 수불부 내역등록
 	public void moveWareInsert(HttpServletRequest req, Model model);
+	
+	// 김민수 - 재고 이동 내역
+	public void moveWarehouseList(HttpServletRequest req, Model model);
 }

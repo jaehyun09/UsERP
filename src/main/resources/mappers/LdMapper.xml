@@ -190,6 +190,11 @@
 		SELECT * FROM warehouse WHERE ware_state = 1
 	</select>
 	
+	<!-- 재고관리 - 재고 이동 재고테이블 가져오기 -->
+	<select id="stockDefaultList" resultType="com.project.UsERP.vo.StockVO">
+		SELECT sto_quantity, ware_code, pro_code FROM stock
+	</select>
+	
 	<!-- 재고관리 - 재고 이동 재고테이블 여부 확인 -->
 	<select id="stockState" resultType="com.project.UsERP.vo.StockVO" parameterType="java.util.Map">
 		SELECT * FROM stock
@@ -218,7 +223,7 @@
 	</update>
 	
 	<!-- 재고관리 - 재고 이동 재고테이블 수량 가져오기 -->
-	<select id="getStoQuantity" resultType="int" parameterType="java.util.Map">
+	<select id="getStoQuantity" resultType="String" parameterType="java.util.Map">
 		SELECT sto_quantity
 		FROM stock
 		WHERE ware_code = #{startwh}
@@ -242,6 +247,30 @@
 		VALUES (stock_supply_seq.nextval, sysdate, 3, #{stsu_quantity}, #{stsu_amount}, 
 						#{stsu_startwh}, #{stsu_arrivewh}, #{pro_code}, #{emp_code})
 	</insert>
+	
+	<!-- 재고관리 - 재고 이동 갯수 구하기 -->
+	<select id="getMoveWarehouse" resultType="int" parameterType="int">
+		SELECT COUNT(*) FROM stock_supply WHERE stsu_type = 3
+	</select>
+	
+	<!-- 재고관리 - 재고 이동 내역 조회 -->
+	<select id="moveWarehouseList" resultMap="supplyVOMap" parameterType="java.util.Map">
+		<![CDATA[
+			SELECT * 
+			FROM (SELECT stsu_code, stsu_amount, pro_code, pro_name, 
+					stsu_startwh, stsu_arrivewh, emp_name, stsu_reg_date, rownum rnum
+			    FROM (SELECT su.*, p.pro_name, e.emp_name
+			        FROM stock_supply su, product p, employee e
+			        WHERE su.pro_code = p.pro_code
+			        AND su.emp_code = e.emp_code
+			        AND su.stsu_type = 3
+			        ORDER BY su.stsu_reg_date DESC
+			        )
+			    )
+			WHERE rnum >= #{start}
+			AND rnum <= #{end}
+		]]>
+	</select>
 	
 	
 </mapper>
