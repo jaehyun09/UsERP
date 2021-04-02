@@ -87,7 +87,7 @@
 	</select>
 
 	<!-- 강재현 : 계정 관리 - 계정 리스트 -->
-	<select id="accontList"
+	<select id="accountList"
 		resultType="com.project.UsERP.vo.AccountVO">
 		SELECT * FROM account ORDER BY acco_code
 	</select>

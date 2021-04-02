@@ -304,6 +304,8 @@
                                     <!-- 테스트 -->
                                     <div class="col">
                                             <div class="bg-white p-2">
+                                                <form action="${path}/ststAppInsert" method="post" name="ssstem">
+                                                <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
                                                 <table class="table bg-white text-dark center ass2">
                                                 <tr class="text-white table-bordered tap">
                                                    <th colspan="3"> 판매 전표 등록 </th>
@@ -339,17 +341,16 @@
                                           </tr>
                                           <tr>
                                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>단가</b></td>
-                                                      <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_price"
-                                                placeholder="단가를 입력하세요"></td>
+                                                      <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_price"></td>
                                                    </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1"></td>
+                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1" id="accs_quantity"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>총액</b></td>
                                              <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" id="accs_sum" value="단가x수량 = 값" readonly></td>
+                                                class="form-control" type="text" id="accs_sum"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>사번</b></td> 
@@ -363,14 +364,17 @@
                                           </tr>
                                        </tbody>
                                     </table>
-                                                </div>
+                                    
+                                               <br>
                                                      <div align=center>
-                                                   <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                                   <button type="button" type="reset" class="btn btn-outline-info">재입력</button>                                  
+                                                   <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                                                   <button type="reset" class="btn btn-outline-info">재입력</button>                                  
                                        </div>
+                                       </form>
                            </div>
                                     </div>
                                    </div> 
+                                   </div>
                               
                                    <div class="tab-pane fade p-4" id="pills-html-2"
                                     role="tabpanel" aria-labelledby="pills-html-tab-2">
@@ -421,6 +425,7 @@
                   </div>
                </div>
             </div>
+            
           </div>
 </main>
 

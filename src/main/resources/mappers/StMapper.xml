@@ -89,7 +89,11 @@
    </select>
    
    <!-- 이재홍 : 판매 전표 등록 -->
-   
+   <insert id="insertSalesStatement" parameterType = "com.project.UsERP.vo.AccountStatementVO">
+		INSERT INTO account_statement(accs_code, accs_type, accs_content, accs_price, accs_quantity, accs_reg_date, accs_update_date, accs_sum, accs_state, emp_code, bank_code, acco_code, pro_code, com_code)
+			VALUES(accs_seq.nextval, #{accs_type}, #{accs_content}, #{accs_price}, #{accs_quantity}, sysdate, null, #{accs_sum}, #{accs_state}, #{emp_code}, null, null, #{pro_code}, #{com_code})
+	</insert>
+	
    <!-- 강재현 : 출고현황 - 출고 내역 -->
    <select id="logisticsList" resultMap = "LogsMap">
 	   SELECT l.*, c.com_name, e.emp_name, p.pro_name, w.ware_name
@@ -102,5 +106,7 @@
    </select>
    
    <!-- 강재현 : 출고현황 - 출고 전표 등록 -->
-
+	<select id = "proComfirm" resultType = "com.project.UsERP.vo.ProductVO">
+		select * from product WHERE pro_code =#{pro_code}
+	</select>
 </mapper>

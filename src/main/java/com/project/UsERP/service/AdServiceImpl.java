@@ -31,7 +31,7 @@ public class AdServiceImpl implements AdService {
 	// 강재현 : 기초 등록 - 계정 관리 - 계정 리스트
 	public void accountList(HttpServletRequest req, Model model) {
 
-		List<AccountVO> list = addao.accontList();
+		List<AccountVO> list = addao.accountList();
 
 		model.addAttribute("account", list);
 

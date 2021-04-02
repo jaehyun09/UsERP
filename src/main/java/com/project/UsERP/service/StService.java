@@ -21,5 +21,5 @@ public interface StService {
 	public void salesRecStatus(HttpServletRequest req, Model model);
 
 	// 강재현 : 출고현황 - 출고 전표 등록
-
+	public void proComfirm(HttpServletRequest req, Model model);
 }

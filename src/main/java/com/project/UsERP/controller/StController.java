@@ -77,8 +77,20 @@ public class StController {
 		
 		// 판매 거래처 목록 & 상품 목록
 		stService.salesBasicReg(req, model);
+		
+		//stService.proComfirm(req, model);
 
 		return "st/stStatus";
+	}
+	
+	// 판매 전표 등록 
+	@RequestMapping("/ststAppInsert")
+	public String ststAppInsert(HttpServletRequest req, Model model) {
+		logger.info("url: 이재홍 : 판매 전표 등록");
+
+		stService.insertSalesStatement(req, model);
+		
+		return "st/stPro/ststaddAc";
 	}
 
 	// 강재현 : 출고 현황 - 출고 내역
@@ -86,7 +98,7 @@ public class StController {
 	public String stRelStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 강재현 : 출고 현황 - 출고 내역");
 
-		stService.salesRecStatus(req, model);
+		 stService.salesRecStatus(req, model);
 
 		return "st/stRelStatus";
 	}

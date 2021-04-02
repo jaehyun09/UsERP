@@ -49,5 +49,7 @@ public class StDAOImpl implements StDAO{
 	}
 
 	// 강재현 : 출고현황 - 출고 전표 등록
-	
+	public ProductVO proComfirm(int pro_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.StDAO.proComfirm",pro_code);
+	}
 }
