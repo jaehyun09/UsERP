@@ -33,7 +33,7 @@ public interface LdDAO {
 	
 	// 김민수 - 창고 목록
 	public List<WarehouseVO> warehouseList();
-
+	
 	// 김민수 - 창고 상세 목록
 	public WarehouseVO warehouseDetail(int ware_code);
 	
@@ -55,6 +55,21 @@ public interface LdDAO {
 	// 김민수 - 검색 재고 현황 조회(페이징)
 	public List<StockVO> StockStatusList(Map<String, Object> map);
 	
-	// 김민수 - 검색 재고 현황 조회(페이징x)
-	public List<StockVO> stockList(Map<String, Object> map);
+	// 김민수 - 재고 관리 상품 조회
+	public List<ProductVO> selectProduct();
+	
+	// 김민수 - 재고 관리 창고 조회
+	public List<WarehouseVO> selectWarehouse();
+	
+	// 김민수 - 재고 이동 재고 테이블 불량품 창고 등록
+	public int stockBadWare(StockVO stockVo);
+	
+	// 김민수 - 재고 이동 재고 테이블 출고 대기 창고 등록
+	public int stockWaitWare(StockVO stockVo);
+	
+	// 김민수 - 재고 이동 출발창고 수량 변경
+	public int stoMinusUpdate(Map<String, Object> minusMap);
+	
+	// 김민수 - 재고 이동 도착창고 수량 변경
+	public int stoPlusUpdate(Map<String, Object> plusMap);
 }

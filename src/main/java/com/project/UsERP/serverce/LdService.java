@@ -27,4 +27,12 @@ public interface LdService {
 	// 김민수 - 재고 현황(검색포함)
 	public void inventoryStatusList(HttpServletRequest req, Model model);
 	
+	// 김민수 - 재고 관리 상품 조회
+	public void selectProduct(HttpServletRequest req, Model model);
+	
+	// 김민수 - 재고 관리 창고 조회
+	public void selectWarehouse(HttpServletRequest req, Model model);
+	
+	// 김민수 - 재고 이동 등록, 창고등록(불량품,출고대기), 수불부 내역등록
+	public void moveWareInsert(HttpServletRequest req, Model model);
 }

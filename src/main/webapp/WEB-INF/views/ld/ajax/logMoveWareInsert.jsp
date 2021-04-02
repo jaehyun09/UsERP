@@ -189,34 +189,50 @@
 		<!-- 페이지 넘버 이동 끝 -->
                                  </div>
 
-
 <div class="tab-pane fade" id="tabs2-tab2" role="tabpanel">
 	<!-- 신규등록 -->
+<form action="moveStsuInsert" method="post">
 		<table class="table bg-white text-dark center ass2" style="text-align:center">
-                                	<tr class="text-white table-bordered tap">
-                                    	<th colspan="3"> 재고 이동 등록 </th>
-                                	</tr>
+              	<tr class="text-white table-bordered tap">
+                  	<th colspan="3"> 재고 이동 등록 </th>
+              	</tr>
                                 	
-                                	<tr>
-				<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-					colspan="2" style="vertical-align: middle;">출발창고명</td>
-				<td class="font-weight-semi-bold border-top-0 py-2"
-					colspan="2">
-					<select class="custom-select custom-select-lg">
-						<option>양품창고</option>
-						<option>불량품창고</option>
-						<option>출고대기창고</option>
-					</select>
-				</td>
+               	<tr>
+					<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+						colspan="2" style="vertical-align: middle;">출발창고명</td>
+					<td class="font-weight-semi-bold border-top-0 py-2"
+						colspan="2">
+						<select class="custom-select custom-select-lg" name="startwh">
+						<c:forEach var="ware" items="${selectware}">
+							<c:if test="${ware.ware_code >=1000 && ware.ware_code <= 1999 }">
+								<option value="${ware.ware_code}">${ware.ware_name}</option>
+							</c:if>
+							<c:if test="${ware.ware_code >=2000 && ware.ware_code <= 2999 }">
+								<option value="${ware.ware_code}">${ware.ware_name}</option>
+							</c:if>
+							<c:if test="${ware.ware_code >=3000 && ware.ware_code <= 3999 }">
+								<option value="${ware.ware_code}">${ware.ware_name}</option>
+							</c:if>
+						</c:forEach>
+						</select>
+					</td>
 			</tr>
 			
 			<tr>
 				<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>도착창고명</b></td>
 				<td class="py-2" colspan="2">
-					<select class="custom-select custom-select-lg">
-						<option>양품창고</option>
-						<option>불량품창고</option>
-						<option>출고대기창고</option>
+					<select class="custom-select custom-select-lg" name="arrivewh">
+						<c:forEach var="ware" items="${selectware}">
+						<c:if test="${ware.ware_code >=1000 && ware.ware_code <= 1999}">
+							<option value="${ware.ware_code}">${ware.ware_name}</option>
+						</c:if>
+						<c:if test="${ware.ware_code >=2000 && ware.ware_code <= 2999}">
+							<option value="${ware.ware_code}">${ware.ware_name}</option>
+						</c:if>
+						<c:if test="${ware.ware_code >=3000 && ware.ware_code <= 3999}">
+							<option value="${ware.ware_code}">${ware.ware_name}</option>
+						</c:if>
+						</c:forEach>
 					</select>
 				</td>
 			</tr>
@@ -224,32 +240,33 @@
 			<tr>
              	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
                 <td class="py-2" colspan="2">
-                	<select class="custom-select custom-select-lg">
-						<option>상품01</option>
-						<option>상품02</option>
-						<option>상품03</option>
+                	<select class="custom-select custom-select-lg" name="prod">
+                	<c:forEach var="prolist" items="${selprolist}">
+						<option value="${prolist.pro_code}">${prolist.pro_name}</option>
+                	</c:forEach>
 					</select>
                   </td>
                </tr>
 			<tr>
 				<td class="py-2" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
 				<td class="py-2" colspan="2">
-					<input class="form-control form-control-icon-text" placeholder="수량" type="text">
+					<input class="form-control form-control-icon-text" name="amount" placeholder="수량" type="text">
 				</td>
 			</tr>
 			<tr>
 				<td class="py-2" colspan="2" style="vertical-align: middle; "><b>담당자</b></td>
 				<td class="py-2" colspan="2">
-					<input class="form-control form-control-icon-text" type="text" value="최유성" readonly>
+					<input class="form-control form-control-icon-text" type="text" value="${sessionScope.mem_id}" readonly>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 		<div align=center>
-                                <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                             </div>
+           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+           <button type="reset" class="btn btn-outline-info">재입력</button>
+        </div>
 	<!-- 신규등록 끝 -->
+</form>
 	</div>
 	</div>
 	</div>

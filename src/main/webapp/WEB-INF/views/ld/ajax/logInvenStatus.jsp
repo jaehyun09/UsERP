@@ -64,7 +64,7 @@
       	<c:if test="${startPage > pageBlock}">
        <li class="page-item">				
        	<a id="datatablePaginationPrev" class="page-link" href="logInvenStatus?pageNum=${startPage - pageBlock}&ssKeyword=${ssKeyword}" aria-label="Previous">
-       	<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
+       	<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>	
        </li>
       	</c:if>
       	

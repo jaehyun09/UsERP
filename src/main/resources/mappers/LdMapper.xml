@@ -47,17 +47,17 @@
 	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
-	<!-- 창고 목록 -->
+	<!-- 기초등록 - 창고 목록 -->
 	<select id="warehouseList" resultType="com.project.UsERP.vo.WarehouseVO">
 		SELECT * FROM warehouse ORDER BY ware_code
 	</select>
 	
-	<!-- 창고 상세 목록 -->
+	<!-- 기초등록 - 창고 상세 목록 -->
 	<select id="warehouseDetail" resultType="com.project.UsERP.vo.WarehouseVO">
 		SELECT * FROM warehouse WHERE ware_code = #{ware_code}
 	</select>
 	
-	<!-- 거래처 갯수 구하기 -->
+	<!-- 기초등록 - 거래처 갯수 구하기 -->
 	<select id="getCompanyCnt" resultType="int" parameterType="String">
 		SELECT COUNT(*) AS selectCnt 
 		FROM company 
@@ -66,7 +66,7 @@
 	</select>
 	
 	
-	<!-- 거래처 조회 -->
+	<!-- 기초등록 - 거래처 조회 -->
 	<select id="CompanyList" parameterType="java.util.Map" resultType="com.project.UsERP.vo.CompanyVO">
 		<![CDATA[
 		SELECT *
@@ -81,14 +81,15 @@
 		]]>
 	</select>
 	
-	<!-- 상품 갯수 -->
+	
+	<!-- 기초등록 - 상품 갯수 -->
 	<select id="getProductCnt" resultType="int" parameterType="String">
 		SELECT count(*) as cnt FROM product
 		WHERE pro_code LIKE '%'||#{proKeyword}||'%' 
 		OR pro_name LIKE '%'||#{proKeyword}||'%'
 	</select>
 	
-	<!-- 상품 조회 -->
+	<!-- 기초등록 - 검색 포함 상품 조회 -->
 	<select id="ProductList" resultType="com.project.UsERP.vo.ProductVO" parameterType="java.util.Map">
 		<![CDATA[
 			SELECT *
@@ -103,27 +104,28 @@
 		]]>
 	</select>
 	
-	 <!-- 입고 미승인 전표 -->
+	 <!-- 전표관리 - 입고 미승인 전표 -->
 	<select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
 		select * from company where comp_use_state = 1
 	</select>
 	
-	<!-- 입고 승인 전표 -->
+	<!-- 전표관리 - 입고 승인 전표 -->
 	<select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
 		select * from product
 	</select> 
 	
-	<!-- 재고 현황 갯수 -->
+	<!-- 재고관리 - 재고 현황 갯수 -->
 	<select id="getStockCnt" resultType="int">
 		SELECT COUNT(*) as cnt
 		FROM stock s,product p, warehouse w
 		WHERE s.pro_code = p.pro_code
 		AND s.ware_code = w.ware_code
+		AND w.ware_state = 1
 		AND p.pro_state = 1
 		AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
 	</select>
 	
-	<!-- 재고 현황 조회 -->
+	<!-- 재고관리 - 재고 현황 조회 -->
 	<select id="StockStatusList" resultMap="stockVOMap" parameterType="java.util.Map">
 		<![CDATA[
 			SELECT * 
@@ -134,9 +136,10 @@
 			        FROM stock s, warehouse w, product p
 			        WHERE s.ware_code = w.ware_code
 			        AND s.pro_code = p.pro_code
+			        AND w.ware_state = 1
 			        AND p.pro_state = 1
 			        AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
-			        ORDER BY s.sto_code,s.pro_code, s.ware_code
+			        ORDER BY s.pro_code, s.ware_code
 			        )
 				)
 			WHERE rnum >= #{start}
@@ -144,8 +147,41 @@
 		]]>
 	</select>
 	
-	<select id="stockList" resultMap="stockVOMap" parameterType="java.util.Map">
-	
+	<!-- 재고관리 - 상품 조회 -->
+	<select id="selectProduct" resultType="com.project.UsERP.vo.ProductVO">
+		SELECT * FROM product WHERE pro_state = 1
 	</select>
+	
+	<!-- 재고관리 - 상품 조회 -->
+	<select id="selectWarehouse" resultType="com.project.UsERP.vo.WarehouseVO">
+		SELECT * FROM warehouse WHERE ware_state = 1
+	</select>
+	
+	<!-- 재고관리 - 재고 이동 재고 테이블 불량품 창고 등록 -->
+	<insert id="stockBadWare" parameterType="com.project.UsERP.vo.StockVO">
+		INSERT INTO stock(sto_code, sto_quantity, sto_reg_date, ware_code, pro_code)
+		VALUES (stock_seq.nextval, #{sto_quantity}, sysdate, #{ware_code}, #{pro_code})
+	</insert>
+	
+	<!-- 재고관리 - 재고 이동 재고 테이블 출고 대기 창고 등록 -->
+	<insert id="stockWaitWare" parameterType="com.project.UsERP.vo.StockVO">
+		INSERT INTO stock(sto_code, sto_quantity, sto_reg_date, ware_code, pro_code)
+		VALUES (stock_seq.nextval, #{sto_quantity}, sysdate, #{ware_code}, #{pro_code})
+	</insert>
+	
+	<!-- 재고관리 - 재고 이동 출발창고 수량 변경 -->
+	<update id="stoMinusUpdate" parameterType="java.util.Map">
+		UPDATE stock SET sto_quantity = sto_quantity-#{amount}
+		WHERE ware_code = #{startwh}
+		AND pro_code = #{prod}
+	</update>
+	
+	<!-- 재고관리 - 재고 이동 도착창고 수량 변경 -->
+	<update id="stoPlusUpdate" parameterType="java.util.Map">
+		UPDATE stock SET sto_quantity = sto_quantity+#{amount}
+		WHERE ware_code = #{arrivewh}
+		AND pro_code = #{prod}
+	</update>
+	
 	
 </mapper>

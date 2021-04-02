@@ -127,10 +127,9 @@ public class LdServiceImpl implements LdService {
 			model.addAttribute("endPage", endPage);
 			
 		}
-		
-		
 	}
 
+	
 	// 김민수 - 상품 목록 조회(검색포함)
 	@Override
 	public void productList(HttpServletRequest req, Model model) {
@@ -271,4 +270,69 @@ public class LdServiceImpl implements LdService {
 		}
 		
 	}
+
+	// 김민수 - 재고 관리 상품 조회
+	@Override
+	public void selectProduct(HttpServletRequest req, Model model) {
+		List<ProductVO> list = lddao.selectProduct();
+		
+		model.addAttribute("selprolist", list);
+	}
+
+	// 김민수 - 재고 관리 창고 조회
+	@Override
+	public void selectWarehouse(HttpServletRequest req, Model model) {
+		List<WarehouseVO> list = lddao.selectWarehouse();
+		
+		model.addAttribute("selectware", list);
+	}
+
+	// 김민수 - 재고 이동 등록, 창고등록(불량품,출고대기), 수불부 내역등록
+	@Override
+	public void moveWareInsert(HttpServletRequest req, Model model) {
+		int startwh = Integer.parseInt(req.getParameter("startwh"));
+		int arrivewh = Integer.parseInt(req.getParameter("arrivewh"));
+		int prod = Integer.parseInt(req.getParameter("prod"));
+		int amount = Integer.parseInt(req.getParameter("amount"));
+		
+		// 재고 이동시 재고테이블 없을경우 등록
+		StockVO stockVo = new StockVO();
+		stockVo.setSto_quantity(amount);
+		stockVo.setWare_code(arrivewh);
+		stockVo.setPro_code(prod);
+		
+		// 출발창고 재고변경
+		Map<String, Object> minusMap = new HashMap<String, Object>();
+		minusMap.put("amount", amount);
+		minusMap.put("startwh", startwh);
+		minusMap.put("prod", prod);
+		
+		// 도착창고 재고변경
+		Map<String, Object> plusMap = new HashMap<String, Object>();
+		plusMap.put("amount", amount);
+		plusMap.put("arrivewh", arrivewh);
+		plusMap.put("prod", prod);
+		
+		int stockinsertCnt = 0;
+		int stoMinusUpdate = 0;
+		int stoPlusUpdate = 0;
+		if (arrivewh == 0 && prod == 0) {
+			if(arrivewh >= 2000 && arrivewh<=2999) {
+				stockinsertCnt = lddao.stockBadWare(stockVo);
+			} else if(arrivewh >= 3000 && arrivewh <= 3999) {
+				stockinsertCnt = lddao.stockWaitWare(stockVo);
+			}
+			
+			if(stockinsertCnt == 1) {
+				stoMinusUpdate = lddao.stoMinusUpdate(minusMap);
+				}
+		} else {
+			stoMinusUpdate = lddao.stoMinusUpdate(minusMap);
+			stoPlusUpdate = lddao.stoPlusUpdate(plusMap);
+		}
+		
+		
+		
+	}
+
 }

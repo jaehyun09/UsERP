@@ -110,11 +110,43 @@ public class LdDAOImpl implements LdDAO{
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.StockStatusList", map);
 	}
 
-	// 김민수 - 재고 현황 조회(페이징x)
+	// 김민수 - 재고 관리 상품 조회
 	@Override
-	public List<StockVO> stockList(Map<String, Object> map) {
-		return null;
+	public List<ProductVO> selectProduct() {
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.selectProduct");
 	}
+	
+	// 김민수 - 재고 관리 창고 조회
+	@Override
+	public List<WarehouseVO> selectWarehouse() {
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.selectWarehouse");
+	}
+
+	// 김민수 - 재고 이동 재고 테이블 불량품 창고 등록
+	@Override
+	public int stockBadWare(StockVO stockVo) {
+		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stockBadWare", stockVo);
+	}
+
+	// 김민수 - 재고 이동 재고 테이블 출고 대기 창고 등록
+	@Override
+	public int stockWaitWare(StockVO stockVo) {
+		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stockWaitWare", stockVo);
+	}
+
+	// 김민수 - 재고 이동 출발창고 수량 변경
+	@Override
+	public int stoMinusUpdate(Map<String, Object> minusMap) {
+		return sqlSession.update("com.project.UsERP.persistence.LdDAO.stoMinusUpdate", minusMap);
+	}
+
+	// 김민수 - 재고 이동 도착창고 수량 변경
+	@Override
+	public int stoPlusUpdate(Map<String, Object> plusMap) {
+		return sqlSession.update("com.project.UsERP.persistence.LdDAO.stoPlusUpdate", plusMap);
+	}
+
+
 
 	
 }
