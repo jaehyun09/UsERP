@@ -4,13 +4,13 @@ package com.project.UsERP.vo;
 public class SalaryVO {
    
    private int sal_code;   // 급여코드
-   private int sal_basic;   // 기본급
-   private int sal_night;   // 야근수당
+   private int sal_basic;  // 기본급
+   private int sal_night;  // 야근수당
    private int sal_over;   // 특근수당
-   private int sal_cos;   // 근속수당
-   private int sal_or;      // 직책수당
-   private int hr_code;   // 인사코드
-   private int cm_code;   // 출퇴근기록코드
+   private int sal_cos;    // 근속수당
+   private int sal_or;     // 직책수당
+   private int hr_code;    // 인사코드
+   private int cm_code;    // 출퇴근기록코드
    HrCodeVO hrCode;      
    CommuteVO commute;
    
