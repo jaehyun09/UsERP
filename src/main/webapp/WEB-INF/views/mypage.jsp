@@ -13,12 +13,9 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
-	<link rel="stylesheet" href="${project}css/board.css">
+<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
-    
-    <!-- Script -->
-    <script src="${spath}script.js"></script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -205,96 +202,151 @@
 	</aside>
 	<!-- End Sidebar Nav -->
 
-	<!-- 사원확인 시작 --> 
-	<div class="content">
-		<div class="py-4 px-3 px-md-4">
-			<div class="card">
-				<div class="card-body">
-					<nav aria-label="breadcrumb">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">로그인</a></li>
-							<li class="breadcrumb-item active" aria-current="page">사원확인</li>
-						</ol>
-					</nav>
-					<div class="row">
-						<div class="col-xl-12">
-							<div id="example" class="mb-9">
-								<h4 class="h1 text-dark">
-									<b>사원확인</b>
-									<a class="anchorjs-link" href="#example" aria-label="Anchor" data-anchorjs-icon="#"></a>
-								</h4>
-								<div class="mb-3">
-									
-									<!-- Tab Content -->
-									<div class="tab-content bg-lighter" id="pills-tabContent-1">
-										<div class="tab-pane fade p-4 show active"
-											id="pills-result-1" role="tabpanel"
-											aria-labelledby="pills-result-tab-1">
+    <!-- 내 정보 시작 -->
+    <div class="content">
+			<div class="py-4 px-3 px-md-4">
+				<div class="card">
+					<div class="card-body">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#">내 정보</a></li>
+								<li class="breadcrumb-item active" aria-current="page">수정</li>
+							</ol>
+						</nav>
+						<div class="row">
+							<div class="col-xl-12">
+								<div id="example" class="mb-9">
+									<h4 class="h1 text-dark"><b>
+										내 정보 수정 </b><a class="anchorjs-link" href="#example"
+											aria-label="Anchor" data-anchorjs-icon="#"></a>
+									</h4>
+									<div class="mb-3">
+										<!-- Tab Content -->
+										<div class="tab-content bg-lighter" id="pills-tabContent-1">
+											<div class="tab-pane fade p-4 show active"
+												id="pills-result-1" role="tabpanel"
+												aria-labelledby="pills-result-tab-1">
 											
-											<form action="signinPro?${_csrf.parameterName}=${_csrf.token}" name="signinForm" method="post" onsubmit="return signinCheck()">
-												<input type="hidden" name="confirm_code" value="0">
-												<table class="table bg-white text-dark center ass2" style="text-align:center">
-													<tr class="text-white table-bordered tap">
-														<th colspan="3">사원확인</th>
-													</tr>
-													<tr>
-														<th>* 사원번호</th>
-														<td>
-															<input type="text" class="form-control" name="emp_code" placeholder="사원번호 입력">
-														</td>
-														<td>
-															<button type="button" class="btn btn-outline-info" onclick="confirmCheck()">사번확인</button>
-														</td>
-													</tr>
-													<tr>
-														<th>* 사원명</th>
-														<td>
-															<input type="text" class="form-control" name="emp_name" readonly>
-														</td>
-													</tr>
-													<tr>
-														<th>* 비밀번호</th>
-														<td>
-															<input type="password" class="form-control" name="emp_pwd" placeholder="비밀번호 입력">
-														</td>
-													</tr>
-													<tr>
-														<th>* 비밀번호 확인</th>
-														<td>
-															<input type="password" class="form-control" name="re_emp_pwd" placeholder="비밀번호 확인">
-														</td>
-													</tr>
-													<tr>
-														<th>* 주민등록번호</th>
-														<td>
-															<input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력">
-														</td>
-													</tr>
-												</table>
-												<div align=center>
-													<button type="button" type="submit" class="btn btn-outline-info">확인</button>&nbsp;&nbsp;&nbsp;
-													<button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-												</div>
-											</form>
+												<form action="productInsAction.mgr?${_csrf.parameterName}=${_csrf.token}" method="post" class="container" enctype="multipart/form-data" name="productInsertForm" onsubmit="return productInsCheck()">
+                     <table class="table bg-white text-dark center ass2" style="text-align:center">
+                        <tr>
+                           <th class="text-white table-bordered tap py-3 con2"colspan="3"> 내 정보 수정 </th>
+                        </tr>
+                        <tr>
+                           <th style="vertical-align:middle"> 사진</th>
+                           <td><input id="file" type="file" name="image"></td>
+                        </tr>
+                        <tr>
+                           <th style="vertical-align:middle"> 사번</th>
+                           <td><input id="text" type="text" class="form-control" name="password" ></td>
+                        </tr>
+                        <tr>
+                           <th style="vertical-align:middle">* 비밀번호</th>
+                           <td><input id="text" type="text" class="form-control" name="password" ></td>
+                        </tr>
+                        <tr>
+                           <th style="vertical-align:middle">* 비밀번호 확인</th>
+                           <td><input id="text" type="text" class="form-control" name="password" ></td>
+                        </tr>
+                        <tr>
+                           <th style="vertical-align:middle"> 사원명</th>
+                           <td> <input id="text" type="text" class="form-control" name="password" ></td>
+                        </tr>
+                        <tr>
+                           <th style="vertical-align:middle"> 부서명 </th>
+                           <td>    
+                           <div class="form-group">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                  <option>영업부</option>
+                                  <option>인사부</option>
+                                </select>
+                              </div>
+                            </td>
+                        </tr>
+                        <tr>
+                           <th style="vertical-align:middle">  직급</th>
+                           <td>    
+                           <div class="form-group">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>인턴사원</option>
+                                             <option>팀장</option>
+                                </select>
+                              </div>
+                            </td>
+                        </tr>
+                        <tr>
+                           <th style="vertical-align:middle"> 입사일</th>
+                           <td><input type="date" class="form-control"></td>
+                        </tr>
+                        <tr>
+                           <th style="vertical-align:middle">  주민등록번호 </th>
+                           <td><input id="text" type="text" class="form-control" name="password" ></td>
+                        </tr>
+                        <tr>                                    
+                                    <th style="vertical-align:middle"> 주소</th>
+                                    <td><input type="text" class="form-control"></td>
+                                 </tr>
+                        <tr>
+                                      <th style="vertical-align:middle">전화번호</th>
+                                      <td><input type="text" class="form-control"></td>
+                                   </tr>
+                                   <tr>
+                                      <th style="vertical-align:middle"> 휴대전화</th>
+                                      <td><input type="tel" class="form-control"></td>
+                                   </tr>
+                                   <tr>                                    
+                                      <th style="vertical-align:middle">이메일</th>
+                                      <td><input type="email" class="form-control"></td>
+                                   </tr>
+                                   <tr>
+                                      <th style="vertical-align:middle">여권번호</th>
+                                      <td><input type="text" class="form-control"></td>
+                                   </tr>
+                                   <tr>
+                                      <th style="vertical-align:middle"> 은행</th>
+                                      <td><div class="form-group">
+                                              <select class="form-control" id="exampleFormControlSelect1">
+                                                <option>농협</option>
+                                                <option>신한</option>
+                                              </select>
+                                            </div>
+                                      </td>
+                                   </tr>
+                                   <tr>
+                                      <th style="vertical-align:middle"> 급여계좌</th>
+                                      <td><input type="text" class="form-control"></td>
+                                   </tr>
+                     </table>
+                  
+                     <div align=center>
+                                  <button type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
+                                  <button type="reset" class="btn btn-outline-info">재입력</button>
+                            </div>
+                  
+                  </form>
+											</div>
 										</div>
+										<!-- End Tab Content -->
 									</div>
-									<!-- End Tab Content -->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- 사원확인 끝 --> 
-			<footer class="footer mt-3">
-				<div class="container-fluid">
-					<div class="footer-content text-center small">
-						<span class="text-muted">&copy; 2021. Team UsERP. all rights reserved.</span>
+			
+	<!-- 근태 신청 끝-->
+						<footer class="footer mt-3">
+							<div class="container-fluid">
+								<div class="footer-content text-center small">
+									<span class="text-muted">&copy; 2021. Team UsERP. all rights reserved.</span>
+								</div>
+							</div>
+						</footer>
 					</div>
 				</div>
-			</footer>
-		</div>
-	</div>
+			
+      
+    
 </main>
 
 <%@ include file = "./common/footer.jsp" %> 

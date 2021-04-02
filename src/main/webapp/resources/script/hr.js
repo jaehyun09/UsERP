@@ -66,7 +66,7 @@ function confirmCode() {
 	}
 		 
 	var url ="hrConfirmCode?emp_code=" + document.hrCardform.emp_code.value; 
-	window.open(url, "confirm", "menubar=no, width=400, height=300");
+	window.open(url, "confirm", "menubar=no, width=500, height=400");
 }
 
 function confirmCodeFocus() {
@@ -118,7 +118,7 @@ function confirmEmp_Code() {
 	}
 	
 	var url ="empComfirm?emp_code=" + document.waForm.emp_code.value; 
-	window.open(url, "confirm", "menubar=no, width=400, height=300");
+	window.open(url, "confirm", "menubar=no, width=500, height=400");
 }
 
 

@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +26,7 @@ public class HrServiceImpl implements HrService {
 
 	@Autowired
 	HrDAO hrDao;
-
+	
 	// 김은희 - 인사 코드 그룹 조회
 	@Override
 	public void hrCodeGroupList(HttpServletRequest req, Model model) {

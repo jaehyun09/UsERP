@@ -2,8 +2,6 @@ package com.project.UsERP.service;
 
 import java.io.IOException;
 
-
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.project.UsERP.persistence.AdminDAO;
+import com.project.UsERP.vo.EmployeeVO;
 import com.project.UsERP.vo.UserVO;
 
 // 로그인이 성공한 경우 자동으로 실행
@@ -22,7 +21,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
-
+	
 	public UserLoginSuccessHandler(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}
@@ -54,7 +53,10 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		UserVO vo = (UserVO)authentication.getPrincipal();
 		System.out.println("UserVO==> " + vo);
 		
-		String msg = authentication.getName() + "님 환영합니다.";
+		AdminDAO dao = sqlSession.getMapper(AdminDAO.class);
+		EmployeeVO vo2 = dao.getUsersInfo(authentication.getName());
+		
+		String msg = vo2.getEmp_name() + "님 환영합니다.";
 		System.out.println("아이디 ==> " + authentication.getName());
 		
 		String grade = sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.gradeCheck", authentication.getName());
@@ -69,6 +71,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		request.setAttribute("msg", msg);
 		request.getSession().setAttribute("mem_id", authentication.getName());
 		request.getSession().setAttribute("grade", gradeCnt);
+		request.getSession().setAttribute("mem_name", vo2.getEmp_name());
 
 		RequestDispatcher rd = request.getRequestDispatcher("/main");
 

@@ -5,14 +5,24 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.UsERP.service.AdminService;
+import com.project.UsERP.service.WaService;
 
 @Controller
 public class UserpController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserpController.class);
+	
+	@Autowired
+	AdminService service;
+	
+	@Autowired
+	WaService waService;
 	
 	// 강재현 - 메인화면
 	@RequestMapping("/")
@@ -38,12 +48,40 @@ public class UserpController {
 		return "logout";
 	}
 	
-	// 강재현 - 사원확인
+	// 조명재 - 사원확인 - 사원확인 화면으로 이동한다
 	@RequestMapping("/signin")
-	public String signin(HttpSession session) {
-		logger.info("url: 사원확인");
+	public String signin(HttpServletRequest req, Model model) {
+		logger.info("url: 사원확인 화면");
 
 		return "signin";
+	}
+	
+	// 조명재 - 사원확인 - 사원번호를 확인한다
+	@RequestMapping("/confirm")
+	public String confirm(HttpServletRequest req, Model model) {
+		logger.info("url: 사원확인 팝업");
+		
+		service.confirm(req, model);
+		
+		return "confirm";
+	}
+	
+	// 조명재 - 사원확인 - 사원확인 전송 클릭
+	@RequestMapping("/signinPro")
+	public String signinPro(HttpServletRequest req, Model model) {
+		logger.info("url: 사원확인");
+		
+		service.signinPro(req, model);
+		
+		return "signinPro";
+	}
+	
+	// 조명재 - 내 정보 수정
+	@RequestMapping("/mypage")
+	public String mypage(HttpServletRequest req, Model model) {
+		logger.info("url: 내 정보 수정");
+		
+		return "mypage";
 	}
 	
 }
