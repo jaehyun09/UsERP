@@ -12,6 +12,7 @@ import com.project.UsERP.vo.DepartmentVO;
 import com.project.UsERP.vo.EmployeeVO;
 import com.project.UsERP.vo.HrCodeGroupVO;
 import com.project.UsERP.vo.HrCodeVO;
+import com.project.UsERP.vo.SalaryStatementVO;
 
 @Repository
 public class HrDAOImpl implements HrDAO {
@@ -103,6 +104,13 @@ public class HrDAOImpl implements HrDAO {
 	public List<AppointHistoryVO> hrRetireList() {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrRetireList();
+	}
+	
+	// 조명재 - 급여 내역
+	@Override
+	public List<SalaryStatementVO> hrSalaryList() {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.hrSalaryList();
 	}
 
 }

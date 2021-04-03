@@ -202,112 +202,51 @@
 	</aside>
 	<!-- End Sidebar Nav -->
 
-    <!-- 내 정보 시작 -->
     <div class="content">
-			<div class="py-4 px-3 px-md-4">
-				<div class="card">
-					<div class="card-body">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">내 정보</a></li>
-								<li class="breadcrumb-item active" aria-current="page">수정</li>
-							</ol>
-						</nav>
-						<div class="row">
-							<div class="col-xl-12">
-								<div id="example" class="mb-9">
-									<h4 class="h1 text-dark"><b>
-										내 정보 수정 </b><a class="anchorjs-link" href="#example"
-											aria-label="Anchor" data-anchorjs-icon="#"></a>
-									</h4>
-									<div class="mb-3">
-										<!-- Tab Content -->
-										<div class="tab-content bg-lighter" id="pills-tabContent-1">
-											<div class="tab-pane fade p-4 show active"
-												id="pills-result-1" role="tabpanel"
-												aria-labelledby="pills-result-tab-1">
-											
-												<form action="productInsAction.mgr?${_csrf.parameterName}=${_csrf.token}" method="post" class="container" enctype="multipart/form-data" name="productInsertForm" onsubmit="return productInsCheck()">
-                     <table class="table table-bordered bg-white text-dark ass2 center ">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="3">인사카드</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="300" rowspan="5" style="vertical-align:middle">사진</th>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">사번</th>
-                                                         <td>10000</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">사원명</th>
-                                                          <td>유재석</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">부서명</th>
-                                                         <td>인사부</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">직급</th>
-                                                         <td>대리</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">입사일</th>
-                                                         <td colspan="3">2021-03-30</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">근속연수</th>
-                                                         <td colspan="3">7.2</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">주민등록번호</th>
-                                                         <td colspan="3">990812-1234567</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">주소</th>
-                                                         <td colspan="3">서울시 금천구 디지털로 78 가산테라타워</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">전화번호</th>
-                                                         <td colspan="3">041-551-0000</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">휴대전화</th>
-                                                         <td colspan="3">010-1234-5678</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">이메일</th>
-                                                         <td colspan="3">hi863@naver.com</td> 
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">여권번호</th>
-                                                         <td colspan="3">1111-2222-3333-4444</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">급여 계좌</th>
-                                                         <td colspan="3">농협   356-1021-0564-33</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table>
-                  
-                     <div align=center>
-                                  <button type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
-                                  <button type="reset" class="btn btn-outline-info">재입력</button>
-                            </div>
-                  
-                  </form>
-											</div>
-										</div>
-										<!-- End Tab Content -->
+        <div class="py-4 px-3 px-md-4">
+            <div class="card mb-3 mb-md-4">
+
+              <div class="container-fluid pb-5">
+
+				 <div class="row justify-content-md-center">
+					<div class="card-wrapper col-12 col-md-4 mt-5">
+						<div class="card">
+						   <div class="card-body">
+							 <c:if test="${sessionScope.mem_id == null}">
+								<h4 class="card-title">로그인</h4>
+								
+								<form action="loginPro" method="post" name="mainform" onsubmit="return mainCheck();">
+								<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+									<div class="form-group">
+										<label for="emp_code">사원번호</label>
+										<input id="emp_code" type="text" class="form-control" name="emp_code" >
 									</div>
-								</div>
+
+									<div class="form-group">
+										<label for="emp_pwd">비밀번호</label>
+										<input id="emp_pwd" type="password" class="form-control" name="emp_pwd" >
+										<div class="text-right">
+											<a href="#" class="small">
+												비밀번호 찾기
+											</a>
+										</div>
+									</div>
+
+									<div class="form-group no-margin">
+										<input class="btn btn-primary btn-block" type="submit" value="로그인">		
+									</div>
+									<div class="text-center mt-3 small">
+										사원 확인하셨나요?&nbsp;&nbsp;&nbsp;<a href="${path}/signin">사원확인</a>
+									</div>
+								</form>
+								</c:if>
+								<c:if test="${sessionScope.mem_id != null}">
+									<script type="text/javascript">
+										window.location="main";
+									</script>
+								</c:if>
 							</div>
 						</div>
-					</div>
-				</div>
-			
-	<!-- 근태 신청 끝-->
 						<footer class="footer mt-3">
 							<div class="container-fluid">
 								<div class="footer-content text-center small">
@@ -317,8 +256,11 @@
 						</footer>
 					</div>
 				</div>
-			
-      
+			</div>
+      	</div>
+       </div>
+     </div>
+
     
 </main>
 

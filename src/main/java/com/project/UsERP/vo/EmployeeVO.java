@@ -18,7 +18,7 @@ public class EmployeeVO {
 	private String emp_tel;			// 전화번호
 	private String emp_phone;		// 휴대전화
 	private String emp_email;		// 이메일 
-	private int emp_port_no;		// 여권번호
+	private String emp_port_no;		// 여권번호
 	private String emp_bank;		// 급여은행
 	private String emp_account;		// 급여계좌
 	private int hr_code;			// 인사코드
@@ -104,10 +104,10 @@ public class EmployeeVO {
 	public void setEmp_email(String emp_email) {
 		this.emp_email = emp_email;
 	}
-	public int getEmp_port_no() {
+	public String getEmp_port_no() {
 		return emp_port_no;
 	}
-	public void setEmp_port_no(int emp_port_no) {
+	public void setEmp_port_no(String emp_port_no) {
 		this.emp_port_no = emp_port_no;
 	}
 	public String getEmp_bank() {

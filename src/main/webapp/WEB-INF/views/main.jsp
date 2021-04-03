@@ -218,39 +218,9 @@
 					<div class="card-wrapper col-12 col-md-4 mt-5">
 						<div class="card">
 						   <div class="card-body">
-							 <c:if test="${sessionScope.mem_id == null}">
-								<h4 class="card-title">로그인</h4>
-								
-								<form action="loginPro.do" method="post" name="mainform" onsubmit="return mainCheck();">
-								<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-									<div class="form-group">
-										<label for="emp_code">사원번호</label>
-										<input id="emp_code" type="text" class="form-control" name="emp_code" >
-									</div>
-
-									<div class="form-group">
-										<label for="emp_pwd">비밀번호</label>
-										<input id="emp_pwd" type="password" class="form-control" name="emp_pwd" >
-										<div class="text-right">
-											<a href="password-reset.html" class="small">
-												비밀번호 찾기
-											</a>
-										</div>
-									</div>
-
-									<div class="form-group no-margin">
-										<input class="btn btn-primary btn-block" type="submit" value="로그인">		
-									</div>
-									<div class="text-center mt-3 small">
-										사원 확인하셨나요?&nbsp;&nbsp;&nbsp;<a href="${path}/signin">사원확인</a>
-									</div>
-								</form>
-								</c:if>
-								<c:if test="${sessionScope.mem_id != null}">
 									
 									login!
 									
-								</c:if>
 							</div>
 						</div>
 						<footer class="footer mt-3">

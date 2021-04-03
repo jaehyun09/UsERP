@@ -87,11 +87,20 @@
                 <!-- End User Notifications -->
                 <!-- User Avatar -->
                 <div class="dropdown mx-3 dropdown ml-2">
+                  <c:if test="${sessionScope.mem_id == null}">
+                  
+                    <a id="profileMenuInvoker" class="header-complex-invoker" href="login">
+                        <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
+                        <span class="d-none d-md-block center" style="width:100px">로그인</span>
+                        
+                    </a>
+                  </c:if>
+                  <c:if test="${sessionScope.mem_id != null}">
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
                         <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
-                        <span class="mr-md-2 avatar-placeholder">J</span>
-                        <span class="d-none d-md-block">${sessionScope.mem_name}</span>
+                        <span class="d-none d-md-block center" style="width:100px">${sessionScope.mem_name}</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
+                        
                     </a>
 
                     <ul id="profileMenu" class="unfold unfold-user unfold-light unfold-top unfold-centered position-absolute pt-2 pb-1 mt-4 unfold-css-animation unfold-hidden fadeOut" aria-labelledby="profileMenuInvoker" style="animation-duration: 300ms;">
@@ -112,6 +121,7 @@
                             </a>
                         </li>
                     </ul>
+                  </c:if>
                 </div>
                 <!-- End User Avatar -->
             </div>

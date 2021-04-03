@@ -352,7 +352,7 @@
 															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">인사 발령</th>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle">사번</th>
+															<th style="vertical-align: middle">사원번호</th>
 															<td><input id="text" type="text" class="form-control" name="emp_code" required></td>
 															<td>
 																<button type="button" class="btn btn-outline-info" onclick="empCodeCheck()">

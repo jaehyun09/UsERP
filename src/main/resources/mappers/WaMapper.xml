@@ -26,7 +26,6 @@
 	 
 	 <resultMap id="waMap" type="com.project.UsERP.vo.WorkRecordVO">
       <id     property="wr_code"      column="wr_code" />  
-      <result property="wr_type" 	   column="wr_type" />
       <result property="wr_ap_date"      column="wr_ap_date" />
       <result property="wr_va_start"      column="wr_va_start" />
       <result property="wr_va_end"      column="wr_va_end" />
@@ -66,7 +65,7 @@
 	
 	<!-- 김은희 - 근태 조회  -->
 	<select id="waList" resultMap="waMap">
-		SELECT e.emp_code, e.emp_name, e.dep_code, w.wr_code, w.wr_type, w.wr_ap_date, w.wr_va_start, w.wr_va_end, w.wr_va_reason, d.dep_name
+		SELECT e.emp_code, e.emp_name, e.dep_code, w.wr_code, w.wr_ap_date, w.wr_va_start, w.wr_va_end, w.wr_va_reason, d.dep_name
 		  FROM employee e, work_record w, department d
 		 WHERE e.emp_code = w.emp_code
 		   AND d.dep_code = w.dep_code
