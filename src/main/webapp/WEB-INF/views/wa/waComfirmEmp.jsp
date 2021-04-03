@@ -55,7 +55,7 @@
 		   </tr>
 	   </tbody>
 	</table>
-	<button class="btn btn-outline-info" type="button" onclick="setName('${vo.emp_name}');">확인</button>
+	<button class="btn btn-outline-info" type="button" onclick="setName('${emp_code}', '${vo.emp_name}');">확인</button>
 </c:if>
 </form>
 </div>

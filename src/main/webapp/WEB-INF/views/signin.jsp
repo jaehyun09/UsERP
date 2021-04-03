@@ -272,8 +272,8 @@
 													</tr>
 												</table>
 												<div align=center>
-													<button type="button" type="submit" class="btn btn-outline-info">확인</button>&nbsp;&nbsp;&nbsp;
-													<button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+													<button type="submit" class="btn btn-outline-info">확인</button>&nbsp;&nbsp;&nbsp;
+													<button type="reset" class="btn btn-outline-info">재입력</button>
 												</div>
 											</form>
 										</div>

@@ -39,7 +39,16 @@ function confirmCheck() {
 	}
 	
 	var url ="confirm?emp_code=" + $("input[name='emp_code']").val(); 
-	window.open(url, "confirm", "menubar=no, width=500, height=400");
+	window.open(url, "사원확인", "menubar=no, width=500, height=400");
+}
+
+// 조명재 - 사원확인 팝업 - 사원확인 버튼 클릭
+function confirmCheck2() {
+	if(!$("input[name='emp_code']").val()) {
+		alert("사원번호를 입력하세요.");
+		$("input[name='emp_code']").focus();
+		return false;
+	}
 }
 
 // 조명재 - 사원확인 성공 시 사원명 자동입력
@@ -54,6 +63,11 @@ function test() {
 	$("input[name='emp_code']", opener.document).val(emp_code);
 	$("input[name='emp_name']", opener.document).val(emp_name);
 	$("input[name='confirm_code']", opener.document).val("1");
+	self.close();
+	
+	opener.document.signinForm.emp_code.value = emp_code;
+	opener.document.signinForm.emp_name.value = emp_name;
+	opener.document.signinForm.confirm_code.value = 1;
 	self.close();
 }
 
