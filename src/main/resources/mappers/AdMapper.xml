@@ -134,7 +134,7 @@
 	<!-- 강재현 - 기초 등록 - 계정 관리 - 계정 리스트 -->
 	<select id="accountList"
 		resultType="com.project.UsERP.vo.AccountVO">
-		SELECT * FROM account ORDER BY acco_code
+		SELECT * FROM account ORDER BY acco_code 
 	</select>
 
 	<!-- 강재현 - 전표 관리 - 회계 전표 -->
@@ -142,7 +142,7 @@
 		SELECT e.emp_name, a.*
 			FROM employee e, account_statement a
 			WHERE a.emp_code = e.emp_code
-			ORDER BY accs_code
+			ORDER BY accs_code DESC
 	</select>
 
 	<!-- 강재현 - 전표 관리 - 회계 전표 상세 페이지 -->
@@ -153,7 +153,7 @@
 			AND a.pro_code = p.pro_code
 			AND a.com_code = c.com_code
 			AND accs_code = #{accs_code}
-			ORDER BY accs_code
+			ORDER BY accs_code DESC
 	</select>
 
 	<!-- 강재현 - 전표 관리 - 회계 전표 (승인 & 미승인) -->
@@ -170,7 +170,7 @@
 		    WHERE s.emp_code = e.emp_code
 		    AND s.hr_code = h.hr_code
 		    AND s.dep_code = d.dep_code
-		    ORDER BY ss_code
+		    ORDER BY ss_code DESC
 	</select>
 
 	<!-- 강재현 - 전표 관리 - 급여 전표 상세 페이지 -->
@@ -196,7 +196,7 @@
       SELECT a.*, c.com_name
          FROM account_statement a, company c
          WHERE a.com_code = c.com_code
-         ORDER BY accs_code
+         ORDER BY accs_code DESC
    </select>
    
    <!-- 이재홍 - 전표 관리 - 채권/채무 상세페이지 -->
@@ -207,7 +207,7 @@
       AND a.pro_code = p.pro_code
       AND a.com_code = c.com_code
       AND accs_code = #{num}
-      ORDER BY accs_code
+      ORDER BY accs_code DESC
    </select>
 
 </mapper>
