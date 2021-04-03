@@ -21,8 +21,8 @@
 		<security:intercept-url pattern="/client/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>	
 			
 		<!-- 로그인폼 -->
-		<security:form-login login-page="/"
-			login-processing-url="/loginPro.do"
+		<security:form-login login-page="/login"
+			login-processing-url="/loginPro"
 			authentication-success-handler-ref="userLoginSuccessHandler"
 			authentication-failure-handler-ref="userLoginFailureHandler"
 			username-parameter="emp_code" password-parameter="emp_pwd"	/>

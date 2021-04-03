@@ -42,5 +42,8 @@ public interface HrService {
 	
 	// 조명재 - 퇴직자 조회
 	public void hrRetireList(HttpServletRequest req, Model model);
+	
+	// 조명재 - 급여 내역
+	public void hrSalaryList(HttpServletRequest req, Model model);
 
 }

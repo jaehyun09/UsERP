@@ -20,6 +20,7 @@ import com.project.UsERP.vo.DepartmentVO;
 import com.project.UsERP.vo.EmployeeVO;
 import com.project.UsERP.vo.HrCodeGroupVO;
 import com.project.UsERP.vo.HrCodeVO;
+import com.project.UsERP.vo.SalaryStatementVO;
 
 @Service
 public class HrServiceImpl implements HrService {
@@ -203,7 +204,6 @@ public class HrServiceImpl implements HrService {
 			vo.setEmp_tel(emp_tel);
 			vo.setEmp_phone(emp_phone);
 			vo.setEmp_email(emp_email);
-			vo.setEmp_port_no(emp_port_no);
 			vo.setEmp_bank(emp_bank);
 			vo.setEmp_account(emp_account);
 			vo.setDep_code(dep_code);
@@ -243,6 +243,14 @@ public class HrServiceImpl implements HrService {
 		List<AppointHistoryVO> list8 = hrDao.hrRetireList();
 		
 		model.addAttribute("list8", list8);
+	}
+
+	// 조명재 - 급여 내역
+	@Override
+	public void hrSalaryList(HttpServletRequest req, Model model) {
+		List<SalaryStatementVO> list9 = hrDao.hrSalaryList();
+		
+		model.addAttribute("list9", list9);
 	}
 	
 }

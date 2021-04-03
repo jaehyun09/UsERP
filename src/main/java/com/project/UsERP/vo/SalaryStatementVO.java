@@ -13,8 +13,9 @@ public class SalaryStatementVO {
 	private int sal_code;		// 급여코드
 	private String emp_code;	// 사원번호
 	private int dep_code;		// 부서코드
-	SalaryVO salary;			
+	SalaryVO salary;
 	EmployeeVO employee;
+	HrCodeVO hrCode;
 	DepartmentVO department;
 	BankVO bank;
 	AccountVO account;
@@ -78,6 +79,12 @@ public class SalaryStatementVO {
 	}
 	public void setEmployee(EmployeeVO employee) {
 		this.employee = employee;
+	}
+	public HrCodeVO getHrCode() {
+		return hrCode;
+	}
+	public void setHrCode(HrCodeVO hrCode) {
+		this.hrCode = hrCode;
 	}
 	public DepartmentVO getDepartment() {
 		return department;

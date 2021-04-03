@@ -8,6 +8,7 @@ import com.project.UsERP.vo.DepartmentVO;
 import com.project.UsERP.vo.EmployeeVO;
 import com.project.UsERP.vo.HrCodeGroupVO;
 import com.project.UsERP.vo.HrCodeVO;
+import com.project.UsERP.vo.SalaryStatementVO;
 
 public interface HrDAO {
 
@@ -49,5 +50,8 @@ public interface HrDAO {
 
 	// 조명재 - 퇴직자 조회
 	public List<AppointHistoryVO> hrRetireList();
+	
+	// 조명재 - 급여 내역
+	public List<SalaryStatementVO> hrSalaryList();
 	
 }

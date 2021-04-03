@@ -323,7 +323,7 @@
 											      	<td class="py-3">${vo.employee.emp_code}</td>
 											      	<td class="py-3">${vo.employee.emp_name}</td>
 													<td class="py-3">${vo.department.dep_name}</td>
-													<td class="py-3">${vo.wr_type}</td>
+													<td class="py-3">연차(수정)</td>
 													<td class="py-3">${vo.wr_va_reason}</td>
 													<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_ap_date}"/></td>
 											        <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_va_start}"/></td>

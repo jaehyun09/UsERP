@@ -24,18 +24,26 @@ public class UserpController {
 	@Autowired
 	WaService waService;
 	
-	// 강재현 - 메인화면
-	@RequestMapping("/")
+	// 강재현 - 메인 화면
+	@RequestMapping("/main")
 	public String main(HttpServletRequest req, Model model) {
-		logger.info("url: 메인화면");
+		logger.info("url: 메인 화면");
 
 		return "main";
 	}
-	@RequestMapping("/main")
+	@RequestMapping("/")
 	public String main2(HttpServletRequest req, Model model) {
-		logger.info("url: 메인화면");
+		logger.info("url: 메인 화면");
+		
+		return "login";
+	}
+	
+	// 강재현 - 로그인 화면
+	@RequestMapping("/login")
+	public String login(HttpServletRequest req, Model model) {
+		logger.info("url: 로그인 화면");
 
-		return "main";
+		return "login";
 	}
 	
 	// 강재현 - 로그아웃 

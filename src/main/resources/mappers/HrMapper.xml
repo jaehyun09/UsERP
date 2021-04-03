@@ -76,6 +76,36 @@
 		</association>
 	</resultMap>
 	
+	<resultMap id="salaryStatementMap" type="com.project.UsERP.vo.SalaryStatementVO">
+		<id     property="ss_code"			column="ss_code"/>
+		<result property="ss_total_sal"		column="ss_total_sal"/>
+		<result property="ss_reg_date"		column="ss_reg_date"/>
+		<result property="ss_sal_date"		column="ss_sal_date"/>
+		<result property="ss_state"			column="ss_state"/>
+		<association property="salary" javaType="com.project.UsERP.vo.SalaryVO">
+			<id		property="sal_code"		column="sal_code"/>  
+			<result property="sal_basic"	column="sal_basic"/>
+			<result property="sal_night"	column="sal_night"/>
+			<result property="sal_over"		column="sal_over"/>
+			<result property="sal_cos"		column="sal_cos"/>
+			<result property="sal_or"		column="sal_or"/>
+		</association>
+		<association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+			<id		property="emp_code"		column="emp_code"/>  
+			<result property="emp_name"		column="emp_name"/>
+			<result property="hr_code"		column="hr_code"/>
+			<result property="dep_code"		column="dep_code"/>
+		</association>
+		<association property="hrCode" javaType="com.project.UsERP.vo.HrCodeVO">
+			<id		property="hr_code"		column="hr_code"/>  
+			<result property="hr_code_name"	column="hr_code_name"/>
+		</association>
+		<association property="department" javaType="com.project.UsERP.vo.DepartmentVO">
+			<id		property="dep_code"		column="dep_code"/>  
+			<result property="dep_name"		column="dep_name"/>
+		</association>
+	</resultMap>
+	
 	<!-- 김은희 - 인사 코드 그룹 조회 -->
 	<select id="hrCgList" resultType="com.project.UsERP.vo.HrCodeGroupVO">
 		SELECT * FROM hr_code_group ORDER BY hcg_code
@@ -171,6 +201,17 @@
 		 WHERE a.emp_code = e.emp_code 
 		   AND e.dep_code = 80 
 		 ORDER BY a.ap_date DESC
+	</select>
+	
+	<!-- 조명재 - 급여 내역 -->
+	<select id="hrSalaryList" resultMap="salaryStatementMap">
+		SELECT * 
+		  FROM salary_statement ss, salary s, employee e, hr_code h, department d
+		 WHERE ss.sal_code = s.sal_code
+		   AND ss.emp_code = e.emp_code
+		   AND e.hr_code = h.hr_code
+		   AND e.dep_code = d.dep_code
+		 ORDER BY ss_code DESC
 	</select>
 
 </mapper>
