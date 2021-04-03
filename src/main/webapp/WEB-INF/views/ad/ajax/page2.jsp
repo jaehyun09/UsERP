@@ -23,27 +23,27 @@
 			</tr>
 			<tr>
 				<th colspan="1">기본급</th>
-				<td colspan="3">${sccontent.salary.sal_basic}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sccontent.salary.sal_basic}" /></td>
 			</tr>
 			<tr>
 				<th colspan="1">야근수당</th>
-				<td colspan="3">${sccontent.salary.sal_night}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sccontent.salary.sal_night}" /></td>
 			</tr>
 			<tr>
 				<th colspan="1">특근수당</th>
-				<td colspan="3">${sccontent.salary.sal_over}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sccontent.salary.sal_over}" /></td>
 			</tr>
 			<tr>
 				<th colspan="1">근속수당</th>
-				<td colspan="3">${sccontent.salary.sal_cos}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sccontent.salary.sal_cos}" /></td>
 			</tr>
 			<tr>
 				<th colspan="1">직책수당</th>
-				<td colspan="3">${sccontent.salary.sal_or}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sccontent.salary.sal_or}" /></td>
 			</tr>
 			<tr>
 				<th colspan="1">총급여</th>
-				<td colspan="3">${sccontent.ss_total_sal}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sccontent.ss_total_sal}" /></td>
 			</tr>
 			
 		</tbody>

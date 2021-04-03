@@ -45,7 +45,6 @@ function content1(code) {
 function content2(code) {
 	
 	var param = "&${_csrf.parameterName}=${_csrf.token}&ss_code=" + code;
-	alert(code);
    $.ajax({
       type:"POST",
 	  data:param,
@@ -62,7 +61,6 @@ function content2(code) {
 function content3(code) {
 	
 	var param = "&${_csrf.parameterName}=${_csrf.token}&ss_code=" + code;
-	alert(code);
    $.ajax({
       type:"POST",
 	  data:param,
@@ -566,7 +564,7 @@ function debtContent(code) {
 																						<td class="py-3" style="vertical-align: middle">${vo.department.dep_name}</td>
 																						<td class="py-3" style="vertical-align: middle">${vo.hrcode.hr_code_name}</td>
 																						<td class="py-3" style="vertical-align: middle">${vo.employee.emp_name}</td>
-																						<td class="py-3" style="vertical-align: middle">${vo.ss_total_sal}</td>
+																						<td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.ss_total_sal}" /></td>
 																						<td class="py-3" style="vertical-align: middle">
 																							<fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_reg_date}" />
 																						</td>
@@ -627,7 +625,7 @@ function debtContent(code) {
 																						<td class="py-3" style="vertical-align: middle">${vo.department.dep_name}</td>
 																						<td class="py-3" style="vertical-align: middle">${vo.hrcode.hr_code_name}</td>
 																						<td class="py-3" style="vertical-align: middle">${vo.employee.emp_name}</td>
-																						<td class="py-3" style="vertical-align: middle">${vo.ss_total_sal}</td>
+																						<td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.ss_total_sal}" /></td>
 																						<td class="py-3" style="vertical-align: middle">
 																							<fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_reg_date}" />
 																						</td>
@@ -692,7 +690,7 @@ function debtContent(code) {
                                                       onclick="bondContent(${vo.accs_code})"> ${vo.accs_code}</a>
                                                 </td>
                                                                 <td class="py-3" style="vertical-align: middle">${vo.company.com_name}</td>
-                                                                <td class="py-3" style="vertical-align: middle">${vo.accs_price}</td>
+                                                                <td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.accs_price}" /></td>
                                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatDate
                                                                       pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
                                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatDate
@@ -736,7 +734,7 @@ function debtContent(code) {
                                                       onclick="debtContent(${vo.accs_code})"> ${vo.accs_code}</a>
                                                 </td>
                                                                 <td class="py-3" style="vertical-align: middle">${vo.company.com_name}</td>
-                                                                <td class="py-3" style="vertical-align: middle">${vo.accs_price}</td>
+                                                                <td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.accs_price}" /></td>
                                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatDate
                                                                       pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
                                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatDate

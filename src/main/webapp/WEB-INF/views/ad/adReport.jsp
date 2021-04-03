@@ -267,12 +267,12 @@
 															<td class="py-3">10,000,000</td>
 															<td class="py-3"><b>외상매입금</b></td>
 															<td class="py-3"></td>
-															<td class="py-3">${get4}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${get4}" /></td>
 														</tr>
 														<tr>
 															<td class="py-3"><b>외상매출금</b></td>
 															<td class="py-3"></td>
-															<td class="py-3">${get2}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${get2}" /></td>
 															<td class="py-3"><b>지급어음</b></td>
 															<td class="py-3"></td>
 															<td class="py-3"></td>
@@ -296,7 +296,7 @@
 														<tr>
 															<td class="py-3"><b>상품</b></td>
 															<td class="py-3"></td>
-															<td class="py-3">${get1}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${get1}" /></td>
 															<td class="py-3"><b>자본금</b></td>
 															<td class="py-3"></td>
 															<td class="py-3"></td>
@@ -304,10 +304,10 @@
 														<tr>
 															<td class="py-3"><b>자산총계</b></td>
 															<td class="py-3"></td>
-															<td class="py-3">${100000000 + get1 + get2}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${100000000 + get1 + get2}" /></td>
 															<td class="py-3"><b>부채와 자본총계</b></td>
 															<td class="py-3"></td>
-															<td class="py-3">${get4}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${get4}" /></td>
 														</tr>
 													</tbody>
 												</table>
@@ -331,26 +331,26 @@
 														<tr>
 															<td class="py-3 asss" rowspan="5" style="vertical-align: middle"><b>영업손익</b></td>
 															<td class="py-3"><b>매출액</b></td>
-															<td class="py-3">${sum}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sum}" /></td>
 														</tr>
 														<tr>
 															
 															<td class="py-3"><b>매출원가</b></td>
-															<td class="py-3">${sum1}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sum1}" /></td>
 														<tr>
 															
 															<td class="py-3"><b>매출총이익</b></td>
-															<td class="py-3">${sum - sum1}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sum - sum1}" /></td>
 														</tr>
 														<tr>
 															
 															<td class="py-3"><b>판매비와 관리비</b></td>
-															<td class="py-3">${sum2}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sum2}" /></td>
 														</tr>
 														<tr>
 															
 															<td class="py-3"><b>영업이익</b></td>
-															<td class="py-3">${sum - sum1 - sum2}</td>
+															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sum - sum1 - sum2}" /></td>
 														</tr>
 													</tbody>
 												</table>

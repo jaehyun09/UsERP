@@ -44,7 +44,7 @@
 			</tr>
 			<tr>
 				<th colspan="1">단가</th>
-				<td colspan="3">${content.accs_price}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${content.accs_price}" /></td>
 			</tr>
 			<tr>
 				<th colspan="1">수량</th>
@@ -52,7 +52,7 @@
 			</tr>
 			<tr>
 				<th colspan="1">합계</th>
-				<td colspan="3">${content.accs_sum}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${content.accs_sum}" /></td>
 			</tr>
 			<tr>
 				<th colspan="1">상세내역</th>
