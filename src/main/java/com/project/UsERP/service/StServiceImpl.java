@@ -21,7 +21,7 @@ public class StServiceImpl implements StService {
 	@Autowired
 	StDAO stdao;
 
-	// 강재현 : 기초등록 - 판매 거래처 목록 & 상품 목록
+	// 강재현 - 기초등록 - 판매 거래처 목록 & 상품 목록
 	@Override
 	public void salesBasicReg(HttpServletRequest req, Model model) {
 		// 판매 거래처 목록
@@ -35,7 +35,7 @@ public class StServiceImpl implements StService {
 
 	// 강재현 : 재고현황
 
-	// 이재홍 : 판매 현황 - 판매 내역 & 승인 내역
+	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
 	@Override
 	public void salesStatus(HttpServletRequest req, Model model) {
 		List<AccountStatementVO> list = stdao.salesList();
@@ -43,13 +43,23 @@ public class StServiceImpl implements StService {
 
 	}
 
-	// 이재홍 : 판매 전표 등록
+	// 이재홍 - 판매 전표 상세페이지
+	@Override
+	public void stContent(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("accs_code"));
+
+		AccountStatementVO list = stdao.stStatementDetail(num);
+
+		model.addAttribute("stContent", list);
+	}
+
+	// 이재홍 - 판매 전표 등록
 	@Override
 	public void insertSalesStatement(HttpServletRequest req, Model model) {
 		int price = Integer.parseInt(req.getParameter("accs_price"));
-		
+
 		AccountStatementVO vo = new AccountStatementVO();
-	
+
 		vo.setAccs_type(Integer.parseInt(req.getParameter("accs_type")));
 		vo.setAccs_content(req.getParameter("accs_content"));
 		vo.setAccs_price(price);
@@ -57,26 +67,44 @@ public class StServiceImpl implements StService {
 		vo.setAccs_reg_date(new Timestamp(System.currentTimeMillis()));
 		vo.setAccs_sum(Integer.parseInt(req.getParameter("accs_sum")));
 		vo.setAccs_state(0);
-		vo.setEmp_code(Integer.parseInt(req.getParameter("emp_code")));
+		vo.setEmp_code(req.getParameter("emp_code"));
 		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
 		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
 		System.out.println(vo + "vo");
 		int insertCnt = stdao.insertSalesStatement(vo);
-		
+
 		model.addAttribute("insertCnt", insertCnt);
 	}
 
-	// 강재현 : 출고현황 - 출고 내역
+	// 강재현 - 출고현황 - 출고 내역
 	@Override
 	public void salesRecStatus(HttpServletRequest req, Model model) {
 		List<LogisticsStatementVO> strel = stdao.logisticsList();
 		model.addAttribute("strel", strel);
 	}
 
-	// 강재현 : 출고현황 - 출고 전표 등록
+	// 강재현 - 판매 현황 - 회계 전표 내역
+	@Override
+	public void stList(HttpServletRequest req, Model model) {
+		List<AccountStatementVO> acco = stdao.stList();
+		model.addAttribute("acco", acco);
+
+	}
+
+	// 강재현 - 출고현황 - 회계 전표 내역 상세
+	@Override
+	public void selectList(HttpServletRequest req, Model model) {
+		int accs_code = Integer.parseInt(req.getParameter("accs_code"));
+		AccountStatementVO account = stdao.insertList(accs_code);
+
+		model.addAttribute("account", account);
+	}
+
+	// 강재현 - 출고현황 - 출고 전표 등록
+	@Override
 	public void insertLogsStatement(HttpServletRequest req, Model model) {
 		LogisticsStatementVO vo = new LogisticsStatementVO();
-		
+
 		vo.setLogs_type(6);
 		vo.setLogs_reg_date(new Timestamp(System.currentTimeMillis()));
 		vo.setLogs_state(0);
@@ -84,10 +112,17 @@ public class StServiceImpl implements StService {
 		vo.setEmp_code(req.getParameter("emp_code"));
 		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
 		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
-		
+
 		int insertCnt = stdao.insertLogsStatement(vo);
-		
+
+		AccountStatementVO vo1 = new AccountStatementVO();
+		vo1.setAccs_state(3);
+		vo1.setAccs_code(Integer.parseInt(req.getParameter("accs_code")));
+
+		int intsterCnt2 = stdao.updatestatement(vo1);
+
 		model.addAttribute("insertCnt1", insertCnt);
-		
+		model.addAttribute("intsterCnt1", intsterCnt2);
+
 	}
 }

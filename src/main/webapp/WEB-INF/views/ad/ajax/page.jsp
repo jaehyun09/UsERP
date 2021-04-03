@@ -61,11 +61,11 @@
 
 		</tbody>
 	</table>
-	<c:if test="${vo.accs_state == 0 }">
-	<div align=center>
-		<button type="button" type="submit" class="btn btn-outline-info">승인</button>
+	<c:if test="${content.accs_state == 0 }">
+	<div align=center> 
+		<button type="button" onclick="location.href='${path}/appr?accs_code=${content.accs_code}'" class="btn btn-outline-info">승인</button>
 		&nbsp;&nbsp;&nbsp;
-		<button type="button" type="reset" class="btn btn-outline-info">승인거부</button>
+		<button type="button" onclick="location.href='${path}/reappr?accs_code=${content.accs_code}'" class="btn btn-outline-info">승인거부</button>
 	</div>
 	</c:if>
 	<br>

@@ -6,7 +6,26 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
+<script type="text/javascript">
 
+function select(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&accs_code=" + code;
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'select',
+      success: function(data){ 
+         $('#select').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+
+</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -253,58 +272,6 @@
                                             <br>
                                     <!-- 검색창 끝 --> 
                                     <div class="row">
-                                       <div class="col">
-                                          <div class="collapse multi-collapse"
-                                             id="multiCollapseExample1">
-                                                 <table class="table table-bordered bg-white text-dark ass2 th20">
-                                                   <tbody>
-                                                   
-                                                   
-                                                      <tr class="text-white con center">
-                                                         <th colspan="2">일단전표번호로</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>NO.</th>
-                                                         <td>000</td>
-                                                      </tr>
-                                                      
-                                                      <tr>
-                                                         <th>사업자등록번호</th>
-                                                         <td>1234567890</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>대표자명</th>
-                                                         <td>최유성</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>업태</th>
-                                                         <td>업태1</td>
-
-                                                      </tr>
-                                                      <tr>
-                                                         <th>회사규모</th>
-                                                         <td>n명</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>사용상태</th>
-                                                         <td>사용중</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th rowspan="4" style="vertical-align:middle">주요 거래 품목</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목1</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목2</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목3</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table><br><br><br>
-                                          </div>
-                                       </div>
                                        
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead class="text-white table-bordered tap">
@@ -323,54 +290,35 @@
                                           <tbody>
                                            <c:forEach var="strel" items="${strel}">
                                              <tr>
-                                                <td class="py-3 middle" style="vertical-align:middle">${strel.logs_code}</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">${strel.product.pro_name}</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">${strel.logs_quantity}</td>                                                
-                                                <td class="py-3 middle" style="vertical-align:middle">${strel.employee.emp_name}</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${strel.logs_code}</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${strel.product.pro_name}</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px; ">${strel.logs_quantity}</td>                                                
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${strel.employee.emp_name}</td>
                                                 
-                                                <td class="py-3 middle" style="vertical-align:middle"><fmt:formatDate value="${strel.logs_reg_date}" pattern="yyyy-MM-dd" /></td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;"><fmt:formatDate value="${strel.logs_reg_date}" pattern="yyyy-MM-dd" /></td>
                                                 <c:if test="${strel.logs_update_date == null }">
-                                                <td class="py-3 middle" style="vertical-align:middle">출고 대기중</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">출고 대기중</td>
                                                 </c:if>
                                                 <c:if test="${strel.logs_update_date != null }">
-                                                <td class="py-3 middle" style="vertical-align:middle">${strel.logs_update_date}</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${strel.logs_update_date}</td>
                                                 </c:if>
                                                 <c:if test="${strel.logs_state == 0 }">
-                                                <td class="py-3 middle" style="vertical-align:middle">대기중</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">대기중</td>
                                                 </c:if>
                                                 <c:if test="${strel.logs_state == 1 }">
-                                                <td class="py-3 middle" style="vertical-align:middle">승인완료</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">승인완료</td>
                                                 </c:if>
                                              </tr>
                                              </c:forEach>
                                           </tbody>
                                        </table>
-                                       
                                     </div>
                                  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
+                                    
+                                    	<div id="select"></div>
                                     	
                                     	<table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead class="text-white table-bordered tap">
@@ -384,65 +332,24 @@
                                              </tr>
                                           </thead>
                                           <tbody>
-                                             <c:forEach var="vo" items="${sales}">
+                                             <c:forEach var="vo" items="${acco}">
                                              <tr>
-                                                <td class="py-3">${vo.accs_code}</td>
-                                                <td class="py-3">${vo.company.com_name}</td>
-                                                <td class="py-3">${vo.product.pro_name}</td>
-                                                <td class="py-3">${vo.accs_quantity}개</td>
-                                                <td class="py-3">${vo.employee.emp_name}</td>
-                                                <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
+                                                <td class="py-3" style="font-size:22px">
+                                                	<a onclick="select(${vo.accs_code})">
+                                                		${vo.accs_code}
+                                                	</a>
+                                                </td>
+                                                <td class="py-3" style="font-size:22px">${vo.company.com_name}</td>
+                                                <td class="py-3" style="font-size:22px">${vo.product.pro_name}</td>
+                                                <td class="py-3" style="font-size:22px">${vo.accs_quantity}개</td>
+                                                <td class="py-3" style="font-size:22px">${vo.employee.emp_name}</td>
+                                                <td class="py-3" style="font-size:22px"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
                                              </tr>
                                              </c:forEach>
                                           </tbody>
                                        </table>
-                                       <br><br>
-	                                       <form action="${path}/logsstInsert" method="post" name="ssstem">
-                                                <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-                                                <table class="table bg-white text-dark center ass2">
-                                                <tr class="text-white table-bordered tap">
-                                                   <th colspan="3"> 출고 전표 등록 </th>
-                                                </tr>
-                                                     
-                                                   <tr>
-                                          <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-                                             colspan="2" style="vertical-align: middle;">거래처명</td>
-                                          <td class="font-weight-semi-bold border-top-0 py-2"
-                                             colspan="2"><select class="form-control" id="com_code" name="com_code">
-		                                             		<c:forEach var="company" items="${company}">
-		                                                          <option value="${company.com_code}">${company.com_name}</option>
-		                                                    </c:forEach>
-                                                        </select>
-                                          </td>
-                                       </tr>
-                                          <tr>
-                                             <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
-                                             <td class="py-3" colspan="2"><select class="form-control" id="pro_code" name="pro_code">
-		                                             		<c:forEach var="product" items="${product}">
-		                                                          <option value="${product.pro_code}">${product.pro_name}</option>
-		                                                    </c:forEach>
-                                                        </select>
-                                          </tr>
-                                          <tr>
-                                             <td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1" id="logs_quantity" name="logs_quantity"></td>
-                                          </tr>
-                                          
-                                           <tr>
-                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td> 
-                                             <td class="py-3" colspan="2" style="vertical-align: middle; text-align:left;">
-                                                <input type="hidden" name="emp_code" value="${sessionScope.mem_id}">
-                                                ${sessionScope.mem_name}</td>
-                                          </tr>
-                                          
-                                       </tbody>
-                                    </table>                                 
-                                        <br>
-                                         <div align=center>
-                                           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                           <button type="reset" class="btn btn-outline-info">재입력</button>                                  
-                                         </div>
-                                       </form>
+                                      
+	                                       
                                  </div>
                                  
                               </div>

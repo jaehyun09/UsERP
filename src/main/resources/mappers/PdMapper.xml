@@ -5,20 +5,71 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.project.UsERP.persistence.PdDAO">
-
-	<!-- 기초 등록 구매 거래처 목록 -->
-	<select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
-		select * from company where com_state = 1
-	</select>
-	
-	<!-- 기초 등록 상품 목록 -->
-	<select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
-		select * from product
-	</select>
-	
-	<!-- 구매,승인내역 -->
-   <select id = "salesList" resultType = "com.project.UsERP.vo.AccountStatementVO">
-      select * from account_statement ORDER BY accs_code
+   
+   <resultMap id="BuyMap" type="com.project.UsERP.vo.AccountStatementVO">
+      <id      property="accs_code"   column="accs_code"/>
+      <result   property="accs_type"   column="accs_type"/>
+      <result   property="accs_content"   column="accs_content"/>
+      <result   property="accs_price"   column="accs_price"/>
+      <result   property="accs_quantity" column="accs_quantity"/>
+      <result   property="accs_reg_date" column="accs_reg_date"/>
+      <result   property="accs_update_date"   column="accs_update_date"/>
+      <result   property="accs_state"   column="accs_state"/>
+      <result   property="accs_sum"      column="accs_sum"/>
+      <result   property="emp_code"      column="emp_code"/>
+      <result   property="pro_code"      column="pro_code"/>
+      <result   property="com_code"      column="com_code"/>
+      <association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+         <id      property="emp_code"   column="emp_code"/>
+         <result   property="emp_name"   column="emp_name"/>
+      </association>
+      <association property="product" javaType="com.project.UsERP.vo.ProductVO">
+         <id      property="pro_code"   column="pro_code"/>
+         <result   property="pro_name"   column="pro_name"/>
+         <result   property="pro_sal_price" column="pro_sal_price"/>
+         <result   property="pro_pur_price" column="pro_pur_price"/>
+      </association>
+      <association property="company" javaType="com.project.UsERP.vo.CompanyVO">
+         <id      property="com_code"   column="com_code"/>
+         <result   property="com_name"   column="com_name"/>
+      </association>
+   </resultMap>
+   
+   <!-- 기초 등록 구매 거래처 목록 -->
+   <select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
+      select * from company WHERE com_type = 20 
    </select>
+   
+   <!-- 기초 등록 상품 목록 -->
+   <select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
+      select * from product
+   </select>
+   
+   <!-- 이재홍 - 구매 현황 - 구매 내역 & 승인 내역 -->
+   <select id = "buyList" resultMap = "BuyMap">
+         SELECT a.*, c.com_name, p.pro_name, e.emp_name
+           FROM account_statement a, employee e, product p, company c
+          WHERE a.emp_code = e.emp_code
+          AND a.pro_code = p.pro_code
+          AND a.com_code = c.com_code
+          ORDER BY accs_code
+   </select>
+   
+   <!-- 이재홍 - 구매 현황 - 구매 전표 상세 페이지 -->
+   <select id="pdStatementDetail" resultMap="BuyMap">
+      SELECT a.*, p.pro_name, c.com_name, e.emp_name 
+      FROM employee e, account_statement a, product p, company c
+      WHERE a.emp_code = e.emp_code
+      AND a.pro_code = p.pro_code
+      AND a.com_code = c.com_code
+      AND accs_code = #{num}
+      ORDER BY accs_code
+   </select>
+   
+   <!-- 이재홍 - 구매 현황 -  구매 전표 등록 -->
+   <insert id="insertBuyStatement" parameterType = "com.project.UsERP.vo.AccountStatementVO">
+     INSERT INTO account_statement(accs_code, accs_type, accs_content, accs_price, accs_quantity, accs_reg_date, accs_update_date, accs_sum, accs_state, emp_code, bank_code, acco_code, pro_code, com_code)
+			VALUES(accs_seq.nextval, #{accs_type}, #{accs_content}, #{accs_price}, #{accs_quantity}, sysdate, null, #{accs_sum}, #{accs_state}, #{emp_code}, null, null, #{pro_code}, #{com_code})
+   </insert>
 
 </mapper>

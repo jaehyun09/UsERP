@@ -17,41 +17,67 @@ import com.project.UsERP.service.PdServiceImpl;
 @Controller
 public class PdController {
 
-	private static final Logger logger = LoggerFactory.getLogger(PdController.class);
+   private static final Logger logger = LoggerFactory.getLogger(PdController.class);
 
-	@Autowired
-	PdServiceImpl pdService;
-	
-	// 기초 등록
-	@RequestMapping("/pdBasicReg")
-	public String pdBasicReg(HttpServletRequest req, Model model) {
-		logger.info("url: 기초 등록");
-		pdService.purBasicReg(req, model);
-		return "pd/pdBasicReg";
-	}
+   @Autowired
+   PdServiceImpl pdService;
+   
+   // 기초 등록
+   @RequestMapping("/pdBasicReg")
+   public String pdBasicReg(HttpServletRequest req, Model model) {
+      logger.info("url: 기초 등록");
+      pdService.purBasicReg(req, model);
+      return "pd/pdBasicReg";
+   }
 
-	// 재고 현황
-	@RequestMapping("/pdInvenStatus")
-	public String pdInvenStatus(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 보고서");
+   // 재고 현황
+   @RequestMapping("/pdInvenStatus")
+   public String pdInvenStatus(HttpServletRequest req, Model model) {
+      logger.info("url: 회계 보고서");
 
-		return "pd/pdInvenStatus";
-	}
+      return "pd/pdInvenStatus";
+   }
 
-	// 구매 현황
-	@RequestMapping("/pdStatus")
-	public String pdStatus(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 보고서");
+   // 이재홍 - 구매 현황 - 구매 내역 & 승인 내역
+   @RequestMapping("/pdStatus")
+   public String pdStatus(HttpServletRequest req, Model model) {
+      logger.info("url: 구매 내역 & 승인 내역");
+      
+      // 구매 내역 & 승인 내역
+      pdService.purStatus(req, model);
+      
+      // 구매 거래처 목록 & 상품 목록
+      pdService.purBasicReg(req, model);
+      
+      return "pd/pdStatus";
+   }
+   
+   // 이재홍 - 구매 현황 - 구매 내역 상세페이지
+   @RequestMapping("/pdContent")
+   public String pdContent(HttpServletRequest req, Model model) {
+      logger.info("url: 구매 내역 상세페이지");
+      
+      pdService.pdContent(req, model);
 
-		return "pd/pdStatus";
-	}
+      return "pd/ajax/pdPage";
+   }
+   
+   // 이재홍 - 구매 현황 - 구매 전표 등록
+   @RequestMapping("/pdpdAppInsert")
+   public String pdpdAppInsert(HttpServletRequest req, Model model) {
+      logger.info("url: 구매 전표 등록");
+      
+      pdService.insertBuyStatement(req, model);
+      
+      return "pd/pdPro/pdpdaddAc";
+   }
 
-	// 입고 현황
-	@RequestMapping("/pdRecStatus")
-	public String pdRecStatus(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 보고서");
+   // 입고 현황
+   @RequestMapping("/pdRecStatus")
+   public String pdRecStatus(HttpServletRequest req, Model model) {
+      logger.info("url: 회계 보고서");
 
-		return "pd/pdRecStatus";
-	}
-	
+      return "pd/pdRecStatus";
+   }
+   
 }

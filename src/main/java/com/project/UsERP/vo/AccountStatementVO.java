@@ -14,7 +14,7 @@ public class AccountStatementVO {
 	private Date accs_update_date; 	// 최근수정일자
 	private int accs_sum;			// 총액
 	private int accs_state;			// 승인상태
-	private int emp_code;			// 사원번호
+	private String emp_code;			// 사원번호
 	private int bank_code;			// 계좌코드
 	private int acco_code;			// 계정번호
 	private int pro_code;			// 상품코드
@@ -79,10 +79,10 @@ public class AccountStatementVO {
 	public void setAccs_state(int accs_state) {
 		this.accs_state = accs_state;
 	}
-	public int getEmp_code() {
+	public String getEmp_code() {
 		return emp_code;
 	}
-	public void setEmp_code(int emp_code) {
+	public void setEmp_code(String emp_code) {
 		this.emp_code = emp_code;
 	}
 	public int getBank_code() {

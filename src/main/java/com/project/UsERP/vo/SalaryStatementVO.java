@@ -12,12 +12,14 @@ public class SalaryStatementVO {
 	private int ss_state;		// 상태
 	private int sal_code;		// 급여코드
 	private String emp_code;	// 사원번호
+	private int hr_code;		// 부서코드
 	private int dep_code;		// 부서코드
 	SalaryVO salary;			
 	EmployeeVO employee;
 	DepartmentVO department;
 	BankVO bank;
 	AccountVO account;
+	HrCodeVO hrcode;
 	
 	public int getSs_code() {
 		return ss_code;
@@ -61,6 +63,13 @@ public class SalaryStatementVO {
 	public void setEmp_code(String emp_code) {
 		this.emp_code = emp_code;
 	}
+	
+	public int getHr_code() {
+		return hr_code;
+	}
+	public void setHr_code(int hr_code) {
+		this.hr_code = hr_code;
+	}
 	public int getDep_code() {
 		return dep_code;
 	}
@@ -96,6 +105,12 @@ public class SalaryStatementVO {
 	}
 	public void setAccount(AccountVO account) {
 		this.account = account;
+	}
+	public HrCodeVO getHrcode() {
+		return hrcode;
+	}
+	public void setHrcode(HrCodeVO hrcode) {
+		this.hrcode = hrcode;
 	}
 	
 }
