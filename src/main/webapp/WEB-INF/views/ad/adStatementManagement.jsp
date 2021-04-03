@@ -349,7 +349,7 @@ alert(con);
 																								aria-expanded="false"
 																								aria-controls="multiCollapseExample1"
 																								onclick="content()"><input type="hidden"
-																								name="code" id="accs_code"
+																								name="accs_code" id="accs_code"
 																								value=${vo.accs_code }> ${vo.accs_code}</a>
 
 																						</p>

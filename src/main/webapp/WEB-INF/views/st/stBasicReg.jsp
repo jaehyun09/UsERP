@@ -7,14 +7,14 @@
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
 <script type="text/javascript">
-function clientadd() {
+function clientadd() { // 함수명 자유 
 	$.ajax({
-      // sendRequest(콜백함수명, url, method, params)
-      url: "clientadd", // 전송 페이지 => 컨트롤러 "basic_next"
-      type: 'GET', // 전송방식('GET', 'POST') - method
-      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-         $('#client').html(data);
+      
+      url: "clientadd", // 컨트롤러 매핑 주소 
+      type: 'GET', // 기초에선 안건드림 
+      dataType: 'text', // 기초 no
+      success: function(data){ 
+         $('#client').html(data); // 결과값 
       },
       error: function(){
          alert('오류');
