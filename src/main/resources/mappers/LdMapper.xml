@@ -231,7 +231,7 @@
 	</select>
 	
 	<!-- 재고관리 - 재고 이동  출발창고이름 가져오기 -->
-	<select id="getWareName" resultType="String" parameterType="int">
+	<select id="getStartWareName" resultType="String" parameterType="int">
 		SELECT ware_name FROM warehouse WHERE ware_code = #{startwh}
 	</select>
 	
@@ -249,7 +249,7 @@
 	</insert>
 	
 	<!-- 재고관리 - 재고 이동 갯수 구하기 -->
-	<select id="getMoveWarehouse" resultType="int" parameterType="int">
+	<select id="getMoveWarehouse" resultType="int">
 		SELECT COUNT(*) FROM stock_supply WHERE stsu_type = 3
 	</select>
 	
@@ -272,5 +272,52 @@
 		]]>
 	</select>
 	
+	<!-- 재고 조정 등록 -->
+	<insert id="adjustmentInsert" parameterType="com.project.UsERP.vo.StockSupplyVO">
+		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, 
+								stsu_amount, stsu_arrivewh, pro_code, emp_code)
+		VALUES (stock_supply_seq.nextval, sysdate, 4, #{stsu_quantity}, 
+				#{stsu_amount}, #{stsu_arrivewh}, #{pro_code}, #{emp_code})
+	</insert>
+	
+	<!-- 재고 조정 갯수 구하기 -->
+	<select id="getAdjustment" resultType="int">
+		SELECT COUNT(*) FROM stock_supply WHERE stsu_type = 4
+	</select>
+	
+	<!-- 재고 조정 내역 조회 -->
+	<select id="adjustmentList" resultMap="supplyVOMap" parameterType="java.util.Map">
+		<![CDATA[
+			SELECT *
+			FROM (SELECT stsu_code, stsu_reg_date, stsu_quantity, stsu_amount, 
+					stsu_arrivewh, pro_code, pro_name, emp_name, rownum rnum
+			    FROM (SELECT su.*, p.pro_name, e.emp_name
+			        FROM stock_supply su, product p, employee e
+			        WHERE su.pro_code = p.pro_code
+			        AND su.emp_code = e.emp_code
+			        AND su.stsu_type = 4
+			        ORDER BY su.stsu_reg_date DESC
+			        )
+			    )
+			WHERE rnum >= #{start}
+			AND rnum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 재고수불부 상품 코드 가져오기 -->
+	<select id="getProCode" parameterType="String" resultType="String">
+		SELECT pro_code FROM product WHERE pro_name = #{proname}
+	</select>
+	
+	<!-- 재고수불부 내역 조회 -->
+	<select id="stockSupplyList" resultMap="supplyVOMap" parameterType="java.util.Map">
+		SELECT ss.stsu_reg_date, ss.stsu_type, ss.stsu_amount, ss.stsu_quantity, p.pro_code, p.pro_name
+		FROM stock_supply ss, product p
+		WHERE ss.pro_code = p.pro_code 
+		AND p.pro_code = #{procode}
+		AND ss.stsu_reg_date BETWEEN TO_DATE(#{start}, 'YYYY-MM-DD')
+		                        AND TO_DATE(#{end}, 'YYYY-MM-DD')
+		ORDER BY ss.stsu_reg_date
+	</select>
 	
 </mapper>

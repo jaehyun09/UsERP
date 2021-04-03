@@ -162,7 +162,7 @@ public class LdDAOImpl implements LdDAO{
 	// 김민수 - 재고 이동 출발창고이름 가져오기
 	@Override
 	public String getStartWareName(int startwh) {
-		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getWareName", startwh);
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getStartWareName", startwh);
 	}
 	
 	// 김민수 - 재고 이동 도착창고이름 가져오기
@@ -188,17 +188,36 @@ public class LdDAOImpl implements LdDAO{
 	public List<StockSupplyVO> moveWarehouseList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.moveWarehouseList", map);
 	}
-	
-	
 
+	// 김민수 - 재고 조정 등록
+	@Override
+	public int adjustmentInsert(StockSupplyVO stockSupplyVO) {
+		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.adjustmentInsert", stockSupplyVO);
+	}
 
-	
+	// 김민수 - 재고 조정 갯수 구하기
+	@Override
+	public int getAdjustment() {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getAdjustment");
+	}
 
+	// 김민수 - 재고 조정 내역 조회
+	@Override
+	public List<StockSupplyVO> adjustmentList(Map<String, Object> map) {
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.adjustmentList", map);
+	}
 
+	// 김민수 - 재고 수불부 상품 코드 가져오기
+	@Override
+	public String getProCode(String proname) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getProCode", proname);
+	}
 
-
-
-
+	// 김민수 - 재고 수불부 내역 조회
+	@Override
+	public List<StockSupplyVO> stockSupplyList(Map<String, Object> map) {
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.stockSupplyList", map);
+	}
 
 	
 }

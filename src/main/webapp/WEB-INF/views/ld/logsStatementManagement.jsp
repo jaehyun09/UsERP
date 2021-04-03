@@ -71,11 +71,14 @@
                 <!-- 중메뉴 : 근태 관리 -->
 <!-- b -->		<ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
 <!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/abSelect">조회</a>
+						<a class="side-nav-menu-link ass2" href="${path}/waSelect">조회</a>
 					</li>
 					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/abApplication">신청</a>
+						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->

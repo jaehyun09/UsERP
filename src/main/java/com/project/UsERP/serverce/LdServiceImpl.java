@@ -1,5 +1,9 @@
 package com.project.UsERP.serverce;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -434,6 +438,134 @@ public class LdServiceImpl implements LdService {
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
 		}
+		
+	}
+
+	// 김민수 - 재고 조정 재고테이블 수량 가져오기
+	@Override
+	public void getAdjStock(HttpServletRequest req, Model model) {
+		int startwh = Integer.parseInt(req.getParameter("wareh"));
+		int prod = Integer.parseInt(req.getParameter("prod"));
+		
+		Map<String, Object> quantityMap = new HashMap<String, Object>();
+		quantityMap.put("startwh", startwh);
+		quantityMap.put("prod", prod);
+		
+		String stsu_quantity = lddao.getStoQuantity(quantityMap);
+		
+		model.addAttribute("stsu_quantity", stsu_quantity);
+		
+	}
+
+	// 김민수 - 재고 조정 등록
+	@Override
+	public void adjNewInsert(HttpServletRequest req, Model model) {
+		int prod = Integer.parseInt(req.getParameter("prod"));
+		int arrivewh = Integer.parseInt(req.getParameter("wareh"));
+		String empid = req.getParameter("empid");
+		int amount = Integer.parseInt(req.getParameter("amount"));
+		int quantity = Integer.parseInt(req.getParameter("quantity"));
+		
+		StockSupplyVO stockSupplyVO = new StockSupplyVO();
+		stockSupplyVO.setStsu_quantity(quantity);
+		stockSupplyVO.setStsu_amount(amount);
+		stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
+		stockSupplyVO.setPro_code(prod);
+		stockSupplyVO.setEmp_code(empid);
+		
+		int updateCnt = 0;
+		int insertCnt = 0;
+		
+		insertCnt = lddao.adjustmentInsert(stockSupplyVO);
+		if(insertCnt == 1) {
+			Map<String, Object> plusMap = new HashMap<String, Object>();
+			plusMap.put("amount", amount);
+			plusMap.put("arrivewh", arrivewh);
+			plusMap.put("prod", prod);
+			
+			updateCnt = lddao.stoPlusUpdate(plusMap);
+		}
+		
+		model.addAttribute("insertCnt", insertCnt);
+		model.addAttribute("updateCnt", updateCnt);
+		
+	}
+
+	// 김민수 - 재고 조정 내역
+	@Override
+	public void adjustmentList(HttpServletRequest req, Model model) {
+		int pageSize = 15;
+		int pageBlock = 3;
+		
+		int cnt = 0;
+		int start = 0;
+		int end = 0;
+		
+		int pageCnt = 0;
+		int startPage = 0;
+		int endPage = 0;
+		
+		String pageNum = "";
+		int currentPage = 0;
+		
+		cnt = lddao.getAdjustment();
+		
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		
+		currentPage = Integer.parseInt(pageNum);
+		pageCnt = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
+		start = (currentPage - 1) * pageSize + 1;
+		end = start + pageSize - 1;
+		
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if(currentPage % pageBlock == 0 ) startPage -= pageBlock;
+		
+		endPage =  startPage + pageBlock - 1;
+		if(endPage > pageCnt) endPage = pageCnt;
+		
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("pageNum", pageNum);
+		
+		if(cnt > 0) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", start);
+			map.put("end", end);
+			
+			List<StockSupplyVO> list = lddao.adjustmentList(map);
+			model.addAttribute("adjlist", list);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("pageCnt", pageCnt);
+			model.addAttribute("pageBlock", pageBlock);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+		}
+	}
+
+	// 김민수  - 재고 수불부 내역
+	@Override
+	public void supplyList(HttpServletRequest req, Model model) {
+		String start = req.getParameter("start_date");
+		String end = req.getParameter("end_date");
+		String proname = req.getParameter("proname");
+		String pron = lddao.getProCode(proname);
+		
+		int procode = Integer.parseInt(pron);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("procode", procode);
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<StockSupplyVO> list = lddao.stockSupplyList(map);
+		model.addAttribute("suplist", list);
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
+		model.addAttribute("proname", proname);
+		model.addAttribute("procode", procode);
 		
 	}
 }

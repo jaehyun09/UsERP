@@ -95,4 +95,18 @@ public interface LdDAO {
 	// 김민수 - 재고 이동 내역 조회
 	public List<StockSupplyVO> moveWarehouseList(Map<String, Object> map);
 	
+	// 김민수 - 재고 조정 등록
+	public int adjustmentInsert(StockSupplyVO stockSupplyVO);
+	
+	// 김민수 - 재고 조정 갯수 구하기
+	public int getAdjustment();
+	
+	// 김민수 - 재고 조정 내역 조회
+	public List<StockSupplyVO> adjustmentList(Map<String, Object> map);
+	
+	// 김민수 - 재고 수불부 상품 코드 가져오기
+	public String getProCode(String proname);
+	
+	// 김민수 - 재고 수불부 내역 조회
+	public List<StockSupplyVO> stockSupplyList(Map<String, Object> map);
 }

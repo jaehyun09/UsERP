@@ -38,4 +38,16 @@ public interface LdService {
 	
 	// 김민수 - 재고 이동 내역
 	public void moveWarehouseList(HttpServletRequest req, Model model);
+	
+	// 김민수 - 재고 조정 재고테이블 수량 가져오기
+	public void getAdjStock(HttpServletRequest req, Model model);
+	
+	// 김민수 - 재고 조정 등록
+	public void adjNewInsert(HttpServletRequest req, Model model);
+	
+	// 김민수 - 재고 조정 내역
+	public void adjustmentList(HttpServletRequest req, Model model);
+	
+	// 김민수  - 재고 수불부 내역
+	public void supplyList(HttpServletRequest req, Model model);
 }
