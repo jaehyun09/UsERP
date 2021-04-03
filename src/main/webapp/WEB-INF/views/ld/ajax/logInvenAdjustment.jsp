@@ -119,22 +119,22 @@
               	
               	<c:forEach var="i" begin="${startPage}" end="${endPage}">
               		<c:if test="${i == currentPage}">
-                 <li class="page-item d-none d-md-block">
-                 	<a id="datatablePaginationPage0" class="page-link active" href="ldInventoryControl?pageNum=${i}" onclick="logInvenAdjustment()">${i}</a>
-                 </li>
+		                 <li class="page-item d-none d-md-block">
+		                 	<a id="datatablePaginationPage0" class="page-link active" href="ldInventoryControl?pageNum=${i}" onclick="logInvenAdjustment()">${i}</a>
+		                 </li>
               		</c:if>
               		<c:if test="${i != currentPage}">
-                 <li class="page-item d-none d-md-block">
-                 	<a id="datatablePaginationPage0" class="page-link" href="ldInventoryControl?pageNum=${i}">${i}</a>
-                 </li>
+		                 <li class="page-item d-none d-md-block">
+		                 	<a id="datatablePaginationPage0" class="page-link" href="ldInventoryControl?pageNum=${i}">${i}</a>
+		                 </li>
               		</c:if>
               	</c:forEach>
                
               	<c:if test="${pageCnt > endPage}">
-                <li class="page-item">
-                	<a id="datatablePaginationNext" class="page-link" href="ldInventoryControl?pageNum=${startPage + pageBlock}" aria-label="Next">
-                	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
-                </li>
+	                <li class="page-item">
+	                	<a id="datatablePaginationNext" class="page-link" href="ldInventoryControl?pageNum=${startPage + pageBlock}" aria-label="Next">
+	                	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
+	                </li>
               	</c:if>
              	</c:if>
              </ul>

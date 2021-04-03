@@ -4,24 +4,68 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.UsERP.vo.CompanyVO;
+import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
 import com.project.UsERP.vo.StockSupplyVO;
 import com.project.UsERP.vo.StockVO;
 import com.project.UsERP.vo.WarehouseVO;
 
+
 public interface LdDAO {
 	
 	// 최유성 - 입고내역 미승인
-	public List<StockVO> stockInOrder1();
+	public List<LogisticsStatementVO> stockInOrder1();
 	
 	// 최유성 - 입고내역 승인
-	public List<StockVO> stockInOrder2();
+	public List<LogisticsStatementVO> stockInOrder2();
 	
 	// 최유성 - 출고내역 미승인
-	public List<StockVO> stockOutOrder1();
+	public List<LogisticsStatementVO> stockOutOrder1();
 	
 	// 최유성 - 출고내역 승인
-	public List<StockVO> stockOutOrder2();
+	public List<LogisticsStatementVO> stockOutOrder2();
+	
+	// 최유성 - 입고 승인 액션
+	public int stockInAction(int logs_code);
+	
+	// 최유성 - 재고 코드가 존재할 시 기존에 있던 재고 수량 가져오기(입출고 둘다 사용가능할 듯)
+	public int retrunStoQuantity(int sto_code);
+	
+	// 최유성 - 재고코드가 존재하지 않을 시(새로운 재고 등록) 인서트
+	public int stockInsert(Map<String, Object> map);
+	
+	// 최유성 - 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기
+	public int stockCodeSelect(int pro_code);
+	
+	// 최유성 - 재고코드가 존재할 시(기존 재고 코드에 수량 업데이트)
+	public int stockUpdate(Map<String, Object> map);
+	
+	// 최유성 - 재고전표에 널값인 재고코드에 새로 생성한 재고코드를 업데이트
+	public int logisticsStatementUpdate(Map<String, Object> map);
+	
+	// 최유성 - 입고시 재고수불부 인서트
+	public int stockSupplyInsert(Map<String, Object> map);
+
+	// 최유성 - 출고 준비 완료(2)로 전표상태 변경 / 출고대기창고 관련 재고코드로 변경..
+	public int stockOutReady(Map<String, Object> map);
+	
+	// 최유성 - 출고대기창고 관련  해당 상품에 대한 재고코드 및 재고수량 가져오기
+	public StockVO outReadyStockSelect(int pro_code);
+	
+	// 최유성 - 출고대기창고 관련 해당 상품에 관한 재고코드가 존재하지 않을 시(새로운 재고 등록) 인서트
+	public int outStockInsert(Map<String, Object> map);
+	
+	// 최유성 - 출고시 재고수불부 인서트
+	public int outStockSupplyInsert(Map<String, Object> map);
+	
+	// 최유성 - 양품창고에서 출고대기창고로 재고수량이동 시 재구수불부 등록
+	public int outReadystockSupplyInsert(Map<String, Object> map);
+	
+	// 최유성 - 출고대기창고 관련 해당 상품에 관한 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기
+	public int outStockCodeSelect(int pro_code);
+	
+	// 최유성 - 출고 승인 액션
+	public int stockOutAction(int logs_code);
 
 	// 김민수 - 양품창고 등록
 	public int insertGoodWare(WarehouseVO vo);

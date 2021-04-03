@@ -16,10 +16,12 @@ import org.springframework.ui.Model;
 
 import com.project.UsERP.persistence.LdDAO;
 import com.project.UsERP.vo.CompanyVO;
+import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
 import com.project.UsERP.vo.StockSupplyVO;
 import com.project.UsERP.vo.StockVO;
 import com.project.UsERP.vo.WarehouseVO;
+
 @Service
 public class LdServiceImpl implements LdService {
 
@@ -192,28 +194,6 @@ public class LdServiceImpl implements LdService {
 			model.addAttribute("endPage", endPage);
 			
 		}
-	}
-	
-	// 최유성 - 전표관리
-	@Override
-	public void logStatementList(HttpServletRequest req, Model model) {
-		
-		//입고내역 미승인
-		List<StockVO> SIlist1 = lddao.stockInOrder1();
-		
-		//입고내역 승인
-		List<StockVO> SIlist2 = lddao.stockInOrder2();
-		
-		//출고내역 미승인
-		List<StockVO> SOlist1 = lddao.stockOutOrder1();
-		
-		//출고내역 승인
-		List<StockVO> SOlist2 = lddao.stockOutOrder2();
-		
-		model.addAttribute("SIlist1", SIlist1);
-		model.addAttribute("SOlist1", SOlist1);
-		model.addAttribute("SIlist2", SIlist2);
-		model.addAttribute("SOlist2", SOlist2);
 	}
 
 	// 김민수 - 재고 현황(검색포함)
@@ -566,7 +546,336 @@ public class LdServiceImpl implements LdService {
 		model.addAttribute("end", end);
 		model.addAttribute("proname", proname);
 		model.addAttribute("procode", procode);
+	}
+	
+	// 최유성 - 전표관리
+	@Override
+	public void ldStatementManagement(HttpServletRequest req, Model model) {
 		
+		//입고내역 미승인
+		List<LogisticsStatementVO> SIlist1 = lddao.stockInOrder1();
+		
+		//입고내역 승인
+		List<LogisticsStatementVO> SIlist2 = lddao.stockInOrder2();
+		
+		//출고내역 미승인
+		List<LogisticsStatementVO> SOlist1 = lddao.stockOutOrder1();
+		
+		//출고내역 승인
+		List<LogisticsStatementVO> SOlist2 = lddao.stockOutOrder2();
+		
+		model.addAttribute("SIlist1", SIlist1);
+		model.addAttribute("SOlist1", SOlist1);
+		model.addAttribute("SIlist2", SIlist2);
+		model.addAttribute("SOlist2", SOlist2);
+	}
+
+	// 최유성 - 입고 전표 승인 액션
+	@Override
+	public void stockInAction(HttpServletRequest req, Model model) {
+		
+		//나중에 세션 아이디 추가할수도?////////////////////////////////////////////////
+		String emp_code = req.getParameter("emp_code"); //사원번호
+		System.out.println("emp_code:"+emp_code);//나중에 세션 아이디로 할수도?
+		//////////////////////////////////////////////////////////////////////
+		
+		int logs_code = Integer.parseInt(req.getParameter("logs_code")); //전표번호
+		System.out.println("logs_code:"+logs_code);
+		int sto_code = Integer.parseInt(req.getParameter("sto_code")); //재고코드
+		System.out.println("sto_code:"+sto_code);
+		int logs_quantity = Integer.parseInt(req.getParameter("logs_quantity")); //수량
+		System.out.println("logs_quantity:"+logs_quantity);
+		int ware_code = Integer.parseInt(req.getParameter("ware_code")); //창고번호
+		System.out.println("ware_code:"+ware_code);
+		int pro_code = Integer.parseInt(req.getParameter("pro_code")); //상품코드
+		System.out.println("pro_code:"+pro_code);
+		
+		int updateCnt = lddao.stockInAction(logs_code);
+		System.out.println("updateCnt:"+updateCnt);
+		
+		if(updateCnt == 1) { //전표 상태 업데이트 성공시
+			if(sto_code == 0) { //재고코드가 존재하지 않으면 인서트
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("sto_quantity", logs_quantity);
+				map.put("ware_code", ware_code);
+				map.put("pro_code", pro_code);
+				
+				int stockInsertCnt = lddao.stockInsert(map);
+				System.out.println("stockInsertCnt:"+stockInsertCnt);
+				
+				if(stockInsertCnt == 1) { //재고 인서트 성공시 재고 수불부 인서트
+					
+					//셀렉트문 mapper 이용해서 where절에 상품코드와 창고번호로 재고코드 가져오기
+					int newStoCode = lddao.stockCodeSelect(pro_code); //새로 생성된 재고코드
+					System.out.println("newStoCode"+newStoCode);
+					
+					
+					Map<String, Object> map2 = new HashMap<String, Object>();
+					map2.put("sto_code", newStoCode);
+					map2.put("stsu_quantity", logs_quantity);
+					map2.put("stsu_amount", logs_quantity);
+					map2.put("ware_code", ware_code);
+					map2.put("pro_code", pro_code);
+					
+					map2.put("emp_code", emp_code); //나중에 세션아이디 값을 넣어주자
+					
+					int stockSupplyInsertCnt1 = lddao.stockSupplyInsert(map2);
+					System.out.println("stockSupplyInsertCnt1:"+stockSupplyInsertCnt1);
+					
+					//재고 수불부까지 인서트 했으면 재고전표에도 null부분인 재고코드를 업데이트 시켜서 넣어주자  
+					if(stockSupplyInsertCnt1 == 1) {
+						
+						Map<String, Object> map3 = new HashMap<String, Object>();
+						
+						map3.put("logs_code", logs_code);
+						map3.put("newStoCode", newStoCode);
+						
+						int logisticsStatementUpdateCnt = lddao.logisticsStatementUpdate(map3);
+						System.out.println("logisticsStatementUpdateCnt:"+logisticsStatementUpdateCnt);
+					}
+				}
+				
+			}else { //재고코드가 존재하면 수량 업데이트
+				int retrunStoQuantity = lddao.retrunStoQuantity(sto_code); //기존수량
+				System.out.println("retrunStoQuantity:"+retrunStoQuantity);
+				
+				int sto_quantity = logs_quantity + retrunStoQuantity; //기존수량  + 입고수량 => 새로운 총수량
+				System.out.println("sto_quantity");
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("sto_code", sto_code); //재고코드
+				map.put("sto_quantity", sto_quantity); //새수량 넣어주기
+				map.put("ware_code", ware_code);
+				map.put("pro_code", pro_code);
+				
+				int stockUpdateCnt = lddao.stockUpdate(map);
+				System.out.println("stockUpdateCnt:"+stockUpdateCnt);
+				
+				if(stockUpdateCnt == 1) { //재고 수량 업데이트 성공시 재고수불부 작성(인서트)
+					
+					Map<String, Object> map2 = new HashMap<String, Object>();
+					map2.put("sto_code", sto_code);
+					map2.put("stsu_quantity", sto_quantity); //새수량 넣어주기
+					map2.put("stsu_amount", logs_quantity);
+					map2.put("ware_code", ware_code);
+					map2.put("pro_code", pro_code);
+					
+					map2.put("emp_code", emp_code); //나중에 세션아이디 값을 넣어주자
+					
+					int stockSupplyInsertCnt2 = lddao.stockSupplyInsert(map2);
+					System.out.println("stockSupplyInsertCnt2:"+stockSupplyInsertCnt2);
+					
+				}
+			}
+		}
+			model.addAttribute("updateCnt", updateCnt);
+	}
+	
+	// 최유성 - 출고 준비 완료로 상태 변경 - 양품창고에서 출고대기창고로 물품 이동
+	@Override
+	public void stockOutReady(HttpServletRequest req, Model model) {
+		
+		int logs_code = Integer.parseInt(req.getParameter("logs_code")); //전표번호
+		System.out.println("logs_code:"+logs_code);
+		int sto_code = Integer.parseInt(req.getParameter("sto_code")); //재고코드
+		System.out.println("sto_code:"+sto_code);
+		int logs_quantity = Integer.parseInt(req.getParameter("logs_quantity")); //수량
+		System.out.println("logs_quantity:"+logs_quantity);
+		int ware_code = Integer.parseInt(req.getParameter("ware_code")); //창고번호
+		System.out.println("ware_code:"+ware_code);
+		int pro_code = Integer.parseInt(req.getParameter("pro_code")); //상품코드
+		System.out.println("pro_code:"+pro_code);
+		int emp_code = Integer.parseInt(req.getParameter("emp_code")); //사원번호
+		System.out.println("emp_code:"+emp_code);
+		
+		int updateCnt = 0; //전표 업데이트 cnt
+		
+		int retrunStoQuantity = lddao.retrunStoQuantity(sto_code); //기존수량
+		System.out.println("retrunStoQuantity:"+retrunStoQuantity);
+		
+		int sto_quantity = retrunStoQuantity - logs_quantity; //기존수량  - 판매수량 = 양품창고에 새로 업데이트할 수량
+		System.out.println("sto_quantity:"+sto_quantity);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sto_code", sto_code); //재고코드
+		map.put("sto_quantity", sto_quantity); //새수량 넣어주기
+		map.put("ware_code", ware_code);
+		map.put("pro_code", pro_code);
+		
+		int stockUpdateCnt = lddao.stockUpdate(map); //양품창고에서 판매수량만큼 재고 감소
+		System.out.println("stockUpdateCnt:"+stockUpdateCnt);
+		
+		if(stockUpdateCnt == 1) {
+			
+			//출고대기창고 관련  해당 상품에 대한 재고코드와 재고수량 가지고 오기
+			StockVO vo = lddao.outReadyStockSelect(pro_code);
+			int outReadyStoCode = vo.getSto_code();
+			int outReadyStoQuantity = vo.getSto_quantity();
+			int outReadyWareCode = vo.getWare_code();
+			
+			if(outReadyStoCode == 0) { //해당 재고코드가 존재하지 않을 시
+				
+				Map<String, Object> map4 = new HashMap<String, Object>();
+				map4.put("sto_quantity", logs_quantity);
+				//map4.put("ware_code", ware_code); //새로이 인서트하는 것이라 화면에서 가져온 창고코드는 필요없음
+				map4.put("pro_code", pro_code);
+				
+				int outStockInsertCnt = lddao.outStockInsert(map4);
+				System.out.println("outStockInsertCnt:"+outStockInsertCnt);
+				
+				if(outStockInsertCnt == 1) { //재고 인서트 성공시 재고 수불부 인서트
+					
+					//셀렉트문 mapper 이용해서 where절에 상품코드와 창고번호로 재고코드 가져오고
+					int newStoCode = lddao.outStockCodeSelect(pro_code);
+					System.out.println("newStoCode"+newStoCode);
+					
+					Map<String, Object> map2 = new HashMap<String, Object>();
+					map2.put("sto_code", newStoCode);
+					map2.put("stsu_quantity", logs_quantity);
+					map2.put("stsu_amount", logs_quantity);
+					map2.put("ware_code", ware_code);
+					map2.put("pro_code", pro_code);
+					
+					map2.put("emp_code", emp_code); //나중에 세션아이디 값을 넣어주자
+					
+					int outReadystockSupplyCnt = lddao.outReadystockSupplyInsert(map2);
+					System.out.println("stockSupplyInsertCnt1:"+outReadystockSupplyCnt);
+					
+					//여기서부터 확인해야 함... 테스트 하자....
+					
+					
+					//재고 수불부까지 인서트 했으면 재고전표에도 null부분인 재고코드를 업데이트 시켜서 넣어주자  
+					if(outReadystockSupplyCnt == 1) {
+						
+						Map<String, Object> map3 = new HashMap<String, Object>();
+						
+						map3.put("logs_code", logs_code);
+						map3.put("newStoCode", newStoCode);
+						
+						int logisticsStatementUpdateCnt = lddao.logisticsStatementUpdate(map3);
+						System.out.println("logisticsStatementUpdateCnt:"+logisticsStatementUpdateCnt);
+						
+						if(logisticsStatementUpdateCnt == 1) {  //물류전표 상태 업데이트
+							
+							Map<String, Object> map5 = new HashMap<String, Object>();
+							
+							map5.put("logs_code", logs_code); //전표번호가 logs_code일때 전표상태를 출고준비완료(2)로 변경
+							map5.put("sto_code", outReadyStoCode); //출고대기창고 관련 재고코드로 변경..
+							map5.put("ware_code", outReadyWareCode); //출고대기창고 관련 창고번호로 변경
+							
+							updateCnt = lddao.stockOutReady(map5);
+							System.out.println("updateCnt:"+updateCnt);
+						}
+					}
+				}
+				
+				///////////////////오류...?
+				
+				
+			}else { //해당 재고코드가 있을 시
+				
+				int sto_quantity2 = outReadyStoQuantity + logs_quantity; //기존 수량 + 판매 수량 = 출고대기창고의 새로운 수량
+				System.out.println("sto_quantity2:"+sto_quantity2);
+				
+				Map<String, Object> map2 = new HashMap<String, Object>();
+				map2.put("sto_code", outReadyStoCode); // 출고대기창고 관련 재고코드
+				map2.put("sto_quantity", sto_quantity2); //새로운 수량
+				map2.put("ware_code", outReadyWareCode);
+				map2.put("pro_code", pro_code);
+				
+				int stockUpdateCnt2 = lddao.stockUpdate(map2); //출고대기창고에서 판매수량만큼 재고 증가
+				System.out.println("stockUpdateCnt2:"+stockUpdateCnt2);
+				
+				if(stockUpdateCnt2 == 1) {
+					
+					Map<String, Object> map3 = new HashMap<String, Object>();
+					map3.put("sto_code", outReadyStoCode);
+					map3.put("stsu_quantity", sto_quantity2); //셀렉트로 가져온 기존 수량
+					map3.put("stsu_amount", logs_quantity); //판매수량
+					map3.put("ware_code", ware_code);
+					map3.put("pro_code", pro_code);
+					
+					map3.put("emp_code", emp_code); //나중에 세션아이디 값을 넣어주자
+					
+					//양품창고 -> 출고대기창고 재고수량이동 재고수불부 등록
+					int outReadystockSupplyCnt = lddao.outReadystockSupplyInsert(map3);
+					System.out.println("stockSupplyInsertCnt2:"+outReadystockSupplyCnt);
+					
+					if(outReadystockSupplyCnt == 1) {  //재고수불부 등록시 물류전표 상태 업데이트
+						
+						Map<String, Object> map4 = new HashMap<String, Object>();
+						
+						map4.put("logs_code", logs_code); //전표번호가 logs_code일때 전표상태를 출고준비완료(2)로 변경
+						map4.put("sto_code", outReadyStoCode); //출고대기창고 관련 재고코드로 변경..
+						map4.put("ware_code", outReadyWareCode); //출고대기창고 관련 창고번호로 변경
+						
+						updateCnt = lddao.stockOutReady(map4);
+						System.out.println("updateCnt:"+updateCnt);
+					}
+				}
+			}
+		}
+		model.addAttribute("updateCnt", updateCnt);
+	}
+	
+	// 최유성 - 출고 전표 승인 액션  -- 위에 아직 출고대기창고  관련 재고코드 없을때 재고코드 생성 안했다...
+	@Override
+	public void stockOutAction(HttpServletRequest req, Model model) {
+		
+		//나중에 세션 아이디 추가할수도?////////////////////////////////////////////////
+		String emp_code = req.getParameter("emp_code"); //사원번호
+		System.out.println("emp_code:"+emp_code);//나중에 세션 아이디로 할수도?
+		//////////////////////////////////////////////////////////////////////
+		
+		int logs_code = Integer.parseInt(req.getParameter("logs_code")); //전표번호
+		System.out.println("logs_code:"+logs_code);
+		int sto_code = Integer.parseInt(req.getParameter("sto_code")); //재고코드
+		System.out.println("sto_code:"+sto_code);
+		int logs_quantity = Integer.parseInt(req.getParameter("logs_quantity")); //수량
+		System.out.println("logs_quantity:"+logs_quantity);
+		int ware_code = Integer.parseInt(req.getParameter("ware_code")); //창고번호
+		System.out.println("ware_code:"+ware_code);
+		int pro_code = Integer.parseInt(req.getParameter("pro_code")); //상품코드
+		System.out.println("pro_code:"+pro_code);
+		
+		int updateCnt = 0; //전표 업데이트 cnt
+		
+		int retrunStoQuantity = lddao.retrunStoQuantity(sto_code); //기존수량
+		System.out.println("retrunStoQuantity:"+retrunStoQuantity);
+		
+		int sto_quantity = retrunStoQuantity - logs_quantity; //기존수량  - 판매수량  = 새로운 총수량
+		System.out.println("sto_quantity:"+sto_quantity);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sto_code", sto_code); //재고코드
+		map.put("sto_quantity", sto_quantity); //새수량 넣어주기
+		map.put("ware_code", ware_code);
+		map.put("pro_code", pro_code);
+		
+		int stockUpdateCnt = lddao.stockUpdate(map);
+		System.out.println("stockUpdateCnt:"+stockUpdateCnt);
+		
+		if(stockUpdateCnt == 1) { //재고 수량 업데이트 성공시 재고수불부 작성(인서트)
+			
+			Map<String, Object> map2 = new HashMap<String, Object>();
+			map2.put("sto_code", sto_code);
+			map2.put("stsu_quantity", sto_quantity); //새수량 넣어주기
+			map2.put("stsu_amount", logs_quantity);
+			map2.put("ware_code", ware_code);
+			map2.put("pro_code", pro_code);
+			
+			map2.put("emp_code", emp_code); //나중에 세션아이디 값을 넣어주자
+			
+			int outStockSupplyInsertCnt = lddao.outStockSupplyInsert(map2);
+			System.out.println("outStockSupplyInsertCnt:"+outStockSupplyInsertCnt);
+			
+			if(outStockSupplyInsertCnt == 1) { //재고수불부 등록시 전표 출고완료로 상태 변화
+				updateCnt = lddao.stockOutAction(logs_code);
+				System.out.println("updateCnt:"+updateCnt);
+			}
+		}
+		model.addAttribute("updateCnt", updateCnt);
 	}
 }
 

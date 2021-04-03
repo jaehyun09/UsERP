@@ -76,12 +76,44 @@ public class LdController {
 		return "ld/ajax/warehouse";
 	}
 
-	// 전표 관리
+	// 전표 관리 - 최유성
 	@RequestMapping("/ldStatementManagement")
 	public String ldStatementManagement(HttpServletRequest req, Model model) {
 		logger.info("url: 전표 관리");
-
+		
+		ldservice.ldStatementManagement(req, model);
+		
 		return "ld/ldStatementManagement";
+	}
+	
+	// 전표 관리 입고 승인 - 최유성
+	@RequestMapping("/stockInAction")
+	public String stockInAction(HttpServletRequest req, Model model) {
+		logger.info("url: 회계 보고서");
+		
+		ldservice.stockInAction(req, model);
+		
+		return "ld/stockInAction";
+	}
+	
+	// 전표 관리 출고 승인 - 최유성
+	@RequestMapping("/stockOutReady")
+	public String stockOutReady(HttpServletRequest req, Model model) {
+		logger.info("url: 회계 보고서");
+		
+		ldservice.stockOutReady(req, model);
+		
+		return "ld/stockOutReady";
+	}
+		
+	// 전표 관리 출고 승인 - 최유성
+	@RequestMapping("/stockOutAction")
+	public String stockOutAction(HttpServletRequest req, Model model) {
+		logger.info("url: 회계 보고서");
+		
+		ldservice.stockOutAction(req, model);
+		
+		return "ld/stockOutAction";
 	}
 
 	// 김민수 - 재고 관리

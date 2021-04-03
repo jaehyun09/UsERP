@@ -17,6 +17,22 @@
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     <script src="${project}js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
+	function content(code) {
+		
+		var param = "&${_csrf.parameterName}=${_csrf.token}&ware_code=" + code;
+	   $.ajax({
+	      type:"POST",
+		  data:param,
+		  url:'logWarehouseDetail',
+	      success: function(data){ 
+	         $('#logWarehouseDetail').html(data);
+	      },
+	      error: function(){
+	         alert('오류');
+	      }
+	   });
+	}
+	
 	
 	/* 창고 상세페이지 AJAX 
 	$(function() {
@@ -88,11 +104,16 @@
                    <c:forEach var="houseVo" items="${warehouseList}">
                    <tr>
                       <td class="py-3 middle">
-                      <input type="hidden" id="ware_code" value="${houseVo.ware_code}">
-                      <a class="btn" data-toggle="collapse"
+                     <!--  <a class="btn" data-toggle="collapse"
                          href="#multiCollapseExample1" role="button"
-                         aria-expanded="false" aria-controls="multiCollapseExample1" onclick="waredetail()">${houseVo.ware_code}
-                         </a></td>
+                         aria-expanded="false" aria-controls="multiCollapseExample1" onclick="waredetail()">
+                         </a> -->
+                         <a class="btn" data-toggle="collapse"
+							href="#multiCollapseExample1" role="button"
+							aria-expanded="false"
+							aria-controls="multiCollapseExample1"
+							onclick="content(${houseVo.ware_code})"> ${houseVo.ware_code}</a>
+                         </td>
                       <td class="py-3 middle">${houseVo.ware_name}</td>
                       <td class="py-3 middle">${houseVo.ware_location}</td>
                       <c:choose>
