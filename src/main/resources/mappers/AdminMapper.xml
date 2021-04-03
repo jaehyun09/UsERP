@@ -21,6 +21,11 @@
 		SELECT emp_authority FROM employee WHERE emp_code = #{emp_code}
 	</select>
 	
+	<!-- 강재현 - 로그인 정보 처리 -->
+	<select id = "readMember" resultType = "com.project.UsERP.vo.EmployeeVO">
+		SELECT * FROM employee WHERE emp_code = #{str_id}
+	</select>
+	
 	<!-- 조명재 - 회원 정보를 반환한다 -->
 	<select id="getUsersInfo" resultType="com.project.UsERP.vo.EmployeeVO">
 		SELECT * FROM employee WHERE emp_code = #{emp_code}

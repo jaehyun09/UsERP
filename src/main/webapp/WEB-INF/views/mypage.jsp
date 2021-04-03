@@ -230,7 +230,7 @@
 												<form action="productInsAction.mgr?${_csrf.parameterName}=${_csrf.token}" method="post" class="container" enctype="multipart/form-data" name="productInsertForm" onsubmit="return productInsCheck()">
                      <table class="table bg-white text-dark center ass2" style="text-align:center">
                         <tr>
-                           <th class="text-white table-bordered tap py-3 con2"colspan="3"> 내 정보 수정 </th>
+                           <th class="text-white table-bordered tap py-3 con2"colspan="3">내 정보 수정</th>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle"> 사진</th>

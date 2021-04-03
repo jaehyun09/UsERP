@@ -136,7 +136,8 @@ function confirmCodeCheck() {
 }
 
 
-function setName(emp_name) {
+function setName(emp_code, emp_name) {
+	opener.document.waForm.emp_code.value=emp_code; 
 	opener.document.waForm.emp_name.value=emp_name; 
 	opener.document.waForm.hiddenEmp_code.value=1; 
 	self.close();

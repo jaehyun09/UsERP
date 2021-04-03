@@ -9,17 +9,19 @@
 			window.location="main";
 		</script>
 	</c:if>
-	<c:if test="${updateCnt == 0}">
-		<script type="text/javascript">
-			alert("인증을 실패했습니다. \n확인 후 다시 시도해 주십시오.");
-			window.history.back();
-		</script>
-	</c:if>
-	<c:if test="${updateCnt == 1}">
-		<script type="text/javascript">
-			alert(${emp_name} + "님 환영합니다.");
-			window.location="main";
-		</script>
+	<c:if test="${enabled == 0}">
+		<c:if test="${updateCnt == 0}">
+			<script type="text/javascript">
+				alert("인증을 실패했습니다. \n확인 후 다시 시도해 주십시오.");
+				window.history.back();
+			</script>
+		</c:if>
+		<c:if test="${updateCnt == 1}">
+			<script type="text/javascript">
+				alert(${emp_name} + "님 환영합니다.");
+				window.location="main";
+			</script>
+		</c:if>
 	</c:if>
 </body>
 </html>
