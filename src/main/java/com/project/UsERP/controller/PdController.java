@@ -20,25 +20,26 @@ public class PdController {
 	@Autowired
 	PdServiceImpl pdService;
 
-	// 기초 등록
+	// 최유성 - 기초 등록
 	@RequestMapping("/pdBasicReg")
 	public String pdBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록");
 		pdService.purBasicReg(req, model);
 		return "pd/pdBasicReg";
 	}
-	// 강재현 - 기초 등록 - 판매 거래처 목록 상세페이지
-		@RequestMapping("/pdcomContent")
-		public String comContent(HttpServletRequest req, Model model) {
-			logger.info("url: 판매 내역 상세페이지");
 
-			// 상세페이지
-			pdService.pdcomContent(req, model);
+	// 최유성 - 기초 등록 - 판매 거래처 목록 상세페이지
+	@RequestMapping("/pdcomContent")
+	public String comContent(HttpServletRequest req, Model model) {
+		logger.info("url: 판매 내역 상세페이지");
 
-			return "pd/ajax/comPage";
-		}
+		// 상세페이지
+		pdService.pdcomContent(req, model);
 
-	// 재고 현황
+		return "pd/ajax/comPage";
+	}
+
+	// 최유성 - 재고 현황
 	@RequestMapping("/pdInvenStatus")
 	public String pdInvenStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 회계 보고서");
@@ -80,7 +81,7 @@ public class PdController {
 		return "pd/pdPro/pdpdaddAc";
 	}
 
-	// 입고 현황
+	// 최유성 - 입고 현황
 	@RequestMapping("/pdRecStatus")
 	public String pdRecStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 회계 보고서");
@@ -93,7 +94,7 @@ public class PdController {
 		return "pd/pdRecStatus";
 	}
 
-// 강재현 - 출고 현황 - 출고 전표 등록 - 승인된 회계 전표 불러오기
+// 최유성 - 입고 현황 - 입고 전표 등록 - 승인된 회계 전표 불러오기
 	@RequestMapping("/select12")
 	public String select(HttpServletRequest req, Model model) {
 		logger.info("url: 승인된 회계 전표 불러오기");
@@ -103,10 +104,10 @@ public class PdController {
 		return "pd/ajax/select";
 	}
 
-	// 강재현 : 출고 현황 - 출고 전표 등록
+	// 최유성 - 입고 현황 - 입고 전표 등록
 	@RequestMapping("/pdlogsstInsert")
 	public String logsstInsert(HttpServletRequest req, Model model) {
-		logger.info("url: 출고 전표 등록");
+		logger.info("url: 입고 전표 등록");
 
 		// 판매내역
 		pdService.pdinsertLogsStatement(req, model);

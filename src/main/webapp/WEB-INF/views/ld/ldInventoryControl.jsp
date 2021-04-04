@@ -10,18 +10,44 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+	<script src="${project}js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
+	
+	/* 재고현황 검색 JQuery */
+    $(function() {
+    	$('#ssKeyword').keyup(function() {
+    		var ssKeyword = $('#ssKeyword').val();
+    		
+    		if(ssKeyword.length == 0) {
+    			$('#ldInvenStatus').css("visibility", "visible");
+    		} else {
+    			$('#ldInvenStatus').css("visibility", "visible");
+    			
+    			$.ajax({
+    				url: 'logInvenStatus?${_csrf.parameterName}=${_csrf.token}',
+    				type: 'POST',
+    				data: 'ssKeyword=' + ssKeyword,
+    				success: function(result) {
+    					$('#ldInvenStatus').html(result);
+    				},
+    				error: function() {
+    					alert('오류');
+    				}
+    				
+    			});
+    		}
+    	});
+    });
 	
 	/* 재고현황 AJAX */
 	function logInvenStatus() {
     	$.ajax({
           // sendRequest(콜백함수명, url, method, params)
-          url: "logInvenStatus", // 전송 페이지 => 컨트롤러 "basic_next"
+          url: "logInvenStatus?${_csrf.parameterName}=${_csrf.token}&ssKeyword=${ssKeyword}", // 전송 페이지 => 컨트롤러 "basic_next"
           type: 'GET', // 전송방식('GET', 'POST') - method
           dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-             $('#logInvenStatus').html(data);
+          success: function(result){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+             $('#ldInvenStatus').html(result);
           },
           error: function(){
              alert('오류');
@@ -324,7 +350,17 @@
                               <div class="tab-content bg-lighter" id="pills-tabContent-1">
                                  <div class="tab-pane fade p-4 show active" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    <div id="logInvenStatus"></div>
+                                    
+									<!-- 검색창 시작 -->      
+		                         	<div class="input-group">
+			                          	<div class="input-group-append">
+			                              <i class="gd-search icon-text icon-text-sm"></i>
+		                            	</div>
+		                            	<input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" >
+		                          	</div>
+		                          	<br>
+                          			<!-- 검색창 끝 -->
+                                    <div id="ldInvenStatus"></div>
                                     
                                  </div>
                                  

@@ -15,7 +15,7 @@ public class StockSupplyVO {
    private String stsu_arrivewh;   // 도착창고
    private int sto_code;         // 재고코드
    private int pro_code;         // 상품코드
-   private int emp_code;         // 사원코드
+   private String emp_code;         // 사원코드
    StockVO   stock;
    ProductVO product;
    EmployeeVO employee;
@@ -80,10 +80,10 @@ public class StockSupplyVO {
    public void setPro_code(int pro_code) {
       this.pro_code = pro_code;
    }
-   public int getEmp_code() {
+   public String getEmp_code() {
       return emp_code;
    }
-   public void setEmp_code(int emp_code) {
+   public void setEmp_code(String emp_code) {
       this.emp_code = emp_code;
    }
    public StockVO getStock() {

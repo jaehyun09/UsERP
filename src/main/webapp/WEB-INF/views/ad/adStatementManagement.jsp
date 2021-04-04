@@ -694,7 +694,7 @@ function debtContent(code) {
                                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatDate
                                                                       pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
                                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatDate
-                                                                      pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
+                                                                      pattern="yyyy-MM-dd" value="${vo.accs_rpm_date}" /></td>
                                                             </tr>
                                                             </c:if>
                                                          </c:forEach>
@@ -738,7 +738,7 @@ function debtContent(code) {
                                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatDate
                                                                       pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
                                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatDate
-                                                                      pattern="yyyy-MM-dd" value="${vo.accs_reg_date}" /></td>
+                                                                      pattern="yyyy-MM-dd" value="${vo.accs_rpm_date}" /></td>
                                                                </tr>
                                                             </c:if>
                                                          </c:forEach>

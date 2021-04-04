@@ -76,6 +76,10 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
+					
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -256,50 +260,56 @@
                                        <div id="tabsContent2" class="card-body tab-content p-0">
                                           <div class="tab-pane fade show active" id="tabs2-tab3"
                                              role="tabpanel">
+                                             
                                              <table class="table bg-white text-dark center ass2 table-striped">
-                                                         <thead class="text-white table-bordered tap">
-                                                            <tr class="text-white table-bordered tap">
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
-                                                            </tr>
-                                                         </thead>
-                                                         <tbody>
-                                                         	<c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
-                                                            <tr>
-                                                               <td class="py-3">${list.order_code}</td>
-                                                               <td class="py-3">${list.product.pro_name}</td>
-                                                               <td class="py-3">${list.company.comp_name}</td>
-                                                               <td class="py-3">${list.stockInOrder.in_count}</td>
-                                                               <td class="py-3">${list.warehouse.ware_name}</td>
-                                                               <td class="py-3">${list.employee.emp_name}</td>
-                                                               <td class="py-3">
-                                                               		<fmt:formatDate value="${list.order_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                               </td>
-                                                               <td class="py-3">
-                                                               		<fmt:formatDate value="${list.order_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                               </td>
-                                                               <td class="py-2 middle">
-                                                          			<button type="button" class="btn btn-outline-info" style='float: middle;'>
-                                                                     	승인
-                                                                	</button>
-                                                              </td>
-                                                            </tr>
-                                                            </c:forEach>
-                                                         </tbody>
-                                                      </table>
+	                                             <thead class="text-white table-bordered tap">
+	                                                <tr class="text-white table-bordered tap">
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
+	                                                </tr>
+	                                             </thead>
+	                                             <tbody>
+	                                             	<c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+	                                                <tr>
+	                                                   <td class="py-3">${list.logs_code}</td>
+	                                                   <td class="py-3">${list.product.pro_name}</td>
+	                                                   <td class="py-3">${list.company.com_name}</td>
+	                                                   <td class="py-3">${list.logs_quantity}</td>
+	                                                   <td class="py-3">${list.warehouse.ware_name}</td>
+	                                                   <td class="py-3">${list.employee.emp_name}</td>
+	                                                   <td class="py-3">
+	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                   </td>
+	                                                   <td class="py-2 middle">
+	                                                   		<form action = "stockInAction" method = "post">
+	                                                   		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+	                                                   		<input type = "hidden" name = "logs_code" value = "${list.logs_code}">
+	                                                   		<input type = "hidden" name = "sto_code" value = "${list.sto_code}">
+	                                                   		<input type = "hidden" name = "logs_quantity" value = "${list.logs_quantity}">
+	                                                   		<input type = "hidden" name = "ware_code" value = "${list.ware_code}">
+	                                                   		<input type = "hidden" name = "pro_code" value = "${list.pro_code}">
+	                                                   		<input type = "hidden" name = "emp_code" value = "${list.emp_code}">
+	                                              			<button type="submit" class="btn btn-outline-info" style='float: middle;'>
+	                                                         	승인
+	                                                    	</button>
+	                                                    	</form>
+	                                                  </td>
+	                                                </tr>
+	                                                </c:forEach>
+	                                             </tbody>
+	                                          </table>
                                        </div>
                                           <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
                                              <table class="table bg-white text-dark center ass2 table-striped">
                                                 <thead class="text-white table-bordered tap">
                                                      <tr class="text-white table-bordered tap">
-                                                   		<th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
+                                                   		<th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
                                                			<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
                                                    		<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
@@ -312,17 +322,17 @@
                                                 <tbody>
                                                 	<c:forEach var="list" items="${SIlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 	                                                   <tr>
-	                                                      <td class="py-3">${list.order_code}</td>
+	                                                      <td class="py-3">${list.logs_code}</td>
 	                                                      <td class="py-3">${list.product.pro_name}</td>
-	                                                      <td class="py-3">${list.company.comp_name}</td>
-	                                                      <td class="py-3">${list.stockInOrder.in_count}</td>
+	                                                      <td class="py-3">${list.company.com_name}</td>
+	                                                      <td class="py-3">${list.logs_quantity}</td>
 	                                                      <td class="py-3">${list.warehouse.ware_name}</td>
 	                                                      <td class="py-3">${list.employee.emp_name}</td>
 	                                                      <td class="py-3">
-	                                                      		<fmt:formatDate value="${list.order_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                      		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
 	                                                      </td>
 	                                                      <td class="py-3">
-	                                                      		<fmt:formatDate value="${list.stockInOrder.in_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                      		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
 	                                                      </td>                                                      
 	                                                   </tr>
                                                    </c:forEach>
@@ -348,88 +358,116 @@
                                           <div class="tab-pane fade show active" id="tabs2-tab5"
                                              role="tabpanel">
                                              <table class="table bg-white text-dark center ass2 table-striped">
-                                                            <thead class="text-white table-bordered tap">
-                                                                  <tr class="text-white table-bordered tap">
-                                                                    <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">출고가능수량</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">최종수정일</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
-                                                               </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                               <tr>
-                                                                  <td class="py-3">121212</td>
-                                                                  <td class="py-3">121211</td>
-                                                                  <td class="py-3">상품명1</td>
-                                                                  <td class="py-3">100</td>
-                                                                  <td class="py-3">양품창고</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-3">김민수</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-2 middle">
-                                                                     <button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-                                                                        승인
-                                                                     </button>
-                                                     </td>
-                                                               </tr>
-                                                               <tr>
-                                                                  <td class="py-3">121212</td>
-                                                                  <td class="py-3">121211</td>
-                                                                  <td class="py-3">상품명1</td>
-                                                                  <td class="py-3">100</td>
-                                                                  <td class="py-3">양품창고</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-3">김민수</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-2 middle">
-                                                                     <button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-                                                                        승인
-                                                                     </button>
-                                                     </td>
-                                                               </tr>
-                                                            </tbody>
-                                                         </table>
+	                                             <thead class="text-white table-bordered tap">
+	                                             	<tr class="text-white table-bordered tap">
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">재고수량</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">수정일</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
+	                                                </tr>
+	                                             </thead>
+	                                             <tbody>
+	                                                <c:forEach var="list" items="${SOlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+	                                                <tr>
+	                                                   <td class="py-3">${list.logs_code}</td>
+	                                                   <td class="py-3">${list.product.pro_name}</td>
+	                                                   <td class="py-3">${list.company.com_name}</td>
+	                                                   <td class="py-3">${list.logs_quantity}</td>
+	                                                   <td class="py-3">${list.stock.sto_quantity}</td>
+	                                                   <td class="py-3">${list.logs_shortage}</td>
+	                                                   <td class="py-3">${list.warehouse.ware_name}</td>
+	                                                   <td class="py-3">${list.employee.emp_name}</td>
+	                                                   <td class="py-3">
+	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                   </td>
+	                                                   <td class="py-3">
+	                                                   		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                   </td>
+	                                                   <c:if test="${list.logs_state == 0}">
+	                                                   		<td class="py-3">출고대기</td>
+	                                                   </c:if>
+	                                                   <c:if test="${list.logs_state == 2}">
+	                                                   		<td class="py-3">출고준비완료</td>
+	                                                   </c:if>
+	                                                   <c:if test="${list.stock.sto_quantity-list.logs_quantity >= 0}"><!-- list.logs_shortage -->
+															<td class="py-2 middle">
+																<c:if test="${list.logs_state == 0}">
+																	<form action = "stockOutReady" method = "post">
+																		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		                                                   				<input type="hidden" name="logs_code" value="${list.logs_code}">
+		                                                   				<input type="hidden" name="sto_code" value="${list.sto_code}">
+		                                                   				<input type = "hidden" name = "logs_quantity" value = "${list.logs_quantity}">
+				                                                   		<input type = "hidden" name = "ware_code" value = "${list.ware_code}">
+				                                                   		<input type = "hidden" name = "pro_code" value = "${list.pro_code}">
+				                                                   		<input type = "hidden" name = "emp_code" value = "${list.emp_code}">
+			                                                      		<button type="submit" class="btn btn btn-outline-info" style='float: middle;'>
+			                                                        		 승인
+			                                                      		</button>
+		                                                      		</form>
+	                                                      		</c:if>
+	                                                      		<c:if test="${list.logs_state == 2}">
+	                                                      			<form action = "stockOutAction" method = "post">
+		                                                      			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		                                                   				<input type="hidden" name="logs_code" value="${list.logs_code}">
+		                                                   				<input type="hidden" name="sto_code" value="${list.sto_code}">
+		                                                   				<input type = "hidden" name = "logs_quantity" value = "${list.logs_quantity}">
+				                                                   		<input type = "hidden" name = "ware_code" value = "${list.ware_code}">
+				                                                   		<input type = "hidden" name = "pro_code" value = "${list.pro_code}">
+				                                                   		<input type = "hidden" name = "emp_code" value = "${list.emp_code}">
+			                                                      		<button type="submit" class="btn btn btn-outline-info" style='float: middle;'>
+			                                                        		 출고
+			                                                      		</button>
+	                                                      			</form>
+	                                                      		</c:if>
+	                                                      	</td>
+													   </c:if>
+													   <c:if test="${list.stock.sto_quantity-list.logs_quantity < 0}">
+															<td class="py-3">재고부족</td>
+													   </c:if>
+	                                                </tr>
+	                                                </c:forEach>
+	                                             </tbody>
+	                                          </table>
                                           </div>
                                        <div class="tab-pane fade" id="tabs2-tab6" role="tabpanel">
                                           <table class="table bg-white text-dark center ass2 table-striped">
-                                                         <thead class="text-white table-bordered tap">
-                                                              <tr class="text-white table-bordered tap">
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">승인버튼수정해야..</th>
-                                                            </tr>
-                                                         </thead>
-                                                         <tbody>
-                                                            <tr>
-                                                               <td class="py-3">12345</td>
-                                                               <td class="py-3">상품명1</td>
-                                                               <td class="py-3">100</td>
-                                                               <td class="py-3">2017-09-03</td>
-                                                               <td class="py-3">김민수</td>
-                                                               <td class="py-3">입고완료</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td class="py-3">12345</td>
-                                                               <td class="py-3">상품명1</td>
-                                                               <td class="py-3">100</td>
-                                                               <td class="py-3">2017-09-03</td>
-                                                               <td class="py-3">김민수</td>
-                                                               <td class="py-3">입고완료</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
+	                                          <thead class="text-white table-bordered tap">
+	                                          	<tr class="text-white table-bordered tap">
+	                                            	<th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처</th>
+							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
+							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">출고일</th>
+	                                             </tr>
+	                                          </thead>
+	                                          <tbody>
+						                          <c:forEach var="list" items="${SOlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+								                  <tr>
+								                     <td class="py-3">${list.logs_code}</td>
+								                     <td class="py-3">${list.product.pro_name}</td>
+								                     <td class="py-3">${list.company.com_name}</td>
+								                     <td class="py-3">${list.logs_quantity}</td>
+								                     <td class="py-3">${list.employee.emp_name}</td>
+								                     <td class="py-3">
+								                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+								                     </td>
+								                     <td class="py-3">
+								                     		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+								                     </td>
+						                  		 </tr>
+						                  		 </c:forEach>
+	                                          </tbody>
+	                                       </table>
                                        </div>
                                        </div>
                                     </div>

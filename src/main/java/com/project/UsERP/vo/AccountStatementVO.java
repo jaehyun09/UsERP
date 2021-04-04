@@ -11,6 +11,7 @@ public class AccountStatementVO {
 	private int accs_price;			// 단가
 	private int accs_quantity; 		// 수량
 	private Date accs_reg_date; 	// 발행일
+	private Date accs_rpm_date;		// 상환
 	private Date accs_update_date; 	// 최근수정일자
 	private int accs_sum;			// 총액
 	private int accs_state;			// 승인상태
@@ -60,6 +61,12 @@ public class AccountStatementVO {
 	}
 	public void setAccs_reg_date(Date accs_reg_date) {
 		this.accs_reg_date = accs_reg_date;
+	}
+	public Date getAccs_rpm_date() {
+		return accs_rpm_date;
+	}
+	public void setAccs_rpm_date(Date accs_rpm_date) {
+		this.accs_rpm_date = accs_rpm_date;
 	}
 	public Date getAccs_update_date() {
 		return accs_update_date;
@@ -139,7 +146,5 @@ public class AccountStatementVO {
 	public void setCompany(CompanyVO company) {
 		this.company = company;
 	}
-	
-	
 	
 }	

@@ -24,15 +24,15 @@ public interface PdService {
 	// 이재홍 - 구매현황 - 구매 전표 등록
 	public void insertBuyStatement(HttpServletRequest req, Model model);
 
-	// 강재현 - 출고현황 - 출고 내역
+	// 최유성 - 입고 현황 - 입고 내역
 	public void buyRecStatus(HttpServletRequest req, Model model);
 
-	// 강재현 - 입고 현황 - 입고 전표 등록 - 회계 전표 내역
+	// 최유성 - 입고 현황 - 입고 전표 등록 - 회계 전표 내역
 	public void buList(HttpServletRequest req, Model model);
 
-	// 강재현 - 출고현황 - 회계 전표 내역 상세
+	// 최유성 - 입고 현황 - 회계 전표 내역 상세
 	public void pdselectList(HttpServletRequest req, Model model);
 
-	// 강재현 - 출고현황 - 출고 전표 등록
+	// 최유성 - 입고 현황 - 입고 전표 등록
 	public void pdinsertLogsStatement(HttpServletRequest req, Model model);
 }

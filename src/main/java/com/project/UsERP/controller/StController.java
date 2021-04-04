@@ -131,7 +131,7 @@ public class StController {
 		return "st/ajax/select";
 	}
 
-	// 강재현 : 출고 현황 - 출고 전표 등록
+	// 강재현 _ 출고 현황 - 출고 전표 등록
 	@RequestMapping("/logsstInsert")
 	public String logsstInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 출고 전표 등록");

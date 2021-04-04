@@ -120,7 +120,7 @@ public class StServiceImpl implements StService {
 		vo.setEmp_code(req.getParameter("emp_code"));
 		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
 		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
-
+		vo.setWare_code(1001);
 		int insertCnt = stdao.insertLogsStatement(vo);
 
 		AccountStatementVO vo1 = new AccountStatementVO();

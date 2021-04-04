@@ -14,6 +14,7 @@
 		<result property="accs_price" column="accs_price" />
 		<result property="accs_quantity" column="accs_quantity" />
 		<result property="accs_reg_date" column="accs_reg_date" />
+		<result property="accs_rpm_date" column="accs_rpm_date" />
 		<result property="accs_update_date" column="accs_update_date" />
 		<result property="accs_sum" column="accs_sum" />
 		<result property="accs_state" column="accs_state" />

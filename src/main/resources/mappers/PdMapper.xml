@@ -67,17 +67,17 @@
       </association>
    </resultMap>
    
-   <!-- 기초 등록 구매 거래처 목록 -->
+   <!--  최유성 - 기초등록 - 구매 거래처 목록 -->
    <select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
       select * from company WHERE com_type = 20 
    </select>
    
-   <!-- 강재현 - 기초등록 - 판매 거래처 목록 상세페이지 -->
+   <!-- 최유성 - 기초등록 - 판매 거래처 목록 상세페이지 -->
 	<select id = "pdcompanyDetail" resultType = "com.project.UsERP.vo.CompanyVO">
 		SELECT * FROM company WHERE com_type = 20 AND com_code=#{com_code}
 	</select>
    
-   <!-- 기초 등록 상품 목록 -->
+   <!-- 최유성 - 기초등록 - 상품 목록 -->
    <select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
       select * from product
    </select>
@@ -103,13 +103,13 @@
       ORDER BY accs_code DESC
    </select>
    
-   <!-- 이재홍 - 구매 현황 -  구매 전표 등록 -->
+   <!-- 이재홍 - 구매 현황 - 구매 전표 등록 -->
    <insert id="insertBuyStatement" parameterType = "com.project.UsERP.vo.AccountStatementVO">
      INSERT INTO account_statement(accs_code, accs_type, accs_content, accs_price, accs_quantity, accs_reg_date, accs_update_date, accs_sum, accs_state, emp_code, bank_code, acco_code, pro_code, com_code)
 			VALUES(accs_seq.nextval, #{accs_type}, #{accs_content}, #{accs_price}, #{accs_quantity}, sysdate, null, #{accs_sum}, #{accs_state}, #{emp_code}, null, null, #{pro_code}, #{com_code})
    </insert>
    
-   <!-- 최유성 - 입고현황 - 입고 전표 내역 -->
+   <!-- 최유성 - 입고 현황 - 입고 내역 -->
 	<select id="logisticsList" resultMap = "LogsMap">
 	   SELECT l.*, c.com_name, e.emp_name, p.pro_name
 		    FROM logistics_statement l, company c, employee e, product p
@@ -120,7 +120,7 @@
 		    ORDER BY logs_code DESC
    </select>
    
-   <!-- 입고 현황 - 입고 전표  -->
+   <!-- 최유성 - 입고 현황 - 입고 전표 등록 - 회계 전표 내역  -->
    <select id = "buList" resultMap = "BuyMap">
         SELECT a.accs_code, c.com_name, p.pro_name, a.accs_price, p.pro_pur_price, a.accs_quantity, a.accs_sum, e.emp_name, a.accs_content, a.accs_reg_date,a.accs_type
        	FROM account_statement a, company c, product p, employee e
@@ -132,7 +132,7 @@
         ORDER BY accs_code DESC
    </select>
    
-   <!-- 강재현 - 출고현황 - 출고 전표 등록 - 회계 전표 내역 상세 -->
+   <!-- 최유성 - 입고 현황 - 입고 전표 등록 - 회계 전표 내역 상세 -->
    <select id = "pdinsertList" resultMap = "BuyMap" parameterType="int">
         SELECT a.accs_code, c.com_name, p.pro_name, a.accs_quantity, e.emp_name, c.com_code, p.pro_code
        	FROM account_statement a, company c, product p, employee e
@@ -142,7 +142,7 @@
         AND a.accs_code = #{accs_code}
    </select>
 
-   <!-- 강재현 - 출고현황 - 출고 전표 등록 -->
+   <!-- 최유성 - 입고 현황 - 입고 전표 등록 -->
 	<insert id="pdinsertLogsStatement" parameterType = "com.project.UsERP.vo.LogisticsStatementVO">
 		INSERT INTO logistics_statement(
 			logs_code,logs_type,logs_reg_date,logs_update_date,logs_state,logs_quantity,
@@ -151,7 +151,7 @@
 			null,#{com_code},null,#{pro_code},#{emp_code},null)
 	</insert>
 	
-	<!-- 강재현 - 출고현황 - 출고 전표 등록시 회계전표 상태코드 변화 -->
+	<!-- 최유성 - 입고 현황 - 입고 전표 등록시 회계전표 상태코드 변화-->
 	<update id="pdupdatestatement" parameterType="com.project.UsERP.vo.AccountStatementVO">
 		UPDATE account_statement SET accs_state=#{accs_state} WHERE accs_code = #{accs_code}
 	</update>

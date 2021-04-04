@@ -153,7 +153,7 @@
 			logs_code,logs_type,logs_reg_date,logs_update_date,logs_state,logs_quantity,
 			logs_shortage,com_code,sto_code,pro_code,emp_code,ware_code)
 			VALUES(logs_seq.nextval,#{logs_type},sysdate,null,#{logs_state},#{logs_quantity},
-			null,#{com_code},null,#{pro_code},#{emp_code},null)
+			null,#{com_code},null,#{pro_code},#{emp_code},#{ware_code})
 	</insert>
 	
 	<!-- 강재현 - 출고현황 - 출고 전표 등록시 회계전표 상태코드 변화 -->

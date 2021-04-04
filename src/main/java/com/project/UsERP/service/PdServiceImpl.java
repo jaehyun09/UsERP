@@ -36,7 +36,7 @@ public class PdServiceImpl implements PdService {
 
 	}
 
-	// 강재현 - 기초등록 - 판매 거래처 목록 상세페이지
+	// 최유성 - 기초등록 - 판매 거래처 목록 상세페이지
 	public void pdcomContent(HttpServletRequest req, Model model) {
 		int com_code = Integer.parseInt(req.getParameter("com_code"));
 		CompanyVO company = pddao.pdcompanyDetail(com_code);
@@ -98,14 +98,14 @@ public class PdServiceImpl implements PdService {
 
 	}
 
-// 강재현 - 출고현황 - 출고 내역
+	// 최유성 - 입고 현황 - 입고 내역
 	@Override
 	public void buyRecStatus(HttpServletRequest req, Model model) {
 		List<LogisticsStatementVO> purel = pddao.logisticsList();
 		model.addAttribute("purel", purel);
 	}
 
-	// 강재현 - 판매 현황 - 회계 전표 내역
+	// 최유성 - 입고 현황 - 입고 전표 등록 - 회계 전표 내역
 	@Override
 	public void buList(HttpServletRequest req, Model model) {
 		List<AccountStatementVO> acco = pddao.buList();
@@ -113,7 +113,7 @@ public class PdServiceImpl implements PdService {
 
 	}
 
-	// 강재현 - 출고현황 - 회계 전표 내역 상세
+	// 최유성 - 입고 현황 - 회계 전표 내역 상세
 	@Override
 	public void pdselectList(HttpServletRequest req, Model model) {
 		int accs_code = Integer.parseInt(req.getParameter("accs_code"));
@@ -122,7 +122,7 @@ public class PdServiceImpl implements PdService {
 		model.addAttribute("account", account);
 	}
 
-	// 강재현 - 출고현황 - 출고 전표 등록
+	// 최유성 - 입고 현황 - 입고 전표 등록
 	@Override
 	public void pdinsertLogsStatement(HttpServletRequest req, Model model) {
 		LogisticsStatementVO vo = new LogisticsStatementVO();
