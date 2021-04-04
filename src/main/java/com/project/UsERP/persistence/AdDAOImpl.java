@@ -29,12 +29,12 @@ public class AdDAOImpl implements AdDAO{
 	}
 	
 	// 강재현 - 계정 관리 - 계정 리스트
-	@Override
-	public List<AccountVO> accontList() {
-		
-		return sqlSession.selectList("com.project.UsERP.persistence.AdDAO.accontList");
-		
-	}
+//	@Override
+//	public List<AccountVO> accontList() {
+//		
+//		return sqlSession.selectList("com.project.UsERP.persistence.AdDAO.accontList");
+//		
+//	}
 
 	// 강재현 - 전표 관리 - 회계 전표
 	public List<AccountStatementVO> statementList() {

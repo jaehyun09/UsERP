@@ -17,7 +17,7 @@ public interface AdDAO {
 	public List<BankVO> bankList();
 	
 	// 강재현 - 계정 관리 - 계정 리스트
-	public List<AccountVO> accontList();
+	// public List<AccountVO> accontList();
 	
 	// 강재현 - 전표 관리 - 회계 전표
 	public List<AccountStatementVO> statementList();

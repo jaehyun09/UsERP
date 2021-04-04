@@ -25,13 +25,14 @@ public class UserpController {
 	WaService waService;
 	
 	// 강재현 - 메인 화면
-	@RequestMapping("/main")
+	@RequestMapping("/")
 	public String main(HttpServletRequest req, Model model) {
 		logger.info("url: 메인 화면");
 
 		return "main";
 	}
-	@RequestMapping("/")
+	
+	@RequestMapping("/main")
 	public String main2(HttpServletRequest req, Model model) {
 		logger.info("url: 메인 화면");
 		
