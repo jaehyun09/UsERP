@@ -17,6 +17,18 @@ $(function() {
 		});
 	}); 
 
+$('#amount').change(function() {
+	var amount = $('#amount').val();
+	var quantity = ${stsu_quantity};
+	
+	if(count < quantity) {
+		alert("재고수량을 초과했습니다.");
+		
+		return false;
+	}
+});
+
+
 </script>
 
 
