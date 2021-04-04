@@ -5,12 +5,12 @@ import java.util.Date;
 // 상품
 public class ProductVO {
 
-	private int pro_code; // 상품코드
-	private String pro_name; // 상품명
-	private int pro_pur_price; // 구매단가
-	private int pro_sal_price; // 판매단가
-	private int pro_state; // 상태
-	private Date pro_reg_date; // 상품등록일
+	private int pro_code; 		// 상품코드
+	private String pro_name; 	// 상품명
+	private int pro_pur_price; 	// 구매단가
+	private int pro_sal_price; 	// 판매단가
+	private int pro_state; 		// 상태
+	private Date pro_reg_date; 	// 상품등록일
 
 	public int getPro_code() {
 		return pro_code;

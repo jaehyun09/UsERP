@@ -7,7 +7,7 @@ public class BankVO {
 	
 	private int bank_code;			// 계좌코드
 	private String bank_name;		// 계좌명
-	private String bank_no;		// 계좌번호
+	private String bank_no;			// 계좌번호
 	private String bank_bank;		// 은행
 	private String bank_balance;	// 잔액
 	private String bank_object;		// 개설목적
