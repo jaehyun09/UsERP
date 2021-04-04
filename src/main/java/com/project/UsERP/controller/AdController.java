@@ -98,12 +98,13 @@ public class AdController {
 	// 강재현 - 전표 관리 - 회계 전표 승인+미승인 상세페이지
 	@RequestMapping("/content")
 	public String content(HttpServletRequest req, Model model) {
-		logger.info("url: 강재현 : 회계 전표 승인+미승인 상세페이지");
+		logger.info("url: 회계 전표 승인+미승인 상세페이지");
 
 		adservice.content(req, model);
 
 		return "ad/ajax/page";
 	}
+	
 	// 강재현 - 전표 관리 - 급여 전표 승인+미승인 상세페이지
 	@RequestMapping("/content1")
 	public String content1(HttpServletRequest req, Model model) {

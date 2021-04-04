@@ -37,6 +37,23 @@ function productadd() {
    });
 }
 
+function content(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&com_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'pdcomContent',
+      success: function(data){ 
+         $('#content').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
 </script> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -113,65 +130,65 @@ function productadd() {
          <!-- 근태 관리 종료 -->
          
          <!-- 대메뉴 : 판매 관리 -->
-<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
-            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#subComponents">
-               <span class="side-nav-menu-icon d-flex mr-3">
-                  <i class="gd-money"></i>
-               </span>
-               <span class="side-nav-fadeout-on-closed media-body asss">판매 관리</span>
-               <span class="side-nav-control-icon d-flex">
-                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-               </span>
-               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-            </a>
-            
-            <!-- 중메뉴 : 판매 관리 -->
-<!-- b -->      <ul id="subComponents" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
-<!-- a -->         <li class="side-nav-menu-item active">
-                  <a class="side-nav-menu-link ass2" href="${path}/stBasicReg">기초 등록</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/stInvenStatus">재고 현황</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/stStatus">판매 현황</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/stRelStatus">출고 현황</a>
-               </li>
-            </ul>
-         </li>
-         <!-- 판매 관리 종료 -->
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subComponents">
+					<span class="side-nav-menu-icon d-flex mr-3">
+						<i class="gd-money"></i>
+					</span>
+					<span class="side-nav-fadeout-on-closed media-body asss">판매 관리</span>
+					<span class="side-nav-control-icon d-flex">
+						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+					</span>
+					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+				</a>
+				
+				<!-- 중메뉴 : 판매 관리 -->
+<!-- b -->		<ul id="subComponents" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->			<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/stBasicReg">기초 등록</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/stInvenStatus">재고 현황</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/stStatus">판매 현황</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/stRelStatus">출고 현황</a>
+					</li>
+				</ul>
+			</li>
+			<!-- 판매 관리 종료 -->
          
          <!-- 대메뉴 : 구매 관리 -->
-<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
-            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#asd">
-               <span class="side-nav-menu-icon d-flex mr-3">
-                  <i class="gd-shopping-cart"></i>
-               </span> <span class="side-nav-fadeout-on-closed media-body asss">구매 관리</span>
-               <span class="side-nav-control-icon d-flex">
-                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-               </span>
-               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-            </a>
-            
-            <!-- 중메뉴 : 구매 관리 -->
-<!-- b -->      <ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->         <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/pdBasicReg">기초 등록</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/pdInvenStatus">재고 현황</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/pdStatus">구매 현황</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/pdRecStatus">입고 현황</a>
-               </li>
-            </ul> 
-         </li>
-         <!-- 구매 관리 종료 -->
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
+				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#asd">
+					<span class="side-nav-menu-icon d-flex mr-3">
+						<i class="gd-shopping-cart"></i>
+					</span> <span class="side-nav-fadeout-on-closed media-body asss">구매 관리</span>
+					<span class="side-nav-control-icon d-flex">
+						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+					</span>
+					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+				</a>
+				
+				<!-- 중메뉴 : 구매 관리 -->
+<!-- b -->		<ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
+<!-- a -->			<li class="side-nav-menu-item active">
+						<a class="side-nav-menu-link ass2" href="${path}/pdBasicReg">기초 등록</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/pdInvenStatus">재고 현황</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/pdStatus">구매 현황</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/pdRecStatus">입고 현황</a>
+					</li>
+				</ul> 
+			</li>
+			<!-- 구매 관리 종료 -->
          
          <!-- 대메뉴 : 물류 관리 -->
 <!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
@@ -295,40 +312,46 @@ function productadd() {
                                                     <input class="form-control form-control-icon-text" placeholder="거래처코드?거래처번호?/거래처명 검색" type="text" >
                                                </div>
                                                <br>
+                                               <div class="col">
+																	<div class="collapse multi-collapse"
+																		id="multiCollapseExample1">
+																		<div id="content"></div>
+																	</div>
+																</div>
                                           <!-- 검색창 끝 --> 
                                              <table class="table bg-white text-dark center ass2 table-striped">
                                                 <thead class="text-white table-bordered tap">
                                                    <tr class="text-white table-bordered tap">
-                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처번호</th>
-                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">분류</th>
-                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">대표자명</th>
-                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">사업자번호</th>
-                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처코드</th>
+                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">구분</th>
+                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">대표자명</th>
+                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">사업자번호</th>
+                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                   <%-- <c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
-                                                   <tr>
-                                                      <td class="py-3">${list.order_code}</td>
-                                                      <td class="py-3">${list.product.pro_name}</td>
-                                                      <td class="py-3">${list.company.comp_name}</td>
-                                                      <td class="py-3">${list.stockInOrder.in_count}</td>
-                                                      <td class="py-3">${list.warehouse.ware_name}</td>
-                                                      <td class="py-3">${list.employee.emp_name}</td>
-                                                      <td class="py-3">
-                                                            <fmt:formatDate value="${list.order_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                      </td>
-                                                      <td class="py-3">
-                                                            <fmt:formatDate value="${list.order_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                      </td>
-                                                      <td class="py-2 middle">
-                                                          <button type="button" class="btn btn-outline-info" style='float: middle;'>
-                                                               승인
-                                                          </button>
-                                                     </td>
-                                                   </tr>
-                                                   </c:forEach> --%>
+                                                   <c:forEach var="company" items="${company}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+                                                            <tr>
+                                                               <td class="py-3 ">
+																	<a class="btn" data-toggle="collapse" style="font-size:22px"
+																	   href="#multiCollapseExample1" role="button"
+																	   aria-expanded="false"
+																	   aria-controls="multiCollapseExample1"
+																	   onclick="content(${company.com_code})"> ${company.com_code}</a>
+																</td>
+                                                               <c:if test = "${company.com_type == 10}">
+                                                               <td class="py-3">판매 거래처</td>
+                                                               </c:if>
+                                                               <c:if test = "${company.com_type == 20}">
+                                                               <td class="py-3">구매 거래처</td>
+                                                               </c:if>
+                                                               <td class="py-3">${company.com_name}</td>
+                                                               <td class="py-3">${company.com_ceo_name}</td>
+                                                               <td class="py-3">${company.com_reg_no}</td>
+                                                               <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${company.com_reg_date}" /></td>
+                                                            </tr>
+                                                            </c:forEach>
                                                 </tbody>
                                              </table>
                                        </div>
@@ -365,7 +388,7 @@ function productadd() {
                                              <!-- 테스트 -->
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead>
-                                             <tr class="text-white table-bordered tap">
+                                              <tr class="text-white table-bordered tap">
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>
@@ -377,57 +400,26 @@ function productadd() {
                                           
                                           <tbody>
                                           
+                                             <c:forEach var="product" items="${product}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                              <tr class="tablein">
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                             </tr>
-                                             <tr class="tablein">
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                                <td class="py-3 middle">테스트</td>
-                                             </tr>
-                                             
-                                             <c:forEach var="list" items="${Plist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
-                                             <tr class="tablein">
-                                                <td class="py-3 middle" style="vertical-align:middle">${list.pro_code}</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">
-                                                      <!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
-                                                      <a class="btn" data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample2" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample2" >${list.pro_name}</a>
-                                                </td>
-                                                <td class="py-3 middle" style="vertical-align: middle">${list.pro_price}</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">${list.pro_price}</td>
-                                                   <c:if test = "${list.pro_state == 1}">
-                                                      <td class="py-3 middle" style="vertical-align: middle">사용중</td>
-                                                   </c:if>
-                                                   <c:if test = "${list.pro_state != 1}">
-                                                      <td class="py-3 middle" style="vertical-align: middle">비사용</td>
-                                                   </c:if>
+                                                <td class="py-3 middle" style="vertical-align:middle">${product.pro_code}</td>
+                                                <td class="py-3 middle" style="vertical-align:middle">${product.pro_name}</td>
+                                                <td class="py-3 middle" style="vertical-align: middle">${product.pro_pur_price}</td>
+                                                <td class="py-3 middle" style="vertical-align: middle">${product.pro_sal_price}</td>
+	                                                <c:if test = "${product.pro_state == 1}">
+	                                                	<td class="py-3 middle" style="vertical-align: middle">사용중</td>
+	                                                </c:if>
+	                                                <c:if test = "${product.pro_state != 1}">
+	                                                	<td class="py-3 middle" style="vertical-align: middle">비사용</td>
+	                                                </c:if>
                                                 <td class="py-3 middle" style="vertical-align: middle">
-                                                   <fmt:formatDate value="${list.pro_reg_date}" pattern="yyyy-MM-dd" />
+                                                	<fmt:formatDate value="${product.pro_reg_date}" pattern="yyyy-MM-dd" />
                                                 </td>
                                              </tr>
                                              </c:forEach>
                                           </tbody>
                                        </table>
-                                       <!-- 리액트화면으로 등록
-                                       <table class="table">
-                                             <tr>
-                                                <td align="center">
-                                                   <button type="button" type="submit" class="btn btn-outline-info">등록</button>
-                                                </td>
-                                             </tr>
-                              </table>
-                              리액트화면으로 등록-->
+                                       
                                           </div>
                                        <div class="tab-pane fade" id="tabs2-tab6" role="tabpanel">
                                          <div id="product"></div>

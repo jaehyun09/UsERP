@@ -6,7 +6,26 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
+<script type="text/javascript">
 
+function select(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&accs_code=" + code;
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'select12',
+      success: function(data){ 
+         $('#select12').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+
+</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -253,109 +272,43 @@
                                             <br>
                                     <!-- 검색창 끝 --> 
                                     <div class="row">
-                                       <div class="col">
-                                          <div class="collapse multi-collapse"
-                                             id="multiCollapseExample1">
-                                                 <table class="table table-bordered bg-white text-dark ass2 th20">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="2" style="width:20%;">일단전표번호로</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">NO.</th>
-                                                         <td>10</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">사업자등록번호</th>
-                                                         <td>1234567890</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">대표자명</th>
-                                                         <td>최유성</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">업태</th>
-                                                         <td style="width:20%;">업태1</td>
-
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">회사규모</th>
-                                                         <td>n명</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">구분</th>
-                                                         <td>구매</td>
-                                                      </tr>
-                                                      
-                                                   </tbody>
-                                                </table><br><br><br>
-                                          </div>
-                                       </div>
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead class="text-white table-bordered tap">
                                              <tr class="text-white table-bordered tap">
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+                                                
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
+                                                
+                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">수량</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">담당자명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">출고일</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">상태</th>
                                              </tr>
                                           </thead>
                                           <tbody>
+                                           <c:forEach var="purel" items="${purel}">
                                              <tr>
-                                                <td class="py-3 middle" style="vertical-align:middle">10</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">최유성</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거
-                                                      <a data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1" >거래처명1</a>-->
-                                                     <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">거래처명3</a>    
-                                                </td>
-                                                <td class="py-3 middle" style="vertical-align:middle">최유성</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">업태1</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">사용중</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">2017-08-21</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">김민수</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">2017-09-03</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${purel.logs_code}</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${purel.product.pro_name}</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px; ">${purel.logs_quantity}</td>                                                
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${purel.employee.emp_name}</td>
+                                                
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;"><fmt:formatDate value="${purel.logs_reg_date}" pattern="yyyy-MM-dd" /></td>
+                                                <c:if test="${purel.logs_update_date == null }">
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">입고 대기중</td>
+                                                </c:if>
+                                                <c:if test="${purel.logs_update_date != null }">
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${purel.logs_update_date}</td>
+                                                </c:if>
+                                                <c:if test="${purel.logs_state == 0 }">
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">대기중</td>
+                                                </c:if>
+                                                <c:if test="${purel.logs_state == 1 }">
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">승인완료</td>
+                                                </c:if>
                                              </tr>
-                                             <c:forEach var="list" items="${SIlist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
-                                              <tr>
-                                                 <td class="py-3">${list.order_code}</td>
-                                                 <td class="py-3">${list.product.pro_name}</td>
-                                                 <td class="py-3">${list.company.comp_name}</td>
-                                                 <td class="py-3">${list.stockInOrder.in_count}</td>
-                                                 <td class="py-3">${list.warehouse.ware_name}</td>
-                                                 <td class="py-3">${list.employee.emp_name}</td>
-                                                 <td class="py-3">
-                                                 		<fmt:formatDate value="${list.order_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                 </td>
-                                                 <c:if test = "${list.order_state == 11}">
-                                                 <td class="py-3">
-                                                 	-
-                                                 </td>
-                                                 </c:if>
-                                                 <c:if test = "${list.order_state == 12}">
-                                                	 <td class="py-3">
-                                                 		<fmt:formatDate value="${list.order_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                 	 </td>
-                                                 </c:if>
-                                                 <c:if test = "${list.order_state == 11}">
-                                                 	<td class="py-3 middle">입고대기</td>
-                                                 </c:if>
-                                                 <c:if test = "${list.order_state == 12}">
-                                                 	<td class="py-3 middle">입고완료</td>
-                                                 </c:if>
-                                              </tr>
-                                              </c:forEach>
+                                             </c:forEach>
                                           </tbody>
                                        </table>
                                     </div>
@@ -363,59 +316,36 @@
 
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    <form name="form1" method="post">
-                                    <div class="row">
-                                       	<table class="table bg-white text-dark center ass2" style="text-align:center">
-	                                         <tr class="text-white table-bordered tap">
-	                                            <th colspan="3">입고 전표</th>
-	                                         </tr>
-	                                         <tr>
-												<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-													colspan="2" style="vertical-align: middle;">상품명</td>
-												<td style="vertical-align: middle;">
-	                                               <select class="form-control" id="exampleFormControlSelect1">
-	                                                 <option>상품01</option>
-	                                                 <option>상품02</option>
-	                                                 <option>상품03</option>
-	                                               </select>
-												</td>
-											</tr>
-											<tr>
-												<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>구매 거래처</b></td>
-												<td style="vertical-align: middle;">
-	                                               <select class="form-control" id="exampleFormControlSelect1">
-	                                                 <option>거래처01</option>
-	                                                 <option>거래처02</option>
-	                                                 <option>거래처03</option>
-	                                               </select>
-												</td>
-											</tr>
-											<tr>
-		                                    	<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>구매 단가</b></td>
-		                                       <td style="vertical-align: middle;">
-		                                       		<input class = "form-control" type = "number" name="" min = "1000" step = "100" value = "1000">
-		                                       </td>
-		                                    </tr>
-											<tr>
-												<td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-												<td align="center" colspan = "2">
-													<input class="form-control"  type="number" name="in_count" min="1" step="1" value="1">
-												</td>
-											</tr>
-											<tr>
-												<td class="py-3" colspan="2" style="vertical-align: middle;"><b>담당자</b></td>
-												<td align="center" colspan = "2">
-													<input class="form-control" name="emp_code" type="text"><!-- value="세션아이디 값으로 들어가는 값" readonly -->
-												</td>
-											</tr>
-										</tbody>
-									</table>
-                                    </div>
-                                    <div align="center">
-										<button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                     	<button type="reset" class="btn btn-outline-info">재입력</button>
-									</div>
-									</form>
+                                    <div id="select12"></div>
+                                    	
+                                    	<table class="table  bg-white text-dark center ass2 table-striped">
+                                          <thead class="text-white table-bordered tap">
+                                             <tr>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">판매번호</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <c:forEach var="vo" items="${acco}">
+                                             <tr>
+                                                <td class="py-3" style="font-size:22px">
+                                                	<a onclick="select(${vo.accs_code})">
+                                                		${vo.accs_code}
+                                                	</a>
+                                                </td>
+                                                <td class="py-3" style="font-size:22px">${vo.company.com_name}</td>
+                                                <td class="py-3" style="font-size:22px">${vo.product.pro_name}</td>
+                                                <td class="py-3" style="font-size:22px">${vo.accs_quantity}개</td>
+                                                <td class="py-3" style="font-size:22px">${vo.employee.emp_name}</td>
+                                                <td class="py-3" style="font-size:22px"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
+                                             </tr>
+                                             </c:forEach>
+                                          </tbody>
+                                       </table>
                                  </div>
                               </div>
                               <!-- End Tab Content -->

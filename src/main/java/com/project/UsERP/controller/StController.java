@@ -33,6 +33,17 @@ public class StController {
 
 		return "st/stBasicReg";
 	}
+	
+	// 강재현 - 기초 등록 - 판매 거래처 목록 상세페이지
+	@RequestMapping("/comContent")
+	public String comContent(HttpServletRequest req, Model model) {
+		logger.info("url: 판매 내역 상세페이지");
+
+		// 상세페이지
+		stService.comContent(req, model);
+
+		return "st/ajax/comPage";
+	}
 
 	// 강재현 - 기초 등록 - 리액트 거래처 등록
 	@RequestMapping("/clientadd")

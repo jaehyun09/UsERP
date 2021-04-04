@@ -33,6 +33,14 @@ public class StServiceImpl implements StService {
 		model.addAttribute("product", product);
 	}
 
+	// 강재현 - 기초등록 - 판매 거래처 목록 상세페이지
+	public void comContent(HttpServletRequest req, Model model) {
+		int com_code = Integer.parseInt(req.getParameter("com_code"));
+		CompanyVO company = stdao.companyDetail(com_code);
+
+		model.addAttribute("company", company);
+	}
+
 	// 강재현 : 재고현황
 
 	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
@@ -83,7 +91,7 @@ public class StServiceImpl implements StService {
 		model.addAttribute("strel", strel);
 	}
 
-	// 강재현 - 판매 현황 - 회계 전표 내역
+	// 강재현 - 판매 현황 - 판매 전표 등록 - 회계 전표 내역
 	@Override
 	public void stList(HttpServletRequest req, Model model) {
 		List<AccountStatementVO> acco = stdao.stList();

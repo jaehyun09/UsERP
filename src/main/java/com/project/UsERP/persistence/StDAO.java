@@ -11,6 +11,9 @@ public interface StDAO {
 
 	// 강재현 - 기초등록 - 판매 거래처 목록
 	public List<CompanyVO> salesCompanySelect();
+	
+	// 강재현 - 기초등록 - 판매 거래처 목록 상세페이지
+	public CompanyVO companyDetail(int com_code);
 
 	// 강재현 - 기초등록 - 상품 목록
 	public List<ProductVO> salesProductSelect();

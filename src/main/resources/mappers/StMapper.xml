@@ -73,6 +73,11 @@
 		SELECT * FROM company WHERE com_type = 10 
 	</select>
 	
+	<!-- 강재현 - 기초등록 - 판매 거래처 목록 상세페이지 -->
+	<select id = "companyDetail" resultType = "com.project.UsERP.vo.CompanyVO">
+		SELECT * FROM company WHERE com_type = 10 AND com_code=#{com_code}
+	</select>
+	
 	<!-- 강재현 - 기초등록 - 상품 목록 -->
 	<select id = "salesProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
 		SELECT * FROM product
@@ -120,12 +125,13 @@
    
    <!-- 강재현 - 판매 현황 - 회계 전표 내역 -->
    <select id = "stList" resultMap = "SalesMap">
-        SELECT a.accs_code, c.com_name, p.pro_name, a.accs_price, p.pro_pur_price, a.accs_quantity, a.accs_sum, e.emp_name, a.accs_content, a.accs_reg_date
+        SELECT a.accs_code, c.com_name, p.pro_name, a.accs_price, p.pro_pur_price, a.accs_quantity, a.accs_sum, e.emp_name, a.accs_content, a.accs_reg_date,a.accs_type
        	FROM account_statement a, company c, product p, employee e
       	WHERE a.emp_code = e.emp_code
         AND a.com_code = c.com_code
         AND a.pro_code = p.pro_code
         AND a.accs_state=1
+        AND a.accs_type IN (1,2)
         ORDER BY accs_code DESC
    </select>
    

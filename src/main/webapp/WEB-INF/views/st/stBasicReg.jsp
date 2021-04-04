@@ -37,6 +37,23 @@ function productadd() {
    });
 }
 
+function content4(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&com_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'comContent',
+      success: function(data){ 
+         $('#content').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
 </script> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -295,6 +312,12 @@ function productadd() {
 	                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
 	                                            </div>
 	                                            <br>
+	                                            <div class="col">
+																	<div class="collapse multi-collapse"
+																		id="multiCollapseExample1">
+																		<div id="content"></div>
+																	</div>
+																</div>
 		                                    <!-- 검색창 끝 --> 
                                              <table class="table bg-white text-dark center ass2 table-striped">
                                                          <thead class="text-white table-bordered tap">
@@ -310,7 +333,13 @@ function productadd() {
                                                          <tbody>
                                                          	<c:forEach var="company" items="${company}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                                             <tr>
-                                                               <td class="py-3">${company.com_code}</td>
+                                                               <td class="py-3 ">
+																	<a class="btn" data-toggle="collapse" style="font-size:22px"
+																	   href="#multiCollapseExample1" role="button"
+																	   aria-expanded="false"
+																	   aria-controls="multiCollapseExample1"
+																	   onclick="content4(${company.com_code})"> ${company.com_code}</a>
+																</td>
                                                                <c:if test = "${company.com_type == 10}">
                                                                <td class="py-3">판매 거래처</td>
                                                                </c:if>

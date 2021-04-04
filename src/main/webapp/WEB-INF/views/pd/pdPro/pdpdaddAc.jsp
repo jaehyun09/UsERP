@@ -28,7 +28,7 @@
 <c:if test="${insertCnt1 == 1}">
 	<script type="text/javascript">
 		alert("등록 되었습니다.");
-		window.location='${path}/stRelStatus';
+		window.location='${path}/pdRecStatus';
 	</script>
 </c:if>
 </body>

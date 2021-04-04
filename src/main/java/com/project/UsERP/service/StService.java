@@ -8,6 +8,9 @@ public interface StService {
 
 	// 강재현 - 기초등록 - 판매 거래처 목록 & 상품 목록
 	public void salesBasicReg(HttpServletRequest req, Model model);
+	
+	// 강재현 - 기초등록 - 판매 거래처 목록 상세페이지
+	public void comContent(HttpServletRequest req, Model model);
 
 	// 강재현 : 재고현황
 
