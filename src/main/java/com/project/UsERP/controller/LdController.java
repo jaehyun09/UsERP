@@ -85,6 +85,16 @@ public class LdController {
 
 		return "ld/ajax/warehouse";
 	}
+	
+	// 김민수 - 창고 정보 수정
+	@RequestMapping("/wareModifyAction")
+	public String wareModifyAction(HttpServletRequest req, Model model) {
+		logger.info("url: 창고 정보 수정");
+
+		ldservice.warehouseModify(req, model);
+		
+		return "ld/ldPro/wareModifyAction";
+	}
 
 	// 전표 관리 - 최유성
 	@RequestMapping("/ldStatementManagement")
@@ -126,6 +136,46 @@ public class LdController {
 		return "ld/stockOutAction";
 	}
 
+	// 전표 관리 - 최유성 - 물류 전표 상세페이지 - 입고 미승인 전표 조회
+	@RequestMapping("/ldStatementManagementContentAjax1")
+	public String ldStatementManagementContentAjax1(HttpServletRequest req, Model model) {
+		logger.info("url: 물류 전표 상세페이지 - 입고 미승인 전표 조회");
+		
+		ldservice.ldStatementManagementContent(req, model);
+		
+		return "ld/ajax/ldStatementManagementContentAjax1";
+	}
+	
+	// 전표 관리 - 최유성 - 물류 전표 상세페이지 - 입고 승인 전표 조회
+	@RequestMapping("/ldStatementManagementContentAjax2")
+	public String ldStatementManagementContentAjax2(HttpServletRequest req, Model model) {
+		logger.info("url: 물류 전표 상세페이지 - 입고 승인 전표 조회");
+		
+		ldservice.ldStatementManagementContent(req, model);
+		
+		return "ld/ajax/ldStatementManagementContentAjax2";
+	}
+	
+	// 전표 관리 - 최유성 - 물류 전표 상세페이지 - 출고 미승인 전표 조회
+	@RequestMapping("/ldStatementManagementContentAjax3")
+	public String ldStatementManagementContentAjax3(HttpServletRequest req, Model model) {
+		logger.info("url: 물류 전표 상세페이지 - 출고 미승인 전표 조회");
+		
+		ldservice.ldStatementManagementContent(req, model);
+		
+		return "ld/ajax/ldStatementManagementContentAjax3";
+	}
+	
+	// 전표 관리 - 최유성 - 물류 전표 상세페이지 - 출고 승인 전표 조회
+	@RequestMapping("/ldStatementManagementContentAjax4")
+	public String ldStatementManagementContentAjax4(HttpServletRequest req, Model model) {
+		logger.info("url: 물류 전표 상세페이지 - 출고 승인 전표 조회");
+		
+		ldservice.ldStatementManagementContent(req, model);
+		
+		return "ld/ajax/ldStatementManagementContentAjax4";
+	}
+	
 	// 김민수 - 재고 관리
 	@RequestMapping("/ldInventoryControl")
 	public String ldInventoryControl(HttpServletRequest req, Model model) {

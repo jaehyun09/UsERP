@@ -8,23 +8,17 @@
  
 <body>
 	
-	<c:if test="${insertCnt == 0}">
+	<c:if test="${updateCnt == 0}">
 		<script type="text/javascript">
-			errorAlert(insertadj);
+			errorAlert(wareModifyError);
 		</script>
 	</c:if>
 	
-	<c:if test="${insertCnt != 0 && updateCnt == 0}">
-		<script type="text/javascript">
-			errorAlert(insertadj);
-		</script>
-	</c:if>
-	
-	<c:if test="${insertCnt != 0 && updateCnt != 0}">
+	<c:if test="${updateCnt != 0}">
 		<script type="text/javascript">
 			setTimeout(function() {
-				alert("재고가 조정 되었습니다.");
-				window.location="ldInventoryControl";
+				alert("창고 정보가 수정되었습니다.");
+				window.location="ldBasicReg";
 			}, 1000);
 		</script>
 	</c:if>

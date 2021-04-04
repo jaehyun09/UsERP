@@ -77,6 +77,27 @@ public class LdServiceImpl implements LdService {
 		model.addAttribute("wareDetailVo", vo);
 	}
 
+	// 김민수 - 창고 정보 수정
+	@Override
+	public void warehouseModify(HttpServletRequest req, Model model) {
+		int ware_code = Integer.parseInt(req.getParameter("warecode"));
+		String ware_name = req.getParameter("warename");
+		String ware_location = req.getParameter("warelocation");
+		int ware_state = Integer.parseInt(req.getParameter("useWare"));
+		
+		WarehouseVO vo = new WarehouseVO();
+		vo.setWare_name(ware_name);
+		vo.setWare_location(ware_location);
+		vo.setWare_state(ware_state);
+		vo.setWare_code(ware_code);
+		
+		int updateCnt = 0;
+		updateCnt = lddao.warehouseModify(vo);
+		
+		model.addAttribute("updateCnt", updateCnt);
+		
+	}
+	
 	// 김민수 - 거래처 목록 조회(검색포함)
 	@Override
 	public void companyList(HttpServletRequest req, Model model) {
@@ -579,6 +600,18 @@ public class LdServiceImpl implements LdService {
 		model.addAttribute("SOlist2", SOlist2);
 	}
 
+	// 최유성 - 물류 전표 상세페이지
+	@Override
+	public void ldStatementManagementContent(HttpServletRequest req, Model model) {
+		
+		int logs_code = Integer.parseInt(req.getParameter("logs_code")); //전표번호
+		System.out.println("logs_code:"+logs_code);
+		
+		LogisticsStatementVO vo = lddao.getLdDetail(logs_code); //where절에 전표번호 넣어서 거래처와 상품 정보들 가져오기
+		
+		model.addAttribute("vo", vo);
+	}
+	
 	// 최유성 - 입고 전표 승인 액션
 	@Override
 	public void stockInAction(HttpServletRequest req, Model model) {
@@ -890,6 +923,7 @@ public class LdServiceImpl implements LdService {
 		}
 		model.addAttribute("updateCnt", updateCnt);
 	}
+
 
 }
 

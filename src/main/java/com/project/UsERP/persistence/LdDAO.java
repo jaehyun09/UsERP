@@ -28,6 +28,9 @@ public interface LdDAO {
 	// 최유성 - 입고 승인 액션
 	public int stockInAction(int logs_code);
 	
+	// 최유성 - 물류 전표 상세페이지
+	public LogisticsStatementVO getLdDetail(int logs_code);
+	
 	// 최유성 - 재고 코드가 존재할 시 기존에 있던 재고 수량 가져오기(입출고 둘다 사용가능할 듯)
 	public int retrunStoQuantity(int sto_code);
 	
@@ -81,6 +84,9 @@ public interface LdDAO {
 	
 	// 김민수 - 창고 상세 목록
 	public WarehouseVO warehouseDetail(int ware_code);
+	
+	// 김민수 - 창고 정보 수정
+	public int warehouseModify(WarehouseVO vo);
 	
 	// 김민수 - 검색 거래처 갯수 구하기
 	public int getCompanyCnt(String compKeyword);

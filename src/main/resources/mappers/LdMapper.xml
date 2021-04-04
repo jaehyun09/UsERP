@@ -152,6 +152,14 @@
 		SELECT * FROM warehouse WHERE ware_code = #{ware_code}
 	</select>
 	
+	<!-- 김민수 - 기초등록 - 창고 정보 수정 -->
+	<select id="warehouseModify" parameterType="com.project.UsERP.vo.WarehouseVO" resultType="int">
+		UPDATE warehouse
+		SET ware_name = #{ware_name}, ware_location = #{ware_location} , ware_state = #{ware_state}
+		WHERE ware_code = #{ware_code}
+	</select>
+	
+	
 	<!-- 김민수 -  기초등록 - 거래처 갯수 구하기 -->
 	<select id="getCompanyCnt" resultType="int" parameterType="String">
 		SELECT COUNT(*) AS selectCnt 
@@ -454,6 +462,21 @@
 		   AND logs_type = 6
 		 order by logs_code  
 	</select>  
+	
+	<!-- 최유성 - 물류 전표 상세 페이지(전표 상세 정보) -->
+	<select id = "getLdDetail" resultMap="stockOrder" parameterType="int">
+		SELECT * 
+		  FROM logistics_statement l
+    	  JOIN company c
+		    ON c.com_code = l.com_code
+		  JOIN product p
+		    ON p.pro_code = l.pro_code
+		  JOIN employee e
+		    ON e.emp_code = l.emp_code
+		  JOIN warehouse w
+		    ON w.ware_code = l.ware_code      
+		 WHERE logs_code = #{logs_code}
+	</select> 
 	
 	<!-- 최유성 - 입고 승인 버튼 클릭 상태 업데이트 -->
 	<update id = "stockInAction" parameterType="int">

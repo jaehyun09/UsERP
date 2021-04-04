@@ -15,6 +15,81 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+<script type="text/javascript">
+/* 입고 미승인 상셍페이지 */
+function content1(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'ldStatementManagementContentAjax1',
+      success: function(data){ 
+         $('#content1').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 입고 승인 상셍페이지 */
+function content2(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'ldStatementManagementContentAjax2',
+      success: function(data){ 
+         $('#content2').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 출고 미승인 상셍페이지 */
+function content3(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'ldStatementManagementContentAjax3',
+      success: function(data){ 
+         $('#content3').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 출고 승인 상셍페이지 */
+function content4(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'ldStatementManagementContentAjax4',
+      success: function(data){ 
+         $('#content4').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+</script>    
+    
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -76,10 +151,6 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
-					<li class="side-nav-menu-item">
-                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
-               		</li>
-					
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -261,6 +332,20 @@
                                           <div class="tab-pane fade show active" id="tabs2-tab3"
                                              role="tabpanel">
                                              
+         	<!-- ---------------------------상세페이지-------------------------- -->
+                                            <div class="row">
+	                                          <div class="col">
+	                                          <div class="collapse multi-collapse"
+	                                             id="multiCollapseExample1">
+	                                             
+	                                             <div id="content1"></div>
+	                                                 
+	                                             </div>
+	                                          </div>
+	                                       </div>
+                                             
+               <!-- -------------------------------상세페이지 끝 ------------------------------------------->  
+                                             
                                              <table class="table bg-white text-dark center ass2 table-striped">
 	                                             <thead class="text-white table-bordered tap">
 	                                                <tr class="text-white table-bordered tap">
@@ -277,16 +362,20 @@
 	                                             <tbody>
 	                                             	<c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 	                                                <tr>
-	                                                   <td class="py-3">${list.logs_code}</td>
-	                                                   <td class="py-3">${list.product.pro_name}</td>
-	                                                   <td class="py-3">${list.company.com_name}</td>
-	                                                   <td class="py-3">${list.logs_quantity}</td>
-	                                                   <td class="py-3">${list.warehouse.ware_name}</td>
-	                                                   <td class="py-3">${list.employee.emp_name}</td>
-	                                                   <td class="py-3">
+	                                                   <td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample1" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample1"
+															onclick="content1(${list.logs_code})">${list.logs_code}</a></td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">
 	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
 	                                                   </td>
-	                                                   <td class="py-2 middle">
+	                                                   <td class="py-2 middle" style="vertical-align:middle">
 	                                                   		<form action = "stockInAction" method = "post">
 	                                                   		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	                                                   		<input type = "hidden" name = "logs_code" value = "${list.logs_code}">
@@ -305,13 +394,28 @@
 	                                             </tbody>
 	                                          </table>
                                        </div>
+                                       
                                           <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
+                <!-- ---------------------------상세페이지-------------------------- -->
+                                            <div class="row">
+	                                          <div class="col">
+	                                          <div class="collapse multi-collapse"
+	                                             id="multiCollapseExample2">
+	                                             
+	                                             <div id="content2"></div>
+	                                                 
+	                                          </div>
+	                                          </div>
+	                                       </div>
+                                             
+               <!-- -------------------------------상세페이지 끝 ------------------------------------------->  
+               
                                              <table class="table bg-white text-dark center ass2 table-striped">
                                                 <thead class="text-white table-bordered tap">
-                                                     <tr class="text-white table-bordered tap">
-                                                   		<th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
-                                               			<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                   		<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+                                                	<tr class="text-white table-bordered tap">
+                                               		 <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+                                           			 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+                                               		 <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
@@ -322,13 +426,17 @@
                                                 <tbody>
                                                 	<c:forEach var="list" items="${SIlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 	                                                   <tr>
-	                                                      <td class="py-3">${list.logs_code}</td>
-	                                                      <td class="py-3">${list.product.pro_name}</td>
-	                                                      <td class="py-3">${list.company.com_name}</td>
-	                                                      <td class="py-3">${list.logs_quantity}</td>
-	                                                      <td class="py-3">${list.warehouse.ware_name}</td>
-	                                                      <td class="py-3">${list.employee.emp_name}</td>
-	                                                      <td class="py-3">
+															<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample2" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample2"
+															onclick="content2(${list.logs_code})">${list.logs_code}</a></td>	    
+	                                                      <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
+	                                                      <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
+	                                                      <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+	                                                      <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
+	                                                      <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
+	                                                      <td class="py-3 middle" style="vertical-align:middle">
 	                                                      		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
 	                                                      </td>
 	                                                      <td class="py-3">
@@ -357,6 +465,19 @@
                                        <div id="tabsContent2" class="card-body tab-content p-0">
                                           <div class="tab-pane fade show active" id="tabs2-tab5"
                                              role="tabpanel">
+                                             
+                   <!-- ---------------------------상세페이지-------------------------- -->
+                                            <div class="row">
+	                                          <div class="col">
+	                                          <div class="collapse multi-collapse"
+	                                             id="multiCollapseExample3">
+	                                             <div id="content3"></div>
+	                                          </div>
+	                                          </div>
+	                                       </div>
+                                             
+               <!-- -------------------------------상세페이지 끝 -------------------------------------------> 
+                                             
                                              <table class="table bg-white text-dark center ass2 table-striped">
 	                                             <thead class="text-white table-bordered tap">
 	                                             	<tr class="text-white table-bordered tap">
@@ -377,28 +498,32 @@
 	                                             <tbody>
 	                                                <c:forEach var="list" items="${SOlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 	                                                <tr>
-	                                                   <td class="py-3">${list.logs_code}</td>
-	                                                   <td class="py-3">${list.product.pro_name}</td>
-	                                                   <td class="py-3">${list.company.com_name}</td>
-	                                                   <td class="py-3">${list.logs_quantity}</td>
-	                                                   <td class="py-3">${list.stock.sto_quantity}</td>
-	                                                   <td class="py-3">${list.logs_shortage}</td>
-	                                                   <td class="py-3">${list.warehouse.ware_name}</td>
-	                                                   <td class="py-3">${list.employee.emp_name}</td>
-	                                                   <td class="py-3">
+														<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample3" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample3"
+															onclick="content3(${list.logs_code})">${list.logs_code}</a></td>	                                                    
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.stock.sto_quantity}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_shortage}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">
 	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
 	                                                   </td>
-	                                                   <td class="py-3">
+	                                                   <td class="py-3 middle" style="vertical-align:middle">
 	                                                   		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
 	                                                   </td>
 	                                                   <c:if test="${list.logs_state == 0}">
-	                                                   		<td class="py-3">출고대기</td>
+	                                                   		<td class="py-3 middle" style="vertical-align:middle">출고대기</td>
 	                                                   </c:if>
 	                                                   <c:if test="${list.logs_state == 2}">
-	                                                   		<td class="py-3">출고준비완료</td>
+	                                                   		<td class="py-3 middle" style="vertical-align:middle">출고준비완료</td>
 	                                                   </c:if>
 	                                                   <c:if test="${list.stock.sto_quantity-list.logs_quantity >= 0}"><!-- list.logs_shortage -->
-															<td class="py-2 middle">
+															<td class="py-2 middle" style="vertical-align:middle">
 																<c:if test="${list.logs_state == 0}">
 																	<form action = "stockOutReady" method = "post">
 																		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
@@ -430,7 +555,7 @@
 	                                                      	</td>
 													   </c:if>
 													   <c:if test="${list.stock.sto_quantity-list.logs_quantity < 0}">
-															<td class="py-3">재고부족</td>
+															<td class="py-3 middle" style="vertical-align:middle">재고부족</td>
 													   </c:if>
 	                                                </tr>
 	                                                </c:forEach>
@@ -438,6 +563,22 @@
 	                                          </table>
                                           </div>
                                        <div class="tab-pane fade" id="tabs2-tab6" role="tabpanel">
+                                       
+                   <!-- ---------------------------상세페이지-------------------------- -->
+                                            <div class="row">
+	                                          <div class="col">
+	                                          <div class="collapse multi-collapse"
+	                                             id="multiCollapseExample4">
+	                                             
+	                                             <div id="content4"></div>
+	                                                 
+	                                          </div>
+	                                          </div>
+	                                       </div>
+                                             
+               <!-- -------------------------------상세페이지 끝 -------------------------------------------> 		
+                                       
+                                       
                                           <table class="table bg-white text-dark center ass2 table-striped">
 	                                          <thead class="text-white table-bordered tap">
 	                                          	<tr class="text-white table-bordered tap">
@@ -453,15 +594,19 @@
 	                                          <tbody>
 						                          <c:forEach var="list" items="${SOlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 								                  <tr>
-								                     <td class="py-3">${list.logs_code}</td>
-								                     <td class="py-3">${list.product.pro_name}</td>
-								                     <td class="py-3">${list.company.com_name}</td>
-								                     <td class="py-3">${list.logs_quantity}</td>
-								                     <td class="py-3">${list.employee.emp_name}</td>
-								                     <td class="py-3">
+								                     <td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample4" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample4"
+															onclick="content4(${list.logs_code})">${list.logs_code}</a></td>
+								                     <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
+								                     <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
+								                     <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+								                     <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
+								                     <td class="py-3 middle" style="vertical-align:middle">
 								                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
 								                     </td>
-								                     <td class="py-3">
+								                     <td class="py-3 middle" style="vertical-align:middle">
 								                     		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
 								                     </td>
 						                  		 </tr>

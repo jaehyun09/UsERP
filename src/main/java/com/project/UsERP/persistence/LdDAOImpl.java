@@ -145,6 +145,12 @@ public class LdDAOImpl implements LdDAO{
 		return sqlSession.update("com.project.UsERP.persistence.LdDAO.stockOutAction", logs_code);
 	}
 
+	// 최유성 - 물류 전표 상세페이지
+	@Override
+	public LogisticsStatementVO getLdDetail(int logs_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getLdDetail", logs_code);
+	}
+	
 	// 김민수 - 양품창고 등록
 	@Override
 	public int insertGoodWare(WarehouseVO vo) {
@@ -173,6 +179,12 @@ public class LdDAOImpl implements LdDAO{
 	@Override
 	public WarehouseVO warehouseDetail(int ware_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.warehouseDetail", ware_code);
+	}
+	
+	// 김민수 - 창고 정보 수정
+	@Override
+	public int warehouseModify(WarehouseVO vo) {
+		return sqlSession.update("com.project.UsERP.persistence.LdDAO.warehouseModify", vo);
 	}
 	
 	// 김민수 - 검색 거래처 갯수 구하기
@@ -324,6 +336,7 @@ public class LdDAOImpl implements LdDAO{
 	public List<StockSupplyVO> stockSupplyList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.stockSupplyList", map);
 	}
+
 
 
 	

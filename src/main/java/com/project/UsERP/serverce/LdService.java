@@ -18,6 +18,9 @@ public interface LdService {
 	// 최유성 - 출고 전표 승인 액션
 	public void stockOutAction(HttpServletRequest req, Model model);
 
+	// 최유성 - 물류 전표 상세페이지
+	public void ldStatementManagementContent(HttpServletRequest req, Model model);
+
 	// 김민수 - 창고 등록
 	public void insertWarehouse(HttpServletRequest req, Model model);
 
@@ -27,6 +30,9 @@ public interface LdService {
 	// 김민수 - 창고 상세 목록
 	public void warehouseDetail(HttpServletRequest req, Model model);
 
+	// 김민수 - 창고 정보 수정
+	public void warehouseModify(HttpServletRequest req, Model model);
+	
 	// 김민수 - 거래처 목록 조회(검색포함)
 	public void companyList(HttpServletRequest req, Model model);
 	

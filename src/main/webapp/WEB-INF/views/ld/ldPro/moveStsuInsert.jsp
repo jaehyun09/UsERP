@@ -13,7 +13,7 @@
 			<script type="text/javascript">
 				setTimeout(function() {
 					alert("재고가 이동이 되었습니다.");
-					window.location="logMoveWareInsert";
+					window.location="ldInventoryControl";
 				}, 1000);
 			</script>
 		</c:if>
@@ -28,7 +28,7 @@
 			<script type="text/javascript">
 				setTimeout(function() {
 					alert("재고가 이동이 되었습니다.");
-					window.location="logMoveWareInsert";
+					window.location="ldInventoryControl";
 				}, 1000);
 			</script>
 		</c:if>
