@@ -133,7 +133,7 @@ public class LdDAOImpl implements LdDAO{
 	
 	// 최유성 - 출고대기창고 관련 해당 상품에 관한 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기
 	@Override
-	public int outStockCodeSelect(int pro_code) {
+	public StockVO outStockCodeSelect(int pro_code) {
 		
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.outStockCodeSelect",pro_code);
 	}
@@ -185,6 +185,12 @@ public class LdDAOImpl implements LdDAO{
 	@Override
 	public List<CompanyVO> CompanyList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.CompanyList", map);
+	}
+	
+	// 김민수 - 거래처 상세 페이지
+	@Override
+	public CompanyVO companyDetail(int com_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.companyDetail", com_code);
 	}
 	
 	// 김민수 - 검색 상품 갯수 구하기
@@ -318,6 +324,7 @@ public class LdDAOImpl implements LdDAO{
 	public List<StockSupplyVO> stockSupplyList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.stockSupplyList", map);
 	}
+
 
 	
 }

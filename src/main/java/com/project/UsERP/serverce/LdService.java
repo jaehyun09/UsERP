@@ -30,8 +30,12 @@ public interface LdService {
 	// 김민수 - 거래처 목록 조회(검색포함)
 	public void companyList(HttpServletRequest req, Model model);
 	
+	// 김민수 - 거래처 상세 페이지
+	public void compInfoDetail(HttpServletRequest req, Model model);
+	
 	// 김민수 - 상품 목록 조회(검색포함)
 	public void productList(HttpServletRequest req, Model model);
+	
 	
 	// 김민수 - 재고 현황(검색포함)
 	public void inventoryStatusList(HttpServletRequest req, Model model);

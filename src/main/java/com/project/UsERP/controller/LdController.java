@@ -38,6 +38,16 @@ public class LdController {
 		return "ld/ajax/compSearchList";
 	}
 	
+	// 김민수 - 거래처 상세 페이지
+	@RequestMapping("/logCompanyDetail")
+	public String logCompanyDetail(HttpServletRequest req, Model model) {
+		logger.info("url : 거래처 상세 페이지 ");
+		
+		ldservice.compInfoDetail(req, model);
+		
+		return "ld/ajax/logCompanyDetail";
+	}
+	
 	// 김민수 - 검색 상품 조회
 	@RequestMapping("/proSearchList")
 	public String proSearchList(HttpServletRequest req, Model model) {

@@ -45,7 +45,7 @@ public interface LdDAO {
 	
 	// 최유성 - 입고시 재고수불부 인서트
 	public int stockSupplyInsert(Map<String, Object> map);
-
+	
 	// 최유성 - 출고 준비 완료(2)로 전표상태 변경 / 출고대기창고 관련 재고코드로 변경..
 	public int stockOutReady(Map<String, Object> map);
 	
@@ -62,7 +62,7 @@ public interface LdDAO {
 	public int outReadystockSupplyInsert(Map<String, Object> map);
 	
 	// 최유성 - 출고대기창고 관련 해당 상품에 관한 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기
-	public int outStockCodeSelect(int pro_code);
+	public StockVO outStockCodeSelect(int pro_code);
 	
 	// 최유성 - 출고 승인 액션
 	public int stockOutAction(int logs_code);
@@ -87,6 +87,9 @@ public interface LdDAO {
 	
 	// 김민수 - 검색 거래처 조회
 	public List<CompanyVO> CompanyList(Map<String, Object> map);
+	
+	// 김민수 - 거래처 상세 페이지
+	public CompanyVO companyDetail(int com_code);
 	
 	// 김민수 - 검색 상품 갯수 구하기
 	public int getProductCnt(String proKeyword);

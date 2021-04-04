@@ -160,7 +160,6 @@
 		OR com_name LIKE '%'||#{compKeyword}||'%'
 	</select>
 	
-	
 	<!-- 김민수 - 기초등록 - 거래처 조회 -->
 	<select id="CompanyList" parameterType="java.util.Map" resultType="com.project.UsERP.vo.CompanyVO">
 		<![CDATA[
@@ -176,6 +175,10 @@
 		]]>
 	</select>
 	
+	<!-- 김민수 - 기초등록 - 거래처 상세 페이지 -->
+	<select id="companyDetail" resultType="com.project.UsERP.vo.CompanyVO" parameterType="int">
+		SELECT * FROM company WHERE com_code = #{com_code}
+	</select>
 	
 	<!-- 김민수 - 기초등록 - 상품 갯수 -->
 	<select id="getProductCnt" resultType="int" parameterType="String">
@@ -528,11 +531,11 @@
 	</insert>
 	
 	<!-- 최유성 - 입고 관련 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기 -->
-	<select id = "outStockCodeSelect" resultType="int" parameterType="int">
-		SELECT sto_code
+	<select id = "outStockCodeSelect" resultType="com.project.UsERP.vo.StockVO" parameterType="int">
+		SELECT *
 		  FROM stock
 		 WHERE pro_code=#{pro_code}
-		   AND ware_code = 3001 
+		   AND ware_code = 3001
 	</select> 
 	
 	<!-- 기존.... -->

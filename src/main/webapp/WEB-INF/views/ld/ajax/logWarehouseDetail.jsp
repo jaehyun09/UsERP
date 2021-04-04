@@ -52,14 +52,26 @@
                    <tr>
                       <th class="font-weight-semi-bold border-top-0 py-4 h4">사용상태</th>
                       <td class="py-5">
+                      <c:if test="${wareDetailVo.ware_state == 1}">
                          <div class="form-check form-check-inline">
-						  <input class="form-check-input" type="radio" name="useWare" id="inlineRadio1" value="option1">
+						  <input class="form-check-input" type="radio" name="useWare" id="inlineRadio1" value="option1" checked>
 						  <label class="form-check-label" for="inlineRadio1">사용</label>
 						</div>
 						<div class="form-check form-check-inline">
 						  <input class="form-check-input" type="radio" name="unUseWare" id="inlineRadio2" value="option2">
 						  <label class="form-check-label" for="inlineRadio2">미사용</label>
 						</div>
+                      </c:if>
+                      <c:if test="${wareDetailVo.ware_state == 0}">
+                      <div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="useWare" id="inlineRadio1" value="option1">
+						  <label class="form-check-label" for="inlineRadio1">사용</label>
+						</div>
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="unUseWare" id="inlineRadio2" value="option2" >
+						  <label class="form-check-label" for="inlineRadio2">미사용</label>
+						</div>
+                      </c:if>
                       </td>
                    </tr>
                    

@@ -54,7 +54,7 @@
 		});
 	}); */
 	
-	/* 창고 상세페이지  */
+	/* 창고 상세페이지  
     function waredetail() {
 		var ware_code = $('#ware_code').val();
 		var param = "${_csrf.parameterName}=${_csrf.token}&ware_code=" + ware_code;
@@ -71,7 +71,7 @@
     		}
     		
     	});
-    }
+    } */
 	</script>
 </head>
 
@@ -82,7 +82,7 @@
  <div class="row">
        <div class="col">
           <div class="collapse multi-collapse"
-             id="multiCollapseExample1"> 
+             id="multiCollapseExample9"> 
              <div class="bg-white p-4">
              	<div id="logWarehouseDetail"></div>
              
@@ -109,9 +109,9 @@
                          aria-expanded="false" aria-controls="multiCollapseExample1" onclick="waredetail()">
                          </a> -->
                          <a class="btn" data-toggle="collapse"
-							href="#multiCollapseExample1" role="button"
+							href="#multiCollapseExample9" role="button"
 							aria-expanded="false"
-							aria-controls="multiCollapseExample1"
+							aria-controls="multiCollapseExample9"
 							onclick="content(${houseVo.ware_code})"> ${houseVo.ware_code}</a>
                          </td>
                       <td class="py-3 middle">${houseVo.ware_name}</td>

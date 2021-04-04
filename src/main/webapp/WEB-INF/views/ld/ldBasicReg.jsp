@@ -411,15 +411,14 @@
                                     role="tabpanel" aria-labelledby="pills-html-tab-2">
                                     <div class="px-3">
                                        <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3"
-                                                   role="tablist">
-                                                   <li class="nav-item"><a
-                                                      class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab3"
-                                                      role="tab" aria-selected="true" onclick="logWarehouseList()" data-toggle="tab">창고 목록</a></li>
-                                                   <li class="nav-item ml-4"><a
-                                                      class="nav-link px-2 pb-2 ass2" onclick="warehouseadd()" href="#tabs2-tab4" role="tab"
-                                                      aria-selected="false" data-toggle="tab">창고 등록</a></li>
-                                                 </ul>
-                                    
+                                             role="tablist">
+                                             <li class="nav-item"><a
+                                                class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab3"
+                                                role="tab" aria-selected="true" onclick="logWarehouseList()" data-toggle="tab">창고 목록</a></li>
+                                             <li class="nav-item ml-4"><a
+                                                class="nav-link px-2 pb-2 ass2" onclick="warehouseadd()" href="#tabs2-tab4" role="tab"
+                                                aria-selected="false" data-toggle="tab">창고 등록</a></li>
+                                           </ul>
                                  <div id="tabsContent2" class="card-body tab-content p-0">
                                  <div class="tab-pane fade show active" id="tabs2-tab3"
                                                  role="tabpanel">
