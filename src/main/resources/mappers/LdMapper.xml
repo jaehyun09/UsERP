@@ -127,19 +127,19 @@
 	<!-- 김민수 - 양품창고 등록 -->
 	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_good_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	VALUES (warehouse_good_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 김민수 - 불량품창고 등록 -->
 	<insert id="insertBadWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_bad_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	VALUES (warehouse_bad_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 김민수 - 출고대기창고 등록 -->
 	<insert id="insertWaitWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	VALUES (warehouse_wait_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 김민수 - 기초등록 - 창고 목록 -->

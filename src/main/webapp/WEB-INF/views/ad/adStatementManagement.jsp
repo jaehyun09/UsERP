@@ -562,7 +562,7 @@ function debtContent(code) {
 																									onclick="content2(${vo.ss_code})">${vo.ss_code}</a>
 																						</td>
 																						<td class="py-3" style="vertical-align: middle">${vo.department.dep_name}</td>
-																						<td class="py-3" style="vertical-align: middle">${vo.hrcode.hr_code_name}</td>
+																						<td class="py-3" style="vertical-align: middle">${vo.hrCode.hr_code_name}</td>
 																						<td class="py-3" style="vertical-align: middle">${vo.employee.emp_name}</td>
 																						<td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.ss_total_sal}" /></td>
 																						<td class="py-3" style="vertical-align: middle">
@@ -623,7 +623,7 @@ function debtContent(code) {
 																									onclick="content3(${vo.ss_code})">${vo.ss_code}</a>
 																						</td>
 																						<td class="py-3" style="vertical-align: middle">${vo.department.dep_name}</td>
-																						<td class="py-3" style="vertical-align: middle">${vo.hrcode.hr_code_name}</td>
+																						<td class="py-3" style="vertical-align: middle">${vo.hrCode.hr_code_name}</td>
 																						<td class="py-3" style="vertical-align: middle">${vo.employee.emp_name}</td>
 																						<td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.ss_total_sal}" /></td>
 																						<td class="py-3" style="vertical-align: middle">

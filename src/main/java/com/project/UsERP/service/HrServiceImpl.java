@@ -156,7 +156,7 @@ public class HrServiceImpl implements HrService {
 	// 김은희 - 인사카드 등록
 	@Override
 	public void hrCardInsert(MultipartHttpServletRequest req, Model model) {
-		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images";
+		String uploadPath = "C:\\Dev76\\UsERP\\upload\\";
 		
 		MultipartFile image = req.getFile("emp_photo");
 		String emp_photo = image.getOriginalFilename();

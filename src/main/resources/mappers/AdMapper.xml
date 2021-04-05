@@ -59,7 +59,7 @@
 			<id property="dep_code" column="dep_code" />
 			<result property="dep_name" column="dep_name" />
 		</association>
-		<association property="hrcode"
+		<association property="hrCode"
 			javaType="com.project.UsERP.vo.HrCodeVO">
 			<id property="hr_code" column="hr_code" />
 			<result property="hr_code_name" column="hr_code_name" />

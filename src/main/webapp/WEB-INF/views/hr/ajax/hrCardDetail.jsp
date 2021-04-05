@@ -14,7 +14,7 @@
             <th colspan="3">인사카드</th>
          </tr>
          <tr>
-            <th width="300" rowspan="5" style="vertical-align:middle"><img src="/UsERP/resources/images/${vo.emp_photo}"/></th>
+            <th width="300" rowspan="5" style="vertical-align:middle"><img src="/load/${vo.emp_photo}"/></th>
          </tr>
          <tr>
              <th width="150">사번</th>

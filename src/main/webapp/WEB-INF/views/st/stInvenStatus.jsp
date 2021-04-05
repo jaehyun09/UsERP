@@ -6,55 +6,9 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
-<script src="${project}js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-* 재고현황 검색 JQuery */
-    $(function() {
-       $('#ssKeyword').keyup(function() {
-          var ssKeyword = $('#ssKeyword').val();
-          
-          if(ssKeyword.length == 0) {
-             $('#ldInvenStatus').css("visibility", "visible");
-          } else {
-             $('#ldInvenStatus').css("visibility", "visible");
-             
-             $.ajax({
-                url: 'logInvenStatus?${_csrf.parameterName}=${_csrf.token}',
-                type: 'POST',
-                data: 'ssKeyword=' + ssKeyword,
-                success: function(result) {
-                   $('#ldInvenStatus').html(result);
-                },
-                error: function() {
-                   alert('오류');
-                }
-                
-             });
-          }
-       });
-    });
-   
-   /* 재고현황 AJAX */
-   function logInvenStatus() {
-       $.ajax({
-          // sendRequest(콜백함수명, url, method, params)
-          url: "logInvenStatus?${_csrf.parameterName}=${_csrf.token}&ssKeyword=${ssKeyword}", // 전송 페이지 => 컨트롤러 "basic_next"
-          type: 'GET', // 전송방식('GET', 'POST') - method
-          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-          success: function(result){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-             $('#ldInvenStatus').html(result);
-          },
-          error: function(){
-             alert('오류');
-          }
-       });
-    }
-   
 
-
-</script> 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- Favicon -->
@@ -62,9 +16,54 @@
    <link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    <script src="${project}js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    /* 재고현황 검색 JQuery */
+    $(function() {
+    	$('#ssKeyword').keyup(function() {
+    		var ssKeyword = $('#ssKeyword').val();
+    		
+    		if(ssKeyword.length == 0) {
+    			$('#InvenStatus').css("visibility", "visible");
+    		} else {
+    			$('#InvenStatus').css("visibility", "visible");
+    			
+    			$.ajax({
+    				url: 'stInvenStatusList?${_csrf.parameterName}=${_csrf.token}',
+    				type: 'POST',
+    				data: 'ssKeyword=' + ssKeyword,
+    				success: function(result) {
+    					$('#InvenStatus').html(result);
+    				},
+    				error: function() {
+    					alert('오류');
+    				}
+    				
+    			});
+    		}
+    	});
+    });
+	
+	/* 재고현황 AJAX */
+	function stInvenStatus() {
+    	$.ajax({
+          // sendRequest(콜백함수명, url, method, params)
+          url: "stInvenStatusList?${_csrf.parameterName}=${_csrf.token}&ssKeyword=${ssKeyword}", // 전송 페이지 => 컨트롤러 "basic_next"
+          type: 'GET', // 전송방식('GET', 'POST') - method
+          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+          success: function(result){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+             $('#InvenStatus').html(result);
+          },
+          error: function(){
+             alert('오류');
+          }
+       });
+    }
+	
+    </script>
 </head>
 
-<body class="has-sidebar has-fixed-sidebar-and-header" onload="logInvenStatus()">
+<body class="has-sidebar has-fixed-sidebar-and-header" onload="stInvenStatus()">
 
 <%@ include file = "../common/header.jsp" %> 
 <main class="main">
@@ -247,73 +246,68 @@
 		</ul>
 	</aside>
 	<!-- End Sidebar Nav -->
+
     <div class="content">
-        <div class="py-4 px-3 px-md-4">
-				<div class="card">
-					<div class="card-body">
-					<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">판매 관리</a></li>
-								<li class="breadcrumb-item active" aria-current="page">재고 현황</li>
-							</ol>
-						</nav>
-						<div class="row">
+         <div class="py-4 px-3 px-md-4">
+            <div class="card">
+               <div class="card-body">
+               <nav aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">판매 관리</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">재고 현황</li>
+                     </ol>
+                  </nav>
+                  <div class="row">
 
-							<div class="col-xl-12">
+                     <div class="col-xl-12">
 
-								<div id="example" class="mb-9">
-									<h4 class="h1 text-dark"><b>
-										재고 현황 </b><a class="anchorjs-link" href="#example"
-											aria-label="Anchor" data-anchorjs-icon="#"></a>
-									</h4>
-									<div class="mb-3">
-										<!-- Nav Classic -->
-										<ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
-											id="pills-tab-1" role="tablist">
-											<li class="nav-item border-bottom border-xl-bottom-0  asss bg-light" ><a
-												class="nav-link d-flex align-items-center py-2 px-3 active"
-												id="pills-result-tab-1" data-toggle="pill"
-												href="#pills-result-1" role="tab"
-												aria-controls="pills-result-1" aria-selected="true">재고현황</a></li>
-										</ul>
-										<!-- End Nav Classic -->
-
-										<!-- Tab Content -->
-										<div class="tab-content bg-lighter" id="pills-tabContent-1">
-											<div class="tab-pane fade p-4 show active"
-												id="pills-result-1" role="tabpanel"
-												aria-labelledby="pills-result-tab-1">
-												
-												
-													
-													
-													  <!-- 검색창 시작 -->      
-                                  <div class="input-group">
-                                      <div class="input-group-append">
-                                       <i class="gd-search icon-text icon-text-sm"></i>
-                                     </div>
-                                     <input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" >
-                                   </div>
-                                   <br>
-                                   <!-- 검색창 끝 -->
-                                    <div id="ldInvenStatus"></div>
+                        <div id="example" class="mb-9">
+                           <h4 class="h1 text-dark"><b>재고 현황</b>
+                                    <a class="anchorjs-link" href="#example"
+                                       aria-label="Anchor" data-anchorjs-icon="#"></a>
+                                 </h4>
+                           <div class="mb-3">
+                              <!-- Nav Classic -->
+                              <ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
+                                 id="pills-tab-1" role="tablist">
+                                 <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
+                                    class="nav-link d-flex align-items-center py-2 px-3 active"
+                                    id="pills-html-tab-1" data-toggle="pill"
+                                    href="#pills-html-1" role="tab" onclick="stInvenStatus()" aria-controls="pills-html-1"
+                                    aria-selected="false">재고현황</a></li>
+                              </ul>
+                              <!-- End Nav Classic -->
+                              
+                              <!-- Tab Content -->
+                              <div class="tab-content bg-lighter" id="pills-tabContent-1">
+                                 <div class="tab-pane fade p-4 show active" id="pills-html-1"
+                                    role="tabpanel" aria-labelledby="pills-html-tab-1">
+                                    
+									<!-- 검색창 시작 -->      
+		                         	<div class="input-group">
+			                          	<div class="input-group-append">
+			                              <i class="gd-search icon-text icon-text-sm"></i>
+		                            	</div>
+		                            	<input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" >
+		                          	</div>
+		                          	<br>
+                          			<!-- 검색창 끝 -->
+                                    <div id="InvenStatus"></div>
                                     
                                  </div>
-													
-											</div>
-										</div>
-											<div class="card-footer d-block d-md-flex align-items-center d-print-none">
-                            <!-- <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div> -->
-
-                            <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination"><ul class="pagination justify-content-end font-weight-semi-bold mb-0">				<li class="page-item">				<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous"><i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				</li><li class="page-item d-none d-md-block"><a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a></li><li class="page-item">				<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next"><i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				</li>				</ul></nav>
+                              </div>
+                                    
+                                    
+                                    
+                                 </div>
+                              </div>
+                              <!-- End Tab Content -->
+                           </div>
                         </div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
     
     
 </main>

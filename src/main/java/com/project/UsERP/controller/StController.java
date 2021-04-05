@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.UsERP.service.LdServiceImpl;
+import com.project.UsERP.service.PdServiceImpl;
 import com.project.UsERP.service.StServiceImpl;
 
 // 판매 관리
@@ -24,6 +25,9 @@ public class StController {
 	@Autowired
 	LdServiceImpl ldService;
 
+	@Autowired
+	PdServiceImpl pdService;
+
 	// 강재현 - 기초 등록 - 판매 거래처 목록 & 상품 목록
 	@RequestMapping("/stBasicReg")
 	public String stBasicReg(HttpServletRequest req, Model model) {
@@ -33,7 +37,7 @@ public class StController {
 
 		return "st/stBasicReg";
 	}
-	
+
 	// 강재현 - 기초 등록 - 판매 거래처 목록 상세페이지
 	@RequestMapping("/comContent")
 	public String comContent(HttpServletRequest req, Model model) {
@@ -64,9 +68,19 @@ public class StController {
 	// 강재현 - 재고 현황
 	@RequestMapping("/stInvenStatus")
 	public String stInvenStatus(HttpServletRequest req, Model model) {
-		logger.info("url: 재고 현황");
+		logger.info("url: 회계 보고서");
 
 		return "st/stInvenStatus";
+	}
+		
+	// 김민수 - 재고 현황 검색 조회 AJAX
+	@RequestMapping("/stInvenStatusList")
+	public String stInvenStatusList(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 현황 검색 조회 AJAX");
+			 
+		stService.inventoryStatusList(req, model);
+			
+		return "st/ajax/stInvenStatusList";
 	}
 
 	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
@@ -108,14 +122,13 @@ public class StController {
 	@RequestMapping("/stRelStatus")
 	public String stRelStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 출고 내역");
-		
+
 		// 출고 내역
 		stService.salesRecStatus(req, model);
-		
+
 		// 회계 전표 불러오기
 		stService.stList(req, model);
-		
-		
+
 		// 판매 거래처 목록 & 상품 목록
 		stService.salesBasicReg(req, model);
 		return "st/stRelStatus";
@@ -135,7 +148,7 @@ public class StController {
 	@RequestMapping("/logsstInsert")
 	public String logsstInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 출고 전표 등록");
-		
+
 		// 판매내역
 		stService.insertLogsStatement(req, model);
 

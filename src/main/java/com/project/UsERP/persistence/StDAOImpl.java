@@ -38,7 +38,16 @@ public class StDAOImpl implements StDAO {
 	}
 
 	// 강재현 - 재고현황
-
+	@Override
+	public int getStockCnt(String ssKeyword) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.StDAO.getStockCnt", ssKeyword);
+	}
+		
+	// 김민수 - 검색 재고 현황 조회(페이징)
+	@Override
+	public List<StockVO> StockStatusList(Map<String, Object> map) {
+		return sqlSession.selectList("com.project.UsERP.persistence.StDAO.StockStatusList", map);
+	}
 	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
 	@Override
 	public List<AccountStatementVO> salesList() {

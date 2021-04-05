@@ -21,6 +21,10 @@ public interface StDAO {
 	public List<ProductVO> salesProductSelect();
 
 	// 강재현 - 재고현황
+	public int getStockCnt(String ssKeyword);
+		
+	// 김민수 - 검색 재고 현황 조회(페이징)
+	public List<StockVO> StockStatusList(Map<String, Object> map);
 
 	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
 	public List<AccountStatementVO> salesList();

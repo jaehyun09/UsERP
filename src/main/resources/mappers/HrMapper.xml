@@ -181,12 +181,12 @@
 		   AND emp_code = #{emp_code}
 	</select>
 	
-	<!-- 김은희 - 인사카드 등록 -->
-	<insert id="hrCardInsert" parameterType="com.project.UsERP.vo.EmployeeVO">
-		INSERT INTO employee(emp_photo, emp_code, emp_name, dep_code, hr_code, emp_hire_date, emp_cos
-				, emp_jumin, emp_address, emp_tel, emp_phone, emp_email, emp_port_no, emp_account, emp_bank, emp_pwd, emp_authority, emp_enabled)
-		VALUES (#{emp_photo}, #{emp_code}, #{emp_name}, #{dep_code}, #{hr_code}, TO_DATE(#{emp_hire_date},'YY/MM/DD'), #{emp_cos}, #{emp_jumin}, #{emp_address}, #{emp_tel}, #{emp_phone}, #{emp_email}, #{emp_port_no}, #{emp_account}, #{emp_bank}, #{emp_pwd}, #{emp_authority}, #{emp_enabled})
-	</insert>
+	   <!-- 김은희 - 인사카드 등록 -->
+   <insert id="hrCardInsert" parameterType="java.util.Map">
+      INSERT INTO employee(emp_photo, emp_code, emp_name, dep_code, hr_code, emp_hire_date, emp_cos
+            , emp_jumin, emp_address, emp_tel, emp_phone, emp_email, emp_port_no, emp_account, emp_bank, emp_authority)
+      VALUES (#{vo.emp_photo}, #{vo.emp_code}, #{vo.emp_name}, #{vo.dep_code}, #{vo.hr_code}, TO_DATE(#{emp_hire_date},'YY-MM-DD'), #{vo.emp_cos}, #{vo.emp_jumin}, #{vo.emp_address}, #{vo.emp_tel}, #{vo.emp_phone}, #{vo.emp_email}, #{vo.emp_port_no}, #{vo.emp_account}, #{vo.emp_bank}, #{vo.emp_authority})
+   </insert>
 		
 	<!-- 김은희 - 인사 카드 사번 중복확인  -->
  	<select id="codeCheck" parameterType="int" resultType="int">

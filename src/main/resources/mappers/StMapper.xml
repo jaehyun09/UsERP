@@ -68,6 +68,29 @@
       </association>
    </resultMap>
    
+   <resultMap id="stockVOMap" type="com.project.UsERP.vo.StockVO">
+		<id property="sto_code" column="sto_code" />
+		<result property="sto_quantity" column="sto_quantity" />
+		<result property="sto_reg_date" column="sto_reg_date" />
+		<result property="ware_code" column="ware_code" />
+		<result property="pro_code" column="pro_code" />
+		<association property="warehouse" javaType="com.project.UsERP.vo.WarehouseVO">
+			<id property="ware_code" column="ware_code" />
+			<result property="ware_name" column="ware_name" />
+			<result property="ware_location" column="ware_location" />
+			<result property="ware_state" column="ware_state" />
+		</association>
+		<association property="product" javaType="com.project.UsERP.vo.ProductVO">
+			<id property="pro_code" column="pro_code" />
+			<result property="pro_name" column="pro_name" />
+			<result property="pro_pur_price" column="pro_pur_price" />
+			<result property="pro_sal_price" column="pro_sal_price" />
+			<result property="pro_state" column="pro_state" />
+			<result property="pro_reg_date" column="pro_reg_date" />
+		</association>
+	</resultMap>
+   
+   
 	<!-- 강재현 - 기초등록 - 판매 거래처 목록 -->
 	<select id = "salesCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
 		SELECT * FROM company WHERE com_type = 10 
@@ -84,7 +107,38 @@
 	</select>
 
 	<!-- 강재현 : 재고현황 -->
+	<!-- 김민수 - 재고관리 - 재고 현황 갯수 -->
+	<select id="getStockCnt" resultType="int">
+		SELECT COUNT(*) as cnt
+		FROM stock s,product p, warehouse w
+		WHERE s.pro_code = p.pro_code
+		AND s.ware_code = w.ware_code
+		AND w.ware_state = 1
+		AND p.pro_state = 1
+		AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
+	</select>
 	
+	<!-- 김민수 - 재고관리 - 재고 현황 조회 -->
+	<select id="StockStatusList" resultMap="stockVOMap" parameterType="java.util.Map">
+		<![CDATA[
+			SELECT * 
+			FROM (SELECT sto_code, sto_quantity, sto_reg_date, ware_code, pro_code, ware_name, pro_name, 
+        			pro_pur_price, pro_sal_price, pro_state, rownum rnum
+			    FROM(SELECT s.*, w.ware_name, p.pro_name, p.pro_pur_price, 
+            			p.pro_sal_price, p.pro_state
+			        FROM stock s, warehouse w, product p
+			        WHERE s.ware_code = w.ware_code
+			        AND s.pro_code = p.pro_code
+			        AND w.ware_state = 1
+			        AND p.pro_state = 1
+			        AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
+			        ORDER BY s.pro_code, s.ware_code
+			        )
+				)
+			WHERE rnum >= #{start}
+			AND rnum <= #{end}
+		]]>
+	</select>
 	<!-- 이재홍 - 판매 현황 - 판매 내역 & 승인 내역 -->
    <select id = "salesList" resultMap = "SalesMap">
         SELECT a.accs_code, c.com_name, p.pro_name, a.accs_price, p.pro_sal_price, p.pro_pur_price, a.accs_quantity, a.accs_sum, e.emp_name, a.accs_content, a.accs_reg_date, a.accs_type
@@ -109,7 +163,7 @@
    <!-- 이재홍 - 판매 현황 - 판매 전표 등록 -->
    <insert id="insertSalesStatement" parameterType = "com.project.UsERP.vo.AccountStatementVO">
 		INSERT INTO account_statement(accs_code, accs_type, accs_content, accs_price, accs_quantity, accs_reg_date, accs_update_date, accs_sum, accs_state, emp_code, bank_code, acco_code, pro_code, com_code)
-			VALUES(accs_seq.nextval, #{accs_type}, #{accs_content}, #{accs_price}, #{accs_quantity}, sysdate, null, #{accs_sum}, #{accs_state}, #{emp_code}, null, null, #{pro_code}, #{com_code})
+			VALUES(account_statement_seq.nextval, #{accs_type}, #{accs_content}, #{accs_price}, #{accs_quantity}, sysdate, null, #{accs_sum}, #{accs_state}, #{emp_code}, null, null, #{pro_code}, #{com_code})
 	</insert>
 	
    <!-- 강재현 - 출고현황 - 출고 내역 -->
@@ -160,7 +214,7 @@
 		INSERT INTO logistics_statement(
 			logs_code,logs_type,logs_reg_date,logs_update_date,logs_state,logs_quantity,
 			logs_shortage,com_code,sto_code,pro_code,emp_code,ware_code)
-			VALUES(logs_seq.nextval,#{logs_type},sysdate,null,#{logs_state},#{logs_quantity},
+			VALUES(logistics_statement_seq.nextval,#{logs_type},sysdate,null,#{logs_state},#{logs_quantity},
 			#{logs_shortage},#{com_code},#{sto_code},#{pro_code},#{emp_code},#{ware_code})
 	</insert>
 	

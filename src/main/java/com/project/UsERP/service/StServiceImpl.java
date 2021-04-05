@@ -45,6 +45,64 @@ public class StServiceImpl implements StService {
 	}
 
 	// 강재현 : 재고현황
+		@Override
+		public void inventoryStatusList(HttpServletRequest req, Model model) {
+			String ssKeyword = req.getParameter("ssKeyword");
+			
+			int pageSize = 15;
+			int pageBlock = 3;
+			
+			int cnt = 0;
+			int start = 0;
+			int end = 0;
+			
+			int pageCnt = 0;
+			int startPage = 0;
+			int endPage = 0;
+			
+			String pageNum = "";
+			int currentPage = 0;
+			
+			cnt = stdao.getStockCnt(ssKeyword);
+			
+			pageNum = req.getParameter("pageNum");
+			
+			if(pageNum == null) {
+				pageNum = "1";
+			}
+			
+			currentPage = Integer.parseInt(pageNum);
+			pageCnt = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
+			start = (currentPage - 1) * pageSize + 1;
+			end = start + pageSize - 1;
+			
+			startPage = (currentPage / pageBlock) * pageBlock + 1;
+			if(currentPage % pageBlock == 0 ) startPage -= pageBlock;
+			
+			endPage =  startPage + pageBlock - 1;
+			if(endPage > pageCnt) endPage = pageCnt;
+			
+			model.addAttribute("ssKeyword", ssKeyword);
+			model.addAttribute("cnt", cnt);
+			model.addAttribute("pageNum", pageNum);
+			
+			if(cnt > 0) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("ssKeyword", ssKeyword);
+				map.put("start", start);
+				map.put("end", end);
+				
+				List<StockVO> list = stdao.StockStatusList(map);
+				model.addAttribute("stocklist", list);
+				model.addAttribute("currentPage", currentPage);
+				model.addAttribute("pageCnt", pageCnt);
+				model.addAttribute("pageBlock", pageBlock);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				
+			}
+			
+		}
 
 	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
 	@Override
