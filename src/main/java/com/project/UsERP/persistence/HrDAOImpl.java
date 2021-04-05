@@ -25,7 +25,13 @@ public class HrDAOImpl implements HrDAO {
 	public List<HrCodeGroupVO> hrCgList() {
 		return sqlSession.selectList("com.project.UsERP.persistence.HrDAO.hrCgList");
 	}
-
+	
+	// 김은희 - 인사 코드 그룹 조회 상세페이지
+	@Override
+	public List<HrCodeVO> hrRegDetail(int hcg_code) {
+		return sqlSession.selectList("com.project.UsERP.persistence.HrDAO.hrRegDetail", hcg_code);
+	}
+	
 	// 김은희 - 인사 코드 조회
 	@Override
 	public List<HrCodeVO> hrCList() {
@@ -82,8 +88,8 @@ public class HrDAOImpl implements HrDAO {
 	
 	// 김은희 - 인사카드 등록
 	@Override
-	public int hrCardInsert(EmployeeVO vo) {
-		return sqlSession.insert("com.project.UsERP.persistence.HrDAO.hrCardInsert", vo);
+	public int hrCardInsert(Map<String, Object> map) {
+		return sqlSession.insert("com.project.UsERP.persistence.HrDAO.hrCardInsert", map);
 	}
 	
 	// 김은희 - 인사 카드 사번 중복확인
@@ -112,5 +118,5 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrSalaryList();
 	}
-
+	
 }

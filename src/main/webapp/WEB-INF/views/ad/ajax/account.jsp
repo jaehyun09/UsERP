@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 <iframe src="http://localhost:3000/Accountadd" width="1095" height="280">
 
 </iframe>

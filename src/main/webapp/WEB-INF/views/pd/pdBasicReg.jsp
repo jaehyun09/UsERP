@@ -409,7 +409,7 @@ function content(code) {
 	                                                <c:if test = "${product.pro_state == 1}">
 	                                                	<td class="py-3 middle" style="vertical-align: middle">사용중</td>
 	                                                </c:if>
-	                                                <c:if test = "${product.pro_state == 0}">
+	                                                <c:if test = "${product.pro_state != 1}">
 	                                                	<td class="py-3 middle" style="vertical-align: middle">비사용</td>
 	                                                </c:if>
                                                 <td class="py-3 middle" style="vertical-align: middle">

@@ -30,7 +30,17 @@ public class HrController {
 		hrService.depList(req, model);
 		return "hr/hrBasicReg";
 	}
-
+	
+	// 김은희 - 인사 코드 그룹 조회 상세페이지
+	@RequestMapping("/hrRegDetail")
+	public String hrRegDetail(HttpServletRequest req, Model model) {
+		logger.info("url: 인사 코드 그룹 조회 상세페이지");
+		
+		hrService.hrRegDetail(req, model);
+		
+		return "hr/ajax/hrRegDetail";
+	}
+	
 	// 김은희 - 기초 등록 - 리액트 인사코드 그룹 등록
 	@RequestMapping("/hrCodeGroupAdd")
 	public String codegroupadd(HttpServletRequest req, Model model) {
@@ -82,6 +92,8 @@ public class HrController {
 	public String hrCard(HttpServletRequest req, Model model) {
 		logger.info("url: 인사 카드");
 		
+		hrService.depList(req, model);
+		hrService.hrCodePosList(req, model);
 		hrService.hrCardList(req, model);
 		hrService.hrLeaveList(req, model);
 		hrService.hrRetireList(req, model);
@@ -89,20 +101,30 @@ public class HrController {
 		return "hr/hrCard";
 	}
 	
+	// 김은희 - 인사 카드 상세페이지 조회
+	@RequestMapping("/hrCardDetail")
+	public String hrCardDetail(HttpServletRequest req, Model model) {
+		logger.info("url: 인사 카드 상세페이지 조회");
+		
+		hrService.hrCardDetail(req, model);
+		
+		return "hr/ajax/hrCardDetail";
+	}
+	
 	// 김은희 - 인사 카드 등록
 	@RequestMapping("/hrCardInsert")
 	public String hrCardInsert(MultipartHttpServletRequest req, Model model) {
 		logger.info("url: 인사 카드 등록");
-  
+		
 		hrService.hrCardInsert(req, model);
   
-		return ":redirect/hrCardInsert";
+		return "hr/hrPro/hrCardPro";
 	}
 	
 	// 김은희 - 인사 카드 사번 중복확인
 	@RequestMapping("/hrConfirmCode")
 	public String hrConfirmCode(HttpServletRequest req, Model model) {
-		logger.info("url: 인사 카드/사번 중복확인");
+		logger.info("url: 인사 카드 사번 중복확인");
 		
 		hrService.hrConfirmCode(req, model);
 		

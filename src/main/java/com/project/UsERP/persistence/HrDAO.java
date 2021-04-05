@@ -1,11 +1,10 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.ui.Model;
 
 import com.project.UsERP.vo.AppointHistoryVO;
 import com.project.UsERP.vo.DepartmentVO;
@@ -18,6 +17,9 @@ public interface HrDAO {
 
 	// 김은희 - 인사 코드 그룹 조회
 	public List<HrCodeGroupVO> hrCgList();
+	
+	// 김은희 - 인사 코드 그룹 조회 상세페이지
+	public List<HrCodeVO> hrRegDetail(int hcg_code);
 
 	// 김은희 - 인사 코드 조회
 	public List<HrCodeVO> hrCList();
@@ -44,7 +46,7 @@ public interface HrDAO {
 	public EmployeeVO hrCardDetail(int emp_code);
 	
 	// 김은희 - 인사카드 등록
-	public int hrCardInsert(EmployeeVO vo);
+	public int hrCardInsert(Map<String, Object> map);
 	
 	// 김은희 - 인사 카드 사번 중복확인
 	public int codeCheck(int emp_code);

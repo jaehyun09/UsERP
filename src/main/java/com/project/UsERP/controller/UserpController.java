@@ -24,7 +24,6 @@ public class UserpController {
 	@Autowired
 	WaService waService;
 	
-	// 강재현 - 메인 화면
 	@RequestMapping("/")
 	public String main(HttpServletRequest req, Model model) {
 		logger.info("url: 메인 화면");
@@ -32,22 +31,15 @@ public class UserpController {
 		return "main";
 	}
 	
+	// 강재현 - 메인 화면
 	@RequestMapping("/main")
 	public String main2(HttpServletRequest req, Model model) {
 		logger.info("url: 메인 화면");
 		
-		return "login";
+		return "main";
 	}
 	
-	// 강재현 - 로그인 화면
-	@RequestMapping("/login")
-	public String login(HttpServletRequest req, Model model) {
-		logger.info("url: 로그인 화면");
-
-		return "login";
-	}
-	
-	// 강재현 - 로그아웃 
+	// 강재현 - 로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		logger.info("url: 로그아웃");

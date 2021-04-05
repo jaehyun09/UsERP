@@ -39,7 +39,8 @@ public class WaController {
 	@RequestMapping("/waApplication")
 	public String waApplication(HttpServletRequest req, Model model) {
 		logger.info("url: 근태 신청 페이지");
-	
+		
+		waService.waCodeTyList(req, model);
 		hrService.depList(req, model);
 		
 		return "wa/waApplication";
@@ -59,8 +60,81 @@ public class WaController {
 	@RequestMapping("/waAppInsert")
 	public String waAppInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 근태 신청");
+		
+		waService.waAppInsert(req, model);
 	
-		return "wa/waApplication";
+		return "wa/waPro/waAppInsertPro";
 	}
+	
+	// 김은희 - 출근 버튼 클릭
+	@RequestMapping("/waStartClick")
+	public String waStartClick(HttpServletRequest req, Model model) {
+		logger.info("url: 출근 버튼 클릭");
+		
+		waService.waStartClick(req, model);
+		
+		return "wa/waPro/waStartClickPro";
+	}
+	
+	// 김은희 - 퇴근 버튼 클릭
+	@RequestMapping("/waEndClick")
+	public String waEndClick(HttpServletRequest req, Model model) {
+		logger.info("url: 퇴근 버튼 클릭");
+		
+		return "wa/waPro/waEndActionPro";
+	}
+	
+	// 김은희 - 퇴근 처리
+	@RequestMapping("/waEndAction")
+	public String waEndAction(HttpServletRequest req, Model model) {
+		logger.info("url: 퇴근 처리");
+		
+		waService.waEndAction(req, model);
+		
+		return "redirect:/waSelect";
+	}
+	
+	// 김은희 - 근태 신청 승인 페이지
+    @RequestMapping("/waConfirm")
+    public String waConfirm(HttpServletRequest req, Model model) {
+       logger.info("url: 근태 신청 승인 페이지");
+       
+	   waService.waAppSelect(req, model);
+	   
+       return "wa/waConfirm";
+    }
+	
+	// 김은희 - 근태 신청 승인 상세페이지
+    @RequestMapping("/waDetail")
+    public String waDetail(HttpServletRequest req, Model model) {
+       logger.info("url: 근태 신청 승인 상세페이지");
+       
+       waService.waDetail(req, model);
+       waService.waAppSelect(req, model);
+       
+       return "wa/ajax/waDetail";
+    }
+    
+    // 김은희 - 근태 신청 승인 처리
+    @RequestMapping("/waConfirmAction")
+    public String waConfirmAction(HttpServletRequest req, Model model) {
+       logger.info("url: 근태 신청 승인 처리");
+       
+       waService.waConfirmAction(req, model);
+       
+       return "wa/waPro/waConfirmActionPro";
+    }
+    
+    // 김은희 - 근태 신청 철회 처리
+    @RequestMapping("/waDeleteAction")
+    public String waDeleteAction(HttpServletRequest req, Model model) {
+       logger.info("url: 근태 신청 철회 처리");
+       
+       waService.waDeleteAction(req, model);
+       
+       return "wa/waPro/waDeleteActionPro";
+    }
+    
+    
 	
 }

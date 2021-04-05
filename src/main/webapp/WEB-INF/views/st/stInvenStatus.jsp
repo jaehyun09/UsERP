@@ -6,9 +6,55 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
+<script src="${project}js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+* 재고현황 검색 JQuery */
+    $(function() {
+       $('#ssKeyword').keyup(function() {
+          var ssKeyword = $('#ssKeyword').val();
+          
+          if(ssKeyword.length == 0) {
+             $('#ldInvenStatus').css("visibility", "visible");
+          } else {
+             $('#ldInvenStatus').css("visibility", "visible");
+             
+             $.ajax({
+                url: 'logInvenStatus?${_csrf.parameterName}=${_csrf.token}',
+                type: 'POST',
+                data: 'ssKeyword=' + ssKeyword,
+                success: function(result) {
+                   $('#ldInvenStatus').html(result);
+                },
+                error: function() {
+                   alert('오류');
+                }
+                
+             });
+          }
+       });
+    });
+   
+   /* 재고현황 AJAX */
+   function logInvenStatus() {
+       $.ajax({
+          // sendRequest(콜백함수명, url, method, params)
+          url: "logInvenStatus?${_csrf.parameterName}=${_csrf.token}&ssKeyword=${ssKeyword}", // 전송 페이지 => 컨트롤러 "basic_next"
+          type: 'GET', // 전송방식('GET', 'POST') - method
+          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+          success: function(result){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+             $('#ldInvenStatus').html(result);
+          },
+          error: function(){
+             alert('오류');
+          }
+       });
+    }
+   
 
+
+</script> 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- Favicon -->
@@ -18,7 +64,7 @@
     <link rel="stylesheet" href="${project}css/graindashboard.css">
 </head>
 
-<body class="has-sidebar has-fixed-sidebar-and-header">
+<body class="has-sidebar has-fixed-sidebar-and-header" onload="logInvenStatus()">
 
 <%@ include file = "../common/header.jsp" %> 
 <main class="main">
@@ -237,137 +283,23 @@
 											<div class="tab-pane fade p-4 show active"
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
-												<table class="table  bg-white text-dark center ass2 table-striped">
 												
-													<!-- 체크박스 시작 -->
-													<div class="form-check form-check-inline">
-													    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-													    <label class="form-check-label" for="inlineCheckbox1">양품창고</label>
-													</div>
-													<div class="form-check form-check-inline">
-													    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-													    <label class="form-check-label" for="inlineCheckbox2">불량품창고</label>
-												    </div>
-												    <div class="form-check form-check-inline">
-													    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-													    <label class="form-check-label" for="inlineCheckbox1">출고대기창고</label>
-													</div>
-													<!-- 체크박스 끝 -->
+												
 													
-													<!-- 검색창 시작 -->      
-				                                	<div class="input-group">
-					                                	<div class="input-group-append">
-					                                    <i class="gd-search icon-text icon-text-sm"></i>
-					                                  	</div>
-					                                  	<input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" >
-					                                </div>
-					                                <br>
-					                                <!-- 검색창 끝 -->
-													<thead>
-														<tr class="text-white table-bordered tap">
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">창고이름</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">구매단가</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">판매단가</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">재고수량</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일자</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td class="py-3">100001</td>
-															<td class="py-3">상품명1</td>
-															<td class="py-3">양품창고</td>
-															<td class="py-3">10000</td>
-															<td class="py-3">15000</td>
-															<td class="py-3">100</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-02</td>
-														</tr>
-														<tr>
-															<td class="py-3">100001</td>
-															<td class="py-3">상품명1</td>
-															<td class="py-3">불량품창고</td>
-															<td class="py-3">10000</td>
-															<td class="py-3">15000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-02</td>
-														</tr>
-														<tr>
-															<td class="py-3">100001</td>
-															<td class="py-3">상품명1</td>
-															<td class="py-3">출고대기창고</td>
-															<td class="py-3">10000</td>
-															<td class="py-3">15000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-02</td>
-														</tr>
-														<tr>
-															<td class="py-3">100002</td>
-															<td class="py-3">상품명2</td>
-															<td class="py-3">양품창고</td>
-															<td class="py-3">9000</td>
-															<td class="py-3">15000</td>
-															<td class="py-3">100</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-15</td>
-														</tr>
-														<tr>
-															<td class="py-3">100002</td>
-															<td class="py-3">상품명2</td>
-															<td class="py-3">불량품창고</td>
-															<td class="py-3">9000</td>
-															<td class="py-3">13000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-15</td>
-														</tr>
-														<tr>
-															<td class="py-3">100002</td>
-															<td class="py-3">상품명2</td>
-															<td class="py-3">출고대기창고</td>
-															<td class="py-3">9000</td>
-															<td class="py-3">13000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-15</td>
-														</tr>
-														<tr>
-															<td class="py-3">100003</td>
-															<td class="py-3">상품명3</td>
-															<td class="py-3">양품창고</td>
-															<td class="py-3">22000</td>
-															<td class="py-3">30000</td>
-															<td class="py-3">100</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-21</td>
-														</tr>
-														<tr>
-															<td class="py-3">100003</td>
-															<td class="py-3">상품명3</td>
-															<td class="py-3">불량품창고</td>
-															<td class="py-3">22000</td>
-															<td class="py-3">30000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-21</td>
-														</tr>
-														<tr>
-															<td class="py-3">100003</td>
-															<td class="py-3">상품명3</td>
-															<td class="py-3">출고대기창고</td>
-															<td class="py-3">22000</td>
-															<td class="py-3">30000</td>
-															<td class="py-3">0</td>
-															<td class="py-3">사용중</td>
-															<td class="py-3">2017-09-21</td>
-														</tr>
-													</tbody>
-												</table>
+													
+													  <!-- 검색창 시작 -->      
+                                  <div class="input-group">
+                                      <div class="input-group-append">
+                                       <i class="gd-search icon-text icon-text-sm"></i>
+                                     </div>
+                                     <input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" >
+                                   </div>
+                                   <br>
+                                   <!-- 검색창 끝 -->
+                                    <div id="ldInvenStatus"></div>
+                                    
+                                 </div>
+													
 											</div>
 										</div>
 											<div class="card-footer d-block d-md-flex align-items-center d-print-none">
@@ -382,7 +314,6 @@
 					</div>
 				</div>
 			</div>
-      </div>
     
     
 </main>

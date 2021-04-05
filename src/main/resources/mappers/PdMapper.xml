@@ -67,6 +67,29 @@
       </association>
    </resultMap>
    
+   <!-- 김민수 - 재고VO resultMap -->
+	<resultMap id="stockVOMap" type="com.project.UsERP.vo.StockVO">
+		<id property="sto_code" column="sto_code" />
+		<result property="sto_quantity" column="sto_quantity" />
+		<result property="sto_reg_date" column="sto_reg_date" />
+		<result property="ware_code" column="ware_code" />
+		<result property="pro_code" column="pro_code" />
+		<association property="warehouse" javaType="com.project.UsERP.vo.WarehouseVO">
+			<id property="ware_code" column="ware_code" />
+			<result property="ware_name" column="ware_name" />
+			<result property="ware_location" column="ware_location" />
+			<result property="ware_state" column="ware_state" />
+		</association>
+		<association property="product" javaType="com.project.UsERP.vo.ProductVO">
+			<id property="pro_code" column="pro_code" />
+			<result property="pro_name" column="pro_name" />
+			<result property="pro_pur_price" column="pro_pur_price" />
+			<result property="pro_sal_price" column="pro_sal_price" />
+			<result property="pro_state" column="pro_state" />
+			<result property="pro_reg_date" column="pro_reg_date" />
+		</association>
+	</resultMap>
+   
    <!--  최유성 - 기초등록 - 구매 거래처 목록 -->
    <select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
       select * from company WHERE com_type = 20 
@@ -81,6 +104,39 @@
    <select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
       select * from product
    </select>
+   
+   <!-- 김민수 - 재고관리 - 재고 현황 갯수 -->
+	<select id="getStockCnt" resultType="int">
+		SELECT COUNT(*) as cnt
+		FROM stock s,product p, warehouse w
+		WHERE s.pro_code = p.pro_code
+		AND s.ware_code = w.ware_code
+		AND w.ware_state = 1
+		AND p.pro_state = 1
+		AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
+	</select>
+	
+	<!-- 김민수 - 재고관리 - 재고 현황 조회 -->
+	<select id="StockStatusList" resultMap="stockVOMap" parameterType="java.util.Map">
+		<![CDATA[
+			SELECT * 
+			FROM (SELECT sto_code, sto_quantity, sto_reg_date, ware_code, pro_code, ware_name, pro_name, 
+        			pro_pur_price, pro_sal_price, pro_state, rownum rnum
+			    FROM(SELECT s.*, w.ware_name, p.pro_name, p.pro_pur_price, 
+            			p.pro_sal_price, p.pro_state
+			        FROM stock s, warehouse w, product p
+			        WHERE s.ware_code = w.ware_code
+			        AND s.pro_code = p.pro_code
+			        AND w.ware_state = 1
+			        AND p.pro_state = 1
+			        AND p.pro_name LIKE '%'||#{ssKeyword}||'%'
+			        ORDER BY s.pro_code, s.ware_code
+			        )
+				)
+			WHERE rnum >= #{start}
+			AND rnum <= #{end}
+		]]>
+	</select>
    
    <!-- 이재홍 - 구매 현황 - 구매 내역 & 승인 내역 -->
    <select id = "buyList" resultMap = "BuyMap">
@@ -151,7 +207,7 @@
 			null,#{com_code},null,#{pro_code},#{emp_code},null)
 	</insert>
 	
-	<!--   최유성 - 입고 현황 - 입고 전표 등록시 회계전표 상태코드 변화-->
+	<!-- 최유성 - 입고 현황 - 입고 전표 등록시 회계전표 상태코드 변화-->
 	<update id="pdupdatestatement" parameterType="com.project.UsERP.vo.AccountStatementVO">
 		UPDATE account_statement SET accs_state=#{accs_state} WHERE accs_code = #{accs_code}
 	</update>

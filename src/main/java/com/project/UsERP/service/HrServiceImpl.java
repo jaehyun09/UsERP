@@ -34,7 +34,6 @@ public class HrServiceImpl implements HrService {
 		
 		model.addAttribute("list", list);
 	}
-
 	
 	// 김은희 - 인사 코드 조회
 	@Override 
@@ -166,16 +165,14 @@ public class HrServiceImpl implements HrService {
 		String emp_name = req.getParameter("emp_name");
 		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
 		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
-		// Date emp_hire_date = req.getParameter("emp_hire_date");
 		String emp_hire_date = req.getParameter("emp_hire_date");
-		System.out.println("emp_hire_date : " + emp_hire_date);
 		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
 		String emp_jumin = req.getParameter("emp_jumin");
 		String emp_address = req.getParameter("emp_address");
 		String emp_tel = req.getParameter("emp_tel");
 		String emp_phone = req.getParameter("emp_phone");
 		String emp_email = req.getParameter("emp_email");
-		int emp_port_no = Integer.parseInt(req.getParameter("emp_port_no"));
+		String emp_port_no = req.getParameter("emp_port_no");
 		String emp_account = req.getParameter("emp_account");
 		String emp_bank = req.getParameter("emp_bank");
 		String emp_authority = req.getParameter("emp_authority");
@@ -183,16 +180,13 @@ public class HrServiceImpl implements HrService {
 		try {
 			// null값과 공백 방지
 			if(image.getOriginalFilename() == null || image.getOriginalFilename().trim().equals("")) {
-				emp_photo = "-";
+				emp_photo = "avatar.jpg";
 			}
 		
 			image.transferTo(new File(uploadPath + image));
 			
 			EmployeeVO vo = new EmployeeVO();
 			
-			// vo.setEmp_enabled(emp_enabled);
-			// vo.setEmp_pwd(emp_pwd);
-			// vo.setEmp_hire_date(emp_hire_date);
 			vo.setHr_code(hr_code);
 			vo.setEmp_code(emp_code);
 			vo.setEmp_name(emp_name);	
@@ -203,12 +197,18 @@ public class HrServiceImpl implements HrService {
 			vo.setEmp_tel(emp_tel);
 			vo.setEmp_phone(emp_phone);
 			vo.setEmp_email(emp_email);
+			vo.setEmp_port_no(emp_port_no);
 			vo.setEmp_bank(emp_bank);
 			vo.setEmp_account(emp_account);
 			vo.setDep_code(dep_code);
 			vo.setEmp_authority(emp_authority);
 			
-			int insertCnt = hrDao.hrCardInsert(vo);
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("vo",vo);
+			map.put("emp_hire_date",emp_hire_date);
+			
+			int insertCnt = hrDao.hrCardInsert(map);
 			
 			model.addAttribute("insertCnt", insertCnt);
 				
@@ -243,7 +243,18 @@ public class HrServiceImpl implements HrService {
 		
 		model.addAttribute("list8", list8);
 	}
-
+	
+	// 김은희 - 인사 코드 그룹 조회 상세페이지
+	@Override
+	public void hrRegDetail(HttpServletRequest req, Model model) {
+		int hcg_code = Integer.parseInt(req.getParameter("hcg_code"));
+		
+		List<HrCodeVO> list10 = hrDao.hrRegDetail(hcg_code);
+				
+		model.addAttribute("list10", list10);
+		
+	}
+	
 	// 조명재 - 급여 내역
 	@Override
 	public void hrSalaryList(HttpServletRequest req, Model model) {
@@ -251,5 +262,5 @@ public class HrServiceImpl implements HrService {
 		
 		model.addAttribute("list9", list9);
 	}
-	
+
 }

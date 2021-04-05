@@ -6,6 +6,21 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
+    
+    <script type="text/javascript">
+    
+    // 김은희 - 출근 버튼 클릭시
+	    function confirmLogin() {
+			var id = '<%=(String) session.getAttribute("mem_id")%>';
+		
+			if( id == "null") {
+				alert ("로그인 후 다시 시도하세요.");
+			} else {
+				location.href='${path}/waStartClick';
+			}
+			
+		}
+    </script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,6 +31,10 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+    <!-- Script -->
+    <script src="${spath}hr.js"></script>
+    
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -76,6 +95,9 @@
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
 					</li>
 				</ul>
 			</li>
@@ -248,8 +270,8 @@
 												aria-labelledby="pills-result-tab-1">
 										 <form>
 											  <div align="right">
-			                                       <button  type="submit" class="btn btn-outline-info">출근</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			                                       <button  type="submit" class="btn btn-outline-info">퇴근</button>
+			                                       <button type="button" onclick="confirmLogin()" class="btn btn-outline-info">출근</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                                       <button type="button" onclick="location.href='${path}/waEndClick'" class="btn btn-outline-info">퇴근</button>
 		                                      </div>
 										  </form>
 										  <br>		
@@ -265,25 +287,25 @@
 											<table class="table table-striped bg-white text-dark center ass2">
 											    <thead class="text-white table-bordered tap">
 											      <tr>
+											      	<th class="font-weight-semi-bold border-top-0 py-3 con2">일자</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사번</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">출근시간</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">퇴근시간</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">야근시간</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">특근시간</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">일자</th>
 											      </tr>
 											    </thead>
 											    <tbody style="vertical-align: middle">
 											    <c:forEach var="vo" items="${list}">
 											      <tr>
+											      	<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.cm_date}"/></td>
 											      	<td class="py-3">${vo.employee.emp_code}</td>
 											      	<td class="py-3">${vo.employee.emp_name}</td>
 													<td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_start}"/></td>
 											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_end}"/></td>
 											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_night_time}"/></td>
 											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_over_time}"/></td>
-													<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.cm_date}"/></td>
 											      </tr>
 											      </c:forEach>
 											    </tbody>
@@ -306,12 +328,12 @@
 											<table class="table table-striped bg-white text-dark center ass2">
 											    <thead class="text-white table-bordered tap">
 											      <tr>
+											      	<th class="font-weight-semi-bold border-top-0 py-3 con2">신청일</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사번</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">근태 유형</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사유</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">신청일</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">시작일</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">종료일</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">처리상태</th>
@@ -320,20 +342,20 @@
 											    <tbody>
 											     <c:forEach var="vo" items="${list2}">
 											      <tr>
+											      	<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_ap_date}"/></td>
 											      	<td class="py-3">${vo.employee.emp_code}</td>
 											      	<td class="py-3">${vo.employee.emp_name}</td>
 													<td class="py-3">${vo.department.dep_name}</td>
-													<td class="py-3">연차(수정)</td>
+													<td class="py-3">${vo.hrCode.hr_code_name}</td>
 													<td class="py-3">${vo.wr_va_reason}</td>
-													<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_ap_date}"/></td>
 											        <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_va_start}"/></td>
 											        <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_va_end}"/></td>
-											        <c:if test="${vo.wr_state == 1}">
+											       <c:if test="${vo.wr_state == 1}">
 			                                       	 <td class="py-3">완료</td>
-			                                       	</c:if>
+			                                       </c:if>
 			                                       	<c:if test="${vo.wr_state == 0}">
 			                                       	 <td class="py-3">미완료</td>
-			                                       	</c:if>
+			                                       </c:if>
 											      </tr>
 											      </c:forEach>
 											    </tbody>

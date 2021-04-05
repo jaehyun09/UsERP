@@ -163,6 +163,14 @@
 		 ORDER BY emp_code
 	</select>
 	
+	<!-- 김은희 - 인사 코드 그룹 조회 상세페이지 -->
+	<select id="hrRegDetail" resultMap="hrCodeMap">
+		SELECT g.hcg_code, h.hr_code, h.hr_code_name, h.hr_state, g.hcg_name
+		  FROM hr_code h , hr_code_group g
+		 WHERE h.hcg_code = g.hcg_code
+		   AND g.hcg_code = #{hcg_code}
+	</select>
+	
 	<!-- 김은희 - 인사카드 상세페이지 조회 -->
 	<select id="hrCardDetail" resultMap="hrCardMap">
 		SELECT e.emp_code, e.emp_name, d.dep_name, c.hr_code_name, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,

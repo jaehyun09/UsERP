@@ -7,6 +7,27 @@
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
 
+<script type="text/javascript">
+
+function hrCardDetail(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'hrCardDetail',
+      success: function(data){ 
+         $('#hrCardDetail').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+</script>
+	
+	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -222,7 +243,7 @@
 
                         <div id="example" class="mb-9">
                            <h4 class="h1 text-dark"><b>
-                              인사 카드 </b><a class="anchorjs-link" href="#example"
+                              	인사 카드 </b><a class="anchorjs-link" href="#example"
                                  aria-label="Anchor" data-anchorjs-icon="#"></a>
                            </h4>
                            <div class="mb-3">
@@ -270,72 +291,14 @@
                                 </div>
                                 <br>
                                 <!-- 검색창 끝 -->   
+                                
+                                
+                                
                                  <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample1">
-                                                <table class="table table-bordered bg-white text-dark ass2 center ">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="3">인사카드</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="300" rowspan="5" style="vertical-align:middle">사진</th>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">사번</th>
-                                                         <td>10000</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">사원명</th>
-                                                          <td>유재석</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">부서명</th>
-                                                         <td>인사부</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">직급</th>
-                                                         <td>대리</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">입사일</th>
-                                                         <td colspan="3">2021-03-30</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">근속연수</th>
-                                                         <td colspan="3">7.2</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">주민등록번호</th>
-                                                         <td colspan="3">990812-1234567</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">주소</th>
-                                                         <td colspan="3">서울시 금천구 디지털로 78 가산테라타워</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">전화번호</th>
-                                                         <td colspan="3">041-551-0000</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">휴대전화</th>
-                                                         <td colspan="3">010-1234-5678</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">이메일</th>
-                                                         <td colspan="3">hi863@naver.com</td> 
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">여권번호</th>
-                                                         <td colspan="3">1111-2222-3333-4444</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">급여 계좌</th>
-                                                         <td colspan="3">농협   356-1021-0564-33</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table><br><br><br>
+                                                <div id="hrCardDetail"></div>
                                           </div>
                                        </div>
                                     <table class="table table-striped bg-white text-dark center ass2">
@@ -351,17 +314,15 @@
                                        <tbody>
                                         <c:forEach var="vo" items="${list5}">
                                           <tr>
-                                             <td class="py-3 middle">${vo.emp_code}</td>
+                                             <td class="py-3 middle"><a class="text-dark con2" data-toggle="collapse"
+																		href="#multiCollapseExample1" role="button"
+																		aria-expanded="false"
+																		aria-controls="multiCollapseExample1"
+																		onclick="hrCardDetail(${vo.emp_code})">${vo.emp_code}</a>
+											</td>
                                              <td class="py-3 middle">${vo.department.dep_name}</td>
                                              <td class="py-3 middle">${vo.hrCode.hr_code_name}</td>
-                                             <td class="py-3 middle">
-                                                   <p>
-                                                      <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">${vo.emp_name}</a>
-                                                   </p>
-                                                </td>
+                                             <td class="py-3 middle">${vo.emp_name}</td>
                                              <td class="py-3 middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.emp_hire_date}"/></td>
                                           </tr>
                                           </c:forEach>
@@ -444,7 +405,7 @@
                         </tr>
                         <tr>
                            <th style="vertical-align:middle"> * 주민등록번호 </th>
-                           <td><input type="text" class="form-control" name="emp_jumin"></td>
+                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력"></td>
                         </tr>
                         <tr>                                    
                             <th style="vertical-align:middle">* 주소</th>
@@ -471,11 +432,13 @@
                               <td><div class="form-group">
                                       <select name="emp_bank" class="form-control" id="exampleFormControlSelect1">
                                       	<option value="0">은행 선택</option>
-                                        <option value="nonghyup">농협</option>
-                                        <option value="shinhan">신한</option>
-                                        <option value="kukmin">국민</option>
-                                        <option value="wooori">우리</option>
-                                        <option value="hyundai">현대</option>
+                                        <option value="농협">농협</option>
+                                        <option value="신한">신한</option>
+                                        <option value="기업">기업</option>
+                                        <option value="하나">하나</option>
+                                        <option value="국민">국민</option>
+                                        <option value="우리">우리</option>
+                                        <option value="카카오뱅크">카카오뱅크</option>
                                       </select>
                                     </div>
                               </td>

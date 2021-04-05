@@ -2,11 +2,6 @@
 
 // 김은희 - 인사카드 등록 체크
 function CardCheck() {
-	if(!document.hrCardform.emp_photo.value) {
-		alert("사진을 입력하세요.");
-		document.hrCardform.emp_photo.focus();
-		return false;
-	}
 	
 	if(!document.hrCardform.emp_code.value) {
 		alert("사번을 입력하세요.");
@@ -59,6 +54,7 @@ function CardCheck() {
 
 // 김은희 - 인사카드 중복확인 버튼 클릭
 function confirmCode() {
+	
 	if(!document.hrCardform.emp_code.value) {
 		alert("사번을 입력하세요.");
 		document.hrCardform.emp_code.focus();
@@ -89,20 +85,19 @@ function setCode(emp_code) {
  
 // 김은희 - 근태 신청 체크
 function waCheck() {
-	
 	if(!document.waForm.emp_code.value) {
 			alert("사번을 입력하세요.");
 			document.waForm.emp_code.focus();
 			return false;
 		}
 		
-	 if(!document.waForm.emp_name.value) {
+	if(!document.waForm.emp_name.value) {
 			alert("사원명을 입력하세요.");
 			document.waForm.emp_name.focus();
 			return false;
 	    }
 	
-	 if(document.waForm.hiddenEmp_code.value == "0") { 
+	if(document.waForm.hiddenEmp_code.value == "0") { 
 		 alert("사번확인을 해주세요.");
 		 document.waForm.dupChk.focus();
 		 return false;
@@ -122,11 +117,12 @@ function confirmEmp_Code() {
 }
 
 
+// 김은희 - 근태 신청 포커스
 function confirmWaFocus() {
 	document.confirmWaform.emp_code.focus();
 }
 
-
+// 김은희 - null값 방지
 function confirmCodeCheck() {
 	if(!document.confirmWaform.emp_code.value) {
 		alert("사번을 입력하세요.");
@@ -135,11 +131,12 @@ function confirmCodeCheck() {
 	}
 }
 
-
+// 김은희 - 중복확인 완료, 값 넘겨주기
 function setName(emp_code, emp_name) {
 	opener.document.waForm.emp_code.value=emp_code; 
 	opener.document.waForm.emp_name.value=emp_name; 
 	opener.document.waForm.hiddenEmp_code.value=1; 
 	self.close();
 }
+
 

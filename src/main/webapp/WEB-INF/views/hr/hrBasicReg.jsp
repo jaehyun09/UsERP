@@ -51,7 +51,23 @@ function departmentAdd() {
    });
 }
 
-</script> 
+ 
+function hrRegDetail(code) {
+	var param = "&${_csrf.parameterName}=${_csrf.token}&hcg_code=" + code;
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'hrRegDetail',
+      success: function(data){ 
+         $('#hrRegDetail').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+</script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -318,37 +334,7 @@ function departmentAdd() {
                                             <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample1">
-                                                <table class="table table-bordered bg-white text-dark ass2">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="4">직급</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>그룹번호</th>
-                                                         <th>인사코드</th>
-                                                         <th>인사코드명</th>
-                                                         <th>사용상태</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>1</td>
-                                                         <td>100</td>
-                                                         <td>관리자</td>
-                                                         <td>사용</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>1</td>
-                                                         <td>200</td>
-                                                         <td>팀장</td>
-                                                         <td>사용</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>1</td>
-                                                         <td>300</td>
-                                                         <td>대리</td>
-                                                         <td>사용</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table><br><br><br>
+                                             <div id="hrRegDetail"></div>
                                           </div>
                                        </div>
                                        
@@ -361,17 +347,15 @@ function departmentAdd() {
                                           </tr>
                                              </thead>
                                        <tbody>
-                                          <c:forEach var="vo" items="${list}">
+                                          <c:forEach var="vo" items="${list}" >
                                           <tr>
-                                             <td class="py-3">${vo.hcg_code}</td>
-                                             <td class="py-3">
-                                             				<p>
-                                                               <a class="btn" data-toggle="collapse"
+                                             <td class="py-3"><a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
                                                                   href="#multiCollapseExample1" role="button"
                                                                   aria-expanded="false"
-                                                                  aria-controls="multiCollapseExample1">${vo.hcg_name}</a>
-                                                            </p>
+                                                                  aria-controls="multiCollapseExample1"
+                                                                  onclick="hrRegDetail(${vo.hcg_code})">${vo.hcg_code}</a>
                                              </td>
+                                             <td class="py-3">${vo.hcg_name}</td>
                                             <c:if test="${vo.hcg_state == 1}">
 	                                       	 <td class="py-3">사용</td>
 	                                       	</c:if>

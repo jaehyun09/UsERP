@@ -326,35 +326,6 @@ function accountlist() {
                                        <div id="bank"></div>
                                  </div>
                                   <!-- 탭2 -->
-                                  
-                                  <!-- 탭3 -->
-                                    <div class="tab-pane fade" id="tabs2-tab3" role="tabpanel">
-                                       <div class="row">
-                                 
-                                       <table class="table table-striped bg-white text-dark center ass2"> 
-                                 <thead>
-                                    <tr class="text-white table-bordered tap">
-                                       <th class="font-weight-semi-bold border-top-0 py-3 con2">그룹번호</th>
-                                       <th class="font-weight-semi-bold border-top-0 py-3 con2">인사코드</th>
-                                       <th class="font-weight-semi-bold border-top-0 py-3 con2">인사코드명</th>
-                                       <th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                    <c:forEach var="vo" items="${list2}">
-                                    <tr>
-                                       <td class="py-3">${vo.perCodeGroup.pcg_code}</td>
-                                       <td class="py-3">${vo.per_code}</td>
-                                       <td class="py-3">${vo.per_code_name}</td>
-                                       <td class="py-3">${vo.per_use_state}</td>
-                                    </tr>
-                                   </c:forEach>
-                                 </tbody>
-                              </table>
-                                    </div>
-                                  </div>
-                                  <!-- 탭3 -->
-                                  
                                   <!-- 탭4 -->
                                     <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
                                        <div id="code"></div>

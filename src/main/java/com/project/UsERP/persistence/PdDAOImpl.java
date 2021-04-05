@@ -1,6 +1,7 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
+import com.project.UsERP.vo.StockVO;
 
 @Repository
 public class PdDAOImpl implements PdDAO {
@@ -36,6 +38,18 @@ public class PdDAOImpl implements PdDAO {
 		return sqlSession.selectList("com.project.UsERP.persistence.PdDAO.purchasingProductSelect");
 	}
 
+	// 김민수 - 검색 재고 현황 갯수 구하기
+	@Override
+	public int getStockCnt(String ssKeyword) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.getStockCnt", ssKeyword);
+	}
+		
+	// 김민수 - 검색 재고 현황 조회(페이징)
+	@Override
+	public List<StockVO> StockStatusList(Map<String, Object> map) {
+		return sqlSession.selectList("com.project.UsERP.persistence.PdDAO.StockStatusList", map);
+	}
+	
 	// 이재홍 - 구매 현황 - 구매 내역 & 승인 내역
 	@Override
 	public List<AccountStatementVO> buyList() {
