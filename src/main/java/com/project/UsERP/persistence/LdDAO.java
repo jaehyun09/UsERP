@@ -142,11 +142,18 @@ public interface LdDAO {
 	// 김민수 - 재고 이동 재고수불부 등록
 	public int stsuMoveInsert(StockSupplyVO stockSupplyVO);
 	
+	
 	// 김민수 - 재고 이동 갯수 구하기
 	public int getMoveWarehouse();
 	
 	// 김민수 - 재고 이동 내역 조회
 	public List<StockSupplyVO> moveWarehouseList(Map<String, Object> map);
+	
+	// 김민수 - 재고 이동 출고전표 상태 변경
+	public int moveSoStateUpdate(int logscode);
+	
+	// 김민수 - 재고 이동 출고내역 재고수불부 등록
+	public int stsuStockOutInsert(StockSupplyVO stockSupplyVO);
 	
 	// 김민수 - 재고 조정 등록
 	public int adjustmentInsert(StockSupplyVO stockSupplyVO);

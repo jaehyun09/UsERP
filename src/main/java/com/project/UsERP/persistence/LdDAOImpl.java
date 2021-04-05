@@ -294,6 +294,7 @@ public class LdDAOImpl implements LdDAO{
 	public int stsuMoveInsert(StockSupplyVO stockSupplyVO) {
 		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stsuMoveInsert", stockSupplyVO);
 	}
+	
 
 	// 김민수 - 재고 이동 갯수 구하기
 	@Override
@@ -307,6 +308,18 @@ public class LdDAOImpl implements LdDAO{
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.moveWarehouseList", map);
 	}
 
+	// 김민수 - 재고 이동 출고전표 상태 변경
+	@Override
+	public int moveSoStateUpdate(int logscode) {
+		return sqlSession.update("com.project.UsERP.persistence.LdDAO.moveSoStateUpdate", logscode);
+	}
+	
+	// 김민수 - 재고 이동 출고내역 재고수불부 등록
+	@Override
+	public int stsuStockOutInsert(StockSupplyVO stockSupplyVO) {
+		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stsuStockOutInsert", stockSupplyVO);
+	}
+	
 	// 김민수 - 재고 조정 등록
 	@Override
 	public int adjustmentInsert(StockSupplyVO stockSupplyVO) {
@@ -336,6 +349,8 @@ public class LdDAOImpl implements LdDAO{
 	public List<StockSupplyVO> stockSupplyList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.stockSupplyList", map);
 	}
+
+
 
 
 

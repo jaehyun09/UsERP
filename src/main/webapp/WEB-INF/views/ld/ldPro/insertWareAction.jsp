@@ -5,7 +5,7 @@
 <%@ include file = "../../setting.jsp" %> 
 <link rel="stylesheet" href="${project}css/graindashboard.css">
 <%@ include file = "../../common/header.jsp" %> 
-<script type="text/javascript" src="${project}js/logisticsScript.js"></script>
+<script type="text/javascript" src="${project}script/logisticsScript.js"></script>
  
 <body>
 	

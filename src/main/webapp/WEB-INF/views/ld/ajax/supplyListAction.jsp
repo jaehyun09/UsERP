@@ -4,7 +4,7 @@
 
 <%@ include file = "../../setting.jsp" %> 
 <link rel="stylesheet" href="${project}css/graindashboard.css">
-<script type="text/javascript" src="${project}js/logisticsScript.js"></script>
+<script type="text/javascript" src="${project}script/logisticsScript.js"></script>
  
 <body>
 	<table class="table table-bordered bg-white text-dark ass2 center th20">

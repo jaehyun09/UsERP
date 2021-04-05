@@ -181,6 +181,8 @@ public class LdController {
 	public String ldInventoryControl(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 관리");
 		
+		ldservice.ldStatementManagement(req, model);
+		
 		return "ld/ldInventoryControl";
 	}
 	
@@ -206,15 +208,26 @@ public class LdController {
 		return "ld/ajax/logMoveWareInsert";
 	}
 	
+	// 김민수 - 재고 이동 상세페이지 AJAX
+	@RequestMapping("/logMovehouseDetail")
+	public String logMovehouseDetail(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 이동 상세페이지");
+		
+		ldservice.ldStatementManagementContent(req, model);
+		
+		return "ld/ajax/logMovehouseDetail";
+	}
+	
 	// 김민수 - 재고 이동 등록
-	@RequestMapping("/moveStsuInsert")
-	public String moveStsuInsert(HttpServletRequest req, Model model) {
+	@RequestMapping("/moveWareSoInsert")
+	public String moveWareSoInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 이동 등록");
 		
-		ldservice.moveWareInsert(req, model);
+		ldservice.moveStockOutUpIn(req, model);
 		
-		return "ld/ldPro/moveStsuInsert";
+		return "ld/ldPro/moveWareSoInsert";
 	}
+	
 	  
 	// 김민수 - 재고 조정 AJAX
 	@RequestMapping("/logInvenAdjustment")
@@ -224,7 +237,6 @@ public class LdController {
 		ldservice.selectWarehouse(req, model);
 		ldservice.selectProduct(req, model);
 		ldservice.adjustmentList(req, model);
-		ldservice.getAdjStock(req, model);
 		
 		return "ld/ajax/logInvenAdjustment";
 	}

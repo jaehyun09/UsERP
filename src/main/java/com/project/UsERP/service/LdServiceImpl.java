@@ -450,6 +450,42 @@ public class LdServiceImpl implements LdService {
 		
 	}
 
+	// 김민수 - 재고 이동 출고 상태변경 / 재고수불부 등록
+	@Override
+	public void moveStockOutUpIn(HttpServletRequest req, Model model) {
+		int logscode = Integer.parseInt(req.getParameter("logscode"));
+		int prod = Integer.parseInt(req.getParameter("prod"));
+		int amount = Integer.parseInt(req.getParameter("amount"));
+		int startwh = Integer.parseInt(req.getParameter("warecode"));
+		String empcode = req.getParameter("empcode");
+		
+		Map<String, Object> quantityMap = new HashMap<String, Object>();
+		quantityMap.put("prod", prod);
+		quantityMap.put("startwh", startwh);
+		
+		String quantity = lddao.getStoQuantity(quantityMap);
+		int stsu_quantity = Integer.parseInt(quantity);
+		
+		int insertCnt = 0;
+		int updateCnt = lddao.moveSoStateUpdate(logscode);
+		if(updateCnt == 1) {
+			
+			StockSupplyVO stockSupplyVO = new StockSupplyVO();
+			stockSupplyVO.setStsu_quantity(stsu_quantity - amount);
+			stockSupplyVO.setStsu_amount(amount);
+			stockSupplyVO.setStsu_arrivewh(lddao.getStartWareName(startwh));
+			stockSupplyVO.setPro_code(prod);
+			stockSupplyVO.setEmp_code(empcode);
+			
+			insertCnt = lddao.stsuMoveInsert(stockSupplyVO);
+			
+		}
+		
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
+	
 	// 김민수 - 재고 조정 재고테이블 수량 가져오기
 	@Override
 	public void getAdjStock(HttpServletRequest req, Model model) {
@@ -922,6 +958,7 @@ public class LdServiceImpl implements LdService {
 		}
 		model.addAttribute("updateCnt", updateCnt);
 	}
+
 
 
 }
