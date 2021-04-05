@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "com.project.UsERP.persistence.AdminDAO">
+	
+	<!-- 강재현 - 중복확인 처리 -->
+	<select id = "idCheck" resultType = "int">
+		SELECT COUNT(*) FROM employee WHERE emp_code = #{strId}
+	</select>
+	
+	<!-- 강재현 - 로그인 처리 -->
+	<select id = "pwdCheck" resultType = "String">
+		SELECT emp_pwd FROM employee WHERE emp_code = #{strId}
+	</select>
+	
+	<!-- 강재현 - 관리자 or 게스트 확인 -->
+	<select id = "gradeCheck" resultType = "String">
+		SELECT emp_authority FROM employee WHERE emp_code = #{emp_code}
+	</select>
+	
+	<!-- 강재현 - 로그인 정보 처리 -->
+	<select id = "readMember" resultType = "com.project.UsERP.vo.EmployeeVO">
+		SELECT * FROM employee WHERE emp_code = #{str_id}
+	</select>
+	
+	<!-- 조명재 - 회원 정보를 반환한다 -->
+	<select id="getUsersInfo" resultType="com.project.UsERP.vo.EmployeeVO">
+		SELECT * FROM employee WHERE emp_code = #{emp_code}
+	</select>
+	
+	<!-- 조명재 - 비밀번호를 생성한다 -->
+	<update id="signinPro" parameterType="String">
+		UPDATE employee SET emp_pwd = #{emp_pwd}, emp_enabled = 1 WHERE emp_code = #{emp_code}
+	</update>
+	
+</mapper>	
