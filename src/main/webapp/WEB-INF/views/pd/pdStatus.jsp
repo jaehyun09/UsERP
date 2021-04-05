@@ -307,7 +307,7 @@ function pdContent(code) {
                                             <c:if test="${vo.accs_type == 3 }">
                                              <tr>
                                                 <td class="py-3" style="vertical-align:middle">
-                                                       <a class="btn" style="font-size:22px" data-toggle="collapse"
+                                                       <a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
                                                           href="#multiCollapseExample1" role="button"
                                                           aria-expanded="false"
                                                           aria-controls="multiCollapseExample1"

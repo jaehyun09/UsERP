@@ -125,6 +125,9 @@ function content4(code) {
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -334,23 +337,22 @@ function content4(code) {
                                                          	<c:forEach var="company" items="${company}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                                             <tr>
                                                                <td class="py-3 ">
-																	<a class="btn" data-toggle="collapse" style="font-size:22px"
+																	<a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 																	   href="#multiCollapseExample1" role="button"
 																	   aria-expanded="false"
 																	   aria-controls="multiCollapseExample1"
 																	   onclick="content4(${company.com_code})"> ${company.com_code}</a>
 																</td>
                                                                <c:if test = "${company.com_type == 10}">
-                                                               <td class="py-3">판매 거래처</td>
+                                                               <td class="py-3" style="vertical-align: middle">판매 거래처</td>
                                                                </c:if>
                                                                <c:if test = "${company.com_type == 20}">
-                                                               <td class="py-3">구매 거래처</td>
+                                                               <td class="py-3" style="vertical-align: middle">구매 거래처</td>
                                                                </c:if>
-                                                               <td class="py-3">${company.com_name}</td>
-                                                               <td class="py-3">${company.com_ceo_name}</td>
-                                                               <td class="py-3">${company.com_reg_no}</td>
-                                                               <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${company.com_reg_date}" /></td>
-                                                               
+                                                               <td class="py-3" style="vertical-align: middle">${company.com_name}</td>
+                                                               <td class="py-3" style="vertical-align: middle">${company.com_ceo_name}</td>
+                                                               <td class="py-3" style="vertical-align: middle">${company.com_reg_no}</td>
+                                                               <td class="py-3" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${company.com_reg_date}" /></td>
                                                             </tr>
                                                             </c:forEach>
                                                          </tbody>
@@ -402,17 +404,17 @@ function content4(code) {
                                           <tbody>
                                           	<c:forEach var="product" items="${product}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                              <tr class="tablein">
-                                                <td class="py-3 middle" style="vertical-align:middle">${product.pro_code}</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">${product.pro_name}</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">${product.pro_pur_price}</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">${product.pro_sal_price}</td>
+                                                <td class="py-3" style="vertical-align:middle">${product.pro_code}</td>
+                                                <td class="py-3" style="vertical-align:middle">${product.pro_name}</td>
+                                                <td class="py-3" style="vertical-align: middle">${product.pro_pur_price}</td>
+                                                <td class="py-3" style="vertical-align: middle">${product.pro_sal_price}</td>
 	                                                <c:if test = "${product.pro_state == 1}">
-	                                                	<td class="py-3 middle" style="vertical-align: middle">사용중</td>
+	                                                	<td class="py-3" style="vertical-align: middle">사용중</td>
 	                                                </c:if>
 	                                                <c:if test = "${product.pro_state != 1}">
-	                                                	<td class="py-3 middle" style="vertical-align: middle">비사용</td>
+	                                                	<td class="py-3" style="vertical-align: middle">비사용</td>
 	                                                </c:if>
-                                                <td class="py-3 middle" style="vertical-align: middle">
+                                                <td class="py-3" style="vertical-align: middle">
                                                 	<fmt:formatDate value="${product.pro_reg_date}" pattern="yyyy-MM-dd" />
                                                 </td>
                                              </tr>
