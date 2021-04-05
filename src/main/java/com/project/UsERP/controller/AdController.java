@@ -20,7 +20,7 @@ public class AdController {
 	@Autowired
 	AdServiceImpl adservice;
 
-	// 이재홍 & 강재현 - 기초 등록
+	// 이재홍 & 강재현 - 기초 등록 
 	@RequestMapping("/adBasicReg")
 	public String adBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록");
