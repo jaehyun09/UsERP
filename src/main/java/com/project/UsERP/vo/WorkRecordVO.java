@@ -6,7 +6,6 @@ import java.util.Date;
 public class WorkRecordVO {
 
 	private int wr_code;			// 근태코드
-	private int wr_type;			// 근태유형
 	private Date wr_ap_date;		// 근태신청일
 	private Date wr_va_start;		// 시작일
 	private Date wr_va_end;			// 종료일
@@ -24,12 +23,6 @@ public class WorkRecordVO {
 	}
 	public void setWr_code(int wr_code) {
 		this.wr_code = wr_code;
-	}
-	public int getWr_type() {
-		return wr_type;
-	}
-	public void setWr_type(int wr_type) {
-		this.wr_type = wr_type;
 	}
 	public Date getWr_ap_date() {
 		return wr_ap_date;

@@ -7,15 +7,39 @@
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
 
+<script type="text/javascript">
+
+function hrCardDetail(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'hrCardDetail',
+      success: function(data){ 
+         $('#hrCardDetail').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+</script>
+	
+	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
      <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
-   <link rel="stylesheet" href="${project}css/board.css">
+    <link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+    <!-- Script -->
+    <script src="${spath}hr.js"></script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -77,6 +101,9 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -219,7 +246,7 @@
 
                         <div id="example" class="mb-9">
                            <h4 class="h1 text-dark"><b>
-                              인사 카드 </b><a class="anchorjs-link" href="#example"
+                              	인사 카드 </b><a class="anchorjs-link" href="#example"
                                  aria-label="Anchor" data-anchorjs-icon="#"></a>
                            </h4>
                            <div class="mb-3">
@@ -267,72 +294,14 @@
                                 </div>
                                 <br>
                                 <!-- 검색창 끝 -->   
+                                
+                                
+                                
                                  <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample1">
-                                                <table class="table table-bordered bg-white text-dark ass2 center ">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="3">인사카드</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="300" rowspan="5" style="vertical-align:middle">사진</th>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">사번</th>
-                                                         <td>001</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">사원명</th>
-                                                          <td>유재석</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">부서명</th>
-                                                         <td>인사부</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">직급</th>
-                                                         <td>대리</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">입사일</th>
-                                                         <td colspan="3">2021-03-30</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">근속연수</th>
-                                                         <td colspan="3">7.2</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">주민등록번호</th>
-                                                         <td colspan="3">990812-1234567</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">주소</th>
-                                                         <td colspan="3">서울시 금천구 디지털로 78 가산테라타워</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">전화번호</th>
-                                                         <td colspan="3">041-551-0000</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">휴대전화</th>
-                                                         <td colspan="3">010-1234-5678</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">이메일</th>
-                                                         <td colspan="3">hi863@naver.com</td> <!-- c:if 써서 null 값 -->
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">여권번호</th>
-                                                         <td colspan="3">1111-2222-3333-4444</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">급여 계좌</th>
-                                                         <td colspan="3">농협   356-1021-0564-33</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table><br><br><br>
+                                                <div id="hrCardDetail"></div>
                                           </div>
                                        </div>
                                     <table class="table table-striped bg-white text-dark center ass2">
@@ -346,20 +315,20 @@
                                           </tr>
                                        </thead>
                                        <tbody>
+                                        <c:forEach var="vo" items="${list5}">
                                           <tr>
-                                             <td class="py-3 middle">001</td>
-                                             <td class="py-3 middle">영업부</td>
-                                             <td class="py-3 middle">대리</td>
-                                             <td class="py-3 middle">
-                                                   <p>
-                                                      <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">유재석</a>
-                                                   </p>
-                                                </td>
-                                             <td class="py-3 middle">2005-11-23</td>
+                                             <td class="py-3 middle"><a class="text-dark con2" data-toggle="collapse"
+																		href="#multiCollapseExample1" role="button"
+																		aria-expanded="false"
+																		aria-controls="multiCollapseExample1"
+																		onclick="hrCardDetail(${vo.emp_code})">${vo.emp_code}</a>
+											</td>
+                                             <td class="py-3 middle">${vo.department.dep_name}</td>
+                                             <td class="py-3 middle">${vo.hrCode.hr_code_name}</td>
+                                             <td class="py-3 middle">${vo.emp_name}</td>
+                                             <td class="py-3 middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.emp_hire_date}"/></td>
                                           </tr>
+                                          </c:forEach>
                                        </tbody>
                                     </table>
                                     <br>
@@ -368,100 +337,125 @@
                         
                          <div class="tab-pane fade p-4" id="pills-html-1" role="tabpanel" aria-labelledby="pills-html-tab-1">
                             
-                         <!-- 인사카드 폼 시작 -->  
-                            
-                          <form action="productInsAction.mgr?${_csrf.parameterName}=${_csrf.token}" method="post" class="container" enctype="multipart/form-data" name="productInsertForm" onsubmit="return productInsCheck()">
+                     <!-- 인사카드 폼 시작 -->  
+                     <form action="hrCardInsert?${_csrf.parameterName}=${_csrf.token}" name="hrCardform" method="post" enctype="multipart/form-data" onsubmit="return CardCheck();">
+                     <input type="hidden" name="hiddenEmp_code" value="0">
                      <table class="table bg-white text-dark center ass2" style="text-align:center">
                         <tr>
-                           <th class="text-white table-bordered tap py-3 con2"colspan="3"> 인사카드 </th>
+                           <th class="text-white table-bordered tap py-3 con2" colspan="3"> 인사카드 </th>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사진</th>
-                           <td><input id="file" type="file" name="image"></td>
+                           <td><input id="file" type="file" name="emp_photo"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사번</th>
-                           <td><input id="text" type="text" class="form-control" name="password" required=""></td>
-                           <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
+                           <td><input type="text" class="form-control" name="emp_code"></td>
+                           <td><input class="btn btn-outline-info" name="dupChk" type="button" value="중복확인" onclick="confirmCode();"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사원명</th>
-                           <td> <input id="text" type="text" class="form-control" name="password" required=""></td>
+                           <td> <input type="text" class="form-control" name="emp_name"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle"> * 부서명 </th>
                            <td>    
                            <div class="form-group">
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>영업부</option>
-                                  <option>인사부</option>
+                                <select name="dep_code" class="form-control" id="exampleFormControlSelect1">
+                                	<option value="0">부서 선택</option>
+                                <c:forEach var="vo" items="${list3}">
+                                   <option value="${vo.dep_code}">${vo.dep_name}</option>
+                                  </c:forEach>
                                 </select>
                               </div>
                             </td>
                         </tr>
                         <tr>
-                           <th style="vertical-align:middle"> * 직급</th>
+                          <th style="vertical-align:middle"> * 직급</th>
                            <td>    
                            <div class="form-group">
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>인턴사원</option>
-                                             <option>팀장</option>
-                                </select>
-                              </div>
-                            </td>
+                               <select name="hr_code" class="form-control" id="exampleFormControlSelect1">
+									<option value="0">직급 선택</option>
+								<c:forEach var="vo" items="${list4}">
+									<option value="${vo.hr_code}">${vo.hr_code_name}</option>
+								</c:forEach>
+								</select>
+                            </div>
+                           </td>
                         </tr>
+                        <tr>
+                           <th style="vertical-align:middle">* 권한</th>
+                           <td><div class="form-group">
+                                   <select name="emp_authority" class="form-control" id="exampleFormControlSelect1">
+                                   	 <option value="0">권한 선택</option>
+                                     <option value="ROLE_ADMIN">관리자</option>
+                                     <option value="ROLE_ST">판매팀</option>
+                                     <option value="ROLE_HR">인사팀</option>
+                                     <option value="ROLE_PD">구매팀</option>
+                                     <option value="ROLE_LD">물류팀</option>
+                                     <option value="ROLE_AD">회계팀</option>
+                                   </select>
+                                </div>
+                             </td>
+                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 입사일</th>
-                           <td><input type="date" class="form-control"></td>
+                           <td><input type="date" name="emp_hire_date" class="form-control"></td>
                         </tr>
                         <tr>                                    
-                                    <th style="vertical-align:middle">근속연수</th>
-                                    <td><input type="text" class="form-control"></td>
-                                </tr>
+                            <th style="vertical-align:middle">근속연수</th>
+                            <td><input type="text" name="emp_cos" class="form-control"></td>
+                        </tr>
                         <tr>
                            <th style="vertical-align:middle"> * 주민등록번호 </th>
-                           <td><input id="text" type="text" class="form-control" name="password" required=""></td>
+                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력"></td>
                         </tr>
                         <tr>                                    
-                                    <th style="vertical-align:middle">* 주소</th>
-                                    <td><input type="text" class="form-control"></td>
-                                 </tr>
-                        <tr>
-                                      <th style="vertical-align:middle">전화번호</th>
-                                      <td><input type="text" class="form-control"></td>
-                                   </tr>
-                                   <tr>
-                                      <th style="vertical-align:middle">* 휴대전화</th>
-                                      <td><input type="tel" class="form-control"></td>
-                                   </tr>
-                                   <tr>                                    
-                                      <th style="vertical-align:middle">* 이메일</th>
-                                      <td><input type="email" class="form-control"></td>
-                                   </tr>
-                                   <tr>
-                                      <th style="vertical-align:middle">여권번호</th>
-                                      <td><input type="text" class="form-control"></td>
-                                   </tr>
-                                   <tr>
-                                      <th style="vertical-align:middle">* 급여계좌</th>
-                                      <td><input type="text" class="form-control"></td>
-                                   </tr>
-                                   <tr>
-                                      <th style="vertical-align:middle">* 은행</th>
-                                      <td><div class="form-group">
-                                              <select class="form-control" id="exampleFormControlSelect1">
-                                                <option>농협</option>
-                                                <option>신한</option>
-                                              </select>
-                                            </div>
-                                      </td>
-                                   </tr>
+                            <th style="vertical-align:middle">* 주소</th>
+                            <td><input type="text" name="emp_address" class="form-control"></td>
+                         </tr>
+                		<tr>
+                              <th style="vertical-align:middle">전화번호</th>
+                              <td><input type="tel" name="emp_tel" class="form-control"></td>
+                           </tr>
+                           <tr>
+                              <th style="vertical-align:middle">* 휴대전화</th>
+                              <td><input type="tel" name="emp_phone" class="form-control"></td>
+                           </tr>
+                           <tr>                                    
+                              <th style="vertical-align:middle">* 이메일</th>
+                              <td><input type="email" name="emp_email" class="form-control"></td>
+                           </tr>
+                           <tr>
+                              <th style="vertical-align:middle">여권번호</th>
+                              <td><input type="text" name="emp_port_no" class="form-control"></td>
+                           </tr>
+                           <tr>
+                              <th style="vertical-align:middle">* 은행</th>
+                              <td><div class="form-group">
+                                      <select name="emp_bank" class="form-control" id="exampleFormControlSelect1">
+                                      	<option value="0">은행 선택</option>
+                                        <option value="농협">농협</option>
+                                        <option value="신한">신한</option>
+                                        <option value="기업">기업</option>
+                                        <option value="하나">하나</option>
+                                        <option value="국민">국민</option>
+                                        <option value="우리">우리</option>
+                                        <option value="카카오뱅크">카카오뱅크</option>
+                                      </select>
+                                    </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <th style="vertical-align:middle">* 급여계좌</th>
+                              <td><input type="text" name="emp_account" class="form-control"></td>
+                           </tr>
                      </table>
                   
                      <div align=center>
-                                  <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                  <button type="reset" class="btn btn-outline-info">재입력</button>
-                            </div>
+                           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                           <button type="reset" class="btn btn-outline-info">재입력</button>
+                     </div>
                   
                   </form>
                 <!-- 인사카드 폼 끝 -->   
@@ -492,27 +486,15 @@
                                           </tr>
                                        </thead>
                                        <tbody>
+                                       	<c:forEach var="vo" items="${list7}">
                                           <tr>
-                                             <td class="py-3">001</td>
-                                             <td class="py-3">영업부</td>
-                                             <td class="py-3">대리</td>
-                                             <td class="py-3">유재석</td>
-                                             <td class="py-3">2005-11-23</td>
+                                             <td class="py-3">${vo.emp_code}</td>
+                                             <td class="py-3">${vo.ap_cur_dep}</td>
+                                             <td class="py-3">${vo.ap_cur_position}</td>
+                                             <td class="py-3">${vo.employee.emp_name}</td>
+                                             <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
                                           </tr>
-                                          <tr>
-                                             <td class="py-3">002</td>
-                                             <td class="py-3">회계부</td>
-                                             <td class="py-3">팀장</td>
-                                             <td class="py-3">강호동</td>
-                                             <td class="py-3">2013-04-15</td>
-                                          </tr>
-                                          <tr>
-                                             <td class="py-3">003</td>
-                                             <td class="py-3">경리부</td>
-                                             <td class="py-3">사원</td>
-                                             <td class="py-3">이상순</td>
-                                             <td class="py-3">2018-09-24</td>
-                                          </tr>
+                                        </c:forEach>
                                        </tbody>
                                     </table>
                                  </div>
@@ -540,27 +522,15 @@
                                           </tr>
                                        </thead>
                                        <tbody>
-                                          <tr>
-                                             <td class="py-3">001</td>
-                                             <td class="py-3">영업부</td>
-                                             <td class="py-3">대리</td>
-                                             <td class="py-3">유재석</td>
-                                             <td class="py-3">2005-11-23</td>
-                                          </tr>
-                                          <tr>
-                                             <td class="py-3">002</td>
-                                             <td class="py-3">회계부</td>
-                                             <td class="py-3">팀장</td>
-                                             <td class="py-3">강호동</td>
-                                             <td class="py-3">2013-04-15</td>
-                                          </tr>
-                                          <tr>
-                                             <td class="py-3">003</td>
-                                             <td class="py-3">경리부</td>
-                                             <td class="py-3">사원</td>
-                                             <td class="py-3">이상순</td>
-                                             <td class="py-3">2018-09-24</td>
-                                          </tr>
+                                          <c:forEach var="vo" items="${list8}">
+	                                         <tr>
+	                                            <td class="py-3">${vo.emp_code}</td>
+	                                            <td class="py-3">${vo.ap_cur_dep}</td>
+	                                            <td class="py-3">${vo.ap_cur_position}</td>
+	                                            <td class="py-3">${vo.employee.emp_name}</td>
+	                                            <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
+	                                         </tr>
+	                                      </c:forEach>
                                        </tbody>
                                     </table>
                                     </form>

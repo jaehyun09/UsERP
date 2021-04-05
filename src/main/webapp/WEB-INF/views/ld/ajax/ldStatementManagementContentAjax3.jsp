@@ -14,7 +14,7 @@
 <title>ajax 테스트</title>
 </head>
 <body>
-
+	<div>
 	<table class="table table-bordered bg-white text-dark ass2 th20">
 		<tbody>
 		   <tr class="text-white con center">
@@ -55,13 +55,13 @@
 		   </tr>
 		   <tr>
 		      <th style="width:20%;">발행일</th>
-		      <td><fmt:formatDate value="${vo.logs_reg_date}" pattern="yyyy-MM-dd"/></td>
+		      <td><fmt:formatDate value="${vo.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss"/></td>
 		   </tr>
 		   <tr>
 		   	  <c:if test="${vo.logs_type == 5}">
 		   	  		<c:if test="${vo.logs_state == 1}">
 			      		<th style="width:20%;">입고일</th>
-			      		<td class="py-3"><fmt:formatDate value="${vo.logs_update_date}" pattern="yyyy-MM-dd"/></td>
+			      		<td class="py-3"><fmt:formatDate value="${vo.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss"/></td>
 			      	</c:if>
 			      	<c:if test="${vo.logs_state == 0}">
 			      		<th style="width:20%;">입고일</th>
@@ -71,7 +71,7 @@
 		      <c:if test="${vo.logs_type == 6}">
 				  <c:if test="${vo.logs_state == 1}">		      
 			      	<th style="width:20%;">출고일</th>
-			      	<td class="py-3"><fmt:formatDate value="${vo.logs_update_date}" pattern="yyyy-MM-dd"/></td>
+			      	<td class="py-3"><fmt:formatDate value="${vo.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss"/></td>
 			      </c:if>
 		      	  <c:if test="${vo.logs_state == 0}">		      
 			      	<th style="width:20%;">출고일</th>
@@ -107,6 +107,46 @@
 		   </tr>
 		   </tbody>
 		</table>
+			<div align="center">
+			<c:if test="${vo.logs_shortage <= 0}">
+			<c:if test="${vo.logs_state == 0}">
+				<form action = "stockOutReady" method = "post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+       				<input type="hidden" name="logs_code" value="${vo.logs_code}">
+       				<input type="hidden" name="sto_code" value="${vo.sto_code}">
+	       			<input type = "hidden" name = "logs_quantity" value = "${vo.logs_quantity}">
+	         		<input type = "hidden" name = "ware_code" value = "${vo.ware_code}">
+	         		<input type = "hidden" name = "pro_code" value = "${vo.pro_code}">
+	         		<input type = "hidden" name = "emp_code" value = "${vo.emp_code}">
+	           		<button type="submit" class="btn btn btn-outline-info" style='float: middle;'>
+             		 	승인
+           			</button>
+          		</form>
+         		</c:if>
+         		<c:if test="${vo.logs_state == 2}">
+         			<form action = "stockOutAction" method = "post">
+          			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+       				<input type="hidden" name="logs_code" value="${vo.logs_code}">
+       				<input type="hidden" name="sto_code" value="${vo.sto_code}">
+       				<input type = "hidden" name = "logs_quantity" value = "${vo.logs_quantity}">
+         			<input type = "hidden" name = "ware_code" value = "${vo.ware_code}">
+         			<input type = "hidden" name = "pro_code" value = "${vo.pro_code}">
+         			<input type = "hidden" name = "emp_code" value = "${vo.emp_code}">
+           			<button type="submit" class="btn btn btn-outline-info" style='float: middle;'>
+             			출고
+           			</button>
+         			</form>
+         		</c:if>
+         	</c:if>
+         	<c:if test="${vo.logs_shortage > 0}">
+				<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
+	           		 재고부족
+	         	</button>
+			</c:if>
+         	</div>
+		</div><br>
+		
+
 
 
 

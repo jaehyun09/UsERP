@@ -14,6 +14,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
 	<link rel="stylesheet" href="${project}css/board.css">
+	<script src="${spath}hr.js"></script>
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
 </head>
@@ -76,6 +77,9 @@
 					</li>
 					<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
 					</li>
 				</ul>
 			</li>
@@ -227,7 +231,8 @@
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
 											
-												<form>
+												<form action="waAppInsert?${_csrf.parameterName}=${_csrf.token}" name="waForm" method="post" onsubmit="return waCheck();">
+												<input type="hidden" name="hiddenEmp_code" value="0">	
 													<table class="table bg-white text-dark center ass2">
 														<thead class="text-white table-bordered tap font-weight-semi-bold border-top-0 ass2">
 														<tr>
@@ -236,19 +241,24 @@
 														</thead>
 														<tbody>
 														<tr>
+															<th style="vertical-align: middle">사번 </th>
+															<td><input type="text" class="form-control" name="emp_code"></td>
+															<td><button type="button"  class="btn btn-outline-info" onclick="confirmEmp_Code();" >사번확인</button></td>
+														</tr>
+														<tr>
 															<th style="vertical-align: middle">사원명 </th>
-															<td><input id="text" type="text" class="form-control" name="password" required=""></td>
-															<td><button type="button"  class="btn btn-outline-info">사원확인</button></td>
+															<td><input type="text" class="form-control" name="emp_name" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">부서명</th>
 															<td>	 
 															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>영업부</option>
-															       <option>인사부</option>
-															       <option>회계부</option>
-															     </select>
+															     <select name="dep_code" class="form-control" id="exampleFormControlSelect1">
+															       <option value="0">부서 선택</option>
+								                                <c:forEach var="vo" items="${list3}">
+								                                   <option value="${vo.dep_code}">${vo.dep_name}</option>
+								                                  </c:forEach>
+								                                </select>
 															   </div>
 															 </td>
 														</tr>
@@ -256,24 +266,24 @@
 															<th style="vertical-align: middle"> 근태 유형</th>
 															<td>	 
 															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>병가</option>
-															       <option>조퇴</option>
-															       <option>연차</option>
-															       <option>경조사</option>
+															     <select name="hr_code" class="form-control" id="exampleFormControlSelect1">
+															     	<option value="0">근태 유형 선택</option>
+															     <c:forEach var="vo" items="${list4}">
+															       <option value="${vo.hr_code}">${vo.hr_code_name}</option> 
+															     </c:forEach>
 															     </select>
 															   </div>
 															 </td>
 														</tr>
 														<tr>
-															<th> <label> 시작일 &nbsp;&nbsp;&nbsp; </label> <input type="date" width=""></th>
-															<th> <label> 종료일&nbsp;&nbsp;&nbsp;</label>  <input type="date" > </th>
+															<th><label> 시작일 &nbsp;&nbsp;&nbsp; </label> <input type="date" name="wr_va_start"></th>
+															<th><label> 종료일&nbsp;&nbsp;&nbsp;</label>  <input type="date" name="wr_va_end"> </th>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle"> 사유 </th>
 															<td>
 																<div class="form-group">
-      																<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      																<textarea class="form-control" name="wr_va_reason" id="exampleFormControlTextarea1" rows="3"></textarea>
    															 	</div>
 															</td>
 														</tr>
@@ -281,8 +291,8 @@
 													</table>
 													<br>
 												<div align=center>
-			                                       <button type="button" type="submit" class="btn btn-outline-info">신청</button>&nbsp;&nbsp;&nbsp;
-			                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
+			                                       <button type="submit" class="btn btn-outline-info">신청</button>&nbsp;&nbsp;&nbsp;
+			                                       <button type="reset" class="btn btn-outline-info">재입력</button>
 			                                    </div>
 												<br>
 											</form>

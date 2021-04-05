@@ -40,14 +40,13 @@
                     <i class="gd-align-left"></i>
                 </a>
                 <!-- End Side Nav Toggle -->
-
                 <!-- User Notifications -->
                 <div class="dropdown ml-auto">
+                  <c:if test="${sessionScope.mem_id != null}">
                     <a id="notificationsInvoker" class="header-invoker" href="#" aria-controls="notifications" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#notifications" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
                         <span class="indicator indicator-bordered indicator-top-right indicator-primary rounded-circle"></span>
                         <i class="gd-bell"></i>
                     </a>
-
                     <div id="notifications" class="dropdown-menu dropdown-menu-center py-0 mt-4 w-18_75rem w-md-22_5rem unfold-css-animation unfold-hidden" aria-labelledby="notificationsInvoker" style="animation-duration: 300ms;">
                         <div class="card">
                             <div class="card-header d-flex align-items-center border-bottom py-3">
@@ -83,24 +82,34 @@
                             </div>
                         </div>
                     </div>
+                  </c:if>
                 </div>
                 <!-- End User Notifications -->
                 <!-- User Avatar -->
                 <div class="dropdown mx-3 dropdown ml-2">
+                  <c:if test="${sessionScope.mem_id == null}">
+                  
+                    <a id="profileMenuInvoker" class="header-complex-invoker" href="main">
+                        <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
+                        <span class="d-none d-md-block center" style="width:100px">로그인</span>
+                        
+                    </a>
+                  </c:if>
+                  <c:if test="${sessionScope.mem_id != null}">
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
                         <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
-                        <span class="mr-md-2 avatar-placeholder">J</span>
-                        <span class="d-none d-md-block">${sessionScope.mem_id}</span>
+                        <span class="d-none d-md-block center" style="width:100px">${sessionScope.mem_name}</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
+                        
                     </a>
 
                     <ul id="profileMenu" class="unfold unfold-user unfold-light unfold-top unfold-centered position-absolute pt-2 pb-1 mt-4 unfold-css-animation unfold-hidden fadeOut" aria-labelledby="profileMenuInvoker" style="animation-duration: 300ms;">
                         <li class="unfold-item">
-                            <a class="unfold-link d-flex align-items-center text-nowrap" href="#">
+                            <a class="unfold-link d-flex align-items-center text-nowrap" href="${path}/mypage">
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-user"></i>
                     </span>
-                               	 내 정보
+                                   내 정보
                             </a>
                         </li>
                         <li class="unfold-item unfold-item-has-divider">
@@ -108,10 +117,11 @@
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-power-off"></i>
                     </span>
-                          		로그아웃
+                                로그아웃
                             </a>
                         </li>
                     </ul>
+                  </c:if>
                 </div>
                 <!-- End User Avatar -->
             </div>

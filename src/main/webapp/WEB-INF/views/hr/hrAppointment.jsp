@@ -16,6 +16,9 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+    <!-- Script -->
+    <script src="${spath}hr.js"></script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -77,6 +80,9 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -272,95 +278,123 @@
 											      </tr>
 											    </thead>
 											    <tbody>
-											      <tr>
-											        <td class="py-3">2021-03-14</td>
-													<td class="py-3">001</td>
-													<td class="py-3">김그래</td>
-													<td class="py-3">영업부</td>
-													<td class="py-3">대리</td>
-													<td class="py-3">발령대기</td>
-													<td class="py-3">인턴사원</td>
-											      </tr>
-											      <tr>
-											        <td class="py-3">2021-03-11</td>
-													<td class="py-3">004</td>
-													<td class="py-3">장그래</td>
-													<td class="py-3">판매부</td>
-													<td class="py-3">주임</td>
-													<td class="py-3">발령대기</td>
-													<td class="py-3">인턴사원</td>
-											      </tr>
-											      <tr>
-											        <td class="py-3">2021-03-21</td>
-													<td class="py-3">003</td>
-													<td class="py-3">장그래</td>
-													<td class="py-3">경리부</td>
-													<td class="py-3">대리</td>
-													<td class="py-3">발령대기</td>
-													<td class="py-3">인턴사원</td>
-											      </tr>
+											    	<c:forEach var="vo" items="${list6}">
+												      <tr>
+												        <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
+														<td class="py-3">${vo.emp_code}</td>
+														<td class="py-3">${vo.employee.emp_name}</td>
+														<td class="py-3">${vo.ap_cur_dep}</td>
+														<td class="py-3">${vo.ap_cur_position}</td>
+														<td class="py-3">${vo.ap_pre_dep}</td>
+														<td class="py-3">${vo.ap_pre_position}</td>
+												      </tr>
+												    </c:forEach>
 											    </tbody>
 											  </table>
-											 
+											  	<!-- 페이징 처리 Strat -->
+												<div class="card-footer d-block d-md-flex align-items-center d-print-none">
+													<nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
+														<ul class="pagination justify-content-end font-weight-semi-bold mb-0">				
+															<li class="page-item">				
+																<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous">
+																<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
+															</li>
+															<li class="page-item d-none d-md-block">
+																<a id="datatablePaginationPage0" class="page-link active" href="#" data-dt-page-to="0">1</a>
+															</li>
+															<li class="page-item d-none d-md-block">
+																<a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li>
+															<li class="page-item d-none d-md-block">
+															<a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a>
+															</li>
+															<li class="page-item">
+																<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next">
+																<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
+															</li>				
+														</ul>
+													</nav>
+												</div>
+												<!-- 
+												<div class="card-footer d-block d-md-flex align-items-center d-print-none">
+													<nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
+														<c:if test="${cnt > 0}">
+															<ul class="pagination justify-content-end font-weight-semi-bold mb-0">
+																<c:if test="${startPage > pageBlock}">				
+																	<li class="page-item">				
+																		<a id="datatablePaginationPrev" class="page-link" href="#" aria-label="Previous"
+																			onclick=" return false;">
+																		<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
+																	</li>
+																</c:if>
+																<li class="page-item d-none d-md-block">
+																	<a id="datatablePaginationPage0" class="page-link active" href="#" data-dt-page-to="0">1</a>
+																</li>
+																<li class="page-item d-none d-md-block">
+																	<a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li>
+																<li class="page-item d-none d-md-block">
+																<a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a>
+																</li>
+																<li class="page-item">
+																	<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next">
+																	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
+																</li>				
+															</ul>
+														</c:if>
+													</nav>
+												</div>
+												-->
+												<!-- 페이징 처리 End -->
 											</div>
 
 											<div class="tab-pane fade p-4" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
 												
-												<form>
+												<form action="hrAppointmentPro" method="post">
 													<table class="table bg-white text-dark center ass2">
 														<tr class="text-white table-bordered tap">
-															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3"> 인사 발령 </th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">인사 발령</th>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle">사번</th>
-															<td><input id="text" type="text" class="form-control" name="password" required=""></td>
-															<td><button type="button" class="btn btn-outline-info">사번확인</button></td>
+															<th style="vertical-align: middle">사원번호</th>
+															<td><input id="text" type="text" class="form-control" name="emp_code" required></td>
+															<td>
+																<button type="button" class="btn btn-outline-info" onclick="empCodeCheck()">
+																	사번확인
+																</button>
+															</td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle"> 사원명 </th>
-															<td> <input id="text" type="text" class="form-control" name="password" required=""></td>
+															<th style="vertical-align: middle">사원명</th>
+															<td><input id="text" type="text" class="form-control" name="emp_name" readonly></td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle"> 현재 부서 </th>
+															<th style="vertical-align: middle">현재 부서</th>
+															<td><input id="text" type="text" class="form-control" name="ap_pre_dep" readonly></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">발령 부서</th>
 															<td>	 
 															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>영업부</option>
-															       <option>인사부</option>
+															     <select name="ap_cur_dep" class="form-control" id="exampleFormControlSelect1">
+															    	<c:forEach var="vo" items="${list3}">
+														       			<option value="${vo.dep_name}">${vo.dep_name}</option>
+														       		</c:forEach>
 															     </select>
 															   </div>
 															 </td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle"> 발령 부서</th>
-															<td>	 
-															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>영업부</option>
-															       <option>영업부</option>
-															     </select>
-															   </div>
-															 </td>
+															<th style="vertical-align: middle">현재 직급</th>
+															<td><input id="text" type="text" class="form-control" name="ap_pre_position" readonly></td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle"> 현재 직급 </th>
+															<th style="vertical-align: middle">발령 후 직급</th>
 															<td>	 
 															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>팀장</option>
-															       <option>대리</option>
-															     </select>
-															   </div>
-															 </td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle"> 발령 후 직급</th>
-															<td>	 
-															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>팀장</option>
-															       <option>대리</option>
+															     <select name="ap_cur_position" class="form-control" id="exampleFormControlSelect1">
+															     	<c:forEach var="vo" items="${list4}">
+														       			<option value="${vo.hr_code_name}">${vo.hr_code_name}</option>
+														       		</c:forEach>
 															     </select>
 															   </div>
 															 </td>

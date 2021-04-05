@@ -13,9 +13,12 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
-   <link rel="stylesheet" href="${project}css/board.css">
+	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+	<!-- Script -->
+    <script src="${spath}hr.js"></script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -77,6 +80,9 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -210,7 +216,7 @@
                   <nav aria-label="breadcrumb">
                      <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">인사 관리</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"> 급여</li>
+                        <li class="breadcrumb-item active" aria-current="page">급여</li>
                      </ol>
                   </nav>
                   <div class="row">
@@ -256,82 +262,77 @@
                                 </div>
                                 <br>
                                 <!-- 검색창 끝 -->   
-                                 <div class="row">
+                                 <div class="row" id="salaryDetail">
                                        <div class="col">
-                                          <div class="collapse multi-collapse"
-                                             id="multiCollapseExample1">
-                                                <table class="table table-bordered bg-white text-dark ass2">
-                                                   
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="2">유재석</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>NO.</th>
-                                                         <td>10</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>사업자등록번호</th>
-                                                         <td>1234567890</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>대표자명</th>
-                                                         <td>최유성</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>업태</th>
-                                                         <td>업태1</td>
-
-                                                      </tr>
-                                                      <tr>
-                                                         <th>회사규모</th>
-                                                         <td>n명</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>사용상태</th>
-                                                         <td>사용중</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th rowspan="4" style="vertical-align:middle">주요 거래 품목</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목1</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목2</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>거래처명1 - 주요 거래 품목3</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table><br><br><br>
+                                         <c:forEach var="vo" items="${list9}" varStatus="status">
+                                          <div class="collapse" id="multiCollapseExample${status.index}" 
+                                          		aria-labelledby="accordion${status.index}"
+                                          		data-parent="#salaryDetail">
+                                              <table class="table table-bordered bg-white text-dark ass2 center">
+											      <tbody>
+											         <tr class="text-white con">
+											                <th colspan="4">${vo.employee.emp_name}</th>
+											            </tr>
+											         <tr>
+											            <th colspan="1" style="width: 20%">기본급</th>
+											            <td colspan="3">${vo.salary.sal_basic}</td>
+											         </tr>
+											         <tr>
+											            <th colspan="1">야근수당</th>
+											            <td colspan="3">${vo.salary.sal_night}</td>
+											         </tr>
+											         <tr>
+											            <th colspan="1">특근수당</th>
+											            <td colspan="3">${vo.salary.sal_over}</td>
+											         </tr>
+											         <tr>
+											            <th colspan="1">근속수당</th>
+											            <td colspan="3">${vo.salary.sal_cos}</td>
+											         </tr>
+											         <tr>
+											            <th colspan="1">직책수당</th>
+											            <td colspan="3">${vo.salary.sal_or}</td>
+											         </tr>
+											      </tbody>
+											   </table><br><br><br>
                                           </div>
+                                         </c:forEach>
                                        </div>
                                              
                                     <table class="table table-striped bg-white text-dark center ass2">
                                        <thead>
                                           <tr class="text-white table-bordered tap">
-                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">부서번호</th>
                                              <th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
-                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">접근권한</th>
-                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">사용상태</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">직급</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">총 급여</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">발행일</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">지급일</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">처리상태</th>
                                           </tr>
                                        </thead>
                                        <tbody>
+                                         <c:forEach var="vo" items="${list9}" varStatus="status">
                                           <tr>
-                                             <td class="py-3 middle">01</td>
-                                             <td class="py-3 middle">
-                                                            <p>
-                                                               <a class="btn" data-toggle="collapse"
-                                                                  href="#multiCollapseExample1" role="button"
-                                                                  aria-expanded="false"
-                                                                  aria-controls="multiCollapseExample1">유재석</a>
-                                                            </p>
-                                                         </td>
-                                             <td class="py-3 middle">관리자</td>
-                                             <td class="py-3 middle">사용</td>
+                                             <td class="py-3" style="vertical-align:middle">${vo.department.dep_name}</td>
+                                             <td class="py-3" style="vertical-align:middle">${vo.hrCode.hr_code_name}</td>
+                                             <td class="py-3" style="vertical-align:middle">
+                                               <a class="text-dark con2" style="font-size:20px" id="accordion${status.index}"
+                                                  data-toggle="collapse"
+                                                  href="#multiCollapseExample${status.index}" role="button"
+                                                  aria-expanded="true"
+                                                  aria-controls="multiCollapseExample${status.index}">${vo.employee.emp_name}</a>
+                                             </td>
+                                             <td class="py-3" style="vertical-align:middle">${vo.ss_total_sal}</td>
+                                             <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_reg_date}"/></td>
+                                             <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_sal_date}"/></td>
+                                             <td class="py-3" style="vertical-align:middle">
+												<c:if test="${vo.ss_state == 0}">승인 대기 중</c:if>
+												<c:if test="${vo.ss_state == 1}">지급 완료</c:if>
+												<c:if test="${vo.ss_state == 2}">승인 거부</c:if>
+											 </td>
                                           </tr>
-                                          
+                                         </c:forEach>
                                        </tbody>
                                     </table>
                                  </div>
@@ -340,48 +341,44 @@
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
                                     <form>
                                        <table class="table bg-white text-dark center ass2">
-                                          <tr class="text-white table-bordered tap">
-                                             <th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3"> 급여 전표 등록 </th>
-                                          </tr>
-                                          <tr>
-                                             <th style="vertical-align: middle">부서번호 </th>
-                                             <td><input id="text" type="text" class="form-control" name="password" required=""></td>
-                                             <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
-                                          </tr>
-                                          <tr>
-                                             <th style="vertical-align: middle"> 부서명 </th>
-                                             <td> <input id="text" type="text" class="form-control" name="password" required=""></td>
-                                             <td><button type="button" class="btn btn-outline-info">중복확인</button></td>
-                                          </tr>
-                                          <tr>
-                                             <th style="vertical-align: middle"> 접근권한 </th>
-                                             <td>    
-                                             <div class="form-group">
-                                                  <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option>사원</option>
-                                                    <option>관리자</option>
-                                                  </select>
-                                                </div>
-                                              </td>
-                                          </tr>
-                                          <tr>
-                                             <th style="vertical-align: middle"> 사용상태 </th>
-                                             <td>    
-                                             <div class="form-group">
-                                                  <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option>사용</option>
-                                                    <option>비사용</option>
-                                                  </select>
-                                                </div>
-                                              </td>
-                                          </tr>
-                                       </table>
-                                    
-                                    <div align=center>
-                                       <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                       <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                                    </div>
-                                    <br>
+														<tr class="text-white table-bordered tap">
+															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">급여 전표 등록</th>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">사원번호</th>
+															<td><input id="text" type="text" class="form-control" name="emp_code" required></td>
+															<td>
+																<button type="button" class="btn btn-outline-info" onclick="empCodeCheck()">
+																	사번확인
+																</button>
+															</td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">사원명</th>
+															<td><input id="text" type="text" class="form-control" name="emp_name" readonly></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">현재 부서</th>
+															<td><input id="text" type="text" class="form-control" name="" readonly></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">직급</th>
+															<td><input id="text" type="text" class="form-control" name="" readonly></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle"></th>
+															<td><input type="date" name="emp_hire_date" class="form-control"></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle"></th>
+															<td><input id="text" type="text" class="form-control" name="" readonly></td>
+														</tr>
+													</table>
+												
+												<div align=center>
+													<button type="button" type="submit" class="btn btn-outline-info">발령</button>&nbsp;&nbsp;&nbsp;
+													<button type="button" type="reset" class="btn btn-outline-info">재작성</button>
+											</div><br>
                                  </form>
                                  </div>
                                  

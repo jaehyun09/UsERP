@@ -6,6 +6,21 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
+    
+    <script type="text/javascript">
+    
+    // 김은희 - 출근 버튼 클릭시
+	    function confirmLogin() {
+			var id = '<%=(String) session.getAttribute("mem_id")%>';
+		
+			if( id == "null") {
+				alert ("로그인 후 다시 시도하세요.");
+			} else {
+				location.href='${path}/waStartClick';
+			}
+			
+		}
+    </script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,6 +31,10 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+    <!-- Script -->
+    <script src="${spath}hr.js"></script>
+    
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -76,6 +95,9 @@
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
 					</li>
 				</ul>
 			</li>
@@ -236,7 +258,7 @@
 											<a class="nav-link d-flex align-items-center py-2 px-3"
 												id="pills-html-tab-1" data-toggle="pill"
 												href="#pills-html-1" role="tab" aria-controls="pills-html-1"
-												aria-selected="false">근퇴 조회</a>
+												aria-selected="false">근태 조회</a>
 											</li>
 										</ul>
 										<!-- End Nav Classic -->
@@ -246,6 +268,53 @@
 											<div class="tab-pane fade p-4 show active"
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
+										 <form>
+											  <div align="right">
+			                                       <button type="button" onclick="confirmLogin()" class="btn btn-outline-info">출근</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                                       <button type="button" onclick="location.href='${path}/waEndClick'" class="btn btn-outline-info">퇴근</button>
+		                                      </div>
+										  </form>
+										  <br>		
+										 <!-- 검색창 시작 -->		
+									   	  <div class="input-group">
+										    <div class="input-group-append">
+										      <i class="gd-search icon-text icon-text-sm"></i>
+										    </div>
+										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" width="100px" type="text" >
+										  </div>
+										  <!-- 검색창 끝 -->		
+										  <br>
+											<table class="table table-striped bg-white text-dark center ass2">
+											    <thead class="text-white table-bordered tap">
+											      <tr>
+											      	<th class="font-weight-semi-bold border-top-0 py-3 con2">일자</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사번</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">출근시간</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">퇴근시간</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">야근시간</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">특근시간</th>
+											      </tr>
+											    </thead>
+											    <tbody style="vertical-align: middle">
+											    <c:forEach var="vo" items="${list}">
+											      <tr>
+											      	<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.cm_date}"/></td>
+											      	<td class="py-3">${vo.employee.emp_code}</td>
+											      	<td class="py-3">${vo.employee.emp_name}</td>
+													<td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_start}"/></td>
+											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_end}"/></td>
+											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_night_time}"/></td>
+											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_over_time}"/></td>
+											      </tr>
+											      </c:forEach>
+											    </tbody>
+											  </table>
+											</div>
+
+											<div class="tab-pane fade p-4" id="pills-html-1"
+												role="tabpanel" aria-labelledby="pills-html-tab-1">
+										  <form>
 										 <!-- 검색창 시작 -->		
 									   	  <div class="input-group">
 										    <div class="input-group-append">
@@ -259,98 +328,36 @@
 											<table class="table table-striped bg-white text-dark center ass2">
 											    <thead class="text-white table-bordered tap">
 											      <tr>
+											      	<th class="font-weight-semi-bold border-top-0 py-3 con2">신청일</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사번</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">직급</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">출근시간</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">퇴근시간</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">야간근무</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">처리 상태</th>
-											      </tr>
-											    </thead>
-											    <tbody style="vertical-align: middle">
-											      <tr>
-											      	<td class="py-3">001</td>
-											      	<td class="py-3">장그래</td>
-											      	<td class="py-3">영업부</td>
-													<td class="py-3">대리</td>
-													<td class="py-3">연차</td>
-											        <td class="py-3">2021-03-21</td>
-											        <td class="py-3">2021-03-22</td>
-											        <td class="py-3">2021-03-25</td>
-													<td class="py-3">완료</td>
-											      </tr>
-											      <tr>
-											        <td class="py-3">012</td>
-											      	<td class="py-3">김은희</td>
-											      	<td class="py-3">회계부</td>
-													<td class="py-3">팀장</td>
-													<td class="py-3">병가</td>
-											        <td class="py-3">2021-03-19</td>
-											        <td class="py-3">2021-03-24</td>
-											        <td class="py-3">2021-03-26</td>
-													<td class="py-3">완료</td>
-											      </tr>
-											      
-											    </tbody>
-											  </table>
-											 
-											</div>
-
-											<div class="tab-pane fade p-4" id="pills-html-1"
-												role="tabpanel" aria-labelledby="pills-html-tab-1">
-												<form>
-													<!-- 검색창 시작 -->		
-									   	  <div class="input-group">
-										    <div class="input-group-append">
-										      <i class="gd-search icon-text icon-text-sm"></i>
-										    </div>
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" >
-										  </div>
-										  <!-- 검색창 끝 -->		
-										  <br>
-										  
-											<table class="table table-striped bg-white text-dark center ass2">
-											    <thead class="text-white table-bordered tap">
-											      <tr>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사번</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">직급</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">근태 유형</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">신청일</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사유</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">시작일</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">종료일</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">처리 상태</th>
-											        
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">처리상태</th>
 											      </tr>
 											    </thead>
 											    <tbody>
+											     <c:forEach var="vo" items="${list2}">
 											      <tr>
-											      	<td class="py-3">001</td>
-											      	<td class="py-3">장그래</td>
-											      	<td class="py-3">영업부</td>
-													<td class="py-3">대리</td>
-													<td class="py-3">연차</td>
-											        <td class="py-3">2021-03-21</td>
-											        <td class="py-3">2021-03-22</td>
-											        <td class="py-3">2021-03-25</td>
-													<td class="py-3">완료</td>
+											      	<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_ap_date}"/></td>
+											      	<td class="py-3">${vo.employee.emp_code}</td>
+											      	<td class="py-3">${vo.employee.emp_name}</td>
+													<td class="py-3">${vo.department.dep_name}</td>
+													<td class="py-3">${vo.hrCode.hr_code_name}</td>
+													<td class="py-3">${vo.wr_va_reason}</td>
+											        <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_va_start}"/></td>
+											        <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_va_end}"/></td>
+											       <c:if test="${vo.wr_state == 1}">
+			                                       	 <td class="py-3">완료</td>
+			                                       </c:if>
+			                                       	<c:if test="${vo.wr_state == 0}">
+			                                       	 <td class="py-3">미완료</td>
+			                                       </c:if>
 											      </tr>
-											      <tr>
-											        <td class="py-3">012</td>
-											      	<td class="py-3">김은희</td>
-											      	<td class="py-3">회계부</td>
-													<td class="py-3">팀장</td>
-													<td class="py-3">병가</td>
-											        <td class="py-3">2021-03-19</td>
-											        <td class="py-3">2021-03-24</td>
-											        <td class="py-3">2021-03-26</td>
-													<td class="py-3">완료</td>
-											      </tr>
-											      
+											      </c:forEach>
 											    </tbody>
 											  </table>
 											 

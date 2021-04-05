@@ -72,7 +72,7 @@
     			if(now.getDate()+1 >= 31){
     				end_day.value = year + "-" + ((now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1)) + "-" + '01';		
     			}else{
-    				end_day.value = year + "-" + mon + "-" + (now.getDate()+1>9? now.getDate()+1 : (now.getDate()+7));
+    				end_day.value = year + "-" + mon + "-" + (now.getDate()+1>9? now.getDate()+1 : '0' + (now.getDate()+1));
     			}
     		
     			if(start_day.value == end_day.value){

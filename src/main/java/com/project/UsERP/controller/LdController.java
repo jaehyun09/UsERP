@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.UsERP.serverce.LdServiceImpl;
+import com.project.UsERP.service.LdServiceImpl;
 
 // 물류 관리
 @Controller
@@ -224,7 +224,6 @@ public class LdController {
 		ldservice.selectWarehouse(req, model);
 		ldservice.selectProduct(req, model);
 		ldservice.adjustmentList(req, model);
-		ldservice.getAdjStock(req, model);
 		
 		return "ld/ajax/logInvenAdjustment";
 	}

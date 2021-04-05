@@ -12,12 +12,16 @@ public class SalaryStatementVO {
 	private int ss_state;		// 상태
 	private int sal_code;		// 급여코드
 	private String emp_code;	// 사원번호
+	private int hr_code;		// 인사코드
 	private int dep_code;		// 부서코드
+	private int acco_code;		// 계정번호
+	private int bank_code; 		// 계좌코드
+	HrCodeVO hrCode;
 	SalaryVO salary;			
 	EmployeeVO employee;
 	DepartmentVO department;
-	BankVO bank;
 	AccountVO account;
+	BankVO bank;
 	
 	public int getSs_code() {
 		return ss_code;
@@ -61,11 +65,35 @@ public class SalaryStatementVO {
 	public void setEmp_code(String emp_code) {
 		this.emp_code = emp_code;
 	}
+	public int getHr_code() {
+		return hr_code;
+	}
+	public void setHr_code(int hr_code) {
+		this.hr_code = hr_code;
+	}
 	public int getDep_code() {
 		return dep_code;
 	}
 	public void setDep_code(int dep_code) {
 		this.dep_code = dep_code;
+	}
+	public int getAcco_code() {
+		return acco_code;
+	}
+	public void setAcco_code(int acco_code) {
+		this.acco_code = acco_code;
+	}
+	public int getBank_code() {
+		return bank_code;
+	}
+	public void setBank_code(int bank_code) {
+		this.bank_code = bank_code;
+	}
+	public HrCodeVO getHrCode() {
+		return hrCode;
+	}
+	public void setHrCode(HrCodeVO hrCode) {
+		this.hrCode = hrCode;
 	}
 	public SalaryVO getSalary() {
 		return salary;
@@ -85,17 +113,17 @@ public class SalaryStatementVO {
 	public void setDepartment(DepartmentVO department) {
 		this.department = department;
 	}
-	public BankVO getBank() {
-		return bank;
-	}
-	public void setBank(BankVO bank) {
-		this.bank = bank;
-	}
 	public AccountVO getAccount() {
 		return account;
 	}
 	public void setAccount(AccountVO account) {
 		this.account = account;
+	}
+	public BankVO getBank() {
+		return bank;
+	}
+	public void setBank(BankVO bank) {
+		this.bank = bank;
 	}
 	
 }

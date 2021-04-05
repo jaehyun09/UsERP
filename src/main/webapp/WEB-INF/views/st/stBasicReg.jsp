@@ -7,14 +7,14 @@
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
 <script type="text/javascript">
-function clientadd() {
+function clientadd() { // 함수명 자유 
 	$.ajax({
-      // sendRequest(콜백함수명, url, method, params)
-      url: "clientadd", // 전송 페이지 => 컨트롤러 "basic_next"
-      type: 'GET', // 전송방식('GET', 'POST') - method
-      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-         $('#client').html(data);
+      
+      url: "clientadd", // 컨트롤러 매핑 주소 
+      type: 'GET', // 기초에선 안건드림 
+      dataType: 'text', // 기초 no
+      success: function(data){ 
+         $('#client').html(data); // 결과값 
       },
       error: function(){
          alert('오류');
@@ -30,6 +30,23 @@ function productadd() {
       dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
       success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
          $('#product').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+function content4(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&com_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'comContent',
+      success: function(data){ 
+         $('#content').html(data);
       },
       error: function(){
          alert('오류');
@@ -108,6 +125,9 @@ function productadd() {
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -295,41 +315,44 @@ function productadd() {
 	                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
 	                                            </div>
 	                                            <br>
+	                                            <div class="col">
+																	<div class="collapse multi-collapse"
+																		id="multiCollapseExample1">
+																		<div id="content"></div>
+																	</div>
+																</div>
 		                                    <!-- 검색창 끝 --> 
                                              <table class="table bg-white text-dark center ass2 table-striped">
                                                          <thead class="text-white table-bordered tap">
                                                             <tr class="text-white table-bordered tap">
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처코드</th>
+                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">구분</th>
                                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">대표자명</th>
+                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">사업자번호</th>
                                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
                                                             </tr>
                                                          </thead>
                                                          <tbody>
-                                                         	<c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+                                                         	<c:forEach var="company" items="${company}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                                             <tr>
-                                                               <td class="py-3">${list.order_code}</td>
-                                                               <td class="py-3">${list.product.pro_name}</td>
-                                                               <td class="py-3">${list.company.comp_name}</td>
-                                                               <td class="py-3">${list.stockInOrder.in_count}</td>
-                                                               <td class="py-3">${list.warehouse.ware_name}</td>
-                                                               <td class="py-3">${list.employee.emp_name}</td>
-                                                               <td class="py-3">
-                                                               		<fmt:formatDate value="${list.order_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                               </td>
-                                                               <td class="py-3">
-                                                               		<fmt:formatDate value="${list.order_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                               </td>
-                                                               <td class="py-2 middle">
-                                                          			<button type="button" class="btn btn-outline-info" style='float: middle;'>
-                                                                     	승인
-                                                                	</button>
-                                                              </td>
+                                                               <td class="py-3 ">
+																	<a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+																	   href="#multiCollapseExample1" role="button"
+																	   aria-expanded="false"
+																	   aria-controls="multiCollapseExample1"
+																	   onclick="content4(${company.com_code})"> ${company.com_code}</a>
+																</td>
+                                                               <c:if test = "${company.com_type == 10}">
+                                                               <td class="py-3" style="vertical-align: middle">판매 거래처</td>
+                                                               </c:if>
+                                                               <c:if test = "${company.com_type == 20}">
+                                                               <td class="py-3" style="vertical-align: middle">구매 거래처</td>
+                                                               </c:if>
+                                                               <td class="py-3" style="vertical-align: middle">${company.com_name}</td>
+                                                               <td class="py-3" style="vertical-align: middle">${company.com_ceo_name}</td>
+                                                               <td class="py-3" style="vertical-align: middle">${company.com_reg_no}</td>
+                                                               <td class="py-3" style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${company.com_reg_date}" /></td>
                                                             </tr>
                                                             </c:forEach>
                                                          </tbody>
@@ -379,44 +402,20 @@ function productadd() {
                                           </thead>
                                           
                                           <tbody>
-                                          
-                                          	<tr class="tablein">
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          	</tr>
-                                          	<tr class="tablein">
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          	</tr>
-                                          	
-                                          	<c:forEach var="list" items="${Plist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+                                          	<c:forEach var="product" items="${product}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                              <tr class="tablein">
-                                                <td class="py-3 middle" style="vertical-align:middle">${list.pro_code}</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거 -->
-                                                      <a class="btn" data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample2" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample2" >${list.pro_name}</a>
-                                                </td>
-                                                <td class="py-3 middle" style="vertical-align: middle">${list.pro_price}</td>
-                                                <td class="py-3 middle" style="vertical-align: middle">${list.pro_price}</td>
-	                                                <c:if test = "${list.pro_state == 1}">
-	                                                	<td class="py-3 middle" style="vertical-align: middle">사용중</td>
+                                                <td class="py-3" style="vertical-align:middle">${product.pro_code}</td>
+                                                <td class="py-3" style="vertical-align:middle">${product.pro_name}</td>
+                                                <td class="py-3" style="vertical-align: middle">${product.pro_pur_price}</td>
+                                                <td class="py-3" style="vertical-align: middle">${product.pro_sal_price}</td>
+	                                                <c:if test = "${product.pro_state == 1}">
+	                                                	<td class="py-3" style="vertical-align: middle">사용중</td>
 	                                                </c:if>
-	                                                <c:if test = "${list.pro_state != 1}">
-	                                                	<td class="py-3 middle" style="vertical-align: middle">비사용</td>
+	                                                <c:if test = "${product.pro_state != 1}">
+	                                                	<td class="py-3" style="vertical-align: middle">비사용</td>
 	                                                </c:if>
-                                                <td class="py-3 middle" style="vertical-align: middle">
-                                                	<fmt:formatDate value="${list.pro_reg_date}" pattern="yyyy-MM-dd" />
+                                                <td class="py-3" style="vertical-align: middle">
+                                                	<fmt:formatDate value="${product.pro_reg_date}" pattern="yyyy-MM-dd" />
                                                 </td>
                                              </tr>
                                              </c:forEach>
