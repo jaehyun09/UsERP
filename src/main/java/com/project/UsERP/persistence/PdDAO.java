@@ -1,11 +1,13 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
+import com.project.UsERP.vo.StockVO;
 
 public interface PdDAO {
 	
@@ -26,5 +28,11 @@ public interface PdDAO {
 	
 	// 이재홍 - 구매 내역
 	public List<AccountStatementVO> buyList();
+	
+	// 김민수 - 검색 재고 현황 갯수 구하기
+	public int getStockCnt(String ssKeyword);
+	
+	// 김민수 - 검색 재고 현황 조회(페이징)
+	public List<StockVO> StockStatusList(Map<String, Object> map);
 
 }

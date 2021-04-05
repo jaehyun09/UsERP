@@ -34,9 +34,19 @@ public class PdController {
 	// 재고 현황
 	@RequestMapping("/pdInvenStatus")
 	public String pdInvenStatus(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 보고서");
+		logger.info("url: 재고 현황");
 
 		return "pd/pdInvenStatus";
+	}
+	
+	// 김민수 - 재고 현황 검색 조회 AJAX
+	@RequestMapping("/pdInvenStatusList")
+	public String pdInvenStatusList(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 현황 검색 조회 AJAX");
+		 
+		pdService.inventoryStatusList(req, model);
+		
+		return "pd/ajax/pdInvenStatusList";
 	}
 
 	// 구매 현황

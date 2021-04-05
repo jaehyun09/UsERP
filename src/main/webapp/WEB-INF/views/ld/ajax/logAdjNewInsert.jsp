@@ -46,7 +46,7 @@ $('#amount').change(function() {
 				<input class="form-control form-control-icon-text" id="prod_auto" type="text" readonly>
 			</td>
 		</tr>
-	
+		
 		<tr>
 			<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
 			<td class="py-2" colspan="2">

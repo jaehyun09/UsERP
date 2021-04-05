@@ -19,7 +19,7 @@
     <script src="${project}js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
     
-   	$(function() {
+   /* 	$(function() {
    		$("#prod").click(function(){
    			var procode = $("#prod option:checked").text();
    			$("#prod_auto").val(procode);
@@ -31,8 +31,19 @@
    			var warecode = $("#wareh option:checked").text();
    			$("#wareh_auto").val(warecode);
    		});
+   	}); */
+   	
+   	$('#amount').change(function() {
+   		var amount = $('#amount').val();
+   		var quantity = ${stsu_quantity};
+   		
+   		if(count < quantity) {
+   			alert("재고수량을 초과했습니다.");
+   			
+   			return false;
+   		}
    	});
-    
+   	
 	/* 재고 조정 신규 등록 AJAX */
     function logAdjNew() {
 		
@@ -184,8 +195,22 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="py-2 text-dark" colspan="4"style="vertical-align: middle;">
-						<button type="button" class="btn btn-outline-info" style='float: middle;' data-toggle="collapse" 
+					<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;">사번</td>
+					<td class="py-2" colspan="2">
+		       			<input class="form-control form-control-icon-text" type="text" name="empid" value="${sessionScope.mem_id}" readonly></td>
+		    		<tr>
+						<td class="py-2" colspan="2" style="vertical-align: middle;"><b>조정 재고</b></td>
+						<td class="py-2" colspan="2">
+							<input class="form-control form-control-icon-text" type="text" id="amount" name="amount" onKeyup="calculation()" placeholder="조정 재고">
+						</td>
+					</tr>
+					<tr>
+						<td class="py-2" colspan="2" style="vertical-align: middle; "><b>조정 후 재고</b></td>
+						<td class="py-2" colspan="2">
+							<input class="form-control form-control-icon-text" type="text" id="quantity" name="quantity" readonly>
+						</td>
+					</tr>
+						<!-- <button type="button" class="btn btn-outline-info" style='float: middle;' data-toggle="collapse" 
 							data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="logAdjNew()">신규등록</button>
                          		<br>
             			<div class="collapse" id="collapseExample">
@@ -196,9 +221,7 @@
                         <button type="reset" class="btn btn-outline-info">재입력</button>
                     </div>	
           				</div>
-          			</div>
-         		</td>
-         	</tr>
+          			</div> -->
 			</table>
 		</form>
 		</div>

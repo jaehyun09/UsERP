@@ -27,7 +27,7 @@ public class StController {
 		logger.info("url: 기초 등록");
 		stService.salesBasicReg(req, model);
 		return "st/stBasicReg";
-	}  
+	}
 
 	// 재고 현황
 	@RequestMapping("/stInvenStatus")
@@ -36,7 +36,17 @@ public class StController {
 
 		return "st/stInvenStatus";
 	}
-
+	
+	// 김민수 - 재고 현황 검색 조회 AJAX
+	@RequestMapping("/stInvenStatusList")
+	public String stInvenStatusList(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 현황 검색 조회 AJAX");
+			 
+		stService.inventoryStatusList(req, model);
+			
+		return "st/ajax/stInvenStatusList";
+	}
+	
 	// 판매 현황
 	@RequestMapping("/stStatus")
 	public String stStatus(HttpServletRequest req, Model model) {

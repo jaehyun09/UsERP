@@ -15,5 +15,8 @@ public interface StService {
 
 	// 이재홍 - 판매현황
 	public void salesStatus(HttpServletRequest req, Model model);
+	
+	// 김민수 - 재고 현황(검색포함)
+	public void inventoryStatusList(HttpServletRequest req, Model model);
 
 }

@@ -21,4 +21,6 @@ public interface PdService {
 	// 최유성 - 입고 전표 등록
 	public void pdRecStatusAjax2(HttpServletRequest req, Model model);
 
+	// 김민수 - 재고 현황(검색포함)
+	public void inventoryStatusList(HttpServletRequest req, Model model);
 }
