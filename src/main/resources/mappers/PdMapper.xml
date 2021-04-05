@@ -6,19 +6,92 @@
     
 <mapper namespace="com.project.UsERP.persistence.PdDAO">
 
-	<!-- 기초 등록 구매 거래처 목록 -->
-	<select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
-		select * from company where comp_use_state = 1
+	<!-- 최유성 - 리절트맵 --><!-- resultType = "com.project.UsERP.vo.LogisticsStatementVO" -->
+	<resultMap id="pdStockOrder" type="com.project.UsERP.vo.LogisticsStatementVO">
+		<id       property="logs_code"   column="logs_code"/>
+		<result   property="logs_type"      column="logs_type"/>
+		<result   property="logs_reg_date"         column="logs_reg_date"/>
+		<result   property="logs_update_date"      column="logs_update_date"/>
+		<result   property="logs_state"      column="logs_state"/>
+		<result   property="logs_quantity"      column="logs_quantity"/>
+		<result   property="logs_shortage"      column="logs_shortage"/>
+		<result   property="com_code"      column="com_code"/>
+		<result   property="sto_code"   column="sto_code"/>
+		<result   property="pro_code"   column="pro_code"/>
+		<result   property="emp_code"   column="emp_code"/>
+		
+		<association property="company" javaType="com.project.UsERP.vo.CompanyVO">
+		   <id       property="com_code"   column="com_code"/>
+		   <result   property="com_name"   column="com_name"/>
+		</association>
+		<association property="product" javaType="com.project.UsERP.vo.ProductVO">
+		   <id       property="pro_code"   column="pro_code"/>
+		   <result   property="pro_name"  column="pro_name"/>
+		</association>
+		<association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+		   <id       property="emp_code"   column="emp_code"/>
+		   <result   property="emp_name"  column="emp_name"/>
+		</association>
+		<association property="warehouse" javaType="com.project.UsERP.vo.WarehouseVO">
+		   <id       property="ware_code"   column="ware_code"/>
+		   <result   property="ware_name"   column="ware_name"/>
+		   <result   property="ware_location"   column="ware_location"/>
+		   <result   property="ware_state"   column="ware_state"/>
+		</association>
+		<association property="stock" javaType="com.project.UsERP.vo.StockVO">
+		   <id       property="sto_code"   column="sto_code"/>
+		   <result   property="sto_quantity"  column="sto_quantity"/>
+		   <result   property="sto_type"  column="sto_type"/>
+		   <result   property="sto_amount"  column="sto_amount"/>
+		   <result   property="sto_state"  column="sto_state"/>
+		   <result   property="sto_reg_date"  column="sto_reg_date"/>
+		   <result   property="sto_content"  column="sto_content"/>
+		   <result   property="sto_startwh"  column="sto_startwh"/>
+		   <result   property="sto_arrivewh"  column="sto_arrivewh"/>
+		   <result   property="ware_code"  column="ware_code"/>
+		   <result   property="pro_code"  column="pro_code"/>
+		</association>
+    </resultMap>
+
+	<!-- 최유성 - 기초 등록 구매 거래처 목록 -->
+	<select id = "pdCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
+		select * from company where com_type = 10 order by com_code
 	</select>
 	
-	<!-- 기초 등록 상품 목록 -->
-	<select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
-		select * from product
+	<!-- 최유성 - 기초 등록 상품 목록 -->
+	<select id = "pdProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
+		select * from product order by pro_code
+	</select>
+
+	<!-- 최유성 - 입고내역 -->
+	<select id = "pdStockInOrder" resultMap="pdStockOrder">
+		SELECT * 
+		  FROM logistics_statement l
+		  JOIN warehouse w
+    		ON w.ware_code = l.ware_code
+    	  JOIN company c
+		    ON c.com_code = l.com_code
+		  JOIN product p
+		    ON p.pro_code = l.pro_code
+		  JOIN employee e
+		    ON e.emp_code = l.emp_code     
+		 WHERE logs_type = 5
+		 order by logs_code
 	</select>
 	
 	<!-- 구매,승인내역 -->
    <select id = "salesList" resultType = "com.project.UsERP.vo.AccountStatementVO">
-      select * from account_statement ORDER BY accs_code
+      	select * from account_statement ORDER BY accs_code
    </select>
+   
+   <!-- 최유성 - 회계전표 승인내역 -->
+   <select id = "AccountStatement" resultType = "com.project.UsERP.vo.AccountStatementVO">
+		SELECT * FROM account_statement where accs_state = 1 and accs_type=3
+	</select>
+	
+	<!-- 최유성 - 회계전표 승인내역 -->
+   <select id = "getAccountStatement" resultType = "com.project.UsERP.vo.AccountStatementVO">
+		SELECT * FROM account_statement where = #{accs_code}
+	</select>
 
 </mapper>

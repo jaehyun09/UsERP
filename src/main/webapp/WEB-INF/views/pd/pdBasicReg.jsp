@@ -37,6 +37,91 @@ function productadd() {
    });
 }
 
+/* 거래처 검색 JQuery */
+$(function() {
+	$('#compKeyword').keyup(function() {
+		var compKeyword = $('#compKeyword').val();
+		
+		if(compKeyword.length == 0) {
+			$('#compList').css("visibility", "visible");
+		} else {
+			$('#compList').css("visibility", "visible");
+			
+			$.ajax({
+				url: 'compSearchList?${_csrf.parameterName}=${_csrf.token}',
+				type: 'POST',
+				data: 'compKeyword=' + compKeyword,
+				success: function(result) {
+					$('#compList').html(result);
+				},
+				error: function() {
+					alert('오류');
+				}
+				
+			});
+		}
+	});
+});
+
+/* 거래처 목록 */
+function compSearchList() {
+	$.ajax({
+		url: "compSearchList?${_csrf.parameterName}=${_csrf.token}&compKeyword=${compKeyword}",
+		type: 'GET',
+		dataType: 'text',
+		success: function(result) {
+			$('#compList').html(result);
+		},
+		error: function() {
+			alert('오류');
+		}
+		
+	});
+}
+
+/* 상품 검색 JQuery */
+$(function() {
+	$('#proKeyword').keyup(function() {
+		var proKeyword = $('#proKeyword').val();
+		
+		if(compKeyword.length == 0) {
+			$('#proList').css("visibility", "visible");
+		} else {
+			$('#proList').css("visibility", "visible");
+			
+			$.ajax({
+				url: 'proSearchList?${_csrf.parameterName}=${_csrf.token}',
+				type: 'POST',
+				data: 'proKeyword=' + proKeyword,
+				success: function(result) {
+					$('#proList').html(result);
+				},
+				error: function() {
+					alert('오류');
+				}
+				
+			});
+		}
+	});
+});
+
+/* 상품 목록 */
+function proSearchList() {
+	
+	$.ajax({
+		url: "proSearchList?${_csrf.parameterName}=${_csrf.token}&proKeyword=${proKeyword}",
+		type: 'GET',
+		dataType: 'text',
+		success: function(result) {
+			$('#proList').html(result);
+		},
+		error: function() {
+			alert('오류');
+		}
+		
+	});
+} 
+
 </script> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -292,48 +377,34 @@ function productadd() {
 	                                               <div class="input-group-append">
 	                                                <i class="gd-search icon-text icon-text-sm"></i>
 	                                                 </div>
-	                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
+	                                                 <input class="form-control form-control-icon-text" placeholder="거래처코드?거래처번호?/거래처명 검색" type="text" >
 	                                            </div>
 	                                            <br>
 		                                    <!-- 검색창 끝 --> 
                                              <table class="table bg-white text-dark center ass2 table-striped">
-                                                         <thead class="text-white table-bordered tap">
-                                                            <tr class="text-white table-bordered tap">
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
-                                                            </tr>
-                                                         </thead>
-                                                         <tbody>
-                                                         	<c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
-                                                            <tr>
-                                                               <td class="py-3">${list.order_code}</td>
-                                                               <td class="py-3">${list.product.pro_name}</td>
-                                                               <td class="py-3">${list.company.comp_name}</td>
-                                                               <td class="py-3">${list.stockInOrder.in_count}</td>
-                                                               <td class="py-3">${list.warehouse.ware_name}</td>
-                                                               <td class="py-3">${list.employee.emp_name}</td>
-                                                               <td class="py-3">
-                                                               		<fmt:formatDate value="${list.order_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                               </td>
-                                                               <td class="py-3">
-                                                               		<fmt:formatDate value="${list.order_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                               </td>
-                                                               <td class="py-2 middle">
-                                                          			<button type="button" class="btn btn-outline-info" style='float: middle;'>
-                                                                     	승인
-                                                                	</button>
-                                                              </td>
-                                                            </tr>
-                                                            </c:forEach>
-                                                         </tbody>
-                                                      </table>
+	                                             <thead class="text-white table-bordered tap">
+	                                                <tr class="text-white table-bordered tap">
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처번호</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">분류</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">대표자명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">사업자번호</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+	                                                </tr>
+	                                             </thead>
+	                                             <tbody>
+	                                             	<c:forEach var="list" items="${Clist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+	                                                <tr>
+	                                                   <td class="py-3">${list.com_code}</td>
+	                                                   <td class="py-3"><%-- ${list.com_type} --%>구매</td><!-- 페이징 처리..-->
+	                                                   <td class="py-3">${list.com_ceo_name}</td>
+	                                                   <td class="py-3">${list.com_ceo_name}</td>
+	                                                   <td class="py-3">${list.com_ceo_name}</td>
+	                                                   <td class="py-3">${list.com_ceo_name}</td>
+	                                                </tr>
+	                                                </c:forEach>
+	                                             </tbody>
+	                                          </table>
                                        </div>
                                        
                                           <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
@@ -362,7 +433,7 @@ function productadd() {
 	                                               <div class="input-group-append">
 	                                                <i class="gd-search icon-text icon-text-sm"></i>
 	                                                 </div>
-	                                                 <input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" >
+	                                                 <input class="form-control form-control-icon-text" placeholder="상품코드?상품번호?/상품명 검색" type="text" >
 	                                            </div>
 	                                            <br>
                                             <!-- 검색창 끝 --> 
@@ -380,25 +451,22 @@ function productadd() {
                                           </thead>
                                           
                                           <tbody>
-                                          
-                                          	<tr class="tablein">
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          	</tr>
-                                          	<tr class="tablein">
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          		<td class="py-3 middle">테스트</td>
-                                          	</tr>
-                                          	
                                           	<c:forEach var="list" items="${Plist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+                                          	<tr class="tablein">
+                                          		<td class="py-3 middle">${list.pro_code}</td>
+                                          		<td class="py-3 middle">${list.pro_name}</td>
+                                          		<td class="py-3 middle">${list.pro_pur_price}</td>
+                                          		<td class="py-3 middle">${list.pro_sal_price}</td>
+                                          		<c:if test = "${list.pro_state == 1}">
+	                                            	<td class="py-3 middle" style="vertical-align: middle">사용중</td>
+	                                            </c:if>
+                                          		<c:if test = "${list.pro_state == 0}">
+	                                            	<td class="py-3 middle" style="vertical-align: middle">미사용</td>
+	                                            </c:if>
+	                                            <td class="py-3 middle"><fmt:formatDate value="${list.pro_reg_date}" pattern="yyyy-MM-dd"/></td>
+                                          	</tr>
+                                          	</c:forEach>
+                                          	<%-- <c:forEach var="list" items="${Plist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                              <tr class="tablein">
                                                 <td class="py-3 middle" style="vertical-align:middle">${list.pro_code}</td>
                                                 <td class="py-3 middle" style="vertical-align:middle">
@@ -420,7 +488,7 @@ function productadd() {
                                                 	<fmt:formatDate value="${list.pro_reg_date}" pattern="yyyy-MM-dd" />
                                                 </td>
                                              </tr>
-                                             </c:forEach>
+                                             </c:forEach> --%>
                                           </tbody>
                                        </table>
                                        <!-- 리액트화면으로 등록

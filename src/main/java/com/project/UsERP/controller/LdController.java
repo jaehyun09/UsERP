@@ -109,17 +109,17 @@ public class LdController {
 	// 전표 관리 입고 승인 - 최유성
 	@RequestMapping("/stockInAction")
 	public String stockInAction(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 보고서");
+		logger.info("url: 전표 관리 입고 승인");
 		
 		ldservice.stockInAction(req, model);
 		
 		return "ld/stockInAction";
 	}
 	
-	// 전표 관리 출고 승인 - 최유성
+	// 전표 관리 출고준비완료 승인 - 최유성
 	@RequestMapping("/stockOutReady")
 	public String stockOutReady(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 보고서");
+		logger.info("url: 전표 관리 출고준비완료 승인");
 		
 		ldservice.stockOutReady(req, model);
 		
@@ -129,7 +129,7 @@ public class LdController {
 	// 전표 관리 출고 승인 - 최유성
 	@RequestMapping("/stockOutAction")
 	public String stockOutAction(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 보고서");
+		logger.info("url: 전표 관리 출고 승인");
 		
 		ldservice.stockOutAction(req, model);
 		

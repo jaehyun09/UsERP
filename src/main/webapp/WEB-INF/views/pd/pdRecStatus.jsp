@@ -16,6 +16,46 @@
    <link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+<script type="text/javascript">
+/* 입고 내역 상셍페이지 */
+function content1(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'pdRecStatusAjax',
+      success: function(data){ 
+         $('#content1').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 입고 전표 등록 */
+function content2(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'pdRecStatusAjax2',
+      success: function(data){ 
+         $('#content2').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+</script>   
+    
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -256,45 +296,17 @@
                                        <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample1">
-                                                 <table class="table table-bordered bg-white text-dark ass2 th20">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="2" style="width:20%;">일단전표번호로</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">NO.</th>
-                                                         <td>10</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">사업자등록번호</th>
-                                                         <td>1234567890</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">대표자명</th>
-                                                         <td>최유성</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">업태</th>
-                                                         <td style="width:20%;">업태1</td>
-
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">회사규모</th>
-                                                         <td>n명</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th style="width:20%;">구분</th>
-                                                         <td>구매</td>
-                                                      </tr>
-                                                      
-                                                   </tbody>
-                                                </table><br><br><br>
+                                             
+                 <!-- -----------------상세페이지--------------------- -->
+                                             <div id="content1"></div>
+                  <!-- -----------------상세페이지--------------------- -->                             
+                                                
                                           </div>
                                        </div>
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead class="text-white table-bordered tap">
                                              <tr class="text-white table-bordered tap">
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
@@ -306,52 +318,35 @@
                                              </tr>
                                           </thead>
                                           <tbody>
-                                             <tr>
-                                                <td class="py-3 middle" style="vertical-align:middle">10</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">최유성</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">
-                                                   	<!-- a태그에 class="btn" 일단 제거  style 추가  a태그 앞뒤로 p태그 제거
-                                                      <a data-toggle="collapse" style="text-decoration:none; color: #000"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1" >거래처명1</a>-->
-                                                     <a class="btn" data-toggle="collapse"
-                                                         href="#multiCollapseExample1" role="button"
-                                                         aria-expanded="false"
-                                                         aria-controls="multiCollapseExample1">거래처명3</a>    
-                                                </td>
-                                                <td class="py-3 middle" style="vertical-align:middle">최유성</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">업태1</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">사용중</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">2017-08-21</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">김민수</td>
-                                                <td class="py-3 middle" style="vertical-align:middle">2017-09-03</td>
-                                             </tr>
                                              <c:forEach var="list" items="${SIlist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                               <tr>
-                                                 <td class="py-3">${list.order_code}</td>
+                                                 <td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample1" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample1"
+															onclick="content1(${list.logs_code})">${list.logs_code}</a></td>
                                                  <td class="py-3">${list.product.pro_name}</td>
-                                                 <td class="py-3">${list.company.comp_name}</td>
-                                                 <td class="py-3">${list.stockInOrder.in_count}</td>
+                                                 <td class="py-3">${list.company.com_name}</td> 
+                                                 <td class="py-3">${list.logs_quantity}</td>
                                                  <td class="py-3">${list.warehouse.ware_name}</td>
                                                  <td class="py-3">${list.employee.emp_name}</td>
                                                  <td class="py-3">
-                                                 		<fmt:formatDate value="${list.order_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+                                                 		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
                                                  </td>
-                                                 <c:if test = "${list.order_state == 11}">
+                                                 <c:if test = "${list.logs_state == 0}">
                                                  <td class="py-3">
                                                  	-
                                                  </td>
                                                  </c:if>
-                                                 <c:if test = "${list.order_state == 12}">
+                                                 <c:if test = "${list.logs_state == 1}">
                                                 	 <td class="py-3">
-                                                 		<fmt:formatDate value="${list.order_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+                                                 		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
                                                  	 </td>
                                                  </c:if>
-                                                 <c:if test = "${list.order_state == 11}">
+                                                 <c:if test = "${list.logs_state == 0}">
                                                  	<td class="py-3 middle">입고대기</td>
                                                  </c:if>
-                                                 <c:if test = "${list.order_state == 12}">
+                                                 <c:if test = "${list.logs_state == 1}">
                                                  	<td class="py-3 middle">입고완료</td>
                                                  </c:if>
                                               </tr>
@@ -363,9 +358,21 @@
 
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    <form name="form1" method="post">
                                     <div class="row">
-                                       	<table class="table bg-white text-dark center ass2" style="text-align:center">
+                                    	<div class="col">
+                                          <div class="collapse multi-collapse"
+                                             id="multiCollapseExample2">
+                                             
+                 <!-- -----------------상세페이지--------------------- -->
+                                             <div id="content2"></div>
+                  <!-- -----------------상세페이지--------------------- -->                             
+                                                
+                                          </div>
+                                       </div>
+                                    	
+                                    	
+                                    	
+                                       	<!-- <table class="table bg-white text-dark center ass2" style="text-align:center">
 	                                         <tr class="text-white table-bordered tap">
 	                                            <th colspan="3">입고 전표</th>
 	                                         </tr>
@@ -405,7 +412,7 @@
 											<tr>
 												<td class="py-3" colspan="2" style="vertical-align: middle;"><b>담당자</b></td>
 												<td align="center" colspan = "2">
-													<input class="form-control" name="emp_code" type="text"><!-- value="세션아이디 값으로 들어가는 값" readonly -->
+													<input class="form-control" name="emp_code" type="text">value="세션아이디 값으로 들어가는 값" readonly
 												</td>
 											</tr>
 										</tbody>
@@ -414,8 +421,54 @@
                                     <div align="center">
 										<button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
                                      	<button type="reset" class="btn btn-outline-info">재입력</button>
-									</div>
+									</div>-->
+									
+									
+	<!-- --------------------테스트------------------------------------------------------------------------------------- -->
+									<br><br>
+									<form name="form2" method="post">
+                                    <div class="row">
+                                       	<table class="table bg-white text-dark center ass2 table-striped">
+                                          <thead class="text-white table-bordered tap">
+                                             <tr>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">전표종류</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                          <c:forEach var="list" items="${AList}">
+        									<c:if test="${list.accs_state == 1 }">
+                                             <tr>
+                                                <td class="py-1 ">
+                                                   <p>
+                                                   	
+                                                      <a class="btn" data-toggle="collapse"
+                                                         href="#multiCollapseExample1" role="button"
+                                                         aria-expanded="false"
+                                                         aria-controls="multiCollapseExample1">${list.accs_code}</a>
+                                                   </p>
+                                                </td>
+                                                	<td class="py-1 "style="vertical-align: middle">구매 전표</td>
+                                                <td class="py-1 "style="vertical-align: middle">${list.emp_code}</td>
+                                                <td class="py-1 "style="vertical-align: middle" ><fmt:formatDate pattern="yyyy-MM-dd" value="${list.accs_reg_date}" /></td>
+                                                <td class="py-1 "style="vertical-align: middle">승인완료</td>
+                                             </tr>
+                                             </c:if>
+                                             </c:forEach>
+                                            
+                                          </tbody>
+                                       </table>
+                                    </div>
 									</form>
+<!-- --------------------테스트 종료 --------------------------------------------------------------------------------------- -->									
+									
+									
+									
+									
+									
                                  </div>
                               </div>
                               <!-- End Tab Content -->

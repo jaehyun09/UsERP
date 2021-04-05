@@ -35,7 +35,6 @@ public class LdServiceImpl implements LdService {
 		String warehouseName = req.getParameter("warehouseName");
 		String warehouseLoc = req.getParameter("warehouseLoc");
 		
-		
 		WarehouseVO vo = new WarehouseVO();
 		vo.setWare_name(warehouseName);
 		vo.setWare_location(warehouseLoc);

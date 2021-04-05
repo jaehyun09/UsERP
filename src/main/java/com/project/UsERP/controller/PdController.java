@@ -21,11 +21,13 @@ public class PdController {
 	@Autowired
 	PdServiceImpl pdService;
 	
-	// 기초 등록
+	// 최유성 - 기초 등록
 	@RequestMapping("/pdBasicReg")
 	public String pdBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 기초 등록");
 
+		pdService.pdBasicReg(req, model);
+		
 		return "pd/pdBasicReg";
 	}
 
@@ -45,12 +47,36 @@ public class PdController {
 		return "pd/pdStatus";
 	}
 
-	// 입고 현황
+	// 최유성 - 입고 현황
 	@RequestMapping("/pdRecStatus")
 	public String pdRecStatus(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 보고서");
+		logger.info("url: 입고 현황");
+		
+		pdService.pdRecStatus(req, model);
 
 		return "pd/pdRecStatus";
+	}
+	
+	// 최유성 - 입고 내역 상세 페이지
+	@RequestMapping("/pdRecStatusAjax")
+	public String pdRecStatusAjax(HttpServletRequest req, Model model) {
+		logger.info("url: 입고 내역 상세 페이지");
+		
+		pdService.pdRecStatusAjax(req, model);
+		
+		return "pd/ajax/pdRecStatusAjax";
+	}
+	
+	// 최유성 - 입고 전표 등록
+	@RequestMapping("/pdRecStatusAjax2")
+	public String pdRecStatusAjax2(HttpServletRequest req, Model model) {
+		logger.info("url: 입고 내역 상세 페이지");
+		
+		pdService.pdRecStatusAjax2(req, model);
+		
+		logger.info("url: 이거타냐....?");
+
+		return "pd/ajax/pdRecStatusAjax2";
 	}
 	
 }

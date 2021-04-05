@@ -373,7 +373,7 @@ function content4(code) {
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">
-	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 	                                                   </td>
 	                                                   <td class="py-2 middle" style="vertical-align:middle">
 	                                                   		<form action = "stockInAction" method = "post">
@@ -437,10 +437,10 @@ function content4(code) {
 	                                                      <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
 	                                                      <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 	                                                      <td class="py-3 middle" style="vertical-align:middle">
-	                                                      		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                      		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 	                                                      </td>
-	                                                      <td class="py-3">
-	                                                      		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                      <td class="py-3 middle" style="vertical-align:middle">
+	                                                      		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
 	                                                      </td>                                                      
 	                                                   </tr>
                                                    </c:forEach>
@@ -511,10 +511,10 @@ function content4(code) {
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">
-	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 	                                                   </td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">
-	                                                   		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                   		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
 	                                                   </td>
 	                                                   <c:if test="${list.logs_state == 0}">
 	                                                   		<td class="py-3 middle" style="vertical-align:middle">출고대기</td>
@@ -604,10 +604,10 @@ function content4(code) {
 								                     <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
 								                     <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 								                     <td class="py-3 middle" style="vertical-align:middle">
-								                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+								                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 								                     </td>
 								                     <td class="py-3 middle" style="vertical-align:middle">
-								                     		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+								                     		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
 								                     </td>
 						                  		 </tr>
 						                  		 </c:forEach>
