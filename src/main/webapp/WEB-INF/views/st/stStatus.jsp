@@ -37,6 +37,15 @@
       });
    }
 	
+	function Exceeded(pro_code, sto_quantity) {
+		var count = document.getElementById("accs_quantity").value;	
+		
+		if(count > sto_quantity) {
+			alert("선택 가능한 수량을 초과했습니다.");
+			return false;
+		}
+	}
+	
 </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -361,7 +370,7 @@
                                           </td>
                                        </tr>   
                                                    <tr>
-                                          <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;">거래처명</td>
+                                          <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>거래처명</b></td>
                                           <td class="font-weight-semi-bold border-top-0 py-2"
                                              colspan="2"><select class="form-control" id="com_code" name="com_code">
 		                                             		<c:forEach var="company" items="${company}">
@@ -388,8 +397,8 @@
                                                    </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1" id="accs_quantity" name="accs_quantity" onchange="changeCount()"></td>
-                                          </tr>
+                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1" id="accs_quantity" name="accs_quantity" onclick="Exceeded(${pro_code}, ${sto_quantity})"></td>
+                                          </tr>																																													
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>총액</b></td>
                                              <td class="py-3" colspan="2"><input 
