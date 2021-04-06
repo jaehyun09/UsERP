@@ -207,7 +207,16 @@ public class LdController {
 		return "ld/ajax/logMoveWareInsert";
 	}
 	
-	// 김민수 - 재고 이동 상세페이지 AJAX
+	// 김민수 - 입출고 내역 AJAX
+	@RequestMapping("/logStockOutInList")
+	public String logStockOutInList(HttpServletRequest req, Model model) {
+		logger.info("url: 입출고 내역");
+		
+		
+		return "ld/ajax/logStockOutInList";
+	}
+	
+	// 김민수 - 입출고 상세페이지 AJAX
 	@RequestMapping("/logMovehouseDetail")
 	public String logMovehouseDetail(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 이동 상세페이지");
@@ -217,7 +226,7 @@ public class LdController {
 		return "ld/ajax/logMovehouseDetail";
 	}
 	
-	// 김민수 - 재고 이동 승인
+	// 김민수 - 입출고 승인
 	@RequestMapping("/moveWareSoInsert")
 	public String moveWareSoInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 이동 승인");

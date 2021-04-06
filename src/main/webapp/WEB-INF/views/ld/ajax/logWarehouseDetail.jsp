@@ -31,17 +31,17 @@
                </tr>
                <tr>
                   <th class="font-weight-semi-bold border-top-0 py-4 h4">창고종류</th>
-                  <c:if test="${wareDetailVo.ware_code >=1000 && wareDetailVo.ware_code <=1999}">
+                  <c:if test="${wareDetailVo.ware_type == 1}">
                   	<td class="py-3">
 		       			<input class="form-control form-control-icon-text" type="text" value="양품창고" readonly>
 	   		 	  	</td>
                   </c:if>
-                  <c:if test="${wareDetailVo.ware_code >=2000 && wareDetailVo.ware_code <=2999}">
+                  <c:if test="${wareDetailVo.ware_type == 2}">
                   	<td class="py-3">
 		       			<input class="form-control form-control-icon-text" type="text" value="불량품창고" readonly>
 	   		 	  	</td>
                   </c:if>
-                  <c:if test="${wareDetailVo.ware_code >=3000 && wareDetailVo.ware_code <=3999}">
+                  <c:if test="${wareDetailVo.ware_type == 3}">
                   	<td class="py-3">
 		       			<input class="form-control form-control-icon-text" type="text" value="출고대기창고" readonly>
 	   		 	  	</td>

@@ -37,13 +37,13 @@
 						colspan="2">
 						<select class="custom-select custom-select-lg" name="startwh">
 						<c:forEach var="ware" items="${selectware}">
-							<c:if test="${ware.ware_code >=1000 && ware.ware_code <= 1999 }">
+							<c:if test="${ware.ware_type == 1}">
 								<option value="${ware.ware_code}">${ware.ware_name}</option>
 							</c:if>
-							<c:if test="${ware.ware_code >=2000 && ware.ware_code <= 2999 }">
+							<c:if test="${ware.ware_type == 2}">
 								<option value="${ware.ware_code}">${ware.ware_name}</option>
 							</c:if>
-							<c:if test="${ware.ware_code >=3000 && ware.ware_code <= 3999 }">
+							<c:if test="${ware.ware_type == 3}">
 								<option value="${ware.ware_code}">${ware.ware_name}</option>
 							</c:if>
 						</c:forEach>
@@ -56,13 +56,13 @@
 				<td class="py-2" colspan="2">
 					<select class="custom-select custom-select-lg" name="arrivewh">
 						<c:forEach var="ware" items="${selectware}">
-						<c:if test="${ware.ware_code >=1000 && ware.ware_code <= 1999}">
+						<c:if test="${ware.ware_type == 1}">
 							<option value="${ware.ware_code}">${ware.ware_name}</option>
 						</c:if>
-						<c:if test="${ware.ware_code >=2000 && ware.ware_code <= 2999}">
+						<c:if test="${ware.ware_type == 2}">
 							<option value="${ware.ware_code}">${ware.ware_name}</option>
 						</c:if>
-						<c:if test="${ware.ware_code >=3000 && ware.ware_code <= 3999}">
+						<c:if test="${ware.ware_type == 3}">
 							<option value="${ware.ware_code}">${ware.ware_name}</option>
 						</c:if>
 						</c:forEach>

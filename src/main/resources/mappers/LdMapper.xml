@@ -18,6 +18,7 @@
 			<result property="ware_name" column="ware_name" />
 			<result property="ware_location" column="ware_location" />
 			<result property="ware_state" column="ware_state" />
+			<result property="ware_type" column="ware_type" />
 		</association>
 		<association property="product" javaType="com.project.UsERP.vo.ProductVO">
 			<id property="pro_code" column="pro_code" />
@@ -61,6 +62,7 @@
 		   <result   property="ware_name"   column="ware_name"/>
 		   <result   property="ware_location"   column="ware_location"/>
 		   <result   property="ware_state"   column="ware_state"/>
+		   <result   property="ware_type"   column="ware_type"/>
 		</association>
 		<association property="stock" javaType="com.project.UsERP.vo.StockVO">
 		   <id       property="sto_code"   column="sto_code"/>

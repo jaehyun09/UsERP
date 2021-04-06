@@ -29,6 +29,7 @@
 	<input type = "hidden" name = "amount" value = "${vo.logs_quantity}">
 	<input type = "hidden" name = "warecode" value = "${vo.ware_code}">
 	<input type = "hidden" name = "empcode" value = "${vo.emp_code}">
+	<input type = "hidden" name = "shortage" value = "${vo.logs_shortage}">
        <table class="table table-bordered bg-white text-dark ass2 th20">
                <tr class="text-white con center">
                   <th colspan="2">재고 이동 승인</th>
@@ -60,11 +61,7 @@
 		   </tr>
 		   <tr>
 		      <th class="py-3" style="width:20%;">부족수량</th>
-		      <td class="py-3">${vo.logs_quantity}</td>
-		   </tr>
-		   <tr>
-		      <th class="py-3" style="width:20%;">출발창고</th>
-		      <td class="py-3">양품창고</td>
+		      <td class="py-3">${vo.logs_shortage}</td>
 		   </tr>
 		   <tr>
 		      <th class="py-3" style="width:20%;">도착창고</th>
@@ -75,13 +72,23 @@
 		      <td class="py-3">${vo.employee.emp_name}</td>
 		   </tr>
 		   <tr>
+		      <th class="py-3" style="width:20%;">상태</th>
+		      <c:if test="${vo.logs_state == 1 || vo.logs_state == 3}">
+		      	<td class="py-3">출고준비중</td>
+		      </c:if>
+		   </tr>
+		   <tr>
 		      <th class="py-3" style="width:20%;">발행일</th>
 		      <td class="py-3"><fmt:formatDate value="${vo.logs_reg_date}" pattern="yyyy-MM-dd"/></td>
 		   </tr>
                
             </table>
                <div align=center>
-                   <button type="submit" class="btn btn-outline-info">승인</button>
+               		<c:if test="${vo.logs_state == 1}">
+                   		<button type="submit" class="btn btn-outline-info">승인</button>
+               		</c:if>
+               		<c:if test="${vo.logs_state == 3}">
+               		</c:if>
                </div>
                <br><br><br>
 		</form>

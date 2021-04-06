@@ -55,6 +55,21 @@
        });
     }
 	
+	/* 입출고 내역 AJAX 
+	function stockOutInList() {
+    	$.ajax({
+          // sendRequest(콜백함수명, url, method, params)
+          url: "logStockOutInList", // 전송 페이지 => 컨트롤러 "basic_next"
+          type: 'GET', // 전송방식('GET', 'POST') - method
+          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+          success: function(result){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+             $('#stockOutIn').html(result);
+          },
+          error: function(){
+             alert('오류');
+          }
+       });
+    }*/
 	/* 출고 승인 상셍페이지 */
 	function logMoveDetail(code) {
 		
@@ -104,6 +119,8 @@
           }
        });
     }
+    
+    
 	
 	/* 재고수불부 AJAX */
 	function logInvenSupply() {
@@ -399,7 +416,39 @@
 									       </ul>
 									       
 									       <div id="tabsContent2" class="card-body tab-content p-0">
-									          <div class="tab-pane fade show active" id="tabs2-tab2"
+									          <div class="tab-pane fade show active" id="tabs2-tab1"
+									             role="tabpanel">
+									          	<table class="table  bg-white text-dark center ass2 table-striped">
+													<thead>
+														<tr class="text-white table-bordered tap">
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">창고이름</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">구매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">판매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">구분</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+														</tr>
+													</thead>
+													<tbody>
+															<tr>
+																<td class="py-3">상품NO</td>
+																<td class="py-3">상품NAME</td>
+																<td class="py-3">창고NAME</td>
+																<td class="py-3">구매PRICE</td>
+																<td class="py-3">판매PRICE</td>
+																<td class="py-3">수량AMOUNT</td>
+																<td class="py-3">입고내역/출고내역</td>
+																<td class="py-3">일자
+																	<%-- <fmt:formatDate pattern="yyyy-MM-dd" value="${stocklist.sto_reg_date}"/> --%>
+																</td>
+															</tr>
+													</tbody>
+												</table>
+									          </div>
+									       
+									          <div class="tab-pane fade" id="tabs2-tab2"
 									             role="tabpanel">
 									             <div class="row">
 	                                          		<div class="col">
@@ -423,6 +472,7 @@
 											</thead>
 											<tbody>
 											<c:forEach var="SOlist2" items="${SOlist2}">
+												<c:if test="${SOlist2.logs_state == 1 && SOlist2.logs_state == 3}">
 												<tr>
 													<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
 															href="#multiCollapseExample4" role="button"
@@ -438,6 +488,7 @@
 														<fmt:formatDate pattern="yyyy-MM-dd" value="${SOlist2.logs_reg_date}"/>
 													</td>
 												</tr>
+												</c:if>
 											</c:forEach>
 											</tbody>
 										</table>

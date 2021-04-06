@@ -458,6 +458,7 @@ public class LdServiceImpl implements LdService {
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		int startwh = Integer.parseInt(req.getParameter("warecode"));
 		String empcode = req.getParameter("empcode");
+		int shortage = Integer.parseInt(req.getParameter("shortage"));
 		
 		Map<String, Object> quantityMap = new HashMap<String, Object>();
 		quantityMap.put("prod", prod);
@@ -472,23 +473,28 @@ public class LdServiceImpl implements LdService {
 		int updateCnt2 = 0;
 		int moveStockOutIn = 0;
 		int updateCnt = lddao.moveSoStateUpdate(logscode);
-		if(updateCnt == 1) {
+		if(shortage == 0) {
+			if(updateCnt == 1) {
+				
+				Map<String, Object> minusMap = new HashMap<String, Object>();
+				minusMap.put("amount", amount);
+				minusMap.put("startwh", startwh);
+				minusMap.put("prod", prod);
+				
+				updateCnt2 = lddao.stoMinusUpdate(minusMap);
+				
+				StockSupplyVO stockSupplyVO = new StockSupplyVO();
+				stockSupplyVO.setStsu_quantity(stsu_qu);
+				stockSupplyVO.setStsu_amount(amount);
+				stockSupplyVO.setStsu_arrivewh(arrivewh);
+				stockSupplyVO.setPro_code(prod);
+				stockSupplyVO.setEmp_code(empcode);
+				
+				moveStockOutIn = lddao.stsuStockOutInsert(stockSupplyVO);
+				
+			}
 			
-			Map<String, Object> minusMap = new HashMap<String, Object>();
-			minusMap.put("amount", amount);
-			minusMap.put("startwh", startwh);
-			minusMap.put("prod", prod);
-			
-			updateCnt2 = lddao.stoMinusUpdate(minusMap);
-			
-			StockSupplyVO stockSupplyVO = new StockSupplyVO();
-			stockSupplyVO.setStsu_quantity(stsu_qu);
-			stockSupplyVO.setStsu_amount(amount);
-			stockSupplyVO.setStsu_arrivewh(arrivewh);
-			stockSupplyVO.setPro_code(prod);
-			stockSupplyVO.setEmp_code(empcode);
-			
-			moveStockOutIn = lddao.stsuStockOutInsert(stockSupplyVO);
+		} else if (shortage != 0) {
 			
 		}
 		

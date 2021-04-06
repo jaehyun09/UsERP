@@ -201,13 +201,13 @@
 					<td class="py-2" colspan="2">
 						<select class="custom-select custom-select-lg" id="wareh" name="wareh" onclick="wareAutoInput('${ware_code}')">
 							<c:forEach var="selectware" items="${selectware}">
-								<c:if test="${selectware.ware_code >=1000 && selectware.ware_code <= 1999 }">
+								<c:if test="${selectware.ware_type == 1}">
 									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
 								</c:if>
-								<c:if test="${selectware.ware_code >=2000 && selectware.ware_code <= 2999 }">
+								<c:if test="${selectware.ware_type == 2}">
 									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
 								</c:if>
-								<c:if test="${selectware.ware_code >=3000 && selectware.ware_code <= 3999 }">
+								<c:if test="${selectware.ware_type == 3}">
 									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
 								</c:if>
 							</c:forEach>
