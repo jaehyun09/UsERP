@@ -19,7 +19,7 @@
 /* 입고 미승인 상셍페이지 */
 function content1(code) {
 	
-	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
 	
    $.ajax({
       type:"POST",
@@ -37,7 +37,7 @@ function content1(code) {
 /* 입고 승인 상셍페이지 */
 function content2(code) {
 	
-	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
 	
    $.ajax({
       type:"POST",
@@ -55,7 +55,7 @@ function content2(code) {
 /* 출고 미승인 상셍페이지 */
 function content3(code) {
 	
-	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
 	
    $.ajax({
       type:"POST",
@@ -73,7 +73,7 @@ function content3(code) {
 /* 출고 승인 상셍페이지 */
 function content4(code) {
 	
-	var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
 	
    $.ajax({
       type:"POST",
@@ -151,9 +151,6 @@ function content4(code) {
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
-					<li class="side-nav-menu-item">
-                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
-               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -376,7 +373,7 @@ function content4(code) {
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">
-	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 	                                                   </td>
 	                                                   <%-- <td class="py-2 middle" style="vertical-align:middle">
 	                                                   		<form action = "stockInAction" method = "post">
@@ -440,10 +437,10 @@ function content4(code) {
 	                                                      <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
 	                                                      <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 	                                                      <td class="py-3 middle" style="vertical-align:middle">
-	                                                      		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                      		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 	                                                      </td>
 	                                                      <td class="py-3">
-	                                                      		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                      		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
 	                                                      </td>                                                      
 	                                                   </tr>
                                                    </c:forEach>
@@ -493,8 +490,8 @@ function content4(code) {
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">수정일</th>
-	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
+	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">수정일</th> -->
+	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th> -->
 	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2"></th> -->
 	                                                </tr>
 	                                             </thead>
@@ -514,17 +511,23 @@ function content4(code) {
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">
-	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 	                                                   </td>
-	                                                   <td class="py-3 middle" style="vertical-align:middle">
-	                                                   		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-	                                                   </td>
-	                                                   <c:if test="${list.logs_state == 0}">
+	                                                   
+	                                                   <!-- 변경3 -->
+	                                                   <%-- <td class="py-3 middle" style="vertical-align:middle">
+	                                                   		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
+	                                                   </td> --%>
+	                                                   
+	                                                   <!-- 변경2 -->
+	                                                   <%-- <c:if test="${list.logs_state == 0}">
 	                                                   		<td class="py-3 middle" style="vertical-align:middle">출고대기</td>
 	                                                   </c:if>
 	                                                   <c:if test="${list.logs_state == 2}">
 	                                                   		<td class="py-3 middle" style="vertical-align:middle">출고준비완료</td>
-	                                                   </c:if>
+	                                                   </c:if> --%>
+	                                                   
+	                                                   <!-- 변경1 -->
 	                                                   <%-- <c:if test="${list.stock.sto_quantity-list.logs_quantity >= 0}"><!-- list.logs_shortage -->
 															<td class="py-2 middle" style="vertical-align:middle">
 																<c:if test="${list.logs_state == 0}">
@@ -592,7 +595,7 @@ function content4(code) {
 							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
 							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
 							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">출고일</th>
+							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">승인일</th>
 	                                             </tr>
 	                                          </thead>
 	                                          <tbody>
@@ -608,10 +611,10 @@ function content4(code) {
 								                     <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
 								                     <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 								                     <td class="py-3 middle" style="vertical-align:middle">
-								                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+								                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 								                     </td>
 								                     <td class="py-3 middle" style="vertical-align:middle">
-								                     		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
+								                     		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
 								                     </td>
 						                  		 </tr>
 						                  		 </c:forEach>

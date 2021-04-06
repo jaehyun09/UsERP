@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${project}css/graindashboard.css">
 
 <meta charset="UTF-8">
-<title>ajax 테스트</title>
+<title>ldStatementManagementContentAjax4</title>
 </head>
 <body>
 
@@ -55,13 +55,13 @@
 		   </tr>
 		   <tr>
 		      <th style="width:20%;">발행일</th>
-		      <td><fmt:formatDate value="${vo.logs_reg_date}" pattern="yyyy-MM-dd"/></td>
+		      <td><fmt:formatDate value="${vo.logs_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss"/></td>
 		   </tr>
 		   <tr>
 		   	  <c:if test="${vo.logs_type == 5}">
 		   	  		<c:if test="${vo.logs_state == 1}">
 			      		<th style="width:20%;">입고일</th>
-			      		<td class="py-3"><fmt:formatDate value="${vo.logs_update_date}" pattern="yyyy-MM-dd"/></td>
+			      		<td class="py-3"><fmt:formatDate value="${vo.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss"/></td>
 			      	</c:if>
 			      	<c:if test="${vo.logs_state == 0}">
 			      		<th style="width:20%;">입고일</th>
@@ -71,7 +71,7 @@
 		      <c:if test="${vo.logs_type == 6}">
 				  <c:if test="${vo.logs_state == 1}">		      
 			      	<th style="width:20%;">출고일</th>
-			      	<td class="py-3"><fmt:formatDate value="${vo.logs_update_date}" pattern="yyyy-MM-dd"/></td>
+			      	<td class="py-3">출고준비완료</td>
 			      </c:if>
 		      	  <c:if test="${vo.logs_state == 0}">		      
 			      	<th style="width:20%;">출고일</th>
@@ -79,7 +79,7 @@
 			      </c:if>
 			      <c:if test="${vo.logs_state == 2}">		      
 			      	<th style="width:20%;">출고일</th>
-			      	<td class="py-3">출고준비완료</td>
+			      	<td class="py-3"><fmt:formatDate value="${vo.logs_update_date}" pattern="yyyy-MM-dd / hh:mm:ss"/></td>
 			      </c:if>
 		      </c:if>
 		   </tr>
@@ -95,13 +95,13 @@
 		      </c:if>
 		      <c:if test="${vo.logs_type == 6}">
 			      <c:if test="${vo.logs_state == 1}">
-		          	<td class="py-3">출고완료</td>
+		          	<td class="py-3">출고준비완료</td>
 		          </c:if>
 		          <c:if test="${vo.logs_state == 0}">
 		          	<td class="py-3">출고대기</td>
 		          </c:if>
 		          <c:if test="${vo.logs_state == 2}">
-	          		<td class="py-3">출고준비완료</td>
+	          		<td class="py-3">출고완료</td>
 	          	  </c:if>
 	          </c:if>
 		   </tr>

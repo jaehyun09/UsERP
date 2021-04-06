@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${project}css/graindashboard.css">
 
 <meta charset="UTF-8">
-<title>ldStatementManagementContentAjax2</title>
+<title>ajax 테스트</title>
 </head>
 <body>
 
@@ -107,11 +107,6 @@
 		   </tr>
 		   </tbody>
 		</table>
-
-
-
-
-
 
 	<%-- <table class="table table-bordered bg-white text-dark ass2 th20">
 		<tbody>
