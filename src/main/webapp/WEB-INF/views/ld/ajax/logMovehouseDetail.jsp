@@ -41,16 +41,19 @@
 		      <th class="py-3" style="width:20%;">상품명</th>
 		      <td class="py-3">${vo.product.pro_name}</td>
 		   </tr>
+		   
 		   <tr>
 		      <th class="py-3" style="width:20%;">거래처명</th>
 		      <td class="py-3">${vo.company.com_name}</td>
 		   </tr>
+		   
 		   <tr>
 		      <th class="py-3" style="width:20%;">유형</th>
 	          <c:if test="${vo.logs_type == 6}">
 	          	<td class="py-3">출고</td>
 	          </c:if>
 		   </tr>
+		   
 		   <tr>
 		      <th class="py-3" style="width:20%;">수량</th>
 		      <td class="py-3">${vo.logs_quantity}</td>
