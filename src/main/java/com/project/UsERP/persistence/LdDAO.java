@@ -178,4 +178,10 @@ public interface LdDAO {
 	
 	// 김민수 - 물류출고전표(부족수량) 부족수량 변경
 	public int logsShortAgeUpdate(Map<String, Object> shortMap);
+	
+	// 김민수 - 물류출고전표(부족수량) 출고준비상태로 변경
+	public int logsStateUpdate(int logscode);
+	
+	// 김민수 - 입출고 내역 조회
+	public List<StockSupplyVO> shiRecList();
 }

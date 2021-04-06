@@ -340,7 +340,6 @@ public class LdServiceImpl implements LdService {
 		int stoPlusUpdate = 0;
 		int stsuMoveInsert = 0;
 		int stsuBadMoveInsert = 0;
-		int state = 0;
 		
 			if (lddao.stockState(stateMap) == null) {
 				if(arrivewh >= 62400 && arrivewh <= 62499) {
@@ -377,17 +376,19 @@ public class LdServiceImpl implements LdService {
 				quantityMap.put("prod", prod);
 				String stsu_quantity = lddao.getStoQuantity(quantityMap);
 				
-				StockSupplyVO stockSupplyVO = new StockSupplyVO();
-				stockSupplyVO.setStsu_quantity(Integer.parseInt(stsu_quantity));
-				stockSupplyVO.setStsu_amount(amount);
-				stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
-				stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
-				stockSupplyVO.setPro_code(prod);
-				stockSupplyVO.setEmp_code(empid);
+					StockSupplyVO stockSupplyVO = new StockSupplyVO();
+					stockSupplyVO.setStsu_quantity(Integer.parseInt(stsu_quantity));
+					stockSupplyVO.setStsu_amount(amount);
+					stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
+					stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
+					stockSupplyVO.setPro_code(prod);
+					stockSupplyVO.setEmp_code(empid);
+					
+					stsuMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
 				
-				stsuMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
 				
 				int logsShortUpdate = 0;
+				int logsStateUpdate = 0;
 				if (logscode != 0) {
 					int logshortage = Integer.parseInt(lddao.logsShortAgeSelect(logscode));
 					int shortage = logshortage - amount;
@@ -400,21 +401,27 @@ public class LdServiceImpl implements LdService {
 						logsShortUpdate = lddao.logsShortAgeUpdate(shortMap);
 						
 						if(logsShortUpdate == 1) {
-							
+							logsStateUpdate = lddao.logsStateUpdate(logscode);
 						}
 						
 					} else if (shortage != 0) {
 						
 						logsShortUpdate = lddao.logsShortAgeUpdate(shortMap);
+					
 					}
+					
+					model.addAttribute("logsShortUpdate", logsShortUpdate);
+					model.addAttribute("logsStateUpdate", logsStateUpdate);
+				} else if (logscode == 0) {
+					
 				}
 			}
-			model.addAttribute("state", state);
+			model.addAttribute("logscode", logscode);
 			model.addAttribute("stockBadInsert", stockBadInsert);
 			model.addAttribute("stoBadMinusUpdate", stoBadMinusUpdate);
 			model.addAttribute("stoMinusUpdate",stoMinusUpdate);
-			model.addAttribute("stoPlusUpdate", stoPlusUpdate);
 			model.addAttribute("stsuMoveInsert", stsuMoveInsert);
+			model.addAttribute("stoPlusUpdate", stoPlusUpdate);
 			model.addAttribute("stsuBadMoveInsert", stsuBadMoveInsert);
 		}
 
@@ -481,7 +488,6 @@ public class LdServiceImpl implements LdService {
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		int startwh = Integer.parseInt(req.getParameter("warecode"));
 		String empcode = req.getParameter("empcode");
-		int shortage = Integer.parseInt(req.getParameter("shortage"));
 		
 		Map<String, Object> quantityMap = new HashMap<String, Object>();
 		quantityMap.put("prod", prod);
@@ -496,7 +502,6 @@ public class LdServiceImpl implements LdService {
 		int updateCnt2 = 0;
 		int moveStockOutIn = 0;
 		int updateCnt = lddao.moveSoStateUpdate(logscode);
-		if(shortage == 0) {
 			if(updateCnt == 1) {
 				
 				Map<String, Object> minusMap = new HashMap<String, Object>();
@@ -517,9 +522,6 @@ public class LdServiceImpl implements LdService {
 				
 			}
 			
-		} else if (shortage != 0) {
-			
-		}
 		
 		model.addAttribute("moveStockOutIn", moveStockOutIn);
 		model.addAttribute("updateCnt", updateCnt);
@@ -660,6 +662,14 @@ public class LdServiceImpl implements LdService {
 		List<LogisticsStatementVO> vo = lddao.logsCodeSelectList();
 		
 		model.addAttribute("logsCodeVo", vo);
+	}
+	
+	// 김민수 - 입출고내역 조회
+	@Override
+	public void shiRecList(HttpServletRequest req, Model model) {
+		List<StockSupplyVO> vo = lddao.shiRecList();
+		
+		model.addAttribute("shiRecVo", vo);
 	}
 	
 	// 최유성 - 전표관리
@@ -1007,6 +1017,7 @@ public class LdServiceImpl implements LdService {
 		}
 		model.addAttribute("updateCnt", updateCnt);
 	}
+
 
 
 

@@ -421,29 +421,38 @@
 									          	<table class="table  bg-white text-dark center ass2 table-striped">
 													<thead>
 														<tr class="text-white table-bordered tap">
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">구분</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">창고이름</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">구매단가</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">판매단가</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">구분</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
 														</tr>
 													</thead>
 													<tbody>
+														<c:forEach var="shiRecVo" items="${shiRecVo}">
+															<c:if test="${shiRecVo.stsu_type == 1 || shiRecVo.stsu_type == 2}">
 															<tr>
-																<td class="py-3">상품NO</td>
-																<td class="py-3">상품NAME</td>
-																<td class="py-3">창고NAME</td>
-																<td class="py-3">구매PRICE</td>
-																<td class="py-3">판매PRICE</td>
-																<td class="py-3">수량AMOUNT</td>
-																<td class="py-3">입고내역/출고내역</td>
-																<td class="py-3">일자
-																	<%-- <fmt:formatDate pattern="yyyy-MM-dd" value="${stocklist.sto_reg_date}"/> --%>
+																<c:if test="${shiRecVo.stsu_type == 1}">
+																	<td class="py-3">입고내역</td>
+																</c:if>
+																<c:if test="${shiRecVo.stsu_type == 2}">
+																	<td class="py-3">출고내역</td>
+																</c:if>
+																<td class="py-3">${shiRecVo.pro_code}</td>
+																<td class="py-3">${shiRecVo.product.pro_name}</td>
+																<td class="py-3">${shiRecVo.product.pro_pur_price}</td>
+																<td class="py-3">${shiRecVo.product.pro_sal_price}</td>
+																<td class="py-3">${shiRecVo.stsu_quantity}</td>
+																<td class="py-3">${shiRecVo.employee.emp_name}</td>
+																<td class="py-3">
+																	<fmt:formatDate pattern="yyyy-MM-dd" value="${shiRecVo.stsu_reg_date}"/>
 																</td>
 															</tr>
+															</c:if>
+														</c:forEach>
 													</tbody>
 												</table>
 									          </div>
@@ -463,7 +472,7 @@
 												<tr class="text-white table-bordered tap">
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">출고수량</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>

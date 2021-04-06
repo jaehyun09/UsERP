@@ -182,6 +182,7 @@ public class LdController {
 		logger.info("url: 재고 관리");
 		
 		ldservice.ldStatementManagement(req, model);
+		ldservice.shiRecList(req, model);
 		
 		return "ld/ldInventoryControl";
 	}
@@ -270,6 +271,17 @@ public class LdController {
 		
 		return "ld/ldPro/invenAdjInsert";
 	}
+	
+	// 김민수 - 재고 이동 처리(불량품창고, 부족수량 물류전표)
+	@RequestMapping("/movelogsInsert")
+	public String movelogsInsert(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 이동 처리");
+		
+		ldservice.moveWareInsert(req, model);
+		
+		return "ld/ldPro/movelogsInsert";
+	}
+	
 	
 	// 김민수 - 재고 수불부 AJAX
 	@RequestMapping("/logInvenSupply")

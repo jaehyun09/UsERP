@@ -430,6 +430,27 @@
 		WHERE logs_code = #{logscode}
 	</update>
 	
+	<!-- 김민수 - 물류출고전표(부족수량) 출고준비상태로 변경 -->
+	<update id="logsStateUpdate" parameterType="int">
+		UPDATE logistics_statement
+		SET logs_state = 1
+		WHERE logs_code = #{logscode}
+	</update>
+	
+	<!-- 김민수 - 입출고 내역 조회 -->
+	<select id="shiRecList" resultMap="supplyVOMap">
+		SELECT *
+		FROM (SELECT stsu_code, stsu_reg_date, stsu_quantity, pro_code, pro_pur_price,
+		        pro_sal_price,pro_name, emp_code, emp_name, stsu_type
+		    FROM (SELECT ss.*, p.pro_name,p.pro_pur_price, p.pro_sal_price, e.emp_name
+		        FROM stock_supply ss, product p, employee e
+		        WHERE ss.pro_code = p.pro_code
+		        AND ss.emp_code = e.emp_code
+		        ORDER BY ss.stsu_reg_date DESC
+		        )
+		    )
+	</select>
+	
 <!-- 최유성 -  입고 미승인 전표 - resultt="stockOrder" -->
 	<select id = "stockInOrder1" resultMap="stockOrder">
 		SELECT * 

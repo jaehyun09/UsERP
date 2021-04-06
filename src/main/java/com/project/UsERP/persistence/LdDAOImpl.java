@@ -367,5 +367,16 @@ public class LdDAOImpl implements LdDAO{
 	public int logsShortAgeUpdate(Map<String, Object> shortMap) {
 		return sqlSession.update("com.project.UsERP.persistence.LdDAO.logsShortAgeUpdate", shortMap);
 	}
+
+	// 김민수 - 물류출고전표(부족수량) 출고준비상태로 변경
+	@Override
+	public int logsStateUpdate(int logscode) {
+		return sqlSession.update("com.project.UsERP.persistence.LdDAO.logsStateUpdate", logscode);
+	}
+
+	@Override
+	public List<StockSupplyVO> shiRecList() {
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.shiRecList");
+	}
 	
 }
