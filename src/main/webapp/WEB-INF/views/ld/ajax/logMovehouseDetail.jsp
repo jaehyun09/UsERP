@@ -28,53 +28,57 @@
 	<input type = "hidden" name = "prod" value = "${vo.pro_code}">
 	<input type = "hidden" name = "amount" value = "${vo.logs_quantity}">
 	<input type = "hidden" name = "warecode" value = "${vo.ware_code}">
-	<input type = "hidden" name = "empcode" value = "${vo.employee.emp_name}">
+	<input type = "hidden" name = "empcode" value = "${vo.emp_code}">
        <table class="table table-bordered bg-white text-dark ass2 th20">
                <tr class="text-white con center">
-                  <th colspan="2">재고 이동 등록</th>
+                  <th colspan="2">재고 이동 승인</th>
                </tr>
             <tr>
-		      <th style="width:20%;">NO.</th>
+		      <th class="py-3" style="width:20%;">NO.</th>
 	          <td class="py-3">${vo.logs_code}</td>
 		   </tr>
 		   <tr>
-		      <th style="width:20%;">상품명</th>
+		      <th class="py-3" style="width:20%;">상품명</th>
 		      <td class="py-3">${vo.product.pro_name}</td>
 		   </tr>
 		   <tr>
-		      <th style="width:20%;">거래처명</th>
+		      <th class="py-3" style="width:20%;">거래처명</th>
 		      <td class="py-3">${vo.company.com_name}</td>
 		   </tr>
 		   <tr>
-		      <th style="width:20%;">유형</th>
+		      <th class="py-3" style="width:20%;">유형</th>
 	          <c:if test="${vo.logs_type == 6}">
 	          	<td class="py-3">출고</td>
 	          </c:if>
 		   </tr>
 		   <tr>
-		      <th style="width:20%;">수량</th>
+		      <th class="py-3" style="width:20%;">수량</th>
 		      <td class="py-3">${vo.logs_quantity}</td>
 		   </tr>
 		   <tr>
-		      <th style="width:20%;">출발창고</th>
+		      <th class="py-3" style="width:20%;">부족수량</th>
+		      <td class="py-3">${vo.logs_quantity}</td>
+		   </tr>
+		   <tr>
+		      <th class="py-3" style="width:20%;">출발창고</th>
 		      <td class="py-3">양품창고</td>
 		   </tr>
 		   <tr>
-		      <th style="width:20%;">도착창고</th>
+		      <th class="py-3" style="width:20%;">도착창고</th>
 		      <td class="py-3">${vo.warehouse.ware_name}</td>
 		   </tr>
 		   <tr>
-		      <th style="width:20%;">담당자</th>
+		      <th class="py-3" style="width:20%;">담당자</th>
 		      <td class="py-3">${vo.employee.emp_name}</td>
 		   </tr>
 		   <tr>
-		      <th style="width:20%;">발행일</th>
-		      <td><fmt:formatDate value="${vo.logs_reg_date}" pattern="yyyy-MM-dd"/></td>
+		      <th class="py-3" style="width:20%;">발행일</th>
+		      <td class="py-3"><fmt:formatDate value="${vo.logs_reg_date}" pattern="yyyy-MM-dd"/></td>
 		   </tr>
                
             </table>
                <div align=center>
-                   <button type="submit" class="btn btn-outline-info">등록</button>
+                   <button type="submit" class="btn btn-outline-info">승인</button>
                </div>
                <br><br><br>
 		</form>

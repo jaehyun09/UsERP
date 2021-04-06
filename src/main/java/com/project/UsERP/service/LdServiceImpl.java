@@ -465,24 +465,36 @@ public class LdServiceImpl implements LdService {
 		
 		String quantity = lddao.getStoQuantity(quantityMap);
 		int stsu_quantity = Integer.parseInt(quantity);
+		int stsu_qu = stsu_quantity - amount;
 		
-		int insertCnt = 0;
+		String arrivewh = lddao.getStartWareName(startwh);
+		
+		int updateCnt2 = 0;
+		int moveStockOutIn = 0;
 		int updateCnt = lddao.moveSoStateUpdate(logscode);
 		if(updateCnt == 1) {
 			
+			Map<String, Object> minusMap = new HashMap<String, Object>();
+			minusMap.put("amount", amount);
+			minusMap.put("startwh", startwh);
+			minusMap.put("prod", prod);
+			
+			updateCnt2 = lddao.stoMinusUpdate(minusMap);
+			
 			StockSupplyVO stockSupplyVO = new StockSupplyVO();
-			stockSupplyVO.setStsu_quantity(stsu_quantity - amount);
+			stockSupplyVO.setStsu_quantity(stsu_qu);
 			stockSupplyVO.setStsu_amount(amount);
-			stockSupplyVO.setStsu_arrivewh(lddao.getStartWareName(startwh));
+			stockSupplyVO.setStsu_arrivewh(arrivewh);
 			stockSupplyVO.setPro_code(prod);
 			stockSupplyVO.setEmp_code(empcode);
 			
-			insertCnt = lddao.stsuMoveInsert(stockSupplyVO);
+			moveStockOutIn = lddao.stsuStockOutInsert(stockSupplyVO);
 			
 		}
 		
+		model.addAttribute("moveStockOutIn", moveStockOutIn);
 		model.addAttribute("updateCnt", updateCnt);
-		model.addAttribute("insertCnt", insertCnt);
+		model.addAttribute("updateCnt2", updateCnt2);
 		
 	}
 	
@@ -763,7 +775,7 @@ public class LdServiceImpl implements LdService {
 		System.out.println("ware_code:"+ware_code);
 		int pro_code = Integer.parseInt(req.getParameter("pro_code")); //상품코드
 		System.out.println("pro_code:"+pro_code);
-		int emp_code = Integer.parseInt(req.getParameter("emp_code")); //사원번호
+		String emp_code = req.getParameter("emp_code"); //사원번호
 		System.out.println("emp_code:"+emp_code);
 		
 		int updateCnt = 0; //전표 업데이트 cnt

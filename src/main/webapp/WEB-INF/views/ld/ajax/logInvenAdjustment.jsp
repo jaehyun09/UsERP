@@ -64,6 +64,23 @@
           }
        });
     }
+	
+    /* 재고 이동 등록 AJAX */
+    function logMoveWareInsert() {
+		
+    	$.ajax({
+          // sendRequest(콜백함수명, url, method, params)
+          url: "logMoveWareInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+          type: 'GET', // 전송방식('GET', 'POST') - method
+          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+             $('#moveWareInsert').html(data);
+          },
+          error: function(){
+             alert('오류');
+          }
+       });
+    }
     
     </script>
 </head>
@@ -81,6 +98,9 @@
            <li class="nav-item ml-4"><a
               class="nav-link px-2 pb-2 ass2" href="#tabs2-tab4" role="tab"
               aria-selected="false" data-toggle="tab">재고 조정 등록</a></li>
+           <li class="nav-item ml-4"><a
+              class="nav-link px-2 pb-2 ass2" href="#tabs2-tab7" role="tab"
+              aria-selected="false" data-toggle="tab" onclick="logMoveWareInsert()">재고 이동 등록</a></li>
         </ul>
         
 		<div id="tabsContent2" class="card-body tab-content p-0">
@@ -226,6 +246,10 @@
 		</form>
 		</div>
 		<!-- 신규등록 끝 -->
+		
+		<div class="tab-pane fade" id="tabs2-tab7" role="tabpanel">
+			<div id="moveWareInsert"></div>
+		</div>
 	</div>
 </div>
 <!-- 재고조정 끝 -->    
