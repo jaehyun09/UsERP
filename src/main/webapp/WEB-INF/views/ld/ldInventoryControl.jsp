@@ -351,7 +351,7 @@
                                     class="nav-link d-flex align-items-center py-2 px-3"
                                     id="pills-html-tab-2" data-toggle="pill"
                                     href="#pills-html-2" role="tab" aria-controls="pills-html-2"
-                                    aria-selected="false">재고이동</a></li>
+                                    aria-selected="false">입출고</a></li>
                                     
                                  <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
@@ -392,11 +392,14 @@
 									          role="tablist">
 									          <li class="nav-item"><a
 									             class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab1"
-									             role="tab" aria-selected="true" data-toggle="tab">재고 이동 내역 </a></li>
+									             role="tab" aria-selected="true" data-toggle="tab">입출고 내역 </a></li>
+									          <li class="nav-item ml-4"><a
+									             class="nav-link px-2 pb-2 ass2" href="#tabs2-tab2" role="tab"
+									             aria-selected="false" data-toggle="tab">입출고 승인</a></li>
 									       </ul>
 									       
 									       <div id="tabsContent2" class="card-body tab-content p-0">
-									          <div class="tab-pane fade show active" id="tabs2-tab1"
+									          <div class="tab-pane fade show active" id="tabs2-tab2"
 									             role="tabpanel">
 									             <div class="row">
 	                                          		<div class="col">
