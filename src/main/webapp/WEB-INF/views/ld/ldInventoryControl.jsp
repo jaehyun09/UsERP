@@ -464,15 +464,15 @@
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 con2">출발창고명</th>
-													<th class="font-weight-semi-bold border-top-0 py-3 con2">도착창고명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
 													<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
 												</tr>
 											</thead>
 											<tbody>
 											<c:forEach var="SOlist2" items="${SOlist2}">
-												<c:if test="${SOlist2.logs_state == 1 && SOlist2.logs_state == 3}">
+												<c:if test="${SOlist2.logs_state == 1 || SOlist2.logs_state == 3}">
 												<tr>
 													<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
 															href="#multiCollapseExample4" role="button"
@@ -481,7 +481,7 @@
 															onclick="logMoveDetail(${SOlist2.logs_code})">${SOlist2.logs_code}</a></td>
 													<td class="py-3 con2" style="vertical-align:middle">${SOlist2.product.pro_name}</td>
 													<td class="py-3 con2" style="vertical-align:middle">${SOlist2.logs_quantity}</td>
-													<td class="py-3 con2" style="vertical-align:middle">양품창고</td>
+           											<td class="py-3 con2" style="vertical-align:middle">${SOlist2.logs_shortage}</td>
 													<td class="py-3 con2" style="vertical-align:middle">${SOlist2.warehouse.ware_name}</td>
 													<td class="py-3 con2" style="vertical-align:middle">${SOlist2.employee.emp_name}</td>
 													<td class="py-3 con2" style="vertical-align:middle">

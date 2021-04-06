@@ -33,7 +33,7 @@
    		});
    	}); */
    	
-   	$('#amount').change(function() {
+   	/* $('#amount').change(function() {
    		var amount = $('#amount').val();
    		var quantity = ${stsu_quantity};
    		
@@ -42,45 +42,93 @@
    			
    			return false;
    		}
-   	});
+   	}); */
    	
-	/* 재고 조정 신규 등록 AJAX */
+	/* 재고 조정 신규 등록 AJAX 
     function logAdjNew() {
-		
-		var prod = $('#prod').val();
-		var wareh = $('#wareh').val();
-		var param = "${_csrf.parameterName}=${_csrf.token}&prod=" + prod + "&wareh="+wareh;
 		
     	$.ajax({
           // sendRequest(콜백함수명, url, method, params)
           url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
-          type: 'POST', // 전송방식('GET', 'POST') - method
-          data: param, // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-             $('#adjNewInsert').html(data);
-          },
-          error: function(){
-             alert('오류');
-          }
-       });
-    }
-	
-    /* 재고 이동 등록 AJAX */
-    function logMoveWareInsert() {
-		
-    	$.ajax({
-          // sendRequest(콜백함수명, url, method, params)
-          url: "logMoveWareInsert", // 전송 페이지 => 컨트롤러 "basic_next"
           type: 'GET', // 전송방식('GET', 'POST') - method
           dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
           success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-             $('#moveWareInsert').html(data);
+             $('#adjOptionList').html(data);
           },
           error: function(){
              alert('오류');
           }
        });
-    }
+    } */
+    $('#selectStock').change(function() {
+    	
+    	var selectStock = $('#selectStock').val();
+    	
+    	if(selectStock == 1) {
+    		$.ajax({
+    	          // sendRequest(콜백함수명, url, method, params)
+    	          url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+    	          type: 'GET', // 전송방식('GET', 'POST') - method
+    	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+    	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+    	             $('#adjOptionList').html(data);
+    	          },
+    	          error: function(){
+    	             alert('오류');
+    	          }
+    	       });
+    	} else if(selectStock == 2) {
+    		
+	    	$.ajax({
+	          // sendRequest(콜백함수명, url, method, params)
+	          url: "logMoveWareInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+	          type: 'GET', // 전송방식('GET', 'POST') - method
+	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+	             $('#adjOptionList').html(data);
+	          },
+	          error: function(){
+	             alert('오류');
+	          }
+	       });
+    	}
+    	
+    });
+	
+    /* 재고 등록 AJAX 
+    function stockAdjustList() {
+    	
+    	var selectStock = $('#selectStock').val();
+    	if(selectStock == 1) {
+    		$.ajax({
+    	          // sendRequest(콜백함수명, url, method, params)
+    	          url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+    	          type: 'GET', // 전송방식('GET', 'POST') - method
+    	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+    	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+    	             $('#adjOptionList').html(data);
+    	          },
+    	          error: function(){
+    	             alert('오류');
+    	          }
+    	       });
+    	} else if(selectStock == 2) {
+    		
+	    	$.ajax({
+	          // sendRequest(콜백함수명, url, method, params)
+	          url: "logMoveWareInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+	          type: 'GET', // 전송방식('GET', 'POST') - method
+	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+	             $('#adjOptionList').html(data);
+	          },
+	          error: function(){
+	             alert('오류');
+	          }
+	       });
+    	}
+    	
+    } */
     
     </script>
 </head>
@@ -98,9 +146,6 @@
            <li class="nav-item ml-4"><a
               class="nav-link px-2 pb-2 ass2" href="#tabs2-tab4" role="tab"
               aria-selected="false" data-toggle="tab">재고 조정 등록</a></li>
-           <li class="nav-item ml-4"><a
-              class="nav-link px-2 pb-2 ass2" href="#tabs2-tab7" role="tab"
-              aria-selected="false" data-toggle="tab" onclick="logMoveWareInsert()">재고 이동 등록</a></li>
         </ul>
         
 		<div id="tabsContent2" class="card-body tab-content p-0">
@@ -176,14 +221,22 @@
 		
 		<!-- 신규등록 -->
 		<div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
-		<form action="invenAdjInsert" method="post">
-		<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 			<table class="table bg-white text-dark center ass2" style="text-align:center">
                     <tr class="text-white table-bordered tap">
                         <th colspan="3"> 재고 조정 등록 </th>
                     </tr>
-                                	
                     <tr>
+                    	<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+						colspan="2" style="vertical-align: middle;">유형</td>
+						<td class="font-weight-semi-bold border-top-0 py-2"
+						colspan="2">
+							<select class="custom-select custom-select-lg" id="selectStock" onchange="stockAdjustList()">
+								<option value="1">재고 조정</option>
+								<option value="2">재고 이동</option>
+							</select>
+						</td>
+                    </tr>
+                    <%-- <tr>
 					<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
 						colspan="2" style="vertical-align: middle;">상품명</td>
 					<td class="font-weight-semi-bold border-top-0 py-2"
@@ -229,27 +282,16 @@
 						<td class="py-2" colspan="2">
 							<input class="form-control form-control-icon-text" type="text" id="quantity" name="quantity" readonly>
 						</td>
-					</tr>
-						<!-- <button type="button" class="btn btn-outline-info" style='float: middle;' data-toggle="collapse" 
-							data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="logAdjNew()">신규등록</button>
-                         		<br>
-            			<div class="collapse" id="collapseExample">
-                 			<div class="bg-white p-4">
-                 				<div id="adjNewInsert"></div>
-					<div align=center>
+					</tr> --%>
+			</table>
+				<div id="adjOptionList"></div> 
+					<!-- <div align=center>
                         <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
                         <button type="reset" class="btn btn-outline-info">재입력</button>
-                    </div>	
-          				</div>
-          			</div> -->
-			</table>
-		</form>
+                    </div>	 -->
 		</div>
 		<!-- 신규등록 끝 -->
 		
-		<div class="tab-pane fade" id="tabs2-tab7" role="tabpanel">
-			<div id="moveWareInsert"></div>
-		</div>
 	</div>
 </div>
 <!-- 재고조정 끝 -->    

@@ -309,6 +309,7 @@ public class LdServiceImpl implements LdService {
 		int prod = Integer.parseInt(req.getParameter("prod"));
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		String empid = req.getParameter("empid");
+		int logscode = Integer.parseInt(req.getParameter("logscode"));
 		
 		// 재고 테이블 여부 확인
 		Map<String, Object> stateMap = new HashMap<String, Object>();
@@ -342,7 +343,7 @@ public class LdServiceImpl implements LdService {
 		int state = 0;
 		
 			if (lddao.stockState(stateMap) == null) {
-				if(arrivewh >= 2000 && arrivewh<=2999) {
+				if(arrivewh >= 62400 && arrivewh <= 62499) {
 					
 					stockBadInsert = lddao.stockBadWare(stockVo);
 					if(stockBadInsert == 1) {
@@ -385,6 +386,28 @@ public class LdServiceImpl implements LdService {
 				stockSupplyVO.setEmp_code(empid);
 				
 				stsuMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
+				
+				int logsShortUpdate = 0;
+				if (logscode != 0) {
+					int logshortage = Integer.parseInt(lddao.logsShortAgeSelect(logscode));
+					int shortage = logshortage - amount;
+					
+					Map<String, Object> shortMap = new HashMap<String, Object>();
+					shortMap.put("shortage", shortage);
+					shortMap.put("logscode", logscode);
+					if(shortage == 0) {
+						
+						logsShortUpdate = lddao.logsShortAgeUpdate(shortMap);
+						
+						if(logsShortUpdate == 1) {
+							
+						}
+						
+					} else if (shortage != 0) {
+						
+						logsShortUpdate = lddao.logsShortAgeUpdate(shortMap);
+					}
+				}
 			}
 			model.addAttribute("state", state);
 			model.addAttribute("stockBadInsert", stockBadInsert);
@@ -450,7 +473,7 @@ public class LdServiceImpl implements LdService {
 		
 	}
 
-	// 김민수 - 재고 이동 출고 상태변경 / 재고수불부 등록
+	// 김민수 - 입출고 승인 - 출고 상태변경 / 재고수불부 등록
 	@Override
 	public void moveStockOutUpIn(HttpServletRequest req, Model model) {
 		int logscode = Integer.parseInt(req.getParameter("logscode"));
@@ -629,6 +652,14 @@ public class LdServiceImpl implements LdService {
 		model.addAttribute("end", end);
 		model.addAttribute("proname", proname);
 		model.addAttribute("procode", procode);
+	}
+	
+	// 김민수 - 부족수량 출고물류전표 조회
+	@Override
+	public void logsCodeShortList(HttpServletRequest req, Model model) {
+		List<LogisticsStatementVO> vo = lddao.logsCodeSelectList();
+		
+		model.addAttribute("logsCodeVo", vo);
 	}
 	
 	// 최유성 - 전표관리
@@ -976,6 +1007,7 @@ public class LdServiceImpl implements LdService {
 		}
 		model.addAttribute("updateCnt", updateCnt);
 	}
+
 
 
 

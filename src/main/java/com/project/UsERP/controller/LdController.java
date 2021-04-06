@@ -196,21 +196,22 @@ public class LdController {
 		return "ld/ajax/logInvenStatus";
 	}
 	  
-	// 김민수 - 재고 이동 등록 AJAX
+	// 김민수 - 재고 이동 등록페이지 AJAX
 	@RequestMapping("/logMoveWareInsert")
 	public String logMoveWareInsert(HttpServletRequest req, Model model) {
-		logger.info("url: 재고 이동 등록 AJAX");
+		logger.info("url: 재고 이동 등록페이지 AJAX");
 		
 		ldservice.selectWarehouse(req, model);
 		ldservice.selectProduct(req, model);
+		ldservice.logsCodeShortList(req, model);
 		
 		return "ld/ajax/logMoveWareInsert";
 	}
 	
-	// 김민수 - 입출고 내역 AJAX
+	// 김민수 - 입출고 내역페이지 AJAX
 	@RequestMapping("/logStockOutInList")
 	public String logStockOutInList(HttpServletRequest req, Model model) {
-		logger.info("url: 입출고 내역");
+		logger.info("url: 입출고 내역페이지");
 		
 		
 		return "ld/ajax/logStockOutInList";
@@ -226,10 +227,10 @@ public class LdController {
 		return "ld/ajax/logMovehouseDetail";
 	}
 	
-	// 김민수 - 입출고 승인
+	// 김민수 - 입출고 승인페이지
 	@RequestMapping("/moveWareSoInsert")
 	public String moveWareSoInsert(HttpServletRequest req, Model model) {
-		logger.info("url: 재고 이동 승인");
+		logger.info("url: 입출고 승인페이지");
 		
 		ldservice.moveStockOutUpIn(req, model);
 		
@@ -237,10 +238,10 @@ public class LdController {
 	}
 	
 	  
-	// 김민수 - 재고 조정 AJAX
+	// 김민수 - 재고 조정페이지 AJAX
 	@RequestMapping("/logInvenAdjustment")
 	public String logInvenAdjustment(HttpServletRequest req, Model model) {
-		logger.info("url: 재고 조정AJAX");
+		logger.info("url: 재고 조정페이지 AJAX");
 		
 		ldservice.selectWarehouse(req, model);
 		ldservice.selectProduct(req, model);
@@ -249,20 +250,21 @@ public class LdController {
 		return "ld/ajax/logInvenAdjustment";
 	}
 	
-	// 김민수 - 재고 조정 신규등록 AJAX
+	// 김민수 - 재고 조정 신규등록페이지 AJAX
 	@RequestMapping("/logAdjNewInsert")
 	public String logAdjNewInsert(HttpServletRequest req, Model model) {
-		logger.info("url: 재고 조정 신규등록 AJAX");
+		logger.info("url: 재고 조정 신규등록페이지 AJAX");
 		
-		ldservice.getAdjStock(req, model);
+		ldservice.selectWarehouse(req, model);
+		ldservice.selectProduct(req, model);
 		
 		return "ld/ajax/logAdjNewInsert";
 	}
 	
-	// 김민수 - 재고 조정 등록
+	// 김민수 - 재고 조정 등록페이지
 	@RequestMapping("/invenAdjInsert")
 	public String invenAdjInsert(HttpServletRequest req, Model model) {
-		logger.info("url: 재고 조정 등록");
+		logger.info("url: 재고 조정 등록페이지");
 		
 		ldservice.adjNewInsert(req, model);
 		

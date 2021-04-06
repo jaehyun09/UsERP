@@ -23,13 +23,27 @@
 <main>
 
 	<!-- 신규등록 -->
-<form action="moveStsuInsert" method="post">
+<form action="movelogsInsert" method="post">
 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 		<table class="table bg-white text-dark center ass2" style="text-align:center">
-              	<tr class="text-white table-bordered tap">
-                  	<th colspan="3"> 재고 이동 등록 </th>
-              	</tr>
-                                	
+               	<tr>
+	             	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>전표번호</b></td>
+	                <td class="py-2" colspan="2">
+	                	<select class="custom-select custom-select-lg" name="logscode">
+	                	<c:forEach var="logsCodeVo" items="${logsCodeVo}">
+	                		<c:choose>
+		                		<c:when test="${logsCodeVo.logs_code == 0}">
+									<option> - </option>
+		                		</c:when>
+		                		<c:when test="${logsCodeVo.logs_code != 0}">
+									<option value="${logsCodeVo.logs_code}">${logsCodeVo.logs_code}</option>
+		                		</c:when>
+	                		</c:choose>
+	                	</c:forEach>
+						</select>
+                    </td>
+            	</tr>
+               	
                	<tr>
 					<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
 						colspan="2" style="vertical-align: middle;">출발창고명</td>
@@ -78,8 +92,9 @@
 						<option value="${prolist.pro_code}">${prolist.pro_name}</option>
                 	</c:forEach>
 					</select>
-                  </td>
-               </tr>
+                 </td>
+            </tr>
+            
 			<tr>
 				<td class="py-2" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
 				<td class="py-2" colspan="2">

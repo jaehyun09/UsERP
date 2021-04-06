@@ -169,4 +169,13 @@ public interface LdDAO {
 	
 	// 김민수 - 재고 수불부 내역 조회
 	public List<StockSupplyVO> stockSupplyList(Map<String, Object> map);
+	
+	// 김민수 - 부족수량 출고물류전표 가져오기
+	public List<LogisticsStatementVO> logsCodeSelectList();
+	
+	// 김민수 - 물류출고전표(부족수량) 부족수량 불러오기
+	public String logsShortAgeSelect(int logscode);
+	
+	// 김민수 - 물류출고전표(부족수량) 부족수량 변경
+	public int logsShortAgeUpdate(Map<String, Object> shortMap);
 }

@@ -46,6 +46,10 @@
 		      <td class="py-3">${vo.logs_quantity}</td>
 		   </tr>
 		   <tr>
+	            <th style="width:20%;">부족수량</th>
+	            <td class="py-3">${vo.logs_shortage}</td>
+         	</tr>
+		   <tr>
 		      <th style="width:20%;">창고명</th>
 		      <td class="py-3">${vo.warehouse.ware_name}</td>
 		   </tr>

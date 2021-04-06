@@ -72,4 +72,7 @@ public interface LdService {
 	
 	// 김민수  - 재고 수불부 내역
 	public void supplyList(HttpServletRequest req, Model model);
+	
+	// 김민수 - 부족수량 출고물류전표 조회
+	public void logsCodeShortList(HttpServletRequest req, Model model);
 }
