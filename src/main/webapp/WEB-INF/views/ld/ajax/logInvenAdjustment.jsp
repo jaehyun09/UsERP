@@ -112,7 +112,6 @@
 						<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
 					</tr>
 				</thead>
-				<tbody>
 				<c:forEach var="adjlist" items="${adjlist}">
 					<tr>
 						<td class="py-3" style="vertical-align: middle;">${adjlist.pro_code}</td>
@@ -126,7 +125,6 @@
 						</td>
 					</tr>
 				</c:forEach>
-				</tbody>
 			</table>
 			<!-- 페이지 넘버 이동 -->
 		<div class="card-footer d-block d-md-flex align-items-center d-print-none">

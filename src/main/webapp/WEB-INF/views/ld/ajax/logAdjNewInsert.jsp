@@ -7,14 +7,42 @@
 <script type="text/javascript" src="${project}js/logisticsScript.js"></script>
 <script src="${project}js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-/* $('#amount').change(function() {
-	var amount = $('#amount').val();
-	var quantity = ${stsu_quantity};
-}); */
+$(function() {
+	$('#amount').click(function() {
+		var prod = $('#prod').val();
+		var wareh = $('#wareh').val();
+		var param = '&${_csrf.parameterName}=${_csrf.token}&prod='+prod+'&wareh='+wareh;
+		
+		$.ajax({
+	        // sendRequest(콜백함수명, url, method, params)
+	        url: "getAdjStock", // 전송 페이지 => 컨트롤러 "basic_next"
+	        type: 'POST', // 전송방식('GET', 'POST') - method
+	        data: param, // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+	        success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+	           $('#quantity').val(data);
+	        },
+	        error: function(){
+	           alert('오류');
+	        }
+	     });
+	});
+});
+
+
+ 	$('#amount').change(function() {
+		var amount = parseInt($('#amount').val());
+		var quantity = parseInt($('#quantity').val());
+		var quan = quantity + amount;
+		
+		$('#quantity').val(quan);
+	});  
+
 </script>
 
 
 <body>
+<form action="invenAdjInsert" method="post">
+<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 	<table class="table bg-white text-dark center ass2" style="text-align:center">
 	    <tr>
 			<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
@@ -67,10 +95,11 @@
 		    </td>
 	  	</tr>
 	</tbody>
-</table>
+	</table>
 	<div align=center>
         <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
         <button type="reset" class="btn btn-outline-info">재입력</button>
     </div>
+</form>
 </body>
 </html>

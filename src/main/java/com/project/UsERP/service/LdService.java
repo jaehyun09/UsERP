@@ -58,7 +58,7 @@ public interface LdService {
 	public void moveStockOutUpIn(HttpServletRequest req, Model model);
 	
 	// 김민수 - 재고 조정 재고테이블 수량 가져오기
-	public void getAdjStock(HttpServletRequest req, Model model);
+	public String adjGetStock(HttpServletRequest req, Model model);
 	
 	// 김민수 - 재고 조정 등록
 	public void adjNewInsert(HttpServletRequest req, Model model);

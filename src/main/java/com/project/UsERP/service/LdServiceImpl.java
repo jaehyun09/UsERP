@@ -467,9 +467,9 @@ public class LdServiceImpl implements LdService {
 		
 	}
 	
-	// 김민수 - 재고 조정 재고테이블 수량 가져오기
+	// 김민수 - 조정 재고 테이블 수량 가저오기
 	@Override
-	public void getAdjStock(HttpServletRequest req, Model model) {
+	public String adjGetStock(HttpServletRequest req, Model model) {
 		int startwh = Integer.parseInt(req.getParameter("wareh"));
 		int prod = Integer.parseInt(req.getParameter("prod"));
 		
@@ -479,15 +479,14 @@ public class LdServiceImpl implements LdService {
 		
 		String stsu_quantity = lddao.getStoQuantity(quantityMap);
 		
-		model.addAttribute("stsu_quantity", stsu_quantity);
-		
+		return stsu_quantity;
 	}
-
+	
 	// 김민수 - 재고 조정 등록
 	@Override
 	public void adjNewInsert(HttpServletRequest req, Model model) {
 		int prod = Integer.parseInt(req.getParameter("prod"));
-		int arrivewh = Integer.parseInt(req.getParameter("wareh"));
+		int arrivewh = Integer.parseInt(req.getParameter("arrivewh"));
 		String empid = req.getParameter("empid");
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		int quantity = Integer.parseInt(req.getParameter("quantity"));
@@ -957,9 +956,6 @@ public class LdServiceImpl implements LdService {
 		}
 		model.addAttribute("updateCnt", updateCnt);
 	}
-
-
-
 
 
 }
