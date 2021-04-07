@@ -8,7 +8,6 @@
 <script type="text/javascript" src="${project}js/logisticsScript.js"></script>
  
 <body>
-		
 		<c:if test="${stockBadInsert != 0 && stoBadMinusUpdate != 0 && stsuBadMoveInsert != 0}">
 			<script type="text/javascript">
 				setTimeout(function() {

@@ -280,9 +280,7 @@ public class LdServiceImpl implements LdService {
 			model.addAttribute("pageBlock", pageBlock);
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
-			
 		}
-		
 	}
 
 	// 김민수 - 재고 관리 상품 조회
@@ -310,7 +308,6 @@ public class LdServiceImpl implements LdService {
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		String empid = req.getParameter("empid");
 		int logscode = Integer.parseInt(req.getParameter("logscode"));
-		int waretype = Integer.parseInt(req.getParameter("waretype"));
 		
 		// 재고 테이블 여부 확인
 		Map<String, Object> stateMap = new HashMap<String, Object>();
@@ -342,28 +339,28 @@ public class LdServiceImpl implements LdService {
 		int stsuMoveInsert = 0;
 		int stsuBadMoveInsert = 0;
 		
-			if (lddao.stockState(stateMap) == null) {
+		if (lddao.stockState(stateMap) == null) {
+				
+				stockBadInsert = lddao.stockBadWare(stockVo);
+				if(stockBadInsert == 1) {
+					stoBadMinusUpdate = lddao.stoMinusUpdate(minusMap);
+					// 재고 이동 재고테이블 수량 가져오기
+					Map<String, Object> quantityMap = new HashMap<String, Object>();
+					quantityMap.put("startwh", startwh);
+					quantityMap.put("prod", prod);
+					String stsu_quantity = lddao.getStoQuantity(quantityMap);
 					
-					stockBadInsert = lddao.stockBadWare(stockVo);
-					if(stockBadInsert == 1) {
-						stoBadMinusUpdate = lddao.stoMinusUpdate(minusMap);
-						// 재고 이동 재고테이블 수량 가져오기
-						Map<String, Object> quantityMap = new HashMap<String, Object>();
-						quantityMap.put("startwh", startwh);
-						quantityMap.put("prod", prod);
-						String stsu_quantity = lddao.getStoQuantity(quantityMap);
-						
-						StockSupplyVO stockSupplyVO = new StockSupplyVO();
-						stockSupplyVO.setStsu_quantity(Integer.parseInt(stsu_quantity));
-						stockSupplyVO.setStsu_amount(amount);
-						stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
-						stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
-						stockSupplyVO.setPro_code(prod);
-						stockSupplyVO.setEmp_code(empid);
-						
-						stsuBadMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
-					}
-			}
+					StockSupplyVO stockSupplyVO = new StockSupplyVO();
+					stockSupplyVO.setStsu_quantity(Integer.parseInt(stsu_quantity));
+					stockSupplyVO.setStsu_amount(amount);
+					stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
+					stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
+					stockSupplyVO.setPro_code(prod);
+					stockSupplyVO.setEmp_code(empid);
+					
+					stsuBadMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
+				}
+		}
 			
 		 else if(lddao.stockState(stateMap) != null) {
 				stoMinusUpdate = lddao.stoMinusUpdate(minusMap);

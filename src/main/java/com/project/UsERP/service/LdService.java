@@ -8,13 +8,13 @@ public interface LdService {
 	
 	// 최유성 - 전표 관리
 	public void ldStatementManagement(HttpServletRequest req, Model model);
-	
+
 	// 최유성 - 입고 전표 승인 액션
 	public void stockInAction(HttpServletRequest req, Model model);
-	
+
 	// 최유성 - 출고 준비 완료로 상태 변경 - 양품창고에서 출고대기창고로 물품 이동
 	public void stockOutReady(HttpServletRequest req, Model model);
-	
+
 	// 최유성 - 출고 전표 승인 액션
 	public void stockOutAction(HttpServletRequest req, Model model);
 

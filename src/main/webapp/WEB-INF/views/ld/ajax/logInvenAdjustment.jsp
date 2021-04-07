@@ -44,23 +44,7 @@
    		}
    	}); */
    	
-	/* 재고 조정 신규 등록 AJAX 
-    function logAdjNew() {
-		
-    	$.ajax({
-          // sendRequest(콜백함수명, url, method, params)
-          url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
-          type: 'GET', // 전송방식('GET', 'POST') - method
-          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-             $('#adjOptionList').html(data);
-          },
-          error: function(){
-             alert('오류');
-          }
-       });
-    } */
-    
+   	/* 재고 조정/이동 등록 AJAX */
     $('#selectStock').change(function() {
     	
     	var selectStock = $('#selectStock').val();
@@ -96,48 +80,12 @@
     	
     });
 	
-    /* 재고 등록 AJAX 
-    function stockAdjustList() {
-    	
-    	var selectStock = $('#selectStock').val();
-    	if(selectStock == 1) {
-    		$.ajax({
-    	          // sendRequest(콜백함수명, url, method, params)
-    	          url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
-    	          type: 'GET', // 전송방식('GET', 'POST') - method
-    	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-    	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-    	             $('#adjOptionList').html(data);
-    	          },
-    	          error: function(){
-    	             alert('오류');
-    	          }
-    	       });
-    	} else if(selectStock == 2) {
-    		
-	    	$.ajax({
-	          // sendRequest(콜백함수명, url, method, params)
-	          url: "logMoveWareInsert", // 전송 페이지 => 컨트롤러 "basic_next"
-	          type: 'GET', // 전송방식('GET', 'POST') - method
-	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-	             $('#adjOptionList').html(data);
-	          },
-	          error: function(){
-	             alert('오류');
-	          }
-	       });
-    	}
-    	
-    } */
     
     </script>
 </head>
 
 <body>
 <main>
-
-
 	<div class="px-3">
         <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3"
            role="tablist">
@@ -167,13 +115,13 @@
 				<tbody>
 				<c:forEach var="adjlist" items="${adjlist}">
 					<tr>
-						<td class="py-3">${adjlist.pro_code}</td>
-						<td class="py-3">${adjlist.product.pro_name}</td>
-						<td class="py-3">${adjlist.stsu_arrivewh}</td>
-						<td class="py-3">${adjlist.stsu_amount}</td>
-						<td class="py-3">${adjlist.stsu_quantity}</td>
-						<td class="py-3">${adjlist.employee.emp_name}</td>
-						<td class="py-3">
+						<td class="py-3" style="vertical-align: middle;">${adjlist.pro_code}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.product.pro_name}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.stsu_arrivewh}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.stsu_amount}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.stsu_quantity}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.employee.emp_name}</td>
+						<td class="py-3" style="vertical-align: middle;">
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${adjlist.stsu_reg_date}"/>
 						</td>
 					</tr>
@@ -239,10 +187,6 @@
                     </tr>
 			</table>
 				<div id="adjOptionList"></div> 
-					<!-- <div align=center>
-                        <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                        <button type="reset" class="btn btn-outline-info">재입력</button>
-                    </div>	 -->
 		</div>
 		<!-- 신규등록 끝 -->
 		

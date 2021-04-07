@@ -25,9 +25,6 @@
 	<!-- 신규등록 -->
 <form action="movelogsInsert" method="post">
 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-<c:forEach var="ware" items="${selectware}">
-	<input type = "hidden" name = "waretype" value = "${ware.ware_type}">
-</c:forEach>
 		<table class="table bg-white text-dark center ass2" style="text-align:center">
                	<tr>
 	             	<td class="font-weight-semi-bold border-top-0 py-2 text-dark" 

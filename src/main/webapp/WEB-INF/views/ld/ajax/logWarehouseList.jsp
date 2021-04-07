@@ -33,45 +33,6 @@
 	   });
 	}
 	
-	
-	/* 창고 상세페이지 AJAX 
-	$(function() {
-		$('#ware_code').click(function() {
-			
-			
-			
-			$.ajax({
-				url: 'logWarehouseDetail?${_csrf.parameterName}=${_csrf.token}&ware_code=${wareCode}',
-				type: 'GET',
-				dataType: 'text',
-				success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-	             $('#logWarehouseDetail').html(data);
-	          },
-	          error: function(){
-	             alert('오류');
-	          }
-			});
-		});
-	}); */
-	
-	/* 창고 상세페이지  
-    function waredetail() {
-		var ware_code = $('#ware_code').val();
-		var param = "${_csrf.parameterName}=${_csrf.token}&ware_code=" + ware_code;
-		
-    	$.ajax({
-    		url: "logWarehouseDetail",
-    		type: "POST",
-    		data: param,
-    		success: function(data) {
-    			$('#logWarehouseDetail').html(data);
-    		},
-    		error: function() {
-    			alert('오류');
-    		}
-    		
-    	});
-    } */
 	</script>
 </head>
 
@@ -104,10 +65,6 @@
                    <c:forEach var="houseVo" items="${warehouseList}">
                    <tr>
                       <td class="py-3" style="vertical-align: middle">
-                     <!--  <a class="btn" data-toggle="collapse"
-                         href="#multiCollapseExample1" role="button"
-                         aria-expanded="false" aria-controls="multiCollapseExample1" onclick="waredetail()">
-                         </a> -->
                          <a class="text-dark con2" data-toggle="collapse"
 							href="#multiCollapseExample9" role="button"
 							aria-expanded="false"

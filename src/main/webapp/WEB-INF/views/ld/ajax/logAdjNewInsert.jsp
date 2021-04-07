@@ -7,28 +7,10 @@
 <script type="text/javascript" src="${project}js/logisticsScript.js"></script>
 <script src="${project}js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-
-/* $(function() {
-		$("#amount").keyup(function(){
-			var amount = parseInt($('#amount').val());
-			var quantity = ${stsu_quantity};
-			var quantityReturn = quantity + amount; 
-			$("#quantity").val(quantityReturn);
-		});
-	}); 
-
-$('#amount').change(function() {
+/* $('#amount').change(function() {
 	var amount = $('#amount').val();
 	var quantity = ${stsu_quantity};
-	
-	if(count < quantity) {
-		alert("재고수량을 초과했습니다.");
-		
-		return false;
-	}
 }); */
-
-
 </script>
 
 
@@ -39,7 +21,7 @@ $('#amount').change(function() {
 			colspan="2" style="vertical-align: middle;">상품명</td>
 			<td class="font-weight-semi-bold border-top-0 py-2"
 				colspan="2">
-				<select class="custom-select custom-select-lg" name="prod">
+				<select class="custom-select custom-select-lg" id="prod" name="prod">
 	               	<c:forEach var="prolist" items="${selprolist}">
 						<option value="${prolist.pro_code}">${prolist.pro_name}</option>
 	               	</c:forEach>
@@ -50,7 +32,7 @@ $('#amount').change(function() {
 		<tr>
 			<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
 			<td class="py-2" colspan="2">
-				<select class="custom-select custom-select-lg" name="arrivewh">
+				<select class="custom-select custom-select-lg" id="wareh" name="arrivewh">
 					<c:forEach var="ware" items="${selectware}">
 					<c:if test="${ware.ware_type == 1}">
 						<option value="${ware.ware_code}">${ware.ware_name}</option>

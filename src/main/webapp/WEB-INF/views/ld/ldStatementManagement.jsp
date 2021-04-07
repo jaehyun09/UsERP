@@ -513,57 +513,6 @@ function content4(code) {
 	                                                   <td class="py-3 middle" style="vertical-align:middle">
 	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 	                                                   </td>
-	                                                   
-	                                                   <!-- 변경3 -->
-	                                                   <%-- <td class="py-3 middle" style="vertical-align:middle">
-	                                                   		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
-	                                                   </td> --%>
-	                                                   
-	                                                   <!-- 변경2 -->
-	                                                   <%-- <c:if test="${list.logs_state == 0}">
-	                                                   		<td class="py-3 middle" style="vertical-align:middle">출고대기</td>
-	                                                   </c:if>
-	                                                   <c:if test="${list.logs_state == 2}">
-	                                                   		<td class="py-3 middle" style="vertical-align:middle">출고준비완료</td>
-	                                                   </c:if> --%>
-	                                                   
-	                                                   <!-- 변경1 -->
-	                                                   <%-- <c:if test="${list.stock.sto_quantity-list.logs_quantity >= 0}"><!-- list.logs_shortage -->
-															<td class="py-2 middle" style="vertical-align:middle">
-																<c:if test="${list.logs_state == 0}">
-																	<form action = "stockOutReady" method = "post">
-																		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		                                                   				<input type="hidden" name="logs_code" value="${list.logs_code}">
-		                                                   				<input type="hidden" name="sto_code" value="${list.sto_code}">
-		                                                   				<input type = "hidden" name = "logs_quantity" value = "${list.logs_quantity}">
-				                                                   		<input type = "hidden" name = "ware_code" value = "${list.ware_code}">
-				                                                   		<input type = "hidden" name = "pro_code" value = "${list.pro_code}">
-				                                                   		<input type = "hidden" name = "emp_code" value = "${list.emp_code}">
-			                                                      		<button type="submit" class="btn btn btn-outline-info" style='float: middle;'>
-			                                                        		 승인
-			                                                      		</button>
-		                                                      		</form>
-	                                                      		</c:if>
-	                                                      		<c:if test="${list.logs_state == 2}">
-	                                                      			<form action = "stockOutAction" method = "post">
-		                                                      			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		                                                   				<input type="hidden" name="logs_code" value="${list.logs_code}">
-		                                                   				<input type="hidden" name="sto_code" value="${list.sto_code}">
-		                                                   				<input type = "hidden" name = "logs_quantity" value = "${list.logs_quantity}">
-				                                                   		<input type = "hidden" name = "ware_code" value = "${list.ware_code}">
-				                                                   		<input type = "hidden" name = "pro_code" value = "${list.pro_code}">
-				                                                   		<input type = "hidden" name = "emp_code" value = "${list.emp_code}">
-			                                                      		<button type="submit" class="btn btn btn-outline-info" style='float: middle;'>
-			                                                        		 출고
-			                                                      		</button>
-	                                                      			</form>
-	                                                      		</c:if>
-	                                                      	</td>
-													   </c:if>
-													   <c:if test="${list.stock.sto_quantity-list.logs_quantity < 0}">
-															<td class="py-3 middle" style="vertical-align:middle">재고부족</td>
-													   </c:if> --%>
-													   
 	                                                </tr>
 	                                                </c:forEach>
 	                                             </tbody>
@@ -601,7 +550,7 @@ function content4(code) {
 	                                          <tbody>
 						                          <c:forEach var="list" items="${SOlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 								                  <tr>
-								                     <td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+								                     <td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 															href="#multiCollapseExample4" role="button"
 															aria-expanded="false"
 															aria-controls="multiCollapseExample4"

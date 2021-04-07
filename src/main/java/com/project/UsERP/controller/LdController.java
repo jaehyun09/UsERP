@@ -258,6 +258,7 @@ public class LdController {
 		
 		ldservice.selectWarehouse(req, model);
 		ldservice.selectProduct(req, model);
+		/* ldservice.getAdjStock(req, model); */
 		
 		return "ld/ajax/logAdjNewInsert";
 	}
