@@ -168,6 +168,14 @@ public class HrServiceImpl implements HrService {
 		String emp_hire_date = req.getParameter("emp_hire_date");
 		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
 		String emp_jumin = req.getParameter("emp_jumin");
+		
+//		String address = "";
+//		String addcode = req.getParameter("addcode");
+//		String add1 = req.getParameter("add1");
+//		String add2 = req.getParameter("add2");
+//
+//		address = addcode + "-" + add1 + "-" + add2;
+		
 		String emp_address = req.getParameter("emp_address");
 		String emp_tel = req.getParameter("emp_tel");
 		String emp_phone = req.getParameter("emp_phone");

@@ -4,25 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>pdRecStatusAjax2</title>
 <%@ include file="../../setting.jsp"%>
 </head>
 <body>
-	<form action="${path}/logsstInsert" method="post" name="ssstem">
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}">
-			<input type="hidden" name="accs_code" value="${account.accs_code}">
+	<form action="${path}/logsPdInsert" method="post" name="logsPdInsert">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		<input type="hidden" name="emp_code" value="${sessionScope.mem_id}">	
+			<input type="hidden" name="accs_code" value="${vo.accs_code}">
 		<table class="table bg-white text-dark center ass2">
 			<tr class="text-white table-bordered tap">
-				<th colspan="3">출고 전표 등록</th>
+				<th colspan="3">입고 전표 등록</th>
 			</tr>
 			<tr>
 				<td class="py-3 text-dark" colspan="2"
 					style="vertical-align: middle;"><b>거래처명</b></td>
 				<td class="py-3" colspan="2" style="vertical-align: middle; text-align: left;">
 					<input
-					type="hidden" name="com_code" id="com_code" value="${account.company.com_code}">
-					${account.company.com_name}
+					type="hidden" name="com_code" id="com_code" value="${vo.company.com_code}">
+					${vo.company.com_name}
 				</td>				
 			</tr>
 			<tr>
@@ -30,8 +30,8 @@
 					style="vertical-align: middle;"><b>상품명</b></td>
 				<td class="py-3" colspan="2" style="vertical-align: middle; text-align: left;">
 					<input
-					type="hidden" name="pro_code" id="pro_code" value="${account.product.pro_code}">
-					${account.product.pro_name}
+					type="hidden" name="pro_code" id="pro_code" value="${vo.product.pro_code}">
+					${vo.product.pro_name}
 				</td>
 			</tr>
 			<tr>
@@ -39,15 +39,15 @@
 
 				<td class="py-3" colspan="2"
 					style="vertical-align: middle; text-align: left;"><input
-					type="hidden" name="logs_quantity" id="logs_quantity" value="${account.accs_quantity}">
-					${account.accs_quantity}</td>
+					type="hidden" name="logs_quantity" id="logs_quantity" value="${vo.accs_quantity}">
+					${vo.accs_quantity}</td>
 			</tr>
 			<tr>
 				<td class="py-3" colspan="2" style="vertical-align: middle;"><b>담당자</b></td>
 				<td class="py-3" colspan="2"
 					style="vertical-align: middle; text-align: left;"><input
-					type="hidden" name="emp_code" value="${sessionScope.mem_id}">
-					${sessionScope.mem_name}</td>
+					type="hidden" name="emp_name" value="${emp_name}">
+					${emp_name}</td>
 			</tr>
 			</tbody>
 		</table>

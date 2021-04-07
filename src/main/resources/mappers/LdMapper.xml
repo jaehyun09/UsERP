@@ -278,7 +278,7 @@
 	<!-- 김민수 - 재고관리 - 재고 이동 재고 테이블 불량품 창고 등록 -->
 	<insert id="stockBadWare" parameterType="com.project.UsERP.vo.StockVO">
 		INSERT INTO stock(sto_code, sto_quantity, sto_reg_date, ware_code, pro_code)
-		VALUES (stock_seq.nextval, #{sto_quantity}, sysdate, #{ware_code}, #{pro_code})
+		VALUES (sto_seq.nextval, #{sto_quantity}, sysdate, #{ware_code}, #{pro_code})
 	</insert>
 	
 	<!-- 김민수 - 재고관리 - 재고 이동 출발창고 수량 변경 -->
@@ -317,7 +317,7 @@
 	<insert id="stsuMoveInsert" parameterType="com.project.UsERP.vo.StockSupplyVO">
 		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, 
 					stsu_amount, stsu_startwh, stsu_arrivewh, pro_code, emp_code)
-		VALUES (stock_supply_seq.nextval, sysdate, 3, #{stsu_quantity}, #{stsu_amount}, 
+		VALUES (stsu_seq.nextval, sysdate, 3, #{stsu_quantity}, #{stsu_amount}, 
 						#{stsu_startwh}, #{stsu_arrivewh}, #{pro_code}, #{emp_code})
 	</insert>
 	
@@ -349,7 +349,7 @@
 	<insert id="adjustmentInsert" parameterType="com.project.UsERP.vo.StockSupplyVO">
 		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, 
 								stsu_amount, stsu_arrivewh, pro_code, emp_code)
-		VALUES (stock_supply_seq.nextval, sysdate, 4, #{stsu_quantity}, 
+		VALUES (stsu_seq.nextval, sysdate, 4, #{stsu_quantity}, 
 				#{stsu_amount}, #{stsu_arrivewh}, #{pro_code}, #{emp_code})
 	</insert>
 	
@@ -486,7 +486,7 @@
 	<!-- 최유성 - 입고 승인 버튼 클릭 상태 업데이트시 재고코드가 존재하지 않으면(새상품 입고 재고 추가(등록)) -->
 	<insert id="stockInsert" parameterType="java.util.Map">
 		INSERT INTO stock(sto_code, sto_quantity, sto_reg_date, ware_code, pro_code)
-		VALUES (stock_seq.nextval,#{sto_quantity},sysdate,1001,#{pro_code})
+		VALUES (sto_seq.nextval,#{sto_quantity},sysdate,1001,#{pro_code})
 	</insert>
 	
 	<!-- 최유성 - 입고 관련 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기 -->
@@ -515,7 +515,7 @@
 	<!-- 최유성 - 입고 승인 버튼 클릭 상태 업데이트시 재고 수불부 생성-->
 	<insert id = "stockSupplyInsert" parameterType="java.util.Map">
 		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, stsu_amount, stsu_content, stsu_startwh, stsu_arrivewh, sto_code, pro_code, emp_code)
-		VALUES (stock_supply_seq.nextval,sysdate,1,#{stsu_quantity},#{stsu_amount},'입고',null,'양품창고',#{sto_code},#{pro_code},#{emp_code})
+		VALUES (stsu_seq.nextval,sysdate,1,#{stsu_quantity},#{stsu_amount},'입고',null,'양품창고',#{sto_code},#{pro_code},#{emp_code})
 	</insert><!-- 나중에 수정해야 함...!!!!!!!!!!! 마지막 사원코드는 세션아이디로? -->
 	
 	<!-- 출고 작업 공간 -->
@@ -532,25 +532,25 @@
       	  JOIN warehouse w
         	ON w.ware_code = s.ware_code
    		 WHERE s.pro_code = #{pro_code}    
-   		   AND w.ware_code = 3001
+   		   AND w.ware_code = 62300
 	</select>  
 	
 	<!-- 최유성 - 양품창고에서 출고대기 창고로 재고 이동하는 재고수불부 등록 -->
 	<insert id = "outReadystockSupplyInsert" parameterType="java.util.Map">
 		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, stsu_amount, stsu_content, stsu_startwh, stsu_arrivewh, sto_code, pro_code, emp_code)
-		VALUES (stock_supply_seq.nextval,sysdate,3,#{stsu_quantity},#{stsu_amount},'출고준비','양품창고','출고대기창고',#{sto_code},#{pro_code},#{emp_code})
+		VALUES (stsu_seq.nextval,sysdate,3,#{stsu_quantity},#{stsu_amount},'출고준비','양품창고','출고대기창고',#{sto_code},#{pro_code},#{emp_code})
 	</insert><!-- 나중에 수정해야 함...!!!!!!!!!!! 마지막 사원코드는 세션아이디로? -->
 	
 	<!-- 최유성 - 출고 승인 버튼 클릭 상태 업데이트시 재고 수불부 생성-->
 	<insert id = "outStockSupplyInsert" parameterType="java.util.Map">
 		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, stsu_amount, stsu_content, stsu_startwh, stsu_arrivewh, sto_code, pro_code, emp_code)
-		VALUES (stock_supply_seq.nextval,sysdate,2,#{stsu_quantity},#{stsu_amount},'출고','출고대기창고',null,#{sto_code},#{pro_code},#{emp_code})
+		VALUES (stsu_seq.nextval,sysdate,2,#{stsu_quantity},#{stsu_amount},'출고','출고대기창고',null,#{sto_code},#{pro_code},#{emp_code})
 	</insert><!-- 나중에 수정해야 함...!!!!!!!!!!! 마지막 사원코드는 세션아이디로? -->	
 	
 	<!-- 최유성 - 출고 승인 버튼 클릭 - 출고준비완료로 상태 업데이트시 해당상품에 대한 출고대기창고에 재고코드가 존재하지 않으면 해당 재고 등록 -->
 	<insert id="outStockInsert" parameterType="java.util.Map">
 		INSERT INTO stock(sto_code, sto_quantity, sto_reg_date, ware_code, pro_code)
-		VALUES (stock_seq.nextval,#{sto_quantity},sysdate,3001,#{pro_code})
+		VALUES (sto_seq.nextval,#{sto_quantity},sysdate,3001,#{pro_code})
 	</insert>
 	
 	<!-- 최유성 - 입고 관련 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기 -->

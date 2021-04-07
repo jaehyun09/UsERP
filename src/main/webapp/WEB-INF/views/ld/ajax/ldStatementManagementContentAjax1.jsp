@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${project}css/graindashboard.css">
 
 <meta charset="UTF-8">
-<title>ajax 테스트</title>
+<title>ldStatementManagementContentAjax1</title>
 </head>
 <body>
 	<div>
@@ -110,12 +110,12 @@
 			<div align="center">
 				<form action = "stockInAction" method = "post">
            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-           		<input type = "hidden" name = "logs_code" value = "${list.logs_code}">
-           		<input type = "hidden" name = "sto_code" value = "${list.sto_code}">
-           		<input type = "hidden" name = "logs_quantity" value = "${list.logs_quantity}">
-           		<input type = "hidden" name = "ware_code" value = "${list.ware_code}">
-           		<input type = "hidden" name = "pro_code" value = "${list.pro_code}">
-           		<input type = "hidden" name = "emp_code" value = "${list.emp_code}">
+           		<input type = "hidden" name = "logs_code" value = "${vo.logs_code}">
+           		<input type = "hidden" name = "sto_code" value = "${vo.sto_code}">
+           		<input type = "hidden" name = "logs_quantity" value = "${vo.logs_quantity}">
+           		<input type = "hidden" name = "ware_code" value = "${vo.ware_code}">
+           		<input type = "hidden" name = "pro_code" value = "${vo.pro_code}">
+           		<input type = "hidden" name = "emp_code" value = "${sessionScope.mem_id}">
       			<button type="submit" class="btn btn-outline-info" style='float: middle;'>
                  	승인
             	</button>

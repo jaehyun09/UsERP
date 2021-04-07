@@ -108,6 +108,9 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -302,7 +305,7 @@
                                              <c:if test="${vo.accs_type == 1 }">
                                              <tr>
                                                 <td class="py-3" style="vertical-align:middle">
-                                                       <a class="btn" style="font-size:22px" data-toggle="collapse"
+                                                       <a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
                                                           href="#multiCollapseExample1" role="button"
                                                           aria-expanded="false"
                                                           aria-controls="multiCollapseExample1"
