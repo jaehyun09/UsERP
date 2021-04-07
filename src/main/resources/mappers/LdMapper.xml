@@ -125,24 +125,6 @@
 		</association>
 	
 	</resultMap>
-
-	<!-- 김민수 - 양품창고 등록 -->
-	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
-	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_good_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
-	</insert>
-	
-	<!-- 김민수 - 불량품창고 등록 -->
-	<insert id="insertBadWare" parameterType="com.project.UsERP.vo.WarehouseVO">
-	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_bad_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
-	</insert>
-	
-	<!-- 김민수 - 출고대기창고 등록 -->
-	<insert id="insertWaitWare" parameterType="com.project.UsERP.vo.WarehouseVO">
-	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
-	</insert>
 	
 	<!-- 김민수 - 기초등록 - 창고 목록 -->
 	<select id="warehouseList" resultType="com.project.UsERP.vo.WarehouseVO">
@@ -160,7 +142,6 @@
 		SET ware_name = #{ware_name}, ware_location = #{ware_location} , ware_state = #{ware_state}
 		WHERE ware_code = #{ware_code}
 	</select>
-	
 	
 	<!-- 김민수 -  기초등록 - 거래처 갯수 구하기 -->
 	<select id="getCompanyCnt" resultType="int" parameterType="String">
@@ -322,30 +303,6 @@
 		VALUES (stsu_seq.nextval, sysdate, 3, #{stsu_quantity}, #{stsu_amount}, 
 						#{stsu_startwh}, #{stsu_arrivewh}, #{pro_code}, #{emp_code})
 	</insert>
-	
-	<!-- 김민수 - 재고관리 - 재고 이동 갯수 구하기 -->
-	<select id="getMoveWarehouse" resultType="int">
-		SELECT COUNT(*) FROM stock_supply WHERE stsu_type = 3
-	</select>
-	
-	<!-- 김민수 - 재고관리 - 재고 이동 내역 조회 -->
-	<select id="moveWarehouseList" resultMap="supplyVOMap" parameterType="java.util.Map">
-		<![CDATA[
-			SELECT * 
-			FROM (SELECT stsu_code, stsu_amount, pro_code, pro_name, 
-					stsu_startwh, stsu_arrivewh, emp_name, stsu_reg_date, rownum rnum
-			    FROM (SELECT su.*, p.pro_name, e.emp_name
-			        FROM stock_supply su, product p, employee e
-			        WHERE su.pro_code = p.pro_code
-			        AND su.emp_code = e.emp_code
-			        AND su.stsu_type = 3
-			        ORDER BY su.stsu_reg_date DESC
-			        )
-			    )
-			WHERE rnum >= #{start}
-			AND rnum <= #{end}
-		]]>
-	</select>
 	
 	<!-- 김민수 - 재고 이동 출고전표 상태 변경 -->
 	<update id="moveSoStateUpdate" parameterType="int">

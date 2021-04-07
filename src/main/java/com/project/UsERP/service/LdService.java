@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 public interface LdService {
-
+	
 	// 최유성 - 전표 관리
 	public void ldStatementManagement(HttpServletRequest req, Model model);
 	
@@ -42,7 +42,6 @@ public interface LdService {
 	// 김민수 - 상품 목록 조회(검색포함)
 	public void productList(HttpServletRequest req, Model model);
 	
-	
 	// 김민수 - 재고 현황(검색포함)
 	public void inventoryStatusList(HttpServletRequest req, Model model);
 	
@@ -54,9 +53,6 @@ public interface LdService {
 	
 	// 김민수 - 재고 이동 등록, 창고등록(불량품,출고대기), 수불부 내역등록
 	public void moveWareInsert(HttpServletRequest req, Model model);
-	
-	// 김민수 - 재고 이동 내역
-	public void moveWarehouseList(HttpServletRequest req, Model model);
 	
 	// 김민수 - 재고 이동 출고 상태변경 / 재고수불부 등록
 	public void moveStockOutUpIn(HttpServletRequest req, Model model);

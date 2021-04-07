@@ -103,25 +103,25 @@
                 <tbody>
                    <c:forEach var="houseVo" items="${warehouseList}">
                    <tr>
-                      <td class="py-3 middle">
+                      <td class="py-3" style="vertical-align: middle">
                      <!--  <a class="btn" data-toggle="collapse"
                          href="#multiCollapseExample1" role="button"
                          aria-expanded="false" aria-controls="multiCollapseExample1" onclick="waredetail()">
                          </a> -->
-                         <a class="btn" data-toggle="collapse"
+                         <a class="text-dark con2" data-toggle="collapse"
 							href="#multiCollapseExample9" role="button"
 							aria-expanded="false"
 							aria-controls="multiCollapseExample9"
 							onclick="content(${houseVo.ware_code})"> ${houseVo.ware_code}</a>
                          </td>
-                      <td class="py-3 middle">${houseVo.ware_name}</td>
-                      <td class="py-3 middle">${houseVo.ware_location}</td>
+                      <td class="py-3" style="vertical-align: middle">${houseVo.ware_name}</td>
+                      <td class="py-3" style="vertical-align: middle">${houseVo.ware_location}</td>
                       <c:choose>
                       		<c:when test="${houseVo.ware_state == 0}">
-                      			<td class="py-3 middle">미사용</td>
+                      			<td class="py-3" style="vertical-align: middle">미사용</td>
                       		</c:when>
                       		<c:when test="${houseVo.ware_state == 1}">
-                      			<td class="py-3 middle">사용중</td>
+                      			<td class="py-3" style="vertical-align: middle">사용중</td>
                       		</c:when>
                       </c:choose>
                    </tr>

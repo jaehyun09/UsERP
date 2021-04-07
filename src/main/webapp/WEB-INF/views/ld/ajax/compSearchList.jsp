@@ -47,25 +47,25 @@
 				<tbody>
 				<c:forEach var="complist" items="${complist}">
 					<tr>
-						<td class="py-1" style="vertical-align: middle">
-						<a class="btn" data-toggle="collapse"
+						<td class="py-3" style="vertical-align: middle">
+						<a class="text-dark con2" data-toggle="collapse"
 								href="#multiCollapseExample1" role="button"
 								aria-expanded="false"
 								aria-controls="multiCollapseExample1"
 								onclick="compInfo(${complist.com_code})">${complist.com_code}</a>
 						</td>
 						<c:choose>
-							<c:when test="${complist.com_type == 20}">
-								<td class="py-1" style="vertical-align: middle">판매거래처</td>
+							<c:when test="${complist.com_type == 100}">
+								<td class="py-3" style="vertical-align: middle">판매거래처</td>
 							</c:when>
-							<c:when test="${complist.com_type == 10}">
-								<td class="py-1" style="vertical-align: middle">구매거래처</td>
+							<c:when test="${complist.com_type == 200}">
+								<td class="py-3" style="vertical-align: middle">구매거래처</td>
 							</c:when>
 						</c:choose>
-						<td class="py-1" style="vertical-align: middle">${complist.com_name}</td>
-						<td class="py-1" style="vertical-align: middle">${complist.com_ceo_name}</td>
-						<td class="py-1" style="vertical-align: middle">${complist.com_reg_no}</td>
-						<td class="py-1" style="vertical-align: middle">
+						<td class="py-3" style="vertical-align: middle">${complist.com_name}</td>
+						<td class="py-3" style="vertical-align: middle">${complist.com_ceo_name}</td>
+						<td class="py-3" style="vertical-align: middle">${complist.com_reg_no}</td>
+						<td class="py-3" style="vertical-align: middle">
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${complist.com_reg_date}"/>
 						</td>
 					</tr>
