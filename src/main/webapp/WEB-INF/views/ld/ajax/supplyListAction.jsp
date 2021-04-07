@@ -47,6 +47,10 @@
 			</c:choose>
 			
 			<c:choose>
+				<c:when test="${suplist.stsu_type == 2}">
+					<td>0</td>
+					<td>${suplist.stsu_amount}</td>
+				</c:when>
 				<c:when test="${suplist.stsu_amount >= 0}">
 					<td>${suplist.stsu_amount}</td>
 					<td>0</td>

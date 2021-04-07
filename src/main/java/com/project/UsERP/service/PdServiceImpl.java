@@ -339,78 +339,18 @@ public class PdServiceImpl implements PdService {
 	
 	
 	// 최유성 - 기초등록
-	@Override
-	public void pdBasicReg(HttpServletRequest req, Model model) {
-		
-		//구매 거래처 목록
-		List<CompanyVO> Clist =  pddao.pdCompanySelect();
-		
-		//상품 목록
-		List<ProductVO> Plist = pddao.pdProductSelect();
-		
-		model.addAttribute("Clist", Clist);
-		model.addAttribute("Plist", Plist);
-		
-		
-		//////////////////////////////////////
-		/*
-		String proKeyword = req.getParameter("proKeyword"); //
-		
-		int pageSize = 15;
-		int pageBlock = 3;
-		
-		int cnt = 0;
-		int start = 0;
-		int end = 0;
-		
-		int pageCnt = 0;
-		int startPage = 0;
-		int endPage = 0;
-		
-		String pageNum = "";
-		int currentPage = 0;
-		
-		cnt = lddao.getProductCnt(proKeyword);
-		
-		pageNum = req.getParameter("pageNum");
-		
-		if(pageNum == null) {
-			pageNum = "1";
-		}
-		
-		currentPage = Integer.parseInt(pageNum);
-		pageCnt = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
-		start = (currentPage - 1) * pageSize + 1;
-		end = start + pageSize - 1;
-		
-		startPage = (currentPage / pageBlock) * pageBlock + 1;
-		if(currentPage % pageBlock == 0 ) startPage -= pageBlock;
-		
-		endPage =  startPage + pageBlock - 1;
-		if(endPage > pageCnt) endPage = pageCnt;
-		
-		model.addAttribute("proKeyword", proKeyword);
-		model.addAttribute("cnt", cnt);
-		model.addAttribute("pageNum", pageNum);
-		
-		if(cnt > 0) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("proKeyword", proKeyword);
-			map.put("start", start);
-			map.put("end", end);
-			
-			List<ProductVO> list = lddao.ProductList(map);
-			model.addAttribute("prolist", list);
-			model.addAttribute("currentPage", currentPage);
-			model.addAttribute("pageCnt", pageCnt);
-			model.addAttribute("pageBlock", pageBlock);
-			model.addAttribute("startPage", startPage);
-			model.addAttribute("endPage", endPage);
-			
-		}
-		*/
-		//////////////////////////////////////////
-	}
+	   @Override
+	   public void pdBasicReg(HttpServletRequest req, Model model) {
+	      
+	      //구매 거래처 목록
+	      List<CompanyVO> company =  pddao.pdCompanySelect();
+	      
+	      //상품 목록
+	      List<ProductVO> product = pddao.pdProductSelect();
+	      
+	      model.addAttribute("company", company);
+	      model.addAttribute("product", product);
+	   }
 
 	// 최유성 - 입고현황
 	@Override

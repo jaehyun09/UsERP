@@ -872,6 +872,12 @@ public class LdServiceImpl implements LdService {
 					map3.put("sto_code", outReadyStoCode);
 					map3.put("stsu_quantity", sto_quantity2); //셀렉트로 가져온 기존 수량
 					map3.put("stsu_amount", logs_quantity); //판매수량
+					
+//					if(sto_quantity < 0) { //부족수량 존재시
+//		                  map3.put("stsu_quantity", 0); //양품창고의 재고수량은 0이 된다 
+//		                  map3.put("stsu_amount", retrunStoQuantity); //양품창고의 기존수량이 이동수량이 된다
+//		               }
+					
 					map3.put("ware_code", ware_code);
 					map3.put("pro_code", pro_code);
 					
@@ -919,6 +925,12 @@ public class LdServiceImpl implements LdService {
 					map2.put("sto_code", newStoCode);
 					map2.put("stsu_quantity", logs_quantity);
 					map2.put("stsu_amount", logs_quantity);
+					
+//					if(sto_quantity < 0) { //부족수량 존재시
+//		                  map2.put("stsu_quantity", 0); //양품창고의 재고수량은 0이 된다 
+//		                  map2.put("stsu_amount", retrunStoQuantity); //양품창고의 기존수량이 이동수량이 된다
+//		               }
+					
 					map2.put("ware_code", newWareCode);
 					map2.put("pro_code", pro_code);
 					

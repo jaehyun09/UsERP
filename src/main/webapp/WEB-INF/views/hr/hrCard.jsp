@@ -335,7 +335,7 @@ function addressSearch() {
                                   <div class="input-group-append">
                                     <i class="gd-search icon-text icon-text-sm"></i>
                                   </div>
-                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text">
+                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
                                 </div>
                                 <br>
                                 <!-- 검색창 끝 -->   
@@ -395,18 +395,18 @@ function addressSearch() {
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사번</th>
-                           <td><input type="text" class="form-control" name="emp_code"></td>
+                           <td><input type="text" class="form-control" name="emp_code" style="font-size:20px"></td>
                            <td><input class="btn btn-outline-info" name="dupChk" type="button" value="중복확인" onclick="confirmCode();"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사원명</th>
-                           <td> <input type="text" class="form-control" name="emp_name"></td>
+                           <td> <input type="text" class="form-control" name="emp_name" style="font-size:20px"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle"> * 부서명 </th>
                            <td>    
                            <div class="form-group">
-                                <select name="dep_code" class="form-control" id="exampleFormControlSelect1">
+                                <select name="dep_code" class="form-control" id="exampleFormControlSelect1" style="font-size:20px">
                                 	<option value="0">부서 선택</option>
                                 <c:forEach var="vo" items="${list3}">
                                    <option value="${vo.dep_code}">${vo.dep_name}</option>
@@ -419,7 +419,7 @@ function addressSearch() {
                           <th style="vertical-align:middle"> * 직급</th>
                            <td>    
                            <div class="form-group">
-                               <select name="hr_code" class="form-control" id="exampleFormControlSelect1">
+                               <select name="hr_code" class="form-control" id="exampleFormControlSelect1" style="font-size:20px">
 									<option value="0">직급 선택</option>
 								<c:forEach var="vo" items="${list4}">
 									<option value="${vo.hr_code}">${vo.hr_code_name}</option>
@@ -431,7 +431,7 @@ function addressSearch() {
                         <tr>
                            <th style="vertical-align:middle">* 권한</th>
                            <td><div class="form-group">
-                                   <select name="emp_authority" class="form-control" id="exampleFormControlSelect1">
+                                   <select name="emp_authority" class="form-control" id="exampleFormControlSelect1" style="font-size:20px">
                                    	 <option value="0">권한 선택</option>
                                      <option value="ROLE_ADMIN">관리자</option>
                                      <option value="ROLE_ST">판매팀</option>
@@ -445,15 +445,15 @@ function addressSearch() {
                          </tr>
                         <tr>
                            <th style="vertical-align:middle">* 입사일</th>
-                           <td><input type="date" name="emp_hire_date" class="form-control"></td>
+                           <td><input type="date" name="emp_hire_date" class="form-control" style="font-size:20px"></td>
                         </tr>
                         <tr>                                    
                             <th style="vertical-align:middle">근속연수</th>
-                            <td><input type="text" name="emp_cos" class="form-control"></td>
+                            <td><input type="text" name="emp_cos" class="form-control" style="font-size:20px"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle"> * 주민등록번호 </th>
-                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력"></td>
+                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력" style="font-size:20px"></td>
                         </tr>
                    <!--  <tr>
 						<th>주소</th>
@@ -484,28 +484,28 @@ function addressSearch() {
 					
                         <tr>                                    
                             <th style="vertical-align:middle">* 주소</th>
-                            <td><input type="text" name="emp_address" class="form-control"></td>
+                            <td><input type="text" name="emp_address" class="form-control" style="font-size:20px"></td>
                          </tr>
                 		<tr>
                               <th style="vertical-align:middle">전화번호</th>
-                              <td><input type="tel" name="emp_tel" class="form-control"></td>
+                              <td><input type="tel" name="emp_tel" class="form-control" style="font-size:20px"></td>
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">* 휴대전화</th>
-                              <td><input type="tel" name="emp_phone" class="form-control"></td>
+                              <td><input type="tel" name="emp_phone" class="form-control" style="font-size:20px"></td>
                            </tr>
                            <tr>                                    
                               <th style="vertical-align:middle">* 이메일</th>
-                              <td><input type="email" name="emp_email" class="form-control"></td>
+                              <td><input type="email" name="emp_email" class="form-control" style="font-size:20px"></td>
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">여권번호</th>
-                              <td><input type="text" name="emp_port_no" class="form-control"></td>
+                              <td><input type="text" name="emp_port_no" class="form-control" style="font-size:20px"></td>
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">* 은행</th>
                               <td><div class="form-group">
-                                      <select name="emp_bank" class="form-control" id="exampleFormControlSelect1">
+                                      <select name="emp_bank" class="form-control" id="exampleFormControlSelect1" style="font-size:20px">
                                       	<option value="0">은행 선택</option>
                                         <option value="농협">농협</option>
                                         <option value="신한">신한</option>
@@ -520,7 +520,7 @@ function addressSearch() {
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">* 급여계좌</th>
-                              <td><input type="text" name="emp_account" class="form-control"></td>
+                              <td><input type="text" name="emp_account" class="form-control" style="font-size:20px"></td>
                            </tr>
                      </table>
                   
@@ -541,7 +541,7 @@ function addressSearch() {
                                   <div class="input-group-append">
                                     <i class="gd-search icon-text icon-text-sm"></i>
                                   </div>
-                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text">
+                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
                                 </div>
                                 <!-- 검색창 끝 -->   
                                    
@@ -577,7 +577,7 @@ function addressSearch() {
                                   <div class="input-group-append">
                                     <i class="gd-search icon-text icon-text-sm"></i>
                                   </div>
-                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text">
+                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
                                 </div>
                                 <!-- 검색창 끝 -->   
                                    

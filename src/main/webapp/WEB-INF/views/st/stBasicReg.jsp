@@ -312,7 +312,7 @@ function content4(code) {
 	                                               <div class="input-group-append">
 	                                                <i class="gd-search icon-text icon-text-sm"></i>
 	                                                 </div>
-	                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
+	                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" style="font-size:20px" >
 	                                            </div>
 	                                            <br>
 	                                            <div class="col">
@@ -343,10 +343,10 @@ function content4(code) {
 																	   aria-controls="multiCollapseExample1"
 																	   onclick="content4(${company.com_code})"> ${company.com_code}</a>
 																</td>
-                                                               <c:if test = "${company.com_type == 10}">
+                                                               <c:if test = "${company.com_type == 100}">
                                                                <td class="py-3" style="vertical-align: middle">판매 거래처</td>
                                                                </c:if>
-                                                               <c:if test = "${company.com_type == 20}">
+                                                               <c:if test = "${company.com_type == 200}">
                                                                <td class="py-3" style="vertical-align: middle">구매 거래처</td>
                                                                </c:if>
                                                                <td class="py-3" style="vertical-align: middle">${company.com_name}</td>
@@ -384,7 +384,7 @@ function content4(code) {
 	                                               <div class="input-group-append">
 	                                                <i class="gd-search icon-text icon-text-sm"></i>
 	                                                 </div>
-	                                                 <input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" >
+	                                                 <input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" style="font-size:20px">
 	                                            </div>
 	                                            <br>
                                             <!-- 검색창 끝 --> 
@@ -406,8 +406,8 @@ function content4(code) {
                                              <tr class="tablein">
                                                 <td class="py-3" style="vertical-align:middle">${product.pro_code}</td>
                                                 <td class="py-3" style="vertical-align:middle">${product.pro_name}</td>
-                                                <td class="py-3" style="vertical-align: middle">${product.pro_pur_price}</td>
-                                                <td class="py-3" style="vertical-align: middle">${product.pro_sal_price}</td>
+                                                <td class="py-3" style="vertical-align:middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_pur_price}"/></td>
+                                                <td class="py-3" style="vertical-align:middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_sal_price}"/></td>
 	                                                <c:if test = "${product.pro_state == 1}">
 	                                                	<td class="py-3" style="vertical-align: middle">사용중</td>
 	                                                </c:if>

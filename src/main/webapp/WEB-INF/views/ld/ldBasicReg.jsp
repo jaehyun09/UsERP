@@ -381,7 +381,7 @@
                                            <div class="input-group-append">
                                             <i class="gd-search icon-text icon-text-sm" ></i>
                                              </div>
-                                             <input class="form-control form-control-icon-text" id="compKeyword" name="compKeyword" placeholder="거래처코드/거래처명 검색" type="text">
+                                             <input class="form-control form-control-icon-text" id="compKeyword" name="compKeyword" placeholder="거래처코드/거래처명 검색" type="text" style="font-size:20px">
                                         </div>
                                         <br>
                                     <!-- 검색창 끝 --> 
@@ -398,7 +398,7 @@
                                            <div class="input-group-append">
                                             <i class="gd-search icon-text icon-text-sm"></i>
                                              </div>
-                                             <input class="form-control form-control-icon-text" id="proKeyword" name="proKeyword" placeholder="상품코드/상품명 검색" type="text" >
+                                             <input class="form-control form-control-icon-text" id="proKeyword" name="proKeyword" placeholder="상품코드/상품명 검색" type="text" style="font-size:20px">
                                         </div>
                                         <br>
                                     <!-- 검색창 끝 -->

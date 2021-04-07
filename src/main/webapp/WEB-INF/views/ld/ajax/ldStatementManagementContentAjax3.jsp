@@ -108,7 +108,7 @@
 		   </tbody>
 		</table>
 			<div align="center">
-			<c:if test="${vo.logs_shortage <= 0}">
+			
 			<c:if test="${vo.logs_state == 0}">
 				<form action = "stockOutReady" method = "post">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
@@ -123,26 +123,6 @@
            			</button>
           		</form>
          		</c:if>
-         		<%-- <c:if test="${vo.logs_state == 2}">
-         			<form action = "stockOutAction" method = "post">
-          			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-       				<input type="hidden" name="logs_code" value="${vo.logs_code}">
-       				<input type="hidden" name="sto_code" value="${vo.sto_code}">
-       				<input type = "hidden" name = "logs_quantity" value = "${vo.logs_quantity}">
-         			<input type = "hidden" name = "ware_code" value = "${vo.ware_code}">
-         			<input type = "hidden" name = "pro_code" value = "${vo.pro_code}">
-         			<input type = "hidden" name = "emp_code" value = "${vo.emp_code}">
-           			<button type="submit" class="btn btn btn-outline-info" style='float: middle;'>
-             			출고
-           			</button>
-         			</form>
-         		</c:if> --%>
-         	</c:if>
-         	<c:if test="${vo.logs_shortage > 0}">
-				<button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-	           		 재고부족
-	         	</button>
-			</c:if>
          	</div>
 		</div><br>
 		

@@ -32,6 +32,7 @@
       <association property="company" javaType="com.project.UsERP.vo.CompanyVO">
          <id      property="com_code"   column="com_code"/>
          <result   property="com_name"   column="com_name"/>
+         <result   property="com_reg_date"   column="com_reg_date"/>
       </association>
    </resultMap>
    
@@ -142,7 +143,7 @@
 	</select>
 	<!-- 이재홍 - 판매 현황 - 판매 내역 & 승인 내역 -->
    <select id = "salesList" resultMap = "SalesMap">
-        SELECT a.accs_code, c.com_name, p.pro_name, a.accs_price, p.pro_sal_price, p.pro_pur_price, a.accs_quantity, a.accs_sum, e.emp_name, a.accs_content, a.accs_reg_date, a.accs_type
+        SELECT a.accs_code, c.com_name, p.pro_name, a.accs_price, p.pro_sal_price, p.pro_pur_price, a.accs_quantity, a.accs_sum, e.emp_name, a.accs_content, a.accs_reg_date, a.accs_type, a.accs_state
           FROM account_statement a, company c, product p, employee e
          WHERE a.emp_code = e.emp_code
         AND a.com_code = c.com_code

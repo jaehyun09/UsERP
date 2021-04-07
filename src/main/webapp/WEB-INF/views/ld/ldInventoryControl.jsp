@@ -394,7 +394,7 @@
 			                          	<div class="input-group-append">
 			                              <i class="gd-search icon-text icon-text-sm"></i>
 		                            	</div>
-		                            	<input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" >
+		                            	<input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" style="font-size:20px">
 		                          	</div>
 		                          	<br>
                           			<!-- 검색창 끝 -->
