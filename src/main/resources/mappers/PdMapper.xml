@@ -92,12 +92,12 @@
    
    <!--  최유성 - 기초등록 - 구매 거래처 목록 -->
    <select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
-      select * from company WHERE com_type = 20 
+      select * from company WHERE com_type = 200 
    </select>
    
    <!-- 최유성 - 기초등록 - 판매 거래처 목록 상세페이지 -->
 	<select id = "pdcompanyDetail" resultType = "com.project.UsERP.vo.CompanyVO">
-		SELECT * FROM company WHERE com_type = 20 AND com_code=#{com_code}
+		SELECT * FROM company WHERE com_type = 200 AND com_code=#{com_code}
 	</select>
    
    <!-- 최유성 - 기초등록 - 상품 목록 -->

@@ -38,6 +38,14 @@ function pdContent(code) {
 		document.getElementById("accs_sum").value = price * count;
 	};
 	
+	function conCheck() {
+	       if(!$("input[name='accs_content']").val()) {
+	          alert("내용을 입력하세요.");
+	          $("input[name='accs_content']").focus();
+	          return false;
+	       }
+	    }
+	
 </script>
 
     <meta charset="utf-8">
@@ -410,7 +418,7 @@ function pdContent(code) {
                                     </table>                                 
                                         <br>
                                          <div align=center>
-                                           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                                           <button type="submit" class="btn btn-outline-info" onclick="return conCheck()">등록</button>&nbsp;&nbsp;&nbsp;
                                            <button type="reset" class="btn btn-outline-info">재입력</button>                                  
                                          </div>
                                        </form>                                  

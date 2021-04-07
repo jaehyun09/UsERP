@@ -93,12 +93,12 @@
    
 	<!-- 강재현 - 기초등록 - 판매 거래처 목록 -->
 	<select id = "salesCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
-		SELECT * FROM company 
+		SELECT * FROM company WHERE com_type = 100
 	</select>
 	
 	<!-- 강재현 - 기초등록 - 판매 거래처 목록 상세페이지 -->
 	<select id = "companyDetail" resultType = "com.project.UsERP.vo.CompanyVO">
-		SELECT * FROM company WHERE com_type = 10 AND com_code=#{com_code}
+		SELECT * FROM company WHERE com_type = 100 AND com_code=#{com_code}
 	</select>
 	
 	<!-- 강재현 - 기초등록 - 상품 목록 -->
