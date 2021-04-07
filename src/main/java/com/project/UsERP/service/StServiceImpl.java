@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.project.UsERP.persistence.PdDAO;
 import com.project.UsERP.persistence.StDAO;
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.CompanyVO;
@@ -24,6 +25,9 @@ public class StServiceImpl implements StService {
 	@Autowired
 	StDAO stdao;
 
+	@Autowired
+	PdDAO pddao;
+	
 	// 강재현 - 기초등록 - 판매 거래처 목록 & 상품 목록
 	@Override
 	public void salesBasicReg(HttpServletRequest req, Model model) {
@@ -170,53 +174,60 @@ public class StServiceImpl implements StService {
 	}
 
 	// 강재현 - 출고현황 - 출고 전표 등록
-	@Override
-	public void insertLogsStatement(HttpServletRequest req, Model model) {
-		LogisticsStatementVO vo = new LogisticsStatementVO();
+		@Override
+		public void insertLogsStatement(HttpServletRequest req, Model model) {
+			LogisticsStatementVO vo = new LogisticsStatementVO();
 
-		vo.setLogs_type(6);
-		vo.setLogs_reg_date(new Timestamp(System.currentTimeMillis()));
-		vo.setLogs_state(0);
-		vo.setLogs_quantity(Integer.parseInt(req.getParameter("logs_quantity")));
-		vo.setEmp_code(req.getParameter("emp_code"));
-		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
-		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
-		vo.setWare_code(1001);
-		
-		////////////////////추가 해보자////////////////////////////////////////
-		int pro_code = vo.getPro_code();
-		System.out.println("pro_code:"+pro_code);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ware_code", 1001); //양품창고 번호 1001
-		map.put("pro_code", pro_code);
-		
-		StockVO svo = stdao.getStock(map); //추가 메서드 => 재고코드와 재고수량을 가져온다
-		
-		int sto_code = svo.getSto_code(); //재고코드
-		int sto_quantity = svo.getSto_quantity(); //현재 양품창고의 해당 상품 재고 수량...
-		int logs_quantity = vo.getLogs_quantity(); //판매 수량
-		int logs_shortage = 0; //부족 수량
-		
-		if(logs_quantity > sto_quantity) { //판매수량이 재고 수량보다 많다면 부족수량 값을 만들어 준다
-			logs_shortage = logs_quantity - sto_quantity; //부족수량 = 판매수량 - 재고수량
+			vo.setLogs_type(6);
+			vo.setLogs_reg_date(new Timestamp(System.currentTimeMillis()));
+			vo.setLogs_state(0);
+			vo.setLogs_quantity(Integer.parseInt(req.getParameter("logs_quantity")));
+			vo.setEmp_code(req.getParameter("emp_code"));
+			vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
+			vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
+			
+			//창고번호 불러오기
+			int ware_code = pddao.getWareCode(1); //창고타입 양품(1)을 넣어서 해당 창고 번호를 가져온다
+			
+			vo.setWare_code(ware_code);
+			
+			////////////////////추가 해보자////////////////////////////////////////
+			int pro_code = vo.getPro_code();
+			System.out.println("pro_code:"+pro_code);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("ware_code", ware_code); //양품창고 번호 62300
+			map.put("pro_code", pro_code);
+			
+			StockVO svo = stdao.getStock(map); //추가 메서드 => 재고코드와 재고수량을 가져온다
+			
+			int sto_code = svo.getSto_code(); //재고코드
+			
+			
+			System.out.println("sto_code:"+sto_code);
+			int sto_quantity = svo.getSto_quantity(); //현재 양품창고의 해당 상품 재고 수량...
+			int logs_quantity = vo.getLogs_quantity(); //판매 수량
+			int logs_shortage = 0; //부족 수량
+			
+			if(logs_quantity > sto_quantity) { //판매수량이 재고 수량보다 많다면 부족수량 값을 만들어 준다
+				logs_shortage = logs_quantity - sto_quantity; //부족수량 = 판매수량 - 재고수량
+			}
+			
+			vo.setSto_code(sto_code); //재고코드를 vo에 넣어준다
+			vo.setLogs_shortage(logs_shortage); //부족 수량을 vo에 넣어준다
+			
+			/////////////////////////////추가 끝/////////////////////////////
+			
+			int insertCnt = stdao.insertLogsStatement(vo);
+
+			AccountStatementVO vo1 = new AccountStatementVO();
+			vo1.setAccs_state(3);
+			vo1.setAccs_code(Integer.parseInt(req.getParameter("accs_code")));
+
+			int intsterCnt2 = stdao.updatestatement(vo1);
+
+			model.addAttribute("insertCnt1", insertCnt);
+			model.addAttribute("intsterCnt1", intsterCnt2);
+
 		}
-		
-		vo.setSto_code(sto_code); //재고코드를 vo에 넣어준다
-		vo.setLogs_shortage(logs_shortage); //부족 수량을 vo에 넣어준다
-		
-		/////////////////////////////추가 끝/////////////////////////////
-		
-		int insertCnt = stdao.insertLogsStatement(vo);
-
-		AccountStatementVO vo1 = new AccountStatementVO();
-		vo1.setAccs_state(3);
-		vo1.setAccs_code(Integer.parseInt(req.getParameter("accs_code")));
-
-		int intsterCnt2 = stdao.updatestatement(vo1);
-
-		model.addAttribute("insertCnt1", insertCnt);
-		model.addAttribute("intsterCnt1", intsterCnt2);
-
-	}
 }

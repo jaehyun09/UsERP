@@ -307,7 +307,7 @@ function pdContent(code) {
                                             <c:if test="${vo.accs_type == 3 }">
                                              <tr>
                                                 <td class="py-3" style="vertical-align:middle">
-                                                       <a class="btn" style="font-size:22px" data-toggle="collapse"
+                                                       <a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
                                                           href="#multiCollapseExample1" role="button"
                                                           aria-expanded="false"
                                                           aria-controls="multiCollapseExample1"
@@ -348,7 +348,7 @@ function pdContent(code) {
                                                 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
                                                 <table class="table bg-white text-dark center ass2">
                                                 <tr class="text-white table-bordered tap">
-                                                   <th colspan="3"> 판매 전표 등록 </th>
+                                                   <th colspan="3"> 구매 전표 등록 </th>
                                                 </tr>
                                                    <tr>
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
@@ -445,6 +445,9 @@ function pdContent(code) {
                                                    <td class="py-3">승인 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 1 }">
+                                                   <td class="py-3">승인 완료</td>
+                                                </c:if>
+                                                <c:if test="${vo.accs_state == 3 }">
                                                    <td class="py-3">승인 완료</td>
                                                 </c:if>
                                              </tr>

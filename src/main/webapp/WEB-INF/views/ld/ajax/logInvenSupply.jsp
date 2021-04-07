@@ -72,7 +72,7 @@
     			if(now.getDate()+1 >= 31){
     				end_day.value = year + "-" + ((now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1)) + "-" + '01';		
     			}else{
-    				end_day.value = year + "-" + mon + "-" + (now.getDate()+1>9? now.getDate()+1 : '0' + (now.getDate()+1));
+    				end_day.value = year + "-" + mon + "-" + (now.getDate()+1>9? now.getDate()+1 : (now.getDate()+7));
     			}
     		
     			if(start_day.value == end_day.value){
@@ -138,14 +138,14 @@
 				<tr class="text-white tap">
 					<th class="font-weight-semi-bold border-top-0 py-4 h4">기준일자</th>
 					<th class="font-weight-semi-bold border-top-0 py-3 h4">
-						<input type="date" class="form-control" name="start_date" id="start_date">
+						<input type="date" class="form-control" name="start_date" id="start_date" style="font-size:20px">
 					</th>
 					<th class="font-weight-semi-bold border-top-0 py-4 h4"> ~ </th>
 					<th class="font-weight-semi-bold border-top-0 py-3 h4">
-						<input type="date" class="form-control" name="end_date" id="end_date">
+						<input type="date" class="form-control" name="end_date" id="end_date" style="font-size:20px">
 					</th>
 					<th class="font-weight-semi-bold border-top-0 py-3 h5">
-					<select class="custom-select" id="search_stockpile_date">
+					<select class="custom-select" id="search_stockpile_date" style="font-size:20px">
 					    <option value="0">조회 기간 선택</option>
 						<option value="today">금일</option>
 						<option value="week">금주</option>
@@ -169,7 +169,7 @@
                          	<div class="input-group-append">
                              <i class="gd-search icon-text icon-text-sm" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i>
                            	</div>
-                           	<input class="form-control form-control-icon-text" placeholder="상품명 검색" id="proname" name="proname" type="text" >
+                           	<input class="form-control form-control-icon-text" placeholder="상품명 검색" id="proname" name="proname" type="text" style="font-size:20px">
                          </div>
 					</td>
 				</tr>

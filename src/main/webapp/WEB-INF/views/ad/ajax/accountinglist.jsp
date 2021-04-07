@@ -86,7 +86,7 @@
 										<td class="py-1 ">
 											<p>
 
-												<a class="btn" data-toggle="collapse"
+												<a class="text-dark con2" data-toggle="collapse"
 													href="#multiCollapseExample1" role="button"
 													aria-expanded="false" aria-controls="multiCollapseExample1">${vo.stm_code}</a>
 											</p>
@@ -192,7 +192,7 @@
 										<td class="py-1 ">
 											<p>
 
-												<a class="btn" data-toggle="collapse"
+												<a class="text-dark con2" data-toggle="collapse"
 													href="#multiCollapseExample1" role="button"
 													aria-expanded="false" aria-controls="multiCollapseExample1">${vo.stm_code}</a>
 											</p>

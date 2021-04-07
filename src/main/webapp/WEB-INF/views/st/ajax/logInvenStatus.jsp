@@ -41,8 +41,8 @@
 					<td class="py-3">${stocklist.pro_code}</td>
 					<td class="py-3">${stocklist.product.pro_name}</td>
 					<td class="py-3">${stocklist.warehouse.ware_name}</td>
-					<td class="py-3">${stocklist.product.pro_pur_price}</td>
-					<td class="py-3">${stocklist.product.pro_sal_price}</td>
+					<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${stocklist.product.pro_pur_price}"/></td>
+					<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${stocklist.product.pro_sal_price}"/></td>
 					<td class="py-3">${stocklist.sto_quantity}</td>
 					<c:if test="${stocklist.product.pro_state == 1}">
 						<td class="py-3">사용</td>

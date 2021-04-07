@@ -55,7 +55,40 @@
        });
     }
 	
-	/* 재고이동 AJAX */
+	/* 입출고 내역 AJAX 
+	function stockOutInList() {
+    	$.ajax({
+          // sendRequest(콜백함수명, url, method, params)
+          url: "logStockOutInList", // 전송 페이지 => 컨트롤러 "basic_next"
+          type: 'GET', // 전송방식('GET', 'POST') - method
+          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+          success: function(result){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+             $('#stockOutIn').html(result);
+          },
+          error: function(){
+             alert('오류');
+          }
+       });
+    }*/
+	/* 출고 승인 상셍페이지 */
+	function logMoveDetail(code) {
+		
+		var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+		
+	   $.ajax({
+	      type:"POST",
+		  data:param,
+		  url:'logMovehouseDetail',
+	      success: function(data){ 
+	         $('#moveDetail').html(data);
+	      },
+	      error: function(){
+	         alert('오류');
+	      }
+	   });
+	}
+	
+	/* 재고이동 AJAX 
 	function logMoveWareInsert() {
     	$.ajax({
           // sendRequest(콜백함수명, url, method, params)
@@ -69,7 +102,7 @@
              alert('오류');
           }
        });
-    }
+    } */
 	
 	/* 재고조정 AJAX */
 	function logInvenAdjustment() {
@@ -86,6 +119,8 @@
           }
        });
     }
+    
+    
 	
 	/* 재고수불부 AJAX */
 	function logInvenSupply() {
@@ -172,6 +207,9 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -329,8 +367,8 @@
                                  <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
                                     id="pills-html-tab-2" data-toggle="pill"
-                                    href="#pills-html-2" role="tab" onclick="logMoveWareInsert()" aria-controls="pills-html-2"
-                                    aria-selected="false">재고이동</a></li>
+                                    href="#pills-html-2" role="tab" aria-controls="pills-html-2"
+                                    aria-selected="false">입출고</a></li>
                                     
                                  <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3"
@@ -356,7 +394,7 @@
 			                          	<div class="input-group-append">
 			                              <i class="gd-search icon-text icon-text-sm"></i>
 		                            	</div>
-		                            	<input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" >
+		                            	<input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" style="font-size:20px">
 		                          	</div>
 		                          	<br>
                           			<!-- 검색창 끝 -->
@@ -366,9 +404,144 @@
                                  
                                  <div class="tab-pane fade p-4" id="pills-html-2"
                                     role="tabpanel" aria-labelledby="pills-html-tab-2">
-                                    	<div id="logMoveWareInsert"></div>
+                                    	<div class="px-3">
+									       <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3"
+									          role="tablist">
+									          <li class="nav-item"><a
+									             class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab1"
+									             role="tab" aria-selected="true" data-toggle="tab">입출고 내역 </a></li>
+									          <li class="nav-item ml-4"><a
+									             class="nav-link px-2 pb-2 ass2" href="#tabs2-tab2" role="tab"
+									             aria-selected="false" data-toggle="tab">입출고 승인</a></li>
+									       </ul>
+									       
+									       <div id="tabsContent2" class="card-body tab-content p-0">
+									          <div class="tab-pane fade show active" id="tabs2-tab1"
+									             role="tabpanel">
+									          	<table class="table  bg-white text-dark center ass2 table-striped">
+													<thead>
+														<tr class="text-white table-bordered tap">
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">구분</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">구매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">판매단가</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
+															<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach var="shiRecVo" items="${shiRecVo}">
+															<c:if test="${shiRecVo.stsu_type == 1 || shiRecVo.stsu_type == 2}">
+															<tr>
+																<c:if test="${shiRecVo.stsu_type == 1}">
+																	<td class="py-3">입고내역</td>
+																</c:if>
+																<c:if test="${shiRecVo.stsu_type == 2}">
+																	<td class="py-3">출고내역</td>
+																</c:if>
+																<td class="py-3">${shiRecVo.pro_code}</td>
+																<td class="py-3">${shiRecVo.product.pro_name}</td>
+																<td class="py-3">${shiRecVo.product.pro_pur_price}</td>
+																<td class="py-3">${shiRecVo.product.pro_sal_price}</td>
+																<td class="py-3">${shiRecVo.stsu_quantity}</td>
+																<td class="py-3">${shiRecVo.employee.emp_name}</td>
+																<td class="py-3">
+																	<fmt:formatDate pattern="yyyy-MM-dd" value="${shiRecVo.stsu_reg_date}"/>
+																</td>
+															</tr>
+															</c:if>
+														</c:forEach>
+													</tbody>
+												</table>
+									          </div>
+									       
+									          <div class="tab-pane fade" id="tabs2-tab2"
+									             role="tabpanel">
+									             <div class="row">
+	                                          		<div class="col">
+	                                          			<div class="collapse multi-collapse"
+	                                             			id="multiCollapseExample4">
+									             			<div id="moveDetail"></div>
+									             		</div>
+									             	</div>
+								             	</div>
+											<table class="table bg-white text-dark center table-striped">
+											<thead>
+												<tr class="text-white table-bordered tap">
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">출고수량</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+													<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+												</tr>
+											</thead>
+											<tbody>
+											<c:forEach var="SOlist2" items="${SOlist2}">
+												<c:if test="${SOlist2.logs_state == 1 || SOlist2.logs_state == 3}">
+												<tr>
+													<td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample4" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample4"
+															onclick="logMoveDetail(${SOlist2.logs_code})">${SOlist2.logs_code}</a></td>
+													<td class="py-3 con2" style="vertical-align:middle">${SOlist2.product.pro_name}</td>
+													<td class="py-3 con2" style="vertical-align:middle">${SOlist2.logs_quantity}</td>
+           											<td class="py-3 con2" style="vertical-align:middle">${SOlist2.logs_shortage}</td>
+													<td class="py-3 con2" style="vertical-align:middle">${SOlist2.warehouse.ware_name}</td>
+													<td class="py-3 con2" style="vertical-align:middle">${SOlist2.employee.emp_name}</td>
+													<td class="py-3 con2" style="vertical-align:middle">
+														<fmt:formatDate pattern="yyyy-MM-dd" value="${SOlist2.logs_reg_date}"/>
+													</td>
+												</tr>
+												</c:if>
+											</c:forEach>
+											</tbody>
+										</table>
+										<!-- 페이지 넘버 이동 -->
+										<div class="card-footer d-block d-md-flex align-items-center d-print-none">
+									           <!-- <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div> -->
+									           <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
+									            <ul class="pagination justify-content-end font-weight-semi-bold mb-0">
+									             <c:if test="${cnt > 0}">
+									             	<c:if test="${startPage > pageBlock}">
+									              <li class="page-item">				
+									              	<a id="datatablePaginationPrev" class="page-link" href="ldInventoryControl?pageNum=${startPage - pageBlock}" aria-label="Previous">
+									              	<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
+									              </li>
+									             	</c:if>
+									             	
+									             	<c:forEach var="i" begin="${startPage}" end="${endPage}">
+									             		<c:if test="${i == currentPage}">
+									                <li class="page-item d-none d-md-block">
+									                	<a id="datatablePaginationPage0" class="page-link active" href="ldInventoryControl?pageNum=${i}">${i}</a>
+									                </li>
+									             		</c:if>
+									             		<c:if test="${i != currentPage}">
+									                <li class="page-item d-none d-md-block">
+									                	<a id="datatablePaginationPage0" class="page-link" href="ldInventoryControl?pageNum=${i}">${i}</a>
+									                </li>
+									             		</c:if>
+									             	</c:forEach>
+									              
+									             	<c:if test="${pageCnt > endPage}">
+									               <li class="page-item">
+									               	<a id="datatablePaginationNext" class="page-link" href="ldInventoryControl?pageNum=${startPage + pageBlock}" aria-label="Next">
+									               	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
+									               </li>
+									             	</c:if>
+									            	</c:if>
+									            </ul>
+									           </nav>
+									       </div>
+										<!-- 페이지 넘버 이동 끝 -->
+									     </div>
                                      </div>
-                                     
+                                    </div>
+                                  </div>
                               	<div class="tab-pane fade p-4" id="pills-html-3"
                                     role="tabpanel" aria-labelledby="pills-html-tab-3">
                                     	<div id="logInvenAdjustment"></div>

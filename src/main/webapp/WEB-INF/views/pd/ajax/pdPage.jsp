@@ -33,7 +33,7 @@
 			</tr>
 			<tr>
 				<th colspan="1">단가</th>
-				<td colspan="3">${pdContent.accs_price}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${pdContent.accs_price}"/></td>
 			</tr>
 			<tr>
 				<th colspan="1">수량</th>

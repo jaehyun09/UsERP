@@ -80,6 +80,9 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -255,7 +258,7 @@
                                   <div class="input-group-append">
                                     <i class="gd-search icon-text icon-text-sm"></i>
                                   </div>
-                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text">
+                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
                                 </div>
                                 <br>
                                 <!-- 검색창 끝 -->   
@@ -343,7 +346,7 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원번호</th>
-															<td><input id="text" type="text" class="form-control" name="emp_code" required></td>
+															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px" required></td>
 															<td>
 																<button type="button" class="btn btn-outline-info" onclick="confirmCheck()">
 																	사번확인
@@ -352,23 +355,23 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원명</th>
-															<td><input id="text" type="text" class="form-control" name="emp_name" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="emp_name" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">현재 부서</th>
-															<td><input id="text" type="text" class="form-control" name="" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">직급</th>
-															<td><input id="text" type="text" class="form-control" name="" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle"></th>
-															<td><input type="date" name="emp_hire_date" class="form-control"></td>
+															<td><input type="date" name="emp_hire_date" style="font-size:20px" class="form-control"></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle"></th>
-															<td><input id="text" type="text" class="form-control" name="" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
 														</tr>
 													</table>
 												

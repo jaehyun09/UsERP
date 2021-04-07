@@ -6,17 +6,17 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
-
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 
 function hrCardDetail(code) {
-	
-	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=" + code;
-	
+   
+   var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=" + code;
+   
    $.ajax({
       type:"POST",
-	  data:param,
-	  url:'hrCardDetail',
+     data:param,
+     url:'hrCardDetail',
       success: function(data){ 
          $('#hrCardDetail').html(data);
       },
@@ -25,9 +25,54 @@ function hrCardDetail(code) {
       }
    });
 }
+
+function addressSearch() {
+      new daum.Postcode(
+            {
+               oncomplete : function(data) {
+                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                  // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var fullAddr = ''; // 최종 주소 변수
+                  var extraAddr = ''; // 조합형 주소 변수
+
+                  // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                  if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                     fullAddr = data.roadAddress;
+
+                  } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                     fullAddr = data.jibunAddress;
+                  }
+
+                  // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                  if (data.userSelectedType === 'R') {
+                     //법정동명이 있을 경우 추가한다.
+                     if (data.bname !== '') {
+                        extraAddr += data.bname;
+                     }
+                     // 건물명이 있을 경우 추가한다.
+                     if (data.buildingName !== '') {
+                        extraAddr += (extraAddr !== '' ? ', '
+                              + data.buildingName : data.buildingName);
+                     }
+                     // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                     fullAddr += (extraAddr !== '' ? ' (' + extraAddr
+                           + ')' : '');
+                  }
+
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+                  document.getElementById('sample6_address').value = fullAddr;
+
+                  // 커서를 상세주소 필드로 이동한다.
+                  document.getElementById('sample6_address2').focus();
+               }
+            }).open();
+   }
 </script>
-	
-	
+   
+   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -65,162 +110,162 @@ function hrCardDetail(code) {
             <!-- 중메뉴 : 인사 관리 -->
 <!-- b -->      <ul id="gg" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
 <!-- a -->        <li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/hrBasicReg">기초 등록</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/hrAppointment">인사 발령</a>
+                  <a class="side-nav-menu-link ass2" href="${path}/hrBasicReg">기초 등록</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/hrAppointment">인사 발령</a>
                     </li>
                     <li class="side-nav-menu-item active">
                         <a class="side-nav-menu-link ass2" href="${path}/hrCard">인사 카드</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/hrSalary">급여</a>
-					</li>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/hrSalary">급여</a>
+               </li>
             </ul>
          </li>
          <!-- 인사 관리 종료 -->
          
         <!-- 대메뉴 : 근태 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
-				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subPages">
-					<span class="side-nav-menu-icon d-flex mr-3">
-						<i class="gd-timer"></i>
-					</span>
-					<span class="side-nav-fadeout-on-closed media-body asss">근태 관리</span>
-					<span class="side-nav-control-icon d-flex">
-						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-					</span>
-					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-				</a>
+<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#subPages">
+               <span class="side-nav-menu-icon d-flex mr-3">
+                  <i class="gd-timer"></i>
+               </span>
+               <span class="side-nav-fadeout-on-closed media-body asss">근태 관리</span>
+               <span class="side-nav-control-icon d-flex">
+                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+               </span>
+               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
 
                 <!-- 중메뉴 : 근태 관리 -->
-<!-- b -->		<ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/waSelect">조회</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
-					</li>
-				</ul>
-			</li>
-			<!-- 근태 관리 종료 -->
-			
-			<!-- 대메뉴 : 판매 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
-				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subComponents">
-					<span class="side-nav-menu-icon d-flex mr-3">
-						<i class="gd-money"></i>
-					</span>
-					<span class="side-nav-fadeout-on-closed media-body asss">판매 관리</span>
-					<span class="side-nav-control-icon d-flex">
-						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-					</span>
-					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-				</a>
-				
-				<!-- 중메뉴 : 판매 관리 -->
-<!-- b -->		<ul id="subComponents" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/stBasicReg">기초 등록</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/stInvenStatus">재고 현황</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/stStatus">판매 현황</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/stRelStatus">출고 현황</a>
-					</li>
-				</ul>
-			</li>
-			<!-- 판매 관리 종료 -->
-			
-			<!-- 대메뉴 : 구매 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
-				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#asd">
-					<span class="side-nav-menu-icon d-flex mr-3">
-						<i class="gd-shopping-cart"></i>
-					</span> <span class="side-nav-fadeout-on-closed media-body asss">구매 관리</span>
-					<span class="side-nav-control-icon d-flex">
-						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-					</span>
-					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-				</a>
-				
-				<!-- 중메뉴 : 구매 관리 -->
-<!-- b -->		<ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/pdBasicReg">기초 등록</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/pdInvenStatus">재고 현황</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/pdStatus">구매 현황</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/pdRecStatus">입고 현황</a>
-					</li>
-				</ul> 
-			</li>
-			<!-- 구매 관리 종료 -->
-			
-			<!-- 대메뉴 : 물류 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
-				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#zxc">
-					<span class="side-nav-menu-icon d-flex mr-3">
-						<i class="gd-truck"></i>
-					</span>
-					<span class="side-nav-fadeout-on-closed media-body asss">물류 관리</span>
-					<span class="side-nav-control-icon d-flex">
-						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-					</span>
-					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-				</a>
-				
-				<!-- 중메뉴 : 물류 관리 -->
-<!-- b -->		<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/ldBasicReg">기초 등록</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/ldStatementManagement">전표 관리</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/ldInventoryControl">재고 관리</a>
-					</li>
-				</ul>
-			</li>
-			<!-- 물류 관리 종료 -->
-			
-			<!-- 대메뉴 : 회계 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
-				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subUsers">
-					<span class="side-nav-menu-icon d-flex mr-3">
-						<i class="gd-infinite"></i>
-					</span>
-					<span class="side-nav-fadeout-on-closed media-body asss">회계 관리</span>
-					<span class="side-nav-control-icon d-flex">
-						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-					</span>
-					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-				</a>
-				
-				<!-- 중메뉴 : 회계 관리 -->
-<!-- b -->		<ul id="subUsers" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/adBasicReg">기초 등록</a>
-					</li>
-<!-- a -->			<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/adReport">회계보고서</a>
-					</li>
-					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/adStatementManagement">전표 관리</a>
-					</li>
-				</ul>
-			</li>
-			<!-- 회계 관리 종료 -->
+<!-- b -->      <ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->         <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/waSelect">조회</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
+               </li>
+            </ul>
+         </li>
+         <!-- 근태 관리 종료 -->
+         
+         <!-- 대메뉴 : 판매 관리 -->
+<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#subComponents">
+               <span class="side-nav-menu-icon d-flex mr-3">
+                  <i class="gd-money"></i>
+               </span>
+               <span class="side-nav-fadeout-on-closed media-body asss">판매 관리</span>
+               <span class="side-nav-control-icon d-flex">
+                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+               </span>
+               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
+            
+            <!-- 중메뉴 : 판매 관리 -->
+<!-- b -->      <ul id="subComponents" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->         <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/stBasicReg">기초 등록</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/stInvenStatus">재고 현황</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/stStatus">판매 현황</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/stRelStatus">출고 현황</a>
+               </li>
+            </ul>
+         </li>
+         <!-- 판매 관리 종료 -->
+         
+         <!-- 대메뉴 : 구매 관리 -->
+<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#asd">
+               <span class="side-nav-menu-icon d-flex mr-3">
+                  <i class="gd-shopping-cart"></i>
+               </span> <span class="side-nav-fadeout-on-closed media-body asss">구매 관리</span>
+               <span class="side-nav-control-icon d-flex">
+                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+               </span>
+               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
+            
+            <!-- 중메뉴 : 구매 관리 -->
+<!-- b -->      <ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->         <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/pdBasicReg">기초 등록</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/pdInvenStatus">재고 현황</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/pdStatus">구매 현황</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/pdRecStatus">입고 현황</a>
+               </li>
+            </ul> 
+         </li>
+         <!-- 구매 관리 종료 -->
+         
+         <!-- 대메뉴 : 물류 관리 -->
+<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#zxc">
+               <span class="side-nav-menu-icon d-flex mr-3">
+                  <i class="gd-truck"></i>
+               </span>
+               <span class="side-nav-fadeout-on-closed media-body asss">물류 관리</span>
+               <span class="side-nav-control-icon d-flex">
+                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+               </span>
+               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
+            
+            <!-- 중메뉴 : 물류 관리 -->
+<!-- b -->      <ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->         <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/ldBasicReg">기초 등록</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/ldStatementManagement">전표 관리</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/ldInventoryControl">재고 관리</a>
+               </li>
+            </ul>
+         </li>
+         <!-- 물류 관리 종료 -->
+         
+         <!-- 대메뉴 : 회계 관리 -->
+<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
+            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#subUsers">
+               <span class="side-nav-menu-icon d-flex mr-3">
+                  <i class="gd-infinite"></i>
+               </span>
+               <span class="side-nav-fadeout-on-closed media-body asss">회계 관리</span>
+               <span class="side-nav-control-icon d-flex">
+                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+               </span>
+               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+            </a>
+            
+            <!-- 중메뉴 : 회계 관리 -->
+<!-- b -->      <ul id="subUsers" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->         <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/adBasicReg">기초 등록</a>
+               </li>
+<!-- a -->         <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/adReport">회계보고서</a>
+               </li>
+               <li class="side-nav-menu-item">
+                  <a class="side-nav-menu-link ass2" href="${path}/adStatementManagement">전표 관리</a>
+               </li>
+            </ul>
+         </li>
+         <!-- 회계 관리 종료 -->
          
       </ul>
    </aside>
@@ -243,7 +288,7 @@ function hrCardDetail(code) {
 
                         <div id="example" class="mb-9">
                            <h4 class="h1 text-dark"><b>
-                              	인사 카드 </b><a class="anchorjs-link" href="#example"
+                                 인사 카드 </b><a class="anchorjs-link" href="#example"
                                  aria-label="Anchor" data-anchorjs-icon="#"></a>
                            </h4>
                            <div class="mb-3">
@@ -291,9 +336,6 @@ function hrCardDetail(code) {
                                 </div>
                                 <br>
                                 <!-- 검색창 끝 -->   
-                                
-                                
-                                
                                  <div class="row">
                                        <div class="col">
                                           <div class="collapse multi-collapse"
@@ -315,11 +357,11 @@ function hrCardDetail(code) {
                                         <c:forEach var="vo" items="${list5}">
                                           <tr>
                                              <td class="py-3 middle"><a class="text-dark con2" data-toggle="collapse"
-																		href="#multiCollapseExample1" role="button"
-																		aria-expanded="false"
-																		aria-controls="multiCollapseExample1"
-																		onclick="hrCardDetail(${vo.emp_code})">${vo.emp_code}</a>
-											</td>
+                                                      href="#multiCollapseExample1" role="button"
+                                                      aria-expanded="false"
+                                                      aria-controls="multiCollapseExample1"
+                                                      onclick="hrCardDetail(${vo.emp_code})">${vo.emp_code}</a>
+                                 </td>
                                              <td class="py-3 middle">${vo.department.dep_name}</td>
                                              <td class="py-3 middle">${vo.hrCode.hr_code_name}</td>
                                              <td class="py-3 middle">${vo.emp_name}</td>
@@ -359,7 +401,7 @@ function hrCardDetail(code) {
                            <td>    
                            <div class="form-group">
                                 <select name="dep_code" class="form-control" id="exampleFormControlSelect1">
-                                	<option value="0">부서 선택</option>
+                                   <option value="0">부서 선택</option>
                                 <c:forEach var="vo" items="${list3}">
                                    <option value="${vo.dep_code}">${vo.dep_name}</option>
                                   </c:forEach>
@@ -372,11 +414,11 @@ function hrCardDetail(code) {
                            <td>    
                            <div class="form-group">
                                <select name="hr_code" class="form-control" id="exampleFormControlSelect1">
-									<option value="0">직급 선택</option>
-								<c:forEach var="vo" items="${list4}">
-									<option value="${vo.hr_code}">${vo.hr_code_name}</option>
-								</c:forEach>
-								</select>
+                           <option value="0">직급 선택</option>
+                        <c:forEach var="vo" items="${list4}">
+                           <option value="${vo.hr_code}">${vo.hr_code_name}</option>
+                        </c:forEach>
+                        </select>
                             </div>
                            </td>
                         </tr>
@@ -384,7 +426,7 @@ function hrCardDetail(code) {
                            <th style="vertical-align:middle">* 권한</th>
                            <td><div class="form-group">
                                    <select name="emp_authority" class="form-control" id="exampleFormControlSelect1">
-                                   	 <option value="0">권한 선택</option>
+                                       <option value="0">권한 선택</option>
                                      <option value="ROLE_ADMIN">관리자</option>
                                      <option value="ROLE_ST">판매팀</option>
                                      <option value="ROLE_HR">인사팀</option>
@@ -407,11 +449,30 @@ function hrCardDetail(code) {
                            <th style="vertical-align:middle"> * 주민등록번호 </th>
                            <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력"></td>
                         </tr>
-                        <tr>                                    
-                            <th style="vertical-align:middle">* 주소</th>
-                            <td><input type="text" name="emp_address" class="form-control"></td>
-                         </tr>
-                		<tr>
+                         <tr>
+                     <th style="vertical-align:middle">* 주소</th>
+                     <td>
+                        <input type="text" name="addcode" id="sample6_postcode"
+                        placeholder=" 우편번호" class="form-control" size=8 style="padding: 3px;"></td> 
+                        <td><input type="button" onclick="addressSearch();" class="btn btn-outline-info" value="주소찾기">
+                     </td>
+                  <tr>
+                     <th style="vertical-align:middle"> </th>
+                     <td>
+                        <input type="text" class="form-control" name="add1" id="sample6_address" size=45
+                        placeholder=" 주소">
+      
+                     </td>
+                  </tr>
+                  <tr>
+                     <th style="vertical-align:middle"></th>
+                     <td>
+                        <input type="text" name="add2" class="form-control" id="sample6_address2"
+                        placeholder=" 상세주소" size=45 onchange="addinput();"> 
+                        <input type="hidden" name="address">
+                     </td>
+                  </tr> 
+                      <tr>
                               <th style="vertical-align:middle">전화번호</th>
                               <td><input type="tel" name="emp_tel" class="form-control"></td>
                            </tr>
@@ -431,7 +492,7 @@ function hrCardDetail(code) {
                               <th style="vertical-align:middle">* 은행</th>
                               <td><div class="form-group">
                                       <select name="emp_bank" class="form-control" id="exampleFormControlSelect1">
-                                      	<option value="0">은행 선택</option>
+                                         <option value="0">은행 선택</option>
                                         <option value="농협">농협</option>
                                         <option value="신한">신한</option>
                                         <option value="기업">기업</option>
@@ -456,7 +517,6 @@ function hrCardDetail(code) {
                   
                   </form>
                 <!-- 인사카드 폼 끝 -->   
-                  
                                  </div>
                                  <div class="tab-pane fade p-4" id="pills-html-2"
                                     role="tabpanel" aria-labelledby="pills-html-tab-2">
@@ -483,7 +543,7 @@ function hrCardDetail(code) {
                                           </tr>
                                        </thead>
                                        <tbody>
-                                       	<c:forEach var="vo" items="${list7}">
+                                          <c:forEach var="vo" items="${list7}">
                                           <tr>
                                              <td class="py-3">${vo.emp_code}</td>
                                              <td class="py-3">${vo.ap_cur_dep}</td>
@@ -520,14 +580,14 @@ function hrCardDetail(code) {
                                        </thead>
                                        <tbody>
                                           <c:forEach var="vo" items="${list8}">
-	                                         <tr>
-	                                            <td class="py-3">${vo.emp_code}</td>
-	                                            <td class="py-3">${vo.ap_cur_dep}</td>
-	                                            <td class="py-3">${vo.ap_cur_position}</td>
-	                                            <td class="py-3">${vo.employee.emp_name}</td>
-	                                            <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
-	                                         </tr>
-	                                      </c:forEach>
+                                            <tr>
+                                               <td class="py-3">${vo.emp_code}</td>
+                                               <td class="py-3">${vo.ap_cur_dep}</td>
+                                               <td class="py-3">${vo.ap_cur_position}</td>
+                                               <td class="py-3">${vo.employee.emp_name}</td>
+                                               <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
+                                            </tr>
+                                         </c:forEach>
                                        </tbody>
                                     </table>
                                     </form>

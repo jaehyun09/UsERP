@@ -108,7 +108,7 @@
                          href="#multiCollapseExample1" role="button"
                          aria-expanded="false" aria-controls="multiCollapseExample1" onclick="waredetail()">
                          </a> -->
-                         <a class="btn" data-toggle="collapse"
+                         <a class="text-dark con2" data-toggle="collapse"
 							href="#multiCollapseExample9" role="button"
 							aria-expanded="false"
 							aria-controls="multiCollapseExample9"
