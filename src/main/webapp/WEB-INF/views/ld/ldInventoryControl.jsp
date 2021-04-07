@@ -445,7 +445,7 @@
 																<td class="py-3">${shiRecVo.product.pro_name}</td>
 																<td class="py-3">${shiRecVo.product.pro_pur_price}</td>
 																<td class="py-3">${shiRecVo.product.pro_sal_price}</td>
-																<td class="py-3">${shiRecVo.stsu_quantity}</td>
+																<td class="py-3">${shiRecVo.stsu_amount}</td>
 																<td class="py-3">${shiRecVo.employee.emp_name}</td>
 																<td class="py-3">
 																	<fmt:formatDate pattern="yyyy-MM-dd" value="${shiRecVo.stsu_reg_date}"/>

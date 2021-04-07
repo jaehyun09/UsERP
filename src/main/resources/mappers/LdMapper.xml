@@ -440,7 +440,7 @@
 	<!-- 김민수 - 입출고 내역 조회 -->
 	<select id="shiRecList" resultMap="supplyVOMap">
 		SELECT *
-		FROM (SELECT stsu_code, stsu_reg_date, stsu_quantity, pro_code, pro_pur_price,
+		FROM (SELECT stsu_code, stsu_reg_date, stsu_amount, pro_code, pro_pur_price,
 		        pro_sal_price,pro_name, emp_code, emp_name, stsu_type
 		    FROM (SELECT ss.*, p.pro_name,p.pro_pur_price, p.pro_sal_price, e.emp_name
 		        FROM stock_supply ss, product p, employee e
