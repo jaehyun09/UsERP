@@ -366,11 +366,23 @@
 															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle"></th>
-															<td><input type="date" name="emp_hire_date" style="font-size:20px" class="form-control"></td>
+															<th style="vertical-align: middle">대상기간</th>
+															<td><input type="month" name="emp_hire_date" style="font-size:20px" class="form-control"></td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle"></th>
+															<th style="vertical-align: middle">월급</th>
+															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">식대</th>
+															<td><input id="text" type="number" class="form-control" name="" style="font-size:20px"></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">차량유지비</th>
+															<td><input id="text" type="number" class="form-control" name="" style="font-size:20px"></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">총 급여</th>
 															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
 														</tr>
 													</table>

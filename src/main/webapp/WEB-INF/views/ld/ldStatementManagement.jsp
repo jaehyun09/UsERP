@@ -375,8 +375,8 @@ function content4(code) {
 													                     <td class="py-3 middle" style="vertical-align:middle">
 													                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 													                     </td>
-													                     <c:if test="${list.logs_state == 3}">
-													                     	<td class="py-3 middle" style="vertical-align:middle">재고부족</td>
+													                     <c:if test="${list.logs_state == 2}">
+													                     	<td class="py-3 middle" style="vertical-align:middle">승인완료</td>
 													                     </c:if>
 													                     <c:if test="${list.logs_state == 1}">
 													                     	<td class="py-3 middle" style="vertical-align:middle">출고준비완료</td>

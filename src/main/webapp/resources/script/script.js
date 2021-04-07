@@ -73,7 +73,7 @@ function appointmentCheck() {
 		alert("발령 직급을 선택하세요.");
 		$("input[name='ap_cur_position']").focus();
 		return false;
-	} else if(!$("input[name='confirm_code_ap']").val() != "1") {
+	} else if(!$("input[name='confirm_code_ap']").val() == 0) {
 		alert("사원번호를 확인하세요.");
 		$("input[name='emp_code_check_ap']").focus();
 		return false;
@@ -98,7 +98,7 @@ function setEmpInfo(emp_code, emp_name, dep_name, hr_code_name) {
 	$("input[name='emp_name']", opener.document).val(emp_name);
 	$("input[name='ap_pre_dep']", opener.document).val(dep_name);
 	$("input[name='ap_pre_position']", opener.document).val(hr_code_name);
-	$("input[name='confirm_code_ap']", opener.document).val("1");
+	$("input[name='confirm_code_ap']", opener.document).val(1);
 	self.close();
 }
 

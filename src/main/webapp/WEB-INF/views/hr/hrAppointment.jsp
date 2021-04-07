@@ -358,7 +358,7 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원번호</th>
-															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px" required></td>
+															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px"></td>
 															<td>
 																<button type="button" class="btn btn-outline-info" name="emp_code_check_ap" onclick="hrConfirmAppoint()">
 																	사번확인
