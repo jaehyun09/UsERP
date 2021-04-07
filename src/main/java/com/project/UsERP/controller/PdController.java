@@ -20,17 +20,6 @@ public class PdController {
 	@Autowired
 	PdServiceImpl pdService;
 	
-	// 최유성 - 기초 등록 - 판매 거래처 목록 상세페이지
-	@RequestMapping("/pdcomContent")
-	public String comContent(HttpServletRequest req, Model model) {
-		logger.info("url: 판매 내역 상세페이지");
-
-		// 상세페이지
-		pdService.pdcomContent(req, model);
-
-		return "pd/ajax/comPage";
-	}
-	
 	// 최유성 - 재고 현황
 	@RequestMapping("/pdInvenStatus")
 	public String pdInvenStatus(HttpServletRequest req, Model model) {
@@ -85,6 +74,28 @@ public class PdController {
 
 	
 	///////////////////////////////////추가~~~~~~~~~~~~~~~~///////////////////////////
+	
+	// 최유성 - 기초 등록 - 구매 거래처 상세페이지
+	@RequestMapping("/pdcomContent")
+	public String comContent(HttpServletRequest req, Model model) {
+		logger.info("url: 구매 거래처 상세 페이지");
+
+		// 상세페이지
+		pdService.pdcomContent(req, model);
+
+		return "pd/ajax/comPage";
+	}
+	
+	// 최유성 - 기초 등록 - 상품 상세페이지
+	@RequestMapping("/pdproContent")
+	public String pdproContent(HttpServletRequest req, Model model) {
+		logger.info("url: 상품 상세 페이지");
+
+		// 상세페이지
+		pdService.pdproContent(req, model);
+
+		return "pd/ajax/proPage";
+	}
 	
 	
 	// 최유성 - 기초 등록

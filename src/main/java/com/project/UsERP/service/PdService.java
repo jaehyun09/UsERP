@@ -9,6 +9,9 @@ public interface PdService {
 	// 최유성 - 기초등록 - 구매 거래처 목록 상세페이지
 	public void pdcomContent(HttpServletRequest req, Model model);
 
+	// 최유성 - 기초등록 - 상품 상세페이지
+	public void pdproContent(HttpServletRequest req, Model model);
+	
 	// 김민수 - 재고 현황(검색포함)
 	public void inventoryStatusList(HttpServletRequest req, Model model);
 	

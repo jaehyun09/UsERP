@@ -63,6 +63,42 @@ $(function() {
 	});
 });
 
+/* 거래처 상세페이지 */
+function content1(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&com_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'pdcomContent',
+      success: function(data){ 
+         $('#content1').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 상품 상세페이지 */
+function content2(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&pro_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'pdproContent',
+      success: function(data){ 
+         $('#content2').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
 /* 거래처 목록 */
 function compSearchList() {
 	$.ajax({
@@ -377,10 +413,22 @@ function proSearchList() {
 	                                               <div class="input-group-append">
 	                                                <i class="gd-search icon-text icon-text-sm"></i>
 	                                                 </div>
-	                                                 <input class="form-control form-control-icon-text" placeholder="거래처코드?거래처번호?/거래처명 검색" type="text" >
+	                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
 	                                            </div>
 	                                            <br>
 		                                    <!-- 검색창 끝 --> 
+		                                    
+		                                    <div class="col">
+                                          		<div class="collapse multi-collapse"
+                                            		 id="multiCollapseExample1">
+                                             
+							                 <!-- -----------------상세페이지--------------------- -->
+							                    <div id="content1"></div>
+							                  <!-- -----------------상세페이지--------------------- -->                             
+                                                
+                                          		</div>
+                                       		</div>  
+		                                    
                                              <table class="table bg-white text-dark center ass2 table-striped">
 	                                             <thead class="text-white table-bordered tap">
 	                                                <tr class="text-white table-bordered tap">
@@ -395,12 +443,17 @@ function proSearchList() {
 	                                             <tbody>
 	                                             	<c:forEach var="list" items="${Clist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 	                                                <tr>
-	                                                   <td class="py-3">${list.com_code}</td>
-	                                                   <td class="py-3"><%-- ${list.com_type} --%>구매</td><!-- 페이징 처리..-->
-	                                                   <td class="py-3">${list.com_ceo_name}</td>
-	                                                   <td class="py-3">${list.com_ceo_name}</td>
-	                                                   <td class="py-3">${list.com_ceo_name}</td>
-	                                                   <td class="py-3">${list.com_ceo_name}</td>
+	                                                	
+														<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample1" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample1"
+															onclick="content1(${list.com_code})">${list.com_code}</a></td>
+	                                                   <td class="py-3" style="vertical-align:middle; font-size:22px;"><%-- ${list.com_type} --%>구매</td>
+	                                                   <td class="py-3" style="vertical-align:middle; font-size:22px;">${list.com_ceo_name}</td>
+	                                                   <td class="py-3" style="vertical-align:middle; font-size:22px;">${list.com_ceo_name}</td>
+	                                                   <td class="py-3" style="vertical-align:middle; font-size:22px;">${list.com_ceo_name}</td>
+	                                                   <td class="py-3" style="vertical-align:middle; font-size:22px;">${list.com_ceo_name}</td>
 	                                                </tr>
 	                                                </c:forEach>
 	                                             </tbody>
@@ -433,11 +486,20 @@ function proSearchList() {
 	                                               <div class="input-group-append">
 	                                                <i class="gd-search icon-text icon-text-sm"></i>
 	                                                 </div>
-	                                                 <input class="form-control form-control-icon-text" placeholder="상품코드?상품번호?/상품명 검색" type="text" >
+	                                                 <input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" >
 	                                            </div>
 	                                            <br>
                                             <!-- 검색창 끝 --> 
-                                             <!-- 테스트 -->
+                                            
+                                       		<div class="col">
+                                          		<div class="collapse multi-collapse"
+                                            		 id="multiCollapseExample2">
+							                 <!-- -----------------상세페이지--------------------- -->
+							                    <div id="content2"></div>
+							                  <!-- -----------------상세페이지--------------------- -->                             
+                                          		</div>
+                                       		</div>       
+                                            
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead>
                                              <tr class="text-white table-bordered tap">
@@ -453,17 +515,22 @@ function proSearchList() {
                                           <tbody>
                                           	<c:forEach var="list" items="${Plist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                           	<tr class="tablein">
-                                          		<td class="py-3 middle">${list.pro_code}</td>
-                                          		<td class="py-3 middle">${list.pro_name}</td>
-                                          		<td class="py-3 middle">${list.pro_pur_price}</td>
-                                          		<td class="py-3 middle">${list.pro_sal_price}</td>
+                                          	
+                                          		<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample2" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample2"
+															onclick="content2(${list.pro_code})">${list.pro_code}</a></td>
+                                          		<td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.pro_name}</td>
+                                          		<td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.pro_pur_price}</td>
+                                          		<td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.pro_sal_price}</td>
                                           		<c:if test = "${list.pro_state == 1}">
-	                                            	<td class="py-3 middle" style="vertical-align: middle">사용중</td>
+	                                            	<td class="py-3 middle" style="vertical-align: middle">사용</td>
 	                                            </c:if>
                                           		<c:if test = "${list.pro_state == 0}">
 	                                            	<td class="py-3 middle" style="vertical-align: middle">미사용</td>
 	                                            </c:if>
-	                                            <td class="py-3 middle"><fmt:formatDate value="${list.pro_reg_date}" pattern="yyyy-MM-dd"/></td>
+	                                            <td class="py-3 middle" style="vertical-align:middle; font-size:22px;"><fmt:formatDate value="${list.pro_reg_date}" pattern="yyyy-MM-dd"/></td>
                                           	</tr>
                                           	</c:forEach>
                                           	<%-- <c:forEach var="list" items="${Plist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
@@ -491,15 +558,6 @@ function proSearchList() {
                                              </c:forEach> --%>
                                           </tbody>
                                        </table>
-                                       <!-- 리액트화면으로 등록
-                                       <table class="table">
-                                       		<tr>
-                                       			<td align="center">
-	                                       			<button type="button" type="submit" class="btn btn-outline-info">등록</button>
-                                          		</td>
-                                          	</tr>
-										</table>
-										리액트화면으로 등록-->
                                           </div>
                                        <div class="tab-pane fade" id="tabs2-tab6" role="tabpanel">
                                           <div id="product"></div>

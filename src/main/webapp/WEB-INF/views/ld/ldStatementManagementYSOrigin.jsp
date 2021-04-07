@@ -299,17 +299,16 @@ function content4(code) {
                               <!-- Nav Classic -->
                               <ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
                                  id="pills-tab-1" role="tablist">
-                                 
-                                 <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
-                                    class="nav-link d-flex align-items-center py-2 px-3"
-                                    id="pills-html-tab-4" data-toggle="pill"
-                                    href="#pills-html-4" role="tab" aria-controls="pills-html-4"
-                                    aria-selected="false">출고 전표</a></li>
-                                 
                                  <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
                                     class="nav-link d-flex align-items-center py-2 px-3 active"
                                     id="pills-html-tab-3" data-toggle="pill"
                                     href="#pills-html-3" role="tab" aria-controls="pills-html-3"
+                                    aria-selected="false">출고 전표</a></li>
+                                    
+                                 <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
+                                    class="nav-link d-flex align-items-center py-2 px-3"
+                                    id="pills-html-tab-4" data-toggle="pill"
+                                    href="#pills-html-4" role="tab" aria-controls="pills-html-4"
                                     aria-selected="false">입고 전표</a></li>
                               </ul>
                               <!-- End Nav Classic -->
@@ -322,11 +321,11 @@ function content4(code) {
                                        <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3"
                                           role="tablist">
                                           <li class="nav-item"><a
-                                             class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab4" role="tab"
-                                             aria-selected="true" data-toggle="tab">승인 전표 조회</a></li>
-                                          <li class="nav-item  ml-4"><a
-                                             class="nav-link px-2 pb-2 ass2" href="#tabs2-tab3"
-                                             role="tab" aria-selected="false" data-toggle="tab">미승인 전표 조회</a></li>
+                                             class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab3"
+                                             role="tab" aria-selected="true" data-toggle="tab">승인 전표 조회</a></li>
+                                          <li class="nav-item ml-4"><a
+                                             class="nav-link px-2 pb-2 ass2" href="#tabs2-tab4" role="tab"
+                                             aria-selected="false" data-toggle="tab">미승인 전표 조회</a></li>
                                        </ul>
                                        
                                        <div id="tabsContent2" class="card-body tab-content p-0">
@@ -457,11 +456,11 @@ function content4(code) {
                                        <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3"
                                           role="tablist">
                                           <li class="nav-item"><a
-                                             class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab6" role="tab"
-                                             aria-selected="true" data-toggle="tab">승인 전표 조회</a></li>
+                                             class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab5"
+                                             role="tab" aria-selected="true" data-toggle="tab">승인 전표 조회 </a></li>
                                           <li class="nav-item ml-4"><a
-                                             class="nav-link px-2 pb-2 ass2" href="#tabs2-tab5"
-                                             role="tab" aria-selected="false" data-toggle="tab">미승인 전표 조회 </a></li>
+                                             class="nav-link px-2 pb-2 ass2" href="#tabs2-tab6" role="tab"
+                                             aria-selected="false" data-toggle="tab">미승인 전표 조회</a></li>
                                        </ul>
                                        <div id="tabsContent2" class="card-body tab-content p-0">
                                           <div class="tab-pane fade show active" id="tabs2-tab5"
@@ -596,8 +595,7 @@ function content4(code) {
 							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
 							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
 							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
-							                        <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">승인일</th> -->
+							                        <th class="font-weight-semi-bold border-top-0 py-3 con2">승인일</th>
 	                                             </tr>
 	                                          </thead>
 	                                          <tbody>
@@ -615,15 +613,9 @@ function content4(code) {
 								                     <td class="py-3 middle" style="vertical-align:middle">
 								                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 								                     </td>
-								                     <c:if test="${list.logs_state == 3}">
-								                     	<td class="py-3 middle" style="vertical-align:middle">재고부족</td>
-								                     </c:if>
-								                     <c:if test="${list.logs_state == 1}">
-								                     	<td class="py-3 middle" style="vertical-align:middle">출고준비완료</td>
-								                     </c:if>
-								                     <%-- <td class="py-3 middle" style="vertical-align:middle">
+								                     <td class="py-3 middle" style="vertical-align:middle">
 								                     		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
-								                     </td> --%>
+								                     </td>
 						                  		 </tr>
 						                  		 </c:forEach>
 	                                          </tbody>

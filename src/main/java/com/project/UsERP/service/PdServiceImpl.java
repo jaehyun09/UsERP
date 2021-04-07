@@ -35,6 +35,16 @@ public class PdServiceImpl implements PdService {
 
 		model.addAttribute("company", company);
 	}
+	
+	// 최유성 - 기초등록 - 상품 상세페이지
+	@Override
+	public void pdproContent(HttpServletRequest req, Model model) {
+		int pro_code = Integer.parseInt(req.getParameter("pro_code"));
+		ProductVO product = pddao.pdproductDetail(pro_code);
+
+		model.addAttribute("product", product);
+		
+	}
 
 	// 김민수 - 재고 현황(검색포함)
 	@Override
@@ -282,15 +292,20 @@ public class PdServiceImpl implements PdService {
 		vo.setEmp_code(emp_code);
 		vo.setPro_code(pro_code);
 		vo.setCom_code(com_code);
-		vo.setWare_code(1001);
+		
+		//창고번호 불러오기
+		int ware_code = pddao.getWareCode(1); //창고타입 양품(1)을 넣어서 해당 창고 번호를 가져온다
+		vo.setWare_code(ware_code); //vo에 가져온 창고번호를 넣어준다
 		
 		System.out.println("pro_code:"+pro_code);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ware_code", 1001); //양품창고 번호 1001
+		map.put("accs_code", accs_code);
+		map.put("ware_code", ware_code); //양품창고 번호 1001
 		map.put("pro_code", pro_code);
 		
-		int sto_code = pddao.getStock(map); //상품에 대한 재고코드가 존재하는지 가지고 온다
+		int sto_code = Integer.parseInt(pddao.getStock(map).toString());; //상품에 대한 재고코드가 존재하는지 가지고 온다
+		
 		System.out.println("sto_code:"+sto_code);
 		
 		vo.setSto_code(sto_code); //vo에 재고코드를 넣어준다  //값이 0일수도 있어서 decode 함수 이용

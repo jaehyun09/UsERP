@@ -24,6 +24,12 @@ public class PdDAOImpl implements PdDAO {
 		return sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.pdcompanyDetail", com_code);
 	}
 
+	// 최유성 - 기초등록 - 상세 상세페이지
+	@Override
+	public ProductVO pdproductDetail(int pro_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.pdproductDetail", pro_code);
+	}
+	
 	// 김민수 - 검색 재고 현황 갯수 구하기
 	@Override
 	public int getStockCnt(String ssKeyword) {
@@ -101,8 +107,15 @@ public class PdDAOImpl implements PdDAO {
 	
 	// 최유성 - 상품에 대한 재고코드가 존재하는지 가지고 온다
 	@Override
-	public int getStock(Map<String, Object> map) {
-		return sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.getStock",map);
+	public Object getStock(Map<String, Object> map) {
+		//return sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.getStock",map);
+		
+		Object selectCnt = sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.getStock",map);
+		
+		if(selectCnt == null) {
+			return 0;
+		}
+		return selectCnt;
 	}
 
 	// 최유성 - 입고 전표 등록(insert)
@@ -117,4 +130,12 @@ public class PdDAOImpl implements PdDAO {
 		
 		return sqlSession.update("com.project.UsERP.persistence.PdDAO.updatestatement",vo);
 	}
+	
+	// 최유성 - 창고코드 가져 오기 - 창고타입 양품창고 : 1
+	@Override
+	public int getWareCode(int ware_type){
+		
+		return sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.getWareCode",ware_type);
+	}
+	
 }

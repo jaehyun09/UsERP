@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.project.UsERP.persistence.PdDAO;
 import com.project.UsERP.persistence.StDAO;
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.CompanyVO;
@@ -23,6 +24,9 @@ public class StServiceImpl implements StService {
 
 	@Autowired
 	StDAO stdao;
+	
+	@Autowired
+	PdDAO pddao;
 
 	// 강재현 - 기초등록 - 판매 거래처 목록 & 상품 목록
 	@Override
@@ -181,19 +185,26 @@ public class StServiceImpl implements StService {
 		vo.setEmp_code(req.getParameter("emp_code"));
 		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
 		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
-		vo.setWare_code(1001);
+		
+		//창고번호 불러오기
+		int ware_code = pddao.getWareCode(1); //창고타입 양품(1)을 넣어서 해당 창고 번호를 가져온다
+		
+		vo.setWare_code(ware_code);
 		
 		////////////////////추가 해보자////////////////////////////////////////
 		int pro_code = vo.getPro_code();
 		System.out.println("pro_code:"+pro_code);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ware_code", 1001); //양품창고 번호 1001
+		map.put("ware_code", ware_code); //양품창고 번호 62300
 		map.put("pro_code", pro_code);
 		
 		StockVO svo = stdao.getStock(map); //추가 메서드 => 재고코드와 재고수량을 가져온다
 		
 		int sto_code = svo.getSto_code(); //재고코드
+		
+		
+		System.out.println("sto_code:"+sto_code);
 		int sto_quantity = svo.getSto_quantity(); //현재 양품창고의 해당 상품 재고 수량...
 		int logs_quantity = vo.getLogs_quantity(); //판매 수량
 		int logs_shortage = 0; //부족 수량

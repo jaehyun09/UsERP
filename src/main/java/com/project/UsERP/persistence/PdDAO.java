@@ -11,9 +11,6 @@ import com.project.UsERP.vo.StockVO;
 
 public interface PdDAO {
 
-	// 최유성 - 기초등록 - 구매 거래처 목록 상세페이지
-	public CompanyVO pdcompanyDetail(int com_code);
-
 	// 김민수 - 검색 재고 현황 갯수 구하기
 	public int getStockCnt(String ssKeyword);
 		
@@ -28,6 +25,14 @@ public interface PdDAO {
 
 	// 이재홍 - 구매 현황 - 구매 전표 등록
 	public int insertBuyStatement(AccountStatementVO vo);
+	
+	//////////////////////////////추가~~~~!!!!//////////////////
+	
+	// 최유성 - 기초등록 - 구매 거래처 목록 상세페이지
+	public CompanyVO pdcompanyDetail(int com_code);
+	
+	// 최유성 - 기초등록 - 상품 상세 상세페이지
+	public ProductVO pdproductDetail(int pro_code);
 
 	// 최유성 - 구매 거래처 목록
 	public List<CompanyVO> pdCompanySelect();
@@ -48,11 +53,14 @@ public interface PdDAO {
 	public AccountStatementVO getAccountStatement(int accs_code);
 	
 	// 최유성 - 상품에 대한 재고코드가 존재하는지 가지고 온다
-	public int getStock(Map<String, Object> map);
+	public Object getStock(Map<String, Object> map);
 	
 	// 최유성 - 입고 전표 등록(insert)
 	public int logsPdInsert(LogisticsStatementVO vo);
 	
 	// 최유성 - 입고 전표 등록시 회계전표 상태코드 변화
 	public int updatestatement(AccountStatementVO vo);
+	
+	// 최유성 - 창고코드 가져 오기 - 창고타입 양품창고 : 1
+	public int getWareCode(int ware_type);
 }
