@@ -22,6 +22,9 @@ public interface HrService {
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령 조회
 	public void appointmentList(HttpServletRequest req, Model model);
 	
+	// 조명재 - 인사 발령(중메뉴) - 사원번호 확인
+	public void hrConfirmAppoint(HttpServletRequest req, Model model);
+	
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령
 	public void hrAppointmentPro(HttpServletRequest req, Model model);
 	

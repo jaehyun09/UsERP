@@ -336,7 +336,7 @@
                            </div>
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    <form>
+                                    <form action="hrSalaryInsert" method="post" onsubmit="">
                                        <table class="table bg-white text-dark center ass2">
 														<tr class="text-white table-bordered tap">
 															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">급여 전표 등록</th>
@@ -345,7 +345,7 @@
 															<th style="vertical-align: middle">사원번호</th>
 															<td><input id="text" type="text" class="form-control" name="emp_code" required></td>
 															<td>
-																<button type="button" class="btn btn-outline-info" onclick="empCodeCheck()">
+																<button type="button" class="btn btn-outline-info" onclick="confirmCheck()">
 																	사번확인
 																</button>
 															</td>

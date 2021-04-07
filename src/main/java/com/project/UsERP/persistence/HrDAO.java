@@ -36,6 +36,15 @@ public interface HrDAO {
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령 조회
 	public List<AppointHistoryVO> appointmentList(Map<String, Object> map);
 	
+	// 조명재 - 인사 발령(중메뉴) - 사원번호 확인
+	public EmployeeVO hrConfirmAppoint(String emp_code);
+	
+	// 조명재 - 인사 발령(중메뉴) - 현재 부서를 반환한다
+	public String getDepName(int dep_code);
+	
+	// 조명재 - 인사 발령(중메뉴) - 현재 직급을 반환한다
+	public String getCodeName(int hr_code);
+	
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령
 	public int hrAppointmentPro(AppointHistoryVO vo);
 	
