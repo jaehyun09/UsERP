@@ -343,7 +343,6 @@ public class LdServiceImpl implements LdService {
 		int stsuBadMoveInsert = 0;
 		
 			if (lddao.stockState(stateMap) == null) {
-				if(waretype == 2) {
 					
 					stockBadInsert = lddao.stockBadWare(stockVo);
 					if(stockBadInsert == 1) {
@@ -364,7 +363,6 @@ public class LdServiceImpl implements LdService {
 						
 						stsuBadMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
 					}
-				}
 			}
 			
 		 else if(lddao.stockState(stateMap) != null) {
