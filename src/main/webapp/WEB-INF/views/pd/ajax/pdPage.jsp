@@ -11,8 +11,9 @@
 	<table class="table table-bordered bg-white text-dark ass2 center">
 		<tbody>
 			<tr class="text-white con">
-			<c:if test="${pdContent.accs_type == 3 }">
+			<c:if test="${vo.accs_type == 3 || vo.accs_type == 4}">
                 <th colspan="4">구매전표</th>
+                <th colspan="4">채무전표</th>
             </c:if>
             </tr>
 			<tr>
@@ -41,7 +42,7 @@
 			</tr>
 			<tr>
 				<th colspan="1">총액</th>
-				<td colspan="3">${pdContent.accs_sum}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${pdContent.accs_sum}"/></td>
 			</tr>
 			<tr>
 				<th colspan="1">상세내용</th>

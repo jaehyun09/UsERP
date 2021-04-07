@@ -19,7 +19,7 @@
 			</tr>
 			<tr>
 				<th colspan="1">거래처 유형 </th>
-				<c:if test="${company.com_type == 10 }">
+				<c:if test="${company.com_type == 100}">
 				<td colspan="3">판매 거래처</td>
 				</c:if>
 			</tr>
