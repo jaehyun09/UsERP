@@ -48,7 +48,7 @@
 				<c:forEach var="complist" items="${complist}">
 					<tr>
 						<td class="py-1" style="vertical-align: middle">
-						<a class="btn" data-toggle="collapse"
+						<a class="text-dark con2" data-toggle="collapse"
 								href="#multiCollapseExample1" role="button"
 								aria-expanded="false"
 								aria-controls="multiCollapseExample1"

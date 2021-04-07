@@ -483,7 +483,7 @@
 											<c:forEach var="SOlist2" items="${SOlist2}">
 												<c:if test="${SOlist2.logs_state == 1 || SOlist2.logs_state == 3}">
 												<tr>
-													<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+													<td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 															href="#multiCollapseExample4" role="button"
 															aria-expanded="false"
 															aria-controls="multiCollapseExample4"

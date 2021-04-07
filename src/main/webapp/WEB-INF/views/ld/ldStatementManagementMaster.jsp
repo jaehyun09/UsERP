@@ -365,7 +365,7 @@ function content4(code) {
 	                                             <tbody>
 	                                             	<c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 	                                                <tr>
-	                                                   <td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+	                                                   <td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 															href="#multiCollapseExample1" role="button"
 															aria-expanded="false"
 															aria-controls="multiCollapseExample1"
@@ -429,7 +429,7 @@ function content4(code) {
                                                 <tbody>
                                                 	<c:forEach var="list" items="${SIlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 	                                                   <tr>
-															<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+															<td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 															href="#multiCollapseExample2" role="button"
 															aria-expanded="false"
 															aria-controls="multiCollapseExample2"
