@@ -388,8 +388,8 @@
 													</table>
 												
 												<div align=center>
-													<button type="button" type="submit" class="btn btn-outline-info">발령</button>&nbsp;&nbsp;&nbsp;
-													<button type="button" type="reset" class="btn btn-outline-info">재작성</button>
+													<button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+													<button type="reset" class="btn btn-outline-info">재작성</button>
 											</div><br>
                                  </form>
                                  </div>

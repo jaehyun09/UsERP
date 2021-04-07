@@ -213,7 +213,7 @@
 		SELECT * 
 		  FROM appoint_history a, employee e 
 		 WHERE a.emp_code = e.emp_code 
-		   AND e.dep_code = 70 
+		   AND e.dep_code = 70
 		 ORDER BY a.ap_date DESC
 	</select>
 	
