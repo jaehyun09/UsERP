@@ -8,22 +8,28 @@
  
 <body>
 	
-	<c:if test="${insertCnt == 0}">
+	<c:if test="${updateCnt == 0}">
 		<script type="text/javascript">
-			errorAlert(insertadj);
+			errorAlert(stockMoveFailError);
 		</script>
 	</c:if>
 	
-	<c:if test="${insertCnt != 0 && updateCnt == 0}">
+	<c:if test="${updateCnt != 0 && moveStockOutIn == 0 || updateCnt2 == 0}">
 		<script type="text/javascript">
-			errorAlert(insertadj);
+			errorAlert(stockMoveFailError);
 		</script>
 	</c:if>
 	
-	<c:if test="${insertCnt != 0 && updateCnt != 0}">
+	<c:if test="${updateCnt != 0 && moveStockOutIn != 0 && updateCnt2 == 0}">
+		<script type="text/javascript">
+			errorAlert(SoUpdateError);
+		</script>
+	</c:if>
+	
+	<c:if test="${updateCnt != 0 && moveStockOutIn != 0 && updateCnt2 != 0}">
 		<script type="text/javascript">
 			setTimeout(function() {
-				alert("재고가 조정 되었습니다.");
+				alert("승인되었습니다.");
 				window.location="ldInventoryControl";
 			}, 1000);
 		</script>

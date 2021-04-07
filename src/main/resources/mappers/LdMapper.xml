@@ -18,6 +18,7 @@
 			<result property="ware_name" column="ware_name" />
 			<result property="ware_location" column="ware_location" />
 			<result property="ware_state" column="ware_state" />
+			<result property="ware_type" column="ware_type" />
 		</association>
 		<association property="product" javaType="com.project.UsERP.vo.ProductVO">
 			<id property="pro_code" column="pro_code" />
@@ -61,6 +62,7 @@
 		   <result   property="ware_name"   column="ware_name"/>
 		   <result   property="ware_location"   column="ware_location"/>
 		   <result   property="ware_state"   column="ware_state"/>
+		   <result   property="ware_type"   column="ware_type"/>
 		</association>
 		<association property="stock" javaType="com.project.UsERP.vo.StockVO">
 		   <id       property="sto_code"   column="sto_code"/>
@@ -127,19 +129,19 @@
 	<!-- 김민수 - 양품창고 등록 -->
 	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (warehouse_good_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	VALUES (ware_good_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 김민수 - 불량품창고 등록 -->
 	<insert id="insertBadWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (warehouse_bad_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	VALUES (ware_bad_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 김민수 - 출고대기창고 등록 -->
 	<insert id="insertWaitWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (warehouse_wait_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 김민수 - 기초등록 - 창고 목록 -->
@@ -345,6 +347,20 @@
 		]]>
 	</select>
 	
+	<!-- 김민수 - 재고 이동 출고전표 상태 변경 -->
+	<update id="moveSoStateUpdate" parameterType="int">
+		UPDATE logistics_statement
+		SET logs_state = 2, logs_update_date = sysdate
+		WHERE logs_code = #{logs_code}
+		AND logs_type = 6
+	</update>
+	
+	<!-- 김민수 - 재고 이동 출고내역 재고수불부 등록 -->
+	<insert id="stsuStockOutInsert" parameterType="com.project.UsERP.vo.StockSupplyVO">
+		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, stsu_amount, stsu_arrivewh, pro_code, emp_code)
+		VALUES (stsu_seq.nextval, sysdate, 2, #{stsu_quantity}, #{stsu_amount}, #{stsu_arrivewh}, #{pro_code}, #{emp_code})
+	</insert>
+	
 	<!-- 김민수 - 재고 조정 등록 -->
 	<insert id="adjustmentInsert" parameterType="com.project.UsERP.vo.StockSupplyVO">
 		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, 
@@ -393,7 +409,49 @@
 		ORDER BY ss.stsu_reg_date
 	</select>
 	
-	<!-- 최유성 -  입고 미승인 전표 - resultt="stockOrder" -->
+	<!-- 김민수 - 부족수량 출고물류전표 가져오기 -->
+	<select id="logsCodeSelectList" resultType="com.project.UsERP.vo.LogisticsStatementVO">
+		SELECT logs_code 
+		FROM logistics_statement
+		WHERE logs_type = 6
+		AND logs_state = 3
+	</select>
+	
+	<!-- 김민수 - 물류출고전표(부족수량) 부족수량 불러오기 -->
+	<select id="logsShortAgeSelect" resultType="String" parameterType="int">
+		SELECT logs_shortage FROM logistics_statement
+		WHERE logs_code = #{logscode}
+	</select>
+	
+	<!-- 김민수 - 물류출고전표(부족수량) 부족수량 변경 -->
+	<update id="logsShortAgeUpdate" parameterType="java.util.Map">
+		UPDATE logistics_statement
+		SET logs_shortage = #{shortage}
+		WHERE logs_code = #{logscode}
+	</update>
+	
+	<!-- 김민수 - 물류출고전표(부족수량) 출고준비상태로 변경 -->
+	<update id="logsStateUpdate" parameterType="int">
+		UPDATE logistics_statement
+		SET logs_state = 1
+		WHERE logs_code = #{logscode}
+	</update>
+	
+	<!-- 김민수 - 입출고 내역 조회 -->
+	<select id="shiRecList" resultMap="supplyVOMap">
+		SELECT *
+		FROM (SELECT stsu_code, stsu_reg_date, stsu_quantity, pro_code, pro_pur_price,
+		        pro_sal_price,pro_name, emp_code, emp_name, stsu_type
+		    FROM (SELECT ss.*, p.pro_name,p.pro_pur_price, p.pro_sal_price, e.emp_name
+		        FROM stock_supply ss, product p, employee e
+		        WHERE ss.pro_code = p.pro_code
+		        AND ss.emp_code = e.emp_code
+		        ORDER BY ss.stsu_reg_date DESC
+		        )
+		    )
+	</select>
+	
+<!-- 최유성 -  입고 미승인 전표 - resultt="stockOrder" -->
 	<select id = "stockInOrder1" resultMap="stockOrder">
 		SELECT * 
 		  FROM logistics_statement l
@@ -407,7 +465,7 @@
 		    ON e.emp_code = l.emp_code     
 		 WHERE logs_state = 0
 		   AND logs_type = 5  
-		 order by logs_code 
+		 order by logs_code desc
 	</select>  
 	
 	<!-- 최유성 - 입고 승인 전표 -->
@@ -424,9 +482,10 @@
 		    ON e.emp_code = l.emp_code     
 		 WHERE logs_state = 1
 		   AND logs_type = 5  
-		 order by logs_code
+		 order by logs_code desc
 	</select> 
 	
+	<!-- 변경변경 - 상태코드 -->
 	<!-- 최유성 - 출고 미승인 전표 -->
 	<select id = "stockOutOrder1" resultMap="stockOrder">
 		SELECT * 
@@ -441,11 +500,12 @@
 		    ON p.pro_code = l.pro_code
 		  JOIN employee e
 		    ON e.emp_code = l.emp_code     
-		 WHERE logs_state != 1
+		 WHERE logs_state = 0
 		   AND logs_type = 6    
-		 order by logs_code  
+		 order by logs_code desc
 	</select>
 	
+	<!-- 변경변경 - 상태코드 -->
 	<!-- 최유성 - 출고 승인 전표 -->
 	<select id = "stockOutOrder2" resultMap="stockOrder">
 		SELECT * 
@@ -458,25 +518,10 @@
 		    ON p.pro_code = l.pro_code
 		  JOIN employee e
 		    ON e.emp_code = l.emp_code     
-		 WHERE logs_state = 1
+		 WHERE logs_state != 0
 		   AND logs_type = 6
-		 order by logs_code  
+		 order by logs_code desc
 	</select>  
-	
-	<!-- 최유성 - 물류 전표 상세 페이지(전표 상세 정보) -->
-	<select id = "getLdDetail" resultMap="stockOrder" parameterType="int">
-		SELECT * 
-		  FROM logistics_statement l
-    	  JOIN company c
-		    ON c.com_code = l.com_code
-		  JOIN product p
-		    ON p.pro_code = l.pro_code
-		  JOIN employee e
-		    ON e.emp_code = l.emp_code
-		  JOIN warehouse w
-		    ON w.ware_code = l.ware_code      
-		 WHERE logs_code = #{logs_code}
-	</select> 
 	
 	<!-- 최유성 - 입고 승인 버튼 클릭 상태 업데이트 -->
 	<update id = "stockInAction" parameterType="int">
@@ -494,7 +539,7 @@
 		SELECT sto_code
 		  FROM stock
 		 WHERE pro_code=#{pro_code}
-		   AND ware_code = 1001
+		   AND ware_code = 1001 
 	</select> 
 	
 	<!-- 최유성 - 재고전표에 널값인 재고코드에 새로 생성한 재고코드를 업데이트 -->
@@ -518,12 +563,12 @@
 		VALUES (stsu_seq.nextval,sysdate,1,#{stsu_quantity},#{stsu_amount},'입고',null,'양품창고',#{sto_code},#{pro_code},#{emp_code})
 	</insert><!-- 나중에 수정해야 함...!!!!!!!!!!! 마지막 사원코드는 세션아이디로? -->
 	
-	<!-- 출고 작업 공간 -->
-	
-	<!-- 최유성 - 출고 준비 완료로 상태 업데이트 -->
+	<!-- 변경변경 -->
+	<!-- 최유성 - 출고 준비 완료로 상태 업데이트 --> <!-- 수정 : 출고 승인으로 변경하자... 2를 1(승인:출고준비완료)로 변경했다 -->
 	<update id = "stockOutReady" parameterType="java.util.Map">
-		UPDATE logistics_statement SET logs_state = 2,logs_update_date=sysdate, sto_code=#{sto_code}, ware_code=#{ware_code} where logs_code = #{logs_code} and logs_type =6 
+		UPDATE logistics_statement SET logs_state = 1,logs_update_date=sysdate, sto_code=#{sto_code}, ware_code=#{ware_code} where logs_code = #{logs_code} and logs_type =6 
 	</update> 
+	<!-- 변경변경완료 -->
 	
 	<!-- 최유성 - 출고대기창고 관련  해당 상품에 대한 재고코드 및 재고수량 가져오기 -->
 	<select id = "outReadyStockSelect" resultType="com.project.UsERP.vo.StockVO" parameterType="int">
@@ -558,12 +603,27 @@
 		SELECT *
 		  FROM stock
 		 WHERE pro_code=#{pro_code}
-		   AND ware_code = 3001
+		   AND ware_code = 3001 
 	</select> 
 	
-	<!-- 기존.... -->
-	<!-- 최유성 - 출고 승인 버튼 클릭 상태 업데이트 -->
-	<update id = "stockOutAction" parameterType="int">
+	<!-- 최유성 - 출고 승인 버튼 클릭 상태 업데이트 --> <!-- 이제 안쓰인다 -->
+	<!-- <update id = "stockOutAction" parameterType="int">
 		UPDATE logistics_statement SET logs_state = 1, logs_update_date=sysdate where logs_code = #{logs_code} and logs_type =6 
-	</update> 
+	</update> -->
+	
+	<!-- 최유성 - 물류 전표 상세 페이지(전표 상세 정보) -->
+	<select id = "getLdDetail" resultMap="stockOrder" parameterType="int">
+		SELECT * 
+		  FROM logistics_statement l
+    	  JOIN company c
+		    ON c.com_code = l.com_code
+		  JOIN product p
+		    ON p.pro_code = l.pro_code
+		  JOIN employee e
+		    ON e.emp_code = l.emp_code
+		  JOIN warehouse w
+		    ON w.ware_code = l.ware_code      
+		 WHERE logs_code = #{logs_code}
+	</select> 
+	
 </mapper>

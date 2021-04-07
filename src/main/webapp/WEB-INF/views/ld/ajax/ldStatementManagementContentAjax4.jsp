@@ -46,9 +46,9 @@
 		      <td class="py-3">${vo.logs_quantity}</td>
 		   </tr>
 		   <tr>
-		      <th style="width:20%;">부족수량</th>
-		      <td class="py-3">${vo.logs_shortage}</td>
-		   </tr>
+	            <th style="width:20%;">부족수량</th>
+	            <td class="py-3">${vo.logs_shortage}</td>
+         	</tr>
 		   <tr>
 		      <th style="width:20%;">창고명</th>
 		      <td class="py-3">${vo.warehouse.ware_name}</td>
@@ -106,9 +106,6 @@
 		          </c:if>
 		          <c:if test="${vo.logs_state == 2}">
 	          		<td class="py-3">출고완료</td>
-	          	  </c:if>
-	          	  <c:if test="${vo.logs_state == 3}">
-	          		<td class="py-3">재고부족</td>
 	          	  </c:if>
 	          </c:if>
 		   </tr>

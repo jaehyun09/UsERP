@@ -163,11 +163,15 @@ function debtContent(code) {
 					<ul id="subPages"
 						class="side-nav-menu side-nav-menu-second-level mb-0">
 						<!-- a -->
-						<li class="side-nav-menu-item"><a
-							class="side-nav-menu-link ass2" href="${path}/waSelect">조회</a></li>
-						<li class="side-nav-menu-item"><a
-							class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
+						<li class="side-nav-menu-item">
+							<a class="side-nav-menu-link ass2" href="${path}/waSelect">조회</a>
 						</li>
+						<li class="side-nav-menu-item">
+							<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
+						</li>
+						<li class="side-nav-menu-item">
+                  			<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               			</li>
 					</ul></li>
 				<!-- 근태 관리 종료 -->
 
@@ -389,7 +393,7 @@ function debtContent(code) {
 																			
 																				<tr>
 																					<td class="py-3 ">
-																							<a class="btn" data-toggle="collapse" style="font-size:22px"
+																							<a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 																								href="#multiCollapseExample1" role="button"
 																								aria-expanded="false"
 																								aria-controls="multiCollapseExample1"
@@ -463,7 +467,7 @@ function debtContent(code) {
 																			<c:if test="${vo.accs_state == 0 }">
 																				<tr>
 																					<td class="py-3 ">
-																							<a class="btn"
+																							<a class="text-dark con2"
 																								data-toggle="collapse" style="font-size:22px"
 																								href="#multiCollapseExample2" role="button"
 																								aria-expanded="false"
@@ -554,7 +558,7 @@ function debtContent(code) {
 																				<c:if test="${vo.ss_state == 1 || vo.ss_state == -1}">
 																					<tr>
 																						<td class="py-3">
-																								<a class="btn"
+																								<a class="text-dark con2"
 																									data-toggle="collapse" style="font-size:22px"
 																									href="#multiCollapseExample3" role="button"
 																									aria-expanded="false"
@@ -615,7 +619,7 @@ function debtContent(code) {
 																				<c:if test="${vo.ss_state == 0 }">
 																					<tr>
 																						<td class="py-3">
-																								<a class="btn" style="font-size:22px"
+																								<a class="text-dark con2" style="font-size:22px"
 																									data-toggle="collapse"
 																									href="#multiCollapseExample4" role="button"
 																									aria-expanded="false"
@@ -683,7 +687,7 @@ function debtContent(code) {
                                                             <c:if test="${vo.accs_type == 2 }">
                                                             <tr>
                                                                <td class="py-3 ">
-                                                   <a class="btn" style="font-size:22px" data-toggle="collapse"
+                                                   <a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
                                                       href="#multiCollapseExample5" role="button"
                                                       aria-expanded="false"
                                                       aria-controls="multiCollapseExample5"
@@ -727,7 +731,7 @@ function debtContent(code) {
                                                             <c:if test="${vo.accs_type == 4 }">
                                                                <tr>
                                                                 <td class="py-3 ">
-                                                   <a class="btn" style="font-size:22px" data-toggle="collapse"
+                                                   <a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
                                                       href="#multiCollapseExample6" role="button"
                                                       aria-expanded="false"
                                                       aria-controls="multiCollapseExample6"

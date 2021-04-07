@@ -222,7 +222,7 @@ public class LdDAOImpl implements LdDAO{
 	public int getStockCnt(String ssKeyword) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getStockCnt", ssKeyword);
 	}
-	
+
 	// 김민수 - 검색 재고 현황 조회(페이징)
 	@Override
 	public List<StockVO> StockStatusList(Map<String, Object> map) {
@@ -252,19 +252,19 @@ public class LdDAOImpl implements LdDAO{
 	public StockVO stockState(Map<String, Object> stateMap) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.stockState", stateMap);
 	}
-
+	
 	// 김민수 - 재고 이동 재고 테이블 불량품 창고 등록
 	@Override
 	public int stockBadWare(StockVO stockVo) {
 		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stockBadWare", stockVo);
 	}
-
+	
 	// 김민수 - 재고 이동 출발창고 수량 변경
 	@Override
 	public int stoMinusUpdate(Map<String, Object> minusMap) {
 		return sqlSession.update("com.project.UsERP.persistence.LdDAO.stoMinusUpdate", minusMap);
 	}
-
+	
 	// 김민수 - 재고 이동 도착창고 수량 변경
 	@Override
 	public int stoPlusUpdate(Map<String, Object> plusMap) {
@@ -294,6 +294,7 @@ public class LdDAOImpl implements LdDAO{
 	public int stsuMoveInsert(StockSupplyVO stockSupplyVO) {
 		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stsuMoveInsert", stockSupplyVO);
 	}
+	
 
 	// 김민수 - 재고 이동 갯수 구하기
 	@Override
@@ -306,38 +307,76 @@ public class LdDAOImpl implements LdDAO{
 	public List<StockSupplyVO> moveWarehouseList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.moveWarehouseList", map);
 	}
-
+	
+	// 김민수 - 재고 이동 출고전표 상태 변경
+	@Override
+	public int moveSoStateUpdate(int logscode) {
+		return sqlSession.update("com.project.UsERP.persistence.LdDAO.moveSoStateUpdate", logscode);
+	}
+	
+	// 김민수 - 재고 이동 출고내역 재고수불부 등록
+	@Override
+	public int stsuStockOutInsert(StockSupplyVO stockSupplyVO) {
+		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.stsuStockOutInsert", stockSupplyVO);
+	}
+	
 	// 김민수 - 재고 조정 등록
 	@Override
 	public int adjustmentInsert(StockSupplyVO stockSupplyVO) {
 		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.adjustmentInsert", stockSupplyVO);
 	}
-
+	
 	// 김민수 - 재고 조정 갯수 구하기
 	@Override
 	public int getAdjustment() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getAdjustment");
 	}
-
+	
 	// 김민수 - 재고 조정 내역 조회
 	@Override
 	public List<StockSupplyVO> adjustmentList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.adjustmentList", map);
 	}
-
+	
 	// 김민수 - 재고 수불부 상품 코드 가져오기
 	@Override
 	public String getProCode(String proname) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getProCode", proname);
 	}
-
+	
 	// 김민수 - 재고 수불부 내역 조회
 	@Override
 	public List<StockSupplyVO> stockSupplyList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.stockSupplyList", map);
 	}
 
+	// 김민수 - 부족수량 출고물류전표 가져오기
+	@Override
+	public List<LogisticsStatementVO> logsCodeSelectList() {
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.logsCodeSelectList");
+	}
 
+	// 김민수 - 물류출고전표(부족수량) 부족수량 불러오기
+	@Override
+	public String logsShortAgeSelect(int logscode) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.logsShortAgeSelect", logscode);
+	}
 
+	// 김민수 - 물류출고전표(부족수량) 부족수량 변경
+	@Override
+	public int logsShortAgeUpdate(Map<String, Object> shortMap) {
+		return sqlSession.update("com.project.UsERP.persistence.LdDAO.logsShortAgeUpdate", shortMap);
+	}
+
+	// 김민수 - 물류출고전표(부족수량) 출고준비상태로 변경
+	@Override
+	public int logsStateUpdate(int logscode) {
+		return sqlSession.update("com.project.UsERP.persistence.LdDAO.logsStateUpdate", logscode);
+	}
+
+	@Override
+	public List<StockSupplyVO> shiRecList() {
+		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.shiRecList");
+	}
 	
 }

@@ -10,7 +10,6 @@ var stockMoveFailError = "재고가 이동되지 않았습니다.\n확인 후 �
 var SoUpdateError = "재고수불부 등록 처리 과정 중 오류가 발생했습니다.\n확인 후 다시 시도하세요.";
 var stockShortError = "재고이동 처리 과정 중 오류가 발생했습니다.\n확인 후 다시 시도하세요.";
 
-
 function errorAlert(msg){
 	alert(msg);
 	window.history.back();
