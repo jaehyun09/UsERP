@@ -176,7 +176,7 @@ public class LdController {
 		return "ld/ajax/ldStatementManagementContentAjax4";
 	}
 	
-	// 김민수 - 재고 관리
+	// 김민수 - 재고 관리 
 	@RequestMapping("/ldInventoryControl")
 	public String ldInventoryControl(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 관리");
