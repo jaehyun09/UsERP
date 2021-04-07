@@ -310,6 +310,7 @@ public class LdServiceImpl implements LdService {
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		String empid = req.getParameter("empid");
 		int logscode = Integer.parseInt(req.getParameter("logscode"));
+		int waretype = Integer.parseInt(req.getParameter("waretype"));
 		
 		// 재고 테이블 여부 확인
 		Map<String, Object> stateMap = new HashMap<String, Object>();
@@ -342,7 +343,7 @@ public class LdServiceImpl implements LdService {
 		int stsuBadMoveInsert = 0;
 		
 			if (lddao.stockState(stateMap) == null) {
-				if(arrivewh >= 62400 && arrivewh <= 62499) {
+				if(waretype == 2) {
 					
 					stockBadInsert = lddao.stockBadWare(stockVo);
 					if(stockBadInsert == 1) {
@@ -412,11 +413,8 @@ public class LdServiceImpl implements LdService {
 					
 					model.addAttribute("logsShortUpdate", logsShortUpdate);
 					model.addAttribute("logsStateUpdate", logsStateUpdate);
-				} else if (logscode == 0) {
-					
 				}
 			}
-			model.addAttribute("logscode", logscode);
 			model.addAttribute("stockBadInsert", stockBadInsert);
 			model.addAttribute("stoBadMinusUpdate", stoBadMinusUpdate);
 			model.addAttribute("stoMinusUpdate",stoMinusUpdate);
@@ -660,7 +658,9 @@ public class LdServiceImpl implements LdService {
 	@Override
 	public void logsCodeShortList(HttpServletRequest req, Model model) {
 		List<LogisticsStatementVO> vo = lddao.logsCodeSelectList();
-		
+		if (vo == null) {
+			
+		}
 		model.addAttribute("logsCodeVo", vo);
 	}
 	

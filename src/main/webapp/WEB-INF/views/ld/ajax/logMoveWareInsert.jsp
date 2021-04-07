@@ -25,16 +25,18 @@
 	<!-- 신규등록 -->
 <form action="movelogsInsert" method="post">
 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+<c:forEach var="ware" items="${selectware}">
+	<input type = "hidden" name = "waretype" value = "${ware.ware_type}">
+</c:forEach>
 		<table class="table bg-white text-dark center ass2" style="text-align:center">
                	<tr>
-	             	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>전표번호</b></td>
+	             	<td class="font-weight-semi-bold border-top-0 py-2 text-dark" 
+	             		colspan="2"style="vertical-align: middle;"><b>전표번호</b></td>
 	                <td class="py-2" colspan="2">
 	                	<select class="custom-select custom-select-lg" name="logscode">
+	                	<c:if test="${empty logsCodeVo}"><option value="0"> 전표 없음  </option></c:if>
 	                	<c:forEach var="logsCodeVo" items="${logsCodeVo}">
 	                		<c:choose>
-		                		<c:when test="${logsCodeVo.logs_code == 0}">
-									<option> - </option>
-		                		</c:when>
 		                		<c:when test="${logsCodeVo.logs_code != 0}">
 									<option value="${logsCodeVo.logs_code}">${logsCodeVo.logs_code}</option>
 		                		</c:when>
@@ -45,8 +47,7 @@
             	</tr>
                	
                	<tr>
-					<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-						colspan="2" style="vertical-align: middle;">출발창고명</td>
+					<td class="py-2 text-dark" colspan="2" style="vertical-align: middle;"><b>출발창고명</b></td>
 					<td class="font-weight-semi-bold border-top-0 py-2"
 						colspan="2">
 						<select class="custom-select custom-select-lg" name="startwh">

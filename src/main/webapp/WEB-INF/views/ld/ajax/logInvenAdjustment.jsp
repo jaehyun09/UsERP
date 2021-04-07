@@ -60,6 +60,7 @@
           }
        });
     } */
+    
     $('#selectStock').change(function() {
     	
     	var selectStock = $('#selectStock').val();
@@ -236,53 +237,6 @@
 							</select>
 						</td>
                     </tr>
-                    <%-- <tr>
-					<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-						colspan="2" style="vertical-align: middle;">상품명</td>
-					<td class="font-weight-semi-bold border-top-0 py-2"
-						colspan="2">
-						<select class="custom-select custom-select-lg" id="prod" name="prod" onclick="productAutoInput('${pro_code}')">
-							<c:forEach var="selectpro" items="${selprolist}">
-                             	<option value="${selectpro.pro_code}">${selectpro.pro_name}</option>
-							</c:forEach>
-                        </select>
-					</td>
-				</tr>
-				
-				<tr>
-					<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
-					<td class="py-2" colspan="2">
-						<select class="custom-select custom-select-lg" id="wareh" name="wareh" onclick="wareAutoInput('${ware_code}')">
-							<c:forEach var="selectware" items="${selectware}">
-								<c:if test="${selectware.ware_type == 1}">
-									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
-								</c:if>
-								<c:if test="${selectware.ware_type == 2}">
-									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
-								</c:if>
-								<c:if test="${selectware.ware_type == 3}">
-									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
-								</c:if>
-							</c:forEach>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;">사번</td>
-					<td class="py-2" colspan="2">
-		       			<input class="form-control form-control-icon-text" type="text" name="empid" value="${sessionScope.mem_id}" readonly></td>
-		    		<tr>
-						<td class="py-2" colspan="2" style="vertical-align: middle;"><b>조정 재고</b></td>
-						<td class="py-2" colspan="2">
-							<input class="form-control form-control-icon-text" type="text" id="amount" name="amount" onKeyup="calculation()" placeholder="조정 재고">
-						</td>
-					</tr>
-					<tr>
-						<td class="py-2" colspan="2" style="vertical-align: middle; "><b>조정 후 재고</b></td>
-						<td class="py-2" colspan="2">
-							<input class="form-control form-control-icon-text" type="text" id="quantity" name="quantity" readonly>
-						</td>
-					</tr> --%>
 			</table>
 				<div id="adjOptionList"></div> 
 					<!-- <div align=center>
