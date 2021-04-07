@@ -1,5 +1,9 @@
 package com.project.UsERP.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -305,6 +309,7 @@ public class LdServiceImpl implements LdService {
 		int prod = Integer.parseInt(req.getParameter("prod"));
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		String empid = req.getParameter("empid");
+		int logscode = Integer.parseInt(req.getParameter("logscode"));
 		
 		// 재고 테이블 여부 확인
 		Map<String, Object> stateMap = new HashMap<String, Object>();
@@ -335,10 +340,9 @@ public class LdServiceImpl implements LdService {
 		int stoPlusUpdate = 0;
 		int stsuMoveInsert = 0;
 		int stsuBadMoveInsert = 0;
-		int state = 0;
 		
 			if (lddao.stockState(stateMap) == null) {
-				if(arrivewh >= 2000 && arrivewh<=2999) {
+				if(arrivewh >= 62400 && arrivewh <= 62499) {
 					
 					stockBadInsert = lddao.stockBadWare(stockVo);
 					if(stockBadInsert == 1) {
@@ -372,22 +376,52 @@ public class LdServiceImpl implements LdService {
 				quantityMap.put("prod", prod);
 				String stsu_quantity = lddao.getStoQuantity(quantityMap);
 				
-				StockSupplyVO stockSupplyVO = new StockSupplyVO();
-				stockSupplyVO.setStsu_quantity(Integer.parseInt(stsu_quantity));
-				stockSupplyVO.setStsu_amount(amount);
-				stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
-				stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
-				stockSupplyVO.setPro_code(prod);
-				stockSupplyVO.setEmp_code(empid);
+					StockSupplyVO stockSupplyVO = new StockSupplyVO();
+					stockSupplyVO.setStsu_quantity(Integer.parseInt(stsu_quantity));
+					stockSupplyVO.setStsu_amount(amount);
+					stockSupplyVO.setStsu_startwh(lddao.getStartWareName(startwh));
+					stockSupplyVO.setStsu_arrivewh(lddao.getArriveWareName(arrivewh));
+					stockSupplyVO.setPro_code(prod);
+					stockSupplyVO.setEmp_code(empid);
+					
+					stsuMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
 				
-				stsuMoveInsert = lddao.stsuMoveInsert(stockSupplyVO);
+				
+				int logsShortUpdate = 0;
+				int logsStateUpdate = 0;
+				if (logscode != 0) {
+					int logshortage = Integer.parseInt(lddao.logsShortAgeSelect(logscode));
+					int shortage = logshortage - amount;
+					
+					Map<String, Object> shortMap = new HashMap<String, Object>();
+					shortMap.put("shortage", shortage);
+					shortMap.put("logscode", logscode);
+					if(shortage == 0) {
+						
+						logsShortUpdate = lddao.logsShortAgeUpdate(shortMap);
+						
+						if(logsShortUpdate == 1) {
+							logsStateUpdate = lddao.logsStateUpdate(logscode);
+						}
+						
+					} else if (shortage != 0) {
+						
+						logsShortUpdate = lddao.logsShortAgeUpdate(shortMap);
+					
+					}
+					
+					model.addAttribute("logsShortUpdate", logsShortUpdate);
+					model.addAttribute("logsStateUpdate", logsStateUpdate);
+				} else if (logscode == 0) {
+					
+				}
 			}
-			model.addAttribute("state", state);
+			model.addAttribute("logscode", logscode);
 			model.addAttribute("stockBadInsert", stockBadInsert);
 			model.addAttribute("stoBadMinusUpdate", stoBadMinusUpdate);
 			model.addAttribute("stoMinusUpdate",stoMinusUpdate);
-			model.addAttribute("stoPlusUpdate", stoPlusUpdate);
 			model.addAttribute("stsuMoveInsert", stsuMoveInsert);
+			model.addAttribute("stoPlusUpdate", stoPlusUpdate);
 			model.addAttribute("stsuBadMoveInsert", stsuBadMoveInsert);
 		}
 
@@ -446,6 +480,55 @@ public class LdServiceImpl implements LdService {
 		
 	}
 
+	// 김민수 - 입출고 승인 - 출고 상태변경 / 재고수불부 등록
+	@Override
+	public void moveStockOutUpIn(HttpServletRequest req, Model model) {
+		int logscode = Integer.parseInt(req.getParameter("logscode"));
+		int prod = Integer.parseInt(req.getParameter("prod"));
+		int amount = Integer.parseInt(req.getParameter("amount"));
+		int startwh = Integer.parseInt(req.getParameter("warecode"));
+		String empcode = req.getParameter("empcode");
+		
+		Map<String, Object> quantityMap = new HashMap<String, Object>();
+		quantityMap.put("prod", prod);
+		quantityMap.put("startwh", startwh);
+		
+		String quantity = lddao.getStoQuantity(quantityMap);
+		int stsu_quantity = Integer.parseInt(quantity);
+		int stsu_qu = stsu_quantity - amount;
+		
+		String arrivewh = lddao.getStartWareName(startwh);
+		
+		int updateCnt2 = 0;
+		int moveStockOutIn = 0;
+		int updateCnt = lddao.moveSoStateUpdate(logscode);
+			if(updateCnt == 1) {
+				
+				Map<String, Object> minusMap = new HashMap<String, Object>();
+				minusMap.put("amount", amount);
+				minusMap.put("startwh", startwh);
+				minusMap.put("prod", prod);
+				
+				updateCnt2 = lddao.stoMinusUpdate(minusMap);
+				
+				StockSupplyVO stockSupplyVO = new StockSupplyVO();
+				stockSupplyVO.setStsu_quantity(stsu_qu);
+				stockSupplyVO.setStsu_amount(amount);
+				stockSupplyVO.setStsu_arrivewh(arrivewh);
+				stockSupplyVO.setPro_code(prod);
+				stockSupplyVO.setEmp_code(empcode);
+				
+				moveStockOutIn = lddao.stsuStockOutInsert(stockSupplyVO);
+				
+			}
+			
+		
+		model.addAttribute("moveStockOutIn", moveStockOutIn);
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("updateCnt2", updateCnt2);
+		
+	}
+	
 	// 김민수 - 재고 조정 재고테이블 수량 가져오기
 	@Override
 	public void getAdjStock(HttpServletRequest req, Model model) {
@@ -571,6 +654,22 @@ public class LdServiceImpl implements LdService {
 		model.addAttribute("end", end);
 		model.addAttribute("proname", proname);
 		model.addAttribute("procode", procode);
+	}
+	
+	// 김민수 - 부족수량 출고물류전표 조회
+	@Override
+	public void logsCodeShortList(HttpServletRequest req, Model model) {
+		List<LogisticsStatementVO> vo = lddao.logsCodeSelectList();
+		
+		model.addAttribute("logsCodeVo", vo);
+	}
+	
+	// 김민수 - 입출고내역 조회
+	@Override
+	public void shiRecList(HttpServletRequest req, Model model) {
+		List<StockSupplyVO> vo = lddao.shiRecList();
+		
+		model.addAttribute("shiRecVo", vo);
 	}
 	
 	// 최유성 - 전표관리
@@ -723,7 +822,7 @@ public class LdServiceImpl implements LdService {
 		System.out.println("ware_code:"+ware_code);
 		int pro_code = Integer.parseInt(req.getParameter("pro_code")); //상품코드
 		System.out.println("pro_code:"+pro_code);
-		int emp_code = Integer.parseInt(req.getParameter("emp_code")); //사원번호
+		String emp_code = req.getParameter("emp_code"); //사원번호
 		System.out.println("emp_code:"+emp_code);
 		
 		int updateCnt = 0; //전표 업데이트 cnt
@@ -773,6 +872,12 @@ public class LdServiceImpl implements LdService {
 					map3.put("sto_code", outReadyStoCode);
 					map3.put("stsu_quantity", sto_quantity2); //셀렉트로 가져온 기존 수량
 					map3.put("stsu_amount", logs_quantity); //판매수량
+					
+//					if(sto_quantity < 0) { //부족수량 존재시
+//		                  map3.put("stsu_quantity", 0); //양품창고의 재고수량은 0이 된다 
+//		                  map3.put("stsu_amount", retrunStoQuantity); //양품창고의 기존수량이 이동수량이 된다
+//		               }
+					
 					map3.put("ware_code", ware_code);
 					map3.put("pro_code", pro_code);
 					
@@ -820,6 +925,12 @@ public class LdServiceImpl implements LdService {
 					map2.put("sto_code", newStoCode);
 					map2.put("stsu_quantity", logs_quantity);
 					map2.put("stsu_amount", logs_quantity);
+					
+//					if(sto_quantity < 0) { //부족수량 존재시
+//		                  map2.put("stsu_quantity", 0); //양품창고의 재고수량은 0이 된다 
+//		                  map2.put("stsu_amount", retrunStoQuantity); //양품창고의 기존수량이 이동수량이 된다
+//		               }
+					
 					map2.put("ware_code", newWareCode);
 					map2.put("pro_code", pro_code);
 					
@@ -918,6 +1029,9 @@ public class LdServiceImpl implements LdService {
 		}
 		model.addAttribute("updateCnt", updateCnt);
 	}
+
+
+
 
 
 }

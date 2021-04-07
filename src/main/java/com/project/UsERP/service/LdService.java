@@ -58,6 +58,9 @@ public interface LdService {
 	// 김민수 - 재고 이동 내역
 	public void moveWarehouseList(HttpServletRequest req, Model model);
 	
+	// 김민수 - 재고 이동 출고 상태변경 / 재고수불부 등록
+	public void moveStockOutUpIn(HttpServletRequest req, Model model);
+	
 	// 김민수 - 재고 조정 재고테이블 수량 가져오기
 	public void getAdjStock(HttpServletRequest req, Model model);
 	
@@ -69,4 +72,10 @@ public interface LdService {
 	
 	// 김민수  - 재고 수불부 내역
 	public void supplyList(HttpServletRequest req, Model model);
+	
+	// 김민수 - 부족수량 출고물류전표 조회
+	public void logsCodeShortList(HttpServletRequest req, Model model);
+	
+	// 김민수 - 입출고 내역 조회
+	public void shiRecList(HttpServletRequest req, Model model);
 }

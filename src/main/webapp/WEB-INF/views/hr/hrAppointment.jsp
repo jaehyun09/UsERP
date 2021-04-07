@@ -260,7 +260,7 @@
 										      <i class="gd-search icon-text icon-text-sm"></i>
 										    </div>
 										    
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" >
+										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
 										  </div>
 										  <!-- 검색창 끝 -->		
 										  <br>
@@ -356,7 +356,7 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원번호</th>
-															<td><input id="text" type="text" class="form-control" name="emp_code" required></td>
+															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px" required></td>
 															<td>
 																<button type="button" class="btn btn-outline-info" onclick="empCodeCheck()">
 																	사번확인
@@ -365,17 +365,17 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원명</th>
-															<td><input id="text" type="text" class="form-control" name="emp_name" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="emp_name" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">현재 부서</th>
-															<td><input id="text" type="text" class="form-control" name="ap_pre_dep" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="ap_pre_dep" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">발령 부서</th>
 															<td>	 
 															<div class="form-group">
-															     <select name="ap_cur_dep" class="form-control" id="exampleFormControlSelect1">
+															     <select name="ap_cur_dep" class="form-control" id="exampleFormControlSelect1" style="font-size:20px">
 															    	<c:forEach var="vo" items="${list3}">
 														       			<option value="${vo.dep_name}">${vo.dep_name}</option>
 														       		</c:forEach>
@@ -385,13 +385,13 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">현재 직급</th>
-															<td><input id="text" type="text" class="form-control" name="ap_pre_position" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="ap_pre_position" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">발령 후 직급</th>
 															<td>	 
 															<div class="form-group">
-															     <select name="ap_cur_position" class="form-control" id="exampleFormControlSelect1">
+															     <select name="ap_cur_position" class="form-control" id="exampleFormControlSelect1" style="font-size:20px">
 															     	<c:forEach var="vo" items="${list4}">
 														       			<option value="${vo.hr_code_name}">${vo.hr_code_name}</option>
 														       		</c:forEach>

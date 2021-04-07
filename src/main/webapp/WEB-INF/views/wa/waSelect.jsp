@@ -280,7 +280,7 @@
 										    <div class="input-group-append">
 										      <i class="gd-search icon-text icon-text-sm"></i>
 										    </div>
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" width="100px" type="text" >
+										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" width="100px" type="text" style="font-size:20px">
 										  </div>
 										  <!-- 검색창 끝 -->		
 										  <br>
@@ -320,7 +320,7 @@
 										    <div class="input-group-append">
 										      <i class="gd-search icon-text icon-text-sm"></i>
 										    </div>
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" >
+										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
 										  </div>
 										  <!-- 검색창 끝 -->		
 										  <br>

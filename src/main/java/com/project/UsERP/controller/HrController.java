@@ -15,7 +15,7 @@ import com.project.UsERP.service.HrService;
 // 인사 관리 
 @Controller
 public class HrController {
-
+ 
 	private static final Logger logger = LoggerFactory.getLogger(HrController.class);
 
 	@Autowired

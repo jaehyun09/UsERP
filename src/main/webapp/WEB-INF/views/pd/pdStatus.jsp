@@ -38,14 +38,6 @@ function pdContent(code) {
 		document.getElementById("accs_sum").value = price * count;
 	};
 	
-	function conCheck() {
-	       if(!$("input[name='accs_content']").val()) {
-	          alert("내용을 입력하세요.");
-	          $("input[name='accs_content']").focus();
-	          return false;
-	       }
-	    }
-	
 </script>
 
     <meta charset="utf-8">
@@ -356,7 +348,7 @@ function pdContent(code) {
                                                 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
                                                 <table class="table bg-white text-dark center ass2">
                                                 <tr class="text-white table-bordered tap">
-                                                   <th colspan="3"> 판매 전표 등록 </th>
+                                                   <th colspan="3"> 구매 전표 등록 </th>
                                                 </tr>
                                                    <tr>
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
@@ -418,7 +410,7 @@ function pdContent(code) {
                                     </table>                                 
                                         <br>
                                          <div align=center>
-                                           <button type="submit" class="btn btn-outline-info" onclick="return conCheck()">등록</button>&nbsp;&nbsp;&nbsp;
+                                           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
                                            <button type="reset" class="btn btn-outline-info">재입력</button>                                  
                                          </div>
                                        </form>                                  
@@ -453,6 +445,9 @@ function pdContent(code) {
                                                    <td class="py-3">승인 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 1 }">
+                                                   <td class="py-3">승인 완료</td>
+                                                </c:if>
+                                                <c:if test="${vo.accs_state == 3 }">
                                                    <td class="py-3">승인 완료</td>
                                                 </c:if>
                                              </tr>

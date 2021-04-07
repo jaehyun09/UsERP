@@ -4,7 +4,7 @@
 
 <%@ include file = "../../setting.jsp" %> 
 <link rel="stylesheet" href="${project}css/graindashboard.css">
-<script type="text/javascript" src="${project}js/logisticsScript.js"></script>
+<script type="text/javascript" src="${project}script/logisticsScript.js"></script>
 <script src="${project}js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	function compInfo(code) {
@@ -48,7 +48,7 @@
 				<c:forEach var="complist" items="${complist}">
 					<tr>
 						<td class="py-1" style="vertical-align: middle">
-						<a class="btn" data-toggle="collapse"
+						<a class="text-dark con2" data-toggle="collapse"
 								href="#multiCollapseExample1" role="button"
 								aria-expanded="false"
 								aria-controls="multiCollapseExample1"

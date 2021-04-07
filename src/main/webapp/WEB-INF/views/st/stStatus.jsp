@@ -310,7 +310,7 @@
                                           </thead>
                                           <tbody>
                                              <c:forEach var="vo" items="${sales}">
-                                             <c:if test="${vo.accs_type == 1 }">
+                                             <c:if test="${vo.accs_type == 1 || vo.accs_type == 2 }">
                                              <tr>
                                                 <td class="py-3" style="vertical-align:middle">
                                                        <a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
@@ -324,12 +324,9 @@
                                                 <td class="py-3" style="vertical-align:middle">${vo.employee.emp_name}</td>
                                                 <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
                                                 <c:if test="${vo.accs_state == 0 }">
-                                                   <td class="py-3" style="vertical-align:middle">전표 승인 대기중</td>
+                                                   <td class="py-3" style="vertical-align:middle">전표 승인</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 1 }">
-                                                   <td class="py-3" style="vertical-align:middle">출고 대기중</td>
-                                                </c:if>
-                                                <c:if test="${vo.accs_state == 2 }">
                                                    <td class="py-3" style="vertical-align:middle">출고 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 3 }">
@@ -362,7 +359,7 @@
                                              
                                              
                                           <td style="vertical-align: middle;">
-                                                        <select class="form-control" id="accs_type" name="accs_type">
+                                                        <select class="form-control" id="accs_type" name="accs_type"  style="font-size:20px">
                                                           <option value="1">판매전표</option>
                                                           <option value="2">채권전표</option>
                                                         </select>
@@ -371,47 +368,47 @@
                                                    <tr>
                                           <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>거래처명</b></td>
                                           <td class="font-weight-semi-bold border-top-0 py-2"
-                                             colspan="2"><select class="form-control" id="com_code" name="com_code">
-                                                         <c:forEach var="company" items="${company}">
-                                                                <option value="${company.com_code}">${company.com_name}</option>
-                                                          </c:forEach>
+                                             colspan="2"><select class="form-control" id="com_code" name="com_code" style="font-size:20px">
+		                                             		<c:forEach var="company" items="${company}">
+		                                                          <option value="${company.com_code}">${company.com_name}</option>
+		                                                    </c:forEach>
                                                         </select>
                                           </td>
                                        </tr>
                                           <tr>
                                              <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
                                              <td class="py-3" colspan="2">
-                                                <select class="form-control" id="pro_code" name="pro_code" onchange="changeProduct()">
-                                                   <c:forEach var="product" items="${product}">
-                                                      <option id="${product.pro_sal_price}" value="${product.pro_code}">
-                                                         ${product.pro_name}
-                                                      </option>
-                                                   </c:forEach>
+                                             	<select class="form-control" id="pro_code" name="pro_code" style="font-size:20px" onchange="changeProduct()">
+		                                             <c:forEach var="product" items="${product}">
+		                                             	<option id="${product.pro_sal_price}" value="${product.pro_code}">
+		                                             		${product.pro_name}
+		                                             	</option>
+		                                             </c:forEach>
                                                 </select>
                                              </td>
                                          </tr>
                                          <tr>
                                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>단가</b></td>
-                                                      <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_price" name="accs_price"></td>
+                                                      <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_price"style="font-size:20px" name="accs_price"></td>
                                                    </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1" id="accs_quantity" name="accs_quantity" onchange="changeCount()"></td>
+                                             <td class="py-3" colspan="2"><input class = "form-control" style="font-size:20px" type = "number" min = "1" step = "1" value = "1" id="accs_quantity" name="accs_quantity" onchange="changeCount()"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>총액</b></td>
                                              <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" id="accs_sum" name="accs_sum"></td>
+                                                class="form-control" type="text" id="accs_sum" style="font-size:20px" name="accs_sum"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td> 
                                              <td class="py-3" colspan="2" style="vertical-align: middle; text-align:left;">
-                                                <input type="hidden" name="emp_code" value="${sessionScope.mem_id}">
+                                                <input type="hidden" name="emp_code" style="font-size:25px" value="${sessionScope.mem_id}">
                                                 ${sessionScope.mem_name}</td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>내용</b></td>
-                                             <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_content" name="accs_content" value=""></td>
+                                             <td class="py-3" colspan="2"><input class="form-control" style="font-size:25px" type="text" id="accs_content" name="accs_content" value=""></td>
                                           </tr>
                                        </tbody>
                                     </table>                                 
@@ -441,7 +438,7 @@
                                           </thead>
                                            <tbody>
                                              <c:forEach var="vo" items="${sales}">
-                                             <c:if test="${vo.accs_type == 1 }">
+                                             <c:if test="${vo.accs_type == 1 || vo.accs_type == 2}">
                                              <tr>
                                                 <td class="py-3">${vo.accs_code}</td>
                                                 <td class="py-3">${vo.company.com_name}</td>
@@ -452,6 +449,9 @@
                                                    <td class="py-3">승인 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 1 }">
+                                                   <td class="py-3">승인 완료</td>
+                                                </c:if>
+                                                <c:if test="${vo.accs_state == 3 }">
                                                    <td class="py-3">승인 완료</td>
                                                 </c:if>
                                              </tr>
