@@ -196,7 +196,7 @@
 		<div class="content">
 			<c:if test="${msg != null}">
 				<script type="text/javascript">
-         alert("${msg}");
+         alert(${msg});
       </script>
 			</c:if>
 
