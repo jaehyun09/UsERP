@@ -18,20 +18,6 @@
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     <script src="${project}js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
-    
-   /* 	$(function() {
-   		$("#prod").click(function(){
-   			var procode = $("#prod option:checked").text();
-   			$("#prod_auto").val(procode);
-   		});
-   	}); 
-   	
-	$(function() {
-   		$("#wareh").click(function(){
-   			var warecode = $("#wareh option:checked").text();
-   			$("#wareh_auto").val(warecode);
-   		});
-   	}); */
    	
    	/* $('#amount').change(function() {
    		var amount = $('#amount').val();

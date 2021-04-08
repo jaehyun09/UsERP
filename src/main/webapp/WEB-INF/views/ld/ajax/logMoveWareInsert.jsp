@@ -16,6 +16,19 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    <script type="text/javascript">
+    
+    /* 입력 값 없이 submit 할 경우 포커스 및 sumbit안타기 */
+    function moveCheck() {
+    	
+    	if(!document.moveform.amount.value) {
+    		alert('수량을 입력하세요.')
+    		document.moveform.amount.focus();
+    		return false;
+    	}
+    } 
+
+    </script>
 </head>
 
 <body>
@@ -23,7 +36,7 @@
 <main>
 
 	<!-- 신규등록 -->
-<form action="movelogsInsert" method="post">
+<form action="movelogsInsert" method="post" name="moveform" onsubmit="return moveCheck();">
 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 		<table class="table bg-white text-dark center ass2" style="text-align:center">
                	<tr>

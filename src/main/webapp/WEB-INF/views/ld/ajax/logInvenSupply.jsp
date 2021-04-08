@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     <script src="${project}js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
+    
+    /* 재고수불부 내역 AJAX */
      function ajaxSupplyList() {
     	var start_date = $('#start_date').val();
     	var end_date = $('#end_date').val();
@@ -32,7 +34,21 @@
                $('#supList').html(result);
             },
             error: function(){
-               alert('오류');
+            	if(!start_date) {
+            		alert('기준일자를 입력하세요.')
+           			$('#start_date').focus();
+           			return false;
+            	}
+            	if(!end_date) {
+            		alert('기준일자를 입력하세요.')
+           			$('#end_date').focus();
+           			return false;
+            	}
+            	if(!proname) {
+            		alert('상품명을 입력하세요.')
+           			$('#proname').focus();
+           			return false;
+            	}
             }
     		
     	});
@@ -72,7 +88,7 @@
     			if(now.getDate()+1 >= 31){
     				end_day.value = year + "-" + ((now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1)) + "-" + '01';		
     			}else{
-    				end_day.value = year + "-" + mon + "-" + (now.getDate()+1>9? now.getDate()+1 : (now.getDate()+7));
+    				end_day.value = year + "-" + mon + "-" + (now.getDate()+1>9? now.getDate()+1 : (now.getDate()-(aa)));
     			}
     		
     			if(start_day.value == end_day.value){
@@ -126,7 +142,7 @@
     			return false;
     		}
     	});
-    /* });  */
+    	
     </script>
 </head>
 
@@ -181,6 +197,7 @@
 				</tr>
 			</tbody>
 		</table>
+	
 	<div class="collapse" id="collapseExample">
 		<div class="bg-white p-4">
 			<div id="supList"></div>

@@ -38,14 +38,18 @@
 		<tbody>
 			<c:forEach var="stocklist" items="${stocklist}">
 				<tr>
-					<td class="py-3">${stocklist.pro_code}</td>
-					<td class="py-3">${stocklist.product.pro_name}</td>
-					<td class="py-3">${stocklist.warehouse.ware_name}</td>
-					<td class="py-3">${stocklist.product.pro_pur_price}</td>
-					<td class="py-3">${stocklist.product.pro_sal_price}</td>
-					<td class="py-3">${stocklist.sto_quantity}</td>
+					<td class="py-3" style="vertical-align: middle">${stocklist.pro_code}</td>
+					<td class="py-3" style="vertical-align: middle">${stocklist.product.pro_name}</td>
+					<td class="py-3" style="vertical-align: middle">${stocklist.warehouse.ware_name}</td>
+					<td class="py-3" style="vertical-align: middle">
+						<fmt:formatNumber value="${stocklist.product.pro_pur_price}" pattern=",###" />
+					</td>
+					<td class="py-3" style="vertical-align: middle">
+						<fmt:formatNumber value="${stocklist.product.pro_sal_price}" pattern=",###" />
+					</td>
+					<td class="py-3" style="vertical-align: middle">${stocklist.sto_quantity}</td>
 					<c:if test="${stocklist.product.pro_state == 1}">
-						<td class="py-3">사용</td>
+						<td class="py-3" style="vertical-align: middle">사용</td>
 					</c:if>
 					<td class="py-3">
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${stocklist.sto_reg_date}"/>

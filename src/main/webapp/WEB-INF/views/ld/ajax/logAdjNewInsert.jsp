@@ -7,6 +7,8 @@
 <script type="text/javascript" src="${project}js/logisticsScript.js"></script>
 <script src="${project}js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+
+/* 현 재고 수량 리턴 AJAX */
 $(function() {
 	$('#amount').click(function() {
 		var prod = $('#prod').val();
@@ -28,20 +30,37 @@ $(function() {
 	});
 });
 
-
- 	$('#amount').change(function() {
-		var amount = parseInt($('#amount').val());
-		var quantity = parseInt($('#quantity').val());
-		var quan = quantity + amount;
-		
+/* 조정 후 재고 계산 */
+$('#amount').change(function() {
+	var amount = parseInt($('#amount').val());
+	var quantity = parseInt($('#quantity').val());
+	var quan = quantity + amount;
+	
+	if(amount < quantity) {
+		alert('재고수량을 초과하였습니다.');
+		$('#amount').val('');
+		$('#amount').focus();
+	} else {
 		$('#quantity').val(quan);
-	});  
+	}
+});
+
+/* 입력 값 없이 submit 할 경우 포커스 및 sumbit안타기 */
+function adjCheck() {
+	
+	if(!document.adjform.amount.value) {
+		alert('조정 재고를 입력하세요.')
+		document.adjform.amount.focus();
+		return false;
+	}
+} 
+
 
 </script>
 
 
 <body>
-<form action="invenAdjInsert" method="post">
+<form action="invenAdjInsert" method="post" name="adjform" onsubmit="return adjCheck();">
 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 	<table class="table bg-white text-dark center ass2" style="text-align:center">
 	    <tr>

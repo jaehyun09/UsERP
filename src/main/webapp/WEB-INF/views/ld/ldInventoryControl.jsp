@@ -410,8 +410,12 @@
 																</c:if>
 																<td class="py-3" style="vertical-align:middle">${shiRecVo.pro_code}</td>
 																<td class="py-3" style="vertical-align:middle">${shiRecVo.product.pro_name}</td>
-																<td class="py-3" style="vertical-align:middle">${shiRecVo.product.pro_pur_price}</td>
-																<td class="py-3" style="vertical-align:middle">${shiRecVo.product.pro_sal_price}</td>
+																<td class="py-3" style="vertical-align:middle">
+																	<fmt:formatNumber value="${shiRecVo.product.pro_pur_price}" pattern=",###" />
+																</td>
+																<td class="py-3" style="vertical-align:middle">
+																	<fmt:formatNumber value="${shiRecVo.product.pro_sal_price}" pattern=",###" />
+																</td>
 																<td class="py-3" style="vertical-align:middle">${shiRecVo.stsu_amount}</td>
 																<td class="py-3" style="vertical-align:middle">${shiRecVo.employee.emp_name}</td>
 																<td class="py-3" style="vertical-align:middle">
