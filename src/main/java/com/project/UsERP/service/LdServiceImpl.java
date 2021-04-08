@@ -929,7 +929,6 @@ public class LdServiceImpl implements LdService {
 	               
 	               //재고 수불부까지 인서트 했으면 재고전표에도 null부분인 재고코드를 업데이트 시켜서 넣어주자  
 	               if(outReadystockSupplyCnt == 1) {
-	                  
 	                  Map<String, Object> map3 = new HashMap<String, Object>();
 	                  
 	                  map3.put("logs_code", logs_code);
