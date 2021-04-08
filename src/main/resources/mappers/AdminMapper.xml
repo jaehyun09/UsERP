@@ -69,7 +69,38 @@
 	</update>
 	
 	<!-- 강재현 - 알림 -->
-	<select id="alert" resultMap="AlertMap">
-		SELECT * FROM alert WHERE alert_state = 0
+	<select id="accsAlertList" resultMap="AlertMap">
+		SELECT a.*, d.dep_name, ac.accs_type  
+		    FROM alert a, department d, account_statement ac
+		    WHERE a.dep_code = d.dep_code
+		    AND a.accs_code = ac.accs_code
+		    AND alert_state = 0
+		    ORDER BY alert_code DESC    
 	</select>
+	
+	<!-- 강재현 - 알림 -->
+	<select id="logsAlertList" resultMap="AlertMap">
+		SELECT a.*, d.dep_name, l.logs_type
+		    FROM alert a, department d, logistics_statement l
+		    WHERE a.dep_code = d.dep_code
+		    AND a.logs_code = l.logs_code
+		    AND alert_state = 0
+		    ORDER BY alert_code DESC
+	</select>
+	
+	<!-- 강재현 - 알림 -->
+	<select id="ssAlertList" resultMap="AlertMap">
+		SELECT a.*, d.dep_name
+		    FROM alert a, department d, salary_statement ss
+		    WHERE a.dep_code = d.dep_code
+		    AND a.ss_code = ss.ss_code
+		    AND alert_state = 0
+		    ORDER BY alert_code DESC   
+	</select>
+	
+	<!-- 강재현 - 알림 업데이트 -->
+	<update id="alertUpdate" parameterType="com.project.UsERP.vo.AlertVO">
+		UPDATE alert SET alert_state=#{alert_state}
+			WHERE alert_code = #{alert_code}
+	</update>
 </mapper>	

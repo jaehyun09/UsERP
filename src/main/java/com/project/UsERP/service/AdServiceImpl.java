@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import com.project.UsERP.persistence.AdDAO;
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
+import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.BankVO;
 import com.project.UsERP.vo.SalaryStatementVO;
 
@@ -85,7 +86,6 @@ public class AdServiceImpl implements AdService {
 	// 강재현 - 전표 관리 - 회계 전표 (승인)
 	@Override
 	public void acstatmentAction(HttpServletRequest req, Model model) {
-		int dep_name = Integer.parseInt(req.getParameter("dep_name"));
 		int accs_code = Integer.parseInt(req.getParameter("accs_code"));
 		System.out.println("accs_code : " + accs_code);
 		AccountStatementVO vo = new AccountStatementVO();
@@ -95,6 +95,17 @@ public class AdServiceImpl implements AdService {
 
 		int updateCnt = addao.acupdatestatment(vo);
 
+		if (updateCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("전표 승인되었습니다.");
+			vo1.setAccs_code(accs_code);
+			vo1.setDep_code(200);
+
+			int insertCnt = addao.insertAccAlert(vo1);
+			model.addAttribute("insertCnt", insertCnt);
+		}
+
 		model.addAttribute("num", accs_code);
 		model.addAttribute("updateCnt", updateCnt);
 
@@ -103,7 +114,6 @@ public class AdServiceImpl implements AdService {
 	// 강재현 - 전표 관리 - 회계 전표 (미승인)
 	@Override
 	public void acstatmentdelAction(HttpServletRequest req, Model model) {
-
 		int accs_code = Integer.parseInt(req.getParameter("accs_code"));
 		System.out.println("accs_code : " + accs_code);
 		AccountStatementVO vo = new AccountStatementVO();
@@ -112,7 +122,16 @@ public class AdServiceImpl implements AdService {
 		vo.setAccs_code(accs_code);
 		int deleteCnt = addao.acupdatestatment(vo);
 
-		System.out.println("deleteCnt : " + deleteCnt);
+		if (deleteCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("전표 승인거부 되었습니다.");
+			vo1.setAccs_code(accs_code);
+			vo1.setDep_code(200);
+
+			int insertCnt = addao.insertAccAlert(vo1);
+			model.addAttribute("insertCnt", insertCnt);
+		}
 
 		model.addAttribute("deleteCnt", deleteCnt);
 
@@ -137,7 +156,6 @@ public class AdServiceImpl implements AdService {
 	// 강재현 - 전표 관리 - 급여 전표 (승인)
 	@Override
 	public void sastatmentAction(HttpServletRequest req, Model model) {
-
 		int ss_code = Integer.parseInt(req.getParameter("ss_code"));
 		System.out.println("ss_code : " + ss_code);
 		SalaryStatementVO vo = new SalaryStatementVO();
@@ -146,7 +164,17 @@ public class AdServiceImpl implements AdService {
 		vo.setSs_code(ss_code);
 		int updateCnt = addao.saupdatestatment(vo);
 
-		System.out.println("updateCnt : " + updateCnt);
+
+		if (updateCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("급여 전표 승인되었습니다.");
+			vo1.setSs_code(ss_code);
+			vo1.setDep_code(200);
+
+			int insertCnt = addao.insertSsAlert(vo1);
+			model.addAttribute("insertCnt", insertCnt);
+		}
 
 		model.addAttribute("num", ss_code);
 		model.addAttribute("updateCnt", updateCnt);
@@ -165,7 +193,16 @@ public class AdServiceImpl implements AdService {
 		vo.setSs_code(ss_code);
 		int deleteCnt = addao.saupdatestatment(vo);
 
-		System.out.println("updateCnt : " + deleteCnt);
+		if (deleteCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("급여 전표 승인거부 되었습니다.");
+			vo1.setSs_code(ss_code);
+			vo1.setDep_code(200);
+
+			int insertCnt = addao.insertSsAlert(vo1);
+			model.addAttribute("insertCnt", insertCnt);
+		}
 
 		model.addAttribute("num", ss_code);
 		model.addAttribute("deleteCnt", deleteCnt);

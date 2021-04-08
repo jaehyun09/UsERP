@@ -12,6 +12,7 @@ public class AlertVO {
 	DepartmentVO department;
 	LogisticsStatementVO logsisticsstatement;
 	SalaryStatementVO salarystatement;
+	
 	public int getAlert_code() {
 		return alert_code;
 	}

@@ -15,30 +15,30 @@ import com.project.UsERP.service.WaService;
 
 @Controller
 public class UserpController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UserpController.class);
-	
+
 	@Autowired
 	AdminService service;
-	
+
 	@Autowired
 	WaService waService;
-	
+
 	@RequestMapping("/")
 	public String main(HttpServletRequest req, Model model) {
 		logger.info("url: 메인 화면");
 
 		return "main";
 	}
-	
+
 	// 강재현 - 메인 화면
 	@RequestMapping("/main")
 	public String main2(HttpServletRequest req, Model model) {
 		logger.info("url: 메인 화면");
-		
+
 		return "main";
 	}
-	
+
 	// 강재현 - 로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
@@ -48,7 +48,7 @@ public class UserpController {
 
 		return "logout";
 	}
-	
+
 	// 조명재 - 사원확인 - 사원확인 화면으로 이동한다
 	@RequestMapping("/signin")
 	public String signin(HttpServletRequest req, Model model) {
@@ -56,41 +56,57 @@ public class UserpController {
 
 		return "signin";
 	}
-	
+
 	// 조명재 - 사원확인 - 사원번호를 확인한다
 	@RequestMapping("/confirm")
 	public String confirm(HttpServletRequest req, Model model) {
 		logger.info("url: 사원확인 팝업");
-		
+
 		service.confirm(req, model);
-		
+
 		return "confirm";
 	}
-	
+
 	// 조명재 - 사원확인 - 사원확인 전송 클릭
 	@RequestMapping("/signinPro")
 	public String signinPro(HttpServletRequest req, Model model) {
 		logger.info("url: 사원확인");
-		
+
 		service.signinPro(req, model);
-		
+
 		return "signinPro";
 	}
-	
+
 	// 조명재 - 내 정보 수정
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest req, Model model) {
 		logger.info("url: 내 정보 수정");
-		
+
 		return "mypage";
 	}
-	
-	// 강재현 - 알림 
+
+	// 강재현 - 알림
 	@RequestMapping("/alert")
 	public String bankadd(HttpServletRequest req, Model model) {
 		logger.info("url: 알림");
-
+		// 회계 알림
+		service.accsAlertList(req, model);
+		// 물류 알림
+		service.logsAlertList(req, model);
+		// 급여 알림 
+		service.ssAlertList(req, model);
+		
 		return "alert";
 	}
-	
+
+	// 강재현 - 알림 업데이트
+	@RequestMapping("/deleteAc")
+	public String deleteAc(HttpServletRequest req, Model model) {
+		logger.info("url: 알림");
+		// 알림 삭제
+		service.alertUpdate(req, model);
+		
+		return "alertAction";
+	}
+
 }
