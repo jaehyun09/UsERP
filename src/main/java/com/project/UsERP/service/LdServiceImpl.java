@@ -743,7 +743,7 @@ public class LdServiceImpl implements LdService {
 				if(stockInsertCnt == 1) { //재고 인서트 성공시 재고 수불부 인서트
 					
 					//셀렉트문 mapper 이용해서 where절에 상품코드와 창고번호로 재고코드 가져오기
-					int newStoCode = lddao.stockCodeSelect(pro_code); //새로 생성된 재고코드
+					int newStoCode = lddao.stockCodeSelect(map); //새로 생성된 재고코드
 					System.out.println("newStoCode"+newStoCode);
 					
 					

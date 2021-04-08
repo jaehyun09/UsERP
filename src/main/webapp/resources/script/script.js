@@ -102,3 +102,16 @@ function setEmpInfo(emp_code, emp_name, dep_name, hr_code_name) {
 	self.close();
 }
 
+//조명재 - 인사 발령 - 사원번호 확인 버튼 클릭
+function hrSalaryCheck() {
+	if(!$("input[name='emp_code']").val()) {
+		alert("사원번호를 입력하세요.");
+		$("input[name='emp_code']").focus();
+		return false;
+	}
+	
+	var url ="hrSalaryCheck?emp_code=" + $("input[name='emp_code']").val(); 
+	window.open(url, "사원확인", "menubar=no, width=500, height=400");
+}
+
+

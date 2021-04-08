@@ -52,4 +52,7 @@ public interface HrService {
 	// 조명재 - 급여 내역
 	public void hrSalaryList(HttpServletRequest req, Model model);
 	
+	// 조명재 - 급여 - 사원번호 확인
+	public void hrSalaryCheck(HttpServletRequest req, Model model);
+	
 }

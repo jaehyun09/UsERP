@@ -159,7 +159,17 @@ public class HrController {
 		
 //		hrService.hrSalaryInsert(req, model);
 		
-		return "hr/hrSalary";
+		return "hr/hrSalaryInsPro";
+	}
+	
+	// 조명재 - 급여 - 사원번호 확인
+	@RequestMapping("/hrSalaryCheck")
+	public String hrSalaryCheck(HttpServletRequest req, Model model) {
+		logger.info("url: 급여 전표 등록");
+		
+		hrService.hrSalaryCheck(req, model);
+		
+		return "hr/hrSalaryCheck";
 	}
 	
 }

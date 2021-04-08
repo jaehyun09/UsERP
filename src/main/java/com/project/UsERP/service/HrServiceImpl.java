@@ -292,4 +292,27 @@ public class HrServiceImpl implements HrService {
 		model.addAttribute("list9", list9);
 	}
 	
+	// 조명재 - 급여 - 사원번호 확인
+	@Override
+	public void hrSalaryCheck(HttpServletRequest req, Model model) {
+		String emp_code = req.getParameter("emp_code");
+		
+		EmployeeVO vo = hrDao.hrConfirmAppoint(emp_code);
+		
+		int selectCnt = 0;
+		if(vo != null) selectCnt = 1;
+		
+		if(selectCnt == 1) {
+			String dep_name = hrDao.getDepName(vo.getDep_code());
+			String hr_code_name = hrDao.getCodeName(vo.getHr_code());
+			
+			model.addAttribute("dep_name", dep_name);
+			model.addAttribute("hr_code_name", hr_code_name);
+		}
+		
+		model.addAttribute("selectCnt", selectCnt);
+		model.addAttribute("vo", vo);
+		model.addAttribute("emp_code", emp_code);
+	}
+	
 }

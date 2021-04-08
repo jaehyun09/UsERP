@@ -348,7 +348,7 @@
 															<th style="vertical-align: middle">사원번호</th>
 															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px" required></td>
 															<td>
-																<button type="button" class="btn btn-outline-info" onclick="confirmCheck()">
+																<button type="button" class="btn btn-outline-info" onclick="hrSalaryCheck()">
 																	사번확인
 																</button>
 															</td>
@@ -358,7 +358,7 @@
 															<td><input id="text" type="text" class="form-control" name="emp_name" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle">현재 부서</th>
+															<th style="vertical-align: middle">부서</th>
 															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
@@ -367,7 +367,7 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">대상기간</th>
-															<td><input type="month" name="emp_hire_date" style="font-size:20px" class="form-control"></td>
+															<td><input type="month" class="form-control" name="" style="font-size:20px"></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">월급</th>
@@ -375,11 +375,11 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">식대</th>
-															<td><input id="text" type="number" class="form-control" name="" style="font-size:20px"></td>
+															<td><input id="text" type="number" class="form-control" name="" min="0" style="font-size:20px"></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">차량유지비</th>
-															<td><input id="text" type="number" class="form-control" name="" style="font-size:20px"></td>
+															<td><input id="text" type="number" class="form-control" name="" min="0" style="font-size:20px"></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">총 급여</th>
