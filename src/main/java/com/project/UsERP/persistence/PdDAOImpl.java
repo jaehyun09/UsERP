@@ -100,4 +100,11 @@ public class PdDAOImpl implements PdDAO {
 	public int pdupdatestatement(AccountStatementVO vo1) {
 		return sqlSession.update("com.project.UsERP.persistence.StDAO.updatestatement", vo1);
 	}
+	
+	// 최유성 - 창고코드 가져 오기 - 창고타입 양품창고 : 1
+    @Override
+    public int getWareCode(int ware_type){
+      
+       return sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.getWareCode",ware_type);
+    }
 }

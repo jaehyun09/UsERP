@@ -55,7 +55,7 @@
        });
     }
 	
-	/* 출고 승인 상셍페이지 */
+	/* 출고 승인 상세페이지 */
 	function logMoveDetail(code) {
 		
 		var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;

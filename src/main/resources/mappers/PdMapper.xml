@@ -211,4 +211,8 @@
 	<update id="pdupdatestatement" parameterType="com.project.UsERP.vo.AccountStatementVO">
 		UPDATE account_statement SET accs_state=#{accs_state} WHERE accs_code = #{accs_code}
 	</update>
+	
+	<select id = "getWareCode" resultType="int" parameterType="int">
+      SELECT ware_code FROM warehouse where ware_type= #{ware_type}
+   </select>
 </mapper>

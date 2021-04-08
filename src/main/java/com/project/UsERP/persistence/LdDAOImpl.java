@@ -70,9 +70,9 @@ public class LdDAOImpl implements LdDAO{
 	
 	// 최유성 - 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기
 	@Override
-	public int stockCodeSelect(int pro_code) {
+	public int stockCodeSelect(Map<String, Object> map) {
 		
-		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.stockCodeSelect",pro_code);
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.stockCodeSelect", map);
 	}
 
 	// 최유성 - 재고전표에 널값인 재고코드에 새로 생성한 재고코드를 업데이트
@@ -105,9 +105,9 @@ public class LdDAOImpl implements LdDAO{
 	
 	// 최유성 - 출고대기창고 관련  해당 상품에 대한 재고코드 및 재고수량 가져오기
 	@Override
-	public StockVO outReadyStockSelect(int pro_code) {
+	public StockVO outReadyStockSelect(Map<String, Object> map) {
 		
-		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.outReadyStockSelect",pro_code);
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.outReadyStockSelect", map);
 	}
 	
 	// 최유성 - 양품창고에서 출고대기창고로 재고수량이동 시 재구수불부 등록
@@ -115,13 +115,6 @@ public class LdDAOImpl implements LdDAO{
 	public int outReadystockSupplyInsert(Map<String, Object> map) {
 		
 		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.outReadystockSupplyInsert", map);
-	}
-	
-	//최유성 - 출고시 재고수불부 인서트
-	@Override
-	public int outStockSupplyInsert(Map<String, Object> map) {
-		
-		return sqlSession.insert("com.project.UsERP.persistence.LdDAO.outStockSupplyInsert", map);
 	}
 	
 	// 최유성 - 출고대기창고 관련 해당 상품에 관한 재고코드가 존재하지 않을 시(새로운 재고 등록) 인서트
@@ -133,16 +126,9 @@ public class LdDAOImpl implements LdDAO{
 	
 	// 최유성 - 출고대기창고 관련 해당 상품에 관한 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기
 	@Override
-	public StockVO outStockCodeSelect(int pro_code) {
+	public StockVO outStockCodeSelect(Map<String, Object> map) {
 		
-		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.outStockCodeSelect",pro_code);
-	}
-	
-	// 최유성 - 출고 승인 액션
-	@Override
-	public int stockOutAction(int logs_code) {
-		
-		return sqlSession.update("com.project.UsERP.persistence.LdDAO.stockOutAction", logs_code);
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.outStockCodeSelect", map);
 	}
 
 	// 최유성 - 물류 전표 상세페이지

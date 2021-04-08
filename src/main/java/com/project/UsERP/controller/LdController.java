@@ -127,16 +127,6 @@ public class LdController {
 		
 		return "ld/stockOutReady";
 	}
-		
-	// 전표 관리 출고 승인 - 최유성
-	@RequestMapping("/stockOutAction")
-	public String stockOutAction(HttpServletRequest req, Model model) {
-		logger.info("url: 전표 관리 출고 승인");
-		
-		ldservice.stockOutAction(req, model);
-		
-		return "ld/stockOutAction";
-	}
 
 	// 전표 관리 - 최유성 - 물류 전표 상세페이지 - 입고 미승인 전표 조회
 	@RequestMapping("/ldStatementManagementContentAjax1")
@@ -215,7 +205,6 @@ public class LdController {
 	@RequestMapping("/logStockOutInList")
 	public String logStockOutInList(HttpServletRequest req, Model model) {
 		logger.info("url: 입출고 내역페이지");
-		
 		
 		return "ld/ajax/logStockOutInList";
 	}

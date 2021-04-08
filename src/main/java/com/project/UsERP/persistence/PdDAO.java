@@ -49,4 +49,7 @@ public interface PdDAO {
 
 	// 최유성 - 입고 현황 - 입고 전표 등록시 회계전표 상태코드 변화
 	public int pdupdatestatement(AccountStatementVO vo1);
+	
+	// 최유성 - 창고코드 가져 오기 - 창고타입 양품창고 : 1
+    public int getWareCode(int ware_type);
 }

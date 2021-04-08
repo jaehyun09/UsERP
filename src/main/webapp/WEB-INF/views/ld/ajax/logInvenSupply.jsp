@@ -20,7 +20,7 @@
     <script type="text/javascript">
     
     /* 재고수불부 내역 AJAX */
-     function ajaxSupplyList() {
+    function ajaxSupplyList() {
     	var start_date = $('#start_date').val();
     	var end_date = $('#end_date').val();
     	var proname = $('#proname').val();
@@ -52,7 +52,7 @@
             }
     		
     	});
-    }  
+    }
     	
     	$('#search_stockpile_date').change(function(){	
     		
