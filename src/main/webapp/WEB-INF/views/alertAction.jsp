@@ -32,7 +32,7 @@
 <c:if test="${deleteCnt == 1}">
 	<script type="text/javascript">
 		alert("삭제 되었습니다.");
-		window.location='${path}/main';
+		window.history.back();
 	</script>
 </c:if>
 </body>

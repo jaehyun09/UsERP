@@ -86,8 +86,8 @@ public class UserpController {
 	}
 
 	// 강재현 - 알림
-	@RequestMapping("/alert")
-	public String bankadd(HttpServletRequest req, Model model) {
+	@RequestMapping("/alertList")
+	public String alertList(HttpServletRequest req, Model model) {
 		logger.info("url: 알림");
 		// 회계 알림
 		service.accsAlertList(req, model);
@@ -102,7 +102,7 @@ public class UserpController {
 	// 강재현 - 알림 업데이트
 	@RequestMapping("/deleteAc")
 	public String deleteAc(HttpServletRequest req, Model model) {
-		logger.info("url: 알림");
+		logger.info("url: 알림 삭제");
 		// 알림 삭제
 		service.alertUpdate(req, model);
 		

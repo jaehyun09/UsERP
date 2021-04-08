@@ -108,6 +108,17 @@ public class HrController {
 		return "hr/hrAppointment";
 	}
 	
+	
+	// 조명재 - 인사 발령(중메뉴) - 사원번호 확인
+	@RequestMapping("/hrConfirmAppoint")
+	public String hrConfirmAppoint(HttpServletRequest req, Model model) {
+		logger.info("url: 사원번호 확인");
+		
+		hrService.hrConfirmAppoint(req, model);
+		
+		return "hr/hrConfirmAppoint";
+	}
+	
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령
 	@RequestMapping("/hrAppointmentPro")
 	public String hrAppointmentPro(HttpServletRequest req, Model model) {
@@ -171,4 +182,25 @@ public class HrController {
 		
 		return "hr/hrSalary";
 	}
+	
+	// 조명재 - 급여 전표 등록
+	@RequestMapping("/hrSalaryInsert")
+	public String hrSalaryInsert(HttpServletRequest req, Model model) {
+		logger.info("url: 급여 전표 등록");
+		
+//		hrService.hrSalaryInsert(req, model);
+		
+		return "hr/hrSalaryInsPro";
+	}
+	
+	// 조명재 - 급여 - 사원번호 확인
+	@RequestMapping("/hrSalaryCheck")
+	public String hrSalaryCheck(HttpServletRequest req, Model model) {
+		logger.info("url: 급여 전표 등록");
+		
+		hrService.hrSalaryCheck(req, model);
+		
+		return "hr/hrSalaryCheck";
+	}
+	
 }

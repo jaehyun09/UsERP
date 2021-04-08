@@ -178,7 +178,30 @@ public class HrServiceImpl implements HrService {
 			model.addAttribute("endPage", endPage);
 		}
 	}
-
+	
+	// 조명재 - 인사 발령(중메뉴) - 사원번호 확인
+	@Override
+	public void hrConfirmAppoint(HttpServletRequest req, Model model) {
+		String emp_code = req.getParameter("emp_code");
+		
+		EmployeeVO vo = hrDao.hrConfirmAppoint(emp_code);
+		
+		int selectCnt = 0;
+		if(vo != null) selectCnt = 1;
+		
+		if(selectCnt == 1) {
+			String dep_name = hrDao.getDepName(vo.getDep_code());
+			String hr_code_name = hrDao.getCodeName(vo.getHr_code());
+			
+			model.addAttribute("dep_name", dep_name);
+			model.addAttribute("hr_code_name", hr_code_name);
+		}
+		
+		model.addAttribute("selectCnt", selectCnt);
+		model.addAttribute("vo", vo);
+		model.addAttribute("emp_code", emp_code);
+	}
+	
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령
 	@Override
 	public void hrAppointmentPro(HttpServletRequest req, Model model) {
@@ -203,7 +226,7 @@ public class HrServiceImpl implements HrService {
 	// 김은희 - 인사카드 등록
 	@Override
 	public void hrCardInsert(MultipartHttpServletRequest req, Model model) {
-		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images\\";
+		String uploadPath = "C:\\Dev76\\workspace\\upload\\";
 		
 		MultipartFile image = req.getFile("emp_photo");
 		String emp_photo = image.getOriginalFilename();
@@ -215,12 +238,12 @@ public class HrServiceImpl implements HrService {
 		String emp_hire_date = req.getParameter("emp_hire_date");
 		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
 		String emp_jumin = req.getParameter("emp_jumin");
-		
+  
 		String address = "";
 		String addcode = req.getParameter("addcode");
 		String add1 = req.getParameter("add1");
 		String add2 = req.getParameter("add2");
-
+		
 		address = addcode + "-" + add1 + "-" + add2;
 		String emp_tel = req.getParameter("emp_tel");
 		String emp_phone = req.getParameter("emp_phone");
@@ -316,5 +339,27 @@ public class HrServiceImpl implements HrService {
 		model.addAttribute("list9", list9);
 	}
 	
-
+	// 조명재 - 급여 - 사원번호 확인
+	@Override
+	public void hrSalaryCheck(HttpServletRequest req, Model model) {
+		String emp_code = req.getParameter("emp_code");
+		
+		EmployeeVO vo = hrDao.hrConfirmAppoint(emp_code);
+		
+		int selectCnt = 0;
+		if(vo != null) selectCnt = 1;
+		
+		if(selectCnt == 1) {
+			String dep_name = hrDao.getDepName(vo.getDep_code());
+			String hr_code_name = hrDao.getCodeName(vo.getHr_code());
+			
+			model.addAttribute("dep_name", dep_name);
+			model.addAttribute("hr_code_name", hr_code_name);
+		}
+		
+		model.addAttribute("selectCnt", selectCnt);
+		model.addAttribute("vo", vo);
+		model.addAttribute("emp_code", emp_code);
+	}
+	
 }

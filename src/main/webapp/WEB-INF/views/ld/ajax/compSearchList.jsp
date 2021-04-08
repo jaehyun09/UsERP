@@ -55,11 +55,11 @@
 								onclick="compInfo(${complist.com_code})">${complist.com_code}</a>
 						</td>
 						<c:choose>
-							<c:when test="${complist.com_type == 20}">
-								<td class="py-3" style="vertical-align: middle">판매거래처</td>
+							<c:when test="${complist.com_type == 200}">
+								<td class="py-1" style="vertical-align: middle">판매거래처</td>
 							</c:when>
-							<c:when test="${complist.com_type == 10}">
-								<td class="py-3" style="vertical-align: middle">구매거래처</td>
+							<c:when test="${complist.com_type == 100}">
+								<td class="py-1" style="vertical-align: middle">구매거래처</td>
 							</c:when>
 						</c:choose>
 						<td class="py-3" style="vertical-align: middle">${complist.com_name}</td>

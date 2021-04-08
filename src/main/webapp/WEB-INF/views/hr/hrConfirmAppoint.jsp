@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file = "./setting.jsp" %> 
+<%@ include file = "../setting.jsp" %> 
 <head>
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="${project}img/favicon.ico">
@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div align=center>
-	<form action ="confirm" method="post" onsubmit="return confirmCheck2();">
+	<form action ="hrConfirmAppoint" method="post" onsubmit="return confirmCheck2();">
 		<br>
 		<br>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
@@ -58,7 +58,7 @@
 				   </tr>
 			   </tbody>
 			</table>
-			<input class="btn btn-outline-info" type="button" value="확인" onclick="setEmpName('${emp_code}', '${vo.emp_name}')">
+			<input class="btn btn-outline-info" type="button" value="확인" onclick="setEmpInfo('${emp_code}', '${vo.emp_name}', '${dep_name}', '${hr_code_name}')">
 		</c:if>
 	</form>
 	</div>

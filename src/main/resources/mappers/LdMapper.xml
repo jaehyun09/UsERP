@@ -535,11 +535,11 @@
 	</insert>
 	
 	<!-- 최유성 - 입고 관련 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기 -->
-	<select id = "stockCodeSelect" resultType="int" parameterType="int">
+	<select id = "stockCodeSelect" parameterType="java.util.Map" resultType="int">
 		SELECT sto_code
 		  FROM stock
-		 WHERE pro_code=#{pro_code}
-		   AND ware_code = #{ware_code} 
+		 WHERE pro_code = #{pro_code}
+		   AND ware_code = #{ware_code}
 	</select> 
 	
 	<!-- 최유성 - 재고전표에 널값인 재고코드에 새로 생성한 재고코드를 업데이트 -->

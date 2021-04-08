@@ -70,9 +70,9 @@ public class LdDAOImpl implements LdDAO{
 	
 	// 최유성 - 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기
 	@Override
-	public int stockCodeSelect(int pro_code) {
+	public int stockCodeSelect(Map<String, Object> map) {
 		
-		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.stockCodeSelect",pro_code);
+		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.stockCodeSelect", map);
 	}
 
 	// 최유성 - 재고전표에 널값인 재고코드에 새로 생성한 재고코드를 업데이트
