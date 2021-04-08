@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
+import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.BankVO;
+import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.SalaryStatementVO;
 
 @Repository
@@ -16,7 +18,7 @@ public class AdDAOImpl implements AdDAO {
 
 	@Autowired
 	SqlSession sqlSession;
-	
+
 	// 이재홍 - 기초 등록 - 계좌 리스트
 	@Override
 	public List<BankVO> bankList() {
@@ -43,7 +45,7 @@ public class AdDAOImpl implements AdDAO {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.get2");
 	}
 
-	// 강재현 - 회계보고서 - 재무상태표 
+	// 강재현 - 회계보고서 - 재무상태표
 	@Override
 	public int get3() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.get3");
@@ -60,12 +62,14 @@ public class AdDAOImpl implements AdDAO {
 	public int sum() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.sum");
 	}
+
 	// 이재홍 : 회계보고서 - 손익계산서 매출원가
 	@Override
 	public int sum1() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.sum1");
 	}
-	// 이재홍 - 회계보고서 - 손익계산서 판매비와 관리비 
+
+	// 이재홍 - 회계보고서 - 손익계산서 판매비와 관리비
 	@Override
 	public int sum2() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.sum2");
@@ -117,5 +121,17 @@ public class AdDAOImpl implements AdDAO {
 	@Override
 	public AccountStatementVO bdStatementDetail(int num) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.bdStatementDetail", num);
+	}
+
+	// 강재현 - 알림 등록
+	@Override
+	public int insertAccAlert(AlertVO vo1) {
+		return sqlSession.insert("com.project.UsERP.persistence.AdDAO.insertAccAlert", vo1);
+	}
+
+	// 강재현 - 알림 등록
+	@Override
+	public int insertSsAlert(AlertVO vo1) {
+		return sqlSession.insert("com.project.UsERP.persistence.AdDAO.insertSsAlert", vo1);
 	}
 }
