@@ -597,9 +597,6 @@ public class LdServiceImpl implements LdService {
 	@Override
 	public void logsCodeShortList(HttpServletRequest req, Model model) {
 		List<LogisticsStatementVO> vo = lddao.logsCodeSelectList();
-		if (vo == null) {
-			
-		}
 		model.addAttribute("logsCodeVo", vo);
 	}
 	
