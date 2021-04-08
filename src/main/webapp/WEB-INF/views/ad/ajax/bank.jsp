@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<iframe src="http://localhost:3001" width="1350" height="600">
+<iframe src="http://localhost:3000/Bankadd" width="1095" height="550">
 		                                    
 </iframe>
 </body>

@@ -15,6 +15,81 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+<script type="text/javascript">
+/* 입고 미승인 상셍페이지 */
+function content1(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'ldStatementManagementContentAjax1',
+      success: function(data){ 
+         $('#content1').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 입고 승인 상셍페이지 */
+function content2(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'ldStatementManagementContentAjax2',
+      success: function(data){ 
+         $('#content2').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 출고 미승인 상셍페이지 */
+function content3(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'ldStatementManagementContentAjax3',
+      success: function(data){ 
+         $('#content3').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 출고 승인 상셍페이지 */
+function content4(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'ldStatementManagementContentAjax4',
+      success: function(data){ 
+         $('#content4').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+</script>    
+    
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -76,6 +151,9 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -202,248 +280,305 @@
 	<!-- End Sidebar Nav -->
 
      <div class="content">
-         <div class="py-4 px-3 px-md-4">
-            <div class="card">
-               <div class="card-body">
-               <nav aria-label="breadcrumb">
-                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">물류 관리</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">전표 관리</li>
-                     </ol>
-                  </nav>
-                  <div class="row">
+			<div class="py-4 px-3 px-md-4">
+				<div class="card">
+					<div class="card-body">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#">물류 관리</a></li>
+								<li class="breadcrumb-item active" aria-current="page">전표
+									관리</li>
+							</ol>
+						</nav>
+						<div class="row">
 
-                     <div class="col-xl-12">
+							<div class="col-xl-12">
 
-                        <div id="example" class="mb-9">
-                           <h4 class="h1 text-dark"><b>전표 관리</b>
-                                    <a class="anchorjs-link" href="#example"
-                                       aria-label="Anchor" data-anchorjs-icon="#"></a>
-                                 </h4>
-                           <div class="mb-3">
-                              <!-- Nav Classic -->
-                              <ul class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
-                                 id="pills-tab-1" role="tablist">
-                                 <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
-                                    class="nav-link d-flex align-items-center py-2 px-3 active"
-                                    id="pills-html-tab-3" data-toggle="pill"
-                                    href="#pills-html-3" role="tab" aria-controls="pills-html-3"
-                                    aria-selected="false">입고 전표</a></li>
-                                    
-                                 <li class="nav-item border-bottom border-xl-bottom-0 asss bg-light"><a
-                                    class="nav-link d-flex align-items-center py-2 px-3"
-                                    id="pills-html-tab-4" data-toggle="pill"
-                                    href="#pills-html-4" role="tab" aria-controls="pills-html-4"
-                                    aria-selected="false">출고 전표</a></li>
-                              </ul>
-                              <!-- End Nav Classic -->
-                              
-                              <!-- Tab Content -->
-                              <div class="tab-content bg-lighter" id="pills-tabContent-1">
-                                 <div class="tab-pane fade p-4 show active" id="pills-html-3"
-                                    role="tabpanel" aria-labelledby="pills-html-tab-3">
-                                    <div class="px-3">
-                                       <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3"
-                                          role="tablist">
-                                          <li class="nav-item"><a
-                                             class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab3"
-                                             role="tab" aria-selected="true" data-toggle="tab">미승인 전표 조회</a></li>
-                                          <li class="nav-item ml-4"><a
-                                             class="nav-link px-2 pb-2 ass2" href="#tabs2-tab4" role="tab"
-                                             aria-selected="false" data-toggle="tab">승인 전표 조회</a></li>
-                                       </ul>
-                                       
-                                       <div id="tabsContent2" class="card-body tab-content p-0">
-                                          <div class="tab-pane fade show active" id="tabs2-tab3"
-                                             role="tabpanel">
-                                             <table class="table bg-white text-dark center ass2 table-striped">
-                                                         <thead class="text-white table-bordered tap">
-                                                            <tr class="text-white table-bordered tap">
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
-                                                            </tr>
-                                                         </thead>
-                                                         <tbody>
-                                                         	<c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
-                                                            <tr>
-                                                               <td class="py-3">${list.order_code}</td>
-                                                               <td class="py-3">${list.product.pro_name}</td>
-                                                               <td class="py-3">${list.company.comp_name}</td>
-                                                               <td class="py-3">${list.stockInOrder.in_count}</td>
-                                                               <td class="py-3">${list.warehouse.ware_name}</td>
-                                                               <td class="py-3">${list.employee.emp_name}</td>
-                                                               <td class="py-3">
-                                                               		<fmt:formatDate value="${list.order_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                               </td>
-                                                               <td class="py-3">
-                                                               		<fmt:formatDate value="${list.order_update_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-                                                               </td>
-                                                               <td class="py-2 middle">
-                                                          			<button type="button" class="btn btn-outline-info" style='float: middle;'>
-                                                                     	승인
-                                                                	</button>
-                                                              </td>
-                                                            </tr>
-                                                            </c:forEach>
-                                                         </tbody>
-                                                      </table>
-                                       </div>
-                                          <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
-                                             <table class="table bg-white text-dark center ass2 table-striped">
-                                                <thead class="text-white table-bordered tap">
-                                                     <tr class="text-white table-bordered tap">
-                                                   		<th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                               			<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                   		<th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
-                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
-                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
-                                                   </tr>
-                                                </thead>
-                                                <tbody>
-                                                	<c:forEach var="list" items="${SIlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
-	                                                   <tr>
-	                                                      <td class="py-3">${list.order_code}</td>
-	                                                      <td class="py-3">${list.product.pro_name}</td>
-	                                                      <td class="py-3">${list.company.comp_name}</td>
-	                                                      <td class="py-3">${list.stockInOrder.in_count}</td>
-	                                                      <td class="py-3">${list.warehouse.ware_name}</td>
-	                                                      <td class="py-3">${list.employee.emp_name}</td>
-	                                                      <td class="py-3">
-	                                                      		<fmt:formatDate value="${list.order_reg_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-	                                                      </td>
-	                                                      <td class="py-3">
-	                                                      		<fmt:formatDate value="${list.stockInOrder.in_date}" pattern="yyyy-MM-dd / hh:mm:ss" />
-	                                                      </td>                                                      
-	                                                   </tr>
-                                                   </c:forEach>
-                                                </tbody>
-                                             </table>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="tab-pane fade p-4" id="pills-html-4"
-                                    role="tabpanel" aria-labelledby="pills-html-tab-4">
-                                    <div class="px-3">
-                                       <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3"
-                                          role="tablist">
-                                          <li class="nav-item"><a
-                                             class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab5"
-                                             role="tab" aria-selected="true" data-toggle="tab">미승인 전표 조회 </a></li>
-                                          <li class="nav-item ml-4"><a
-                                             class="nav-link px-2 pb-2 ass2" href="#tabs2-tab6" role="tab"
-                                             aria-selected="false" data-toggle="tab">승인 전표 조회</a></li>
-                                       </ul>
-                                       <div id="tabsContent2" class="card-body tab-content p-0">
-                                          <div class="tab-pane fade show active" id="tabs2-tab5"
-                                             role="tabpanel">
-                                             <table class="table bg-white text-dark center ass2 table-striped">
-                                                            <thead class="text-white table-bordered tap">
-                                                                  <tr class="text-white table-bordered tap">
-                                                                    <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">출고가능수량</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">최종수정일</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
-                                                                  <th class="font-weight-semi-bold border-top-0 py-3 con2"></th>
-                                                               </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                               <tr>
-                                                                  <td class="py-3">121212</td>
-                                                                  <td class="py-3">121211</td>
-                                                                  <td class="py-3">상품명1</td>
-                                                                  <td class="py-3">100</td>
-                                                                  <td class="py-3">양품창고</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-3">김민수</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-2 middle">
-                                                                     <button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-                                                                        승인
-                                                                     </button>
-                                                     </td>
-                                                               </tr>
-                                                               <tr>
-                                                                  <td class="py-3">121212</td>
-                                                                  <td class="py-3">121211</td>
-                                                                  <td class="py-3">상품명1</td>
-                                                                  <td class="py-3">100</td>
-                                                                  <td class="py-3">양품창고</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-3">김민수</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-3">2017-09-03</td>
-                                                                  <td class="py-2 middle">
-                                                                     <button type="button" class="btn btn btn-outline-info" style='float: middle;'>
-                                                                        승인
-                                                                     </button>
-                                                     </td>
-                                                               </tr>
-                                                            </tbody>
-                                                         </table>
-                                          </div>
-                                       <div class="tab-pane fade" id="tabs2-tab6" role="tabpanel">
-                                          <table class="table bg-white text-dark center ass2 table-striped">
-                                                         <thead class="text-white table-bordered tap">
-                                                              <tr class="text-white table-bordered tap">
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">승인버튼수정해야..</th>
-                                                            </tr>
-                                                         </thead>
-                                                         <tbody>
-                                                            <tr>
-                                                               <td class="py-3">12345</td>
-                                                               <td class="py-3">상품명1</td>
-                                                               <td class="py-3">100</td>
-                                                               <td class="py-3">2017-09-03</td>
-                                                               <td class="py-3">김민수</td>
-                                                               <td class="py-3">입고완료</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td class="py-3">12345</td>
-                                                               <td class="py-3">상품명1</td>
-                                                               <td class="py-3">100</td>
-                                                               <td class="py-3">2017-09-03</td>
-                                                               <td class="py-3">김민수</td>
-                                                               <td class="py-3">입고완료</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
-                                       </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- End Tab Content -->
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+								<div id="example" class="mb-9">
+									<h4 class="h1 text-dark">
+										<b>전표 관리</b><a class="anchorjs-link" href="#example"
+											aria-label="Anchor" data-anchorjs-icon="#"></a>
+									</h4>
+									<div class="mb-3">
+										<!-- Nav Classic -->
+										<ul
+											class="nav nav-tabs nav-primary d-block d-xl-flex text-dark"
+											id="tabs-tab-3" role="tablist">
+											<li
+												class="nav-item border-bottom border-xl-bottom-0  asss bg-light  ">
+												<a
+												class="nav-link d-flex align-items-center py-2 px-3 active  "
+												id="tabs-result-tab-3" data-toggle="pill"
+												href="#tabs-result-3" role="tab"
+												aria-controls="tabs-result-3" aria-selected="true">출고 전표</a>
+											</li>
+											<li
+												class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
+												<a class="nav-link d-flex align-items-center py-2 px-3 "
+												id="tabs-html-tab-3" data-toggle="pill" href="#tabs-html-3"
+												role="tab" aria-controls="tabs-html-3" aria-selected="false">입고 전표</a>
+											</li>
+										</ul>
+										<!-- End Nav Classic -->
+
+										<!-- Tab Content -->
+										<div class="tab-content bg-lighter" id="tabs-tabContent-3">
+											<div class="tab-pane fade show active" id="tabs-result-3"
+												role="tabpanel" aria-labelledby="tabs-result-tab-3">
+												<div class="px-3 p-4">
+													<ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-2"
+														role="tablist">
+														<li class="nav-item"><a
+															class="nav-link px-2 pb-2 active ass2" href="#tabs2-tab1"
+															 role="tab" aria-selected="true"
+															data-toggle="tab">승인 전표 </a></li>
+														<li class="nav-item ml-4"><a
+															class="nav-link px-2 pb-2 ass2" href="#tabs2-tab2"
+															role="tab" aria-selected="false" data-toggle="tab">미승인
+																전표 </a></li>
+													</ul>
+
+													<div id="tabsContent2" class="card-body tab-content p-3">
+														<div class="tab-pane fade show active" id="tabs2-tab1"
+															role="tabpanel">
+															<div class="row">
+																<div class="col">
+																	<div class="collapse multi-collapse"
+							                                             id="multiCollapseExample4">
+							                                             
+							                                             <div id="content4"></div>
+							                                                 
+							                                          </div>
+																</div>
+																<table class="table bg-white text-dark center ass2 table-striped">
+						                                          <thead class="text-white table-bordered tap">
+						                                          	<tr class="text-white table-bordered tap">
+						                                            	<th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처</th>
+												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
+												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
+												                        <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">승인일</th> -->
+						                                             </tr>
+						                                          </thead>
+						                                          <tbody>
+											                          <c:forEach var="list" items="${SOlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+													                  <tr>
+													                     <td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+																				href="#multiCollapseExample4" role="button"
+																				aria-expanded="false"
+																				aria-controls="multiCollapseExample4"
+																				onclick="content4(${list.logs_code})">${list.logs_code}</a></td>
+													                     <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
+													                     <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
+													                     <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+													                     <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
+													                     <td class="py-3 middle" style="vertical-align:middle">
+													                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
+													                     </td>
+													                     <c:if test="${list.logs_state == 2}">
+													                     	<td class="py-3 middle" style="vertical-align:middle">승인완료</td>
+													                     </c:if>
+													                     <c:if test="${list.logs_state == 1}">
+													                     	<td class="py-3 middle" style="vertical-align:middle">출고준비완료</td>
+													                     </c:if>
+													                     <%-- <td class="py-3 middle" style="vertical-align:middle">
+													                     		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
+													                     </td> --%>
+											                  		 </tr>
+											                  		 </c:forEach>
+						                                          </tbody>
+						                                       </table>
+															</div>
+														</div>
+
+
+														<div class="tab-pane fade" id="tabs2-tab2" role="tabpanel">
+															<div class="row">
+																<div class="col">
+																	<div class="collapse multi-collapse"
+							                                             id="multiCollapseExample3">
+							                                             <div id="content3"></div>
+							                                          </div>
+																</div>
+																<table class="table bg-white text-dark center ass2 table-striped">
+	                                             <thead class="text-white table-bordered tap">
+	                                             	<tr class="text-white table-bordered tap">
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">재고수량</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">수정일</th> -->
+	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th> -->
+	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2"></th> -->
+	                                                </tr>
+	                                             </thead>
+	                                             <tbody>
+	                                                <c:forEach var="list" items="${SOlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+	                                                <tr>
+														<td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample3" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample3"
+															onclick="content3(${list.logs_code})">${list.logs_code}</a></td>	                                                    
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.stock.sto_quantity}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_shortage}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">
+	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
+	                                                   </td>
+	                                                </tr>
+	                                                </c:forEach>
+	                                             </tbody>
+	                                          </table>
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="tab-pane fade" id="tabs-html-3" role="tabpanel"
+												aria-labelledby="tabs-html-tab-3">
+												<div class="tab-pane fade show active" id="tabs-result-3"
+													role="tabpanel" aria-labelledby="tabs-result-tab-3">
+													<div class="px-3 p-4">
+														<ul id="tabs2"
+															class="nav nav-tabs nav-v2 nav-primary mb-2"
+															role="tablist">
+															<li class="nav-item"><a
+																class="nav-link px-2 pb-2 active ass2"
+																href="#tabs2-tab3" role="tab" aria-selected="true"
+																data-toggle="tab">승인 전표 </a></li>
+															<li class="nav-item ml-4"><a
+																class="nav-link px-2 pb-2 ass2" href="#tabs2-tab4"
+																role="tab" aria-selected="false" data-toggle="tab">미승인
+																	전표 </a></li>
+														</ul>
+														<div id="tabsContent2" class="card-body tab-content p-3">
+															<div class="tab-pane fade show active" id="tabs2-tab3"
+																role="tabpanel">
+																<div class="row">
+																	<div class="col">
+																		<div class="collapse multi-collapse"
+								                                             id="multiCollapseExample2">
+								                                             
+								                                             <div id="content2"></div>
+								                                                 
+								                                          </div>
+																	</div>
+																	<table class="table bg-white text-dark center ass2 table-striped">
+						                                                <thead class="text-white table-bordered tap">
+						                                                	<tr class="text-white table-bordered tap">
+						                                               		 <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+						                                           			 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+						                                               		 <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
+						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
+						                                                   </tr>
+						                                                </thead>
+						                                                <tbody>
+						                                                	<c:forEach var="list" items="${SIlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+							                                                   <tr>
+																					<td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+																					href="#multiCollapseExample2" role="button"
+																					aria-expanded="false"
+																					aria-controls="multiCollapseExample2"
+																					onclick="content2(${list.logs_code})">${list.logs_code}</a></td>	    
+							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
+							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
+							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
+							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
+							                                                      <td class="py-3 middle" style="vertical-align:middle">
+							                                                      		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
+							                                                      </td>
+							                                                      <td class="py-3">
+							                                                      		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
+							                                                      </td>                                                      
+							                                                   </tr>
+						                                                   </c:forEach>
+						                                                </tbody>
+						                                             </table>
+																</div>
+															</div>
+															<div class="tab-pane fade" id="tabs2-tab4"
+																role="tabpanel">
+																<div class="row">
+																	<div class="col">
+																		<div class="collapse multi-collapse"
+							                                             id="multiCollapseExample1">
+							                                             
+							                                             <div id="content1"></div>
+							                                                 
+							                                             </div>
+																	</div>
+																	<table class="table bg-white text-dark center ass2 table-striped">
+						                                             <thead class="text-white table-bordered tap">
+						                                                <tr class="text-white table-bordered tap">
+						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
+						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
+						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+						                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2"></th> -->
+						                                                </tr>
+						                                             </thead>
+						                                             <tbody>
+						                                             	<c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+						                                                <tr>
+						                                                   <td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+																				href="#multiCollapseExample1" role="button"
+																				aria-expanded="false"
+																				aria-controls="multiCollapseExample1"
+																				onclick="content1(${list.logs_code})">${list.logs_code}</a></td>
+						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
+						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
+						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
+						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
+						                                                   <td class="py-3 middle" style="vertical-align:middle">
+						                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
+						                                                   </td>
+						                                                </tr>
+						                                                </c:forEach>
+						                                             </tbody>
+						                                          </table>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+									</div>
+								</div>
+								<!-- End Tab Content -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 </main>
 
 <%@ include file = "../common/footer.jsp" %> 

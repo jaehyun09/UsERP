@@ -5,7 +5,39 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace = "com.project.UsERP.persistence.AdminDAO">
-
+	
+	<resultMap id="AlertMap"
+		type="com.project.UsERP.vo.AlertVO">
+		<id property="alert_code" column="alert_code" />
+		<result property="alert_state" column="alert_state" />
+		<result property="alert_content" column="alert_content" />
+		<result property="logs_code" column="logs_code" />
+		<result property="accs_code" column="accs_code" />
+		<result property="ss_code" column="ss_code" />
+		<result property="dep_code" column="dep_code" />
+		<association property="accountstatement"
+			javaType="com.project.UsERP.vo.AccountStatementVO">
+			<id property="accs_code" column="accs_code" />
+			<result property="accs_type" column="accs_type" />
+		</association>
+		<association property="department"
+			javaType="com.project.UsERP.vo.DepartmentVO">
+			<id property="dep_code" column="dep_code" />
+			<result property="dep_name" column="dep_name" />
+		</association>
+		<association property="logsisticsstatement"
+			javaType="com.project.UsERP.vo.LogisticsStatementVO">
+			<id property="logs_code" column="logs_code" />
+			<result property="logs_type" column="logs_type" />
+			<result property="logs_shortage" column="logs_shortage" />
+		</association>
+		<association property="salarystatement"
+			javaType="com.project.UsERP.vo.SalaryStatementVO">
+			<id property="ss_code" column="ss_code" />
+			<result property="ss_state" column="ss_state" />
+		</association>
+	</resultMap>
+	
 	<!-- 강재현 - 중복확인 처리 -->
 	<select id = "idCheck" resultType = "int">
 		SELECT COUNT(*) FROM employee WHERE emp_code = #{strId}
@@ -36,4 +68,8 @@
 		UPDATE employee SET emp_pwd = #{emp_pwd}, emp_enabled = 1 WHERE emp_code = #{emp_code}
 	</update>
 	
+	<!-- 강재현 - 알림 -->
+	<select id="alert" resultMap="AlertMap">
+		SELECT * FROM alert WHERE alert_state = 0
+	</select>
 </mapper>	

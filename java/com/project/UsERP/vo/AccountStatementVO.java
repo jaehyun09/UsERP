@@ -11,10 +11,11 @@ public class AccountStatementVO {
 	private int accs_price;			// 단가
 	private int accs_quantity; 		// 수량
 	private Date accs_reg_date; 	// 발행일
+	private Date accs_rpm_date;		// 상환일
 	private Date accs_update_date; 	// 최근수정일자
 	private int accs_sum;			// 총액
 	private int accs_state;			// 승인상태
-	private int emp_code;			// 사원번호
+	private String emp_code;		// 사원번호
 	private int bank_code;			// 계좌코드
 	private int acco_code;			// 계정번호
 	private int pro_code;			// 상품코드
@@ -61,6 +62,12 @@ public class AccountStatementVO {
 	public void setAccs_reg_date(Date accs_reg_date) {
 		this.accs_reg_date = accs_reg_date;
 	}
+	public Date getAccs_rpm_date() {
+		return accs_rpm_date;
+	}
+	public void setAccs_rpm_date(Date accs_rpm_date) {
+		this.accs_rpm_date = accs_rpm_date;
+	}
 	public Date getAccs_update_date() {
 		return accs_update_date;
 	}
@@ -79,10 +86,10 @@ public class AccountStatementVO {
 	public void setAccs_state(int accs_state) {
 		this.accs_state = accs_state;
 	}
-	public int getEmp_code() {
+	public String getEmp_code() {
 		return emp_code;
 	}
-	public void setEmp_code(int emp_code) {
+	public void setEmp_code(String emp_code) {
 		this.emp_code = emp_code;
 	}
 	public int getBank_code() {
@@ -139,7 +146,5 @@ public class AccountStatementVO {
 	public void setCompany(CompanyVO company) {
 		this.company = company;
 	}
-	
-	
 	
 }	

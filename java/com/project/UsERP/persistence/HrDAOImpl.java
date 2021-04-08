@@ -25,7 +25,13 @@ public class HrDAOImpl implements HrDAO {
 	public List<HrCodeGroupVO> hrCgList() {
 		return sqlSession.selectList("com.project.UsERP.persistence.HrDAO.hrCgList");
 	}
-
+	
+	// 김은희 - 인사 코드 그룹 조회 상세페이지
+	@Override
+	public List<HrCodeVO> hrRegDetail(int hcg_code) {
+		return sqlSession.selectList("com.project.UsERP.persistence.HrDAO.hrRegDetail", hcg_code);
+	}
+	
 	// 김은희 - 인사 코드 조회
 	@Override
 	public List<HrCodeVO> hrCList() {
@@ -47,6 +53,18 @@ public class HrDAOImpl implements HrDAO {
 		return hrDao.hrCodePosList();
 	}
 	
+	// 김은희 - 인사 코드 등록
+	@Override
+	public int hrCodeInsert(HrCodeVO vo) {
+		return sqlSession.insert("com.project.UsERP.persistence.HrDAO.hrCodeInsert", vo);
+	}
+
+	// 김은희 - 인사 코드 중복확인
+	@Override
+	public int hrCodeCheck(int hr_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.hrCodeCheck", hr_code);
+	}
+	
 	// 조명재 - 인사 발령 목록 갯수
 	@Override
 	public int getAppointmentCnt() {
@@ -59,6 +77,27 @@ public class HrDAOImpl implements HrDAO {
 	public List<AppointHistoryVO> appointmentList(Map<String, Object> map) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.appointmentList(map);
+	}
+	
+	// 조명재 - 인사 발령(중메뉴) - 사원번호 확인
+	@Override
+	public EmployeeVO hrConfirmAppoint(String emp_code) {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.hrConfirmAppoint(emp_code);
+	}
+	
+	// 조명재 - 인사 발령(중메뉴) - 현재 부서를 반환한다
+	@Override
+	public String getDepName(int dep_code) {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.getDepName(dep_code);
+	}
+	
+	// 조명재 - 인사 발령(중메뉴) - 현재 직급을 반환한다
+	@Override
+	public String getCodeName(int hr_code) {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.getCodeName(hr_code);
 	}
 	
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령
@@ -82,14 +121,20 @@ public class HrDAOImpl implements HrDAO {
 	
 	// 김은희 - 인사카드 등록
 	@Override
-	public int hrCardInsert(EmployeeVO vo) {
-		return sqlSession.insert("com.project.UsERP.persistence.HrDAO.hrCardInsert", vo);
+	public int hrCardInsert(Map<String, Object> map) {
+		return sqlSession.insert("com.project.UsERP.persistence.HrDAO.hrCardInsert", map);
 	}
 	
 	// 김은희 - 인사 카드 사번 중복확인
 	@Override
 	public int codeCheck(int emp_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.codeCheck", emp_code);
+	}
+	
+	// 김은희 - 인사 코드명 중복확인
+	@Override
+	public int hrConfirmHrName(String hr_code_name) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.hrConfirmHrName", hr_code_name);
 	}
 
 	// 조명재 - 휴직자 조회
@@ -112,5 +157,6 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrSalaryList();
 	}
-
+	
+	
 }

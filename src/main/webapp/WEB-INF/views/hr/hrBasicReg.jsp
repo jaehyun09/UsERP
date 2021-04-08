@@ -51,7 +51,24 @@ function departmentAdd() {
    });
 }
 
-</script> 
+ 
+function hrRegDetail(code) {
+	var param = "&${_csrf.parameterName}=${_csrf.token}&hcg_code=" + code;
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'hrRegDetail',
+      success: function(data){ 
+         $('#hrRegDetail').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+</script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -125,6 +142,9 @@ function departmentAdd() {
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -318,37 +338,7 @@ function departmentAdd() {
                                             <div class="col">
                                           <div class="collapse multi-collapse"
                                              id="multiCollapseExample1">
-                                                <table class="table table-bordered bg-white text-dark ass2">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="4">직급</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th>그룹번호</th>
-                                                         <th>인사코드</th>
-                                                         <th>인사코드명</th>
-                                                         <th>사용상태</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>1</td>
-                                                         <td>100</td>
-                                                         <td>관리자</td>
-                                                         <td>사용</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>1</td>
-                                                         <td>200</td>
-                                                         <td>팀장</td>
-                                                         <td>사용</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>1</td>
-                                                         <td>300</td>
-                                                         <td>대리</td>
-                                                         <td>사용</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table><br><br><br>
+                                             <div id="hrRegDetail"></div>
                                           </div>
                                        </div>
                                        
@@ -361,17 +351,15 @@ function departmentAdd() {
                                           </tr>
                                              </thead>
                                        <tbody>
-                                          <c:forEach var="vo" items="${list}">
+                                          <c:forEach var="vo" items="${list}" >
                                           <tr>
-                                             <td class="py-3">${vo.hcg_code}</td>
-                                             <td class="py-3">
-                                             				<p>
-                                                               <a class="btn" data-toggle="collapse"
+                                             <td class="py-3"><a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
                                                                   href="#multiCollapseExample1" role="button"
                                                                   aria-expanded="false"
-                                                                  aria-controls="multiCollapseExample1">${vo.hcg_name}</a>
-                                                            </p>
+                                                                  aria-controls="multiCollapseExample1"
+                                                                  onclick="hrRegDetail(${vo.hcg_code})">${vo.hcg_code}</a>
                                              </td>
+                                             <td class="py-3">${vo.hcg_name}</td>
                                             <c:if test="${vo.hcg_state == 1}">
 	                                       	 <td class="py-3">사용</td>
 	                                       	</c:if>
@@ -427,9 +415,55 @@ function departmentAdd() {
                                   
                                   <!-- 탭4 -->
                                     <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
-                                       <div id="code"></div>
-                                  </div>
-                                  <!-- 탭4 -->
+                                       <form action="hrCodeInsert?${_csrf.parameterName}=${_csrf.token}" name="hrCodeform" onsubmit="return CodeCheck();">
+						                    <input type="hidden" name="hiddenHr_code" value="0">
+						                    <input type="hidden" name="hiddenHr_name" value="0">
+							                     <table class="table bg-white text-dark center ass2" style="text-align:center">
+							                        <tr>
+							                           <th class="text-white table-bordered tap py-3 con2" colspan="3"> 인사코드 등록 </th>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">인사코드 그룹</th>
+							                           <td><div class="form-group">
+							                                <select name="hcg_code" class="form-control" id="exampleFormControlSelect1">
+							                                	<option value="0">인사코드 그룹 선택</option>
+							                                <c:forEach var="vo" items="${list}">
+							                                   <option value="${vo.hcg_code}">${vo.hcg_name}</option>
+							                                </c:forEach>
+							                                </select>
+							                              </div>
+							                           </td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">인사코드</th>
+							                           <td> <input type="text" class="form-control" name="hr_code" placeholder="숫자만 입력하시오." onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'></td>
+							                           <td><input class="btn btn-outline-info" name="codeChk" type="button" value="중복확인" onclick="confirmHrCode();" ></td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">인사코드명</th>
+							                           <td><input type="text" class="form-control" name="hr_code_name"></td>
+							                           <td><input class="btn btn-outline-info" name="nameChk" type="button" value="중복확인" onclick="confirmHrName();"></td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">사용상태</th>
+							                           <td><div class="form-group">
+							                                <select name="hr_state" class="form-control" id="exampleFormControlSelect1">
+							                                	<option value="1">사용</option>
+							                                    <option value="0">미사용</option>
+							                                </select>
+							                              </div>
+							                           </td>
+							                        </tr>
+							                     </table>
+						                  
+						                     <div align=center>
+						                           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+						                           <button type="reset" class="btn btn-outline-info">재입력</button>
+						                     </div>
+						                  
+						                  </form>
+	                                  </div>
+	                                  <!-- 탭4 -->
                                   
                                                 </div>
                                             </div>

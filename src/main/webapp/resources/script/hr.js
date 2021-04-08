@@ -2,11 +2,6 @@
 
 // 김은희 - 인사카드 등록 체크
 function CardCheck() {
-	if(!document.hrCardform.emp_photo.value) {
-		alert("사진을 입력하세요.");
-		document.hrCardform.emp_photo.focus();
-		return false;
-	}
 	
 	if(!document.hrCardform.emp_code.value) {
 		alert("사번을 입력하세요.");
@@ -57,8 +52,9 @@ function CardCheck() {
 	}
 }
 
-// 김은희 - 인사카드 중복확인 버튼 클릭
+// 김은희 - 인사카드 사번 중복확인 버튼 클릭
 function confirmCode() {
+	
 	if(!document.hrCardform.emp_code.value) {
 		alert("사번을 입력하세요.");
 		document.hrCardform.emp_code.focus();
@@ -69,6 +65,7 @@ function confirmCode() {
 	window.open(url, "confirm", "menubar=no, width=500, height=400");
 }
 
+// 김은희 - 사번 확인 포커스
 function confirmCodeFocus() {
 	document.confirmform.emp_code.focus();
 }
@@ -80,7 +77,8 @@ function confirmCodeCheck() {
 		return false;
 	}
 }
- 
+
+// 김은희 - 사번 중복확인 완료, 사번 넘겨주기
 function setCode(emp_code) {
 	opener.document.hrCardform.emp_code.value=emp_code; 
 	opener.document.hrCardform.hiddenEmp_code.value=1; 
@@ -89,20 +87,19 @@ function setCode(emp_code) {
  
 // 김은희 - 근태 신청 체크
 function waCheck() {
-	
 	if(!document.waForm.emp_code.value) {
 			alert("사번을 입력하세요.");
 			document.waForm.emp_code.focus();
 			return false;
 		}
 		
-	 if(!document.waForm.emp_name.value) {
+	if(!document.waForm.emp_name.value) {
 			alert("사원명을 입력하세요.");
 			document.waForm.emp_name.focus();
 			return false;
 	    }
 	
-	 if(document.waForm.hiddenEmp_code.value == "0") { 
+	if(document.waForm.hiddenEmp_code.value == "0") { 
 		 alert("사번확인을 해주세요.");
 		 document.waForm.dupChk.focus();
 		 return false;
@@ -121,12 +118,12 @@ function confirmEmp_Code() {
 	window.open(url, "confirm", "menubar=no, width=500, height=400");
 }
 
-
+// 김은희 - 근태 신청 포커스
 function confirmWaFocus() {
 	document.confirmWaform.emp_code.focus();
 }
 
-
+// 김은희 - 사번 null값 방지
 function confirmCodeCheck() {
 	if(!document.confirmWaform.emp_code.value) {
 		alert("사번을 입력하세요.");
@@ -135,11 +132,126 @@ function confirmCodeCheck() {
 	}
 }
 
-
+// 김은희 - 사원 확인 완료, 이름 넘겨주기
 function setName(emp_code, emp_name) {
 	opener.document.waForm.emp_code.value=emp_code; 
 	opener.document.waForm.emp_name.value=emp_name; 
 	opener.document.waForm.hiddenEmp_code.value=1; 
 	self.close();
 }
+
+
+// 김은희 - 인사코드 등록 체크
+function CodeCheck() {
+	if(!document.hrCodeform.hr_code.value) {
+		alert("인사코드를 입력하세요.");
+		document.hrCodeform.hr_code.focus();
+		return false;
+	}
+	
+	if(!document.hrCodeform.hr_code_name.value) {
+		alert("인사코드명을 입력하세요.");
+		document.hrCodeform.hr_code_name.focus();
+		return false;
+	}
+	
+	if(document.hrCodeform.hiddenHr_code.value == "0") { 
+		alert("인사코드 중복확인을 해주세요.");
+		document.hrCodeform.codeChk.focus();
+		return false;
+	}
+	
+	if(document.hrCodeform.hiddenHr_name.value == "0") { 
+		alert("인사코드명 중복확인을 해주세요.");
+		document.hrCodeform.nameChk.focus();
+		return false;
+	}
+}
+
+// 김은희 - 인사코드 중복확인 버튼 클릭
+function confirmHrCode() {
+	
+	if(!document.hrCodeform.hr_code.value) {
+		alert("인사코드를 입력하세요.");
+		document.hrCodeform.hr_code.focus();
+		return false;
+	}
+		 
+	var url ="hrConfirmHrCode?hr_code=" + document.hrCodeform.hr_code.value; 
+	window.open(url, "confirm", "menubar=no, width=500, height=400");
+}
+
+// 김은희 - 인사코드 중복확인 포커스
+function confirmHrCodeFocus() {
+	document.hrConfirmform.hr_code.focus();
+}
+
+// 김은희 - 인사코드 중복확인 null값 방지
+function confirmHrCodeCheck() {
+	if(!document.hrConfirmform.hr_code.value) {
+		alert("인사코드를 입력하세요.");
+		document.hrConfirmform.hr_code.focus();
+		return false;
+	}
+}
+
+// 김은희 - 인사코드 중복확인 완료, 값 넘겨주기
+function setHrcode(hr_code) {
+	opener.document.hrCodeform.hr_code.value=hr_code; 
+	opener.document.hrCodeform.hiddenHr_code.value=1; 
+	self.close();
+}
+
+// 김은희 - 인사코드명 중복확인 버튼 클릭
+function confirmHrName() {
+	
+	if(!document.hrCodeform.hr_code_name.value) {
+		alert("인사코드명을 입력하세요.");
+		document.hrCodeform.hr_code_name.focus();
+		return false;
+	}
+		 
+	var url ="hrConfirmHrName?hr_code_name=" + document.hrCodeform.hr_code_name.value; 
+	window.open(url, "confirm", "menubar=no, width=500, height=400");
+}
+
+// 김은희 - 인사코드명 중복확인 포커스
+function confirmHrNameFocus() {
+	document.hrNameConfirmform.hr_code_name.focus();
+}
+
+// 김은희 - 인사코드명 중복확인 lnull값 방지
+function confirmHrNameCheck() {
+	if(!document.hrNameConfirmform.hr_code_name.value) {
+		alert("인사코드명을 입력하세요.");
+		document.hrNameConfirmform.hr_code_name.focus();
+		return false;
+	}
+}
+
+// 김은희 - 인사코드명 중복확인 완료, 값 넘겨주기
+function setHrName(hr_code_name) {
+	opener.document.hrCodeform.hr_code_name.value=hr_code_name; 
+	opener.document.hrCodeform.hiddenHr_name.value=1; 
+	self.close();
+}
+
+// 김은희 - 숫자만 입력받기 위함
+function onlyNumber(event){
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+      return;
+    else
+      return false;
+  }
+  
+  function removeChar(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+      return;
+    else
+      event.target.value = event.target.value.replace(/[^0-9]/g, "");
+  }
 

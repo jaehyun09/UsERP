@@ -91,7 +91,7 @@
 									<tr>
 										<td class="py-1">
 											<p>
-												<a class="btn" data-toggle="collapse"
+												<a class="text-dark con2" data-toggle="collapse"
 													href="#multiCollapseExample1" role="button"
 													aria-expanded="false" aria-controls="multiCollapseExample1">${vo.ss_code}</a>
 											</p>

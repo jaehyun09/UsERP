@@ -11,7 +11,7 @@ public class EmployeeVO {
 	private String emp_enabled;		// 접속가능
 	private String emp_name;		// 사원명 
 	private Date emp_hire_date;		// 입사일
-	private Long emp_cos;			// 근속연수
+	private long emp_cos;			// 근속연수
 	private String emp_photo;		// 사진
 	private String emp_jumin;		// 주민등록번호
 	private String emp_address;		// 주소
@@ -62,10 +62,10 @@ public class EmployeeVO {
 	public void setEmp_hire_date(Date emp_hire_date) {
 		this.emp_hire_date = emp_hire_date;
 	}
-	public Long getEmp_cos() {
+	public long getEmp_cos() {
 		return emp_cos;
 	}
-	public void setEmp_cos(Long emp_cos) {
+	public void setEmp_cos(long emp_cos) {
 		this.emp_cos = emp_cos;
 	}
 	public String getEmp_photo() {
@@ -146,6 +146,5 @@ public class EmployeeVO {
 	public void setDepartment(DepartmentVO department) {
 		this.department = department;
 	}
-	
 	
 }

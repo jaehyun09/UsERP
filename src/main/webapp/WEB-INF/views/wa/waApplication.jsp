@@ -78,6 +78,9 @@
 					<li class="side-nav-menu-item active">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+					</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -239,18 +242,18 @@
 														<tbody>
 														<tr>
 															<th style="vertical-align: middle">사번 </th>
-															<td><input type="text" class="form-control" name="emp_code"></td>
+															<td><input type="text" class="form-control" name="emp_code" style="font-size:20px"></td>
 															<td><button type="button"  class="btn btn-outline-info" onclick="confirmEmp_Code();" >사번확인</button></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원명 </th>
-															<td><input type="text" class="form-control" name="emp_name" readonly></td>
+															<td><input type="text" class="form-control" name="emp_name" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">부서명</th>
 															<td>	 
 															<div class="form-group">
-															     <select name="dep_code" class="form-control" id="exampleFormControlSelect1">
+															     <select name="dep_code" class="form-control" id="exampleFormControlSelect1" style="font-size:20px">
 															       <option value="0">부서 선택</option>
 								                                <c:forEach var="vo" items="${list3}">
 								                                   <option value="${vo.dep_code}">${vo.dep_name}</option>
@@ -263,24 +266,24 @@
 															<th style="vertical-align: middle"> 근태 유형</th>
 															<td>	 
 															<div class="form-group">
-															     <select class="form-control" id="exampleFormControlSelect1">
-															       <option>병가</option>
-															       <option>조퇴</option>
-															       <option>연차</option>
-															       <option>경조사</option>
+															     <select name="hr_code" class="form-control" id="exampleFormControlSelect1" style="font-size:20px">
+															     	<option value="0">근태 유형 선택</option>
+															     <c:forEach var="vo" items="${list4}">
+															       <option value="${vo.hr_code}">${vo.hr_code_name}</option> 
+															     </c:forEach>
 															     </select>
 															   </div>
 															 </td>
 														</tr>
 														<tr>
-															<th><label> 시작일 &nbsp;&nbsp;&nbsp; </label> <input type="date" name="wr_va_start" width=""></th>
-															<th><label> 종료일&nbsp;&nbsp;&nbsp;</label>  <input type="date" name="wr_va_end"> </th>
+															<th><label> 시작일 &nbsp;&nbsp;&nbsp; </label> <input type="date" name="wr_va_start" style="font-size:20px"></th>
+															<th><label> 종료일&nbsp;&nbsp;&nbsp;</label>  <input type="date" name="wr_va_end" style="font-size:20px"> </th>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle"> 사유 </th>
 															<td>
 																<div class="form-group">
-      																<textarea class="form-control" name="wr_va_reason" id="exampleFormControlTextarea1" rows="3"></textarea>
+      																<textarea class="form-control" name="wr_va_reason" id="exampleFormControlTextarea1" rows="3" style="font-size:20px"></textarea>
    															 	</div>
 															</td>
 														</tr>

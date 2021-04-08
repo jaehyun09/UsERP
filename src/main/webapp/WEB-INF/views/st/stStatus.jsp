@@ -6,7 +6,46 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
-
+<script type="text/javascript">
+	function changeProduct() {
+		var count = document.getElementById("accs_quantity").value;	
+		var price = document.getElementById("pro_code").options[document.getElementById("pro_code").selectedIndex].id;
+		
+		document.getElementById("accs_price").value = price;	
+		document.getElementById("accs_sum").value = price * count;
+	};
+	
+	function changeCount() {
+		var price = document.getElementById("pro_code").options[document.getElementById("pro_code").selectedIndex].id;
+		var count = document.getElementById("accs_quantity").value;	
+		
+		document.getElementById("accs_sum").value = price * count;
+	};
+	
+	function stContent(code) {
+      var param = "&${_csrf.parameterName}=${_csrf.token}&accs_code=" + code;
+      $.ajax({
+         type:"POST",
+        data:param,
+        url:'stContent',
+         success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+            $('#stContent').html(data);
+         },
+         error: function(){
+            alert('오류');
+         }
+      });
+   }
+   
+   function conCheck() {
+          if(!$("input[name='accs_content']").val()) {
+             alert("내용을 입력하세요.");
+             $("input[name='accs_content']").focus();
+             return false;
+          }
+       }
+	
+</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -77,6 +116,9 @@
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -251,15 +293,16 @@
                                     aria-labelledby="pills-result-tab-1">
                                     <div class="row">
                                        <div class="col">
+                                       <div class="collapse multi-collapse"
+                                                id="multiCollapseExample1">
+                                                <div id="stContent"></div>
+                                            </div>
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead class="text-white table-bordered tap">
                                              <tr>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">판매번호</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">단가</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">총액</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
@@ -267,28 +310,33 @@
                                           </thead>
                                           <tbody>
                                              <c:forEach var="vo" items="${sales}">
+                                             <c:if test="${vo.accs_type == 1 || vo.accs_type == 2 }">
                                              <tr>
-                                                <td class="py-3">${vo.pro_code}</td>
-                                                <td class="py-3">${vo.com_code}</td>
-                                                <td class="py-3">${vo.pro_code}</td>
-                                                <td class="py-3">${vo.accs_price}</td>
-                                                <td class="py-3">${vo.accs_quantity}</td>
-                                                  <td class="py-3">${vo.accs_sum}</td>
-                                                <td class="py-3">${vo.emp_code}</td>
-                                                <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
+                                                <td class="py-3" style="vertical-align:middle">
+                                                       <a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
+                                                          href="#multiCollapseExample1" role="button"
+                                                          aria-expanded="false"
+                                                          aria-controls="multiCollapseExample1"
+                                                          onclick="stContent(${vo.accs_code})"> ${vo.accs_code}</a>
+                                                </td>
+                                                <td class="py-3" style="vertical-align:middle">${vo.company.com_name}</td>
+                                                <td class="py-3" style="vertical-align:middle">${vo.product.pro_name}</td>
+                                                <td class="py-3" style="vertical-align:middle">${vo.employee.emp_name}</td>
+                                                <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
+                                                <c:if test="${vo.accs_state == -1 }">
+                                                   <td class="py-3" style="vertical-align:middle">전표 승인 거부</td>
+                                                </c:if>
                                                 <c:if test="${vo.accs_state == 0 }">
-                                                   <td class="py-3">전표 승인 대기중</td>
+                                                   <td class="py-3" style="vertical-align:middle">전표 승인 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 1 }">
-                                                   <td class="py-3">출고 대기중</td>
-                                                </c:if>
-                                                <c:if test="${vo.accs_state == 2 }">
-                                                   <td class="py-3">출고 대기중</td>
+                                                   <td class="py-3" style="vertical-align:middle">출고 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 3 }">
-                                                   <td class="py-3">출고 완료</td>
+                                                   <td class="py-3" style="vertical-align:middle">출고 완료</td>
                                                 </c:if>
                                              </tr>
+                                             </c:if>
                                              </c:forEach>
                                           </tbody>
                                        </table>
@@ -302,6 +350,8 @@
                                     <!-- 테스트 -->
                                     <div class="col">
                                             <div class="bg-white p-2">
+                                                <form action="${path}/ststAppInsert" method="post" name="ssstem">
+                                                <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
                                                 <table class="table bg-white text-dark center ass2">
                                                 <tr class="text-white table-bordered tap">
                                                    <th colspan="3"> 판매 전표 등록 </th>
@@ -309,57 +359,72 @@
                                                    <tr>
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
                                              colspan="2" style="vertical-align: middle;">전표유형</td>
+                                             
+                                             
                                           <td style="vertical-align: middle;">
-                                                        <select class="form-control" id="exampleFormControlSelect1">
-                                                          <option>판매전표</option>
-                                                          <option>채권전표</option>
+                                                        <select class="form-control" id="accs_type" name="accs_type"  style="font-size:20px">
+                                                          <option value="1">판매전표</option>
+                                                          <option value="2">채권전표</option>
                                                         </select>
                                           </td>
                                        </tr>   
                                                    <tr>
-                                          <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-                                             colspan="2" style="vertical-align: middle;">거래처명</td>
+                                          <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>거래처명</b></td>
                                           <td class="font-weight-semi-bold border-top-0 py-2"
-                                             colspan="2"><input class="form-control" type="text"
-                                             placeholder="거래처명을 입력하세요"></td>
+                                             colspan="2"><select class="form-control" id="com_code" name="com_code" style="font-size:20px">
+		                                             		<c:forEach var="company" items="${company}">
+		                                                          <option value="${company.com_code}">${company.com_name}</option>
+		                                                    </c:forEach>
+                                                        </select>
+                                          </td>
                                        </tr>
                                           <tr>
                                              <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
-                                             <td class="py-3" colspan="2"><input
-                                                class="form-control" type="text"
-                                                placeholder="상품명을 입력하세요"></td>
-                                          </tr>
-                                          <tr>
+                                             <td class="py-3" colspan="2">
+                                             	<select class="form-control" id="pro_code" name="pro_code" style="font-size:20px" onchange="changeProduct()">
+		                                             <c:forEach var="product" items="${product}">
+		                                             	<option id="${product.pro_sal_price}" value="${product.pro_code}">
+		                                             		${product.pro_name}
+		                                             	</option>
+		                                             </c:forEach>
+                                                </select>
+                                             </td>
+                                         </tr>
+                                         <tr>
                                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>단가</b></td>
-                                                      <td class="py-3" colspan="2"><input
-                                                class="form-control" type="text"
-                                                placeholder="단가를 입력하세요"></td>
+                                                      <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_price"style="font-size:20px" name="accs_price"></td>
                                                    </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-                                             <td class="py-3" colspan="2"><input
-                                                class="form-control" type="text" placeholder="수량을 입력하세요"></td>
+                                             <td class="py-3" colspan="2"><input class = "form-control" style="font-size:20px" type = "number" min = "1" step = "1" value = "1" id="accs_quantity" name="accs_quantity" onchange="changeCount()"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>총액</b></td>
                                              <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" value="단가x수량 = 값" readonly></td>
+                                                class="form-control" type="text" id="accs_sum" style="font-size:20px" name="accs_sum"></td>
                                           </tr>
                                           <tr>
-                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td>
-                                             <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" value="세션아이디 값으로 들어가는 값" readonly></td>
+                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td> 
+                                             <td class="py-3" colspan="2" style="vertical-align: middle; text-align:left;">
+                                                <input type="hidden" name="emp_code" style="font-size:25px" value="${sessionScope.mem_id}">
+                                                ${sessionScope.mem_name}</td>
+                                          </tr>
+                                          <tr>
+                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>내용</b></td>
+                                             <td class="py-3" colspan="2"><input class="form-control" style="font-size:25px" type="text" id="accs_content" name="accs_content" value=""></td>
                                           </tr>
                                        </tbody>
-                                    </table>
-                                                </div>
-                                                     <div align=center>
-                                                   <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                                                   <button type="button" type="reset" class="btn btn-outline-info">재입력</button>                                  
-                                       </div>
-                           </div>
+                                    </table>                                 
+                                        <br>
+                                         <div align=center>
+                                           <button type="submit" class="btn btn-outline-info" onclick="return conCheck()">등록</button>&nbsp;&nbsp;&nbsp;
+                                           <button type="reset" class="btn btn-outline-info">재입력</button>                                  
+                                         </div>
+                                       </form>
+                           			</div>
                                     </div>
                                    </div> 
+                                   </div>
                               
                                    <div class="tab-pane fade p-4" id="pills-html-2"
                                     role="tabpanel" aria-labelledby="pills-html-tab-2">
@@ -369,9 +434,6 @@
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">판매번호</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">단가</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">총액</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
@@ -379,22 +441,27 @@
                                           </thead>
                                            <tbody>
                                              <c:forEach var="vo" items="${sales}">
+                                             <c:if test="${vo.accs_type == 1 || vo.accs_type == 2}">
                                              <tr>
-                                                <td class="py-3">${vo.pro_code}</td>
-                                                <td class="py-3">${vo.com_code}</td>
-                                                <td class="py-3">${vo.pro_code}</td>
-                                                <td class="py-3">${vo.accs_price}</td>
-                                                <td class="py-3">${vo.accs_quantity}</td>
-                                                  <td class="py-3">${vo.accs_sum}</td>
-                                                <td class="py-3">${vo.emp_code}</td>
+                                                <td class="py-3">${vo.accs_code}</td>
+                                                <td class="py-3">${vo.company.com_name}</td>
+                                                <td class="py-3">${vo.product.pro_name}</td>
+                                                <td class="py-3">${vo.employee.emp_name}</td>
                                                 <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
+                                                <c:if test="${vo.accs_state == -1 }">
+                                                   <td class="py-3">승인 거부</td>
+                                                </c:if>
                                                 <c:if test="${vo.accs_state == 0 }">
                                                    <td class="py-3">승인 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 1 }">
                                                    <td class="py-3">승인 완료</td>
                                                 </c:if>
+                                                <c:if test="${vo.accs_state == 3 }">
+                                                   <td class="py-3">승인 완료</td>
+                                                </c:if>
                                              </tr>
+                                             </c:if>
                                              </c:forEach>
                                           </tbody>
                                        </table>
@@ -410,6 +477,7 @@
                   </div>
                </div>
             </div>
+            
           </div>
 </main>
 
@@ -419,3 +487,4 @@
 
 </body>
 </html>
+

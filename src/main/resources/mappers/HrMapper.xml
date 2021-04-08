@@ -121,9 +121,25 @@
 		SELECT * FROM hr_code WHERE hcg_code = 1 ORDER BY hr_code
 	</select>
 	
+	<!-- 김은희 - 인사 코드 등록 -->
+    <insert id="hrCodeInsert" parameterType="com.project.UsERP.vo.HrCodeVO">
+      INSERT INTO hr_code(hr_code, hr_code_name,hr_state, hcg_code)
+		VALUES (#{hr_code},#{hr_code_name}, #{hr_state}, #{hcg_code})
+    </insert>
+		
+	<!-- 김은희 - 인사 코드 중복확인  -->
+ 	<select id="hrCodeCheck" parameterType="int" resultType="int">
+ 		SELECT COUNT(*) FROM hr_code WHERE hr_code=#{hr_code}
+ 	</select>
+ 	
+ 	<!-- 김은희 - 인사 코드명 중복확인  -->
+ 	<select id="hrConfirmHrName" resultType="int">
+ 		SELECT COUNT(*) FROM hr_code WHERE hr_code_name=#{hr_code_name}
+ 	</select>
+	
 	<!-- 조명재 - 부서 조회 -->
 	<select id="depList" resultType="com.project.UsERP.vo.DepartmentVO">
-		SELECT * FROM department ORDER BY dep_code
+		SELECT * FROM department ORDER BY dep_code 
 	</select>
 	
 	<!-- 조명재 - 인사 발령 목록 갯수 -->
@@ -147,6 +163,21 @@
 		]]>
 	</select>
 	
+	<!-- 조명재 - 인사 발령(중메뉴) - 사원번호 확인 -->
+	<select id="hrConfirmAppoint" resultType="com.project.UsERP.vo.EmployeeVO">
+		SELECT * FROM employee WHERE emp_code = #{emp_code}
+	</select>
+	
+	<!-- 조명재 - 인사 발령(중메뉴) - 현재 부서를 반환한다 -->
+	<select id="getDepName" resultType="String">
+		SELECT dep_name FROM department WHERE dep_code = #{dep_code}
+	</select>
+	
+	<!-- 조명재 - 인사 발령(중메뉴) - 현재 직급을 반환한다 -->
+	<select id="getCodeName" resultType="String">
+		SELECT hr_code_name FROM hr_code WHERE hr_code = #{hr_code}
+	</select>
+	
 	<!-- 조명재 - 인사 발령(중메뉴) - 인사 발령 -->
 	<insert id="hrAppointmentPro" parameterType="com.project.UsERP.vo.AppointHistoryVO">
 		INSERT INTO appoint_history(ap_code, ap_date, ap_cur_dep, ap_cur_position, 
@@ -163,6 +194,15 @@
 		 ORDER BY emp_code
 	</select>
 	
+	<!-- 김은희 - 인사 코드 그룹 조회 상세페이지 -->
+	<select id="hrRegDetail" resultMap="hrCodeMap">
+		SELECT g.hcg_code, h.hr_code, h.hr_code_name, h.hr_state, g.hcg_name
+		  FROM hr_code h , hr_code_group g
+		 WHERE h.hcg_code = g.hcg_code
+		   AND g.hcg_code = #{hcg_code}
+		   ORDER BY hr_code
+	</select>
+	
 	<!-- 김은희 - 인사카드 상세페이지 조회 -->
 	<select id="hrCardDetail" resultMap="hrCardMap">
 		SELECT e.emp_code, e.emp_name, d.dep_name, c.hr_code_name, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
@@ -174,17 +214,17 @@
 	</select>
 	
 	<!-- 김은희 - 인사카드 등록 -->
-	<insert id="hrCardInsert" parameterType="com.project.UsERP.vo.EmployeeVO">
-		INSERT INTO employee(emp_photo, emp_code, emp_name, dep_code, hr_code, emp_hire_date, emp_cos
-				, emp_jumin, emp_address, emp_tel, emp_phone, emp_email, emp_port_no, emp_account, emp_bank, emp_pwd, emp_authority, emp_enabled)
-		VALUES (#{emp_photo}, #{emp_code}, #{emp_name}, #{dep_code}, #{hr_code}, TO_DATE(#{emp_hire_date},'YY/MM/DD'), #{emp_cos}, #{emp_jumin}, #{emp_address}, #{emp_tel}, #{emp_phone}, #{emp_email}, #{emp_port_no}, #{emp_account}, #{emp_bank}, #{emp_pwd}, #{emp_authority}, #{emp_enabled})
-	</insert>
+   <insert id="hrCardInsert" parameterType="java.util.Map">
+      INSERT INTO employee(emp_photo, emp_code, emp_name, dep_code, hr_code, emp_hire_date, emp_cos
+            , emp_jumin, emp_address, emp_tel, emp_phone, emp_email, emp_port_no, emp_account, emp_bank, emp_authority)
+      VALUES (#{vo.emp_photo}, #{vo.emp_code}, #{vo.emp_name}, #{vo.dep_code}, #{vo.hr_code}, TO_DATE(#{emp_hire_date},'YY-MM-DD'), #{vo.emp_cos}, #{vo.emp_jumin}, #{vo.emp_address}, #{vo.emp_tel}, #{vo.emp_phone}, #{vo.emp_email}, #{vo.emp_port_no}, #{vo.emp_account}, #{vo.emp_bank}, #{vo.emp_authority})
+   </insert>
 		
 	<!-- 김은희 - 인사 카드 사번 중복확인  -->
  	<select id="codeCheck" parameterType="int" resultType="int">
  		SELECT COUNT(*) FROM employee WHERE emp_code=#{emp_code}
  	</select>
-	
+ 	
 	<!-- 조명재 - 휴직자 조회 -->
 	<select id="hrLeaveList" resultMap="appointHistoryMap">
 		SELECT * 

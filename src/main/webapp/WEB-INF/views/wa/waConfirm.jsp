@@ -2,10 +2,29 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@ include file = "./setting.jsp" %> 
+<%@ include file = "../setting.jsp" %> 
 <head>
     <!-- Title -->
-    <title>UsERP</title>
+    <title>Users | Graindashboard UI Kit</title>
+    
+<script type="text/javascript">
+
+function waDetail(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=" + code;
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'waDetail',
+      success: function(data){ 
+         $('#waDetail').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+</script>    
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,14 +32,14 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
-<link rel="stylesheet" href="${project}css/board.css">
+	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
 
-<%@ include file = "./common/header.jsp" %> 
+<%@ include file = "../common/header.jsp" %> 
 <main class="main">
 	<!-- Start Sidebar Nav -->
 	<aside id="sidebar" class="js-custom-scroll side-nav">
@@ -57,7 +76,7 @@
 			<!-- 인사 관리 종료 -->
 			
 			<!-- 대메뉴 : 근태 관리 -->
-<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
 				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subPages">
 					<span class="side-nav-menu-icon d-flex mr-3">
 						<i class="gd-timer"></i>
@@ -70,13 +89,16 @@
 				</a>
 
                 <!-- 중메뉴 : 근태 관리 -->
-<!-- b -->		<ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- b -->		<ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
 <!-- a -->			<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waSelect">조회</a>
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item active">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -202,69 +224,94 @@
 	</aside>
 	<!-- End Sidebar Nav -->
 
+    <!-- 근태 신청 시작 -->
     <div class="content">
-        <div class="py-4 px-3 px-md-4">
-            <div class="card mb-3 mb-md-4">
-
-              <div class="container-fluid pb-5">
-
-				 <div class="row justify-content-md-center">
-					<div class="card-wrapper col-12 col-md-4 mt-5">
-						<div class="card">
-						   <div class="card-body">
-							 <c:if test="${sessionScope.mem_id == null}">
-								<h4 class="card-title">로그인</h4>
-								
-								<form action="loginPro" method="post" name="mainform" onsubmit="return mainCheck();">
-								<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-									<div class="form-group">
-										<label for="emp_code">사원번호</label>
-										<input id="emp_code" type="text" class="form-control" name="emp_code" >
-									</div>
-
-									<div class="form-group">
-										<label for="emp_pwd">비밀번호</label>
-										<input id="emp_pwd" type="password" class="form-control" name="emp_pwd" >
-										<div class="text-right">
-											<a href="#" class="small">
-												비밀번호 찾기
-											</a>
+			<div class="py-4 px-3 px-md-4">
+				<div class="card">
+					<div class="card-body">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#">근태 관리</a></li>
+								<li class="breadcrumb-item active" aria-current="page">승인</li>
+							</ol>
+						</nav>
+						<div class="row">
+							<div class="col-xl-12">
+								<div id="example" class="mb-9">
+									<h4 class="h1 text-dark"><b>
+										승인 </b><a class="anchorjs-link" href="#example"
+											aria-label="Anchor" data-anchorjs-icon="#"></a>
+									</h4>
+									<div class="mb-3">
+										<!-- Tab Content -->
+										<div class="tab-content bg-lighter" id="pills-tabContent-1">
+											<div class="tab-pane fade p-4 show active"
+												id="pills-result-1" role="tabpanel"
+												aria-labelledby="pills-result-tab-1">
+										<form>
+										  <!-- 검색창 시작 -->		
+									   	  <div class="input-group">
+										    <div class="input-group-append">
+										      <i class="gd-search icon-text icon-text-sm"></i>
+										    </div>
+										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
+										  </div>
+										  <br>
+										  <!-- 검색창 끝 -->	
+										  
+										  <div class="row">
+                                       			<div class="col">
+                                          			<div class="collapse multi-collapse"
+                                             			id="multiCollapseExample1">
+                                                           <div id="waDetail"></div>
+				                                          </div>
+				                                       </div>
+                                       
+											<table class="table table-striped bg-white text-dark center ass2">
+											    <thead class="text-white table-bordered tap">
+											      <tr>
+											      	<th class="font-weight-semi-bold border-top-0 py-3 con2">신청일</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사번</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">사원명</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">부서명</th>
+											        <th class="font-weight-semi-bold border-top-0 py-3 con2">근태 유형</th>
+											      </tr>
+											    </thead>
+											    <tbody>
+											    <c:forEach var="vo" items="${list5}">
+											      <tr>
+											      	<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.wr_ap_date}"/></td>
+											      	<td class="py-3"><a class="text-dark con2" data-toggle="collapse"
+																		href="#multiCollapseExample1" role="button"
+																		aria-expanded="false"
+																		aria-controls="multiCollapseExample1"
+																		onclick="waDetail(${vo.employee.emp_code})">${vo.employee.emp_code}</a>
+											      	</td>
+											      	<td class="py-3">${vo.employee.emp_name}</td>
+													<td class="py-3">${vo.department.dep_name}</td>
+													<td class="py-3">${vo.hrCode.hr_code_name}</td>
+											      </tr>
+											     </c:forEach>
+											    </tbody>
+											  </table>
+												<br>
+											</div>
+											</form>
+											</div>
 										</div>
+										<!-- End Tab Content -->
 									</div>
-
-									<div class="form-group no-margin">
-										<input class="btn btn-primary btn-block" type="submit" value="로그인">		
-									</div>
-									<div class="text-center mt-3 small">
-										사원 확인하셨나요?&nbsp;&nbsp;&nbsp;<a href="${path}/signin">사원확인</a>
-									</div>
-								</form>
-								</c:if>
-								<c:if test="${sessionScope.mem_id != null}">
-									<script type="text/javascript">
-										window.location="main";
-									</script>
-								</c:if>
-							</div>
-						</div>
-						<footer class="footer mt-3">
-							<div class="container-fluid">
-								<div class="footer-content text-center small">
-									<span class="text-muted">&copy; 2021. Team UsERP. all rights reserved.</span>
 								</div>
 							</div>
-						</footer>
+						</div>
 					</div>
 				</div>
 			</div>
-      	</div>
-       </div>
-     </div>
-
-    
+		</div>
+	<!-- 근태 신청 끝-->
 </main>
 
-<%@ include file = "./common/footer.jsp" %> 
+<%@ include file = "../common/footer.jsp" %> 
 <script src="${project}js/graindashboard.js"></script>
 <script src="${project}js/graindashboard.vendor.js"></script>
 

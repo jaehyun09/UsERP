@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +27,7 @@ public class HrServiceImpl implements HrService {
 	@Autowired
 	HrDAO hrDao;
 	
+	
 	// 김은희 - 인사 코드 그룹 조회
 	@Override
 	public void hrCodeGroupList(HttpServletRequest req, Model model) {
@@ -35,7 +35,6 @@ public class HrServiceImpl implements HrService {
 		
 		model.addAttribute("list", list);
 	}
-
 	
 	// 김은희 - 인사 코드 조회
 	@Override 
@@ -61,6 +60,52 @@ public class HrServiceImpl implements HrService {
 		model.addAttribute("list4", list4);
 	}
 	
+	// 김은희 - 인사 코드 등록
+	@Override
+	public void hrCodeInsert(HttpServletRequest req, Model model) {
+		int insertCnt = 0;
+		
+		int hcg_code = Integer.parseInt(req.getParameter("hcg_code"));
+		String hr_code_name = req.getParameter("hr_code_name");
+		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
+		int hr_state = Integer.parseInt(req.getParameter("hr_state"));
+		
+		HrCodeVO vo = new HrCodeVO();
+		vo.setHcg_code(hcg_code);
+		vo.setHr_code(hr_code);
+		vo.setHr_code_name(hr_code_name);
+		vo.setHr_state(hr_state);
+		
+		insertCnt = hrDao.hrCodeInsert(vo);
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
+	
+	// 김은희 - 인사 코드 중복확인
+	@Override
+	public void hrConfirmHrCode(HttpServletRequest req, Model model) {
+		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
+		  
+		int cnt = hrDao.hrCodeCheck(hr_code);
+  
+		model.addAttribute("selectCnt", cnt);
+		model.addAttribute("hr_code", hr_code);
+		
+	}
+	
+	// 김은희 - 인사 코드명 중복확인
+	@Override
+	public void hrConfirmHrName(HttpServletRequest req, Model model) {
+		String hr_code_name = req.getParameter("hr_code_name");
+		  
+		int cnt = hrDao.hrConfirmHrName(hr_code_name);
+  
+		model.addAttribute("selectCnt", cnt);
+		model.addAttribute("hr_code_name", hr_code_name);
+		
+	}
+
 	// 김은희 - 인사카드 조회
 	@Override
 	public void hrCardList(HttpServletRequest req, Model model) {
@@ -133,7 +178,30 @@ public class HrServiceImpl implements HrService {
 			model.addAttribute("endPage", endPage);
 		}
 	}
-
+	
+	// 조명재 - 인사 발령(중메뉴) - 사원번호 확인
+	@Override
+	public void hrConfirmAppoint(HttpServletRequest req, Model model) {
+		String emp_code = req.getParameter("emp_code");
+		
+		EmployeeVO vo = hrDao.hrConfirmAppoint(emp_code);
+		
+		int selectCnt = 0;
+		if(vo != null) selectCnt = 1;
+		
+		if(selectCnt == 1) {
+			String dep_name = hrDao.getDepName(vo.getDep_code());
+			String hr_code_name = hrDao.getCodeName(vo.getHr_code());
+			
+			model.addAttribute("dep_name", dep_name);
+			model.addAttribute("hr_code_name", hr_code_name);
+		}
+		
+		model.addAttribute("selectCnt", selectCnt);
+		model.addAttribute("vo", vo);
+		model.addAttribute("emp_code", emp_code);
+	}
+	
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령
 	@Override
 	public void hrAppointmentPro(HttpServletRequest req, Model model) {
@@ -158,7 +226,7 @@ public class HrServiceImpl implements HrService {
 	// 김은희 - 인사카드 등록
 	@Override
 	public void hrCardInsert(MultipartHttpServletRequest req, Model model) {
-		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images";
+		String uploadPath = "C:\\Dev76\\workspace\\upload\\";
 		
 		MultipartFile image = req.getFile("emp_photo");
 		String emp_photo = image.getOriginalFilename();
@@ -167,16 +235,20 @@ public class HrServiceImpl implements HrService {
 		String emp_name = req.getParameter("emp_name");
 		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
 		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
-		// Date emp_hire_date = req.getParameter("emp_hire_date");
 		String emp_hire_date = req.getParameter("emp_hire_date");
-		System.out.println("emp_hire_date : " + emp_hire_date);
 		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
 		String emp_jumin = req.getParameter("emp_jumin");
-		String emp_address = req.getParameter("emp_address");
+  
+		String address = "";
+		String addcode = req.getParameter("addcode");
+		String add1 = req.getParameter("add1");
+		String add2 = req.getParameter("add2");
+		
+		address = addcode + "-" + add1 + "-" + add2;
 		String emp_tel = req.getParameter("emp_tel");
 		String emp_phone = req.getParameter("emp_phone");
 		String emp_email = req.getParameter("emp_email");
-		int emp_port_no = Integer.parseInt(req.getParameter("emp_port_no"));
+		String emp_port_no = req.getParameter("emp_port_no");
 		String emp_account = req.getParameter("emp_account");
 		String emp_bank = req.getParameter("emp_bank");
 		String emp_authority = req.getParameter("emp_authority");
@@ -184,32 +256,35 @@ public class HrServiceImpl implements HrService {
 		try {
 			// null값과 공백 방지
 			if(image.getOriginalFilename() == null || image.getOriginalFilename().trim().equals("")) {
-				emp_photo = "-";
+				emp_photo = "avatar.jpg";
 			}
 		
 			image.transferTo(new File(uploadPath + image));
 			
 			EmployeeVO vo = new EmployeeVO();
 			
-			// vo.setEmp_enabled(emp_enabled);
-			// vo.setEmp_pwd(emp_pwd);
-			// vo.setEmp_hire_date(emp_hire_date);
 			vo.setHr_code(hr_code);
 			vo.setEmp_code(emp_code);
 			vo.setEmp_name(emp_name);	
 			vo.setEmp_cos(emp_cos);
 			vo.setEmp_photo(emp_photo);
 			vo.setEmp_jumin(emp_jumin);
-			vo.setEmp_address(emp_address);
+			vo.setEmp_address(address);
 			vo.setEmp_tel(emp_tel);
 			vo.setEmp_phone(emp_phone);
 			vo.setEmp_email(emp_email);
+			vo.setEmp_port_no(emp_port_no);
 			vo.setEmp_bank(emp_bank);
 			vo.setEmp_account(emp_account);
 			vo.setDep_code(dep_code);
 			vo.setEmp_authority(emp_authority);
 			
-			int insertCnt = hrDao.hrCardInsert(vo);
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("vo",vo);
+			map.put("emp_hire_date",emp_hire_date);
+			
+			int insertCnt = hrDao.hrCardInsert(map);
 			
 			model.addAttribute("insertCnt", insertCnt);
 				
@@ -244,13 +319,47 @@ public class HrServiceImpl implements HrService {
 		
 		model.addAttribute("list8", list8);
 	}
-
+	
+	// 김은희 - 인사 코드 그룹 조회 상세페이지
+	@Override
+	public void hrRegDetail(HttpServletRequest req, Model model) {
+		int hcg_code = Integer.parseInt(req.getParameter("hcg_code"));
+		
+		List<HrCodeVO> list10 = hrDao.hrRegDetail(hcg_code);
+				
+		model.addAttribute("list10", list10);
+		
+	}
+	
 	// 조명재 - 급여 내역
 	@Override
 	public void hrSalaryList(HttpServletRequest req, Model model) {
 		List<SalaryStatementVO> list9 = hrDao.hrSalaryList();
 		
 		model.addAttribute("list9", list9);
+	}
+	
+	// 조명재 - 급여 - 사원번호 확인
+	@Override
+	public void hrSalaryCheck(HttpServletRequest req, Model model) {
+		String emp_code = req.getParameter("emp_code");
+		
+		EmployeeVO vo = hrDao.hrConfirmAppoint(emp_code);
+		
+		int selectCnt = 0;
+		if(vo != null) selectCnt = 1;
+		
+		if(selectCnt == 1) {
+			String dep_name = hrDao.getDepName(vo.getDep_code());
+			String hr_code_name = hrDao.getCodeName(vo.getHr_code());
+			
+			model.addAttribute("dep_name", dep_name);
+			model.addAttribute("hr_code_name", hr_code_name);
+		}
+		
+		model.addAttribute("selectCnt", selectCnt);
+		model.addAttribute("vo", vo);
+		model.addAttribute("emp_code", emp_code);
 	}
 	
 }

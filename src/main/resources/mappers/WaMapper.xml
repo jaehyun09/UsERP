@@ -53,7 +53,6 @@
 		<result property="dep_state"  column="dep_state" />
 	 </association> 
 	 </resultMap>
-	   
 	
 	<!-- 김은희 - 출퇴근 조회 -->
 	<select id="commuteList" resultMap="commuteMap">
@@ -65,10 +64,11 @@
 	
 	<!-- 김은희 - 근태 조회  -->
 	<select id="waList" resultMap="waMap">
-		SELECT e.emp_code, e.emp_name, e.dep_code, w.wr_code, w.wr_ap_date, w.wr_va_start, w.wr_va_end, w.wr_va_reason, d.dep_name
-		  FROM employee e, work_record w, department d
+		SELECT e.emp_code, e.emp_name, e.dep_code, w.wr_code, w.wr_state, h.hr_code_name, w.wr_ap_date, w.wr_va_start, w.wr_va_end, w.wr_va_reason, d.dep_name
+		  FROM employee e, work_record w, department d, hr_code h
 		 WHERE e.emp_code = w.emp_code
 		   AND d.dep_code = w.dep_code
+		   AND h.hr_code = w.hr_code
 		 ORDER BY wr_ap_date
 	</select>
 	
@@ -76,5 +76,77 @@
  	<select id="empComfirm" parameterType="int" resultType="com.project.UsERP.vo.EmployeeVO">
  		SELECT emp_code, emp_name FROM employee WHERE emp_code=#{emp_code}
  	</select>
+ 	
+ 	<!-- 김은희 - 근태 신청  -->
+ 	<insert id="waAppInsert" parameterType="java.util.Map" >
+ 		INSERT INTO work_record (wr_code, wr_ap_date, wr_va_start, wr_va_end, wr_va_reason, wr_state, emp_code, hr_code, dep_code)
+     		VALUES (wr_seq.nextval, default, TO_DATE(#{wr_va_start},'YY-MM-DD'), TO_DATE(#{wr_va_end},'YY-MM-DD'), #{vo.wr_va_reason}, #{vo.wr_state}, #{vo.emp_code}, #{vo.hr_code}, #{vo.dep_code})
+ 	</insert>
+ 	
+ 	<!-- 김은희 - 출근 버튼 클릭 -->
+ 	<insert id="waStartClick" parameterType="java.util.Map" >
+ 		INSERT INTO commute (cm_code, cm_date, cm_start, emp_code)
+     		VALUES (cm_seq.nextval, #{date}, #{date}, #{emp_code})
+ 	</insert>
+ 	
+ 	<!-- 김은희 - 퇴근 처리 가져오기  -->
+ 	<select id="waEndSelect" resultType="com.project.UsERP.vo.CommuteVO">
+ 		SELECT cm_code, emp_code, cm_start, cm_end, cm_night_time, cm_over_time, cm_date 
+		  FROM commute 
+		 WHERE emp_code = #{emp_code}
+		   AND to_char(#{date}) = to_char(#{date}) 
+ 	</select>
+ 	
+ 	<!-- 김은희 - 퇴근 처리 업데이트 -->
+ 	<update id="waEndAction" parameterType="java.util.Map" >
+ 		UPDATE commute SET cm_end=#{date}
+         WHERE emp_code = #{emp_code}
+ 	</update>
+ 	
+ 	<!-- 김은희 - 야근 버튼 클릭 -->
+ 	<update id="waNightClick" parameterType="java.util.Map" >
+ 		UPDATE commute SET cm_night_time=1, cm_end=#{cm_end, jdbcType=VARCHAR}
+         WHERE emp_code = #{emp_code}
+ 	</update>
+ 	
+ 	<!-- 김은희 - 인사 코드 조회 - 근태유형 -->
+	<select id="waCodeTyList" resultType="com.project.UsERP.vo.HrCodeVO">
+		SELECT * FROM hr_code WHERE hcg_code = 3 ORDER BY hr_code
+	</select>
+	
+	<!-- 김은희 - 근태 신청 조회  -->
+	<select id="waAppSelect" resultMap="waMap">
+		SELECT e.emp_code, e.emp_name, e.dep_code, w.wr_code, w.wr_state, h.hr_code_name, w.wr_ap_date, w.wr_va_start, w.wr_va_end, w.wr_va_reason, d.dep_name
+		  FROM employee e, work_record w, department d, hr_code h
+		 WHERE e.emp_code = w.emp_code
+		   AND d.dep_code = w.dep_code
+		   AND h.hr_code = w.hr_code
+           AND w.wr_state = 0
+		 ORDER BY wr_ap_date
+	</select>
+	
+	<!-- 김은희 - 근태 신청 승인 상세페이지 -->
+	<select id="waDetail" resultMap="waMap">
+		SELECT e.emp_code, e.emp_name, e.dep_code, h.hr_code, h.hr_code_name, w.wr_ap_date, w.wr_va_start, w.wr_va_end, w.wr_va_reason, d.dep_name
+		  FROM employee e, work_record w, department d, hr_code h
+		 WHERE e.emp_code = w.emp_code
+		   AND d.dep_code = w.dep_code
+		   AND h.hr_code = w.hr_code
+           AND e.emp_code = #{emp_code}
+		 ORDER BY wr_ap_date
+	</select>
+	
+	<!-- 김은희 - 근태 신청 승인 처리 -->
+ 	<update id="waConfirmAction" parameterType="int" >
+ 		UPDATE work_record SET wr_state = 1
+         WHERE emp_code = #{emp_code}
+ 	</update>
+ 	
+ 	<!-- 김은희 - 근태 신청 철회 처리 -->
+ 	<delete id="waDeleteAction" parameterType="int" >
+ 		DELETE work_record 
+ 		WHERE emp_code = #{emp_code}
+ 	</delete>
+ 	
 
 </mapper>

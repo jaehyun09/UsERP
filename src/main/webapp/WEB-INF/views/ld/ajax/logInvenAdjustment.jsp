@@ -16,6 +16,121 @@
 	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    <script src="${project}js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    
+   /* 	$(function() {
+   		$("#prod").click(function(){
+   			var procode = $("#prod option:checked").text();
+   			$("#prod_auto").val(procode);
+   		});
+   	}); 
+   	
+	$(function() {
+   		$("#wareh").click(function(){
+   			var warecode = $("#wareh option:checked").text();
+   			$("#wareh_auto").val(warecode);
+   		});
+   	}); */
+   	
+   	/* $('#amount').change(function() {
+   		var amount = $('#amount').val();
+   		var quantity = ${stsu_quantity};
+   		
+   		if(count < quantity) {
+   			alert("재고수량을 초과했습니다.");
+   			
+   			return false;
+   		}
+   	}); */
+   	
+	/* 재고 조정 신규 등록 AJAX 
+    function logAdjNew() {
+		
+    	$.ajax({
+          // sendRequest(콜백함수명, url, method, params)
+          url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+          type: 'GET', // 전송방식('GET', 'POST') - method
+          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+             $('#adjOptionList').html(data);
+          },
+          error: function(){
+             alert('오류');
+          }
+       });
+    } */
+    $('#selectStock').change(function() {
+    	
+    	var selectStock = $('#selectStock').val();
+    	
+    	if(selectStock == 1) {
+    		$.ajax({
+    	          // sendRequest(콜백함수명, url, method, params)
+    	          url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+    	          type: 'GET', // 전송방식('GET', 'POST') - method
+    	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+    	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+    	             $('#adjOptionList').html(data);
+    	          },
+    	          error: function(){
+    	             alert('오류');
+    	          }
+    	       });
+    	} else if(selectStock == 2) {
+    		
+	    	$.ajax({
+	          // sendRequest(콜백함수명, url, method, params)
+	          url: "logMoveWareInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+	          type: 'GET', // 전송방식('GET', 'POST') - method
+	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+	             $('#adjOptionList').html(data);
+	          },
+	          error: function(){
+	             alert('오류');
+	          }
+	       });
+    	}
+    	
+    });
+	
+    /* 재고 등록 AJAX 
+    function stockAdjustList() {
+    	
+    	var selectStock = $('#selectStock').val();
+    	if(selectStock == 1) {
+    		$.ajax({
+    	          // sendRequest(콜백함수명, url, method, params)
+    	          url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+    	          type: 'GET', // 전송방식('GET', 'POST') - method
+    	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+    	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+    	             $('#adjOptionList').html(data);
+    	          },
+    	          error: function(){
+    	             alert('오류');
+    	          }
+    	       });
+    	} else if(selectStock == 2) {
+    		
+	    	$.ajax({
+	          // sendRequest(콜백함수명, url, method, params)
+	          url: "logMoveWareInsert", // 전송 페이지 => 컨트롤러 "basic_next"
+	          type: 'GET', // 전송방식('GET', 'POST') - method
+	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+	             $('#adjOptionList').html(data);
+	          },
+	          error: function(){
+	             alert('오류');
+	          }
+	       });
+    	}
+    	
+    } */
+    
+    </script>
 </head>
 
 <body>
@@ -39,165 +154,144 @@
 			<table class="table  bg-white text-dark center ass2 table-striped">
 				<thead>
 					<tr class="text-white table-bordered tap">
-						<th class="font-weight-semi-bold border-top-0 py-3 con2">주문번호</th>
+						<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
 						<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
 						<th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
-						<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
-						<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
 						<th class="font-weight-semi-bold border-top-0 py-3 con2">조정 재고</th>
 						<th class="font-weight-semi-bold border-top-0 py-3 con2">조정 후 재고</th>
+						<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+						<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach var="adjlist" items="${adjlist}">
 					<tr>
-						<td class="py-3">47531708</td>
-						<td class="py-3">상품이름01</td>
-						<td class="py-3">양품창고</td>
-						<td class="py-3">최유성</td>
-						<td class="py-3">2021-03-21</td>
-						<td class="py-3">-10</td>
-						<td class="py-3">90</td>
+						<td class="py-3">${adjlist.pro_code}</td>
+						<td class="py-3">${adjlist.product.pro_name}</td>
+						<td class="py-3">${adjlist.stsu_arrivewh}</td>
+						<td class="py-3">${adjlist.stsu_amount}</td>
+						<td class="py-3">${adjlist.stsu_quantity}</td>
+						<td class="py-3">${adjlist.employee.emp_name}</td>
+						<td class="py-3">
+							<fmt:formatDate pattern="yyyy-MM-dd" value="${adjlist.stsu_reg_date}"/>
+						</td>
 					</tr>
-					<tr>
-						<td class="py-3">47531709</td>
-						<td class="py-3">상품이름02</td>
-						<td class="py-3">불량품창고</td>
-						<td class="py-3">최유성</td>
-						<td class="py-3">2021-03-21</td>
-						<td class="py-3">+10</td>
-						<td class="py-3">20</td>
-					</tr>
-					<tr>
-						<td class="py-3">47531710</td>
-						<td class="py-3">상품이름03</td>
-						<td class="py-3">출고대기창고</td>
-						<td class="py-3">최유성</td>
-						<td class="py-3">2021-03-21</td>
-						<td class="py-3">+20</td>
-						<td class="py-3">30</td>
-					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 			<!-- 페이지 넘버 이동 -->
-			<div class="card-footer d-block d-md-flex align-items-center d-print-none">
-				<!-- <div class="d-flex mb-2 mb-md-0">
-					Showing 1 to 8 of 24 Entries
-				</div> -->
-				<nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
-					<ul class="pagination justify-content-end font-weight-semi-bold mb-0">
-						<li class="page-item">
-							<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous">
-								<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i>
-							</a>				
-						</li>
-						<li class="page-item d-none d-md-block">
-							<a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a>
-						</li>
-						<li class="page-item d-none d-md-block">
-							<a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a>
-						</li>
-						<li class="page-item d-none d-md-block">
-							<a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a>
-						</li>
-						<li class="page-item">
-							<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next">
-								<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i>
-							</a>				
-						</li>				
-					</ul>
-				</nav>
-			</div>
-			<!-- 페이지 넘버 이동 끝 -->
+		<div class="card-footer d-block d-md-flex align-items-center d-print-none">
+            <!-- <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div> -->
+            <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
+             <ul class="pagination justify-content-end font-weight-semi-bold mb-0">
+              <c:if test="${cnt > 0}">
+              	<c:if test="${startPage > pageBlock}">
+               <li class="page-item">				
+               	<a id="datatablePaginationPrev" class="page-link" href="ldInventoryControl?pageNum=${startPage - pageBlock}" 
+               			aria-label="Previous" onclick="logInvenAdjustment()">
+               	<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
+               </li>
+              	</c:if>
+              	
+              	<c:forEach var="i" begin="${startPage}" end="${endPage}">
+              		<c:if test="${i == currentPage}">
+		                 <li class="page-item d-none d-md-block">
+		                 	<a id="datatablePaginationPage0" class="page-link active" href="ldInventoryControl?pageNum=${i}" onclick="logInvenAdjustment()">${i}</a>
+		                 </li>
+              		</c:if>
+              		<c:if test="${i != currentPage}">
+		                 <li class="page-item d-none d-md-block">
+		                 	<a id="datatablePaginationPage0" class="page-link" href="ldInventoryControl?pageNum=${i}">${i}</a>
+		                 </li>
+              		</c:if>
+              	</c:forEach>
+               
+              	<c:if test="${pageCnt > endPage}">
+	                <li class="page-item">
+	                	<a id="datatablePaginationNext" class="page-link" href="ldInventoryControl?pageNum=${startPage + pageBlock}" aria-label="Next">
+	                	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
+	                </li>
+              	</c:if>
+             	</c:if>
+             </ul>
+            </nav>
+        </div>
+		<!-- 페이지 넘버 이동 끝 -->
 		</div>
 		
 		<!-- 신규등록 -->
 		<div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
 			<table class="table bg-white text-dark center ass2" style="text-align:center">
-                                 	<tr class="text-white table-bordered tap">
-                                     	<th colspan="3"> 재고 조정 등록 </th>
-                                 	</tr>
-                                 	
-                                 	<tr>
+                    <tr class="text-white table-bordered tap">
+                        <th colspan="3"> 재고 조정 등록 </th>
+                    </tr>
+                    <tr>
+                    	<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
+						colspan="2" style="vertical-align: middle;">유형</td>
+						<td class="font-weight-semi-bold border-top-0 py-2"
+						colspan="2">
+							<select class="custom-select custom-select-lg" id="selectStock" onchange="stockAdjustList()">
+								<option value="1">재고 조정</option>
+								<option value="2">재고 이동</option>
+							</select>
+						</td>
+                    </tr>
+                    <%-- <tr>
 					<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
 						colspan="2" style="vertical-align: middle;">상품명</td>
 					<td class="font-weight-semi-bold border-top-0 py-2"
 						colspan="2">
-						<select class="custom-select custom-select-lg">
-                                             <option>상품01</option>
-                                             <option>상품02</option>
-                                             <option>상품03</option>
-                                        </select>
+						<select class="custom-select custom-select-lg" id="prod" name="prod" onclick="productAutoInput('${pro_code}')">
+							<c:forEach var="selectpro" items="${selprolist}">
+                             	<option value="${selectpro.pro_code}">${selectpro.pro_name}</option>
+							</c:forEach>
+                        </select>
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
 					<td class="py-2" colspan="2">
-						<select class="custom-select custom-select-lg">
-							<option>양품창고</option>
-							<option>불량품창고</option>
-							<option>출고대기창고</option>
+						<select class="custom-select custom-select-lg" id="wareh" name="wareh" onclick="wareAutoInput('${ware_code}')">
+							<c:forEach var="selectware" items="${selectware}">
+								<c:if test="${selectware.ware_type == 1}">
+									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
+								</c:if>
+								<c:if test="${selectware.ware_type == 2}">
+									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
+								</c:if>
+								<c:if test="${selectware.ware_type == 3}">
+									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
+								</c:if>
+							</c:forEach>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td class="py-2 text-dark" colspan="4"style="vertical-align: middle;">
-						<button type="button" class="btn btn-outline-info" style='float: middle;' data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">신규등록</button>
-                         		<br>
-            			<div class="collapse" id="collapseExample">
-                 			<div class="bg-white p-4">
-                  				<table class="table bg-white text-dark center ass2" style="text-align:center">
-                               	<tr class="text-white table-bordered tap">
-                                   	<th colspan="3"> 신규 등록 </th>
-                               	</tr>
-                               	
-                               	<tr>
-									<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-										colspan="2" style="vertical-align: middle;">상품명</td>
-									<td class="font-weight-semi-bold border-top-0 py-2"
-										colspan="2">
-										<input class="form-control form-control-icon-text" type="text" value="상품01" readonly>
-									</td>
-								</tr>
-						
-								<tr>
-									<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
-									<td class="py-2" colspan="2">
-										<input class="form-control form-control-icon-text" type="text" value="양품창고" readonly>
-									</td>
-								</tr>
-								
-								<tr>
-		                           	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>담당자</b></td>
-		                             <td class="py-2" colspan="2">
-		                                    <input class="form-control form-control-icon-text" type="text" value="최유성" readonly>
-		                             </td>
-		                       </tr>
-								<tr>
-									<td class="py-2" colspan="2" style="vertical-align: middle;"><b>창고 재고</b></td>
-									<td class="py-2" colspan="2">
-										<input class="form-control form-control-icon-text" type="text" placeholder="조정 재고">
-									</td>
-								</tr>
-								<tr>
-									<td class="py-2" colspan="2" style="vertical-align: middle; "><b>조정 후 재고</b></td>
-									<td class="py-2" colspan="2">
-										<input class="form-control form-control-icon-text" type="text" value="???(자동입력)" readonly>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					<div align=center>
-                        <button type="button" type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                        <button type="button" type="reset" class="btn btn-outline-info">재입력</button>
-                    </div>	
-          				</div>
-          			</div>
-         		</td>
-         	</tr>
+					<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;">사번</td>
+					<td class="py-2" colspan="2">
+		       			<input class="form-control form-control-icon-text" type="text" name="empid" value="${sessionScope.mem_id}" readonly></td>
+		    		<tr>
+						<td class="py-2" colspan="2" style="vertical-align: middle;"><b>조정 재고</b></td>
+						<td class="py-2" colspan="2">
+							<input class="form-control form-control-icon-text" type="text" id="amount" name="amount" onKeyup="calculation()" placeholder="조정 재고">
+						</td>
+					</tr>
+					<tr>
+						<td class="py-2" colspan="2" style="vertical-align: middle; "><b>조정 후 재고</b></td>
+						<td class="py-2" colspan="2">
+							<input class="form-control form-control-icon-text" type="text" id="quantity" name="quantity" readonly>
+						</td>
+					</tr> --%>
 			</table>
+				<div id="adjOptionList"></div> 
+					<!-- <div align=center>
+                        <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                        <button type="reset" class="btn btn-outline-info">재입력</button>
+                    </div>	 -->
 		</div>
 		<!-- 신규등록 끝 -->
+		
 	</div>
 </div>
 <!-- 재고조정 끝 -->    

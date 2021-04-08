@@ -4,11 +4,13 @@
 
 <%@ include file = "../../setting.jsp" %> 
 <link rel="stylesheet" href="${project}css/graindashboard.css">
-<script type="text/javascript" src="${project}js/logisticsScript.js"></script>
+<script type="text/javascript" src="${project}script/logisticsScript.js"></script>
  
 <body>
 	<div class="row">
 		<table class="table  bg-white text-dark center ass2 table-striped">
+			<tr>
+			</tr>
 			<thead>
 				<tr class="text-white table-bordered tap">
 					<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
@@ -25,13 +27,13 @@
 				<tr>
 					<td class="py-3">${productList.pro_code}</td>
 					<td class="py-3">${productList.pro_name}</td>
-					<td class="py-3">${productList.pro_purchase_unit_price}</td>
-					<td class="py-3">${productList.pro_sale_unit_price}</td>
+					<td class="py-3">${productList.pro_pur_price}</td>
+					<td class="py-3">${productList.pro_sal_price}</td>
 					<c:choose>
-						<c:when test="${productList.pro_use_state == 1}">
+						<c:when test="${productList.pro_state == 1}">
 							<td class="py-3">사용중</td>
 						</c:when>
-						<c:when test="${productList.pro_use_state == 0}">
+						<c:when test="${productList.pro_state == 0}">
 							<td class="py-3">사용중지</td>
 						</c:when>
 					</c:choose>

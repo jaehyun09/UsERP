@@ -9,7 +9,7 @@ public class CommuteVO {
 	private Date cm_date;			// 일자
 	private Date cm_start;			// 출근시간
 	private Date cm_end;			// 퇴근시간
-	private Date cm_night_time;		// 야근시간
+	private int cm_night_time;		// 야근시간
 	private Date cm_over_time;		// 특근시간
 	private String cm_address;		// MAC주소
 	private String emp_code;		// 사원번호
@@ -47,11 +47,11 @@ public class CommuteVO {
 		this.cm_end = cm_end;
 	}
 	
-	public Date getCm_night_time() {
+	public int getCm_night_time() {
 		return cm_night_time;
 	}
 	
-	public void setCm_night_time(Date cm_night_time) {
+	public void setCm_night_time(int cm_night_time) {
 		this.cm_night_time = cm_night_time;
 	}
 	
