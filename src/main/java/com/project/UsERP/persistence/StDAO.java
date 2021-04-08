@@ -20,10 +20,10 @@ public interface StDAO {
 	// 강재현 - 기초등록 - 상품 목록
 	public List<ProductVO> salesProductSelect();
 
-	// 강재현 - 재고현황
+	// 강재현 - 재고 현황
 	public int getStockCnt(String ssKeyword);
 		
-	// 김민수 - 검색 재고 현황 조회(페이징)
+	// 강재현 - 재고 현황 - 검색 재고 현황 조회
 	public List<StockVO> StockStatusList(Map<String, Object> map);
 
 	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
@@ -35,21 +35,21 @@ public interface StDAO {
 	// 이재홍 - 판매 현황 - 판매 전표 등록
 	public int insertSalesStatement(AccountStatementVO vo);
 	
-	// 강재현 - 출고현황 - 출고 내역
+	// 강재현 - 출고 현황 - 출고 내역
 	public List<LogisticsStatementVO> logisticsList();
 	
-	// 강재현 - 판매 현황 - 회계 전표 내역
+	// 강재현 - 출고 현황 - 회계 전표 내역
 	public List<AccountStatementVO> stList();
 
-	// 강재현 - 출고현황 - 출고 전표 등록 - 회계 전표 내역 상세
+	// 강재현 - 출고 현황 - 출고 전표 등록 - 회계 전표 내역 상세
 	public AccountStatementVO insertList(int accs_code);
 	
-	// 강재현 - 대충 설명 => 재고코드와 수량가져오기..
+	// 강재현 - 출고 현황 - 상품에 대한 재고코드가 존재하는지 가지고 온다
 	public StockVO getStock(Map<String, Object> map);
 	
-	// 강재현 - 출고현황 - 출고 전표 등록 
+	// 강재현 - 출고 현황 - 출고 전표 등록 
 	public int insertLogsStatement(LogisticsStatementVO vo);
 
-	// 강재현 - 출고현황 - 출고 전표 등록시 회계전표 상태코드 변화
+	// 강재현 - 출고 현황 - 출고 전표 등록시 회계전표 상태코드 변화
 	public int updatestatement(AccountStatementVO vo1);
 }

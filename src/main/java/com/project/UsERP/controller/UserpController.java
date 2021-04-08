@@ -85,4 +85,12 @@ public class UserpController {
 		return "mypage";
 	}
 	
+	// 강재현 - 알림 
+	@RequestMapping("/alert")
+	public String bankadd(HttpServletRequest req, Model model) {
+		logger.info("url: 알림");
+
+		return "alert";
+	}
+	
 }

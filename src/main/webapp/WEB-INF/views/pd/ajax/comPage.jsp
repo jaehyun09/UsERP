@@ -19,10 +19,9 @@
 			</tr>
 			<tr>
 				<th colspan="1">거래처 유형 </th>
-				<%-- <c:if test="${company.com_type == 200 }">
+				<c:if test="${company.com_type == 200 }">
 				<td colspan="3">구매 거래처</td>
-				</c:if> --%>
-				<td colspan="3">구매 거래처</td>
+				</c:if>
 			</tr>
 			<tr>
 				<th colspan="1">거래처명</th>

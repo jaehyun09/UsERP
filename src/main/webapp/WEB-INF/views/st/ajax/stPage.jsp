@@ -11,8 +11,9 @@
 	<table class="table table-bordered bg-white text-dark ass2 center">
 		<tbody>
 			<tr class="text-white con">
-            <c:if test="${stContent.accs_type == 1 }">
+            <c:if test="${vo.accs_type == 1 || vo.accs_type == 2}">
                 <th colspan="4">판매전표</th>
+                <th colspan="4">채권전표</th>
             </c:if>
             </tr>
 			<tr>

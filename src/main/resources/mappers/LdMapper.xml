@@ -129,19 +129,19 @@
 	<!-- 김민수 - 양품창고 등록 -->
 	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_good_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	VALUES (ware_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 김민수 - 불량품창고 등록 -->
 	<insert id="insertBadWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_bad_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	VALUES (ware_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 김민수 - 출고대기창고 등록 -->
 	<insert id="insertWaitWare" parameterType="com.project.UsERP.vo.WarehouseVO">
 	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_wait_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
+	VALUES (ware_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
 	</insert>
 	
 	<!-- 김민수 - 기초등록 - 창고 목록 -->
@@ -577,7 +577,7 @@
       	  JOIN warehouse w
         	ON w.ware_code = s.ware_code
    		 WHERE s.pro_code = #{pro_code}    
-   		   AND w.ware_code = 62300
+   		   AND w.ware_code = #{ware_code}
 	</select>  
 	
 	<!-- 최유성 - 양품창고에서 출고대기 창고로 재고 이동하는 재고수불부 등록 -->
@@ -595,7 +595,7 @@
 	<!-- 최유성 - 출고 승인 버튼 클릭 - 출고준비완료로 상태 업데이트시 해당상품에 대한 출고대기창고에 재고코드가 존재하지 않으면 해당 재고 등록 -->
 	<insert id="outStockInsert" parameterType="java.util.Map">
 		INSERT INTO stock(sto_code, sto_quantity, sto_reg_date, ware_code, pro_code)
-		VALUES (sto_seq.nextval,#{sto_quantity},sysdate,3001,#{pro_code})
+		VALUES (sto_seq.nextval,#{sto_quantity},sysdate,#{ware_code},#{pro_code})
 	</insert>
 	
 	<!-- 최유성 - 입고 관련 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기 -->
@@ -603,7 +603,7 @@
 		SELECT *
 		  FROM stock
 		 WHERE pro_code=#{pro_code}
-		   AND ware_code = 3001 
+		   AND ware_code = #{ware_code} 
 	</select> 
 	
 	<!-- 최유성 - 출고 승인 버튼 클릭 상태 업데이트 --> <!-- 이제 안쓰인다 -->

@@ -155,6 +155,31 @@ public class WaServiceImpl implements WaService {
 		
 	}
 	
+	// 김은희 - 야근 버튼 클릭
+	@Override
+	public void waNightClick(HttpServletRequest req, Model model) {
+		int updateCnt = 0;
+		int selectCnt = 0;
+		
+		String emp_code = (String)req.getSession().getAttribute("mem_id");
+		int cm_night_time = Integer.parseInt(req.getParameter("cm_night_time"));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("emp_code",emp_code);
+		map.put("cm_night_time",cm_night_time);
+		
+		CommuteVO vo = waDao.waEndSelect(emp_code);
+		
+		if(vo != null) {
+			selectCnt = 1;
+			updateCnt = waDao.waNightClick(map);
+		}
+		
+		model.addAttribute("updateCnt", updateCnt);
+		
+	}
+	
 	// 김은희 - 인사 코드 조회 - 근태유형
 	@Override
 	public void waCodeTyList(HttpServletRequest req, Model model) {
@@ -209,6 +234,7 @@ public class WaServiceImpl implements WaService {
 	}
 	
 	
+
 	
 
 }

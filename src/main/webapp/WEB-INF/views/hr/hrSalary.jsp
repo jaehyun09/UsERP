@@ -279,19 +279,19 @@
 											         </tr>
 											         <tr>
 											            <th colspan="1">야근수당</th>
-											            <td colspan="3">${vo.salary.sal_night}</td>
+											            <td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_night}" /></td>
 											         </tr>
 											         <tr>
 											            <th colspan="1">특근수당</th>
-											            <td colspan="3">${vo.salary.sal_over}</td>
+											            <td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_over}" /></td>
 											         </tr>
 											         <tr>
 											            <th colspan="1">근속수당</th>
-											            <td colspan="3">${vo.salary.sal_cos}</td>
+											            <td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_cos}" /></td>
 											         </tr>
 											         <tr>
 											            <th colspan="1">직책수당</th>
-											            <td colspan="3">${vo.salary.sal_or}</td>
+											            <td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_or}" /></td>
 											         </tr>
 											      </tbody>
 											   </table><br><br><br>
@@ -323,7 +323,7 @@
                                                   aria-expanded="true"
                                                   aria-controls="multiCollapseExample${status.index}">${vo.employee.emp_name}</a>
                                              </td>
-                                             <td class="py-3" style="vertical-align:middle">${vo.ss_total_sal}</td>
+                                             <td class="py-3" style="vertical-align:middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.ss_total_sal}" /></td>
                                              <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_reg_date}"/></td>
                                              <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_sal_date}"/></td>
                                              <td class="py-3" style="vertical-align:middle">

@@ -28,6 +28,9 @@ public interface WaDAO {
 	// 김은희 - 퇴근 처리 가져오기
 	public CommuteVO waEndSelect(String emp_code);
 	
+	// 김은희 - 야근 버튼 클릭
+	public int waNightClick(Map<String, Object> map);
+	
 	// 김은희 - 인사 코드 조회 - 근태유형
 	public List<HrCodeVO> waCodeTyList();
 	

@@ -16,6 +16,18 @@ public class AdDAOImpl implements AdDAO {
 
 	@Autowired
 	SqlSession sqlSession;
+	
+	// 이재홍 - 기초 등록 - 계좌 리스트
+	@Override
+	public List<BankVO> bankList() {
+		return sqlSession.selectList("com.project.UsERP.persistence.AdDAO.bankList");
+	}
+
+	// 강재현 - 기초 등록 - 계정 리스트
+	@Override
+	public List<AccountVO> accountList() {
+		return sqlSession.selectList("com.project.UsERP.persistence.AdDAO.accountList");
+	}
 
 	// 강재현 - 회계보고서 - 재무상태표 상품
 	@Override
@@ -57,18 +69,6 @@ public class AdDAOImpl implements AdDAO {
 	@Override
 	public int sum2() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.sum2");
-	}
-
-	// 이재홍 - 기초 등록 - 계좌 관리 - 계좌 리스트
-	@Override
-	public List<BankVO> bankList() {
-		return sqlSession.selectList("com.project.UsERP.persistence.AdDAO.bankList");
-	}
-
-	// 강재현 - 기초 등록 - 계정 관리 - 계정 리스트
-	@Override
-	public List<AccountVO> accountList() {
-		return sqlSession.selectList("com.project.UsERP.persistence.AdDAO.accountList");
 	}
 
 	// 강재현 - 전표 관리 - 회계 전표

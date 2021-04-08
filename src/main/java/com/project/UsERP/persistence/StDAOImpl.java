@@ -37,13 +37,13 @@ public class StDAOImpl implements StDAO {
 		return sqlSession.selectList("com.project.UsERP.persistence.StDAO.salesProductSelect");
 	}
 
-	// 강재현 - 재고현황
+	// 강재현 - 재고 현황
 	@Override
 	public int getStockCnt(String ssKeyword) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.StDAO.getStockCnt", ssKeyword);
 	}
 		
-	// 김민수 - 검색 재고 현황 조회(페이징)
+	// 강재현 - 재고 현황 - 검색 재고 현황 조회
 	@Override
 	public List<StockVO> StockStatusList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.StDAO.StockStatusList", map);
@@ -54,7 +54,7 @@ public class StDAOImpl implements StDAO {
 		return sqlSession.selectList("com.project.UsERP.persistence.StDAO.salesList");
 	}
 
-	// 이재홍 : 판매 전표 상세 페이지
+	// 이재홍 - 판매 현황 - 판매 전표 상세 페이지
 	@Override
 	public AccountStatementVO stStatementDetail(int num) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.StDAO.stStatementDetail", num);
@@ -78,13 +78,13 @@ public class StDAOImpl implements StDAO {
 		return sqlSession.selectList("com.project.UsERP.persistence.StDAO.stList");
 	}
 
-	// 강재현 - 출고현황 - 출고 전표 등록 - 회계 전표 내역 상세
+	// 강재현 - 출고 현황 - 출고 전표 등록 - 회계 전표 내역 상세
 	@Override
 	public AccountStatementVO insertList(int accs_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.StDAO.insertList", accs_code);
 	}
 
-	// 강재현 - 대충 설명 => 재고코드와 수량가져오기...
+	// 강재현 - 출고 현황 - 상품에 대한 재고코드가 존재하는지 가지고 온다
 	@Override
 	public StockVO getStock(Map<String, Object> map) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.StDAO.getStock", map);

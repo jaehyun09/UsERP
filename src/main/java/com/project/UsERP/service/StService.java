@@ -18,21 +18,21 @@ public interface StService {
 	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
 	public void salesStatus(HttpServletRequest req, Model model);
 
-	// 이재홍 - 판매 전표 상세페이지
+	// 이재홍 - 판매 현황 - 판매 전표 상세페이지
 	public void stContent(HttpServletRequest req, Model model);
 
-	// 이재홍 - 판매 전표 등록
+	// 이재홍 - 판매 현황 - 판매 전표 등록
 	public void insertSalesStatement(HttpServletRequest req, Model model);
 
-	// 강재현 - 출고현황 - 출고 내역
+	// 강재현 - 출고 현황 - 출고 내역
 	public void salesRecStatus(HttpServletRequest req, Model model);
 
 	// 강재현 - 판매 현황 - 회계 전표 내역
 	public void stList(HttpServletRequest req, Model model);
 
-	// 강재현 - 출고현황 - 회계 전표 내역 상세
+	// 강재현 - 출고 현황 - 회계 전표 내역 상세
 	public void selectList(HttpServletRequest req, Model model);
 
-	// 강재현 - 출고현황 - 출고 전표 등록
+	// 강재현 - 출고 현황 - 출고 전표 등록
 	public void insertLogsStatement(HttpServletRequest req, Model model);
 }

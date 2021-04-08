@@ -28,7 +28,7 @@ public class StController {
 	@Autowired
 	PdServiceImpl pdService;
 
-	// 강재현 - 기초 등록 - 판매 거래처 목록 & 상품 목록
+	// 강재현 - 기초 등록 - 판매 거래처 & 상품 목록 
 	@RequestMapping("/stBasicReg")
 	public String stBasicReg(HttpServletRequest req, Model model) {
 		logger.info("url: 강재현 : 판매 거래처 목록 & 상품 목록");
@@ -38,7 +38,7 @@ public class StController {
 		return "st/stBasicReg";
 	}
 
-	// 강재현 - 기초 등록 - 판매 거래처 목록 상세페이지
+	// 강재현 - 기초 등록 - 판매 거래처 상세페이지
 	@RequestMapping("/comContent")
 	public String comContent(HttpServletRequest req, Model model) {
 		logger.info("url: 판매 내역 상세페이지");
@@ -73,10 +73,10 @@ public class StController {
 		return "st/stInvenStatus";
 	}
 		
-	// 김민수 - 재고 현황 검색 조회 AJAX
+	// 강재현 - 재고 현황 검색 조회
 	@RequestMapping("/stInvenStatusList")
 	public String stInvenStatusList(HttpServletRequest req, Model model) {
-		logger.info("url: 재고 현황 검색 조회 AJAX");
+		logger.info("url: 재고 현황 검색 조회");
 			 
 		stService.inventoryStatusList(req, model);
 			
@@ -134,7 +134,7 @@ public class StController {
 		return "st/stRelStatus";
 	}
 
-	// 강재현 - 출고 현황 - 출고 전표 등록 - 승인된 회계 전표 불러오기
+	// 강재현 - 출고 현황 - 회계 전표 내역
 	@RequestMapping("/select")
 	public String select(HttpServletRequest req, Model model) {
 		logger.info("url: 승인된 회계 전표 불러오기");
@@ -144,7 +144,7 @@ public class StController {
 		return "st/ajax/select";
 	}
 
-	// 강재현 _ 출고 현황 - 출고 전표 등록
+	// 강재현 - 출고 현황 - 출고 전표 등록
 	@RequestMapping("/logsstInsert")
 	public String logsstInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 출고 전표 등록");

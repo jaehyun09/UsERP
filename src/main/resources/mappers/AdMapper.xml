@@ -7,36 +7,43 @@
 <mapper namespace="com.project.UsERP.persistence.AdDAO">
 
 	<resultMap id="AccsMap"
-		type="com.project.UsERP.vo.AccountStatementVO">
-		<id property="accs_code" column="accs_code" />
-		<result property="accs_type" column="accs_type" />
-		<result property="accs_content" column="accs_content" />
-		<result property="accs_price" column="accs_price" />
-		<result property="accs_quantity" column="accs_quantity" />
-		<result property="accs_reg_date" column="accs_reg_date" />
-		<result property="accs_rpm_date" column="accs_rpm_date" />
-		<result property="accs_update_date" column="accs_update_date" />
-		<result property="accs_sum" column="accs_sum" />
-		<result property="accs_state" column="accs_state" />
-		<result property="emp_code" column="emp_code" />
-		<result property="pro_code" column="pro_code" />
-		<result property="com_code" column="com_code" />
-		<association property="employee"
-			javaType="com.project.UsERP.vo.EmployeeVO">
-			<id property="emp_code" column="emp_code" />
-			<result property="emp_name" column="emp_name" />
-		</association>
-		<association property="company"
-			javaType="com.project.UsERP.vo.CompanyVO">
-			<id property="com_code" column="com_code" />
-			<result property="com_name" column="com_name" />
-		</association>
-		<association property="product"
-			javaType="com.project.UsERP.vo.ProductVO">
-			<id property="pro_code" column="pro_code" />
-			<result property="pro_name" column="pro_name" />
-		</association>
-	</resultMap>
+      type="com.project.UsERP.vo.AccountStatementVO">
+      <id property="accs_code" column="accs_code" />
+      <result property="accs_type" column="accs_type" />
+      <result property="accs_content" column="accs_content" />
+      <result property="accs_price" column="accs_price" />
+      <result property="accs_quantity" column="accs_quantity" />
+      <result property="accs_reg_date" column="accs_reg_date" />
+      <result property="accs_rpm_date" column="accs_rpm_date" />
+      <result property="accs_update_date" column="accs_update_date" />
+      <result property="accs_sum" column="accs_sum" />
+      <result property="accs_state" column="accs_state" />
+      <result property="emp_code" column="emp_code" />
+      <result property="pro_code" column="pro_code" />
+      <result property="com_code" column="com_code" />
+      <association property="employee"
+         javaType="com.project.UsERP.vo.EmployeeVO">
+         <id property="emp_code" column="emp_code" />
+         <result property="emp_name" column="emp_name" />
+         <result property="dep_code" column="dep_code" />
+      
+      <association property="department"
+         javaType="com.project.UsERP.vo.DepartmentVO">
+         <id property="dep_code" column="dep_code" />
+         <result property="dep_name" column="dep_name" />
+      </association>
+      </association>
+      <association property="company"
+         javaType="com.project.UsERP.vo.CompanyVO">
+         <id property="com_code" column="com_code" />
+         <result property="com_name" column="com_name" />
+      </association>
+      <association property="product"
+         javaType="com.project.UsERP.vo.ProductVO">
+         <id property="pro_code" column="pro_code" />
+         <result property="pro_name" column="pro_name" />
+      </association>
+   </resultMap>
 
 	<resultMap id="SalsMap"
 		type="com.project.UsERP.vo.SalaryStatementVO">
@@ -53,12 +60,15 @@
 			javaType="com.project.UsERP.vo.EmployeeVO">
 			<id property="emp_code" column="emp_code" />
 			<result property="emp_name" column="emp_name" />
-		</association>
+			<result property="dep_code" column="dep_code" />
 		<association property="department"
 			javaType="com.project.UsERP.vo.DepartmentVO">
 			<id property="dep_code" column="dep_code" />
 			<result property="dep_name" column="dep_name" />
 		</association>
+		</association>
+		
+		
 		<association property="hrCode"
 			javaType="com.project.UsERP.vo.HrCodeVO">
 			<id property="hr_code" column="hr_code" />
@@ -148,11 +158,12 @@
 
 	<!-- 강재현 - 전표 관리 - 회계 전표 상세 페이지 -->
 	<select id="getStamentDetail" resultMap="AccsMap">
-		SELECT e.emp_name, a.*, p.pro_name, c.com_name
-			FROM employee e, account_statement a, product p, company c
+		SELECT e.emp_name, a.*, p.pro_name, c.com_name, d.dep_name
+			FROM employee e, account_statement a, product p, company c, department d
 			WHERE a.emp_code = e.emp_code
 			AND a.pro_code = p.pro_code
 			AND a.com_code = c.com_code
+			AND d.dep_code = e.dep_code
 			AND accs_code = #{accs_code}
 			ORDER BY accs_code DESC
 	</select>
@@ -210,5 +221,10 @@
       AND accs_code = #{num}
       ORDER BY accs_code DESC
    </select>
+   
+   <!-- 알림 보내기 -->
+   <insert id=" ">
+   
+   </insert>
 
 </mapper>

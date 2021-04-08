@@ -30,6 +30,15 @@ public interface HrDAO {
 	// 조명재 - 인사 코드 조회 - 직급
 	public List<HrCodeVO> hrCodePosList();
 	
+	// 김은희 - 인사 코드 등록
+	public int hrCodeInsert(HrCodeVO vo);
+	
+	// 김은희 - 인사 코드 중복확인
+	public int hrCodeCheck(int hr_code);
+	
+	// 김은희 - 인사 코드명 중복확인
+	public int hrConfirmHrName(String hr_code_name);
+	
 	// 조명재 - 인사 발령 목록 갯수
 	public int getAppointmentCnt();
 	
@@ -68,5 +77,6 @@ public interface HrDAO {
 	
 	// 조명재 - 급여 내역
 	public List<SalaryStatementVO> hrSalaryList();
+	
 	
 }
