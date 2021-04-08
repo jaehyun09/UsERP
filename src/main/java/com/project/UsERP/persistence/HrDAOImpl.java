@@ -53,6 +53,18 @@ public class HrDAOImpl implements HrDAO {
 		return hrDao.hrCodePosList();
 	}
 	
+	// 김은희 - 인사 코드 등록
+	@Override
+	public int hrCodeInsert(HrCodeVO vo) {
+		return sqlSession.insert("com.project.UsERP.persistence.HrDAO.hrCodeInsert", vo);
+	}
+
+	// 김은희 - 인사 코드 중복확인
+	@Override
+	public int hrCodeCheck(int hr_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.hrCodeCheck", hr_code);
+	}
+	
 	// 조명재 - 인사 발령 목록 갯수
 	@Override
 	public int getAppointmentCnt() {
@@ -97,6 +109,12 @@ public class HrDAOImpl implements HrDAO {
 	public int codeCheck(int emp_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.codeCheck", emp_code);
 	}
+	
+	// 김은희 - 인사 코드명 중복확인
+	@Override
+	public int hrConfirmHrName(String hr_code_name) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.hrConfirmHrName", hr_code_name);
+	}
 
 	// 조명재 - 휴직자 조회
 	@Override
@@ -118,5 +136,6 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrSalaryList();
 	}
+	
 	
 }

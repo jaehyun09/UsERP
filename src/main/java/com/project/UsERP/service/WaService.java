@@ -24,6 +24,9 @@ public interface WaService {
 	// 김은희 - 퇴근 버튼 클릭
 	public void waEndAction(HttpServletRequest req, Model model);
 	
+	// 김은희 - 야근 버튼 클릭
+	public void waNightClick(HttpServletRequest req, Model model);
+	
 	// 김은희 - 인사 코드 조회 - 근태유형
 	public void waCodeTyList(HttpServletRequest req, Model model);
 	
@@ -38,6 +41,7 @@ public interface WaService {
 	
 	// 김은희 - 근태 신청 철회 처리
 	public void waDeleteAction(HttpServletRequest req, Model model); 
+	
 	
 	
 }

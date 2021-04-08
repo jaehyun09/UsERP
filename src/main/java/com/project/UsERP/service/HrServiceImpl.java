@@ -27,6 +27,7 @@ public class HrServiceImpl implements HrService {
 	@Autowired
 	HrDAO hrDao;
 	
+	
 	// 김은희 - 인사 코드 그룹 조회
 	@Override
 	public void hrCodeGroupList(HttpServletRequest req, Model model) {
@@ -59,6 +60,52 @@ public class HrServiceImpl implements HrService {
 		model.addAttribute("list4", list4);
 	}
 	
+	// 김은희 - 인사 코드 등록
+	@Override
+	public void hrCodeInsert(HttpServletRequest req, Model model) {
+		int insertCnt = 0;
+		
+		int hcg_code = Integer.parseInt(req.getParameter("hcg_code"));
+		String hr_code_name = req.getParameter("hr_code_name");
+		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
+		int hr_state = Integer.parseInt(req.getParameter("hr_state"));
+		
+		HrCodeVO vo = new HrCodeVO();
+		vo.setHcg_code(hcg_code);
+		vo.setHr_code(hr_code);
+		vo.setHr_code_name(hr_code_name);
+		vo.setHr_state(hr_state);
+		
+		insertCnt = hrDao.hrCodeInsert(vo);
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
+	
+	// 김은희 - 인사 코드 중복확인
+	@Override
+	public void hrConfirmHrCode(HttpServletRequest req, Model model) {
+		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
+		  
+		int cnt = hrDao.hrCodeCheck(hr_code);
+  
+		model.addAttribute("selectCnt", cnt);
+		model.addAttribute("hr_code", hr_code);
+		
+	}
+	
+	// 김은희 - 인사 코드명 중복확인
+	@Override
+	public void hrConfirmHrName(HttpServletRequest req, Model model) {
+		String hr_code_name = req.getParameter("hr_code_name");
+		  
+		int cnt = hrDao.hrConfirmHrName(hr_code_name);
+  
+		model.addAttribute("selectCnt", cnt);
+		model.addAttribute("hr_code_name", hr_code_name);
+		
+	}
+
 	// 김은희 - 인사카드 조회
 	@Override
 	public void hrCardList(HttpServletRequest req, Model model) {
@@ -154,74 +201,74 @@ public class HrServiceImpl implements HrService {
 	}
 	
 	// 김은희 - 인사카드 등록
-	   @Override
-	   public void hrCardInsert(MultipartHttpServletRequest req, Model model) {
-	      String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images\\";
-	      
-	      MultipartFile image = req.getFile("emp_photo");
-	      String emp_photo = image.getOriginalFilename();
-	      
-	      String emp_code = req.getParameter("emp_code");
-	      String emp_name = req.getParameter("emp_name");
-	      int dep_code = Integer.parseInt(req.getParameter("dep_code"));
-	      int hr_code = Integer.parseInt(req.getParameter("hr_code"));
-	      String emp_hire_date = req.getParameter("emp_hire_date");
-	      long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
-	      String emp_jumin = req.getParameter("emp_jumin");
-	      
-	      String address = "";
-	      String addcode = req.getParameter("addcode");
-	      String add1 = req.getParameter("add1");
-	      String add2 = req.getParameter("add2");
+	@Override
+	public void hrCardInsert(MultipartHttpServletRequest req, Model model) {
+		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images\\";
+		
+		MultipartFile image = req.getFile("emp_photo");
+		String emp_photo = image.getOriginalFilename();
+		
+		String emp_code = req.getParameter("emp_code");
+		String emp_name = req.getParameter("emp_name");
+		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
+		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
+		String emp_hire_date = req.getParameter("emp_hire_date");
+		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
+		String emp_jumin = req.getParameter("emp_jumin");
+		
+		String address = "";
+		String addcode = req.getParameter("addcode");
+		String add1 = req.getParameter("add1");
+		String add2 = req.getParameter("add2");
 
-	      address = addcode + "-" + add1 + "-" + add2;
-	      String emp_tel = req.getParameter("emp_tel");
-	      String emp_phone = req.getParameter("emp_phone");
-	      String emp_email = req.getParameter("emp_email");
-	      String emp_port_no = req.getParameter("emp_port_no");
-	      String emp_account = req.getParameter("emp_account");
-	      String emp_bank = req.getParameter("emp_bank");
-	      String emp_authority = req.getParameter("emp_authority");
-	      
-	      try {
-	         // null값과 공백 방지
-	         if(image.getOriginalFilename() == null || image.getOriginalFilename().trim().equals("")) {
-	            emp_photo = "avatar.jpg";
-	         }
-	      
-	         image.transferTo(new File(uploadPath + image));
-	         
-	         EmployeeVO vo = new EmployeeVO();
-	         
-	         vo.setHr_code(hr_code);
-	         vo.setEmp_code(emp_code);
-	         vo.setEmp_name(emp_name);   
-	         vo.setEmp_cos(emp_cos);
-	         vo.setEmp_photo(emp_photo);
-	         vo.setEmp_jumin(emp_jumin);
-	         vo.setEmp_address(address);
-	         vo.setEmp_tel(emp_tel);
-	         vo.setEmp_phone(emp_phone);
-	         vo.setEmp_email(emp_email);
-	         vo.setEmp_port_no(emp_port_no);
-	         vo.setEmp_bank(emp_bank);
-	         vo.setEmp_account(emp_account);
-	         vo.setDep_code(dep_code);
-	         vo.setEmp_authority(emp_authority);
-	         
-	         Map<String, Object> map = new HashMap<String, Object>();
-	         
-	         map.put("vo",vo);
-	         map.put("emp_hire_date",emp_hire_date);
-	         
-	         int insertCnt = hrDao.hrCardInsert(map);
-	         
-	         model.addAttribute("insertCnt", insertCnt);
-	            
-	      } catch(Exception e) {
-	         e.printStackTrace();
-	      }
-	   }
+		address = addcode + "-" + add1 + "-" + add2;
+		String emp_tel = req.getParameter("emp_tel");
+		String emp_phone = req.getParameter("emp_phone");
+		String emp_email = req.getParameter("emp_email");
+		String emp_port_no = req.getParameter("emp_port_no");
+		String emp_account = req.getParameter("emp_account");
+		String emp_bank = req.getParameter("emp_bank");
+		String emp_authority = req.getParameter("emp_authority");
+		
+		try {
+			// null값과 공백 방지
+			if(image.getOriginalFilename() == null || image.getOriginalFilename().trim().equals("")) {
+				emp_photo = "avatar.jpg";
+			}
+		
+			image.transferTo(new File(uploadPath + image));
+			
+			EmployeeVO vo = new EmployeeVO();
+			
+			vo.setHr_code(hr_code);
+			vo.setEmp_code(emp_code);
+			vo.setEmp_name(emp_name);	
+			vo.setEmp_cos(emp_cos);
+			vo.setEmp_photo(emp_photo);
+			vo.setEmp_jumin(emp_jumin);
+			vo.setEmp_address(address);
+			vo.setEmp_tel(emp_tel);
+			vo.setEmp_phone(emp_phone);
+			vo.setEmp_email(emp_email);
+			vo.setEmp_port_no(emp_port_no);
+			vo.setEmp_bank(emp_bank);
+			vo.setEmp_account(emp_account);
+			vo.setDep_code(dep_code);
+			vo.setEmp_authority(emp_authority);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("vo",vo);
+			map.put("emp_hire_date",emp_hire_date);
+			
+			int insertCnt = hrDao.hrCardInsert(map);
+			
+			model.addAttribute("insertCnt", insertCnt);
+				
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	// 김은희 - 인사 카드 사번 중복확인
 	@Override
@@ -268,5 +315,6 @@ public class HrServiceImpl implements HrService {
 		
 		model.addAttribute("list9", list9);
 	}
+	
 
 }

@@ -6,10 +6,10 @@ import org.springframework.ui.Model;
 
 public interface AdService {
 
-	// 이재홍 - 기초 등록 - 계좌 관리 - 계좌 리스트
+	// 이재홍 - 기초 등록 - 계좌 리스트
 	public void bankList(HttpServletRequest req, Model model);
 
-	// 강재현 - 기초 등록 - 계정 관리 - 계정 리스트
+	// 강재현 - 기초 등록 - 계정 리스트
 	public void accountList(HttpServletRequest req, Model model);
 
 	// 강재현 - 회계보고서 - 재무상태표

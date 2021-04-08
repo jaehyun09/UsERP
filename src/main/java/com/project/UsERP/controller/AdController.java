@@ -28,7 +28,7 @@ public class AdController {
 		return "ad/adBasicReg";
 	}
 
-	// 이재홍 - 기초 등록 - 계좌 관리 - 계좌 리스트
+	// 이재홍 - 기초 등록 - 계좌 리스트
 	@RequestMapping("/banklist")
 	public String banklist(HttpServletRequest req, Model model) {
 		logger.info("url: 계정 관리 - 계정 리스트");
@@ -38,33 +38,33 @@ public class AdController {
 		return "ad/ajax/banklist";
 	}
 
-	// 이재홍 - 기초 등록 - 계좌 관리 - 리액트 계좌 등록
+	// 이재홍 - 기초 등록 - 리액트 계좌 등록
 	@RequestMapping("/bankadd")
 	public String bankadd(HttpServletRequest req, Model model) {
-		logger.info("url: 리액트 계좌 등록");
+		logger.info("url: 계좌 관리 - 리액트 계좌 등록");
 
 		return "ad/ajax/bank";
 	}
 
-	// 강재현 - 기초 등록 - 계정 관리 - 계정 리스트
+	// 강재현 - 기초 등록 - 계정 리스트
 	@RequestMapping("/accountlist")
 	public String accountlist(HttpServletRequest req, Model model) {
-		logger.info("url: 계정 리스트");
+		logger.info("url: 계정 관리 - 계정 리스트");
 
 		adservice.accountList(req, model);
 
 		return "ad/ajax/accountList";
 	}
 
-	// 강재현 - 기초 등록 - 계정 관리 - 리액트 계정 등록
+	// 강재현 - 기초 등록 - 리액트 계정 등록
 	@RequestMapping("/accountadd")
 	public String accountadd(HttpServletRequest req, Model model) {
-		logger.info("url: 리액트 계정 등록");
+		logger.info("url: 계정 관리 - 리액트 계정 등록");
 
 		return "ad/ajax/account";
 	}
 
-	// 강재현 & 이재홍 - 회계보고서 
+	// 강재현 & 이재홍 - 회계 보고서 
 	@RequestMapping("/adReport")
 	public String adReport(HttpServletRequest req, Model model) {
 		logger.info("url: 회계 보고서");
@@ -95,40 +95,20 @@ public class AdController {
 		return "ad/adStatementManagement";
 	}
 
-	// 강재현 - 전표 관리 - 회계 전표 승인+미승인 상세페이지
+	// 강재현 - 전표 관리 - 회계 전표 승인 + 미승인 상세페이지
 	@RequestMapping("/content")
 	public String content(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 전표 승인+미승인 상세페이지");
+		logger.info("url: 전표 관리 - 회계 전표 승인 + 미승인 상세페이지");
 
 		adservice.content(req, model);
 
 		return "ad/ajax/page";
 	}
 	
-	// 강재현 - 전표 관리 - 급여 전표 승인+미승인 상세페이지
-	@RequestMapping("/content1")
-	public String content1(HttpServletRequest req, Model model) {
-		logger.info("url: 급여 전표 승인+미승인 상세페이지");
-
-		adservice.sacontent(req, model);
-
-		return "ad/ajax/page2";
-	}
-
-//	// 전표
-//	@RequestMapping("/approvaladd")
-//	public String approval(HttpServletRequest req, Model model) {
-//		logger.info("url: 계정 관리 - 계정 리스트");
-//
-//		adservice.statementList(req, model);
-//
-//		return "ad/ajax/approval";
-//	}
-
 	// 강재현 - 전표 관리 - 회계 전표 승인
 	@RequestMapping("/appr")
 	public String appr(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 전표 승인");
+		logger.info("url: 전표 관리 - 회계 전표 승인");
 
 		adservice.acstatmentAction(req, model);
 
@@ -138,17 +118,27 @@ public class AdController {
 	// 강재현 - 전표 관리 - 회계 전표 승인 거부
 	@RequestMapping("/reappr")
 	public String reappr(HttpServletRequest req, Model model) {
-		logger.info("url: 회계 전표 승인거부");
+		logger.info("url: 전표 관리 - 회계 전표 승인 거부");
 
 		adservice.acstatmentdelAction(req, model);
 
 		return "ad/adPro/apprAction";
 	}
+	
+	// 강재현 - 전표 관리 - 급여 전표 승인 + 미승인 상세페이지
+	@RequestMapping("/content1")
+	public String content1(HttpServletRequest req, Model model) {
+		logger.info("url: 전표 관리 - 급여 전표 승인 + 미승인 상세페이지");
+
+		adservice.sacontent(req, model);
+
+		return "ad/ajax/page2";
+	}
 
 	// 강재현 - 전표 관리 - 급여 전표 승인
 	@RequestMapping("/saappr")
 	public String saappr(HttpServletRequest req, Model model) {
-		logger.info("url: 급여 전표 승인");
+		logger.info("url: 전표 관리 - 급여 전표 승인");
 
 		adservice.sastatmentAction(req, model);
 
@@ -158,7 +148,7 @@ public class AdController {
 	// 강재현 - 전표 관리 - 급여 전표 승인 거부
 	@RequestMapping("/sareappr")
 	public String sareappr(HttpServletRequest req, Model model) {
-		logger.info("url: 급여 전표 승인거부");
+		logger.info("url: 전표 관리 - 급여 전표 승인 거부");
 
 		adservice.sastatmentdelAction(req, model);
 
@@ -168,7 +158,7 @@ public class AdController {
 	// 이재홍 - 전표 관리 - 채권 상세페이지
 	@RequestMapping("/bondContent")
 	public String content5(HttpServletRequest req, Model model) {
-		logger.info("url: 채권 상세페이지");
+		logger.info("url: 전표 관리 - 채권 상세페이지");
 
 		// 상세페이지
 		adservice.bdContent(req, model);
@@ -179,7 +169,7 @@ public class AdController {
 	// 이재홍 - 전표 관리 - 채무 상세페이지
 	@RequestMapping("/debtContent")
 	public String content6(HttpServletRequest req, Model model) {
-		logger.info("url: 이재홍 - 채무 상세페이지");
+		logger.info("url: 전표 관리 - 채무 상세페이지");
 
 		// 상세페이지
 		adservice.bdContent(req, model);

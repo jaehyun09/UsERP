@@ -59,6 +59,12 @@ public class WaDAOImpl implements WaDAO {
 		return sqlSession.selectOne("com.project.UsERP.persistence.WaDAO.waEndSelect", emp_code);
 	}
 	
+	// 김은희 - 퇴근 처리 업데이트
+	@Override
+	public int waNightClick(Map<String, Object> map) {
+		return sqlSession.update("com.project.UsERP.persistence.WaDAO.waNightClick", map);
+	}
+	
 	// 김은희 - 인사 코드 조회 - 근태유형
 	public List<HrCodeVO> waCodeTyList() {
 		return sqlSession.selectList("com.project.UsERP.persistence.WaDAO.waCodeTyList");
@@ -87,6 +93,7 @@ public class WaDAOImpl implements WaDAO {
 	public int waDeleteAction(int emp_code) {
 		return sqlSession.delete("com.project.UsERP.persistence.WaDAO.waDeleteAction", emp_code);
 	}
+	
 	
 	
 	

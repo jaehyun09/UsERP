@@ -8,6 +8,12 @@ import com.project.UsERP.vo.BankVO;
 import com.project.UsERP.vo.SalaryStatementVO;
 
 public interface AdDAO {
+	
+	// 이재홍 - 기초 등록 - 계좌 리스트
+	public List<BankVO> bankList();
+
+	// 강재현 - 기초 등록 - 계정 리스트
+	public List<AccountVO> accountList();
 
 	// 강재현 - 회계보고서 - 재무상태표 상품
 	public int get1();
@@ -24,12 +30,6 @@ public interface AdDAO {
 	public int sum1();
 	// 이재홍 - 회계보고서 - 손익계산서 판매비와 관리비 
 	public int sum2();
-
-	// 이재홍 - 기초 등록 - 계좌 관리 - 계좌 리스트
-	public List<BankVO> bankList();
-
-	// 강재현 - 기초 등록 - 계정 관리 - 계정 리스트
-	public List<AccountVO> accountList();
 
 	// 강재현 - 전표 관리 - 회계 전표
 	public List<AccountStatementVO> statementList();

@@ -23,7 +23,6 @@ public class WaController {
  
 	@Autowired
 	HrService hrService;
-
 	// 김은희 - 근태 조회
 	@RequestMapping("/waSelect")
 	public String waSelect(HttpServletRequest req, Model model) {
@@ -94,6 +93,16 @@ public class WaController {
 		return "redirect:/waSelect";
 	}
 	
+	// 김은희 - 야근 버튼 클릭
+	@RequestMapping("/waNightClick")
+	public String waNightClick(HttpServletRequest req, Model model) {
+		logger.info("url: 야근 버튼 클릭");
+		
+		waService.waNightClick(req, model);
+		
+		return "wa/waPro/waNightActionPro";
+	}
+	
 	// 김은희 - 근태 신청 승인 페이지
     @RequestMapping("/waConfirm")
     public String waConfirm(HttpServletRequest req, Model model) {
@@ -134,7 +143,7 @@ public class WaController {
        
        return "wa/waPro/waDeleteActionPro";
     }
-    
+
     
 	
 }

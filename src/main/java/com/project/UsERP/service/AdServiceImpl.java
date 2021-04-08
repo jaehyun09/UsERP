@@ -21,7 +21,7 @@ public class AdServiceImpl implements AdService {
 	@Autowired
 	AdDAO addao;
 
-	// 이재홍 - 기초 등록 - 계좌 관리 - 계좌 리스트
+	// 이재홍 - 기초 등록 - 계좌 리스트
 	@Override
 	public void bankList(HttpServletRequest req, Model model) {
 		List<BankVO> list = addao.bankList();
@@ -29,7 +29,7 @@ public class AdServiceImpl implements AdService {
 		model.addAttribute("bank", list);
 	}
 
-	// 강재현 - 기초 등록 - 계정 관리 - 계정 리스트
+	// 강재현 - 기초 등록 - 계정 리스트
 	@Override
 	public void accountList(HttpServletRequest req, Model model) {
 
@@ -85,13 +85,14 @@ public class AdServiceImpl implements AdService {
 	// 강재현 - 전표 관리 - 회계 전표 (승인)
 	@Override
 	public void acstatmentAction(HttpServletRequest req, Model model) {
-
+		int dep_name = Integer.parseInt(req.getParameter("dep_name"));
 		int accs_code = Integer.parseInt(req.getParameter("accs_code"));
 		System.out.println("accs_code : " + accs_code);
 		AccountStatementVO vo = new AccountStatementVO();
 		vo.setAccs_state(1);
 		vo.setAccs_update_date(new Timestamp(System.currentTimeMillis()));
 		vo.setAccs_code(accs_code);
+
 		int updateCnt = addao.acupdatestatment(vo);
 
 		model.addAttribute("num", accs_code);

@@ -66,6 +66,7 @@ function hrRegDetail(code) {
       }
    });
 }
+
 </script>
 
     <meta charset="utf-8">
@@ -414,9 +415,55 @@ function hrRegDetail(code) {
                                   
                                   <!-- 탭4 -->
                                     <div class="tab-pane fade" id="tabs2-tab4" role="tabpanel">
-                                       <div id="code"></div>
-                                  </div>
-                                  <!-- 탭4 -->
+                                       <form action="hrCodeInsert?${_csrf.parameterName}=${_csrf.token}" name="hrCodeform" onsubmit="return CodeCheck();">
+						                    <input type="hidden" name="hiddenHr_code" value="0">
+						                    <input type="hidden" name="hiddenHr_name" value="0">
+							                     <table class="table bg-white text-dark center ass2" style="text-align:center">
+							                        <tr>
+							                           <th class="text-white table-bordered tap py-3 con2" colspan="3"> 인사코드 등록 </th>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">인사코드 그룹</th>
+							                           <td><div class="form-group">
+							                                <select name="hcg_code" class="form-control" id="exampleFormControlSelect1">
+							                                	<option value="0">인사코드 그룹 선택</option>
+							                                <c:forEach var="vo" items="${list}">
+							                                   <option value="${vo.hcg_code}">${vo.hcg_name}</option>
+							                                </c:forEach>
+							                                </select>
+							                              </div>
+							                           </td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">인사코드</th>
+							                           <td> <input type="text" class="form-control" name="hr_code" placeholder="숫자만 입력하시오." onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'></td>
+							                           <td><input class="btn btn-outline-info" name="codeChk" type="button" value="중복확인" onclick="confirmHrCode();" ></td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">인사코드명</th>
+							                           <td><input type="text" class="form-control" name="hr_code_name"></td>
+							                           <td><input class="btn btn-outline-info" name="nameChk" type="button" value="중복확인" onclick="confirmHrName();"></td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">사용상태</th>
+							                           <td><div class="form-group">
+							                                <select name="hr_state" class="form-control" id="exampleFormControlSelect1">
+							                                	<option value="1">사용</option>
+							                                    <option value="0">미사용</option>
+							                                </select>
+							                              </div>
+							                           </td>
+							                        </tr>
+							                     </table>
+						                  
+						                     <div align=center>
+						                           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+						                           <button type="reset" class="btn btn-outline-info">재입력</button>
+						                     </div>
+						                  
+						                  </form>
+	                                  </div>
+	                                  <!-- 탭4 -->
                                   
                                                 </div>
                                             </div>

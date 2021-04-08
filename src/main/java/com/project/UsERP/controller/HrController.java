@@ -21,6 +21,7 @@ public class HrController {
 	@Autowired
 	HrService hrService;
 	
+
 	// 기초 등록
 	@RequestMapping("/hrBasicReg")
 	public String hrBasicReg(HttpServletRequest req, Model model) {
@@ -39,6 +40,36 @@ public class HrController {
 		hrService.hrRegDetail(req, model);
 		
 		return "hr/ajax/hrRegDetail";
+	}
+	
+	// 김은희 - 인사 코드 등록
+	@RequestMapping("/hrCodeInsert")
+	public String hrCodeInsert(HttpServletRequest req, Model model) {
+		logger.info("url: 인사 코드 등록");
+		
+		hrService.hrCodeInsert(req, model);
+  
+		return "hr/hrPro/hrCodePro";
+	}
+	
+	// 김은희 - 인사 코드 중복확인
+	@RequestMapping("/hrConfirmHrCode")
+	public String hrConfirmHrCode(HttpServletRequest req, Model model) {
+		logger.info("url: 인사 코드 중복확인");
+		
+		hrService.hrConfirmHrCode(req, model);
+		
+		return "hr/hrConfirmHrCode";
+	}
+	
+	// 김은희 - 인사 코드명 중복확인
+	@RequestMapping("/hrConfirmHrName")
+	public String hrConfirmHrName(HttpServletRequest req, Model model) {
+		logger.info("url: 인사 코드명 중복확인");
+		
+		hrService.hrConfirmHrName(req, model);
+		
+		return "hr/hrConfirmHrName";
 	}
 	
 	// 김은희 - 기초 등록 - 리액트 인사코드 그룹 등록

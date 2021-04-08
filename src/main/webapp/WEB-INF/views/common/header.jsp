@@ -4,6 +4,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+function alert() {
+   $.ajax({
+   
+      // sendRequest(콜백함수명, url, method, params)
+      url: "alert", // 전송 페이지 => 컨트롤러 "basic_next"
+      type: 'GET', // 전송방식('GET', 'POST') - method
+      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+         $('#alertlist').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+</script>
 <meta charset="UTF-8">
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
@@ -43,46 +60,16 @@
                 <!-- User Notifications -->
                 <div class="dropdown ml-auto">
                   <c:if test="${sessionScope.mem_id != null}">
-                    <a id="notificationsInvoker" class="header-invoker" href="#" aria-controls="notifications" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#notifications" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
+                    <a id="notificationsInvoker" class="header-invoker" href="#" aria-controls="notifications" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#notifications" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut" onclick="alert()">
                         <span class="indicator indicator-bordered indicator-top-right indicator-primary rounded-circle"></span>
                         <i class="gd-bell"></i>
                     </a>
-                    <div id="notifications" class="dropdown-menu dropdown-menu-center py-0 mt-4 w-18_75rem w-md-22_5rem unfold-css-animation unfold-hidden" aria-labelledby="notificationsInvoker" style="animation-duration: 300ms;">
-                        <div class="card">
-                            <div class="card-header d-flex align-items-center border-bottom py-3">
-                                <h5 class="mb-0">Notifications</h5>
-                                <a class="link small ml-auto" href="#">Clear All</a>
-                            </div>
-
-                            <div class="card-body p-0">
-                                <div class="list-group list-group-flush">
-                                    <div class="list-group-item list-group-item-action">
-                                        <div class="d-flex align-items-center text-nowrap mb-2">
-                                            <i class="gd-info-alt icon-text text-primary mr-2"></i>
-                                            <h6 class="font-weight-semi-bold mb-0">New Update</h6>
-                                            <span class="list-group-item-date text-muted ml-auto">just now</span>
-                                        </div>
-                                        <p class="mb-0">
-                                            Order <strong>#10000</strong> has been updated.
-                                        </p>
-                                        <a class="list-group-item-closer text-muted" href="#"><i class="gd-close"></i></a>
-                                    </div>
-                                    <div class="list-group-item list-group-item-action">
-                                        <div class="d-flex align-items-center text-nowrap mb-2">
-                                            <i class="gd-info-alt icon-text text-primary mr-2"></i>
-                                            <h6 class="font-weight-semi-bold mb-0">New Update</h6>
-                                            <span class="list-group-item-date text-muted ml-auto">just now</span>
-                                        </div>
-                                        <p class="mb-0">
-                                            Order <strong>#10001</strong> has been updated.
-                                        </p>
-                                        <a class="list-group-item-closer text-muted" href="#"><i class="gd-close"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="notifications" class="dropdown-menu dropdown-menu-center py-0 mt-4 w-18_75rem w-md-22_5rem unfold-css-animation unfold-hidden"
+							aria-labelledby="notificationsInvoker" style="animation-duration: 300ms;">
+                    <div id="alertlist"></div>
                     </div>
-                  </c:if>
+                  </c:if>  
+                  
                 </div>
                 <!-- End User Notifications -->
                 <!-- User Avatar -->

@@ -103,6 +103,12 @@
          WHERE emp_code = #{emp_code}
  	</update>
  	
+ 	<!-- 김은희 - 야근 버튼 클릭 -->
+ 	<update id="waNightClick" parameterType="java.util.Map" >
+ 		UPDATE commute SET cm_night_time=1, cm_end=#{cm_end, jdbcType=VARCHAR}
+         WHERE emp_code = #{emp_code}
+ 	</update>
+ 	
  	<!-- 김은희 - 인사 코드 조회 - 근태유형 -->
 	<select id="waCodeTyList" resultType="com.project.UsERP.vo.HrCodeVO">
 		SELECT * FROM hr_code WHERE hcg_code = 3 ORDER BY hr_code

@@ -15,6 +15,15 @@ public interface HrService {
 	
 	// 조명재 - 인사 코드 조회 - 직급
 	public void hrCodePosList(HttpServletRequest req, Model model);
+	
+	// 김은희 - 인사 코드 등록
+	public void hrCodeInsert(HttpServletRequest req, Model model);
+		
+	// 김은희 - 인사 코드 중복확인
+	public void hrConfirmHrCode(HttpServletRequest req, Model model);
+	
+	// 김은희 - 인사 코드명 중복확인
+	public void hrConfirmHrName(HttpServletRequest req, Model model);
 
 	// 조명재 - 부서 조회
 	public void depList(HttpServletRequest req, Model model);
