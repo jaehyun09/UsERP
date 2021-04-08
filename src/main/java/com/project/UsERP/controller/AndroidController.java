@@ -40,8 +40,6 @@ public class AndroidController {
 		// 로그인 처리
 		EmployeeVO vo = dao.getEmpInfo(emp_code);
 		
-		System.out.println("pwd : " + pwd);
-		
 		boolean check = false;
 		if(passwordEncoder.matches(pwd, vo.getEmp_pwd())) check = true;
 		
