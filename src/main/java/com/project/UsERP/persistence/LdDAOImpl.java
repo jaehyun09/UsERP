@@ -137,6 +137,13 @@ public class LdDAOImpl implements LdDAO{
 		return sqlSession.selectOne("com.project.UsERP.persistence.LdDAO.getLdDetail", logs_code);
 	}
 	
+	// 최유성 - 부족수량 존재시 물류전표 업데이트
+    @Override
+    public int shortageLogsupdate(Map<String, Object> map) {
+      
+       return sqlSession.update("com.project.UsERP.persistence.LdDAO.shortageLogsupdate",map);
+    }
+	
 	// 김민수 - 양품창고 등록
 	@Override
 	public int insertGoodWare(WarehouseVO vo) {
@@ -351,5 +358,6 @@ public class LdDAOImpl implements LdDAO{
 	public List<StockSupplyVO> shiRecList() {
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.shiRecList");
 	}
-	
+
+		
 }

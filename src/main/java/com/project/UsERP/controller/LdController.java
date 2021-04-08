@@ -201,14 +201,6 @@ public class LdController {
 		return "ld/ajax/logMoveWareInsert";
 	}
 	
-	// 김민수 - 입출고 내역페이지 AJAX
-	@RequestMapping("/logStockOutInList")
-	public String logStockOutInList(HttpServletRequest req, Model model) {
-		logger.info("url: 입출고 내역페이지");
-		
-		return "ld/ajax/logStockOutInList";
-	}
-	
 	// 김민수 - 입출고 상세페이지 AJAX
 	@RequestMapping("/logMovehouseDetail")
 	public String logMovehouseDetail(HttpServletRequest req, Model model) {

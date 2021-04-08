@@ -545,4 +545,11 @@
 		 WHERE logs_code = #{logs_code}
 	</select> 
 	
+	<!-- 최유성 전표 물류전표 부족수량 업데이트  -->
+    <update id="shortageLogsupdate" parameterType="java.util.Map">
+       UPDATE logistics_statement
+       SET logs_state = #{logs_state}
+       WHERE logs_code = #{logs_code}
+    </update> 
+	
 </mapper>

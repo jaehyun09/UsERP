@@ -64,6 +64,9 @@ public interface LdDAO {
 	// 최유성 - 출고대기창고 관련 해당 상품에 관한 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기
 	public StockVO outStockCodeSelect(Map<String, Object> map);
 
+	// 최유성 - 부족수량 존재시 물류전표 업데이트 
+	public int shortageLogsupdate(Map<String, Object> map);
+	
 	// 김민수 - 양품창고 등록
 	public int insertGoodWare(WarehouseVO vo);
 	

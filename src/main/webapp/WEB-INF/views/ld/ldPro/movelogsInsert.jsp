@@ -17,22 +17,13 @@
 			</script>
 		</c:if>
 			
-		<c:if test="${stockBadInsert == 0 || stoBadMinusUpdate == 0 || stsuBadMoveInsert == 0}">
+		<%-- <c:if test="${stockBadInsert == 0 || stoBadMinusUpdate == 0 || stsuBadMoveInsert == 0}">
 			<script type="text/javascript">
 				errorAlert(stockMoveFailError);
 			</script>
-		</c:if>
+		</c:if> --%>
 		
 		<c:if test="${stoMinusUpdate != 0 && stoPlusUpdate != 0 && stsuMoveInsert != 0}">
-			<script type="text/javascript">
-				setTimeout(function() {
-					alert("재고가 이동이 되었습니다.");
-					window.location="ldInventoryControl";
-				}, 1000);
-			</script>
-		</c:if>
-		
-		<c:if test="${stoMinusUpdate != 0 && stoPlusUpdate != 0 && stsuMoveInsert != 0 && logsShortUpdate != 0}">
 			<script type="text/javascript">
 				setTimeout(function() {
 					alert("재고가 이동이 되었습니다.");
@@ -47,14 +38,14 @@
 			</script>
 		</c:if> --%>
 		
-		<c:if test="${stoMinusUpdate != 0 && stoPlusUpdate != 0 && stsuMoveInsert != 0 && logsShortUpdate != 0 && logsStateUpdate != 0}">
+		<%-- <c:if test="${stoMinusUpdate != 0 && stoPlusUpdate != 0 && stsuMoveInsert != 0 && logsShortUpdate != 0 && logsStateUpdate != 0}">
 			<script type="text/javascript">
 				setTimeout(function() {
 					alert("재고가 이동이 되었습니다.");
 					window.location="ldInventoryControl";
 				}, 1000);
 			</script>
-		</c:if>
+		</c:if> --%>
 		
 		<%-- <c:if test="${stoMinusUpdate == 0 || stoPlusUpdate == 0 || stsuMoveInsert == 0}">
 			<script type="text/javascript">
