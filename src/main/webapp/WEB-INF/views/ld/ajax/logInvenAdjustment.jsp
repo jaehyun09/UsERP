@@ -18,20 +18,6 @@
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     <script src="${project}js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
-    
-   /* 	$(function() {
-   		$("#prod").click(function(){
-   			var procode = $("#prod option:checked").text();
-   			$("#prod_auto").val(procode);
-   		});
-   	}); 
-   	
-	$(function() {
-   		$("#wareh").click(function(){
-   			var warecode = $("#wareh option:checked").text();
-   			$("#wareh_auto").val(warecode);
-   		});
-   	}); */
    	
    	/* $('#amount').change(function() {
    		var amount = $('#amount').val();
@@ -44,22 +30,7 @@
    		}
    	}); */
    	
-	/* 재고 조정 신규 등록 AJAX 
-    function logAdjNew() {
-		
-    	$.ajax({
-          // sendRequest(콜백함수명, url, method, params)
-          url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
-          type: 'GET', // 전송방식('GET', 'POST') - method
-          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-             $('#adjOptionList').html(data);
-          },
-          error: function(){
-             alert('오류');
-          }
-       });
-    } */
+   	/* 재고 조정/이동 등록 AJAX */
     $('#selectStock').change(function() {
     	
     	var selectStock = $('#selectStock').val();
@@ -95,48 +66,12 @@
     	
     });
 	
-    /* 재고 등록 AJAX 
-    function stockAdjustList() {
-    	
-    	var selectStock = $('#selectStock').val();
-    	if(selectStock == 1) {
-    		$.ajax({
-    	          // sendRequest(콜백함수명, url, method, params)
-    	          url: "logAdjNewInsert", // 전송 페이지 => 컨트롤러 "basic_next"
-    	          type: 'GET', // 전송방식('GET', 'POST') - method
-    	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-    	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-    	             $('#adjOptionList').html(data);
-    	          },
-    	          error: function(){
-    	             alert('오류');
-    	          }
-    	       });
-    	} else if(selectStock == 2) {
-    		
-	    	$.ajax({
-	          // sendRequest(콜백함수명, url, method, params)
-	          url: "logMoveWareInsert", // 전송 페이지 => 컨트롤러 "basic_next"
-	          type: 'GET', // 전송방식('GET', 'POST') - method
-	          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-	          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-	             $('#adjOptionList').html(data);
-	          },
-	          error: function(){
-	             alert('오류');
-	          }
-	       });
-    	}
-    	
-    } */
     
     </script>
 </head>
 
 <body>
 <main>
-
-
 	<div class="px-3">
         <ul id="tabs2" class="nav nav-tabs nav-v2 nav-primary mb-3"
            role="tablist">
@@ -163,21 +98,19 @@
 						<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
 					</tr>
 				</thead>
-				<tbody>
 				<c:forEach var="adjlist" items="${adjlist}">
 					<tr>
-						<td class="py-3">${adjlist.pro_code}</td>
-						<td class="py-3">${adjlist.product.pro_name}</td>
-						<td class="py-3">${adjlist.stsu_arrivewh}</td>
-						<td class="py-3">${adjlist.stsu_amount}</td>
-						<td class="py-3">${adjlist.stsu_quantity}</td>
-						<td class="py-3">${adjlist.employee.emp_name}</td>
-						<td class="py-3">
+						<td class="py-3" style="vertical-align: middle;">${adjlist.pro_code}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.product.pro_name}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.stsu_arrivewh}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.stsu_amount}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.stsu_quantity}</td>
+						<td class="py-3" style="vertical-align: middle;">${adjlist.employee.emp_name}</td>
+						<td class="py-3" style="vertical-align: middle;">
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${adjlist.stsu_reg_date}"/>
 						</td>
 					</tr>
 				</c:forEach>
-				</tbody>
 			</table>
 			<!-- 페이지 넘버 이동 -->
 		<div class="card-footer d-block d-md-flex align-items-center d-print-none">
@@ -236,59 +169,8 @@
 							</select>
 						</td>
                     </tr>
-                    <%-- <tr>
-					<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
-						colspan="2" style="vertical-align: middle;">상품명</td>
-					<td class="font-weight-semi-bold border-top-0 py-2"
-						colspan="2">
-						<select class="custom-select custom-select-lg" id="prod" name="prod" onclick="productAutoInput('${pro_code}')">
-							<c:forEach var="selectpro" items="${selprolist}">
-                             	<option value="${selectpro.pro_code}">${selectpro.pro_name}</option>
-							</c:forEach>
-                        </select>
-					</td>
-				</tr>
-				
-				<tr>
-					<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
-					<td class="py-2" colspan="2">
-						<select class="custom-select custom-select-lg" id="wareh" name="wareh" onclick="wareAutoInput('${ware_code}')">
-							<c:forEach var="selectware" items="${selectware}">
-								<c:if test="${selectware.ware_type == 1}">
-									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
-								</c:if>
-								<c:if test="${selectware.ware_type == 2}">
-									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
-								</c:if>
-								<c:if test="${selectware.ware_type == 3}">
-									<option value="${selectware.ware_code}">${selectware.ware_name}</option>
-								</c:if>
-							</c:forEach>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;">사번</td>
-					<td class="py-2" colspan="2">
-		       			<input class="form-control form-control-icon-text" type="text" name="empid" value="${sessionScope.mem_id}" readonly></td>
-		    		<tr>
-						<td class="py-2" colspan="2" style="vertical-align: middle;"><b>조정 재고</b></td>
-						<td class="py-2" colspan="2">
-							<input class="form-control form-control-icon-text" type="text" id="amount" name="amount" onKeyup="calculation()" placeholder="조정 재고">
-						</td>
-					</tr>
-					<tr>
-						<td class="py-2" colspan="2" style="vertical-align: middle; "><b>조정 후 재고</b></td>
-						<td class="py-2" colspan="2">
-							<input class="form-control form-control-icon-text" type="text" id="quantity" name="quantity" readonly>
-						</td>
-					</tr> --%>
 			</table>
 				<div id="adjOptionList"></div> 
-					<!-- <div align=center>
-                        <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
-                        <button type="reset" class="btn btn-outline-info">재입력</button>
-                    </div>	 -->
 		</div>
 		<!-- 신규등록 끝 -->
 		

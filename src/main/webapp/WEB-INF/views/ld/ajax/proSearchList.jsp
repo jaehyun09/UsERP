@@ -4,11 +4,13 @@
 
 <%@ include file = "../../setting.jsp" %> 
 <link rel="stylesheet" href="${project}css/graindashboard.css">
-<script type="text/javascript" src="${project}script/logisticsScript.js"></script>
- 
+<script type="text/javascript" src="${project}js/logisticsScript.js"></script>
+<script src="${project}js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+</script>
 <body>
 	<div class="row">
-		<table class="table  bg-white text-dark center ass2 table-striped">
+		<table class="table bg-white text-dark center ass2 table-striped">
 			<tr>
 			</tr>
 			<thead>
@@ -25,19 +27,23 @@
 			<tbody>
 			<c:forEach var="productList" items="${prolist}">
 				<tr>
-					<td class="py-3">${productList.pro_code}</td>
-					<td class="py-3">${productList.pro_name}</td>
-					<td class="py-3">${productList.pro_pur_price}</td>
-					<td class="py-3">${productList.pro_sal_price}</td>
+					<td class="py-3" style="vertical-align: middle">${productList.pro_code}</td>
+					<td class="py-3" style="vertical-align: middle">${productList.pro_name}</td>
+					<td class="py-3" style="vertical-align: middle">
+						<fmt:formatNumber value="${productList.pro_pur_price}" pattern=",###" />
+					</td>
+					<td class="py-3" style="vertical-align: middle">
+						<fmt:formatNumber value="${productList.pro_sal_price}" pattern=",###" />
+					</td>
 					<c:choose>
 						<c:when test="${productList.pro_state == 1}">
-							<td class="py-3">사용중</td>
+							<td class="py-3" style="vertical-align: middle">사용중</td>
 						</c:when>
 						<c:when test="${productList.pro_state == 0}">
-							<td class="py-3">사용중지</td>
+							<td class="py-3" style="vertical-align: middle">사용중지</td>
 						</c:when>
 					</c:choose>
-					<td class="py-3">
+					<td class="py-3" style="vertical-align: middle">
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${productList.pro_reg_date}"/>
 					</td>
 					

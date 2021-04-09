@@ -6,8 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.project.UsERP.vo.AccountStatementVO;
-import com.project.UsERP.vo.AccountVO;
 import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.EmployeeVO;
 
@@ -83,10 +81,23 @@ public class AdminDAOImpl implements AdminDAO {
 
 	}
 
+	// 강재현 - 알림 리스트
+	@Override
+	public List<AlertVO> stAlertList() {
+
+		return sqlSession.selectList("com.project.UsERP.persistence.AdminDAO.stAlertList");
+
+	}
+
 	// 강재현 - 전표 관리 - 회계 전표 (승인 & 미승인)
 	@Override
 	public int alertUpdate(AlertVO vo) {
 		return sqlSession.update("com.project.UsERP.persistence.AdminDAO.alertUpdate", vo);
 	}
 
+	// 강재현 - 알림 갯수 구하기
+	@Override
+	public int getCnt() {
+		return sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.getCnt");
+	}
 }

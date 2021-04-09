@@ -31,7 +31,13 @@ public interface AdminDAO {
 	// 강재현 - 알림 리스트
 	public List<AlertVO> ssAlertList();
 
+	// 강재현 - 알림 리스트
+	public List<AlertVO> stAlertList();
+
 	// 강재현 - 알림 업데이트
 	public int alertUpdate(AlertVO vo);
+
+	// 강재현 - 알림 갯수 구하기
+	public int getCnt();
 
 }

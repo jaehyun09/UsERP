@@ -23,11 +23,11 @@
 			</tr>
 			<tr>
 				<th colspan="1">구매단가</th>
-				<td colspan="3">${product.pro_pur_price}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_pur_price}" /></td>
 			</tr>
 			<tr>
 				<th colspan="1">판매단가</th>
-				<td colspan="3">${product.pro_sal_price}</td>
+				<td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_sal_price}" /></td>
 			</tr>
 			<tr>
 				<th colspan="1">상태</th>

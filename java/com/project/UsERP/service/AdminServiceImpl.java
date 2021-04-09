@@ -1,6 +1,5 @@
 package com.project.UsERP.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.project.UsERP.persistence.AdminDAO;
-import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.EmployeeVO;
 
@@ -73,7 +71,9 @@ public class AdminServiceImpl implements AdminService {
 	public void accsAlertList(HttpServletRequest req, Model model) {
 
 		List<AlertVO> alert = dao.accsAlertList();
+		int cnt = dao.getCnt();
 
+		model.addAttribute("alertCnt", cnt);
 		model.addAttribute("accsalert", alert);
 
 	}
@@ -83,7 +83,9 @@ public class AdminServiceImpl implements AdminService {
 	public void logsAlertList(HttpServletRequest req, Model model) {
 
 		List<AlertVO> alert = dao.logsAlertList();
+		int cnt = dao.getCnt();
 
+		model.addAttribute("alertCnt", cnt);
 		model.addAttribute("logsalert", alert);
 
 	}
@@ -93,8 +95,24 @@ public class AdminServiceImpl implements AdminService {
 	public void ssAlertList(HttpServletRequest req, Model model) {
 
 		List<AlertVO> alert = dao.ssAlertList();
+		int cnt = dao.getCnt();
+
+		model.addAttribute("alertCnt", cnt);
 
 		model.addAttribute("ssalert", alert);
+
+	}
+
+	// 강재현 - 알림 리스트
+	@Override
+	public void stAlertList(HttpServletRequest req, Model model) {
+
+		List<AlertVO> alert = dao.stAlertList();
+		int cnt = dao.getCnt();
+
+		model.addAttribute("alertCnt", cnt);
+
+		model.addAttribute("stalert", alert);
 
 	}
 
@@ -112,4 +130,11 @@ public class AdminServiceImpl implements AdminService {
 		model.addAttribute("deleteCnt", deleteCnt);
 
 	}
+
+//	// 강재현 - 알림 갯수
+//	public void alertCnt(HttpServletRequest req, Model model) {
+//		int cnt = dao.getCnt();
+//		
+//		req.getSession().setAttribute("alertCnt", cnt);
+//	}
 }

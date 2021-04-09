@@ -100,7 +100,7 @@ public class AdServiceImpl implements AdService {
 			vo1.setAlert_state(0);
 			vo1.setAlert_content("전표 승인되었습니다.");
 			vo1.setAccs_code(accs_code);
-			vo1.setDep_code(500);
+			vo1.setDep_code(200);
 
 			int insertCnt = addao.insertAccAlert(vo1);
 			model.addAttribute("insertCnt", insertCnt);
@@ -125,9 +125,9 @@ public class AdServiceImpl implements AdService {
 		if (deleteCnt == 1) {
 			AlertVO vo1 = new AlertVO();
 			vo1.setAlert_state(0);
-			vo1.setAlert_content("전표 승인거부 되었습니다.");
+			vo1.setAlert_content("전표 승인 거부 되었습니다.");
 			vo1.setAccs_code(accs_code);
-			vo1.setDep_code(500);
+			vo1.setDep_code(200);
 
 			int insertCnt = addao.insertAccAlert(vo1);
 			model.addAttribute("insertCnt", insertCnt);
@@ -170,7 +170,7 @@ public class AdServiceImpl implements AdService {
 			vo1.setAlert_state(0);
 			vo1.setAlert_content("급여 전표 승인되었습니다.");
 			vo1.setSs_code(ss_code);
-			vo1.setDep_code(500);
+			vo1.setDep_code(200);
 
 			int insertCnt = addao.insertSsAlert(vo1);
 			model.addAttribute("insertCnt", insertCnt);
@@ -196,9 +196,9 @@ public class AdServiceImpl implements AdService {
 		if (deleteCnt == 1) {
 			AlertVO vo1 = new AlertVO();
 			vo1.setAlert_state(0);
-			vo1.setAlert_content("급여 전표 승인거부 되었습니다.");
+			vo1.setAlert_content("급여 전표 승인 거부 되었습니다.");
 			vo1.setSs_code(ss_code);
-			vo1.setDep_code(500);
+			vo1.setDep_code(200);
 
 			int insertCnt = addao.insertSsAlert(vo1);
 			model.addAttribute("insertCnt", insertCnt);

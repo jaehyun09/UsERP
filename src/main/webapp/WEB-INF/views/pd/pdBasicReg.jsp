@@ -37,9 +37,10 @@ function productadd() {
    });
 }
 
+/* 거래처 상세페이지 */
 function content(code) {
 	
-	var param = "&${_csrf.parameterName}=${_csrf.token}&com_code=" + code;
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&com_code=" + code;
 	
    $.ajax({
       type:"POST",
@@ -47,6 +48,24 @@ function content(code) {
 	  url:'pdcomContent',
       success: function(data){ 
          $('#content').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 상품 상세페이지 */
+function content2(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&pro_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'pdproContent',
+      success: function(data){ 
+         $('#content2').html(data);
       },
       error: function(){
          alert('오류');
@@ -312,15 +331,15 @@ function content(code) {
                                                   <div class="input-group-append">
                                                    <i class="gd-search icon-text icon-text-sm"></i>
                                                     </div>
-                                                    <input class="form-control form-control-icon-text" placeholder="거래처코드?거래처번호?/거래처명 검색" type="text" style="font-size:20px">
+                                                    <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" style="font-size:20px">
                                                </div>
                                                <br>
                                                <div class="col">
-																	<div class="collapse multi-collapse"
-																		id="multiCollapseExample1">
-																		<div id="content"></div>
-																	</div>
-																</div>
+													<div class="collapse multi-collapse"
+														id="multiCollapseExample1">
+														<div id="content"></div>
+													</div>
+												</div>
                                           <!-- 검색창 끝 --> 
                                              <table class="table bg-white text-dark center ass2 table-striped">
                                                 <thead class="text-white table-bordered tap">
@@ -384,9 +403,15 @@ function content(code) {
                                                   <div class="input-group-append">
                                                    <i class="gd-search icon-text icon-text-sm"></i>
                                                     </div>
-                                                    <input class="form-control form-control-icon-text" placeholder="상품번호?상품코드?/상품명 검색" type="text" style="font-size:20px">
+                                                    <input class="form-control form-control-icon-text" placeholder="상품명 검색" type="text" style="font-size:20px">
                                                </div>
                                                <br>
+                                               <div class="col">
+													<div class="collapse multi-collapse"
+														id="multiCollapseExample2">
+														<div id="content2"></div>
+													</div>
+												</div>
                                             <!-- 검색창 끝 --> 
                                              <!-- 테스트 -->
                                        <table class="table bg-white text-dark center ass2 table-striped">
@@ -405,7 +430,15 @@ function content(code) {
                                           
                                              <c:forEach var="product" items="${product}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                              <tr>
-                                                <td class="py-3" style="vertical-align:middle">${product.pro_code}</td>
+                                             
+                                             
+                                             	<td class="py-3 ">
+																	<a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+																	   href="#multiCollapseExample2" role="button"
+																	   aria-expanded="false"
+																	   aria-controls="multiCollapseExample2"
+																	   onclick="content2(${product.pro_code})">${product.pro_code}</a>
+																</td>
                                                 <td class="py-3" style="vertical-align:middle">${product.pro_name}</td>
                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_pur_price}"/></td>
                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_sal_price}"/></td>

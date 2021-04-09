@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.UsERP.vo.AccountStatementVO;
+import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -30,7 +31,6 @@ public class StDAOImpl implements StDAO {
 		return sqlSession.selectOne("com.project.UsERP.persistence.StDAO.companyDetail", com_code);
 	}
 
-
 	// 강재현 - 기초등록 - 상품 목록
 	@Override
 	public List<ProductVO> salesProductSelect() {
@@ -42,12 +42,13 @@ public class StDAOImpl implements StDAO {
 	public int getStockCnt(String ssKeyword) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.StDAO.getStockCnt", ssKeyword);
 	}
-		
+
 	// 강재현 - 재고 현황 - 검색 재고 현황 조회
 	@Override
 	public List<StockVO> StockStatusList(Map<String, Object> map) {
 		return sqlSession.selectList("com.project.UsERP.persistence.StDAO.StockStatusList", map);
 	}
+
 	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
 	@Override
 	public List<AccountStatementVO> salesList() {
@@ -64,6 +65,12 @@ public class StDAOImpl implements StDAO {
 	@Override
 	public int insertSalesStatement(AccountStatementVO vo) {
 		return sqlSession.insert("com.project.UsERP.persistence.StDAO.insertSalesStatement", vo);
+	}
+
+	// 강재현 - 알림 등록
+	@Override
+	public int insertAcAlert(AlertVO vo1) {
+		return sqlSession.insert("com.project.UsERP.persistence.StDAO.insertAcAlert", vo1);
 	}
 
 	// 강재현 - 출고현황 - 출고 내역
@@ -89,7 +96,7 @@ public class StDAOImpl implements StDAO {
 	public StockVO getStock(Map<String, Object> map) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.StDAO.getStock", map);
 	}
-	
+
 	// 강재현 - 출고현황 - 출고 전표 등록
 	@Override
 	public int insertLogsStatement(LogisticsStatementVO vo) {
@@ -100,6 +107,12 @@ public class StDAOImpl implements StDAO {
 	@Override
 	public int updatestatement(AccountStatementVO vo1) {
 		return sqlSession.update("com.project.UsERP.persistence.StDAO.updatestatement", vo1);
+	}
+
+	// 강재현 - 알림 등록
+	@Override
+	public int insertLgAlert(AlertVO vo1) {
+		return sqlSession.insert("com.project.UsERP.persistence.StDAO.insertLgAlert", vo1);
 	}
 
 }

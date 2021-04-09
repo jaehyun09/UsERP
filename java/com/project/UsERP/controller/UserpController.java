@@ -93,9 +93,11 @@ public class UserpController {
 		service.accsAlertList(req, model);
 		// 물류 알림
 		service.logsAlertList(req, model);
-		// 급여 알림 
+		// 급여 알림
 		service.ssAlertList(req, model);
-		
+		// 나머지 알림
+		service.stAlertList(req, model);
+
 		return "alert";
 	}
 
@@ -105,7 +107,7 @@ public class UserpController {
 		logger.info("url: 알림 삭제");
 		// 알림 삭제
 		service.alertUpdate(req, model);
-		
+
 		return "alertAction";
 	}
 
