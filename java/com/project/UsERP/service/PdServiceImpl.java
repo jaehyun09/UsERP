@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 
 import com.project.UsERP.persistence.LdDAO;
 import com.project.UsERP.persistence.PdDAO;
+import com.project.UsERP.persistence.StDAO;
 import com.project.UsERP.vo.AccountStatementVO;
+import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -27,6 +29,9 @@ public class PdServiceImpl implements PdService {
 
 	@Autowired
 	LdDAO lddao;
+	
+	@Autowired
+	StDAO stdao;
 
 	// 최유성 - 기초등록
 	@Override
@@ -160,6 +165,16 @@ public class PdServiceImpl implements PdService {
 		System.out.println(vo + "vo");
 		int insertCnt = pddao.insertBuyStatement(vo);
 
+		if (insertCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("전표 등록되었습니다.");
+			vo1.setDep_code(300);
+
+			int insert1Cnt = stdao.insertAcAlert(vo1);
+			model.addAttribute("insert1Cnt", insert1Cnt);
+		}
+		
 		model.addAttribute("insertCnt", insertCnt);
 
 	}
@@ -256,6 +271,16 @@ public class PdServiceImpl implements PdService {
 
 		if (insertCnt == 1) {
 			updateCnt = pddao.updatestatement(avo); // 입고 전표 등록시 회계전표 상태코드 변화
+		}
+		
+		if (insertCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("입고 전표 등록되었습니다.");
+			vo1.setDep_code(300);
+
+			int insert1Cnt = stdao.insertLgAlert(vo1);
+			model.addAttribute("insert1Cnt", insert1Cnt);
 		}
 
 		model.addAttribute("insertCnt1", insertCnt);

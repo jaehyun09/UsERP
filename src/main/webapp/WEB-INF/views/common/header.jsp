@@ -61,7 +61,9 @@ function alert() {
                 <div class="dropdown ml-auto">
                   <c:if test="${sessionScope.mem_id != null}">
                     <a id="notificationsInvoker" class="header-invoker" href="#" aria-controls="notifications" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#notifications" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut" onclick="alert()">
-                        <span class="indicator indicator-bordered indicator-top-right indicator-primary rounded-circle"></span>
+                        <c:if test="${alertCnt > 0}">
+                        	<span class="indicator indicator-bordered indicator-top-right indicator-primary rounded-circle"></span>
+                        </c:if>
                         <i class="gd-bell"></i>
                     </a>
                     <div id="notifications" class="dropdown-menu dropdown-menu-center py-0 mt-4 w-18_75rem w-md-22_5rem unfold-css-animation unfold-hidden"
@@ -84,8 +86,8 @@ function alert() {
                   </c:if>
                   <c:if test="${sessionScope.mem_id != null}">
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
-                        <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
-                        <span class="d-none d-md-block center" style="width:100px">${sessionScope.mem_name}</span>
+                        <!-- <img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"> -->
+                        <span class="d-none d-md-block center" style="width:100px">${sessionScope.mem_name}${alertCnt > 0} ??</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
                         
                     </a>

@@ -2,11 +2,11 @@ package com.project.UsERP.persistence;
 
 import java.util.List;
 
+
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
 import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.BankVO;
-import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.SalaryStatementVO;
 
 public interface AdDAO {

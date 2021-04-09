@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.project.UsERP.persistence.AdDAO;
+<<<<<<< HEAD
+=======
+import com.project.UsERP.persistence.LdDAO;
+>>>>>>> 1f8f3e9d881ba0353a6102210137481288a1af77
 import com.project.UsERP.persistence.PdDAO;
 import com.project.UsERP.persistence.StDAO;
 import com.project.UsERP.vo.AccountStatementVO;
@@ -29,10 +33,13 @@ public class StServiceImpl implements StService {
 
 	@Autowired
 	PdDAO pddao;
-	
+
 	@Autowired
 	AdDAO addao;
 	
+	@Autowired
+	LdDAO lddao;
+
 	// 강재현 - 기초등록 - 판매 거래처 목록 & 상품 목록
 	@Override
 	public void salesBasicReg(HttpServletRequest req, Model model) {
@@ -54,64 +61,66 @@ public class StServiceImpl implements StService {
 	}
 
 	// 강재현 : 재고현황
-		@Override
-		public void inventoryStatusList(HttpServletRequest req, Model model) {
-			String ssKeyword = req.getParameter("ssKeyword");
-			
-			int pageSize = 15;
-			int pageBlock = 3;
-			
-			int cnt = 0;
-			int start = 0;
-			int end = 0;
-			
-			int pageCnt = 0;
-			int startPage = 0;
-			int endPage = 0;
-			
-			String pageNum = "";
-			int currentPage = 0;
-			
-			cnt = stdao.getStockCnt(ssKeyword);
-			
-			pageNum = req.getParameter("pageNum");
-			
-			if(pageNum == null) {
-				pageNum = "1";
-			}
-			
-			currentPage = Integer.parseInt(pageNum);
-			pageCnt = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
-			start = (currentPage - 1) * pageSize + 1;
-			end = start + pageSize - 1;
-			
-			startPage = (currentPage / pageBlock) * pageBlock + 1;
-			if(currentPage % pageBlock == 0 ) startPage -= pageBlock;
-			
-			endPage =  startPage + pageBlock - 1;
-			if(endPage > pageCnt) endPage = pageCnt;
-			
-			model.addAttribute("ssKeyword", ssKeyword);
-			model.addAttribute("cnt", cnt);
-			model.addAttribute("pageNum", pageNum);
-			
-			if(cnt > 0) {
-				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("ssKeyword", ssKeyword);
-				map.put("start", start);
-				map.put("end", end);
-				
-				List<StockVO> list = stdao.StockStatusList(map);
-				model.addAttribute("stocklist", list);
-				model.addAttribute("currentPage", currentPage);
-				model.addAttribute("pageCnt", pageCnt);
-				model.addAttribute("pageBlock", pageBlock);
-				model.addAttribute("startPage", startPage);
-				model.addAttribute("endPage", endPage);
-				
-			}
-			
+	@Override
+	public void inventoryStatusList(HttpServletRequest req, Model model) {
+		String ssKeyword = req.getParameter("ssKeyword");
+
+		int pageSize = 15;
+		int pageBlock = 3;
+
+		int cnt = 0;
+		int start = 0;
+		int end = 0;
+
+		int pageCnt = 0;
+		int startPage = 0;
+		int endPage = 0;
+
+		String pageNum = "";
+		int currentPage = 0;
+
+		cnt = stdao.getStockCnt(ssKeyword);
+
+		pageNum = req.getParameter("pageNum");
+
+		if (pageNum == null) {
+			pageNum = "1";
 		}
+
+		currentPage = Integer.parseInt(pageNum);
+		pageCnt = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
+		start = (currentPage - 1) * pageSize + 1;
+		end = start + pageSize - 1;
+
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if (currentPage % pageBlock == 0)
+			startPage -= pageBlock;
+
+		endPage = startPage + pageBlock - 1;
+		if (endPage > pageCnt)
+			endPage = pageCnt;
+
+		model.addAttribute("ssKeyword", ssKeyword);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("pageNum", pageNum);
+
+		if (cnt > 0) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("ssKeyword", ssKeyword);
+			map.put("start", start);
+			map.put("end", end);
+
+			List<StockVO> list = stdao.StockStatusList(map);
+			model.addAttribute("stocklist", list);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("pageCnt", pageCnt);
+			model.addAttribute("pageBlock", pageBlock);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+
+		}
+
+	}
 
 	// 이재홍 - 판매 현황 - 판매 내역 & 승인 내역
 	@Override
@@ -162,6 +171,16 @@ public class StServiceImpl implements StService {
 		}
 
 
+		if (insertCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("전표 등록되었습니다.");
+			vo1.setDep_code(200);
+
+			int insert1Cnt = stdao.insertAcAlert(vo1);
+			model.addAttribute("insert1Cnt", insert1Cnt);
+		}
+
 		model.addAttribute("insertCnt", insertCnt);
 	}
 
@@ -189,6 +208,7 @@ public class StServiceImpl implements StService {
 		model.addAttribute("account", account);
 	}
 
+	// 수정 0408
 	// 강재현 - 출고현황 - 출고 전표 등록
 		@Override
 		public void insertLogsStatement(HttpServletRequest req, Model model) {
@@ -254,6 +274,93 @@ public class StServiceImpl implements StService {
 
 			model.addAttribute("insertCnt1", insertCnt);
 			model.addAttribute("intsterCnt1", intsterCnt2);
-
 		}
+
+	@Override
+	public void insertLogsStatement(HttpServletRequest req, Model model) {
+		LogisticsStatementVO vo = new LogisticsStatementVO();
+
+		vo.setLogs_type(6);
+		vo.setLogs_reg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setLogs_state(0);
+		vo.setLogs_quantity(Integer.parseInt(req.getParameter("logs_quantity")));
+		vo.setEmp_code(req.getParameter("emp_code"));
+		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
+		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
+
+		//////////////////// 추가 해보자..0408////////////////////////////////////////
+
+		int ware_code = pddao.getWareCode(1); // 창고타입 양품(1)을 넣어서 해당 창고 번호를 가져온다
+		vo.setWare_code(ware_code); // 양품창고
+		System.out.println("ware_code:" + ware_code);
+		int pro_code = vo.getPro_code();
+		System.out.println("pro_code:" + pro_code);
+		int accs_code = Integer.parseInt(req.getParameter("accs_code")); // 회계전표번호
+		System.out.println("accs_code:" + accs_code);
+
+		// 원래대로라면 필요없는 부분 시작... 더미 데이터로 발표시 오류 방지를 위한...
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("accs_code", accs_code);
+		map2.put("ware_code", ware_code); // 양품창고 번호
+		map2.put("pro_code", pro_code);
+
+		int sto_code = Integer.parseInt(pddao.getStock(map2).toString()); // 상품에 대한 재고코드가 존재하는지 가지고 온다
+		System.out.println("sto_code:" + sto_code);
+		if (sto_code == 0) {// 재고코드가 존재하지 않으면 재고코드 만들기 - 더미 데이터 실행시 오류 방지를 위한...(원래는 구매 -> 입고완료시 자동 재고코드
+							// 등록됨)
+			Map<String, Object> scimap = new HashMap<String, Object>();
+			scimap.put("sto_quantity", 0); // 재고 수량은 0으로 만들어주기
+			scimap.put("ware_code", ware_code);
+			scimap.put("pro_code", pro_code);
+
+			int stockInsertCnt = lddao.stockInsert(scimap); // 재고 만들어 준다
+			System.out.println("stockInsertCnt:" + stockInsertCnt);
+		} // 원래대로라면 필요없는 부분 끝
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ware_code", ware_code); // 양품창고 번호 62300
+		map.put("pro_code", pro_code);
+
+		StockVO svo = stdao.getStock(map); // 추가 메서드 => 재고코드와 재고수량을 가져온다
+
+		sto_code = svo.getSto_code(); // 재고코드
+		System.out.println("sto_code:" + sto_code);
+
+		int sto_quantity = svo.getSto_quantity(); // 현재 양품창고의 해당 상품 재고 수량...
+		System.out.println("sto_quantity:" + sto_quantity);
+		int logs_quantity = vo.getLogs_quantity(); // 판매 수량
+		System.out.println("logs_quantity:" + logs_quantity);
+		int logs_shortage = 0; // 부족 수량
+
+		if (logs_quantity > sto_quantity) { // 판매수량이 재고 수량보다 많다면 부족수량 값을 만들어 준다
+			logs_shortage = logs_quantity - sto_quantity; // 부족수량 = 판매수량 - 재고수량
+		}
+
+		vo.setSto_code(sto_code); // 재고코드를 vo에 넣어준다
+		vo.setLogs_shortage(logs_shortage); // 부족 수량을 vo에 넣어준다
+
+		///////////////////////////// 추가 끝/////////////////////////////
+
+		int insertCnt = stdao.insertLogsStatement(vo);
+
+		if (insertCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("출고 전표 등록되었습니다.");
+			vo1.setDep_code(200);
+
+			int insert1Cnt = stdao.insertLgAlert(vo1);
+			model.addAttribute("insert1Cnt", insert1Cnt);
+		}
+
+		AccountStatementVO vo1 = new AccountStatementVO();
+		vo1.setAccs_state(3);
+		vo1.setAccs_code(Integer.parseInt(req.getParameter("accs_code")));
+
+		int intsterCnt2 = stdao.updatestatement(vo1);
+
+		model.addAttribute("insertCnt1", insertCnt);
+		model.addAttribute("intsterCnt1", intsterCnt2);
+
+	}
 }

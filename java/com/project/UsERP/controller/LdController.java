@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.project.UsERP.service.LdServiceImpl;
-
 // 물류 관리
 @Controller
 public class LdController {
