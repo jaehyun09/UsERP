@@ -1,6 +1,10 @@
 package com.project.UsERP.service;
 
+
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,10 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.UsERP.persistence.AdminDAO;
 import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.EmployeeVO;
+
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -64,6 +71,78 @@ public class AdminServiceImpl implements AdminService {
 		model.addAttribute("enabled", enabled);
 		model.addAttribute("updateCnt", updateCnt);
 		model.addAttribute("emp_name", vo.getEmp_name());
+	}
+	
+	// 김은희 - 내 정보 수정 처리
+	@Override
+	public void mypageUpdateAction(MultipartHttpServletRequest req, Model model) {
+		
+		String uploadPath = "C:\\Dev76\\workspace\\upload\\";
+		
+		MultipartFile image = req.getFile("emp_photo");
+		String emp_photo = image.getOriginalFilename();
+		
+		String emp_code = req.getParameter("emp_code");
+		String emp_name = req.getParameter("emp_name");
+		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
+		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
+		String emp_hire_date = req.getParameter("emp_hire_date");
+		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
+		String emp_jumin = req.getParameter("emp_jumin");
+  
+		String address = "";
+		String addcode = req.getParameter("addcode");
+		String add1 = req.getParameter("add1");
+		String add2 = req.getParameter("add2");
+		
+		address = addcode + "-" + add1 + "-" + add2;
+		String emp_tel = req.getParameter("emp_tel");
+		String emp_phone = req.getParameter("emp_phone");
+		String emp_email = req.getParameter("emp_email");
+		String emp_port_no = req.getParameter("emp_port_no");
+		String emp_account = req.getParameter("emp_account");
+		String emp_bank = req.getParameter("emp_bank");
+		String emp_authority = req.getParameter("emp_authority");
+		
+		try {
+			// null값과 공백 방지
+			if(image.getOriginalFilename() == null || image.getOriginalFilename().trim().equals("")) {
+				emp_photo = "avatar.jpg";
+			}
+		
+			image.transferTo(new File(uploadPath + image));
+			
+			EmployeeVO vo = new EmployeeVO();
+			
+			vo.setHr_code(hr_code);
+			vo.setEmp_code(emp_code);
+			vo.setEmp_name(emp_name);	
+			vo.setEmp_cos(emp_cos);
+			vo.setEmp_photo(emp_photo);
+			vo.setEmp_jumin(emp_jumin);
+			vo.setEmp_address(address);
+			vo.setEmp_tel(emp_tel);
+			vo.setEmp_phone(emp_phone);
+			vo.setEmp_email(emp_email);
+			vo.setEmp_port_no(emp_port_no);
+			vo.setEmp_bank(emp_bank);
+			vo.setEmp_account(emp_account);
+			vo.setDep_code(dep_code);
+			vo.setEmp_authority(emp_authority);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("vo",vo);
+			map.put("emp_hire_date",emp_hire_date);
+			
+			int updateCnt = dao.mypageUpdateAction(map);
+			
+			model.addAttribute("updateCnt", updateCnt);
+				
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+				
 	}
 
 	// 강재현 - 알림 리스트
@@ -131,10 +210,4 @@ public class AdminServiceImpl implements AdminService {
 
 	}
 
-//	// 강재현 - 알림 갯수
-//	public void alertCnt(HttpServletRequest req, Model model) {
-//		int cnt = dao.getCnt();
-//		
-//		req.getSession().setAttribute("alertCnt", cnt);
-//	}
 }
