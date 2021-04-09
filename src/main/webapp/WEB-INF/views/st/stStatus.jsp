@@ -7,22 +7,22 @@
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
 <script type="text/javascript">
-   function changeProduct() {
-      var count = document.getElementById("accs_quantity").value;   
-      var price = document.getElementById("pro_code").options[document.getElementById("pro_code").selectedIndex].id;
-      
-      document.getElementById("accs_price").value = price;   
-      document.getElementById("accs_sum").value = price * count;
-   };
-   
-   function changeCount() {
-      var price = document.getElementById("pro_code").options[document.getElementById("pro_code").selectedIndex].id;
-      var count = document.getElementById("accs_quantity").value;   
-      
-      document.getElementById("accs_sum").value = price * count;
-   };
-   
-   function stContent(code) {
+	function changeProduct() {
+		var count = document.getElementById("accs_quantity").value;	
+		var price = document.getElementById("pro_code").options[document.getElementById("pro_code").selectedIndex].id;
+		
+		document.getElementById("accs_price").value = price;	
+		document.getElementById("accs_sum").value = price * count;
+	};
+	
+	function changeCount() {
+		var price = document.getElementById("pro_code").options[document.getElementById("pro_code").selectedIndex].id;
+		var count = document.getElementById("accs_quantity").value;	
+		
+		document.getElementById("accs_sum").value = price * count;
+	};
+	
+	function stContent(code) {
       var param = "&${_csrf.parameterName}=${_csrf.token}&accs_code=" + code;
       $.ajax({
          type:"POST",
@@ -38,12 +38,13 @@
    }
    
    function conCheck() {
-       if(!$("input[name='accs_content']").val()) {
-          alert("내용을 입력하세요.");
-          $("input[name='accs_content']").focus();
-          return false;
+          if(!$("input[name='accs_content']").val()) {
+             alert("내용을 입력하세요.");
+             $("input[name='accs_content']").focus();
+             return false;
+          }
        }
-    }
+	
 </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,188 +61,188 @@
 
 <%@ include file = "../common/header.jsp" %> 
 <main class="main">
-   <!-- Start Sidebar Nav -->
-   <aside id="sidebar" class="js-custom-scroll side-nav">
-      <ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
-         <!-- 대메뉴 : 인사 관리 -->
-<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
-            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#gg">
-               <span class="side-nav-menu-icon d-flex mr-3">
-                  <i class="gd-themify-favicon"></i>
-               </span>
-               <span class="side-nav-fadeout-on-closed media-body asss">인사 관리</span>
-               <span class="side-nav-control-icon d-flex">
-                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-               </span>
-               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-            </a>
-            
-            <!-- 중메뉴 : 인사 관리 -->
-<!-- b -->      <ul id="gg" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->         <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/hrBasicReg">기초 등록</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/hrAppointment">인사 발령</a>
+	<!-- Start Sidebar Nav -->
+	<aside id="sidebar" class="js-custom-scroll side-nav">
+		<ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
+			<!-- 대메뉴 : 인사 관리 -->
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#gg">
+					<span class="side-nav-menu-icon d-flex mr-3">
+						<i class="gd-themify-favicon"></i>
+					</span>
+					<span class="side-nav-fadeout-on-closed media-body asss">인사 관리</span>
+					<span class="side-nav-control-icon d-flex">
+						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+					</span>
+					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+				</a>
+				
+				<!-- 중메뉴 : 인사 관리 -->
+<!-- b -->		<ul id="gg" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->			<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/hrBasicReg">기초 등록</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/hrAppointment">인사 발령</a>
                     </li>
                     <li class="side-nav-menu-item">
                         <a class="side-nav-menu-link ass2" href="${path}/hrCard">인사 카드</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/hrSalary">급여</a>
-               </li>
-            </ul>
-         </li>
-         <!-- 인사 관리 종료 -->
-         
-         <!-- 대메뉴 : 근태 관리 -->
-<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
-            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#subPages">
-               <span class="side-nav-menu-icon d-flex mr-3">
-                  <i class="gd-timer"></i>
-               </span>
-               <span class="side-nav-fadeout-on-closed media-body asss">근태 관리</span>
-               <span class="side-nav-control-icon d-flex">
-                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-               </span>
-               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-            </a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/hrSalary">급여</a>
+					</li>
+				</ul>
+			</li>
+			<!-- 인사 관리 종료 -->
+			
+			<!-- 대메뉴 : 근태 관리 -->
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subPages">
+					<span class="side-nav-menu-icon d-flex mr-3">
+						<i class="gd-timer"></i>
+					</span>
+					<span class="side-nav-fadeout-on-closed media-body asss">근태 관리</span>
+					<span class="side-nav-control-icon d-flex">
+						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+					</span>
+					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+				</a>
 
                 <!-- 중메뉴 : 근태 관리 -->
-<!-- b -->      <ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->         <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/waSelect">조회</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
-               </li>
-               <li class="side-nav-menu-item">
-                        <a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
-                     </li>
-            </ul>
-         </li>
-         <!-- 근태 관리 종료 -->
-         
-         <!-- 대메뉴 : 판매 관리 -->
-<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
-            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#subComponents">
-               <span class="side-nav-menu-icon d-flex mr-3">
-                  <i class="gd-money"></i>
-               </span>
-               <span class="side-nav-fadeout-on-closed media-body asss">판매 관리</span>
-               <span class="side-nav-control-icon d-flex">
-                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-               </span>
-               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-            </a>
-            
-            <!-- 중메뉴 : 판매 관리 -->
-<!-- b -->      <ul id="subComponents" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
-<!-- a -->         <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/stBasicReg">기초 등록</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/stInvenStatus">재고 현황</a>
-               </li>
-               <li class="side-nav-menu-item active">
-                  <a class="side-nav-menu-link ass2" href="${path}/stStatus">판매 현황</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/stRelStatus">출고 현황</a>
-               </li>
-            </ul>
-         </li>
-         <!-- 판매 관리 종료 -->
-         
-         <!-- 대메뉴 : 구매 관리 -->
-<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
-            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#asd">
-               <span class="side-nav-menu-icon d-flex mr-3">
-                  <i class="gd-shopping-cart"></i>
-               </span> <span class="side-nav-fadeout-on-closed media-body asss">구매 관리</span>
-               <span class="side-nav-control-icon d-flex">
-                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-               </span>
-               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-            </a>
-            
-            <!-- 중메뉴 : 구매 관리 -->
-<!-- b -->      <ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->         <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/pdBasicReg">기초 등록</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/pdInvenStatus">재고 현황</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/pdStatus">구매 현황</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/pdRecStatus">입고 현황</a>
-               </li>
-            </ul> 
-         </li>
-         <!-- 구매 관리 종료 -->
-         
-         <!-- 대메뉴 : 물류 관리 -->
-<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
-            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#zxc">
-               <span class="side-nav-menu-icon d-flex mr-3">
-                  <i class="gd-truck"></i>
-               </span>
-               <span class="side-nav-fadeout-on-closed media-body asss">물류 관리</span>
-               <span class="side-nav-control-icon d-flex">
-                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-               </span>
-               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-            </a>
-            
-            <!-- 중메뉴 : 물류 관리 -->
-<!-- b -->      <ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->         <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/ldBasicReg">기초 등록</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/ldStatementManagement">전표 관리</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/ldInventoryControl">재고 관리</a>
-               </li>
-            </ul>
-         </li>
-         <!-- 물류 관리 종료 -->
-         
-         <!-- 대메뉴 : 회계 관리 -->
-<!-- o -->   <li class="side-nav-menu-item side-nav-has-menu">
-            <a class="side-nav-menu-link media align-items-center" href="#" data-target="#subUsers">
-               <span class="side-nav-menu-icon d-flex mr-3">
-                  <i class="gd-infinite"></i>
-               </span>
-               <span class="side-nav-fadeout-on-closed media-body asss">회계 관리</span>
-               <span class="side-nav-control-icon d-flex">
-                  <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-               </span>
-               <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-            </a>
-            
-            <!-- 중메뉴 : 회계 관리 -->
-<!-- b -->      <ul id="subUsers" class="side-nav-menu side-nav-menu-second-level mb-0">
-<!-- a -->         <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/adBasicReg">기초 등록</a>
-               </li>
-<!-- a -->         <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/adReport">회계보고서</a>
-               </li>
-               <li class="side-nav-menu-item">
-                  <a class="side-nav-menu-link ass2" href="${path}/adStatementManagement">전표 관리</a>
-               </li>
-            </ul>
-         </li>
-         <!-- 회계 관리 종료 -->
-         
-      </ul>
-   </aside>
-   <!-- End Sidebar Nav -->
+<!-- b -->		<ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->			<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/waSelect">조회</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
+					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
+				</ul>
+			</li>
+			<!-- 근태 관리 종료 -->
+			
+			<!-- 대메뉴 : 판매 관리 -->
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu side-nav-opened">
+				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subComponents">
+					<span class="side-nav-menu-icon d-flex mr-3">
+						<i class="gd-money"></i>
+					</span>
+					<span class="side-nav-fadeout-on-closed media-body asss">판매 관리</span>
+					<span class="side-nav-control-icon d-flex">
+						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+					</span>
+					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+				</a>
+				
+				<!-- 중메뉴 : 판매 관리 -->
+<!-- b -->		<ul id="subComponents" class="side-nav-menu side-nav-menu-second-level mb-0" style="display:block;">
+<!-- a -->			<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/stBasicReg">기초 등록</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/stInvenStatus">재고 현황</a>
+					</li>
+					<li class="side-nav-menu-item active">
+						<a class="side-nav-menu-link ass2" href="${path}/stStatus">판매 현황</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/stRelStatus">출고 현황</a>
+					</li>
+				</ul>
+			</li>
+			<!-- 판매 관리 종료 -->
+			
+			<!-- 대메뉴 : 구매 관리 -->
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#asd">
+					<span class="side-nav-menu-icon d-flex mr-3">
+						<i class="gd-shopping-cart"></i>
+					</span> <span class="side-nav-fadeout-on-closed media-body asss">구매 관리</span>
+					<span class="side-nav-control-icon d-flex">
+						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+					</span>
+					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+				</a>
+				
+				<!-- 중메뉴 : 구매 관리 -->
+<!-- b -->		<ul id="asd" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->			<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/pdBasicReg">기초 등록</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/pdInvenStatus">재고 현황</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/pdStatus">구매 현황</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/pdRecStatus">입고 현황</a>
+					</li>
+				</ul> 
+			</li>
+			<!-- 구매 관리 종료 -->
+			
+			<!-- 대메뉴 : 물류 관리 -->
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#zxc">
+					<span class="side-nav-menu-icon d-flex mr-3">
+						<i class="gd-truck"></i>
+					</span>
+					<span class="side-nav-fadeout-on-closed media-body asss">물류 관리</span>
+					<span class="side-nav-control-icon d-flex">
+						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+					</span>
+					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+				</a>
+				
+				<!-- 중메뉴 : 물류 관리 -->
+<!-- b -->		<ul id="zxc" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->			<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/ldBasicReg">기초 등록</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/ldStatementManagement">전표 관리</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/ldInventoryControl">재고 관리</a>
+					</li>
+				</ul>
+			</li>
+			<!-- 물류 관리 종료 -->
+			
+			<!-- 대메뉴 : 회계 관리 -->
+<!-- o -->	<li class="side-nav-menu-item side-nav-has-menu">
+				<a class="side-nav-menu-link media align-items-center" href="#" data-target="#subUsers">
+					<span class="side-nav-menu-icon d-flex mr-3">
+						<i class="gd-infinite"></i>
+					</span>
+					<span class="side-nav-fadeout-on-closed media-body asss">회계 관리</span>
+					<span class="side-nav-control-icon d-flex">
+						<i class="gd-angle-right side-nav-fadeout-on-closed"></i>
+					</span>
+					<span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
+				</a>
+				
+				<!-- 중메뉴 : 회계 관리 -->
+<!-- b -->		<ul id="subUsers" class="side-nav-menu side-nav-menu-second-level mb-0">
+<!-- a -->			<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/adBasicReg">기초 등록</a>
+					</li>
+<!-- a -->			<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/adReport">회계보고서</a>
+					</li>
+					<li class="side-nav-menu-item">
+						<a class="side-nav-menu-link ass2" href="${path}/adStatementManagement">전표 관리</a>
+					</li>
+				</ul>
+			</li>
+			<!-- 회계 관리 종료 -->
+			
+		</ul>
+	</aside>
+	<!-- End Sidebar Nav -->
 
     <div class="content">
          <div class="py-4 px-3 px-md-4">
@@ -420,7 +421,7 @@
                                            <button type="reset" class="btn btn-outline-info">재입력</button>                                  
                                          </div>
                                        </form>
-                                    </div>
+                           			</div>
                                     </div>
                                    </div> 
                                    </div>
@@ -486,3 +487,4 @@
 
 </body>
 </html>
+

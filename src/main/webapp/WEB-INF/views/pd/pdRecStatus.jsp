@@ -311,9 +311,9 @@ function content2(code) {
                                              <tr class="text-white table-bordered tap">
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+                                                <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th> -->
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
+                                                <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th> -->
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
@@ -329,9 +329,9 @@ function content2(code) {
 															aria-controls="multiCollapseExample1"
 															onclick="content1(${list.logs_code})">${list.logs_code}</a></td>
                                                  <td class="py-3">${list.product.pro_name}</td>
-                                                 <td class="py-3">${list.company.com_name}</td> 
+                                                 <%-- <td class="py-3">${list.company.com_name}</td>  --%>
                                                  <td class="py-3">${list.logs_quantity}</td>
-                                                 <td class="py-3">${list.warehouse.ware_name}</td>
+                                                 <%-- <td class="py-3">${list.warehouse.ware_name}</td> --%>
                                                  <td class="py-3">${list.employee.emp_name}</td>
                                                  <td class="py-3">
                                                  		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />

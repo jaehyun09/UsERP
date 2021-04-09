@@ -83,6 +83,14 @@ public class AdminDAOImpl implements AdminDAO {
 
 	}
 
+	// 강재현 - 알림 리스트
+	@Override
+	public List<AlertVO> stAlertList() {
+
+		return sqlSession.selectList("com.project.UsERP.persistence.AdminDAO.stAlertList");
+
+	}
+
 	// 강재현 - 전표 관리 - 회계 전표 (승인 & 미승인)
 	@Override
 	public int alertUpdate(AlertVO vo) {

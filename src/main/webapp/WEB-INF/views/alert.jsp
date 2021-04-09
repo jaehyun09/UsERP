@@ -85,6 +85,26 @@
 				</div>
 			</div>
 		</c:forEach>
+		<c:forEach var="vo" items="${stalert}">
+		<c:if test="${vo.accs_code == null || vo.logs_code == null || vo.ss_code == null}">
+			<div class="card-body p-0">
+				<div class="list-group list-group-flush">
+					<div class="list-group-item list-group-item-action">
+						<div class="d-flex align-items-center text-nowrap mb-2">
+							<i class="gd-info-alt icon-text text-primary mr-2"></i>
+							<h6 class="font-weight-semi-bold mb-0">새로운 알림</h6>
+						</div>
+						<p class="mb-0">
+							<strong>${vo.department.dep_name}</strong>에서
+							${vo.alert_content}
+						</p>
+						<a class="list-group-item-closer text-muted" href="${path}/deleteAc?alert_code=${vo.alert_code}"><i
+							class="gd-close"></i></a>
+					</div>
+				</div>
+			</div>
+			</c:if>
+		</c:forEach>
 	</div>
 
 </body>

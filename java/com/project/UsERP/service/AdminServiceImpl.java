@@ -98,6 +98,16 @@ public class AdminServiceImpl implements AdminService {
 
 	}
 
+	// 강재현 - 알림 리스트
+	@Override
+	public void stAlertList(HttpServletRequest req, Model model) {
+
+		List<AlertVO> alert = dao.stAlertList();
+
+		model.addAttribute("stalert", alert);
+
+	}
+
 	// 강재현 - 알림 업데이트
 	@Override
 	public void alertUpdate(HttpServletRequest req, Model model) {

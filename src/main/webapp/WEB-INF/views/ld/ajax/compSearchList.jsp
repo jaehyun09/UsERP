@@ -4,7 +4,7 @@
 
 <%@ include file = "../../setting.jsp" %> 
 <link rel="stylesheet" href="${project}css/graindashboard.css">
-<script type="text/javascript" src="${project}script/logisticsScript.js"></script>
+<script type="text/javascript" src="${project}js/logisticsScript.js"></script>
 <script src="${project}js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	function compInfo(code) {
@@ -55,11 +55,11 @@
 								onclick="compInfo(${complist.com_code})">${complist.com_code}</a>
 						</td>
 						<c:choose>
-							<c:when test="${complist.com_type == 200}">
-								<td class="py-1" style="vertical-align: middle">판매거래처</td>
-							</c:when>
 							<c:when test="${complist.com_type == 100}">
-								<td class="py-1" style="vertical-align: middle">구매거래처</td>
+								<td class="py-3" style="vertical-align: middle">판매거래처</td>
+							</c:when>
+							<c:when test="${complist.com_type == 200}">
+								<td class="py-3" style="vertical-align: middle">구매거래처</td>
 							</c:when>
 						</c:choose>
 						<td class="py-3" style="vertical-align: middle">${complist.com_name}</td>

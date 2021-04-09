@@ -38,7 +38,7 @@ public class AdController {
 		return "ad/ajax/banklist";
 	}
 
-	// 이재홍 - 기초 등록 - 리액트 계좌 등록 
+	// 이재홍 - 기초 등록 - 리액트 계좌 등록
 	@RequestMapping("/bankadd")
 	public String bankadd(HttpServletRequest req, Model model) {
 		logger.info("url: 계좌 관리 - 리액트 계좌 등록");

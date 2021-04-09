@@ -95,6 +95,8 @@ public class UserpController {
 		service.logsAlertList(req, model);
 		// 급여 알림 
 		service.ssAlertList(req, model);
+		// 나머지 알림 
+		service.stAlertList(req, model);
 		
 		return "alert";
 	}

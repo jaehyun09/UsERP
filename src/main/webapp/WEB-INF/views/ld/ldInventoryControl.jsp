@@ -55,22 +55,7 @@
        });
     }
 	
-	/* 입출고 내역 AJAX 
-	function stockOutInList() {
-    	$.ajax({
-          // sendRequest(콜백함수명, url, method, params)
-          url: "logStockOutInList", // 전송 페이지 => 컨트롤러 "basic_next"
-          type: 'GET', // 전송방식('GET', 'POST') - method
-          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-          success: function(result){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-             $('#stockOutIn').html(result);
-          },
-          error: function(){
-             alert('오류');
-          }
-       });
-    }*/
-	/* 출고 승인 상셍페이지 */
+	/* 출고 승인 상세페이지 */
 	function logMoveDetail(code) {
 		
 		var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
@@ -88,22 +73,6 @@
 	   });
 	}
 	
-	/* 재고이동 AJAX 
-	function logMoveWareInsert() {
-    	$.ajax({
-          // sendRequest(콜백함수명, url, method, params)
-          url: "logMoveWareInsert", // 전송 페이지 => 컨트롤러 "basic_next"
-          type: 'GET', // 전송방식('GET', 'POST') - method
-          dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-          success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-             $('#logMoveWareInsert').html(data);
-          },
-          error: function(){
-             alert('오류');
-          }
-       });
-    } */
-	
 	/* 재고조정 AJAX */
 	function logInvenAdjustment() {
     	$.ajax({
@@ -119,8 +88,6 @@
           }
        });
     }
-    
-    
 	
 	/* 재고수불부 AJAX */
 	function logInvenSupply() {
@@ -394,7 +361,7 @@
 			                          	<div class="input-group-append">
 			                              <i class="gd-search icon-text icon-text-sm"></i>
 		                            	</div>
-		                            	<input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" style="font-size:20px">
+		                            	<input class="form-control form-control-icon-text" id="ssKeyword" name="ssKeyword" placeholder="상품명 검색" type="text" >
 		                          	</div>
 		                          	<br>
                           			<!-- 검색창 끝 -->
@@ -436,18 +403,22 @@
 															<c:if test="${shiRecVo.stsu_type == 1 || shiRecVo.stsu_type == 2}">
 															<tr>
 																<c:if test="${shiRecVo.stsu_type == 1}">
-																	<td class="py-3">입고내역</td>
+																	<td class="py-3" style="vertical-align:middle">입고내역</td>
 																</c:if>
 																<c:if test="${shiRecVo.stsu_type == 2}">
-																	<td class="py-3">출고내역</td>
+																	<td class="py-3" style="vertical-align:middle">출고내역</td>
 																</c:if>
-																<td class="py-3">${shiRecVo.pro_code}</td>
-																<td class="py-3">${shiRecVo.product.pro_name}</td>
-																<td class="py-3">${shiRecVo.product.pro_pur_price}</td>
-																<td class="py-3">${shiRecVo.product.pro_sal_price}</td>
-																<td class="py-3">${shiRecVo.stsu_quantity}</td>
-																<td class="py-3">${shiRecVo.employee.emp_name}</td>
-																<td class="py-3">
+																<td class="py-3" style="vertical-align:middle">${shiRecVo.pro_code}</td>
+																<td class="py-3" style="vertical-align:middle">${shiRecVo.product.pro_name}</td>
+																<td class="py-3" style="vertical-align:middle">
+																	<fmt:formatNumber value="${shiRecVo.product.pro_pur_price}" pattern=",###" />
+																</td>
+																<td class="py-3" style="vertical-align:middle">
+																	<fmt:formatNumber value="${shiRecVo.product.pro_sal_price}" pattern=",###" />
+																</td>
+																<td class="py-3" style="vertical-align:middle">${shiRecVo.stsu_amount}</td>
+																<td class="py-3" style="vertical-align:middle">${shiRecVo.employee.emp_name}</td>
+																<td class="py-3" style="vertical-align:middle">
 																	<fmt:formatDate pattern="yyyy-MM-dd" value="${shiRecVo.stsu_reg_date}"/>
 																</td>
 															</tr>
@@ -483,7 +454,7 @@
 											<c:forEach var="SOlist2" items="${SOlist2}">
 												<c:if test="${SOlist2.logs_state == 1 || SOlist2.logs_state == 3}">
 												<tr>
-													<td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+													<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
 															href="#multiCollapseExample4" role="button"
 															aria-expanded="false"
 															aria-controls="multiCollapseExample4"

@@ -98,6 +98,15 @@
 		    ORDER BY alert_code DESC   
 	</select>
 	
+	<!-- 강재현 - 알림 -->
+	<select id="stAlertList" resultMap="AlertMap">
+		SELECT a.*, d.dep_name
+		    FROM alert a, department d
+		    WHERE a.dep_code = d.dep_code
+		    AND alert_state = 0
+		    ORDER BY alert_code DESC 
+	</select>
+	
 	<!-- 강재현 - 알림 업데이트 -->
 	<update id="alertUpdate" parameterType="com.project.UsERP.vo.AlertVO">
 		UPDATE alert SET alert_state=#{alert_state}

@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.project.UsERP.persistence.AdDAO;
 import com.project.UsERP.persistence.PdDAO;
 import com.project.UsERP.persistence.StDAO;
 import com.project.UsERP.vo.AccountStatementVO;
+import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -27,6 +29,9 @@ public class StServiceImpl implements StService {
 
 	@Autowired
 	PdDAO pddao;
+	
+	@Autowired
+	AdDAO addao;
 	
 	// 강재현 - 기초등록 - 판매 거래처 목록 & 상품 목록
 	@Override
@@ -145,6 +150,17 @@ public class StServiceImpl implements StService {
 		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
 		System.out.println(vo + "vo");
 		int insertCnt = stdao.insertSalesStatement(vo);
+		
+		if (insertCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("전표 등록되었습니다.");
+			vo1.setDep_code(600);
+
+			int insert1Cnt = stdao.insertAcAlert(vo1);
+			model.addAttribute("insert1Cnt", insert1Cnt);
+		}
+
 
 		model.addAttribute("insertCnt", insertCnt);
 	}
@@ -219,6 +235,16 @@ public class StServiceImpl implements StService {
 			/////////////////////////////추가 끝/////////////////////////////
 			
 			int insertCnt = stdao.insertLogsStatement(vo);
+			
+			if (insertCnt == 1) {
+				AlertVO vo1 = new AlertVO();
+				vo1.setAlert_state(0);
+				vo1.setAlert_content("출고 전표 등록되었습니다.");
+				vo1.setDep_code(600);
+
+				int insert1Cnt = stdao.insertLgAlert(vo1);
+				model.addAttribute("insert1Cnt", insert1Cnt);
+			}
 
 			AccountStatementVO vo1 = new AccountStatementVO();
 			vo1.setAccs_state(3);

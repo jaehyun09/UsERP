@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.UsERP.service.LdServiceImpl;
 
@@ -125,16 +127,6 @@ public class LdController {
 		
 		return "ld/stockOutReady";
 	}
-		
-	// 전표 관리 출고 승인 - 최유성
-	@RequestMapping("/stockOutAction")
-	public String stockOutAction(HttpServletRequest req, Model model) {
-		logger.info("url: 전표 관리 출고 승인");
-		
-		ldservice.stockOutAction(req, model);
-		
-		return "ld/stockOutAction";
-	}
 
 	// 전표 관리 - 최유성 - 물류 전표 상세페이지 - 입고 미승인 전표 조회
 	@RequestMapping("/ldStatementManagementContentAjax1")
@@ -176,7 +168,7 @@ public class LdController {
 		return "ld/ajax/ldStatementManagementContentAjax4";
 	}
 	
-	// 김민수 - 재고 관리
+	// 김민수 - 재고 관리 
 	@RequestMapping("/ldInventoryControl")
 	public String ldInventoryControl(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 관리");
@@ -209,15 +201,6 @@ public class LdController {
 		return "ld/ajax/logMoveWareInsert";
 	}
 	
-	// 김민수 - 입출고 내역페이지 AJAX
-	@RequestMapping("/logStockOutInList")
-	public String logStockOutInList(HttpServletRequest req, Model model) {
-		logger.info("url: 입출고 내역페이지");
-		
-		
-		return "ld/ajax/logStockOutInList";
-	}
-	
 	// 김민수 - 입출고 상세페이지 AJAX
 	@RequestMapping("/logMovehouseDetail")
 	public String logMovehouseDetail(HttpServletRequest req, Model model) {
@@ -244,8 +227,8 @@ public class LdController {
 	public String logInvenAdjustment(HttpServletRequest req, Model model) {
 		logger.info("url: 재고 조정페이지 AJAX");
 		
-		ldservice.selectWarehouse(req, model);
-		ldservice.selectProduct(req, model);
+//		ldservice.selectWarehouse(req, model);
+//		ldservice.selectProduct(req, model);
 		ldservice.adjustmentList(req, model);
 		
 		return "ld/ajax/logInvenAdjustment";
@@ -262,10 +245,17 @@ public class LdController {
 		return "ld/ajax/logAdjNewInsert";
 	}
 	
-	// 김민수 - 재고 조정 등록페이지
+	// 김민수 - 재고 조정 등록 리턴값 반환 AJAX
+	@RequestMapping(value="/getAdjStock", method=RequestMethod.POST)
+	public @ResponseBody String getAdjStock(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 조정 신규등록페이지 AJAX");
+		return ldservice.adjGetStock(req, model);
+	}
+	
+	// 김민수 - 재고 조정 등록
 	@RequestMapping("/invenAdjInsert")
 	public String invenAdjInsert(HttpServletRequest req, Model model) {
-		logger.info("url: 재고 조정 등록페이지");
+		logger.info("url: 재고 조정 등록");
 		
 		ldservice.adjNewInsert(req, model);
 		
