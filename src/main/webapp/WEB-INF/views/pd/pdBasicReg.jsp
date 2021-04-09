@@ -312,7 +312,7 @@ function content(code) {
                                                   <div class="input-group-append">
                                                    <i class="gd-search icon-text icon-text-sm"></i>
                                                     </div>
-                                                    <input class="form-control form-control-icon-text" placeholder="거래처코드?거래처번호?/거래처명 검색" type="text" >
+                                                    <input class="form-control form-control-icon-text" placeholder="거래처코드?거래처번호?/거래처명 검색" type="text" style="font-size:20px">
                                                </div>
                                                <br>
                                                <div class="col">
@@ -343,10 +343,10 @@ function content(code) {
 																	   aria-controls="multiCollapseExample1"
 																	   onclick="content(${company.com_code})"> ${company.com_code}</a>
 																</td>
-                                                               <c:if test = "${company.com_type == 10}">
+                                                               <c:if test = "${company.com_type == 100}">
                                                                <td class="py-3" style="vertical-align:middle">판매 거래처</td>
                                                                </c:if>
-                                                               <c:if test = "${company.com_type == 20}">
+                                                               <c:if test = "${company.com_type == 200}">
                                                                <td class="py-3" style="vertical-align:middle">구매 거래처</td>
                                                                </c:if>
                                                                <td class="py-3" style="vertical-align:middle">${company.com_name}</td>
@@ -384,14 +384,14 @@ function content(code) {
                                                   <div class="input-group-append">
                                                    <i class="gd-search icon-text icon-text-sm"></i>
                                                     </div>
-                                                    <input class="form-control form-control-icon-text" placeholder="상품번호?상품코드?/상품명 검색" type="text" >
+                                                    <input class="form-control form-control-icon-text" placeholder="상품번호?상품코드?/상품명 검색" type="text" style="font-size:20px">
                                                </div>
                                                <br>
                                             <!-- 검색창 끝 --> 
                                              <!-- 테스트 -->
-                                       <table class="table  bg-white text-dark center ass2 table-striped">
-                                          <thead>
-                                              <tr class="text-white table-bordered tap">
+                                       <table class="table bg-white text-dark center ass2 table-striped">
+                                          <thead class="text-white table-bordered tap">
+                                             <tr class="text-white table-bordered tap">
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>
@@ -404,11 +404,11 @@ function content(code) {
                                           <tbody>
                                           
                                              <c:forEach var="product" items="${product}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
-                                             <tr class="tablein">
+                                             <tr>
                                                 <td class="py-3" style="vertical-align:middle">${product.pro_code}</td>
                                                 <td class="py-3" style="vertical-align:middle">${product.pro_name}</td>
-                                                <td class="py-3" style="vertical-align: middle">${product.pro_pur_price}</td>
-                                                <td class="py-3" style="vertical-align: middle">${product.pro_sal_price}</td>
+                                                <td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_pur_price}"/></td>
+                                                <td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_sal_price}"/></td>
 	                                                <c:if test = "${product.pro_state == 1}">
 	                                                	<td class="py-3" style="vertical-align: middle">사용중</td>
 	                                                </c:if>

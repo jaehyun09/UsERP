@@ -15,9 +15,10 @@
 </head>
 <body>
 	<div align=center>
-	<form action ="confirm?${_csrf.parameterName}=${_csrf.token}" method="post" onsubmit="return confirmCheck2();">
+	<form action ="confirm" method="post" onsubmit="return confirmCheck2();">
 		<br>
 		<br>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<c:if test="${selectCnt == 0}">
 			<table class="table bg-white text-dark center ass2">
 				<thead class="text-white table-bordered tap font-weight-semi-bold border-top-0 ass2">

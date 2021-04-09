@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     
     <!-- Script -->
-    <script src="${spath}hr.js"></script>
+    <script src="${spath}script.js"></script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -260,7 +260,7 @@
 										      <i class="gd-search icon-text icon-text-sm"></i>
 										    </div>
 										    
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" >
+										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
 										  </div>
 										  <!-- 검색창 끝 -->		
 										  <br>
@@ -349,33 +349,36 @@
 											<div class="tab-pane fade p-4" id="pills-html-1"
 												role="tabpanel" aria-labelledby="pills-html-tab-1">
 												
-												<form action="hrAppointmentPro" method="post">
+												<form action="hrAppointmentPro" method="post" onsubmit="return appointmentCheck()">
+													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+													<input type="hidden" name="confirm_code_ap" value="0">
 													<table class="table bg-white text-dark center ass2">
 														<tr class="text-white table-bordered tap">
 															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">인사 발령</th>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원번호</th>
-															<td><input id="text" type="text" class="form-control" name="emp_code" required></td>
+															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px"></td>
 															<td>
-																<button type="button" class="btn btn-outline-info" onclick="empCodeCheck()">
+																<button type="button" class="btn btn-outline-info" name="emp_code_check_ap" onclick="hrConfirmAppoint()">
 																	사번확인
 																</button>
 															</td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">사원명</th>
-															<td><input id="text" type="text" class="form-control" name="emp_name" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="emp_name" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">현재 부서</th>
-															<td><input id="text" type="text" class="form-control" name="ap_pre_dep" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="ap_pre_dep" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">발령 부서</th>
 															<td>	 
 															<div class="form-group">
 															     <select name="ap_cur_dep" class="form-control" id="exampleFormControlSelect1">
+															     	<option value="0">부서 선택</option>
 															    	<c:forEach var="vo" items="${list3}">
 														       			<option value="${vo.dep_name}">${vo.dep_name}</option>
 														       		</c:forEach>
@@ -385,13 +388,14 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">현재 직급</th>
-															<td><input id="text" type="text" class="form-control" name="ap_pre_position" readonly></td>
+															<td><input id="text" type="text" class="form-control" name="ap_pre_position" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">발령 후 직급</th>
 															<td>	 
 															<div class="form-group">
 															     <select name="ap_cur_position" class="form-control" id="exampleFormControlSelect1">
+															     	<option value="0">직급 선택</option>
 															     	<c:forEach var="vo" items="${list4}">
 														       			<option value="${vo.hr_code_name}">${vo.hr_code_name}</option>
 														       		</c:forEach>
@@ -404,8 +408,8 @@
 												
 												<div align=center>
 												
-													<button type="button" type="submit" class="btn btn-outline-info">발령</button>&nbsp;&nbsp;&nbsp;
-													<button type="button" type="reset" class="btn btn-outline-info">재작성</button>
+													<button type="submit" class="btn btn-outline-info">발령</button>&nbsp;&nbsp;&nbsp;
+													<button type="reset" class="btn btn-outline-info">재작성</button>
 												
 												</div>
 												<br>

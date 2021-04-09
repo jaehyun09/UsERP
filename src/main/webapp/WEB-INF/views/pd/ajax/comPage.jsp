@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>comPage</title>
 </head>
 <body>
 <table class="table table-bordered bg-white text-dark ass2 center">
@@ -19,7 +19,7 @@
 			</tr>
 			<tr>
 				<th colspan="1">거래처 유형 </th>
-				<c:if test="${company.com_type == 20 }">
+				<c:if test="${company.com_type == 200 }">
 				<td colspan="3">구매 거래처</td>
 				</c:if>
 			</tr>
@@ -40,7 +40,7 @@
 				<td colspan="3">${company.com_address}</td>
 			</tr>
 			<tr>
-				<th colspan="1">거래처 등록일</th>
+				<th colspan="1">등록일</th>
 				<td colspan="3"><fmt:formatDate pattern="yyyy-MM-dd" value="${company.com_reg_date}" /></td>
 			</tr>
 		</tbody>

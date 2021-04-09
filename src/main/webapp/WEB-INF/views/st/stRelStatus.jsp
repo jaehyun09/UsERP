@@ -270,7 +270,7 @@ function select(code) {
                                                <div class="input-group-append">
                                                 <i class="gd-search icon-text icon-text-sm"></i>
                                                  </div>
-                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
+                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" style="font-size:20px">
                                             </div>
                                             <br>
                                     <!-- 검색창 끝 --> 
@@ -303,13 +303,16 @@ function select(code) {
                                                 <td class="py-3" style="vertical-align:middle; font-size:22px;">출고 대기중</td>
                                                 </c:if>
                                                 <c:if test="${strel.logs_update_date != null }">
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${strel.logs_update_date}</td>
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;"><fmt:formatDate value="${strel.logs_update_date}" pattern="yyyy-MM-dd" /></td>
                                                 </c:if>
                                                 <c:if test="${strel.logs_state == 0 }">
                                                 <td class="py-3" style="vertical-align:middle; font-size:22px;">대기중</td>
                                                 </c:if>
                                                 <c:if test="${strel.logs_state == 1 }">
                                                 <td class="py-3" style="vertical-align:middle; font-size:22px;">승인완료</td>
+                                                </c:if>
+                                                <c:if test="${strel.logs_state == 2 }">
+                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">출고완료</td>
                                                 </c:if>
                                              </tr>
                                              </c:forEach>

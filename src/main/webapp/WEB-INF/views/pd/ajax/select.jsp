@@ -26,7 +26,7 @@
 				</td>				
 			</tr>
 			<tr>
-				<td class="py-3 text-dark" colspan="2"
+				<td class="py-3 text-dark con2" colspan="2"
 					style="vertical-align: middle;"><b>상품명</b></td>
 				<td class="py-3" colspan="2" style="vertical-align: middle; text-align: left;">
 					<input

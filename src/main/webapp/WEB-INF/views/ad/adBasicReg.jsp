@@ -196,7 +196,7 @@ function accountlist() {
 						<a class="side-nav-menu-link ass2" href="${path}/pdInvenStatus">재고 현황</a>
 					</li>
 					<li class="side-nav-menu-item">
-						<a class="side-nav-menu-link ass2" href="${path}/pdStatus">구매 현황</a>
+						<a class="side-nav-menu-link ass2 href="${path}/pdStatus">구매 현황</a>
 					</li>
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/pdRecStatus">입고 현황</a>

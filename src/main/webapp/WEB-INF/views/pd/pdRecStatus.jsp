@@ -6,26 +6,7 @@
 <head>
     <!-- Title -->
     <title>Users | Graindashboard UI Kit</title>
-<script type="text/javascript">
 
-function select(code) {
-	
-	var param = "&${_csrf.parameterName}=${_csrf.token}&accs_code=" + code;
-   $.ajax({
-      type:"POST",
-	  data:param,
-	  url:'select12',
-      success: function(data){ 
-         $('#select12').html(data);
-      },
-      error: function(){
-         alert('오류');
-      }
-   });
-}
-
-
-</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -35,6 +16,46 @@ function select(code) {
    <link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+<script type="text/javascript">
+/* 입고 내역 상셍페이지 */
+function content1(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'pdRecStatusAjax',
+      success: function(data){ 
+         $('#content1').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+/* 입고 전표 등록 */
+function content2(code) {
+	
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&accs_code=" + code;
+	
+   $.ajax({
+      type:"POST",
+	  data:param,
+	  url:'pdRecStatusAjax2',
+      success: function(data){ 
+         $('#content2').html(data);
+      },
+      error: function(){
+         alert('오류');
+      }
+   });
+}
+
+</script>   
+    
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -270,48 +291,69 @@ function select(code) {
                                                <div class="input-group-append">
                                                 <i class="gd-search icon-text icon-text-sm"></i>
                                                  </div>
-                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" >
+                                                 <input class="form-control form-control-icon-text" placeholder="거래처명 검색" type="text" style="font-size:20px">
                                             </div>
                                             <br>
                                     <!-- 검색창 끝 --> 
                                     <div class="row">
+                                       <div class="col">
+                                          <div class="collapse multi-collapse"
+                                             id="multiCollapseExample1">
+                                             
+                 <!-- -----------------상세페이지--------------------- -->
+                                             <div id="content1"></div>
+                  <!-- -----------------상세페이지--------------------- -->                             
+                                                
+                                          </div>
+                                       </div>
                                        <table class="table  bg-white text-dark center ass2 table-striped">
                                           <thead class="text-white table-bordered tap">
                                              <tr class="text-white table-bordered tap">
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
-                                                
                                                 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">수량</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">담당자명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">등록일</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">출고일</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 h4">상태</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
+                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th>
                                              </tr>
                                           </thead>
                                           <tbody>
-                                           <c:forEach var="purel" items="${purel}">
-                                             <tr>
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${purel.logs_code}</td>
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${purel.product.pro_name}</td>
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px; ">${purel.logs_quantity}</td>                                                
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${purel.employee.emp_name}</td>
-                                                
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px;"><fmt:formatDate value="${purel.logs_reg_date}" pattern="yyyy-MM-dd" /></td>
-                                                <c:if test="${purel.logs_update_date == null }">
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">입고 대기중</td>
-                                                </c:if>
-                                                <c:if test="${purel.logs_update_date != null }">
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">${purel.logs_update_date}</td>
-                                                </c:if>
-                                                <c:if test="${purel.logs_state == 0 }">
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">대기중</td>
-                                                </c:if>
-                                                <c:if test="${purel.logs_state == 1 }">
-                                                <td class="py-3" style="vertical-align:middle; font-size:22px;">승인완료</td>
-                                                </c:if>
-                                             </tr>
-                                             </c:forEach>
+                                             <c:forEach var="list" items="${SIlist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
+                                              <tr>
+                                                 <td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+															href="#multiCollapseExample1" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample1"
+															onclick="content1(${list.logs_code})">${list.logs_code}</a></td>
+                                                 <td class="py-3">${list.product.pro_name}</td>
+                                                 <td class="py-3">${list.company.com_name}</td> 
+                                                 <td class="py-3">${list.logs_quantity}</td>
+                                                 <td class="py-3">${list.warehouse.ware_name}</td>
+                                                 <td class="py-3">${list.employee.emp_name}</td>
+                                                 <td class="py-3">
+                                                 		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
+                                                 </td>
+                                                 <c:if test = "${list.logs_state == 0}">
+                                                 <td class="py-3">
+                                                 	-
+                                                 </td>
+                                                 </c:if>
+                                                 <c:if test = "${list.logs_state == 1}">
+                                                	 <td class="py-3">
+                                                 		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
+                                                 	 </td>
+                                                 </c:if>
+                                                 <c:if test = "${list.logs_state == 0}">
+                                                 	<td class="py-3 middle">입고대기</td>
+                                                 </c:if>
+                                                 <c:if test = "${list.logs_state == 1}">
+                                                 	<td class="py-3 middle">입고완료</td>
+                                                 </c:if>
+                                              </tr>
+                                              </c:forEach>
                                           </tbody>
                                        </table>
                                     </div>
@@ -319,36 +361,48 @@ function select(code) {
 
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    <div id="select12"></div>
-                                    	
-                                    	<table class="table  bg-white text-dark center ass2 table-striped">
-                                          <thead class="text-white table-bordered tap">
-                                             <tr>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">판매번호</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
-                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-                                             </tr>
-                                          </thead>
-                                          <tbody>
-                                             <c:forEach var="vo" items="${acco}">
-                                             <tr>
-                                                <td class="py-3" style="font-size:22px">
-                                                	<a onclick="select(${vo.accs_code})">
-                                                		${vo.accs_code}
-                                                	</a>
-                                                </td>
-                                                <td class="py-3" style="font-size:22px">${vo.company.com_name}</td>
-                                                <td class="py-3" style="font-size:22px">${vo.product.pro_name}</td>
-                                                <td class="py-3" style="font-size:22px">${vo.accs_quantity}개</td>
-                                                <td class="py-3" style="font-size:22px">${vo.employee.emp_name}</td>
-                                                <td class="py-3" style="font-size:22px"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
-                                             </tr>
-                                             </c:forEach>
-                                          </tbody>
-                                       </table>
+                                    <div class="row">
+                                    	<div class="col">
+                                          <div class="collapse multi-collapse"
+                                             id="multiCollapseExample2">
+                                             
+                 <!-- -----------------상세페이지--------------------- -->
+                                             <div id="content2"></div>
+                  <!-- -----------------상세페이지--------------------- -->                             
+                                                
+                                          </div>
+                                       </div>
+                                       
+									<table class="table  bg-white text-dark center ass2 table-striped">
+	                                    <thead class="text-white table-bordered tap">
+	                                       <tr>
+	                                          <th class="font-weight-semi-bold border-top-0 py-3 con2">구매번호</th>
+	                                          <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+	                                          <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+	                                          <th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
+	                                          <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
+	                                          <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+	                                       </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                       <c:forEach var="list" items="${AList}"><!-- 아이템 수정하기 -->
+	                                       <tr>
+	                                          <td class=" text-dark con2" style="vertical-align:middle"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+													href="#multiCollapseExample2" role="button"
+													aria-expanded="false"
+													aria-controls="multiCollapseExample2"
+													onclick="content2(${list.accs_code})">${list.accs_code}</a></td>
+	                                          <td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.company.com_name}</td>
+	                                          <td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.product.pro_name}</td>
+	                                          <td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.accs_quantity}개</td>
+	                                          <td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.employee.emp_name}</td>
+	                                          <td class="py-3 middle" style="vertical-align:middle; font-size:22px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.accs_reg_date}"/></td>
+	                                       </tr>
+	                                       </c:forEach>
+	                                    </tbody>
+	                                 </table>
+<!-- --------------------테스트 종료 --------------------------------------------------------------------------------------- -->									
+									
                                  </div>
                               </div>
                               <!-- End Tab Content -->
@@ -360,7 +414,7 @@ function select(code) {
             </div>
          </div>
       </div>
-    
+    </div>
 </main>
 
 <%@ include file = "../common/footer.jsp" %> 

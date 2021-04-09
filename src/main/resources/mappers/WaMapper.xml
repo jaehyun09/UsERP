@@ -80,13 +80,13 @@
  	<!-- 김은희 - 근태 신청  -->
  	<insert id="waAppInsert" parameterType="java.util.Map" >
  		INSERT INTO work_record (wr_code, wr_ap_date, wr_va_start, wr_va_end, wr_va_reason, wr_state, emp_code, hr_code, dep_code)
-     		VALUES (work_record_seq.nextval, default, TO_DATE(#{wr_va_start},'YY-MM-DD'), TO_DATE(#{wr_va_end},'YY-MM-DD'), #{vo.wr_va_reason}, #{vo.wr_state}, #{vo.emp_code}, #{vo.hr_code}, #{vo.dep_code})
+     		VALUES (wr_seq.nextval, default, TO_DATE(#{wr_va_start},'YY-MM-DD'), TO_DATE(#{wr_va_end},'YY-MM-DD'), #{vo.wr_va_reason}, #{vo.wr_state}, #{vo.emp_code}, #{vo.hr_code}, #{vo.dep_code})
  	</insert>
  	
  	<!-- 김은희 - 출근 버튼 클릭 -->
  	<insert id="waStartClick" parameterType="java.util.Map" >
  		INSERT INTO commute (cm_code, cm_date, cm_start, emp_code)
-     		VALUES (commute_seq.nextval, #{date}, #{date}, #{emp_code})
+     		VALUES (cm_seq.nextval, #{date}, #{date}, #{emp_code})
  	</insert>
  	
  	<!-- 김은희 - 퇴근 처리 가져오기  -->
@@ -100,6 +100,12 @@
  	<!-- 김은희 - 퇴근 처리 업데이트 -->
  	<update id="waEndAction" parameterType="java.util.Map" >
  		UPDATE commute SET cm_end=#{date}
+         WHERE emp_code = #{emp_code}
+ 	</update>
+ 	
+ 	<!-- 김은희 - 야근 버튼 클릭 -->
+ 	<update id="waNightClick" parameterType="java.util.Map" >
+ 		UPDATE commute SET cm_night_time=1, cm_end=#{cm_end, jdbcType=VARCHAR}
          WHERE emp_code = #{emp_code}
  	</update>
  	
