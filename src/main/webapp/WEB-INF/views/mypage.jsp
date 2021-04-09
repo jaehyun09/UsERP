@@ -16,6 +16,18 @@
 <link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
+    
+    <script type="text/javascript">
+    
+    function select() {
+    	
+    	var val = document.
+    	$('#emp_bank').val("농협").prop("selected",true);
+    	
+    }
+    
+    </script>
+    
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -230,76 +242,146 @@
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
 											
-												<form action="productInsAction.mgr?${_csrf.parameterName}=${_csrf.token}" method="post" class="container" enctype="multipart/form-data" name="productInsertForm" onsubmit="return productInsCheck()">
-                     <table class="table table-bordered bg-white text-dark ass2 center ">
-                                                   <tbody>
-                                                      <tr class="text-white con center">
-                                                         <th colspan="3">인사카드</th>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="300" rowspan="5" style="vertical-align:middle">사진</th>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">사번</th>
-                                                         <td>10000</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">사원명</th>
-                                                          <td>유재석</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">부서명</th>
-                                                         <td>인사부</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">직급</th>
-                                                         <td>대리</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">입사일</th>
-                                                         <td colspan="3">2021-03-30</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">근속연수</th>
-                                                         <td colspan="3">7.2</td>
-                                                      </tr>
-                                                      <tr>
-                                                          <th width="150">주민등록번호</th>
-                                                         <td colspan="3">990812-1234567</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">주소</th>
-                                                         <td colspan="3">서울시 금천구 디지털로 78 가산테라타워</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">전화번호</th>
-                                                         <td colspan="3">041-551-0000</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">휴대전화</th>
-                                                         <td colspan="3">010-1234-5678</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">이메일</th>
-                                                         <td colspan="3">hi863@naver.com</td> 
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">여권번호</th>
-                                                         <td colspan="3">1111-2222-3333-4444</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <th width="150">급여 계좌</th>
-                                                         <td colspan="3">농협   356-1021-0564-33</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table>
+												<!-- 인사카드 폼 시작 -->  
+							                     <form action="myPageUpdate?${_csrf.parameterName}=${_csrf.token}" name="myPageform" method="post" enctype="multipart/form-data" onsubmit="return pageCheck();">
+							                     <table class="table bg-white text-dark center ass2" style="text-align:center">
+							                        <tr>
+							                           <th class="text-white table-bordered tap py-3 con2" colspan="3"> 인사카드 </th>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">* 사진</th>
+							                           <td><input id="file" type="file" name="emp_photo" value=""></td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">* 사번</th>
+							                           <td><input type="text" class="form-control" name="emp_code" value="10000" readonly></td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">* 사원명</th>
+							                           <td> <input type="text" class="form-control" name="emp_name" value="유재석" readonly></td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle"> * 부서명 </th>
+							                           <td>    
+							                           <div class="form-group">
+							                                <select name="dep_code" class="form-control" id="dep_code">
+							                                   <option value="0">부서 선택</option>
+							                                <c:forEach var="vo" items="${list3}">
+							                                   <option value="${vo.dep_code}">${vo.dep_name}</option>
+							                                  </c:forEach>
+							                                </select>
+							                              </div>
+							                            </td>
+							                        </tr>
+							                        <tr>
+							                          <th style="vertical-align:middle"> * 직급</th>
+							                           <td>    
+							                           <div class="form-group">
+							                               <select name="hr_code" class="form-control" id="hr_code">
+							                           <option value="0">직급 선택</option>
+							                        <c:forEach var="vo" items="${list4}">
+							                           <option value="${vo.hr_code}">${vo.hr_code_name}</option>
+							                        </c:forEach>
+							                        </select>
+							                            </div>
+							                           </td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">* 권한</th>
+							                           <td><div class="form-group">
+							                                   <select name="emp_authority" class="form-control" id="emp_authority">
+							                                       <option value="0">권한 선택</option>
+							                                     <option value="ROLE_ADMIN">관리자</option>
+							                                     <option value="ROLE_ST">판매팀</option>
+							                                     <option value="ROLE_HR">인사팀</option>
+							                                     <option value="ROLE_PD">구매팀</option>
+							                                     <option value="ROLE_LD">물류팀</option>
+							                                     <option value="ROLE_AD">회계팀</option>
+							                                   </select>
+							                                </div>
+							                             </td>
+							                         </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle">* 입사일</th>
+							                           <td><input type="date" name="emp_hire_date" class="form-control" id="emp_hire_date" value=""></td>
+							                        </tr>
+							                        <tr>                                    
+							                            <th style="vertical-align:middle">근속연수</th>
+							                            <td><input type="text" name="emp_cos" class="form-control" value="7.2"></td>
+							                        </tr>
+							                        <tr>
+							                           <th style="vertical-align:middle"> * 주민등록번호 </th>
+							                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력" value="99081212345678"></td>
+							                        </tr>
+							                         <tr>
+							                     <th style="vertical-align:middle">* 주소</th>
+							                     <td>
+							                        <input type="text" name="addcode" id="sample6_postcode"
+							                        placeholder=" 우편번호" class="form-control" size=8 style="padding: 3px;"></td> 
+							                        <td><input type="button" onclick="addressSearch();" class="btn btn-outline-info" value="주소찾기">
+							                     </td>
+							                  <tr>
+							                     <th style="vertical-align:middle"> </th>
+							                     <td>
+							                        <input type="text" class="form-control" name="add1" id="sample6_address" size=45
+							                        placeholder=" 주소">
+							      
+							                     </td>
+							                  </tr>
+							                  <tr>
+							                     <th style="vertical-align:middle"></th>
+							                     <td>
+							                        <input type="text" name="add2" class="form-control" id="sample6_address2"
+							                        placeholder=" 상세주소" size=45 onchange="addinput();"> 
+							                        <input type="hidden" name="address">
+							                     </td>
+							                  </tr> 
+							                      <tr>
+							                              <th style="vertical-align:middle">전화번호</th>
+							                              <td><input type="tel" name="emp_tel" class="form-control" value="010-8559-1234"></td>
+							                           </tr>
+							                           <tr>
+							                              <th style="vertical-align:middle">* 휴대전화</th>
+							                              <td><input type="tel" name="emp_phone" class="form-control" value="010-8559-1234"></td>
+							                           </tr>
+							                           <tr>                                    
+							                              <th style="vertical-align:middle">* 이메일</th>
+							                              <td><input type="email" name="emp_email" class="form-control" value="hi863@naver.com"></td>
+							                           </tr>
+							                           <tr>
+							                              <th style="vertical-align:middle">여권번호</th>
+							                              <td><input type="text" name="emp_port_no" class="form-control" value=""></td>
+							                           </tr>
+							                           <tr>
+							                              <th style="vertical-align:middle">* 은행</th>
+							                              <td><div class="form-group">
+							                                      <select name="emp_bank" class="form-control" id="emp_bank" onload="select();">
+							                                        <option value="0">은행 선택</option>
+							                                        <option value="농협">농협</option>
+							                                        <option value="신한">신한</option>
+							                                        <option value="기업">기업</option>
+							                                        <option value="하나">하나</option>
+							                                        <option value="국민">국민</option>
+							                                        <option value="우리">우리</option>
+							                                        <option value="카카오뱅크">카카오뱅크</option>
+							                                      </select>
+							                                    </div>
+							                              </td>
+							                           </tr>
+							                           <tr>
+							                              <th style="vertical-align:middle">* 급여계좌</th>
+							                              <td><input type="text" name="emp_account" class="form-control" value="356-1021-0564-33"></td>
+							                           </tr>
+							                     </table>
+							                  
+							                     <div align=center>
+							                           <button type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
+							                           <button type="reset" class="btn btn-outline-info">재입력</button>
+							                     </div>
+							                  
+							                  </form>
+							                <!-- 인사카드 폼 끝 -->   
                   
-                     <div align=center>
-                                  <button type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
-                                  <button type="reset" class="btn btn-outline-info">재입력</button>
-                            </div>
-                  
-                  </form>
 											</div>
 										</div>
 										<!-- End Tab Content -->

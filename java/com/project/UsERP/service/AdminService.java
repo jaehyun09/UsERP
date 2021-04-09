@@ -3,6 +3,7 @@ package com.project.UsERP.service;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface AdminService {
 
@@ -11,6 +12,9 @@ public interface AdminService {
 
 	// 조명재 - 사원확인 - 사원확인 전송 클릭
 	public void signinPro(HttpServletRequest req, Model model);
+	
+	// 김은희 - 내 정보 수정 처리
+	public void mypageUpdateAction(MultipartHttpServletRequest req, Model model);
 
 	// 강재현 - 알림 리스트 회계팀
 	public void accsAlertList(HttpServletRequest req, Model model);

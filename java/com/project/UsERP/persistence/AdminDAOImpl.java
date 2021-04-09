@@ -1,6 +1,7 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,12 @@ public class AdminDAOImpl implements AdminDAO {
 		AdminDAO dao = sqlSession.getMapper(AdminDAO.class);
 		return dao.getUsersInfo(emp_code);
 	}
+	
+	// 김은희 - 내 정보 수정 처리
+	@Override
+	public int mypageUpdateAction(Map<String, Object> map) {
+		return sqlSession.update("com.project.UsERP.persistence.AdminDAO.mypageUpdateAction", map);
+	}
 
 	// 조명재 - 비밀번호를 생성한다
 	@Override
@@ -58,7 +65,7 @@ public class AdminDAOImpl implements AdminDAO {
 		AdminDAO dao = sqlSession.getMapper(AdminDAO.class);
 		return dao.signinPro(emp_code, emp_pwd);
 	}
-
+	
 	// 강재현 - 알림 리스트
 	@Override
 	public List<AlertVO> accsAlertList() {
@@ -88,5 +95,6 @@ public class AdminDAOImpl implements AdminDAO {
 	public int alertUpdate(AlertVO vo) {
 		return sqlSession.update("com.project.UsERP.persistence.AdminDAO.alertUpdate", vo);
 	}
+	
 
 }
