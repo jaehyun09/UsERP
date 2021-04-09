@@ -305,20 +305,16 @@
 											  <div align="right">
 			                                       <button type="button" onclick="confirmLogin()" class="btn btn-outline-info">출근</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			                                       <button type="button" onclick="confirmEnd()" class="btn btn-outline-info">퇴근</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			                                       <button type="button" onclick="confirmNight()" class="btn btn-outline-info">야근</button>
-			                                       <br>
-			                                       <br>
-			                                       <div class="form-group">
-						                                <select name="cm_night_time" class="form-control" id="cm_night_time" style="width:250px;">
-						                                	<option value="0">야근시간을 선택하세요.</option>
-						                                	<option value="1">PM 19:00 </option>
-						                                    <option value="2">PM 20:00 </option>
-						                                    <option value="3">PM 21:00 </option>
-						                                    <option value="4">PM 22:00 </option>
-						                                    <option value="5">PM 23:00 </option>
-						                                    <option value="6">PM 24:00 </option>
-						                                </select>
-								                      </div>
+			                                       <button type="button" onclick="confirmNight()" class="btn btn-outline-info">야근</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					                                <select name="cm_night_time" class="form-control" id="cm_night_time" style="width:250px; display:inline; vertical-align:middle">
+					                                	<option value="0">야근시간을 선택하세요.</option>
+					                                	<option value="1">PM 19:00 </option>
+					                                    <option value="2">PM 20:00 </option>
+					                                    <option value="3">PM 21:00 </option>
+					                                    <option value="4">PM 22:00 </option>
+					                                    <option value="5">PM 23:00 </option>
+					                                    <option value="6">PM 24:00 </option>
+					                                </select>
 			                                      </div>
 											  </form>
 										  <br>		
