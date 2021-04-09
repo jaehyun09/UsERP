@@ -59,7 +59,7 @@
 							<c:if test="${vo.logsisticsstatement.logs_type == 5}">
 							입고
 							</c:if>
-							<c:if test="${vo.logsisticsstatement.logs_state == 3 && vo.logsisticsstatement.logs_shortage != 0}">
+							<c:if test="${vo.logsisticsstatement.logs_state == 3}">
 								승인 되었습니다. <br>재고 (${vo.logsisticsstatement.product.pro_name})가 ${vo.logsisticsstatement.logs_shortage}개
 								${vo.alert_content} <br>입고 요청 바랍니다.
 							</c:if>

@@ -161,7 +161,7 @@ public class StServiceImpl implements StService {
 			AlertVO vo1 = new AlertVO();
 			vo1.setAlert_state(0);
 			vo1.setAlert_content("전표 등록되었습니다.");
-			vo1.setDep_code(600);
+			vo1.setDep_code(200);
 
 			int insert1Cnt = stdao.insertAcAlert(vo1);
 			model.addAttribute("insert1Cnt", insert1Cnt);
@@ -267,7 +267,7 @@ public class StServiceImpl implements StService {
 			AlertVO vo1 = new AlertVO();
 			vo1.setAlert_state(0);
 			vo1.setAlert_content("출고 전표 등록되었습니다.");
-			vo1.setDep_code(600);
+			vo1.setDep_code(200);
 
 			int insert1Cnt = stdao.insertLgAlert(vo1);
 			model.addAttribute("insert1Cnt", insert1Cnt);
