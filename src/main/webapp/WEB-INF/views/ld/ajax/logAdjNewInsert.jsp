@@ -8,38 +8,67 @@
 <script src="${project}js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
-/* $(function() {
-		$("#amount").keyup(function(){
-			var amount = parseInt($('#amount').val());
-			var quantity = ${stsu_quantity};
-			var quantityReturn = quantity + amount; 
-			$("#quantity").val(quantityReturn);
-		});
-	}); 
-
-$('#amount').change(function() {
-	var amount = $('#amount').val();
-	var quantity = ${stsu_quantity};
-	
-	if(count < quantity) {
-		alert("재고수량을 초과했습니다.");
+/* 현 재고 수량 리턴 AJAX */
+$(function() {
+	$('#amount').click(function() {
+		var prod = $('#prod').val();
+		var wareh = $('#wareh').val();
+		var param = '&${_csrf.parameterName}=${_csrf.token}&prod='+prod+'&wareh='+wareh;
 		
+		$.ajax({
+	        // sendRequest(콜백함수명, url, method, params)
+	        url: "getAdjStock", // 전송 페이지 => 컨트롤러 "basic_next"
+	        type: 'POST', // 전송방식('GET', 'POST') - method
+	        data: param, // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
+	        success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+	           $('#quantity').val(data);
+	        },
+	        error: function(){
+	           alert('오류');
+	        }
+	     });
+	});
+});
+
+/* 조정 후 재고 계산 */
+$('#amount').change(function() {
+	var amount = parseInt($('#amount').val());
+	var quantity = parseInt($('#quantity').val());
+	var quan = quantity + amount;
+	
+	if(amount < quantity) {
+		alert('재고수량을 초과하였습니다.');
+		$('#amount').val('');
+		$('#amount').focus();
+	} else {
+		$('#quantity').val(quan);
+	}
+});
+
+/* 입력 값 없이 submit 할 경우 포커스 및 sumbit안타기 */
+function adjCheck() {
+	
+	if(!document.adjform.amount.value) {
+		alert('조정 재고를 입력하세요.')
+		document.adjform.amount.focus();
 		return false;
 	}
-}); */
+} 
 
 
 </script>
 
 
 <body>
+<form action="invenAdjInsert" method="post" name="adjform" onsubmit="return adjCheck();">
+<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 	<table class="table bg-white text-dark center ass2" style="text-align:center">
 	    <tr>
 			<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
 			colspan="2" style="vertical-align: middle;">상품명</td>
 			<td class="font-weight-semi-bold border-top-0 py-2"
 				colspan="2">
-				<select class="custom-select custom-select-lg" name="prod">
+				<select class="custom-select custom-select-lg" id="prod" name="prod">
 	               	<c:forEach var="prolist" items="${selprolist}">
 						<option value="${prolist.pro_code}">${prolist.pro_name}</option>
 	               	</c:forEach>
@@ -50,7 +79,7 @@ $('#amount').change(function() {
 		<tr>
 			<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
 			<td class="py-2" colspan="2">
-				<select class="custom-select custom-select-lg" name="arrivewh">
+				<select class="custom-select custom-select-lg" id="wareh" name="arrivewh">
 					<c:forEach var="ware" items="${selectware}">
 					<c:if test="${ware.ware_type == 1}">
 						<option value="${ware.ware_code}">${ware.ware_name}</option>
@@ -85,10 +114,11 @@ $('#amount').change(function() {
 		    </td>
 	  	</tr>
 	</tbody>
-</table>
+	</table>
 	<div align=center>
         <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
         <button type="reset" class="btn btn-outline-info">재입력</button>
     </div>
+</form>
 </body>
 </html>

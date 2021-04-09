@@ -70,26 +70,9 @@
 		   <result   property="sto_reg_date"  column="sto_reg_date"/>
 		   <result   property="ware_code"  column="ware_code"/>
 		   <result   property="pro_code"  column="pro_code"/>
-		   <!-- <result   property="sto_type"  column="sto_type"/>
-		   <result   property="sto_amount"  column="sto_amount"/>
-		   <result   property="sto_state"  column="sto_state"/>
-		   <result   property="sto_content"  column="sto_content"/>
-		   <result   property="sto_startwh"  column="sto_startwh"/>
-		   <result   property="sto_arrivewh"  column="sto_arrivewh"/> -->
 		   <result   property="ware_code"  column="ware_code"/>
 		   <result   property="pro_code"  column="pro_code"/>
 		</association>
-		<!-- <association property="stockSupply" javaType="com.project.UsERP.vo.StockSupplyVO">
-		   <id       property="stsu_code"   column="stsu_code"/>
-		   <result   property="stsu_reg_date"  column="stsu_reg_date"/>
-		   <result   property="stsu_type"  column="stsu_type"/>
-		   <result   property="stsu_content"  column="stsu_content"/>
-		   <result   property="stsu_amount"  column="stsu_amount"/>
-		   <result   property="stsu_startwh"  column="stsu_startwh"/>
-		   <result   property="stsu_arrivewh"  column="stsu_arrivewh"/>
-		   <result   property="sto_code"  column="sto_code"/>
-		   <result   property="pro_code"  column="pro_code"/>
-		</association> -->
     </resultMap>
 	<!-- 리절트맵 나중에 stockOutOrder-->
 	
@@ -125,24 +108,6 @@
 		</association>
 	
 	</resultMap>
-
-	<!-- 김민수 - 양품창고 등록 -->
-	<insert id="insertGoodWare" parameterType="com.project.UsERP.vo.WarehouseVO">
-	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
-	</insert>
-	
-	<!-- 김민수 - 불량품창고 등록 -->
-	<insert id="insertBadWare" parameterType="com.project.UsERP.vo.WarehouseVO">
-	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
-	</insert>
-	
-	<!-- 김민수 - 출고대기창고 등록 -->
-	<insert id="insertWaitWare" parameterType="com.project.UsERP.vo.WarehouseVO">
-	INSERT INTO warehouse(ware_code, ware_name, ware_location, ware_state)
-	VALUES (ware_seq.nextval, #{ware_name}, #{ware_location}, #{ware_state})
-	</insert>
 	
 	<!-- 김민수 - 기초등록 - 창고 목록 -->
 	<select id="warehouseList" resultType="com.project.UsERP.vo.WarehouseVO">
@@ -160,7 +125,6 @@
 		SET ware_name = #{ware_name}, ware_location = #{ware_location} , ware_state = #{ware_state}
 		WHERE ware_code = #{ware_code}
 	</select>
-	
 	
 	<!-- 김민수 -  기초등록 - 거래처 갯수 구하기 -->
 	<select id="getCompanyCnt" resultType="int" parameterType="String">
@@ -211,16 +175,6 @@
 	  			AND rnum <= #{end}
 		]]>
 	</select>
-	
-	 <!-- 전표관리 - 입고 미승인 전표 -->
-	<select id = "purchasingCompanySelect" resultType = "com.project.UsERP.vo.CompanyVO">
-		select * from company where comp_use_state = 1
-	</select>
-	
-	<!-- 전표관리 - 입고 승인 전표 -->
-	<select id = "purchasingProductSelect" resultType = "com.project.UsERP.vo.ProductVO">
-		select * from product
-	</select> 
 	
 	<!-- 김민수 - 재고관리 - 재고 현황 갯수 -->
 	<select id="getStockCnt" resultType="int">
@@ -323,30 +277,6 @@
 						#{stsu_startwh}, #{stsu_arrivewh}, #{pro_code}, #{emp_code})
 	</insert>
 	
-	<!-- 김민수 - 재고관리 - 재고 이동 갯수 구하기 -->
-	<select id="getMoveWarehouse" resultType="int">
-		SELECT COUNT(*) FROM stock_supply WHERE stsu_type = 3
-	</select>
-	
-	<!-- 김민수 - 재고관리 - 재고 이동 내역 조회 -->
-	<select id="moveWarehouseList" resultMap="supplyVOMap" parameterType="java.util.Map">
-		<![CDATA[
-			SELECT * 
-			FROM (SELECT stsu_code, stsu_amount, pro_code, pro_name, 
-					stsu_startwh, stsu_arrivewh, emp_name, stsu_reg_date, rownum rnum
-			    FROM (SELECT su.*, p.pro_name, e.emp_name
-			        FROM stock_supply su, product p, employee e
-			        WHERE su.pro_code = p.pro_code
-			        AND su.emp_code = e.emp_code
-			        AND su.stsu_type = 3
-			        ORDER BY su.stsu_reg_date DESC
-			        )
-			    )
-			WHERE rnum >= #{start}
-			AND rnum <= #{end}
-		]]>
-	</select>
-	
 	<!-- 김민수 - 재고 이동 출고전표 상태 변경 -->
 	<update id="moveSoStateUpdate" parameterType="int">
 		UPDATE logistics_statement
@@ -440,7 +370,7 @@
 	<!-- 김민수 - 입출고 내역 조회 -->
 	<select id="shiRecList" resultMap="supplyVOMap">
 		SELECT *
-		FROM (SELECT stsu_code, stsu_reg_date, stsu_quantity, pro_code, pro_pur_price,
+		FROM (SELECT stsu_code, stsu_reg_date, stsu_amount, pro_code, pro_pur_price,
 		        pro_sal_price,pro_name, emp_code, emp_name, stsu_type
 		    FROM (SELECT ss.*, p.pro_name,p.pro_pur_price, p.pro_sal_price, e.emp_name
 		        FROM stock_supply ss, product p, employee e
@@ -451,7 +381,7 @@
 		    )
 	</select>
 	
-<!-- 최유성 -  입고 미승인 전표 - resultt="stockOrder" -->
+	<!-- 최유성 -  입고 미승인 전표 - resultt="stockOrder" -->
 	<select id = "stockInOrder1" resultMap="stockOrder">
 		SELECT * 
 		  FROM logistics_statement l
@@ -535,11 +465,11 @@
 	</insert>
 	
 	<!-- 최유성 - 입고 관련 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기 -->
-	<select id = "stockCodeSelect" parameterType="java.util.Map" resultType="int">
+	<select id = "stockCodeSelect" resultType="int" parameterType="java.util.Map">
 		SELECT sto_code
 		  FROM stock
-		 WHERE pro_code = #{pro_code}
-		   AND ware_code = #{ware_code}
+		 WHERE pro_code=#{pro_code}
+		   AND ware_code = #{ware_code} 
 	</select> 
 	
 	<!-- 최유성 - 재고전표에 널값인 재고코드에 새로 생성한 재고코드를 업데이트 -->
@@ -586,12 +516,6 @@
 		VALUES (stsu_seq.nextval,sysdate,3,#{stsu_quantity},#{stsu_amount},'출고준비','양품창고','출고대기창고',#{sto_code},#{pro_code},#{emp_code})
 	</insert><!-- 나중에 수정해야 함...!!!!!!!!!!! 마지막 사원코드는 세션아이디로? -->
 	
-	<!-- 최유성 - 출고 승인 버튼 클릭 상태 업데이트시 재고 수불부 생성-->
-	<insert id = "outStockSupplyInsert" parameterType="java.util.Map">
-		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, stsu_amount, stsu_content, stsu_startwh, stsu_arrivewh, sto_code, pro_code, emp_code)
-		VALUES (stsu_seq.nextval,sysdate,2,#{stsu_quantity},#{stsu_amount},'출고','출고대기창고',null,#{sto_code},#{pro_code},#{emp_code})
-	</insert><!-- 나중에 수정해야 함...!!!!!!!!!!! 마지막 사원코드는 세션아이디로? -->	
-	
 	<!-- 최유성 - 출고 승인 버튼 클릭 - 출고준비완료로 상태 업데이트시 해당상품에 대한 출고대기창고에 재고코드가 존재하지 않으면 해당 재고 등록 -->
 	<insert id="outStockInsert" parameterType="java.util.Map">
 		INSERT INTO stock(sto_code, sto_quantity, sto_reg_date, ware_code, pro_code)
@@ -599,17 +523,12 @@
 	</insert>
 	
 	<!-- 최유성 - 입고 관련 재고코드가 존재하지 않을 시 새로 등록한 재고의 재고 코드를 가져오기 -->
-	<select id = "outStockCodeSelect" resultType="com.project.UsERP.vo.StockVO" parameterType="int">
+	<select id = "outStockCodeSelect" resultType="com.project.UsERP.vo.StockVO" parameterType="java.util.Map">
 		SELECT *
 		  FROM stock
 		 WHERE pro_code=#{pro_code}
 		   AND ware_code = #{ware_code} 
 	</select> 
-	
-	<!-- 최유성 - 출고 승인 버튼 클릭 상태 업데이트 --> <!-- 이제 안쓰인다 -->
-	<!-- <update id = "stockOutAction" parameterType="int">
-		UPDATE logistics_statement SET logs_state = 1, logs_update_date=sysdate where logs_code = #{logs_code} and logs_type =6 
-	</update> -->
 	
 	<!-- 최유성 - 물류 전표 상세 페이지(전표 상세 정보) -->
 	<select id = "getLdDetail" resultMap="stockOrder" parameterType="int">
@@ -625,5 +544,12 @@
 		    ON w.ware_code = l.ware_code      
 		 WHERE logs_code = #{logs_code}
 	</select> 
+	
+	<!-- 최유성 전표 물류전표 부족수량 업데이트  -->
+    <update id="shortageLogsupdate" parameterType="java.util.Map">
+       UPDATE logistics_statement
+       SET logs_state = #{logs_state}
+       WHERE logs_code = #{logs_code}
+    </update> 
 	
 </mapper>

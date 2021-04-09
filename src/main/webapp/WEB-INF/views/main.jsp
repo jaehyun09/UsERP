@@ -20,8 +20,7 @@
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
-
-	<%@ include file="./common/header.jsp"%>
+<jsp:include page="./common/header.jsp"/>
 	<main class="main">
 		<!-- Start Sidebar Nav -->
 		<aside id="sidebar" class="js-custom-scroll side-nav">

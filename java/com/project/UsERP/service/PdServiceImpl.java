@@ -239,16 +239,15 @@ public class PdServiceImpl implements PdService {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("accs_code", accs_code);
-		map.put("ware_code", ware_code); // 양품창고 번호 1001
+		map.put("ware_code", ware_code); // 양품창고 번호
 		map.put("pro_code", pro_code);
 
-		int sto_code = Integer.parseInt(pddao.getStock(map).toString());
-		; // 상품에 대한 재고코드가 존재하는지 가지고 온다
+		int sto_code = Integer.parseInt(pddao.getStock(map).toString()); // 상품에 대한 재고코드가 존재하는지 가지고 온다
 
 		System.out.println("sto_code:" + sto_code);
 
 		vo.setSto_code(sto_code); // vo에 재고코드를 넣어준다 //값이 0일수도 있어서 decode 함수 이용
-
+		vo.setLogs_shortage(0);
 		insertCnt = pddao.logsPdInsert(vo); // 화면에서 넘어온 값들과 상태코드를 물류전표에 인서트 시켜 준다
 
 		AccountStatementVO avo = new AccountStatementVO();
@@ -262,5 +261,4 @@ public class PdServiceImpl implements PdService {
 		model.addAttribute("insertCnt1", insertCnt);
 		model.addAttribute("updateCnt", updateCnt);
 	}
-
 }

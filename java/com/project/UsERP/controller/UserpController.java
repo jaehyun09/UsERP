@@ -90,11 +90,13 @@ public class UserpController {
 	public String alertList(HttpServletRequest req, Model model) {
 		logger.info("url: 알림");
 		// 회계 알림
-		service.accsAlertList(req, model);
+		//service.accsAlertList(req, model);
 		// 물류 알림
-		service.logsAlertList(req, model);
+		//service.logsAlertList(req, model);
 		// 급여 알림 
-		service.ssAlertList(req, model);
+		//service.ssAlertList(req, model);
+		// 나머지 알림 
+		//service.stAlertList(req, model);
 		
 		return "alert";
 	}

@@ -65,7 +65,7 @@ function alert() {
                         <i class="gd-bell"></i>
                     </a>
                     <div id="notifications" class="dropdown-menu dropdown-menu-center py-0 mt-4 w-18_75rem w-md-22_5rem unfold-css-animation unfold-hidden"
-							aria-labelledby="notificationsInvoker" style="animation-duration: 300ms;">
+                     aria-labelledby="notificationsInvoker" style="animation-duration: 300ms;">
                     <div id="alertlist"></div>
                     </div>
                   </c:if>  
