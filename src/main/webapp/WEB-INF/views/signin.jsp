@@ -234,7 +234,8 @@
 											id="pills-result-1" role="tabpanel"
 											aria-labelledby="pills-result-tab-1">
 											
-											<form action="signinPro?${_csrf.parameterName}=${_csrf.token}" name="signinForm" method="post" onsubmit="return signinCheck()">
+											<form action="signinPro" name="signinForm" method="post" onsubmit="return signinCheck()">
+												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 												<input type="hidden" name="confirm_code" value="0">
 												<table class="table bg-white text-dark center ass2" style="text-align:center">
 													<tr class="text-white table-bordered tap">
@@ -246,7 +247,7 @@
 															<input type="text" class="form-control" name="emp_code" placeholder="사원번호 입력">
 														</td>
 														<td>
-															<button type="button" class="btn btn-outline-info" onclick="confirmCheck()">사번확인</button>
+															<button type="button" class="btn btn-outline-info" name="emp_code_check" onclick="confirmCheck()">사번확인</button>
 														</td>
 													</tr>
 													<tr>
@@ -270,7 +271,7 @@
 													<tr>
 														<th>* 주민등록번호</th>
 														<td>
-															<input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력">
+															<input type="password" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력">
 														</td>
 													</tr>
 												</table>

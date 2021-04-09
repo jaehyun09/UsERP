@@ -117,6 +117,9 @@ function content2(code) {
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -320,7 +323,7 @@ function content2(code) {
                                           <tbody>
                                              <c:forEach var="list" items="${SIlist}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
                                               <tr>
-                                                 <td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+                                                 <td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 															href="#multiCollapseExample1" role="button"
 															aria-expanded="false"
 															aria-controls="multiCollapseExample1"
@@ -384,7 +387,7 @@ function content2(code) {
 	                                    <tbody>
 	                                       <c:forEach var="list" items="${AList}"><!-- 아이템 수정하기 -->
 	                                       <tr>
-	                                          <td class="py-3 middle" style="vertical-align:middle"><a class="btn" data-toggle="collapse" style="font-size:22px"
+	                                          <td class=" text-dark con2" style="vertical-align:middle"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 													href="#multiCollapseExample2" role="button"
 													aria-expanded="false"
 													aria-controls="multiCollapseExample2"

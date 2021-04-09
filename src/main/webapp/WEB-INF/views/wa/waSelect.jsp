@@ -9,7 +9,7 @@
     
     <script type="text/javascript">
     
-    // 김은희 - 출근 버튼 클릭시
+    	// 김은희 - 출근 버튼 클릭시
 	    function confirmLogin() {
 			var id = '<%=(String) session.getAttribute("mem_id")%>';
 		
@@ -20,6 +20,39 @@
 			}
 			
 		}
+    	
+	 	// 김은희 - 퇴근 버튼 클릭시
+	    function confirmEnd() {
+			var id = '<%=(String) session.getAttribute("mem_id")%>';
+		
+			if( id == "null") {
+				alert ("로그인 후 다시 시도하세요.");
+			} else {
+				location.href='${path}/waEndClick';
+			}
+			
+		}
+		
+		
+		// 김은희 - 야근 버튼 클릭시
+	    function confirmNight() {
+			var id = '<%=(String) session.getAttribute("mem_id")%>';
+		
+			if( id == "null") {
+				alert ("로그인 후 다시 시도하세요.");
+			} else {
+				var select = document.getElementById('cm_night_time');
+				var nightTime = select.options[select.selectedIndex].value;
+				
+				
+				location.href='${path}/waNightClick?cm_night_time='+ nightTime;
+				
+			}
+			
+		}
+		
+		
+    	
     </script>
 
     <meta charset="utf-8">
@@ -268,19 +301,33 @@
 											<div class="tab-pane fade p-4 show active"
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
-										 <form>
+										 <form action="waNightClick?${_csrf.parameterName}=${_csrf.token}" method="post">
 											  <div align="right">
 			                                       <button type="button" onclick="confirmLogin()" class="btn btn-outline-info">출근</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			                                       <button type="button" onclick="location.href='${path}/waEndClick'" class="btn btn-outline-info">퇴근</button>
-		                                      </div>
-										  </form>
+			                                       <button type="button" onclick="confirmEnd()" class="btn btn-outline-info">퇴근</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                                       <button type="button" onclick="confirmNight()" class="btn btn-outline-info">야근</button>
+			                                       <br>
+			                                       <br>
+			                                       <div class="form-group">
+						                                <select name="cm_night_time" class="form-control" id="cm_night_time" style="width:250px;">
+						                                	<option value="0">야근시간을 선택하세요.</option>
+						                                	<option value="1">PM 19:00 </option>
+						                                    <option value="2">PM 20:00 </option>
+						                                    <option value="3">PM 21:00 </option>
+						                                    <option value="4">PM 22:00 </option>
+						                                    <option value="5">PM 23:00 </option>
+						                                    <option value="6">PM 24:00 </option>
+						                                </select>
+								                      </div>
+			                                      </div>
+											  </form>
 										  <br>		
 										 <!-- 검색창 시작 -->		
 									   	  <div class="input-group">
 										    <div class="input-group-append">
 										      <i class="gd-search icon-text icon-text-sm"></i>
 										    </div>
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" width="100px" type="text" style="font-size:20px">
+										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" width="100px" type="text" >
 										  </div>
 										  <!-- 검색창 끝 -->		
 										  <br>
@@ -293,7 +340,6 @@
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">출근시간</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">퇴근시간</th>
 											        <th class="font-weight-semi-bold border-top-0 py-3 con2">야근시간</th>
-											        <th class="font-weight-semi-bold border-top-0 py-3 con2">특근시간</th>
 											      </tr>
 											    </thead>
 											    <tbody style="vertical-align: middle">
@@ -304,8 +350,24 @@
 											      	<td class="py-3">${vo.employee.emp_name}</td>
 													<td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_start}"/></td>
 											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_end}"/></td>
-											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_night_time}"/></td>
-											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_over_time}"/></td>
+											      <c:if test="${vo.cm_night_time == 1}">
+											        <td class="py-3">19:00</td>
+											      </c:if>
+											      <c:if test="${vo.cm_night_time == 2}">
+											        <td class="py-3">20:00</td>
+											      </c:if>
+											      <c:if test="${vo.cm_night_time == 3}">
+											        <td class="py-3">21:00</td>
+											      </c:if>
+											      <c:if test="${vo.cm_night_time == 4}">
+											        <td class="py-3">22:00</td>
+											      </c:if>
+											      <c:if test="${vo.cm_night_time == 5}">
+											        <td class="py-3">23:00</td>
+											      </c:if>
+											      <c:if test="${vo.cm_night_time == 6}">
+											        <td class="py-3">24:00</td>
+											      </c:if>
 											      </tr>
 											      </c:forEach>
 											    </tbody>
@@ -320,7 +382,7 @@
 										    <div class="input-group-append">
 										      <i class="gd-search icon-text icon-text-sm"></i>
 										    </div>
-										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
+										    <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" >
 										  </div>
 										  <!-- 검색창 끝 -->		
 										  <br>

@@ -389,9 +389,9 @@ function content(code) {
                                                <br>
                                             <!-- 검색창 끝 --> 
                                              <!-- 테스트 -->
-                                       <table class="table  bg-white text-dark center ass2 table-striped">
-                                          <thead>
-                                              <tr class="text-white table-bordered tap">
+                                       <table class="table bg-white text-dark center ass2 table-striped">
+                                          <thead class="text-white table-bordered tap">
+                                             <tr class="text-white table-bordered tap">
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">상품번호</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">상품명</th>
                                                 <th class="font-weight-semi-bold border-top-0 py-3 h4">구매단가</th>
@@ -404,7 +404,7 @@ function content(code) {
                                           <tbody>
                                           
                                              <c:forEach var="product" items="${product}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
-                                             <tr class="tablein">
+                                             <tr>
                                                 <td class="py-3" style="vertical-align:middle">${product.pro_code}</td>
                                                 <td class="py-3" style="vertical-align:middle">${product.pro_name}</td>
                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_pur_price}"/></td>

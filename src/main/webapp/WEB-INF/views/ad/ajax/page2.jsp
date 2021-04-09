@@ -11,7 +11,7 @@
 	<table class="table table-bordered bg-white text-dark ass2 center">
 		<tbody>
 			<tr class="text-white con">
-				<th colspan="4">급여전표</th> <!-- sccontent -->
+				<th colspan="4">급여전표<input type="hidden" value="${sccontent.employee.dep_code}"></th> <!-- sccontent -->
 			</tr>
 			<tr>
 				<th colspan="1" style="width: 20%">NO.</th>
@@ -50,9 +50,9 @@
 	</table>
 	<c:if test="${sccontent.ss_state == 0 }">
 				<div align=center> 
-					<button type="button" onclick="location.href='${path}/saappr?ss_code=${sccontent.ss_code}'" class="btn btn-outline-info">승인</button>
+					<button type="button" onclick="location.href='${path}/saappr?ss_code=${sccontent.ss_code}&dep_code=${sccontent.employee.dep_code}'" class="btn btn-outline-info">승인</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" onclick="location.href='${path}/sareappr?ss_code=${sccontent.ss_code}'" class="btn btn-outline-info">승인거부</button>
+					<button type="button" onclick="location.href='${path}/sareappr?ss_code=${sccontent.ss_code}&dep_code=${sccontent.employee.dep_code}'" class="btn btn-outline-info">승인거부</button>
 				</div>
 			</c:if>
 </body>

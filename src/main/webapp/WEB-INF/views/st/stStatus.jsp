@@ -44,7 +44,6 @@
           return false;
        }
     }
-   
 </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -323,8 +322,11 @@
                                                 <td class="py-3" style="vertical-align:middle">${vo.product.pro_name}</td>
                                                 <td class="py-3" style="vertical-align:middle">${vo.employee.emp_name}</td>
                                                 <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
+                                                <c:if test="${vo.accs_state == -1 }">
+                                                   <td class="py-3" style="vertical-align:middle">전표 승인 거부</td>
+                                                </c:if>
                                                 <c:if test="${vo.accs_state == 0 }">
-                                                   <td class="py-3" style="vertical-align:middle">전표 승인</td>
+                                                   <td class="py-3" style="vertical-align:middle">전표 승인 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 1 }">
                                                    <td class="py-3" style="vertical-align:middle">출고 대기중</td>
@@ -445,6 +447,9 @@
                                                 <td class="py-3">${vo.product.pro_name}</td>
                                                 <td class="py-3">${vo.employee.emp_name}</td>
                                                 <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
+                                                <c:if test="${vo.accs_state == -1 }">
+                                                   <td class="py-3">승인 거부</td>
+                                                </c:if>
                                                 <c:if test="${vo.accs_state == 0 }">
                                                    <td class="py-3">승인 대기중</td>
                                                 </c:if>

@@ -151,6 +151,9 @@ function content4(code) {
 					<li class="side-nav-menu-item">
 						<a class="side-nav-menu-link ass2" href="${path}/waApplication">신청</a>
 					</li>
+					<li class="side-nav-menu-item">
+                  		<a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
+               		</li>
 				</ul>
 			</li>
 			<!-- 근태 관리 종료 -->
@@ -363,7 +366,7 @@ function content4(code) {
 						                                          <tbody>
 											                          <c:forEach var="list" items="${SOlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 													                  <tr>
-													                     <td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+													                     <td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 																				href="#multiCollapseExample4" role="button"
 																				aria-expanded="false"
 																				aria-controls="multiCollapseExample4"
@@ -375,8 +378,8 @@ function content4(code) {
 													                     <td class="py-3 middle" style="vertical-align:middle">
 													                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 													                     </td>
-													                     <c:if test="${list.logs_state == 3}">
-													                     	<td class="py-3 middle" style="vertical-align:middle">재고부족</td>
+													                     <c:if test="${list.logs_state == 2}">
+													                     	<td class="py-3 middle" style="vertical-align:middle">승인완료</td>
 													                     </c:if>
 													                     <c:if test="${list.logs_state == 1}">
 													                     	<td class="py-3 middle" style="vertical-align:middle">출고준비완료</td>
@@ -420,7 +423,7 @@ function content4(code) {
 	                                             <tbody>
 	                                                <c:forEach var="list" items="${SOlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 	                                                <tr>
-														<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+														<td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 															href="#multiCollapseExample3" role="button"
 															aria-expanded="false"
 															aria-controls="multiCollapseExample3"
@@ -492,7 +495,7 @@ function content4(code) {
 						                                                <tbody>
 						                                                	<c:forEach var="list" items="${SIlist2}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 							                                                   <tr>
-																					<td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+																					<td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 																					href="#multiCollapseExample2" role="button"
 																					aria-expanded="false"
 																					aria-controls="multiCollapseExample2"
@@ -541,7 +544,7 @@ function content4(code) {
 						                                             <tbody>
 						                                             	<c:forEach var="list" items="${SIlist1}"> <!-- var="개별값(작은바구니)" items="집합(큰바구니)" -->
 						                                                <tr>
-						                                                   <td class="py-3"><a class="btn" data-toggle="collapse" style="font-size:22px"
+						                                                   <td class="py-3"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 																				href="#multiCollapseExample1" role="button"
 																				aria-expanded="false"
 																				aria-controls="multiCollapseExample1"

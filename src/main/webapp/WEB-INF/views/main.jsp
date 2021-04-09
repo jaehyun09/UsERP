@@ -196,8 +196,8 @@
 		<div class="content">
 			<c:if test="${msg != null}">
 				<script type="text/javascript">
-         alert("${msg}");
-      </script>
+		       		alert("${msg}");
+		        </script>
 			</c:if>
 
 			<div class="py-4 px-3 px-md-4">

@@ -279,19 +279,19 @@
 											         </tr>
 											         <tr>
 											            <th colspan="1">야근수당</th>
-											            <td colspan="3">${vo.salary.sal_night}</td>
+											            <td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_night}" /></td>
 											         </tr>
 											         <tr>
 											            <th colspan="1">특근수당</th>
-											            <td colspan="3">${vo.salary.sal_over}</td>
+											            <td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_over}" /></td>
 											         </tr>
 											         <tr>
 											            <th colspan="1">근속수당</th>
-											            <td colspan="3">${vo.salary.sal_cos}</td>
+											            <td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_cos}" /></td>
 											         </tr>
 											         <tr>
 											            <th colspan="1">직책수당</th>
-											            <td colspan="3">${vo.salary.sal_or}</td>
+											            <td colspan="3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_or}" /></td>
 											         </tr>
 											      </tbody>
 											   </table><br><br><br>
@@ -323,7 +323,7 @@
                                                   aria-expanded="true"
                                                   aria-controls="multiCollapseExample${status.index}">${vo.employee.emp_name}</a>
                                              </td>
-                                             <td class="py-3" style="vertical-align:middle">${vo.ss_total_sal}</td>
+                                             <td class="py-3" style="vertical-align:middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.ss_total_sal}" /></td>
                                              <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_reg_date}"/></td>
                                              <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ss_sal_date}"/></td>
                                              <td class="py-3" style="vertical-align:middle">
@@ -339,7 +339,7 @@
                            </div>
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    <form>
+                                    <form action="hrSalaryInsert" method="post" onsubmit="">
                                        <table class="table bg-white text-dark center ass2">
 														<tr class="text-white table-bordered tap">
 															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">급여 전표 등록</th>
@@ -348,7 +348,7 @@
 															<th style="vertical-align: middle">사원번호</th>
 															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px" required></td>
 															<td>
-																<button type="button" class="btn btn-outline-info" onclick="empCodeCheck()">
+																<button type="button" class="btn btn-outline-info" onclick="hrSalaryCheck()">
 																	사번확인
 																</button>
 															</td>
@@ -358,7 +358,7 @@
 															<td><input id="text" type="text" class="form-control" name="emp_name" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle">현재 부서</th>
+															<th style="vertical-align: middle">부서</th>
 															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
@@ -366,18 +366,30 @@
 															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle"></th>
-															<td><input type="date" name="emp_hire_date" style="font-size:20px" class="form-control"></td>
+															<th style="vertical-align: middle">대상기간</th>
+															<td><input type="month" class="form-control" name="" style="font-size:20px"></td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle"></th>
+															<th style="vertical-align: middle">월급</th>
+															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">식대</th>
+															<td><input id="text" type="number" class="form-control" name="" min="0" style="font-size:20px"></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">차량유지비</th>
+															<td><input id="text" type="number" class="form-control" name="" min="0" style="font-size:20px"></td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">총 급여</th>
 															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
 														</tr>
 													</table>
 												
 												<div align=center>
-													<button type="button" type="submit" class="btn btn-outline-info">발령</button>&nbsp;&nbsp;&nbsp;
-													<button type="button" type="reset" class="btn btn-outline-info">재작성</button>
+													<button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+													<button type="reset" class="btn btn-outline-info">재작성</button>
 											</div><br>
                                  </form>
                                  </div>

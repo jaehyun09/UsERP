@@ -38,6 +38,13 @@ function pdContent(code) {
 		document.getElementById("accs_sum").value = price * count;
 	};
 	
+	function conCheck() {
+          if(!$("input[name='accs_content']").val()) {
+             alert("내용을 입력하세요.");
+             $("input[name='accs_content']").focus();
+             return false;
+          }
+       }
 </script>
 
     <meta charset="utf-8">
@@ -112,7 +119,7 @@ function pdContent(code) {
                </li>
                <li class="side-nav-menu-item">
                        <a class="side-nav-menu-link ass2" href="${path}/waConfirm">승인</a>
-                     </li>
+               </li>
             </ul>
          </li>
          <!-- 근태 관리 종료 -->
@@ -304,7 +311,7 @@ function pdContent(code) {
                                           </thead>
                                           <tbody>
                                             <c:forEach var="vo" items="${buy}">
-                                            <c:if test="${vo.accs_type == 3 }">
+                                            <c:if test="${vo.accs_type == 3 || vo.accs_type == 4}">
                                              <tr>
                                                 <td class="py-3" style="vertical-align:middle">
                                                        <a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
@@ -317,13 +324,13 @@ function pdContent(code) {
                                                 <td class="py-3" style="vertical-align:middle">${vo.product.pro_name}</td>
                                                 <td class="py-3" style="vertical-align:middle">${vo.employee.emp_name}</td>
                                                 <td class="py-3" style="vertical-align:middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
+                                                <c:if test="${vo.accs_state == -1 }">
+                                                   <td class="py-3" style="vertical-align:middle">전표 승인 거부</td>
+                                                </c:if>
                                                 <c:if test="${vo.accs_state == 0 }">
                                                    <td class="py-3" style="vertical-align:middle">전표 승인 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 1 }">
-                                                   <td class="py-3" style="vertical-align:middle">입고 대기중</td>
-                                                </c:if>
-                                                <c:if test="${vo.accs_state == 2 }">
                                                    <td class="py-3" style="vertical-align:middle">입고 대기중</td>
                                                 </c:if>
                                                 <c:if test="${vo.accs_state == 3 }">
@@ -354,7 +361,7 @@ function pdContent(code) {
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
                                              colspan="2" style="vertical-align: middle;">전표유형</td>
                                           <td style="vertical-align: middle;">
-                                                        <select class="form-control" id="accs_type" name="accs_type">
+                                                        <select class="form-control" id="accs_type" name="accs_type" style="font-size:20px">
                                                           <option value="3">구매전표</option>
                                                           <option value="4">채무전표</option>
                                                         </select>
@@ -364,7 +371,7 @@ function pdContent(code) {
                                           <td class="font-weight-semi-bold border-top-0 py-2 text-dark"
                                              colspan="2" style="vertical-align: middle;">거래처명</td>
                                           <td class="font-weight-semi-bold border-top-0 py-2"
-                                             colspan="2"><select class="form-control" id="com_code" name="com_code">
+                                             colspan="2"><select class="form-control" id="com_code" name="com_code" style="font-size:20px">
 		                                             		<c:forEach var="company" items="${company}">
 		                                                          <option value="${company.com_code}">${company.com_name}</option>
 		                                                    </c:forEach>
@@ -374,7 +381,7 @@ function pdContent(code) {
                                           <tr>
                                              <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
                                              <td class="py-3" colspan="2">
-                                             	<select class="form-control" id="pro_code" name="pro_code" onchange="changeProduct()">
+                                             	<select class="form-control" id="pro_code" name="pro_code" onchange="changeProduct()" style="font-size:20px">
 		                                             <c:forEach var="product" items="${product}">
 		                                             	<option id="${product.pro_sal_price}" value="${product.pro_code}">
 		                                             		${product.pro_name}
@@ -385,32 +392,32 @@ function pdContent(code) {
                                          </tr>
                                          <tr>
                                                    <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>단가</b></td>
-                                                      <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_price" name="accs_price"></td>
+                                                      <td class="py-3" colspan="2"><input class="form-control" style="font-size:20px" type="text" id="accs_price" name="accs_price"></td>
                                                    </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-                                             <td class="py-3" colspan="2"><input class = "form-control"  type = "number" min = "1" step = "1" value = "1" id="accs_quantity" name="accs_quantity" onchange="changeCount()"></td>
+                                             <td class="py-3" colspan="2"><input class = "form-control"  style="font-size:20px" type = "number" min = "1" step = "1" value = "1" id="accs_quantity" name="accs_quantity" onchange="changeCount()"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>총액</b></td>
                                              <td class="py-3" colspan="2"><input 
-                                                class="form-control" type="text" id="accs_sum" name="accs_sum"></td>
+                                                class="form-control" style="font-size:20px" type="text" id="accs_sum" name="accs_sum"></td>
                                           </tr>
                                           <tr>
-                                             <td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td> 
-                                             <td class="py-3" colspan="2" style="vertical-align: middle; text-align:left;">
+                                             <td class="py-3" colspan="2" style="vertical-align: middle;"><b>담당자</b></td> 
+                                             <td class="py-3" colspan="2" style="vertical-align: middle; font-size:20px; text-align:left;">
                                                 <input type="hidden" name="emp_code" value="${sessionScope.mem_id}">
                                                 ${sessionScope.mem_name}</td>
                                           </tr>
                                           <tr>
                                              <td class="py-3" colspan="2" style="vertical-align: middle; "><b>내용</b></td>
-                                             <td class="py-3" colspan="2"><input class="form-control" type="text" id="accs_content" name="accs_content" value=""></td>
+                                             <td class="py-3" colspan="2"><input class="form-control" style="font-size:20px" type="text" id="accs_content" name="accs_content" value=""></td>
                                           </tr>
                                        </tbody>
                                     </table>                                 
                                         <br>
                                          <div align=center>
-                                           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
+                                           <button type="submit" class="btn btn-outline-info" onclick="return conCheck()">등록</button>&nbsp;&nbsp;&nbsp;
                                            <button type="reset" class="btn btn-outline-info">재입력</button>                                  
                                          </div>
                                        </form>                                  
@@ -434,13 +441,16 @@ function pdContent(code) {
                                           </thead>
                                           <tbody>
                                              <c:forEach var="vo" items="${buy}">
-                                             <c:if test="${vo.accs_type == 3 }">
+                                             <c:if test="${vo.accs_type == 3 || vo.accs_type == 4}">
                                              <tr>
                                                 <td class="py-3">${vo.accs_code}</td>
                                                 <td class="py-3">${vo.company.com_name}</td>
                                                 <td class="py-3">${vo.product.pro_name}</td>
                                                 <td class="py-3">${vo.employee.emp_name}</td>
                                                 <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.accs_reg_date}"/></td>
+                                                <c:if test="${vo.accs_state == -1 }">
+                                                   <td class="py-3">승인 거부</td>
+                                                </c:if>
                                                 <c:if test="${vo.accs_state == 0 }">
                                                    <td class="py-3">승인 대기중</td>
                                                 </c:if>
