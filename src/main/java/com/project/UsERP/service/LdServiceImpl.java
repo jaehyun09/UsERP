@@ -769,7 +769,7 @@ public class LdServiceImpl implements LdService {
 	      System.out.println("ware_code:"+ware_code);
 	      int pro_code = Integer.parseInt(req.getParameter("pro_code")); //상품코드
 	      System.out.println("pro_code:"+pro_code);
-	      int emp_code = Integer.parseInt(req.getParameter("emp_code")); //사원번호
+	      String emp_code = req.getParameter("emp_code"); //사원번호
 	      System.out.println("emp_code:"+emp_code);
 	      
 	      int updateCnt = 0; //전표 업데이트 cnt
@@ -797,6 +797,7 @@ public class LdServiceImpl implements LdService {
 	         
 	         //창고번호 불러오기
 	         int outReadyWareCode = pddao.getWareCode(3); //창고타입 출고대기(3)룰 넣어서 해당 창고 번호를 가져온다
+	         System.out.println("출고대기창고코드불러오기 성공 outReadyWareCode:"+outReadyWareCode);
 	         
 	         Map<String, Object> wmap = new HashMap<String, Object>();
 	         wmap.put("pro_code", pro_code); //상품코드
@@ -817,15 +818,15 @@ public class LdServiceImpl implements LdService {
 	            
 	            int sto_quantity2 = 0; //출고대기창고에 넣어줄 새로운 수량 변수
 	            
-	            if(logs_shortage <= 0) { //부족수량이 없을시
+	            if(logs_shortage >0) { //부족수량이 있을시
 	               
-	               sto_quantity2 = outReadyStoQuantity + logs_quantity; //기존 수량 + 판매 수량 = 출고대기창고의 새로운 수량
-	               System.out.println("부족수량없을시sto_quantity2:"+sto_quantity2);
-	            
-	            }else { //부족수량이 존재할 시
-	            
 	               sto_quantity2 = outReadyStoQuantity + retrunStoQuantity; //출고대기창고의 기존 수량 + 양품창고의 재고 수량
 	               System.out.println("부족수량있을시sto_quantity2:"+sto_quantity2);
+	            
+	            }else { //부족수량이 없을시
+	            
+	               sto_quantity2 = outReadyStoQuantity + logs_quantity; //기존 수량 + 판매 수량 = 출고대기창고의 새로운 수량
+	               System.out.println("부족수량없을시sto_quantity2:"+sto_quantity2);
 	         
 	            }
 	            
@@ -838,7 +839,7 @@ public class LdServiceImpl implements LdService {
 	            int stockUpdateCnt2 = lddao.stockUpdate(map2); //출고대기창고에서 판매수량만큼 재고 증가
 	            System.out.println("stockUpdateCnt2:"+stockUpdateCnt2);
 	            
-	            if(stockUpdateCnt2 == 1) {
+	            if(stockUpdateCnt2 == 1) { //재고수불부 등록하자
 	               
 	               Map<String, Object> map3 = new HashMap<String, Object>();
 	               map3.put("sto_code", outReadyStoCode);
@@ -848,7 +849,10 @@ public class LdServiceImpl implements LdService {
 	                  sto_quantity2 = 0; //양품창고의 수량은 0인 된다
 	                  
 	                  logs_quantity = retrunStoQuantity; //양품창고의 기존수량이 이동수량이 된다
+	               }else {
+	                  sto_quantity2 = retrunStoQuantity - logs_quantity; //기존 양품창고 수량 - 판매수량
 	               }
+	               
 	               System.out.println("sto_quantity2:"+sto_quantity2);
 	               System.out.println("logs_quantity:"+logs_quantity);
 	               map3.put("stsu_quantity", sto_quantity2); //셀렉트로 가져온 기존 수량
@@ -860,7 +864,7 @@ public class LdServiceImpl implements LdService {
 	               
 	               //양품창고 -> 출고대기창고 재고수량이동 재고수불부 등록
 	               int outReadystockSupplyCnt = lddao.outReadystockSupplyInsert(map3);
-	               System.out.println("stockSupplyInsertCnt2:"+outReadystockSupplyCnt);
+	               System.out.println("outReadystockSupplyCnt:"+outReadystockSupplyCnt);
 	               
 	               if(outReadystockSupplyCnt == 1) {  //재고수불부 등록시 물류전표 상태 업데이트
 	                  
@@ -882,7 +886,7 @@ public class LdServiceImpl implements LdService {
 	            
 	            int modifyStoQuantity = logs_quantity;
 	            
-	            if(retrunStoQuantity - logs_quantity < 0) { //부족수량 존재시
+	            if(logs_shortage > 0) { //부족수량 존재시
 	               modifyStoQuantity = retrunStoQuantity; //양품창고의 기존수량이 출고대기창고로 들어가기
 	            }
 	            
@@ -913,10 +917,17 @@ public class LdServiceImpl implements LdService {
 	               Map<String, Object> map2 = new HashMap<String, Object>();
 	                   map2.put("sto_code", newStoCode);
 	                  
+	                   System.out.println("retrunStoQuantity:"+retrunStoQuantity);
+	                   
 	                   if(logs_shortage > 0) { //부족수량 존재시
-	                     logs_quantity = 0; //재고 수불부 재고 수량이 0으로 인서트된다
-	                    }
+	                      logs_quantity = 0; //재고 수불부 재고 수량이 0으로 인서트된다
+	                   }else {
+	                      logs_quantity = retrunStoQuantity - logs_quantity;
+	                   }
 	                  
+	                   System.out.println("여길봐~~~~~~~~~~~~~logs_shortage:"+logs_shortage);
+	                   System.out.println("여길봐~~~~~~~~~~~~~logs_quantity:"+logs_quantity);
+	                   
 	                   map2.put("stsu_quantity", logs_quantity);
 	                   map2.put("stsu_amount", modifyStoQuantity);
 	                   map2.put("ware_code", getWareCode);
@@ -929,6 +940,7 @@ public class LdServiceImpl implements LdService {
 	               
 	               //재고 수불부까지 인서트 했으면 재고전표에도 null부분인 재고코드를 업데이트 시켜서 넣어주자  
 	               if(outReadystockSupplyCnt == 1) {
+	                  
 	                  Map<String, Object> map3 = new HashMap<String, Object>();
 	                  
 	                  map3.put("logs_code", logs_code);
@@ -959,7 +971,7 @@ public class LdServiceImpl implements LdService {
 	      System.out.println("logs_quantity3:"+logs_quantity3);
 	      
 	      //부족 수량 상태 업데이트
-	      if(retrunStoQuantity - logs_quantity3 < 0) { //부족 수량 존재시(기존 수량 - 판매 수량)
+	      if(logs_shortage > 0) { //부족 수량 존재시(기존 수량 - 판매 수량)
 	         
 	         System.out.println("여기타냐구구구구구구구구구구?");
 	         
@@ -974,6 +986,5 @@ public class LdServiceImpl implements LdService {
 	      
 	      model.addAttribute("updateCnt", updateCnt);
 	   }
-
 }
 
