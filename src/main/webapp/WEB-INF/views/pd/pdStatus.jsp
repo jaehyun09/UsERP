@@ -302,7 +302,7 @@ function pdContent(code) {
                           			 <a class="nav-link d-flex align-items-center py-2 px-3"
                                  	id="pills-html-tab-3" data-toggle="pill"
                                  	href="#pills-html-3" role="tab" aria-controls="pills-html-3"
-                                 	aria-selected="false">부족수량!</a>
+                                 	aria-selected="false">재고부족 요청</a>
                            </li>
                               </ul>
                               <!-- End Nav Classic -->
