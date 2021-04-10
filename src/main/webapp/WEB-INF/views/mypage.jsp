@@ -288,91 +288,51 @@ function addressSearch() {
 							                        </tr>
 							                        <tr>
 							                           <th style="vertical-align:middle">사진</th>
-							                           <td><input id="file" type="file" name="emp_photo"></td>
+							                           <td><input id="file" type="file" style="font-size:20px" name="emp_photo"></td>
 							                        </tr>
 							                        <tr>
-							                           <th style="vertical-align:middle">* 사번</th>
-							                           <td><input type="text" class="form-control" name="emp_code" value="${vo.emp_code}" readonly></td>
+							                           <th style="vertical-align:middle">사번</th>
+							                           <td><input type="text" class="form-control" style="font-size:20px" name="emp_code" value="${vo.emp_code}" readonly></td>
 							                        </tr>
 							                        <tr>
-							                           <th style="vertical-align:middle">* 사원명</th>
-							                           <td> <input type="text" class="form-control" name="emp_name" value="${vo.emp_name}" readonly></td>
+							                           <th style="vertical-align:middle">사원명</th>
+							                           <td> <input type="text" class="form-control" style="font-size:20px" name="emp_name" value="${vo.emp_name}" readonly></td>
 							                        </tr>
 							                        <tr>
-							                           <th style="vertical-align:middle"> * 부서명 </th>
-							                           <td>    
-							                           <div class="form-group">
-							                           		<select name="dep_code" class="form-control">
-												               <option value="0">부서 선택</option>
-													               <c:forEach var="vo2" items="${list3}">
-													                  <c:if test="${vo2.dep_code == vo.dep_code}">
-													                     <option value="${vo2.dep_code}" selected>${vo2.dep_name}</option>
-													                  </c:if>
-													                  <c:if test="${vo2.dep_code != vo.dep_code}">
-													                     <option value="${vo2.dep_code}">${vo2.dep_name}</option>
-													                  </c:if>
-													               </c:forEach>
-												            </select>
-							                              </div>
-							                            </td>
+							                           <th style="vertical-align:middle"> 부서명 </th>
+							                           <td><input type="text" class="form-control" style="font-size:20px" name="dep_code" value="${vo.department.dep_name}" readonly></td>
 							                        </tr>
 							                        <tr>
 							                          <th style="vertical-align:middle"> * 직급</th>
-							                           <td>    
-							                           <div class="form-group">
-							                               <select class="form-control" name="hr_code">
-												               <option value="0">직급 선택</option>
-													               <c:forEach var="vo2" items="${list4}">
-													                  <c:if test="${vo2.hr_code == vo.hr_code}">
-													                     <option value="${vo2.hr_code}" selected>${vo2.hr_code_name}</option>
-													                  </c:if>
-													                  <c:if test="${vo2.hr_code != vo.hr_code}">
-													                     <option value="${vo2.hr_code}">${vo2.hr_code_name}</option>
-													                  </c:if>
-													               </c:forEach>
-												            </select>
-							                            </div>
-							                           </td>
+							                           <td><input type="text" class="form-control" style="font-size:20px" name="hr_code" value="${vo.hrCode.hr_code_name}" readonly></td>
 							                        </tr>
 							                        <tr>
 							                           <th style="vertical-align:middle">* 권한</th>
-							                           <td>
-							                           		<div class="form-group">
-							                                   <select name="emp_authority" class="form-control" id="emp_authority">
-						                                         <option value="0">권한 선택</option>
-							                                     <option value="ROLE_ADMIN" <c:if test="${vo.emp_authority == 'ROLE_ADMIN'}">selected</c:if>>관리자</option>
-							                                     <option value="ROLE_ST" <c:if test="${vo.emp_authority == 'ROLE_ST'}">selected</c:if>>판매팀</option>
-							                                     <option value="ROLE_HR" <c:if test="${vo.emp_authority == 'ROLE_HR'}">selected</c:if>>인사팀</option>
-							                                     <option value="ROLE_PD" <c:if test="${vo.emp_authority == 'ROLE_PD'}">selected</c:if>>구매팀</option>
-							                                     <option value="ROLE_LD" <c:if test="${vo.emp_authority == 'ROLE_LD'}">selected</c:if>>물류팀</option>
-							                                     <option value="ROLE_AD" <c:if test="${vo.emp_authority == 'ROLE_AD'}">selected</c:if>>회계팀</option>
-							                                   </select>
-							                                </div>
-							                             </td>
+							                           <td><input type="text" class="form-control" style="font-size:20px" name="emp_authority" value="${vo.emp_authority}" readonly></td>
 							                         </tr>
 							                        <tr>
 							                           <th style="vertical-align:middle">* 입사일</th>
-							                           <td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.emp_hire_date}"/></td>
+							                           <td class="py-3" style="vertical-align: middle; text-align:left; font-size:20px;"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.emp_hire_date}" /></td>
 							                        </tr>
 							                        <tr>                                    
 							                            <th style="vertical-align:middle">근속연수</th>
-							                            <td><input type="text" name="emp_cos" class="form-control" value="${vo.emp_cos}" maxlength="5"></td>
+							                            <td><input type="text" style="font-size:20px" name="emp_cos" class="form-control" value="${vo.emp_cos}" readonly></td>
 							                        </tr>
 							                        <tr>
 							                           <th style="vertical-align:middle"> * 주민등록번호 </th>
-							                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력" value="${vo.emp_jumin}" maxlength="13"></td>
+							                           <td><input type="text" style="font-size:20px" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력" value="${vo.emp_jumin}" maxlength="13"></td>
 							                        </tr>
 							                         <tr>
 										   				<th style="vertical-align:middle">* 주소</th>
 										   				<c:set var="AdArr" value="${fn:split(vo.emp_address,'-')}" />
-										   				<td><input type="text" name="addcode" id="sample6_postcode"
+										   				<td><input type="text" style="font-size:20px" name="addcode" id="sample6_postcode"
 															placeholder=" 우편번호" class="form-control" size=8 style="padding: 3px" value="${AdArr[0]}"></td>
-														<td><input type="button" onclick="addressSearch();" class="btn btn-outline-info" value="주소찾기"></td>
+														<td><input type="button" style="font-size:20px" onclick="addressSearch();" class="btn btn-outline-info" value="주소찾기"></td>
 														
 										   			<tr>
 										   				<th style="vertical-align:middle"></th>
 										   				<td>
-															<input type="text" class="form-control" name="add1" id="sample6_address" size=45
+															<input type="text" class="form-control" style="font-size:20px" name="add1" id="sample6_address" size=45
 															placeholder=" 주소" value="${AdArr[1]}"> 
 										
 														</td>
@@ -380,7 +340,7 @@ function addressSearch() {
 										   			<tr>
 										   				<th style="vertical-align:middle"></th>
 										   				<td>
-										   				<input type="text" name="add2"
+										   				<input type="text" name="add2" style="font-size:20px"
 															id="sample6_address2" class="form-control" placeholder=" 상세주소" size=45
 															onchange="addinput();" value="${AdArr[2]}">
 															<input type="hidden" name="address">
@@ -388,24 +348,24 @@ function addressSearch() {
 										   			</tr>
 							                      <tr>
 						                              <th style="vertical-align:middle">전화번호</th>
-						                              <td><input type="tel" name="emp_tel" class="form-control" value="${vo.emp_tel}" maxlength="13"></td>
+						                              <td><input type="tel" name="emp_tel" style="font-size:20px" class="form-control" value="${vo.emp_tel}" maxlength="13"></td>
 						                           </tr>
 						                           <tr>
 						                              <th style="vertical-align:middle">* 휴대전화</th>
-						                              <td><input type="tel" name="emp_phone" class="form-control" value="${vo.emp_phone}" maxlength="15"></td>
+						                              <td><input type="tel" name="emp_phone" style="font-size:20px" class="form-control" value="${vo.emp_phone}" maxlength="15"></td>
 						                           </tr>
 						                           <tr>                                    
 						                              <th style="vertical-align:middle">* 이메일</th>
-						                              <td><input type="email" name="emp_email" class="form-control" value="${vo.emp_email}"></td>
+						                              <td><input type="email" name="emp_email" style="font-size:20px" class="form-control" value="${vo.emp_email}"></td>
 						                           </tr>
 						                           <tr>
 						                              <th style="vertical-align:middle">여권번호</th>
-						                              <td><input type="text" name="emp_port_no" class="form-control" value="${vo.emp_port_no}" maxlength="30"></td>
+						                              <td><input type="text" name="emp_port_no" style="font-size:20px" class="form-control" value="${vo.emp_port_no}" maxlength="30"></td>
 						                           </tr>
 						                           <tr>
 						                              <th style="vertical-align:middle">* 은행</th>
 						                              <td><div class="form-group">
-						                                      <select name="emp_bank" class="form-control" id="emp_bank">
+						                                      <select name="emp_bank" class="form-control" id="emp_bank" style="font-size:20px">
 						                                        <option value="0">은행 선택</option>
 						                                        <option value="농협" <c:if test="${vo.emp_bank == '농협'}">selected</c:if>>농협</option>
 						                                        <option value="신한" <c:if test="${vo.emp_bank == '신한'}">selected</c:if>>신한</option>
@@ -420,7 +380,7 @@ function addressSearch() {
 						                           </tr>
 						                           <tr>
 						                              <th style="vertical-align:middle">* 급여계좌</th>
-						                              <td><input type="text" name="emp_account" class="form-control" value="${vo.emp_account}" maxlength="30"></td>
+						                              <td><input type="text" name="emp_account" style="font-size:20px" class="form-control" value="${vo.emp_account}" maxlength="30"></td>
 						                           </tr>
 						                     </table>
 							                  
