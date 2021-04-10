@@ -221,7 +221,7 @@
    </insert>
 		
 	<!-- 김은희 - 인사 카드 사번 중복확인  -->
- 	<select id="codeCheck" parameterType="int" resultType="int">
+ 	<select id="codeCheck" parameterType="String" resultType="int">
  		SELECT COUNT(*) FROM employee WHERE emp_code=#{emp_code}
  	</select>
  	

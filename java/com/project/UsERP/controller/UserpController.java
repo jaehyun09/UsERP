@@ -83,10 +83,10 @@ public class UserpController {
 		return "signinPro";
 	}
 
-	// 김은희 - 내 정보 수정
+	// 김은희 - 내 정보 수정페이지
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest req, Model model) {
-		logger.info("url: 내 정보 수정");
+		logger.info("url: 내 정보 수정페이지");
 		
 		hrService.depList(req, model);
 		hrService.hrCodePosList(req, model);
@@ -97,7 +97,7 @@ public class UserpController {
 	
 	// 김은희 - 내 정보 수정 처리
 	@RequestMapping("/mypageUpdateAction")
-	public String mypageUpdateAction(	MultipartHttpServletRequest req, Model model) {
+	public String mypageUpdateAction(MultipartHttpServletRequest req, Model model) {
 		logger.info("url: 내 정보 수정 처리");
 		
 		service.mypageUpdateAction(req, model);

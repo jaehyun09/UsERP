@@ -73,7 +73,7 @@
 	</select>
 	
 	<!-- 김은희 - 근태 신청 사번확인  -->
- 	<select id="empComfirm" parameterType="int" resultType="com.project.UsERP.vo.EmployeeVO">
+ 	<select id="empComfirm" parameterType="String" resultType="com.project.UsERP.vo.EmployeeVO">
  		SELECT emp_code, emp_name FROM employee WHERE emp_code=#{emp_code}
  	</select>
  	
@@ -137,13 +137,13 @@
 	</select>
 	
 	<!-- 김은희 - 근태 신청 승인 처리 -->
- 	<update id="waConfirmAction" parameterType="int" >
+ 	<update id="waConfirmAction" parameterType="String" >
  		UPDATE work_record SET wr_state = 1
          WHERE emp_code = #{emp_code}
  	</update>
  	
  	<!-- 김은희 - 근태 신청 철회 처리 -->
- 	<delete id="waDeleteAction" parameterType="int" >
+ 	<delete id="waDeleteAction" parameterType="String" >
  		DELETE work_record 
  		WHERE emp_code = #{emp_code}
  	</delete>
