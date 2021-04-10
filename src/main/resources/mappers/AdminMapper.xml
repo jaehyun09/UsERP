@@ -75,7 +75,7 @@
 	</update>
 	
 	<!-- 조명재 - 비밀번호를 생성한다 -->
-	<update id="signinPro" parameterType="String">
+	<update id="signinPro" parameterType="java.util.Map">
 		UPDATE employee SET emp_pwd = #{emp_pwd}, emp_enabled = 1 WHERE emp_code = #{emp_code}
 	</update>
 	

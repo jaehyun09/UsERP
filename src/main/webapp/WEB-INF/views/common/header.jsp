@@ -4,23 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-function alert() {
-   $.ajax({
-   
-      // sendRequest(콜백함수명, url, method, params)
-      url: "alertList", // 전송 페이지 => 컨트롤러 "basic_next"
-      type: 'GET', // 전송방식('GET', 'POST') - method
-      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-         $('#alertlist').html(data);
-      },
-      error: function(){
-         alert('오류');
-      }
-   });
-}
-</script>
 <meta charset="UTF-8">
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
@@ -60,15 +43,21 @@ function alert() {
                 <!-- User Notifications -->
                 <div class="dropdown ml-auto">
                   <c:if test="${sessionScope.mem_id != null}">
-                    <a id="notificationsInvoker" class="header-invoker" href="#" aria-controls="notifications" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#notifications" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut" onclick="alert()">
-                        <c:if test="${alertCnt > 0}">
-                        	<span class="indicator indicator-bordered indicator-top-right indicator-primary rounded-circle"></span>
-                        </c:if>
+                    <a id="notificationsInvoker" class="header-invoker" href="#" onclick="alert()"
+                    		aria-controls="notifications" 
+                    		aria-haspopup="true" 
+                    		aria-expanded="false" 
+                    		data-unfold-event="click" 
+                    		data-unfold-target="#notifications" 
+                    		data-unfold-type="css-animation" 
+                    		data-unfold-duration="300" 
+                    		data-unfold-animation-in="fadeIn" 
+                    		data-unfold-animation-out="fadeOut">
+                        <span class="indicator indicator-bordered indicator-top-right indicator-primary rounded-circle"></span>
                         <i class="gd-bell"></i>
                     </a>
                     <div id="notifications" class="dropdown-menu dropdown-menu-center py-0 mt-4 w-18_75rem w-md-22_5rem unfold-css-animation unfold-hidden"
-                     aria-labelledby="notificationsInvoker" style="animation-duration: 300ms;">
-                    <div id="alertlist"></div>
+							aria-labelledby="notificationsInvoker" style="animation-duration: 300ms;">
                     </div>
                   </c:if>  
                   

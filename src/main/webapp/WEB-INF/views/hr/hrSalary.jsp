@@ -19,6 +19,7 @@
     
 	<!-- Script -->
     <script src="${spath}script.js"></script>
+    
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -277,31 +278,31 @@
 											            <th style="width: 20%">기본 급여</th>
 											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_basic}" /></td>
 											            <th style="width: 20%">갑근세</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_basic}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_worktax}" /></td>
 											         </tr>
 											         <tr>
 											            <th>초과근로 수당</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_night}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_over}" /></td>
 											            <th>주민세</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_night}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_resident}" /></td>
 											         </tr>
 											         <tr>
 											            <th>상여금</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_over}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_bonus}" /></td>
 											            <th>고용보험</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_over}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_hire}" /></td>
 											         </tr>
 											         <tr>
 											            <th>식대</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_cos}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_meal}" /></td>
 											            <th>국민연금</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_cos}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_pension}" /></td>
 											         </tr>
 											         <tr>
 											            <th>차량유지비</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_or}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_vehicle}" /></td>
 											            <th>건강보험</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_or}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_health}" /></td>
 											         </tr>
 											      </tbody>
 											   </table><br><br><br>
@@ -349,61 +350,64 @@
                            </div>
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    <form action="hrSalaryInsert" method="post" onsubmit="">
+                                    <form action="hrSalaryInsert" method="post" onsubmit="return hrSalaryInsCheck()">
+                                   	  <input type="hidden" name="salaryCheck" value="0">
                                        <table class="table bg-white text-dark center ass2">
-														<tr class="text-white table-bordered tap">
-															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">급여 전표 등록</th>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">사원번호</th>
-															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px" required></td>
-															<td>
-																<button type="button" class="btn btn-outline-info" onclick="hrSalaryCheck()">
-																	사번확인
-																</button>
-															</td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">사원명</th>
-															<td><input id="text" type="text" class="form-control" name="emp_name" style="font-size:20px" readonly></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">부서</th>
-															<td><input id="text" type="text" class="form-control" name="dep_name" style="font-size:20px" readonly></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">직급</th>
-															<td><input id="text" type="text" class="form-control" name="emp_position" style="font-size:20px" readonly></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">대상기간</th>
-															<td><input type="month" class="form-control" name="" style="font-size:20px"></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">기본 급여</th>
-															<td><input id="text" type="text" class="form-control" name="sal_basic" style="font-size:20px" readonly></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">초과근로 수당</th>
-															<td><input id="text" type="text" class="form-control" name="sal_over" style="font-size:20px" readonly></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">상여금</th>
-															<td><input id="text" type="number" class="form-control" name="sal_bonus" min="0" style="font-size:20px"></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">식대</th>
-															<td><input id="text" type="number" class="form-control" name="sal_meal" min="0" style="font-size:20px"></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">차량유지비</th>
-															<td><input id="text" type="number" class="form-control" name="" min="0" style="font-size:20px"></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">총 급여</th>
-															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
-														</tr>
-													</table>
+											<tr class="text-white table-bordered tap">
+												<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">급여 전표 등록</th>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">대상기간</th>
+												<td><input type="month" class="form-control" name="pay_month" style="font-size:20px"></td>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">사원번호</th>
+												<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px"></td>
+												<td>
+													<button type="button" class="btn btn-outline-info" onclick="hrSalaryCheck()">
+														사번확인
+													</button>
+												</td>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">사원명</th>
+												<td><input id="text" type="text" class="form-control" name="emp_name" style="font-size:20px" readonly></td>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">부서</th>
+												<td>
+													<input id="text" type="text" class="form-control" name="dep_name" style="font-size:20px" readonly>
+													<input type="hidden" name="dep_code" value="${vo.dep_code}">
+												</td>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">직급</th>
+												<td>
+													<input id="text" type="text" class="form-control" name="emp_position" style="font-size:20px" readonly>
+													<input type="hidden" name="hr_code" value="${vo.hr_code}">
+												</td>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">기본 급여</th>
+												<td><input id="text" type="text" class="form-control" name="sal_basic" style="font-size:20px" readonly></td>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">초과근로 수당</th>
+												<td><input id="text" type="text" class="form-control" name="sal_over" style="font-size:20px" readonly></td>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">상여금</th>
+												<td><input id="text" type="number" class="form-control" name="sal_bonus" min="0" value="0" step="10" style="font-size:20px"></td>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">식대</th>
+												<td><input id="text" type="number" class="form-control" name="sal_meal" min="0" value="0" step="10" style="font-size:20px"></td>
+											</tr>
+											<tr>
+												<th style="vertical-align: middle">차량유지비</th>
+												<td><input id="text" type="number" class="form-control" name="sal_vehicle" min="0" value="0" step="10" style="font-size:20px"></td>
+											</tr>
+										</table>
 												
 												<div align=center>
 													<button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
