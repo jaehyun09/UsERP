@@ -102,16 +102,48 @@ function setEmpInfo(emp_code, emp_name, dep_name, hr_code_name) {
 	self.close();
 }
 
-//조명재 - 인사 발령 - 사원번호 확인 버튼 클릭
+// 조명재 - 급여 - 급여 전표 등록 확인
+function hrSalaryInsCheck() {
+	if(!$("input[name='pay_month']").val()) {
+		alert("보수 월을 선택하세요.");
+		$("input[name='pay_month']").focus();
+		return false;
+	} else if(!$("input[name='emp_code']").val()) {
+		alert("사원번호를 입력하세요.");
+		$("input[name='emp_code']").focus();
+		return false;
+	} else if(!$("input[name='salaryCheck']").val() != "1") {
+		alert("사원번호를 확인하세요.");
+		$("input[name='salaryCheck']").focus();
+		return false;
+	}
+}
+
+// 조명재 - 인사 발령 - 사원번호 확인 버튼 클릭
 function hrSalaryCheck() {
 	if(!$("input[name='emp_code']").val()) {
 		alert("사원번호를 입력하세요.");
 		$("input[name='emp_code']").focus();
 		return false;
+	} else if(!$("input[name='pay_month']").val()) {
+		alert("보수 월을 선택하세요.");
+		$("input[name='pay_month']").focus();
+		return false;
 	}
 	
-	var url ="hrSalaryCheck?emp_code=" + $("input[name='emp_code']").val(); 
+	var url ="hrSalaryCheck?emp_code=" + $("input[name='emp_code']").val() + "&pay_month=" + $("input[name='pay_month']").val(); 
 	window.open(url, "사원확인", "menubar=no, width=500, height=400");
 }
 
+// 조명재 - 급여전표 등록 - 사원확인 성공 시 사원명, 현재부서, 현재직급 자동입력
+function setSalEmpInfo(emp_code, emp_name, dep_name, hr_code_name, sal_basic, sal_over) {
+	$("input[name='emp_code']", opener.document).val(emp_code);
+	$("input[name='emp_name']", opener.document).val(emp_name);
+	$("input[name='dep_name']", opener.document).val(dep_name);
+	$("input[name='emp_position']", opener.document).val(hr_code_name);
+	$("input[name='sal_basic']", opener.document).val(sal_basic);
+	$("input[name='sal_over']", opener.document).val(sal_over);
+	$("input[name='salaryCheck']", opener.document).val(1);
+	self.close();
+}
 

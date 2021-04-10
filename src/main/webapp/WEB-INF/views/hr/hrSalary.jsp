@@ -19,6 +19,7 @@
     
 	<!-- Script -->
     <script src="${spath}script.js"></script>
+    
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -349,14 +350,19 @@
                            </div>
                                  <div class="tab-pane fade p-4" id="pills-html-1"
                                     role="tabpanel" aria-labelledby="pills-html-tab-1">
-                                    <form action="hrSalaryInsert" method="post" onsubmit="">
+                                    <form action="hrSalaryInsert" method="post" onsubmit="return hrSalaryInsCheck()">
+                                   	  <input type="hidden" name="salaryCheck" value="0">
                                        <table class="table bg-white text-dark center ass2">
 														<tr class="text-white table-bordered tap">
 															<th class="font-weight-semi-bold border-top-0 py-3 con2" colspan="3">급여 전표 등록</th>
 														</tr>
 														<tr>
+															<th style="vertical-align: middle">대상기간</th>
+															<td><input type="month" class="form-control" name="pay_month" style="font-size:20px"></td>
+														</tr>
+														<tr>
 															<th style="vertical-align: middle">사원번호</th>
-															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px" required></td>
+															<td><input id="text" type="text" class="form-control" name="emp_code" style="font-size:20px"></td>
 															<td>
 																<button type="button" class="btn btn-outline-info" onclick="hrSalaryCheck()">
 																	사번확인
@@ -369,15 +375,17 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">부서</th>
-															<td><input id="text" type="text" class="form-control" name="dep_name" style="font-size:20px" readonly></td>
+															<td>
+																<input id="text" type="text" class="form-control" name="dep_name" style="font-size:20px" readonly>
+																<input type="hidden" name="dep_code" value="${vo.dep_code}">
+															</td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">직급</th>
-															<td><input id="text" type="text" class="form-control" name="emp_position" style="font-size:20px" readonly></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">대상기간</th>
-															<td><input type="month" class="form-control" name="" style="font-size:20px"></td>
+															<td>
+																<input id="text" type="text" class="form-control" name="emp_position" style="font-size:20px" readonly>
+																<input type="hidden" name="hr_code" value="${vo.hr_code}">
+															</td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">기본 급여</th>
@@ -389,19 +397,15 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">상여금</th>
-															<td><input id="text" type="number" class="form-control" name="sal_bonus" min="0" style="font-size:20px"></td>
+															<td><input id="text" type="number" class="form-control" name="sal_bonus" min="0" value="0" step="10" style="font-size:20px"></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">식대</th>
-															<td><input id="text" type="number" class="form-control" name="sal_meal" min="0" style="font-size:20px"></td>
+															<td><input id="text" type="number" class="form-control" name="sal_meal" min="0" value="0" step="10" style="font-size:20px"></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">차량유지비</th>
-															<td><input id="text" type="number" class="form-control" name="" min="0" style="font-size:20px"></td>
-														</tr>
-														<tr>
-															<th style="vertical-align: middle">총 급여</th>
-															<td><input id="text" type="text" class="form-control" name="" style="font-size:20px" readonly></td>
+															<td><input id="text" type="number" class="form-control" name="sal_vehicle" min="0" value="0" step="10" style="font-size:20px"></td>
 														</tr>
 													</table>
 												

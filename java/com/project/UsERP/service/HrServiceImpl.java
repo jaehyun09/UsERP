@@ -1,6 +1,7 @@
 package com.project.UsERP.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -339,10 +340,11 @@ public class HrServiceImpl implements HrService {
 		model.addAttribute("list9", list9);
 	}
 	
-	// 조명재 - 급여 - 사원번호 확인
+	// 조명재 - 급여 - 사원번호 확인, 지급계
 	@Override
 	public void hrSalaryCheck(HttpServletRequest req, Model model) {
 		String emp_code = req.getParameter("emp_code");
+		String pay_month = req.getParameter("pay_month");
 		
 		EmployeeVO vo = hrDao.hrConfirmAppoint(emp_code);
 		
@@ -350,16 +352,134 @@ public class HrServiceImpl implements HrService {
 		if(vo != null) selectCnt = 1;
 		
 		if(selectCnt == 1) {
+			// 부서, 직급
 			String dep_name = hrDao.getDepName(vo.getDep_code());
 			String hr_code_name = hrDao.getCodeName(vo.getHr_code());
 			
+			// 기본 급여
+			int hourlyWage = 8720;
+			switch(vo.getHr_code()) {
+				case 101 : hourlyWage = (int)(hourlyWage * 0.2194);
+					break;
+				case 102 : hourlyWage = (int)(hourlyWage * 0.1874);
+					break;
+				case 103 : hourlyWage = (int)(hourlyWage * 0.1600);
+					break;
+				case 104 : hourlyWage = (int)(hourlyWage * 0.1371);
+					break;
+				case 105 : hourlyWage = (int)(hourlyWage * 0.1188);
+					break;
+				default : hourlyWage = 8720;
+			}
+			int sal_basic = hourlyWage * 209 * 10;
+			
+			// 초과근로 수당
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("emp_code", vo.getEmp_code());
+			map.put("pay_month", pay_month);
+			
+			int overTimes = hrDao.getOverTimes(map);
+			int sal_over = (int)(overTimes * hourlyWage * 10 * 1.5);
+			
 			model.addAttribute("dep_name", dep_name);
 			model.addAttribute("hr_code_name", hr_code_name);
+			model.addAttribute("sal_basic", sal_basic);
+			model.addAttribute("sal_over", sal_over);
 		}
 		
 		model.addAttribute("selectCnt", selectCnt);
 		model.addAttribute("vo", vo);
 		model.addAttribute("emp_code", emp_code);
+	}
+	
+	// 조명재 - 급여 - 급여전표 등록, 과세계
+	@Override
+	public void hrSalaryInsert(HttpServletRequest req, Model model) {
+		String emp_code = req.getParameter("emp_code");
+		String hr_code = req.getParameter("hr_code");
+		String dep_code = req.getParameter("dep_code");
+		
+		int sal_basic = Integer.parseInt(req.getParameter("sal_basic"));
+		int sal_over = Integer.parseInt(req.getParameter("sal_over"));
+		int sal_bonus = Integer.parseInt(req.getParameter("sal_bonus"));
+		int sal_meal = Integer.parseInt(req.getParameter("sal_meal"));
+		int sal_vehicle = Integer.parseInt(req.getParameter("sal_vehicle"));
+		
+		int taxPay = sal_basic + sal_over + sal_bonus;	// 과세지급계
+		int nonTaxPay = sal_meal + sal_vehicle;			// 비과세지급계
+		
+		// 과세계
+		int sal_worktax = 0;
+		int sal_resident = 0;
+		int sal_hire = 0;
+		int sal_pension = 0;
+		int sal_health = 0;
+		
+		// 갑근세
+		int taxPayAnnual = taxPay * 12;	// 비과세 제외
+		int detTax = 0;		// 결정세액
+		int calTax = 0;		// 산출세액
+		int deduction = 0;	// 세액공제
+		
+		if(taxPayAnnual > 0 && taxPayAnnual <= 46000000) {
+			calTax = (int)(12000000 * 0.06 + (taxPayAnnual - 12000000) * 0.15 - 1080000);
+		} else {
+			calTax = (int)(12000000 * 0.06 + (46000000 - 12000000) * 0.15 + (taxPayAnnual - 46000000) * 0.24 - 5220000);
+		}
+		
+		if(calTax <= 500000) {
+			deduction = (int)(calTax * 0.55);
+		} else {
+			deduction = (int)(275000 + (calTax - 50) * 0.3);
+		}
+		
+		if(taxPayAnnual <= 55000000 && deduction > 660000) {
+			deduction = 660000;
+		} else if(taxPayAnnual > 55000000 && deduction > 630000) {
+			deduction = 630000;
+		} else if(taxPayAnnual > 70000000 && deduction > 500000) {
+			deduction = 500000;
+		}
+		
+		detTax = calTax - deduction;
+		
+		sal_worktax = detTax / 12;
+		sal_resident = (int)(sal_worktax * 0.1);
+		sal_hire = (int)(taxPay * 0.0045);
+		sal_pension = (int)(taxPay * 0.008);
+		sal_health = (int)(taxPay * 0.0045);
+		
+		int totalTax = sal_worktax + sal_resident + sal_hire + sal_pension + sal_health;
+		
+		int ss_total_sal = (taxPay - totalTax) + nonTaxPay;
+		
+		// 급여 세부사항 등록
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sal_basic", sal_basic);
+		map.put("sal_over", sal_over);
+		map.put("sal_bonus", sal_bonus);
+		map.put("sal_meal", sal_meal);
+		map.put("sal_vehicle", sal_vehicle);
+		map.put("sal_worktax", sal_worktax);
+		map.put("sal_resident", sal_resident);
+		map.put("sal_hire", sal_hire);
+		map.put("sal_pension", sal_pension);
+		map.put("sal_health", sal_health);
+		
+		int insertCnt = hrDao.salaryDetailIns(map);
+		
+		// 급여 전표 등록
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("ss_total_sal", ss_total_sal);
+		map2.put("emp_code", emp_code);
+		map2.put("hr_code", hr_code);
+		map2.put("dep_code", dep_code);
+		
+		if(insertCnt == 1) {
+			insertCnt += hrDao.salaryStatement(map2);
+		}
+		
+		model.addAttribute("insertCnt", insertCnt);
 	}
 	
 }
