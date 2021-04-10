@@ -19,6 +19,12 @@
     <script src="${project}js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
     
+    function changeProduct() {
+        var logscode = document.getElementById("logscode").options[document.getElementById("logscode").selectedIndex].id;
+        
+        document.getElementById("prod").value = logscode; 
+     }
+    
     /* 현 재고 수량 리턴 AJAX */
     $(function() {
     	$('#amount').click(function() {
@@ -76,14 +82,14 @@
 		<table class="table bg-white text-dark center ass2" style="text-align:center">
              <tr>
              	<td class="font-weight-semi-bold border-top-0 py-2 text-dark" 
-             		colspan="2"style="vertical-align: middle;"><b>전표번호</b></td>
-                <td class="py-2" colspan="2">
-                	<select class="custom-select custom-select-lg" name="logscode">
+             		colspan="3"style="vertical-align: middle;"><b>전표번호</b></td>
+                <td class="py-3" colspan="2">
+                	<select class="custom-select custom-select-lg" id="logscode" name="logscode" onchange="changeProduct()">
                 	<c:if test="${empty logsCodeVo}"><option value="0"> 전표 없음  </option></c:if>
                 	<c:forEach var="logsCodeVo" items="${logsCodeVo}">
                 		<c:choose>
 	                		<c:when test="${logsCodeVo.logs_code != 0}">
-								<option value="${logsCodeVo.logs_code}">${logsCodeVo.logs_code}</option>
+								<option id="${logsCodeVo.pro_code}" value="${logsCodeVo.logs_code}">${logsCodeVo.logs_code}</option>
 	                		</c:when>
                 		</c:choose>
                 	</c:forEach>
@@ -92,9 +98,9 @@
            	</tr>
               	
               	<tr>
-				<td class="py-2 text-dark" colspan="2" style="vertical-align: middle;"><b>출발창고명</b></td>
+				<td class="py-3 text-dark" colspan="2" style="vertical-align: middle;"><b>출발창고명</b></td>
 				<td class="font-weight-semi-bold border-top-0 py-2"
-					colspan="2">
+					colspan="3">
 					<select class="custom-select custom-select-lg" id="startwh" name="startwh">
 					<c:forEach var="ware" items="${selectware}">
 						<c:if test="${ware.ware_type == 1}">
@@ -112,8 +118,8 @@
 			</tr>
 			
 			<tr>
-				<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>도착창고명</b></td>
-				<td class="py-2" colspan="2">
+				<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>도착창고명</b></td>
+				<td class="py-3" colspan="2">
 					<select class="custom-select custom-select-lg" name="arrivewh">
 						<c:forEach var="ware" items="${selectware}">
 						<c:if test="${ware.ware_type == 1}">
@@ -131,8 +137,8 @@
 			</tr>
 			
 			<tr>
-             	<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
-                <td class="py-2" colspan="2">
+             	<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
+                <td class="py-3" colspan="2">
                 	<select class="custom-select custom-select-lg" id="prod" name="prod">
                 	<c:forEach var="prolist" items="${selprolist}">
 						<option value="${prolist.pro_code}">${prolist.pro_name}</option>
@@ -142,15 +148,16 @@
             </tr>
             
 			<tr>
-				<td class="py-2" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
-				<td class="py-2" colspan="2">
+				<td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
+				<td class="py-3" colspan="2">
 					<input class="form-control form-control-icon-text" id="amount" name="amount" placeholder="수량" type="text">
 				</td>
 			</tr>
 			<tr>
-				<td class="py-2" colspan="2" style="vertical-align: middle; "><b>사번</b></td>
-				<td class="py-2" colspan="2">
-					<input class="form-control form-control-icon-text" type="text" name="empid" value="${sessionScope.mem_id}" readonly>
+				<td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td>
+				<td class="py-3" colspan="2" style="vertical-align: middle; text-align:left;">
+					<input class="form-control form-control-icon-text" type="hidden" name="empid" style="font-size:25px" value="${sessionScope.mem_id}" readonly>
+					${sessionScope.mem_name}
 				</td>
 			</tr>
 		</tbody>

@@ -2,8 +2,8 @@ package com.project.UsERP.service;
 
 
 import java.io.File;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.UsERP.persistence.AdminDAO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.EmployeeVO;
 
 
@@ -145,67 +144,5 @@ public class AdminServiceImpl implements AdminService {
 				
 	}
 
-	// 강재현 - 알림 리스트
-	@Override
-	public void accsAlertList(HttpServletRequest req, Model model) {
-
-		List<AlertVO> alert = dao.accsAlertList();
-		int cnt = dao.getCnt();
-
-		model.addAttribute("alertCnt", cnt);
-		model.addAttribute("accsalert", alert);
-
-	}
-
-	// 강재현 - 알림 리스트
-	@Override
-	public void logsAlertList(HttpServletRequest req, Model model) {
-
-		List<AlertVO> alert = dao.logsAlertList();
-		int cnt = dao.getCnt();
-
-		model.addAttribute("alertCnt", cnt);
-		model.addAttribute("logsalert", alert);
-
-	}
-
-	// 강재현 - 알림 리스트
-	@Override
-	public void ssAlertList(HttpServletRequest req, Model model) {
-
-		List<AlertVO> alert = dao.ssAlertList();
-		int cnt = dao.getCnt();
-
-		model.addAttribute("alertCnt", cnt);
-
-		model.addAttribute("ssalert", alert);
-
-	}
-
-	// 강재현 - 알림 리스트
-	@Override
-	public void stAlertList(HttpServletRequest req, Model model) {
-
-		List<AlertVO> alert = dao.stAlertList();
-
-
-		model.addAttribute("stalert", alert);
-
-	}
-
-	// 강재현 - 알림 업데이트
-	@Override
-	public void alertUpdate(HttpServletRequest req, Model model) {
-		int alert_code = Integer.parseInt(req.getParameter("alert_code"));
-		AlertVO vo = new AlertVO();
-		vo.setAlert_state(1);
-		vo.setAlert_code(alert_code);
-
-		int deleteCnt = dao.alertUpdate(vo);
-
-		model.addAttribute("num", alert_code);
-		model.addAttribute("deleteCnt", deleteCnt);
-
-	}
 
 }

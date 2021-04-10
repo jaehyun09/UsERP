@@ -1,6 +1,7 @@
 package com.project.UsERP.service;
 
 import java.sql.Timestamp;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +19,6 @@ import org.springframework.ui.Model;
 import com.project.UsERP.persistence.LdDAO;
 import com.project.UsERP.persistence.PdDAO;
 import com.project.UsERP.vo.AccountStatementVO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -300,7 +300,7 @@ public class LdServiceImpl implements LdService {
 	@Override
 	public void selectProduct(HttpServletRequest req, Model model) {
 		List<ProductVO> list = lddao.selectProduct();
-
+		
 		model.addAttribute("selprolist", list);
 	}
 

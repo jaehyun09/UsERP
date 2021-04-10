@@ -16,21 +16,4 @@ public interface AdminService {
 	// 김은희 - 내 정보 수정 처리
 	public void mypageUpdateAction(MultipartHttpServletRequest req, Model model);
 
-	// 강재현 - 알림 리스트 회계팀
-	public void accsAlertList(HttpServletRequest req, Model model);
-
-	// 강재현 - 알림 리스트 회계팀
-	public void logsAlertList(HttpServletRequest req, Model model);
-
-	// 강재현 - 알림 리스트 회계팀
-	public void ssAlertList(HttpServletRequest req, Model model);
-
-	// 강재현 - 알림 리스트 회계팀
-	public void stAlertList(HttpServletRequest req, Model model);
-
-	// 강재현 - 알림 업데이트
-	public void alertUpdate(HttpServletRequest req, Model model);
-
-	// 강재현 - 알림 갯수
-	// public void alertCnt(HttpServletRequest req, Model model);
 }

@@ -1,10 +1,10 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+
 import java.util.Map;
 
 import com.project.UsERP.vo.AccountStatementVO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -36,8 +36,6 @@ public interface StDAO {
 	// 이재홍 - 판매 현황 - 판매 전표 등록
 	public int insertSalesStatement(AccountStatementVO vo);
 
-	// 강재현 - 알림 등록
-	public int insertAcAlert(AlertVO vo1);
 
 	// 강재현 - 출고 현황 - 출고 내역
 	public List<LogisticsStatementVO> logisticsList();
@@ -57,6 +55,4 @@ public interface StDAO {
 	// 강재현 - 출고 현황 - 출고 전표 등록시 회계전표 상태코드 변화
 	public int updatestatement(AccountStatementVO vo1);
 
-	// 강재현 - 알림 등록
-	public int insertLgAlert(AlertVO vo1);
 }

@@ -3,13 +3,13 @@ package com.project.UsERP.persistence;
 import java.util.List;
 
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.BankVO;
 import com.project.UsERP.vo.SalaryStatementVO;
 
@@ -123,15 +123,4 @@ public class AdDAOImpl implements AdDAO {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.bdStatementDetail", num);
 	}
 
-	// 강재현 - 알림 등록
-	@Override
-	public int insertAccAlert(AlertVO vo1) {
-		return sqlSession.insert("com.project.UsERP.persistence.AdDAO.insertAccAlert", vo1);
-	}
-
-	// 강재현 - 알림 등록
-	@Override
-	public int insertSsAlert(AlertVO vo1) {
-		return sqlSession.insert("com.project.UsERP.persistence.AdDAO.insertSsAlert", vo1);
-	}
 }

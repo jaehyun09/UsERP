@@ -211,7 +211,7 @@ public class PdServiceImpl implements PdService {
 
 		if(insertCnt == 1) {
 			LogisticsStatementVO vo1 = new LogisticsStatementVO();
-			vo1.setLogs_state(1);
+			vo1.setLogs_state(3);
 			vo1.setLogs_code(logs_code);
 
 			int updateCnt = lddao.logsupdate(vo1);

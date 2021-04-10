@@ -1,6 +1,7 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.UsERP.vo.AccountStatementVO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -67,12 +67,6 @@ public class StDAOImpl implements StDAO {
 		return sqlSession.insert("com.project.UsERP.persistence.StDAO.insertSalesStatement", vo);
 	}
 
-	// 강재현 - 알림 등록
-	@Override
-	public int insertAcAlert(AlertVO vo1) {
-		return sqlSession.insert("com.project.UsERP.persistence.StDAO.insertAcAlert", vo1);
-	}
-
 	// 강재현 - 출고현황 - 출고 내역
 	@Override
 	public List<LogisticsStatementVO> logisticsList() {
@@ -107,12 +101,6 @@ public class StDAOImpl implements StDAO {
 	@Override
 	public int updatestatement(AccountStatementVO vo1) {
 		return sqlSession.update("com.project.UsERP.persistence.StDAO.updatestatement", vo1);
-	}
-
-	// 강재현 - 알림 등록
-	@Override
-	public int insertLgAlert(AlertVO vo1) {
-		return sqlSession.insert("com.project.UsERP.persistence.StDAO.insertLgAlert", vo1);
 	}
 
 }

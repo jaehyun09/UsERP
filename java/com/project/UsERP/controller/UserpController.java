@@ -104,32 +104,5 @@ public class UserpController {
 		
 		return "mypageUpdateAction";
 	}
-	
-
-	// 강재현 - 알림
-	@RequestMapping("/alert")
-	public String alertList(HttpServletRequest req, Model model) {
-		logger.info("url: 알림");
-		// 회계 알림
-		service.accsAlertList(req, model);
-		// 물류 알림
-		service.logsAlertList(req, model);
-		// 급여 알림
-		service.ssAlertList(req, model);
-		// 나머지 알림
-		service.stAlertList(req, model);
-
-		return "alert";
-	}
-
-	// 강재현 - 알림 업데이트
-	@RequestMapping("/deleteAc")
-	public String deleteAc(HttpServletRequest req, Model model) {
-		logger.info("url: 알림 삭제");
-		// 알림 삭제
-		service.alertUpdate(req, model);
-
-		return "alertAction";
-	}
 
 }
