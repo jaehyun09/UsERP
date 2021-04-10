@@ -8,75 +8,6 @@
     <title>Users | Graindashboard UI Kit</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
-// 김은희 - 인사카드 등록 체크
-function CardCheck() {
-	
-	if(document.hrCardform.emp_code.value.length == 0 ) {
-		alert("사번을 입력하세요.");
-		
-		document.hrCardform.emp_code.focus();
-		return false;
-	}
-	
-	if(!document.hrCardform.emp_name.value) {
-		alert("사원명을 입력하세요.");
-		document.hrCardform.emp_name.focus();
-		return false;
-	}
-	
-	if(!document.hrCardform.emp_jumin.value) {
-		alert("주민등록번호를 입력하세요.");
-		document.hrCardform.emp_jumin.focus();
-		return false;
-	}
-	
-	if(!document.hrCardform.emp_address.value) {
-		alert("주소를 입력하세요.");
-		document.hrCardform.emp_address.focus();
-		return false;
-	}
-	
-	if(!document.hrCardform.emp_phone.value) {
-		alert("휴대전화를 입력하세요.");
-		document.hrCardform.emp_phone.focus();
-		return false;
-	}
-	
-	if(!document.hrCardform.emp_email.value) {
-		alert("이메일을 입력하세요.");
-		document.hrCardform.emp_email.focus();
-		return false;
-	}
-	
-	if(!document.hrCardform.emp_account.value) {
-		alert("급여 계좌를 입력하세요.");
-		document.hrCardform.emp_account.focus();
-		return false;
-	}
-	
-	if(document.hrCardform.hiddenEmp_code.value == "0") { 
-		alert("중복확인을 해주세요.");
-		document.hrCardform.dupChk.focus();
-		return false;
-	}
-}
-
-function hrCardDetail(code) {
-   
-   var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=" + code;
-   
-   $.ajax({
-      type:"POST",
-     data:param,
-     url:'hrCardDetail',
-      success: function(data){ 
-         $('#hrCardDetail').html(data);
-      },
-      error: function(){
-         alert('오류');
-      }
-   });
-}
 
 function addressSearch() {
       new daum.Postcode(
@@ -439,17 +370,17 @@ function addressSearch() {
                            <th class="text-white table-bordered tap py-3 con2" colspan="3"> 인사카드 </th>
                         </tr>
                         <tr>
-                           <th style="vertical-align:middle">* 사진</th>
+                           <th style="vertical-align:middle">사진</th>
                            <td><input id="file" type="file" name="emp_photo"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사번</th>
-                           <td><input type="text" class="form-control" name="emp_code" id="emp_code"></td>
+                           <td><input type="text" class="form-control" name="emp_code" maxlength="5"></td>
                            <td><input class="btn btn-outline-info" name="dupChk" type="button" value="중복확인" onclick="confirmCode();"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사원명</th>
-                           <td> <input type="text" class="form-control" name="emp_name"></td>
+                           <td> <input type="text" class="form-control" name="emp_name" maxlength="10"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle"> * 부서명 </th>
@@ -498,11 +429,11 @@ function addressSearch() {
                         </tr>
                         <tr>                                    
                             <th style="vertical-align:middle">근속연수</th>
-                            <td><input type="text" name="emp_cos" class="form-control"></td>
+                            <td><input type="text" name="emp_cos" class="form-control" maxlength="5"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle"> * 주민등록번호 </th>
-                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력"></td>
+                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력" maxlength="13"></td>
                         </tr>
                          <tr>
                      <th style="vertical-align:middle">* 주소</th>
@@ -529,11 +460,11 @@ function addressSearch() {
                   </tr> 
                       <tr>
                               <th style="vertical-align:middle">전화번호</th>
-                              <td><input type="tel" name="emp_tel" class="form-control"></td>
+                              <td><input type="tel" name="emp_tel" class="form-control" maxlength="13"></td>
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">* 휴대전화</th>
-                              <td><input type="tel" name="emp_phone" class="form-control"></td>
+                              <td><input type="tel" name="emp_phone" class="form-control" maxlength="15"></td>
                            </tr>
                            <tr>                                    
                               <th style="vertical-align:middle">* 이메일</th>
@@ -541,7 +472,7 @@ function addressSearch() {
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">여권번호</th>
-                              <td><input type="text" name="emp_port_no" class="form-control"></td>
+                              <td><input type="text" name="emp_port_no" class="form-control" maxlength="30"></td>
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">* 은행</th>
@@ -561,7 +492,7 @@ function addressSearch() {
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">* 급여계좌</th>
-                              <td><input type="text" name="emp_account" class="form-control"></td>
+                              <td><input type="text" name="emp_account" class="form-control" maxlength="30"></td>
                            </tr>
                      </table>
                   

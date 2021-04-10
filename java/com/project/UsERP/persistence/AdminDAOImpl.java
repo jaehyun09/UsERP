@@ -50,6 +50,12 @@ public class AdminDAOImpl implements AdminDAO {
 		return dao.getUsersInfo(emp_code);
 	}
 	
+	// 김은희 - 내 정보 수정 페이지
+	@Override
+	public EmployeeVO myPageDetail(String emp_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.AdminDAO.myPageDetail", emp_code);
+	}
+	
 	// 김은희 - 내 정보 수정 처리
 	@Override
 	public int mypageUpdateAction(Map<String, Object> map) {

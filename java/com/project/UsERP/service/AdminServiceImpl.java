@@ -72,11 +72,26 @@ public class AdminServiceImpl implements AdminService {
 		model.addAttribute("emp_name", vo.getEmp_name());
 	}
 	
+	// 김은희 - 내 정보 수정 페이지
+	@Override
+	public void myPageDetail(HttpServletRequest req, Model model) {
+		String emp_code = (String)req.getSession().getAttribute("mem_id");
+		
+		EmployeeVO vo = dao.myPageDetail(emp_code);
+		
+		model.addAttribute("vo", vo);
+			
+		}
+	
+	
 	// 김은희 - 내 정보 수정 처리
 	@Override
 	public void mypageUpdateAction(MultipartHttpServletRequest req, Model model) {
 		
-		String uploadPath = "C:\\Dev76\\workspace\\upload\\";
+		// * 경로 바꿔주세요
+		// String uploadPath = "C:\\Dev76\\workspace\\upload\\";
+		
+		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images\\";
 		
 		MultipartFile image = req.getFile("emp_photo");
 		String emp_photo = image.getOriginalFilename();
@@ -111,27 +126,27 @@ public class AdminServiceImpl implements AdminService {
 		
 			image.transferTo(new File(uploadPath + image));
 			
-			EmployeeVO updateVo = new EmployeeVO();
+			EmployeeVO vo = new EmployeeVO();
 			
-			updateVo.setHr_code(hr_code);
-			updateVo.setEmp_code(emp_code);
-			updateVo.setEmp_name(emp_name);	
-			updateVo.setEmp_cos(emp_cos);
-			updateVo.setEmp_photo(emp_photo);
-			updateVo.setEmp_jumin(emp_jumin);
-			updateVo.setEmp_address(address);
-			updateVo.setEmp_tel(emp_tel);
-			updateVo.setEmp_phone(emp_phone);
-			updateVo.setEmp_email(emp_email);
-			updateVo.setEmp_port_no(emp_port_no);
-			updateVo.setEmp_bank(emp_bank);
-			updateVo.setEmp_account(emp_account);
-			updateVo.setDep_code(dep_code);
-			updateVo.setEmp_authority(emp_authority);
+			vo.setHr_code(hr_code);
+			vo.setEmp_code(emp_code);
+			vo.setEmp_name(emp_name);	
+			vo.setEmp_cos(emp_cos);
+			vo.setEmp_photo(emp_photo);
+			vo.setEmp_jumin(emp_jumin);
+			vo.setEmp_address(address);
+			vo.setEmp_tel(emp_tel);
+			vo.setEmp_phone(emp_phone);
+			vo.setEmp_email(emp_email);
+			vo.setEmp_port_no(emp_port_no);
+			vo.setEmp_bank(emp_bank);
+			vo.setEmp_account(emp_account);
+			vo.setDep_code(dep_code);
+			vo.setEmp_authority(emp_authority);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			
-			map.put("updateVo",updateVo);
+			map.put("vo",vo);
 			map.put("emp_hire_date",emp_hire_date);
 			
 			int updateCnt = dao.mypageUpdateAction(map);
@@ -143,6 +158,5 @@ public class AdminServiceImpl implements AdminService {
 		}
 				
 	}
-
 
 }

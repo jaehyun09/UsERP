@@ -19,6 +19,9 @@ public interface AdminDAO {
 	// 조명재 - 회원 정보를 반환한다
 	public EmployeeVO getUsersInfo(String emp_code);
 	
+	// 김은희 - 내 정보 수정 페이지
+	public EmployeeVO myPageDetail(String emp_code);
+	
 	// 김은희 - 내 정보 수정 처리
 	public int mypageUpdateAction(Map<String, Object> map);
 

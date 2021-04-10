@@ -1,3 +1,55 @@
+// 김은희 - 인사카드 등록 체크
+function CardCheck() {
+	
+	if(document.hrCardform.emp_code.value.length == 0 ) {
+		alert("사번을 입력하세요.");
+		
+		document.hrCardform.emp_code.focus();
+		return false;
+	}
+	
+	if(!document.hrCardform.emp_name.value) {
+		alert("사원명을 입력하세요.");
+		document.hrCardform.emp_name.focus();
+		return false;
+	}
+	
+	if(!document.hrCardform.emp_jumin.value) {
+		alert("주민등록번호를 입력하세요.");
+		document.hrCardform.emp_jumin.focus();
+		return false;
+	}
+	
+	if(!document.hrCardform.emp_address.value) {
+		alert("주소를 입력하세요.");
+		document.hrCardform.emp_address.focus();
+		return false;
+	}
+	
+	if(!document.hrCardform.emp_phone.value) {
+		alert("휴대전화를 입력하세요.");
+		document.hrCardform.emp_phone.focus();
+		return false;
+	}
+	
+	if(!document.hrCardform.emp_email.value) {
+		alert("이메일을 입력하세요.");
+		document.hrCardform.emp_email.focus();
+		return false;
+	}
+	
+	if(!document.hrCardform.emp_account.value) {
+		alert("급여 계좌를 입력하세요.");
+		document.hrCardform.emp_account.focus();
+		return false;
+	}
+	
+	if(document.hrCardform.hiddenEmp_code.value == "0") { 
+		alert("중복확인을 해주세요.");
+		document.hrCardform.dupChk.focus();
+		return false;
+	}
+}
 
 
 
@@ -128,10 +180,11 @@ function confirmCodeCheck() {
 	}
 }
 
-// 김은희 - 사원 확인 완료, 이름 넘겨주기
-function setName(emp_code, emp_name) {
+// 김은희 - 사원 확인 완료, 이름과 부서명 넘겨주기
+function setConfirm(emp_code, emp_name, dep_name) {
 	opener.document.waForm.emp_code.value=emp_code; 
 	opener.document.waForm.emp_name.value=emp_name; 
+	opener.document.waForm.dep_name.value=dep_name; 
 	opener.document.waForm.hiddenEmp_code.value=1; 
 	self.close();
 }
