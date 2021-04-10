@@ -23,7 +23,7 @@ function signinCheck() {
 		alert("주민등록번호를 입력하세요.");
 		$("input[name='emp_jumin']").focus();
 		return false;
-	} else if(!$("input[name='confirm_code']").val() != "1") {
+	} else if($("input[name='confirm_code']").val() == "0") {
 		alert("사원번호 등록 여부를 확인하세요.");
 		$("input[name='emp_code_check']").focus();
 		return false;
@@ -65,15 +65,15 @@ function appointmentCheck() {
 		alert("사원번호를 입력하세요.");
 		$("input[name='emp_code']").focus();
 		return false;
-	} else if($("input[name='ap_cur_dep']").val() == 0) {
+	} else if($("input[name='ap_cur_dep']").val() == "0") {
 		alert("발령 부서를 선택하세요.");
 		$("input[name='ap_cur_dep']").focus();
 		return false;
-	} else if($("input[name='ap_cur_position']").val() == 0) {
+	} else if($("input[name='ap_cur_position']").val() == "0") {
 		alert("발령 직급을 선택하세요.");
 		$("input[name='ap_cur_position']").focus();
 		return false;
-	} else if(!$("input[name='confirm_code_ap']").val() == 0) {
+	} else if($("input[name='confirm_code_ap']").val() == "0") {
 		alert("사원번호를 확인하세요.");
 		$("input[name='emp_code_check_ap']").focus();
 		return false;
@@ -98,7 +98,7 @@ function setEmpInfo(emp_code, emp_name, dep_name, hr_code_name) {
 	$("input[name='emp_name']", opener.document).val(emp_name);
 	$("input[name='ap_pre_dep']", opener.document).val(dep_name);
 	$("input[name='ap_pre_position']", opener.document).val(hr_code_name);
-	$("input[name='confirm_code_ap']", opener.document).val(1);
+	$("input[name='confirm_code_ap']", opener.document).val("1");
 	self.close();
 }
 
@@ -112,7 +112,7 @@ function hrSalaryInsCheck() {
 		alert("사원번호를 입력하세요.");
 		$("input[name='emp_code']").focus();
 		return false;
-	} else if(!$("input[name='salaryCheck']").val() != "1") {
+	} else if($("input[name='salaryCheck']").val() == "0") {
 		alert("사원번호를 확인하세요.");
 		$("input[name='salaryCheck']").focus();
 		return false;
@@ -143,7 +143,7 @@ function setSalEmpInfo(emp_code, emp_name, dep_name, hr_code_name, sal_basic, sa
 	$("input[name='emp_position']", opener.document).val(hr_code_name);
 	$("input[name='sal_basic']", opener.document).val(sal_basic);
 	$("input[name='sal_over']", opener.document).val(sal_over);
-	$("input[name='salaryCheck']", opener.document).val(1);
+	$("input[name='salaryCheck']", opener.document).val("1");
 	self.close();
 }
 
