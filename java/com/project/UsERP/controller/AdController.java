@@ -77,17 +77,14 @@ public class AdController {
 	public String adReport(HttpServletRequest req, Model model) {
 		logger.info("url: 회계 보고서");
 		
-		
-		
 		List<AccountStatementVO> list = addao.statementList();
 		List<SalaryStatementVO> list1 = addao.salarystatementList();
-		if(list.size() > 0 && list1.size() > 0) {
+		if(list.size() > 0 && list1.size() > 0) {			
+			// 강재현 : 재무상태표	
+			adservice.get12(req, model);
 			
-		// 강재현 : 재무상태표	
-		adservice.get12(req, model);
-		
-		// 이재홍 : 손익계산서 		
-		adservice.sum(req, model);
+			// 이재홍 : 손익계산서 		
+			adservice.sum(req, model);
 		}
 		return "ad/adReport";
 	}
@@ -144,7 +141,7 @@ public class AdController {
 	public String content1(HttpServletRequest req, Model model) {
 		logger.info("url: 전표 관리 - 급여 전표 승인 + 미승인 상세페이지");
 
-		adservice.sacontent(req, model);
+//		adservice.sacontent(req, model);
 
 		return "ad/ajax/page2";
 	}

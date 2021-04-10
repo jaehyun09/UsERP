@@ -78,5 +78,13 @@ public interface HrDAO {
 	// 조명재 - 급여 내역
 	public List<SalaryStatementVO> hrSalaryList();
 	
+	// 조명재 - 야근 시간을 반환한다
+	public int getOverTimes(Map<String, Object> map);
+	
+	// 조명재 - 급여 세부사항 등록
+	public int salaryDetailIns(Map<String, Object> map);
+	
+	// 조명재 - 급여 전표 등록
+	public int salaryStatement(Map<String, Object> map);
 	
 }

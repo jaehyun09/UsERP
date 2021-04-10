@@ -1,6 +1,5 @@
 package com.project.UsERP.service;
 
-
 import java.io.File;
 
 import java.util.HashMap;
@@ -56,17 +55,21 @@ public class AdminServiceImpl implements AdminService {
 		int enabled = 0;
 		boolean check = false;
 
-		if (vo.getEmp_enabled().equals("1")) {
+		if(vo.getEmp_enabled().equals("1")) {
 			enabled = 1;
 		} else {
-			if (emp_jumin.equals(vo.getEmp_jumin()))
-				check = true;
+			if(emp_jumin.equals(vo.getEmp_jumin())) check = true;
 		}
-
+		
 		int updateCnt = 0;
-		if (check)
-			updateCnt = dao.signinPro(emp_code, passwordEncoder.encode(emp_pwd));
-
+		if(check) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("emp_code", emp_code);
+			map.put("emp_pwd", passwordEncoder.encode(emp_pwd));
+			
+			updateCnt = dao.signinPro(map);
+		}
+		
 		model.addAttribute("enabled", enabled);
 		model.addAttribute("updateCnt", updateCnt);
 		model.addAttribute("emp_name", vo.getEmp_name());

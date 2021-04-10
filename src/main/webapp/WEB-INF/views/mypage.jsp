@@ -281,7 +281,7 @@ function addressSearch() {
                                     aria-labelledby="pills-result-tab-1">
                                  
                                     <!-- 내정보 수정 폼 시작 -->  
-                                          <form action="myPageUpdate?${_csrf.parameterName}=${_csrf.token}" name="myPageform" method="post" enctype="multipart/form-data" onsubmit="return pageCheck();">
+                                          <form action="mypageUpdateAction?${_csrf.parameterName}=${_csrf.token}" name="myPageform" method="post" enctype="multipart/form-data" onsubmit="return pageCheck();">
                                           <table class="table bg-white text-dark center ass2" style="text-align:center">
                                              <tr>
                                                 <th class="text-white table-bordered tap py-3 con2" colspan="3"> 인사카드 </th>
@@ -300,17 +300,17 @@ function addressSearch() {
                                              </tr>
                                              <tr>
                                                 <th style="vertical-align:middle"> 부서명 </th>
-                                                <td><input type="text" class="form-control" style="font-size:20px" name="dep_code" value="${vo.department.dep_name}" readonly></td>
+                                                <td><input type="hidden" class="form-control" style="font-size:20px" name="dep_code" value="${vo.dep_code}" readonly>${vo.department.dep_name}</td>
                                              </tr>
                                              <tr>
                                                <th style="vertical-align:middle"> * 직급</th>
-                                                <td><input type="text" class="form-control" style="font-size:20px" name="hr_code" value="${vo.hrCode.hr_code_name}" readonly></td>
+                                                <td><input type="hidden" class="form-control" style="font-size:20px" name="hr_code" value="${vo.hr_code}" readonly>${vo.hrCode.hr_code_name}</td>
                                              </tr>
                                              <tr>
                                                 <th style="vertical-align:middle">* 권한</th>
                                                 <td> 
                                                 <c:if test="${vo.emp_authority == 'ROLE_ADMIN'}">
-                                                   <input type="text" class="form-control" style="font-size:20px" name="emp_authority" value="관리자" readonly>
+                                                   관리자
                                                 </c:if>
                                                 <c:if test="${vo.emp_authority == 'ROLE_ST'}">
                                                    <input type="text" class="form-control" style="font-size:20px" name="emp_authority" value="판매팀" readonly>

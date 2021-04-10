@@ -85,10 +85,15 @@
 		<association property="salary" javaType="com.project.UsERP.vo.SalaryVO">
 			<id		property="sal_code"		column="sal_code"/>  
 			<result property="sal_basic"	column="sal_basic"/>
-			<result property="sal_night"	column="sal_night"/>
 			<result property="sal_over"		column="sal_over"/>
-			<result property="sal_cos"		column="sal_cos"/>
-			<result property="sal_or"		column="sal_or"/>
+			<result property="sal_bonus"	column="sal_bonus"/>
+			<result property="sal_meal"		column="sal_meal"/>
+			<result property="sal_vehicle"	column="sal_vehicle"/>
+			<result property="sal_worktax"	column="sal_worktax"/>
+			<result property="sal_resident"	column="sal_resident"/>
+			<result property="sal_hire"		column="sal_hire"/>
+			<result property="sal_pension"	column="sal_pension"/>
+			<result property="sal_health"	column="sal_health"/>
 		</association>
 		<association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
 			<id		property="emp_code"		column="emp_code"/>  
@@ -182,7 +187,7 @@
 	<insert id="hrAppointmentPro" parameterType="com.project.UsERP.vo.AppointHistoryVO">
 		INSERT INTO appoint_history(ap_code, ap_date, ap_cur_dep, ap_cur_position, 
 			ap_pre_dep, ap_pre_position, emp_code)
-		VALUES (appoint_history_seq.nextval, DEFAULT, #{ap_cur_dep}, #{ap_cur_position}, #{ap_pre_dep}, #{ap_pre_position}, #{emp_code})
+		VALUES (ap_seq.nextval, DEFAULT, #{ap_cur_dep}, #{ap_cur_position}, #{ap_pre_dep}, #{ap_pre_position}, #{emp_code})
 	</insert>
 	
 	<!-- 김은희 - 인사카드 조회 -->
@@ -253,5 +258,25 @@
 		   AND e.dep_code = d.dep_code
 		 ORDER BY ss_code DESC
 	</select>
+	
+	<!-- 조명재 - 야근 시간을 반환한다 -->
+	<select id="getOverTimes" parameterType="java.util.Map" resultType="int">
+		SELECT SUM(cm_night_time) 
+		  FROM commute 
+		 WHERE TO_CHAR(cm_date, 'YYYY-MM') = #{pay_month}
+		   AND emp_code = #{emp_code}
+	</select>
+	
+	<!-- 조명재 - 급여 세부사항 등록 -->
+	<insert id="salaryDetailIns" parameterType="java.util.Map">
+		INSERT INTO salary(sal_code, sal_basic, sal_over, sal_bonus, sal_meal, sal_vehicle, sal_worktax, sal_resident, sal_hire, sal_pension, sal_health) 
+		VALUES (sal_seq.nextval, #{sal_basic}, #{sal_over}, #{sal_bonus}, #{sal_meal}, #{sal_vehicle}, #{sal_worktax}, #{sal_resident}, #{sal_hire}, #{sal_pension}, #{sal_health})
+	</insert>
+	
+	<!-- 조명재 - 급여 전표 등록 -->
+	<insert id="salaryStatement" parameterType="java.util.Map">
+		INSERT INTO salary_statement(ss_code, ss_total_sal, ss_reg_date, ss_sal_date, ss_state, sal_code, hr_code, emp_code, dep_code) 
+		VALUES (ss_seq.nextval, #{ss_total_sal}, DEFAULT, NULL, DEFAULT, sal_seq.currval, #{hr_code}, #{emp_code}, #{dep_code})
+	</insert>
 
 </mapper>

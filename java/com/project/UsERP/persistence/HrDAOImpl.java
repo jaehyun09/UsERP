@@ -158,5 +158,25 @@ public class HrDAOImpl implements HrDAO {
 		return hrDao.hrSalaryList();
 	}
 	
+	// 조명재 - 야근 시간을 반환한다
+	@Override
+	public int getOverTimes(Map<String, Object> map) {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.getOverTimes(map);
+	}
+	
+	// 조명재 - 급여 세부사항 등록
+	@Override
+	public int salaryDetailIns(Map<String, Object> map) {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.salaryDetailIns(map);
+	}
+	
+	// 조명재 - 급여 전표 등록
+	@Override
+	public int salaryStatement(Map<String, Object> map) {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.salaryStatement(map);
+	}
 	
 }

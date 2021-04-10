@@ -43,13 +43,21 @@
                 <!-- User Notifications -->
                 <div class="dropdown ml-auto">
                   <c:if test="${sessionScope.mem_id != null}">
-                    <a id="notificationsInvoker" class="header-invoker" href="#" aria-controls="notifications" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#notifications" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut" >
-                        	<span class="indicator indicator-bordered indicator-top-right indicator-primary rounded-circle"></span>
+                    <a id="notificationsInvoker" class="header-invoker" href="#"
+                    		aria-controls="notifications" 
+                    		aria-haspopup="true" 
+                    		aria-expanded="false" 
+                    		data-unfold-event="click" 
+                    		data-unfold-target="#notifications" 
+                    		data-unfold-type="css-animation" 
+                    		data-unfold-duration="300" 
+                    		data-unfold-animation-in="fadeIn" 
+                    		data-unfold-animation-out="fadeOut">
+                        <span class="indicator indicator-bordered indicator-top-right indicator-primary rounded-circle"></span>
                         <i class="gd-bell"></i>
                     </a>
                     <div id="notifications" class="dropdown-menu dropdown-menu-center py-0 mt-4 w-18_75rem w-md-22_5rem unfold-css-animation unfold-hidden"
-                     aria-labelledby="notificationsInvoker" style="animation-duration: 300ms;">
-                    
+							aria-labelledby="notificationsInvoker" style="animation-duration: 300ms;">
                     </div>
                   </c:if>  
                   

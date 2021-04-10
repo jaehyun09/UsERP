@@ -58,7 +58,7 @@ ssd<%@ page language="java" contentType="text/html; charset=UTF-8"
 				   </tr>
 			   </tbody>
 			</table>
-			<input class="btn btn-outline-info" type="button" value="확인" onclick="setSalaryInfo('${emp_code}', '${vo.emp_name}', '${dep_name}', '${hr_code_name}')">
+			<input class="btn btn-outline-info" type="button" value="확인" onclick="setSalEmpInfo('${emp_code}', '${vo.emp_name}', '${dep_name}', '${hr_code_name}', '${sal_basic}', '${sal_over}', '${vo.hr_code}', '${vo.dep_code}')">
 		</c:if>
 	</form>
 	</div>

@@ -26,7 +26,7 @@ public interface AdminDAO {
 	public int mypageUpdateAction(Map<String, Object> map);
 
 	// 조명재 - 비밀번호를 생성한다
-	public int signinPro(String emp_code, String emp_pwd);
+	public int signinPro(Map<String, Object> map);
 
 
 }
