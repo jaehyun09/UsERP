@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.UsERP.service.LdServiceImpl;
+
 // 물류 관리
 @Controller
 public class LdController {
@@ -289,5 +291,12 @@ public class LdController {
 		return "ld/ajax/supplyListAction";
 	}
 	
+	// 부족 수량 구매팀한테 넘기기 
+	@RequestMapping("/logsupdate")
+	public String logsupdate(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 수불부 목록 AJAX");	
+		ldservice.logsAction(req, model);
+		return "ld/ldPro/logsAction";
+	}
 	
 }

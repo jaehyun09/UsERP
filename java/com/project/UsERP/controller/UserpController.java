@@ -107,7 +107,7 @@ public class UserpController {
 	
 
 	// 강재현 - 알림
-	@RequestMapping("/alertList")
+	@RequestMapping("/alert")
 	public String alertList(HttpServletRequest req, Model model) {
 		logger.info("url: 알림");
 		// 회계 알림

@@ -45,6 +45,20 @@ function pdContent(code) {
              return false;
           }
        }
+	function logsContent(code) {
+	      var param = "&${_csrf.parameterName}=${_csrf.token}&logs_code=" + code;
+	      $.ajax({
+	         type:"POST",
+	        data:param,
+	        url:'logsContent',
+	         success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
+	            $('#logsContent').html(data);
+	         },
+	         error: function(){
+	            alert('오류');
+	         }
+	      });
+	   }
 </script>
 
     <meta charset="utf-8">
@@ -279,11 +293,17 @@ function pdContent(code) {
                                     href="#pills-html-1" role="tab" aria-controls="pills-html-1"
                                     aria-selected="false">구매 전표 등록</a></li>
                                  <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light  ">
-                           <a class="nav-link d-flex align-items-center py-2 px-3"
-                           id="pills-html-tab-2" data-toggle="pill"
-                           href="#pills-html-2" role="tab" aria-controls="pills-html-2"
-                           aria-selected="false">승인 내역</a>
-                        </li> 
+		                           <a class="nav-link d-flex align-items-center py-2 px-3"
+		                           id="pills-html-tab-2" data-toggle="pill"
+		                           href="#pills-html-2" role="tab" aria-controls="pills-html-2"
+		                           aria-selected="false">승인 내역</a>
+		                        </li> 
+		                        <li class="nav-item border-bottom border-xl-bottom-0  asss bg-light">
+                          			 <a class="nav-link d-flex align-items-center py-2 px-3"
+                                 	id="pills-html-tab-3" data-toggle="pill"
+                                 	href="#pills-html-3" role="tab" aria-controls="pills-html-3"
+                                 	aria-selected="false">부족수량!</a>
+                           </li>
                               </ul>
                               <!-- End Nav Classic -->
 
@@ -317,7 +337,7 @@ function pdContent(code) {
                                                        <a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
                                                           href="#multiCollapseExample1" role="button"
                                                           aria-expanded="false"
-                                                          aria-controls="multiCollapseExample1"
+                            					          aria-controls="multiCollapseExample1"
                                                           onclick="pdContent(${vo.accs_code})"> ${vo.accs_code}</a>
                                                 </td>
                                                 <td class="py-3" style="vertical-align:middle">${vo.company.com_name}</td>
@@ -351,7 +371,7 @@ function pdContent(code) {
                                     <!-- 테스트 -->
                                     <div class="col">
                                             <div class="bg-white p-2">
-                                                <form action="${path}/pdpdAppInsert" method="post" name="pppdem">
+                                                <form action="${path}/pdpdAppInsert" method="post" name="pppdem" onsubmit="return conCheck()">
                                                 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
                                                 <table class="table bg-white text-dark center ass2">
                                                 <tr class="text-white table-bordered tap">
@@ -417,7 +437,7 @@ function pdContent(code) {
                                     </table>                                 
                                         <br>
                                          <div align=center>
-                                           <button type="submit" class="btn btn-outline-info" onclick="return conCheck()">등록</button>&nbsp;&nbsp;&nbsp;
+                                           <button type="submit" class="btn btn-outline-info">등록</button>&nbsp;&nbsp;&nbsp;
                                            <button type="reset" class="btn btn-outline-info">재입력</button>                                  
                                          </div>
                                        </form>                                  
@@ -465,10 +485,46 @@ function pdContent(code) {
                                              </c:forEach>
                                           </tbody>
                                        </table>
-                                 </div> 
+                                 
                                     
                                  </div>
-                                 
+                                 <div class="tab-pane fade p-4" id="pills-html-3"
+                                    role="tabpanel" aria-labelledby="pills-html-tab-3">
+                                    
+                                    <div id="logsContent"></div>
+                                 <form>
+                                    <table class="table table-striped bg-white text-dark center ass2">
+                                       <thead>
+                                          <tr class="text-white table-bordered tap">
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">물류전표번호</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">상품코드</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
+                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <c:forEach var="list" items="${logslist}"><!-- 아이템 수정하기 -->
+	                                       <tr>
+	                                          <td class=" text-dark con2" style="vertical-align:middle"><a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
+													href="#multiCollapseExample2" role="button"
+													aria-expanded="false"
+													aria-controls="multiCollapseExample2"
+													onclick="logsContent(${list.logs_code})">${list.logs_code}</a></td>
+											  <td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.company.com_name}</td>	
+											  <td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.product.pro_code}</td>	
+	                                          <td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.product.pro_name}</td>
+	                                          <td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.logs_shortage}</td>
+	                                          <td class="py-3 middle" style="vertical-align:middle; font-size:22px;">${list.employee.emp_name}</td>
+	                                       </tr>
+	                                       </c:forEach>
+                                       </tbody>
+                                    </table>
+                                    </form>
+                                    </div>
+                                    <br>
+                              </div>
+                              </div>
                               </div>
                               <!-- End Tab Content -->
                            </div>
@@ -477,9 +533,8 @@ function pdContent(code) {
                   </div>
                </div>
             </div>
-          </div>
+         
 </main>
-
 <%@ include file = "../common/footer.jsp" %> 
 <script src="${project}js/graindashboard.js"></script>
 <script src="${project}js/graindashboard.vendor.js"></script>

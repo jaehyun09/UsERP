@@ -351,7 +351,9 @@ public class LdDAOImpl implements LdDAO{
 	// 김민수 - 물류출고전표(부족수량) 출고준비상태로 변경
 	@Override
 	public int logsStateUpdate(int logscode) {
+		
 		return sqlSession.update("com.project.UsERP.persistence.LdDAO.logsStateUpdate", logscode);
+		
 	}
 
 	@Override
@@ -359,5 +361,10 @@ public class LdDAOImpl implements LdDAO{
 		return sqlSession.selectList("com.project.UsERP.persistence.LdDAO.shiRecList");
 	}
 
+	// 구매팀 요청 보내기 
+	public int logsupdate(LogisticsStatementVO vo) {
 		
+		return sqlSession.update("com.project.UsERP.persistence.LdDAO.logsupdate",vo);
+		
+	}
 }

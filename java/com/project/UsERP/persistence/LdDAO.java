@@ -174,4 +174,7 @@ public interface LdDAO {
 	
 	// 김민수 - 입출고 내역 조회
 	public List<StockSupplyVO> shiRecList();
+	
+	// 구매팀 요청 보내기 
+	public int logsupdate(LogisticsStatementVO vo);
 }

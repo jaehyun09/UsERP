@@ -558,4 +558,11 @@
    		  VALUES(alert_seq.nextval,#{alert_state},#{alert_content},#{logs_code},null, null,#{dep_code})
    </insert>
    
+   <!-- 구매팀한테 요청보내기 -->
+   <update id="logsupdate" parameterType="com.project.UsERP.vo.LogisticsStatementVO">
+		UPDATE logistics_statement SET logs_state=#{logs_state} 
+			WHERE logs_code = #{logs_code}
+	</update>
+   
+   
 </mapper>

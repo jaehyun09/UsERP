@@ -10,7 +10,7 @@ import com.project.UsERP.vo.ProductVO;
 import com.project.UsERP.vo.StockVO;
 
 public interface PdDAO {
-	
+
 	// 최유성 - 기초 등록 - 구매 거래처 목록
 	public List<CompanyVO> pdCompanySelect();
 
@@ -62,4 +62,9 @@ public interface PdDAO {
 	// 최유성 - 입고 현황 - 창고코드 가져 오기
 	public int getWareCode(int ware_type);
 
+	// 부족 수량 내역 조회
+	public List<LogisticsStatementVO> logsshortage();
+
+	// 부족 수량 내역 상세 조회
+	public LogisticsStatementVO logsshortageDetail(int logs_code);
 }
