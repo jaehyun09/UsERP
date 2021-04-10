@@ -770,6 +770,40 @@ function debtContent(code) {
 
 	</main>
 
+<script>
+var isServiceWorkerSupported = 'serviceWorker' in navigator;
+if (isServiceWorkerSupported)
+{
+  //브라우저에 Service Worker를 등록
+  navigator.serviceWorker.register('service-worker.js', { scope: '/'})
+    .then(function(registration)
+    {
+       console.log('[ServiceWorker] 등록 성공: ', registration.scope);
+    })
+    .catch(function(err)
+    {
+       console.log('[ServiceWorker] 등록 실패: ', err);
+    });
+}
+
+var isNotificationSupported = 'Notification' in window;
+if (isNotificationSupported)
+{
+    Notification.requestPermission().then(function (result)
+    {
+        if (result === 'granted')
+        {
+            console.log('[Notification] 허용: ', result);
+        }
+        else
+        {
+            console.log('[Notification] 차단: ', result);
+        }
+    });
+
+
+출처: https://nsinc.tistory.com/218 [NakedStrength]
+</script>
 	<%@ include file="../common/footer.jsp"%>
 	<script src="${project}js/graindashboard.js"></script>
 	<script src="${project}js/graindashboard.vendor.js"></script>
