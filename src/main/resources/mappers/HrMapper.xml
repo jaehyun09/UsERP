@@ -85,10 +85,15 @@
 		<association property="salary" javaType="com.project.UsERP.vo.SalaryVO">
 			<id		property="sal_code"		column="sal_code"/>  
 			<result property="sal_basic"	column="sal_basic"/>
-			<result property="sal_night"	column="sal_night"/>
 			<result property="sal_over"		column="sal_over"/>
-			<result property="sal_cos"		column="sal_cos"/>
-			<result property="sal_or"		column="sal_or"/>
+			<result property="sal_bonus"	column="sal_bonus"/>
+			<result property="sal_meal"		column="sal_meal"/>
+			<result property="sal_vehicle"	column="sal_vehicle"/>
+			<result property="sal_worktax"	column="sal_worktax"/>
+			<result property="sal_resident"	column="sal_resident"/>
+			<result property="sal_hire"		column="sal_hire"/>
+			<result property="sal_pension"	column="sal_pension"/>
+			<result property="sal_health"	column="sal_health"/>
 		</association>
 		<association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
 			<id		property="emp_code"		column="emp_code"/>  

@@ -277,31 +277,31 @@
 											            <th style="width: 20%">기본 급여</th>
 											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_basic}" /></td>
 											            <th style="width: 20%">갑근세</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_basic}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_worktax}" /></td>
 											         </tr>
 											         <tr>
 											            <th>초과근로 수당</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_night}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_over}" /></td>
 											            <th>주민세</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_night}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_resident}" /></td>
 											         </tr>
 											         <tr>
 											            <th>상여금</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_over}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_bonus}" /></td>
 											            <th>고용보험</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_over}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_hire}" /></td>
 											         </tr>
 											         <tr>
 											            <th>식대</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_cos}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_meal}" /></td>
 											            <th>국민연금</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_cos}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_pension}" /></td>
 											         </tr>
 											         <tr>
 											            <th>차량유지비</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_or}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_vehicle}" /></td>
 											            <th>건강보험</th>
-											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_or}" /></td>
+											            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.salary.sal_health}" /></td>
 											         </tr>
 											      </tbody>
 											   </table><br><br><br>

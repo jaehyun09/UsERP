@@ -188,7 +188,7 @@ public class HrController {
 	public String hrSalaryInsert(HttpServletRequest req, Model model) {
 		logger.info("url: 급여 전표 등록");
 		
-//		hrService.hrSalaryInsert(req, model);
+//		hrService.hrSalaryInsert(req, model);l
 		
 		return "hr/hrSalaryInsPro";
 	}
