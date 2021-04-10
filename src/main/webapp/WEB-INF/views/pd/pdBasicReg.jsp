@@ -345,7 +345,6 @@ function content2(code) {
                                                 <thead class="text-white table-bordered tap">
                                                    <tr class="text-white table-bordered tap">
                                                      <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처코드</th>
-                                                               <th class="font-weight-semi-bold border-top-0 py-3 con2">구분</th>
                                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
                                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">대표자명</th>
                                                                <th class="font-weight-semi-bold border-top-0 py-3 con2">사업자번호</th>
@@ -362,12 +361,6 @@ function content2(code) {
 																	   aria-controls="multiCollapseExample1"
 																	   onclick="content(${company.com_code})"> ${company.com_code}</a>
 																</td>
-                                                               <c:if test = "${company.com_type == 100}">
-                                                               <td class="py-3" style="vertical-align:middle">판매 거래처</td>
-                                                               </c:if>
-                                                               <c:if test = "${company.com_type == 200}">
-                                                               <td class="py-3" style="vertical-align:middle">구매 거래처</td>
-                                                               </c:if>
                                                                <td class="py-3" style="vertical-align:middle">${company.com_name}</td>
                                                                <td class="py-3" style="vertical-align:middle">${company.com_ceo_name}</td>
                                                                <td class="py-3" style="vertical-align:middle">${company.com_reg_no}</td>

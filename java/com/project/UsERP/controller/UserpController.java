@@ -83,53 +83,26 @@ public class UserpController {
 		return "signinPro";
 	}
 
-	// 김은희 - 내 정보 수정
+	// 김은희 - 내 정보 수정페이지
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest req, Model model) {
-		logger.info("url: 내 정보 수정");
+		logger.info("url: 내 정보 수정페이지");
 		
 		hrService.depList(req, model);
 		hrService.hrCodePosList(req, model);
-		// hrService.hrCardDetail(req, model);
+		service.myPageDetail(req, model);
 
 		return "mypage";
 	}
 	
 	// 김은희 - 내 정보 수정 처리
 	@RequestMapping("/mypageUpdateAction")
-	public String mypageUpdateAction(	MultipartHttpServletRequest req, Model model) {
+	public String mypageUpdateAction(MultipartHttpServletRequest req, Model model) {
 		logger.info("url: 내 정보 수정 처리");
 		
 		service.mypageUpdateAction(req, model);
 		
 		return "mypageUpdateAction";
-	}
-	
-
-	// 강재현 - 알림
-	@RequestMapping("/alertList")
-	public String alertList(HttpServletRequest req, Model model) {
-		logger.info("url: 알림");
-		// 회계 알림
-		service.accsAlertList(req, model);
-		// 물류 알림
-		service.logsAlertList(req, model);
-		// 급여 알림
-		service.ssAlertList(req, model);
-		// 나머지 알림
-		service.stAlertList(req, model);
-
-		return "alert";
-	}
-
-	// 강재현 - 알림 업데이트
-	@RequestMapping("/deleteAc")
-	public String deleteAc(HttpServletRequest req, Model model) {
-		logger.info("url: 알림 삭제");
-		// 알림 삭제
-		service.alertUpdate(req, model);
-
-		return "alertAction";
 	}
 
 }

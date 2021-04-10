@@ -1,6 +1,7 @@
 package com.project.UsERP.service;
 
 import java.sql.Timestamp;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,6 @@ import com.project.UsERP.persistence.LdDAO;
 import com.project.UsERP.persistence.PdDAO;
 import com.project.UsERP.persistence.StDAO;
 import com.project.UsERP.vo.AccountStatementVO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -29,7 +29,7 @@ public class PdServiceImpl implements PdService {
 
 	@Autowired
 	LdDAO lddao;
-	
+
 	@Autowired
 	StDAO stdao;
 
@@ -165,14 +165,57 @@ public class PdServiceImpl implements PdService {
 		System.out.println(vo + "vo");
 		int insertCnt = pddao.insertBuyStatement(vo);
 
-		if (insertCnt == 1) {
-			AlertVO vo1 = new AlertVO();
-			vo1.setAlert_state(0);
-			vo1.setAlert_content("전표 등록되었습니다.");
-			vo1.setDep_code(300);
+		model.addAttribute("insertCnt", insertCnt);
 
-			int insert1Cnt = stdao.insertAcAlert(vo1);
-			model.addAttribute("insert1Cnt", insert1Cnt);
+	}
+
+	// 부족 수량 내역 조회
+	@Override
+	public void logsshortage(HttpServletRequest req, Model model) {
+		List<LogisticsStatementVO> list = pddao.logsshortage();
+
+		model.addAttribute("logslist", list);
+
+	}
+
+	// 부족 수량 상세페이지
+	@Override
+	public void logsshortageContent(HttpServletRequest req, Model model) {
+		int logs_code = Integer.parseInt(req.getParameter("logs_code"));
+
+		LogisticsStatementVO list = pddao.logsshortageDetail(logs_code);
+
+		model.addAttribute("shortContent", list);
+	}
+
+	// 이재홍 - 구매현황 - 부족수량 업데이트
+	@Override
+	public void insertLogStatement(HttpServletRequest req, Model model) {
+		int price = Integer.parseInt(req.getParameter("accs_price"));
+		int logs_code = Integer.parseInt(req.getParameter("logs_code"));
+		
+		AccountStatementVO vo = new AccountStatementVO();
+
+		vo.setAccs_type(Integer.parseInt(req.getParameter("accs_type")));
+		vo.setAccs_content(req.getParameter("accs_content"));
+		vo.setAccs_price(price);
+		vo.setAccs_quantity(Integer.parseInt(req.getParameter("accs_quantity")));
+		vo.setAccs_reg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setAccs_sum(Integer.parseInt(req.getParameter("accs_sum")));
+		vo.setAccs_state(0);
+		vo.setEmp_code(req.getParameter("emp_code"));
+		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
+		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
+		System.out.println(vo + "vo");
+		int insertCnt = pddao.insertBuyStatement(vo);
+
+		if(insertCnt == 1) {
+			LogisticsStatementVO vo1 = new LogisticsStatementVO();
+			vo1.setLogs_state(3);
+			vo1.setLogs_code(logs_code);
+
+			int updateCnt = lddao.logsupdate(vo1);
+			model.addAttribute("updateCnt", updateCnt);
 		}
 		
 		model.addAttribute("insertCnt", insertCnt);
@@ -271,19 +314,11 @@ public class PdServiceImpl implements PdService {
 
 		if (insertCnt == 1) {
 			updateCnt = pddao.updatestatement(avo); // 입고 전표 등록시 회계전표 상태코드 변화
-		}
-		
-		if (insertCnt == 1) {
-			AlertVO vo1 = new AlertVO();
-			vo1.setAlert_state(0);
-			vo1.setAlert_content("입고 전표 등록되었습니다.");
-			vo1.setDep_code(300);
 
-			int insert1Cnt = stdao.insertLgAlert(vo1);
-			model.addAttribute("insert1Cnt", insert1Cnt);
 		}
 
 		model.addAttribute("insertCnt1", insertCnt);
 		model.addAttribute("updateCnt", updateCnt);
+
 	}
 }

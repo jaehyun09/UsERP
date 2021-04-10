@@ -53,6 +53,15 @@
 		<result property="dep_state"  column="dep_state" />
 	 </association> 
 	 </resultMap>
+	 
+	 <resultMap id="empMap" type="com.project.UsERP.vo.EmployeeVO">
+		<id     property="emp_code"   column="emp_code" />  
+		<result property="emp_name"  column="emp_name" />
+		<association property="department" javaType="com.project.UsERP.vo.DepartmentVO">
+			<id     property="dep_code"   column="dep_code" />  
+			<result property="dep_name" column="dep_name" />
+		</association> 
+	</resultMap>
 	
 	<!-- 김은희 - 출퇴근 조회 -->
 	<select id="commuteList" resultMap="commuteMap">
@@ -73,8 +82,11 @@
 	</select>
 	
 	<!-- 김은희 - 근태 신청 사번확인  -->
- 	<select id="empComfirm" parameterType="int" resultType="com.project.UsERP.vo.EmployeeVO">
- 		SELECT emp_code, emp_name FROM employee WHERE emp_code=#{emp_code}
+ 	<select id="empComfirm" parameterType="String" resultMap="empMap">
+ 		SELECT e.emp_code, e.emp_name, d.dep_name
+ 		  FROM employee e, department d
+ 		 WHERE e.dep_code = d.dep_code
+ 		   AND e.emp_code = #{emp_code}
  	</select>
  	
  	<!-- 김은희 - 근태 신청  -->
@@ -111,7 +123,7 @@
  	
  	<!-- 김은희 - 인사 코드 조회 - 근태유형 -->
 	<select id="waCodeTyList" resultType="com.project.UsERP.vo.HrCodeVO">
-		SELECT * FROM hr_code WHERE hcg_code = 3 ORDER BY hr_code
+		SELECT * FROM hr_code WHERE hcg_code = 4 ORDER BY hr_code
 	</select>
 	
 	<!-- 김은희 - 근태 신청 조회  -->
@@ -137,13 +149,13 @@
 	</select>
 	
 	<!-- 김은희 - 근태 신청 승인 처리 -->
- 	<update id="waConfirmAction" parameterType="int" >
+ 	<update id="waConfirmAction" parameterType="String" >
  		UPDATE work_record SET wr_state = 1
          WHERE emp_code = #{emp_code}
  	</update>
  	
  	<!-- 김은희 - 근태 신청 철회 처리 -->
- 	<delete id="waDeleteAction" parameterType="int" >
+ 	<delete id="waDeleteAction" parameterType="String" >
  		DELETE work_record 
  		WHERE emp_code = #{emp_code}
  	</delete>

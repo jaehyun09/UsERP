@@ -1,8 +1,8 @@
 package com.project.UsERP.service;
 
 import java.io.File;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.UsERP.persistence.AdminDAO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.EmployeeVO;
 
 
@@ -76,11 +75,26 @@ public class AdminServiceImpl implements AdminService {
 		model.addAttribute("emp_name", vo.getEmp_name());
 	}
 	
+	// 김은희 - 내 정보 수정 페이지
+	@Override
+	public void myPageDetail(HttpServletRequest req, Model model) {
+		String emp_code = (String)req.getSession().getAttribute("mem_id");
+		
+		EmployeeVO vo = dao.myPageDetail(emp_code);
+		
+		model.addAttribute("vo", vo);
+			
+		}
+	
+	
 	// 김은희 - 내 정보 수정 처리
 	@Override
 	public void mypageUpdateAction(MultipartHttpServletRequest req, Model model) {
 		
-		String uploadPath = "C:\\Dev76\\workspace\\upload\\";
+		// * 경로 바꿔주세요
+		// String uploadPath = "C:\\Dev76\\workspace\\upload\\";
+		
+		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images\\";
 		
 		MultipartFile image = req.getFile("emp_photo");
 		String emp_photo = image.getOriginalFilename();
@@ -146,71 +160,6 @@ public class AdminServiceImpl implements AdminService {
 			e.printStackTrace();
 		}
 				
-	}
-
-	// 강재현 - 알림 리스트
-	@Override
-	public void accsAlertList(HttpServletRequest req, Model model) {
-
-		List<AlertVO> alert = dao.accsAlertList();
-		int cnt = dao.getCnt();
-
-		model.addAttribute("alertCnt", cnt);
-		model.addAttribute("accsalert", alert);
-
-	}
-
-	// 강재현 - 알림 리스트
-	@Override
-	public void logsAlertList(HttpServletRequest req, Model model) {
-
-		List<AlertVO> alert = dao.logsAlertList();
-		int cnt = dao.getCnt();
-
-		model.addAttribute("alertCnt", cnt);
-		model.addAttribute("logsalert", alert);
-
-	}
-
-	// 강재현 - 알림 리스트
-	@Override
-	public void ssAlertList(HttpServletRequest req, Model model) {
-
-		List<AlertVO> alert = dao.ssAlertList();
-		int cnt = dao.getCnt();
-
-		model.addAttribute("alertCnt", cnt);
-
-		model.addAttribute("ssalert", alert);
-
-	}
-
-	// 강재현 - 알림 리스트
-	@Override
-	public void stAlertList(HttpServletRequest req, Model model) {
-
-		List<AlertVO> alert = dao.stAlertList();
-		int cnt = dao.getCnt();
-
-		model.addAttribute("alertCnt", cnt);
-
-		model.addAttribute("stalert", alert);
-
-	}
-
-	// 강재현 - 알림 업데이트
-	@Override
-	public void alertUpdate(HttpServletRequest req, Model model) {
-		int alert_code = Integer.parseInt(req.getParameter("alert_code"));
-		AlertVO vo = new AlertVO();
-		vo.setAlert_state(1);
-		vo.setAlert_code(alert_code);
-
-		int deleteCnt = dao.alertUpdate(vo);
-
-		model.addAttribute("num", alert_code);
-		model.addAttribute("deleteCnt", deleteCnt);
-
 	}
 
 }

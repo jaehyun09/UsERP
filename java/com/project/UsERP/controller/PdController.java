@@ -70,16 +70,19 @@ public class PdController {
 		return "pd/ajax/pdInvenStatusList";
 	}
 
-	// 이재홍 - 구매 현황 - 구매 내역 & 승인 내역
+	// 이재홍 - 구매 현황 - 구매 내역 & 승인 내역 & 부족수량
 	@RequestMapping("/pdStatus")
 	public String pdStatus(HttpServletRequest req, Model model) {
-		logger.info("url: 구매 현황 - 구매 내역 & 승인 내역");
+		logger.info("url: 구매 현황 - 구매 내역 & 승인 내역 & 부족수량");
 
 		// 구매 내역 & 승인 내역
 		pdService.purStatus(req, model);
 
 		// 구매 거래처 목록 & 상품 목록
 		pdService.pdBasicReg(req, model);
+
+		// 부족 수량 내역 조회
+		pdService.logsshortage(req, model);
 
 		return "pd/pdStatus";
 	}
@@ -94,6 +97,20 @@ public class PdController {
 		return "pd/ajax/pdPage";
 	}
 
+	// 부족수량 상세페이지
+	@RequestMapping("/logsContent")
+	public String logsContent(HttpServletRequest req, Model model) {
+		logger.info("url: 부족수량 상세페이지 ");
+
+		// 부족수량 상세페이지
+		pdService.logsshortageContent(req, model);
+
+		// 구매 거래처 목록 & 상품 목록
+		pdService.pdBasicReg(req, model);
+
+		return "pd/ajax/logacontent";
+	}
+
 	// 이재홍 - 구매 현황 - 구매 전표 등록
 	@RequestMapping("/pdpdAppInsert")
 	public String pdpdAppInsert(HttpServletRequest req, Model model) {
@@ -104,7 +121,17 @@ public class PdController {
 		return "pd/pdPro/pdpdaddAc";
 	}
 
-	// 최유성 - 입고 현황 - 입고 내역 
+	// 이재홍 - 구매 현황 - 부족수량 구매 전표 등록
+	@RequestMapping("/logsAppInsert")
+	public String logsAppInsert(HttpServletRequest req, Model model) {
+		logger.info("url: 구매 현황 - 부족수량 구매 전표 등록");
+
+		pdService.insertLogStatement(req, model);
+
+		return "pd/pdPro/pdpdaddAc";
+	}
+
+	// 최유성 - 입고 현황 - 입고 내역
 	@RequestMapping("/pdRecStatus")
 	public String pdRecStatus(HttpServletRequest req, Model model) {
 		logger.info("url: 입고 현황 - 입고 내역");
@@ -143,4 +170,5 @@ public class PdController {
 
 		return "pd/pdPro/logsPdInsert";
 	}
+
 }

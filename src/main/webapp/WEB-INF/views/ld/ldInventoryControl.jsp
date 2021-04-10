@@ -391,8 +391,6 @@
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">구분</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품번호</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">구매단가</th>
-															<th class="font-weight-semi-bold border-top-0 py-3 con2">판매단가</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">수량</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">담당자</th>
 															<th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
@@ -410,12 +408,6 @@
 																</c:if>
 																<td class="py-3" style="vertical-align:middle">${shiRecVo.pro_code}</td>
 																<td class="py-3" style="vertical-align:middle">${shiRecVo.product.pro_name}</td>
-																<td class="py-3" style="vertical-align:middle">
-																	<fmt:formatNumber value="${shiRecVo.product.pro_pur_price}" pattern=",###" />
-																</td>
-																<td class="py-3" style="vertical-align:middle">
-																	<fmt:formatNumber value="${shiRecVo.product.pro_sal_price}" pattern=",###" />
-																</td>
 																<td class="py-3" style="vertical-align:middle">${shiRecVo.stsu_amount}</td>
 																<td class="py-3" style="vertical-align:middle">${shiRecVo.employee.emp_name}</td>
 																<td class="py-3" style="vertical-align:middle">

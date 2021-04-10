@@ -1,6 +1,7 @@
 package com.project.UsERP.service;
 
 import java.sql.Timestamp;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,6 @@ import com.project.UsERP.persistence.LdDAO;
 import com.project.UsERP.persistence.PdDAO;
 import com.project.UsERP.persistence.StDAO;
 import com.project.UsERP.vo.AccountStatementVO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -156,17 +156,7 @@ public class StServiceImpl implements StService {
 		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
 		System.out.println(vo + "vo");
 		int insertCnt = stdao.insertSalesStatement(vo);
-
-		if (insertCnt == 1) {
-			AlertVO vo1 = new AlertVO();
-			vo1.setAlert_state(0);
-			vo1.setAlert_content("전표 등록되었습니다.");
-			vo1.setDep_code(200);
-
-			int insert1Cnt = stdao.insertAcAlert(vo1);
-			model.addAttribute("insert1Cnt", insert1Cnt);
-		}
-
+		
 		model.addAttribute("insertCnt", insertCnt);
 	}
 
@@ -194,8 +184,7 @@ public class StServiceImpl implements StService {
 		model.addAttribute("account", account);
 	}
 
-	// 수정 0408
-	// 강재현 - 출고현황 - 출고 전표 등록
+
 	@Override
 	public void insertLogsStatement(HttpServletRequest req, Model model) {
 		LogisticsStatementVO vo = new LogisticsStatementVO();
@@ -263,15 +252,6 @@ public class StServiceImpl implements StService {
 
 		int insertCnt = stdao.insertLogsStatement(vo);
 
-		if (insertCnt == 1) {
-			AlertVO vo1 = new AlertVO();
-			vo1.setAlert_state(0);
-			vo1.setAlert_content("출고 전표 등록되었습니다.");
-			vo1.setDep_code(200);
-
-			int insert1Cnt = stdao.insertLgAlert(vo1);
-			model.addAttribute("insert1Cnt", insert1Cnt);
-		}
 
 		AccountStatementVO vo1 = new AccountStatementVO();
 		vo1.setAccs_state(3);

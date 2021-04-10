@@ -42,7 +42,7 @@ public class WaServiceImpl implements WaService {
 	// 김은희 - 근태 신청 사원 확인
 	@Override
 	public void empComfirm(HttpServletRequest req, Model model) {
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
 		
 		EmployeeVO vo = waDao.empComfirm(emp_code);
 		
@@ -58,7 +58,6 @@ public class WaServiceImpl implements WaService {
 	@Override
 	public void waAppInsert(HttpServletRequest req, Model model) {
 		String emp_code = req.getParameter("emp_code");
-		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
 		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
 		String wr_va_start = req.getParameter("wr_va_start");
 		String wr_va_end = req.getParameter("wr_va_end");
@@ -66,7 +65,6 @@ public class WaServiceImpl implements WaService {
 		
 		WorkRecordVO vo = new WorkRecordVO();
 		
-		vo.setDep_code(dep_code);
 		vo.setHr_code(hr_code);
 		vo.setWr_state(0); // 상태 - 0: 미승인
 		vo.setWr_va_reason(wr_va_reason);
@@ -201,7 +199,7 @@ public class WaServiceImpl implements WaService {
 	// 김은희 - 근태 신청 승인 상세페이지
 	@Override
 	public void waDetail(HttpServletRequest req, Model model) {
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
 		
 		WorkRecordVO vo = waDao.waDetail(emp_code);
 		
@@ -213,7 +211,7 @@ public class WaServiceImpl implements WaService {
 	public void waConfirmAction(HttpServletRequest req, Model model) {
 		int updateCnt = 0;
 		
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
 		
 		updateCnt = waDao.waConfirmAction(emp_code);
 		
@@ -226,12 +224,14 @@ public class WaServiceImpl implements WaService {
 	public void waDeleteAction(HttpServletRequest req, Model model) {
 		int deleteCnt = 0;
 		
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
 		
 		deleteCnt = waDao.waDeleteAction(emp_code);
 		
 		model.addAttribute("deleteCnt", deleteCnt);
 	}
+	
+	
 	
 	
 

@@ -1,10 +1,9 @@
-
-
 // 김은희 - 인사카드 등록 체크
 function CardCheck() {
 	
-	if(!document.hrCardform.emp_code.value) {
+	if(document.hrCardform.emp_code.value.length == 0 ) {
 		alert("사번을 입력하세요.");
+		
 		document.hrCardform.emp_code.focus();
 		return false;
 	}
@@ -50,6 +49,55 @@ function CardCheck() {
 		document.hrCardform.dupChk.focus();
 		return false;
 	}
+}
+
+
+
+// 김은희 - 내 정보 수정 체크
+function pageCheck() {
+	
+	if(!document.myPageform.emp_jumin.value) {
+		alert("주민등록번호를 입력하세요.");
+		document.myPageform.emp_jumin.focus();
+		return false;
+	}
+	
+	if(!document.myPageform.addcode.value) {
+		alert("우편번호를 입력하세요.");
+		document.myPageform.addcode.focus();
+		return false;
+	}
+	
+	if(!document.myPageform.add1.value) {
+		alert("주소를 입력하세요.");
+		document.myPageform.add1.focus();
+		return false;
+	}
+	
+	if(!document.myPageform.add2.value) {
+		alert("상세주소를 입력하세요.");
+		document.myPageform.add2.focus();
+		return false;
+	}
+	
+	if(!document.myPageform.emp_phone.value) {
+		alert("휴대전화를 입력하세요.");
+		document.myPageform.emp_phone.focus();
+		return false;
+	}
+	
+	if(!document.myPageform.emp_email.value) {
+		alert("이메일을 입력하세요.");
+		document.myPageform.emp_email.focus();
+		return false;
+	}
+	
+	if(!document.myPageform.emp_account.value) {
+		alert("급여 계좌를 입력하세요.");
+		document.myPageform.emp_account.focus();
+		return false;
+	}
+	
 }
 
 // 김은희 - 인사카드 사번 중복확인 버튼 클릭
@@ -132,10 +180,11 @@ function confirmCodeCheck() {
 	}
 }
 
-// 김은희 - 사원 확인 완료, 이름 넘겨주기
-function setName(emp_code, emp_name) {
+// 김은희 - 사원 확인 완료, 이름과 부서명 넘겨주기
+function setConfirm(emp_code, emp_name, dep_name) {
 	opener.document.waForm.emp_code.value=emp_code; 
 	opener.document.waForm.emp_name.value=emp_name; 
+	opener.document.waForm.dep_name.value=dep_name; 
 	opener.document.waForm.hiddenEmp_code.value=1; 
 	self.close();
 }

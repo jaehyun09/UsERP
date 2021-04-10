@@ -90,7 +90,8 @@
                		<c:if test="${vo.logs_state == 1}">
                    		<button type="submit" class="btn btn-outline-info">승인</button>
                		</c:if>
-               		<c:if test="${vo.logs_state == 3}">
+               		<c:if test="${vo.logs_state == 3}"> 
+               			<button type="button" onclick="location.href='${path}/logsupdate?logs_code=${vo.logs_code}'" class="btn btn-outline-info">부족수량</button>
                		</c:if>
                </div>
                <br><br><br>

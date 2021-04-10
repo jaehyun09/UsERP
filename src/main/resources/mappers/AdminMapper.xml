@@ -6,44 +6,38 @@
     
 <mapper namespace = "com.project.UsERP.persistence.AdminDAO">
 	
-	<resultMap id="AlertMap"
-		type="com.project.UsERP.vo.AlertVO">
-		<id property="alert_code" column="alert_code" />
-		<result property="alert_state" column="alert_state" />
-		<result property="alert_content" column="alert_content" />
-		<result property="logs_code" column="logs_code" />
-		<result property="accs_code" column="accs_code" />
-		<result property="ss_code" column="ss_code" />
-		<result property="dep_code" column="dep_code" />
-		<association property="accountstatement"
-			javaType="com.project.UsERP.vo.AccountStatementVO">
-			<id property="accs_code" column="accs_code" />
-			<result property="accs_type" column="accs_type" />
-		</association>
-		<association property="department"
-			javaType="com.project.UsERP.vo.DepartmentVO">
-			<id property="dep_code" column="dep_code" />
+	<resultMap id="empMap" type="com.project.UsERP.vo.EmployeeVO">
+		<id     property="emp_code"   column="emp_code" />  
+		<result property="emp_pwd" column="emp_pwd" />
+		<result property="emp_authority"  column="emp_authority" />
+		<result property="emp_enabled"  column="emp_enabled" />
+		<result property="emp_name"  column="emp_name" />
+		<result property="emp_hire_date"  column="emp_hire_date" />
+		<result property="emp_cos"  column="emp_cos" />
+		<result property="emp_photo"  column="emp_photo" />
+		<result property="emp_jumin"  column="emp_jumin" />
+		<result property="emp_address"  column="emp_address" />
+		<result property="emp_tel"  column="emp_tel" />
+		<result property="emp_phone"  column="emp_phone" />
+		<result property="emp_email"  column="emp_email" />
+		<result property="emp_port_no"  column="emp_port_no" />
+		<result property="emp_bank"  column="emp_bank" />
+		<result property="emp_account"  column="emp_account" />
+		<result property="dep_code"  column="dep_code" />
+		<result property="hr_code"  column="hr_code" />
+		<association property="department" javaType="com.project.UsERP.vo.DepartmentVO">
+			<id      property="dep_code"   column="dep_code" />  
 			<result property="dep_name" column="dep_name" />
-		</association>
-		<association property="logsisticsstatement"
-			javaType="com.project.UsERP.vo.LogisticsStatementVO">
-			<id property="logs_code" column="logs_code" />
-			<result property="logs_type" column="logs_type" />
-			<result property="logs_shortage" column="logs_shortage" />
-			<result property="logs_state" column="logs_state" />
-			<association property="product"
-			javaType="com.project.UsERP.vo.ProductVO">
-			<id property="pro_code" column="pro_code" />
-			<result property="pro_name" column="pro_name" />
-		</association>
-		</association>
-		<association property="salarystatement"
-			javaType="com.project.UsERP.vo.SalaryStatementVO">
-			<id property="ss_code" column="ss_code" />
-			<result property="ss_state" column="ss_state" />
-		</association>
+			<result property="dep_state"  column="dep_state" />
+		</association> 
+		<association property="hrCode" javaType="com.project.UsERP.vo.HrCodeVO">
+			<id      property="hr_code"   column="hr_code" />  
+			<result property="hr_code_name" column="hr_code_name" />
+			<result property="hr_state"  column="hr_state" />
+			<result property="hcg_code"  column="hcg_code" />
+		</association> 
 	</resultMap>
-	
+
 	<!-- 강재현 - 중복확인 처리 -->
 	<select id = "idCheck" resultType = "int">
 		SELECT COUNT(*) FROM employee WHERE emp_code = #{strId}
@@ -69,6 +63,16 @@
 		SELECT * FROM employee WHERE emp_code = #{emp_code}
 	</select>
 	
+	<!-- 김은희 - 내 정보 수정 페이지 -->
+	<select id="myPageDetail" resultMap="empMap">
+		SELECT e.emp_code, e.emp_name, d.dep_code, d.dep_name, c.hr_code, c.hr_code_name, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
+				e.emp_tel, e.emp_authority, e.emp_phone, e.emp_email, e.emp_bank, e.emp_account 
+		  FROM employee e, department d, hr_code c 
+		 WHERE e.dep_code = d.dep_code 
+		   AND e.hr_code = c.hr_code 
+		   AND emp_code = #{emp_code}
+	</select>
+	
 	<!-- 김은희 - 내 정보 수정 처리 -->
 	<update id="mypageUpdateAction" parameterType="java.util.Map">
 		UPDATE employee SET emp_photo=#{emp_photo}, emp_jumin=#{emp_jumin}, emp_address=#{emp_address}, emp_tel=#{emp_tel}, emp_phone=#{emp_phone}, emp_email=#{emp_email}, emp_port_no=#{emp_port_no}, emp_account=#{emp_account}, hr_code=#{hr_code}, dep_code=#{dep_code}, emp_authority=#{emp_authority}, emp_bank=#{emp_bank}, emp_cos=#{emp_cos} WHERE emp_code=#{emp_code}
@@ -79,54 +83,4 @@
 		UPDATE employee SET emp_pwd = #{emp_pwd}, emp_enabled = 1 WHERE emp_code = #{emp_code}
 	</update>
 	
-	<!-- 강재현 - 알림 -->
-	<select id="accsAlertList" resultMap="AlertMap">
-		SELECT a.*, d.dep_name, ac.accs_type  
-		    FROM alert a, department d, account_statement ac
-		    WHERE a.dep_code = d.dep_code
-		    AND a.accs_code = ac.accs_code
-		    AND alert_state = 0
-		    ORDER BY alert_code DESC    
-	</select>
-	
-	<!-- 강재현 - 알림 -->
-	<select id="logsAlertList" resultMap="AlertMap">
-		SELECT a.*, d.dep_name, l.logs_type, l.logs_state, l.logs_shortage, p.pro_name
-		    FROM alert a, department d, logistics_statement l, product p
-		    WHERE a.dep_code = d.dep_code
-		    AND a.logs_code = l.logs_code
-            AND l.pro_code = p.pro_code
-		    AND alert_state = 0
-		    ORDER BY alert_code DESC
-	</select>
-	
-	<!-- 강재현 - 알림 -->
-	<select id="ssAlertList" resultMap="AlertMap">
-		SELECT a.*, d.dep_name
-		    FROM alert a, department d, salary_statement ss
-		    WHERE a.dep_code = d.dep_code
-		    AND a.ss_code = ss.ss_code
-		    AND alert_state = 0
-		    ORDER BY alert_code DESC   
-	</select>
-	
-	<!-- 강재현 - 알림 -->
-	<select id="stAlertList" resultMap="AlertMap">
-		SELECT a.*, d.dep_name
-		    FROM alert a, department d
-		    WHERE a.dep_code = d.dep_code
-		    AND alert_state = 0
-		    ORDER BY alert_code DESC 
-	</select>
-	
-	<!-- 강재현 - 알림 업데이트 -->
-	<update id="alertUpdate" parameterType="com.project.UsERP.vo.AlertVO">
-		UPDATE alert SET alert_state=#{alert_state}
-			WHERE alert_code = #{alert_code}
-	</update>
-	
-	<!-- 알림 갯수 -->
-	<select id="getCnt" resultType="int">
-		SELECT COUNT(*) as cnt FROM alert WHERE alert_state = 0
-	</select>
 </mapper>	

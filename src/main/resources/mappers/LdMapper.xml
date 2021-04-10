@@ -340,12 +340,13 @@
 	</select>
 	
 	<!-- 김민수 - 부족수량 출고물류전표 가져오기 -->
-	<select id="logsCodeSelectList" resultType="com.project.UsERP.vo.LogisticsStatementVO">
-		SELECT logs_code 
-		FROM logistics_statement
-		WHERE logs_type = 6
-		AND logs_state = 3
-	</select>
+   <select id="logsCodeSelectList" resultMap="stockOrder">
+      SELECT ls.*, p.pro_name
+      FROM logistics_statement ls, product p
+      WHERE ls.pro_code = p.pro_code
+        AND ls.logs_type = 6
+      AND ls.logs_state = 3
+   </select>
 	
 	<!-- 김민수 - 물류출고전표(부족수량) 부족수량 불러오기 -->
 	<select id="logsShortAgeSelect" resultType="String" parameterType="int">
@@ -551,11 +552,12 @@
        SET logs_state = #{logs_state}
        WHERE logs_code = #{logs_code}
     </update> 
-	
-	<!-- 회계 전표 알림 보내기 -->
-  	<insert id="insertLoAlert" parameterType = "com.project.UsERP.vo.AlertVO">
-      INSERT INTO alert(alert_code,alert_state,alert_content,logs_code,accs_code,ss_code,dep_code)
-   		  VALUES(alert_seq.nextval,#{alert_state},#{alert_content},#{logs_code},null, null,#{dep_code})
-   </insert>
+   
+   <!-- 구매팀한테 요청보내기 -->
+   <update id="logsupdate" parameterType="com.project.UsERP.vo.LogisticsStatementVO">
+		UPDATE logistics_statement SET logs_state=#{logs_state} 
+			WHERE logs_code = #{logs_code}
+	</update>
+   
    
 </mapper>

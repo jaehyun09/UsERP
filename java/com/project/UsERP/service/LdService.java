@@ -71,4 +71,7 @@ public interface LdService {
 	
 	// 김민수 - 입출고 내역 조회
 	public void shiRecList(HttpServletRequest req, Model model);
+	
+	// 김민수 - 구매팀 요청 보내기
+	public void logsAction(HttpServletRequest req, Model model);
 }

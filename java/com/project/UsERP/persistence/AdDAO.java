@@ -3,9 +3,9 @@ package com.project.UsERP.persistence;
 import java.util.List;
 
 
+
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.BankVO;
 import com.project.UsERP.vo.SalaryStatementVO;
 
@@ -62,10 +62,5 @@ public interface AdDAO {
 	// 이재홍 - 전표 관리 - 채권/채무 상세페이지
 	public AccountStatementVO bdStatementDetail(int num);
 
-	// 강재현 - 알림 등록
-	public int insertAccAlert(AlertVO vo1);
-
-	// 강재현 - 알림 등록
-	public int insertSsAlert(AlertVO vo1);
 
 }

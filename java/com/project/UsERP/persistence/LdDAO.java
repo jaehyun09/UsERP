@@ -3,7 +3,6 @@ package com.project.UsERP.persistence;
 import java.util.List;
 import java.util.Map;
 
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -176,6 +175,6 @@ public interface LdDAO {
 	// 김민수 - 입출고 내역 조회
 	public List<StockSupplyVO> shiRecList();
 	
-	// 강재현 - 알림 등록
-	public int insertLoAlert(AlertVO vo1);
+	// 구매팀 요청 보내기 
+	public int logsupdate(LogisticsStatementVO vo);
 }

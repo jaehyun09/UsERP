@@ -218,16 +218,4 @@
       ORDER BY accs_code DESC
    </select>
    
-   	<!-- 회계 전표 알림 보내기 -->
-  	<insert id="insertAccAlert" parameterType = "com.project.UsERP.vo.AlertVO">
-      INSERT INTO alert(alert_code,alert_state,alert_content,logs_code,accs_code,ss_code,dep_code)
-   		  VALUES(alert_seq.nextval,#{alert_state},#{alert_content},null,#{accs_code}, null,#{dep_code})
-   </insert>
-   
-	<!-- 급여 전표 알림 보내기 -->
-  	<insert id="insertSsAlert" parameterType = "com.project.UsERP.vo.AlertVO">
-      INSERT INTO alert(alert_code,alert_state,alert_content,logs_code,accs_code,ss_code,dep_code)
-   		  VALUES(alert_seq.nextval,#{alert_state},#{alert_content},null,null, #{ss_code},#{dep_code})
-   </insert>
-
 </mapper>

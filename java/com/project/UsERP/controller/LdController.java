@@ -291,5 +291,12 @@ public class LdController {
 		return "ld/ajax/supplyListAction";
 	}
 	
+	// 부족 수량 구매팀한테 넘기기 
+	@RequestMapping("/logsupdate")
+	public String logsupdate(HttpServletRequest req, Model model) {
+		logger.info("url: 재고 수불부 목록 AJAX");	
+		ldservice.logsAction(req, model);
+		return "ld/ldPro/logsAction";
+	}
 	
 }

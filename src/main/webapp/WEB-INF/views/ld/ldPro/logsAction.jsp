@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file = "./setting.jsp" %>  
+<%@ include file = "../../setting.jsp" %>  
 </head>
 <body>
 <!-- 상품등록 실패  -->
@@ -18,8 +18,8 @@
 <!-- 상품등록 성공  -->
 <c:if test="${updateCnt == 1}">
 	<script type="text/javascript">
-		alert("승인 되었습니다.");
-		window.location='${path}/adStatementManagement';
+		alert("구매팀에게 요청하였습니다.");
+		window.location='${path}/ldInventoryControl';
 	</script>
 </c:if>
 
@@ -31,8 +31,8 @@
 
 <c:if test="${deleteCnt == 1}">
 	<script type="text/javascript">
-		alert("삭제 되었습니다.");
-		window.history.back();
+		alert("승인 거부 되었습니다.");
+		window.location='${path}/ldInventoryControl';
 	</script>
 </c:if>
 </body>

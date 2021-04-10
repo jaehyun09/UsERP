@@ -1,6 +1,7 @@
 package com.project.UsERP.service;
 
 import java.sql.Timestamp;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,6 @@ import org.springframework.ui.Model;
 import com.project.UsERP.persistence.AdDAO;
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.BankVO;
 import com.project.UsERP.vo.SalaryStatementVO;
 
@@ -95,16 +95,7 @@ public class AdServiceImpl implements AdService {
 
 		int updateCnt = addao.acupdatestatment(vo);
 
-		if (updateCnt == 1) {
-			AlertVO vo1 = new AlertVO();
-			vo1.setAlert_state(0);
-			vo1.setAlert_content("전표 승인되었습니다.");
-			vo1.setAccs_code(accs_code);
-			vo1.setDep_code(500);
-
-			int insertCnt = addao.insertAccAlert(vo1);
-			model.addAttribute("insertCnt", insertCnt);
-		}
+		
 
 		model.addAttribute("num", accs_code);
 		model.addAttribute("updateCnt", updateCnt);
@@ -122,16 +113,6 @@ public class AdServiceImpl implements AdService {
 		vo.setAccs_code(accs_code);
 		int deleteCnt = addao.acupdatestatment(vo);
 
-		if (deleteCnt == 1) {
-			AlertVO vo1 = new AlertVO();
-			vo1.setAlert_state(0);
-			vo1.setAlert_content("전표 승인 거부 되었습니다.");
-			vo1.setAccs_code(accs_code);
-			vo1.setDep_code(500);
-
-			int insertCnt = addao.insertAccAlert(vo1);
-			model.addAttribute("insertCnt", insertCnt);
-		}
 
 		model.addAttribute("deleteCnt", deleteCnt);
 
@@ -165,16 +146,6 @@ public class AdServiceImpl implements AdService {
 		int updateCnt = addao.saupdatestatment(vo);
 
 
-		if (updateCnt == 1) {
-			AlertVO vo1 = new AlertVO();
-			vo1.setAlert_state(0);
-			vo1.setAlert_content("급여 전표 승인되었습니다.");
-			vo1.setSs_code(ss_code);
-			vo1.setDep_code(500);
-
-			int insertCnt = addao.insertSsAlert(vo1);
-			model.addAttribute("insertCnt", insertCnt);
-		}
 
 		model.addAttribute("num", ss_code);
 		model.addAttribute("updateCnt", updateCnt);
@@ -193,16 +164,6 @@ public class AdServiceImpl implements AdService {
 		vo.setSs_code(ss_code);
 		int deleteCnt = addao.saupdatestatment(vo);
 
-		if (deleteCnt == 1) {
-			AlertVO vo1 = new AlertVO();
-			vo1.setAlert_state(0);
-			vo1.setAlert_content("급여 전표 승인 거부 되었습니다.");
-			vo1.setSs_code(ss_code);
-			vo1.setDep_code(500);
-
-			int insertCnt = addao.insertSsAlert(vo1);
-			model.addAttribute("insertCnt", insertCnt);
-		}
 
 		model.addAttribute("num", ss_code);
 		model.addAttribute("deleteCnt", deleteCnt);

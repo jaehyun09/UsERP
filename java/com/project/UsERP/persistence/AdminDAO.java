@@ -1,9 +1,7 @@
 package com.project.UsERP.persistence;
 
-import java.util.List;
 import java.util.Map;
 
-import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.EmployeeVO;
 
 
@@ -21,28 +19,14 @@ public interface AdminDAO {
 	// 조명재 - 회원 정보를 반환한다
 	public EmployeeVO getUsersInfo(String emp_code);
 	
+	// 김은희 - 내 정보 수정 페이지
+	public EmployeeVO myPageDetail(String emp_code);
+	
 	// 김은희 - 내 정보 수정 처리
 	public int mypageUpdateAction(Map<String, Object> map);
 
 	// 조명재 - 비밀번호를 생성한다
 	public int signinPro(Map<String, Object> map);
 
-	// 강재현 - 알림 리스트
-	public List<AlertVO> accsAlertList();
-
-	// 강재현 - 알림 리스트
-	public List<AlertVO> logsAlertList();
-
-	// 강재현 - 알림 리스트
-	public List<AlertVO> ssAlertList();
-
-	// 강재현 - 알림 리스트
-	public List<AlertVO> stAlertList();
-
-	// 강재현 - 알림 업데이트
-	public int alertUpdate(AlertVO vo);
-
-	// 강재현 - 알림 갯수 구하기
-	public int getCnt();
 
 }
