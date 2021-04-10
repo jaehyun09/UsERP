@@ -13,20 +13,12 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="${project}img/favicon.ico">
-<link rel="stylesheet" href="${project}css/board.css">
+	<link rel="stylesheet" href="${project}css/board.css">
     <!-- Template -->
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     
-    <script type="text/javascript">
-    
-    function select() {
-    	
-    	var val = document.
-    	$('#emp_bank').val("농협").prop("selected",true);
-    	
-    }
-    
-    </script>
+    <!-- Script -->
+    <script src="${spath}hr.js"></script>
     
 </head>
 
@@ -242,7 +234,7 @@
 												id="pills-result-1" role="tabpanel"
 												aria-labelledby="pills-result-tab-1">
 											
-												<!-- 인사카드 폼 시작 -->  
+												<!-- 내정보 수정 폼 시작 -->  
 							                     <form action="myPageUpdate?${_csrf.parameterName}=${_csrf.token}" name="myPageform" method="post" enctype="multipart/form-data" onsubmit="return pageCheck();">
 							                     <table class="table bg-white text-dark center ass2" style="text-align:center">
 							                        <tr>
@@ -250,7 +242,7 @@
 							                        </tr>
 							                        <tr>
 							                           <th style="vertical-align:middle">* 사진</th>
-							                           <td><input id="file" type="file" name="emp_photo" value=""></td>
+							                           <td><input id="file" type="file" name="emp_photo"></td>
 							                        </tr>
 							                        <tr>
 							                           <th style="vertical-align:middle">* 사번</th>
@@ -337,42 +329,42 @@
 							                     </td>
 							                  </tr> 
 							                      <tr>
-							                              <th style="vertical-align:middle">전화번호</th>
-							                              <td><input type="tel" name="emp_tel" class="form-control" value="010-8559-1234"></td>
-							                           </tr>
-							                           <tr>
-							                              <th style="vertical-align:middle">* 휴대전화</th>
-							                              <td><input type="tel" name="emp_phone" class="form-control" value="010-8559-1234"></td>
-							                           </tr>
-							                           <tr>                                    
-							                              <th style="vertical-align:middle">* 이메일</th>
-							                              <td><input type="email" name="emp_email" class="form-control" value="hi863@naver.com"></td>
-							                           </tr>
-							                           <tr>
-							                              <th style="vertical-align:middle">여권번호</th>
-							                              <td><input type="text" name="emp_port_no" class="form-control" value=""></td>
-							                           </tr>
-							                           <tr>
-							                              <th style="vertical-align:middle">* 은행</th>
-							                              <td><div class="form-group">
-							                                      <select name="emp_bank" class="form-control" id="emp_bank" onload="select();">
-							                                        <option value="0">은행 선택</option>
-							                                        <option value="농협">농협</option>
-							                                        <option value="신한">신한</option>
-							                                        <option value="기업">기업</option>
-							                                        <option value="하나">하나</option>
-							                                        <option value="국민">국민</option>
-							                                        <option value="우리">우리</option>
-							                                        <option value="카카오뱅크">카카오뱅크</option>
-							                                      </select>
-							                                    </div>
-							                              </td>
-							                           </tr>
-							                           <tr>
-							                              <th style="vertical-align:middle">* 급여계좌</th>
-							                              <td><input type="text" name="emp_account" class="form-control" value="356-1021-0564-33"></td>
-							                           </tr>
-							                     </table>
+						                              <th style="vertical-align:middle">전화번호</th>
+						                              <td><input type="tel" name="emp_tel" class="form-control" value="010-8559-1234"></td>
+						                           </tr>
+						                           <tr>
+						                              <th style="vertical-align:middle">* 휴대전화</th>
+						                              <td><input type="tel" name="emp_phone" class="form-control" value="010-8559-1234"></td>
+						                           </tr>
+						                           <tr>                                    
+						                              <th style="vertical-align:middle">* 이메일</th>
+						                              <td><input type="email" name="emp_email" class="form-control" value="hi863@naver.com"></td>
+						                           </tr>
+						                           <tr>
+						                              <th style="vertical-align:middle">여권번호</th>
+						                              <td><input type="text" name="emp_port_no" class="form-control" value=""></td>
+						                           </tr>
+						                           <tr>
+						                              <th style="vertical-align:middle">* 은행</th>
+						                              <td><div class="form-group">
+						                                      <select name="emp_bank" class="form-control" id="emp_bank">
+						                                        <option value="0">은행 선택</option>
+						                                        <option value="농협" <c:if test="${vo.emp_bank == '농협'}">selected</c:if>>농협</option>
+						                                        <option value="신한">신한</option>
+						                                        <option value="기업">기업</option>
+						                                        <option value="하나">하나</option>
+						                                        <option value="국민">국민</option>
+						                                        <option value="우리">우리</option>
+						                                        <option value="카카오뱅크">카카오뱅크</option>
+						                                      </select>
+						                                    </div>
+						                              </td>
+						                           </tr>
+						                           <tr>
+						                              <th style="vertical-align:middle">* 급여계좌</th>
+						                              <td><input type="text" name="emp_account" class="form-control" value="356-1021-0564-33"></td>
+						                           </tr>
+						                     </table>
 							                  
 							                     <div align=center>
 							                           <button type="submit" class="btn btn-outline-info">수정</button>&nbsp;&nbsp;&nbsp;
@@ -380,7 +372,7 @@
 							                     </div>
 							                  
 							                  </form>
-							                <!-- 인사카드 폼 끝 -->   
+							                <!-- 내정보 수정 폼 끝 -->   
                   
 											</div>
 										</div>

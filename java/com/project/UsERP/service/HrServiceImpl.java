@@ -117,7 +117,7 @@ public class HrServiceImpl implements HrService {
 	// 김은희 - 인사카드 상세페이지 조회
 	@Override
 	public void hrCardDetail(HttpServletRequest req, Model model) {
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
 		
 		EmployeeVO vo = hrDao.hrCardDetail(emp_code);
 		
@@ -226,7 +226,11 @@ public class HrServiceImpl implements HrService {
 	// 김은희 - 인사카드 등록
 	@Override
 	public void hrCardInsert(MultipartHttpServletRequest req, Model model) {
-		String uploadPath = "C:\\Dev76\\workspace\\upload\\";
+		
+		// * 경로 바꿔주세요
+		// String uploadPath = "C:\\Dev76\\workspace\\upload\\";
+		
+		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images\\";
 		
 		MultipartFile image = req.getFile("emp_photo");
 		String emp_photo = image.getOriginalFilename();
@@ -296,7 +300,7 @@ public class HrServiceImpl implements HrService {
 	// 김은희 - 인사 카드 사번 중복확인
 	@Override
 	public void hrConfirmCode(HttpServletRequest req, Model model) {
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
   
 		int cnt = hrDao.codeCheck(emp_code);
   

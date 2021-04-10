@@ -61,13 +61,13 @@ public interface HrDAO {
 	public List<EmployeeVO> hrCardList();
 
 	// 김은희 - 인사카드 상세페이지 조회
-	public EmployeeVO hrCardDetail(int emp_code);
+	public EmployeeVO hrCardDetail(String emp_code);
 	
 	// 김은희 - 인사카드 등록
 	public int hrCardInsert(Map<String, Object> map);
 	
 	// 김은희 - 인사 카드 사번 중복확인
-	public int codeCheck(int emp_code);
+	public int codeCheck(String emp_code);
 
 	// 조명재 - 휴직자 조회
 	public List<AppointHistoryVO> hrLeaveList();

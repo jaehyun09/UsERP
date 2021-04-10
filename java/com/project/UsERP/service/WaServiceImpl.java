@@ -42,7 +42,7 @@ public class WaServiceImpl implements WaService {
 	// 김은희 - 근태 신청 사원 확인
 	@Override
 	public void empComfirm(HttpServletRequest req, Model model) {
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
 		
 		EmployeeVO vo = waDao.empComfirm(emp_code);
 		
@@ -201,7 +201,7 @@ public class WaServiceImpl implements WaService {
 	// 김은희 - 근태 신청 승인 상세페이지
 	@Override
 	public void waDetail(HttpServletRequest req, Model model) {
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
 		
 		WorkRecordVO vo = waDao.waDetail(emp_code);
 		
@@ -213,7 +213,7 @@ public class WaServiceImpl implements WaService {
 	public void waConfirmAction(HttpServletRequest req, Model model) {
 		int updateCnt = 0;
 		
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
 		
 		updateCnt = waDao.waConfirmAction(emp_code);
 		
@@ -226,7 +226,7 @@ public class WaServiceImpl implements WaService {
 	public void waDeleteAction(HttpServletRequest req, Model model) {
 		int deleteCnt = 0;
 		
-		int emp_code = Integer.parseInt(req.getParameter("emp_code"));
+		String emp_code = req.getParameter("emp_code");
 		
 		deleteCnt = waDao.waDeleteAction(emp_code);
 		

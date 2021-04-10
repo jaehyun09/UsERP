@@ -17,7 +17,7 @@ public interface WaDAO {
 	public List<WorkRecordVO> waList();
 	
 	// 김은희 - 근태 신청 사원 확인
-	public EmployeeVO empComfirm(int emp_code);
+	public EmployeeVO empComfirm(String emp_code);
 	
 	// 김은희 - 출근 버튼 클릭
 	public int waStartClick(Map<String, Object> map);
@@ -41,12 +41,12 @@ public interface WaDAO {
 	public List<WorkRecordVO> waAppSelect();
 	
 	// 김은희 - 근태 신청 승인 상세페이지
-	public WorkRecordVO waDetail(int emp_code);
+	public WorkRecordVO waDetail(String emp_code);
 	
 	// 김은희 - 근태 신청 승인 처리
-	public int waConfirmAction(int emp_code);
+	public int waConfirmAction(String emp_code);
 	
 	// 김은희 - 근태 신청 철회 처리
-	public int waDeleteAction(int emp_code);
+	public int waDeleteAction(String emp_code);
 	
 }

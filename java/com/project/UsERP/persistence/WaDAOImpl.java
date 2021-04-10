@@ -32,7 +32,7 @@ public class WaDAOImpl implements WaDAO {
 	
 	// 김은희 - 근태 신청 사원 확인
 	@Override
-	public EmployeeVO empComfirm(int emp_code) {
+	public EmployeeVO empComfirm(String emp_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.WaDAO.empComfirm", emp_code);
 	}
 	
@@ -78,19 +78,19 @@ public class WaDAOImpl implements WaDAO {
 	
 	// 김은희 - 근태 신청 승인 상세페이지
 	@Override
-	public WorkRecordVO waDetail(int emp_code) {
+	public WorkRecordVO waDetail(String emp_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.WaDAO.waDetail", emp_code);
 	}
 	
 	// 김은희 - 근태 신청 승인 처리
 	@Override
-	public int waConfirmAction(int emp_code) {
+	public int waConfirmAction(String emp_code) {
 		return sqlSession.update("com.project.UsERP.persistence.WaDAO.waConfirmAction", emp_code);
 	}
 	
 	// 김은희 - 근태 신청 철회 처리
 	@Override
-	public int waDeleteAction(int emp_code) {
+	public int waDeleteAction(String emp_code) {
 		return sqlSession.delete("com.project.UsERP.persistence.WaDAO.waDeleteAction", emp_code);
 	}
 	

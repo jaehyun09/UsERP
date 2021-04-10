@@ -5,21 +5,6 @@
 <html>
 <head>
 <script type="text/javascript">
-function alert() {
-   $.ajax({
-   
-      // sendRequest(콜백함수명, url, method, params)
-      url: "alertList", // 전송 페이지 => 컨트롤러 "basic_next"
-      type: 'GET', // 전송방식('GET', 'POST') - method
-      dataType: 'text', // 요청한 데이터 형식('html','xml','json','text','jsoup') - params?
-      success: function(data){ // 콜백함수 - 전송에 성공했을 때의 결과가 data변수에 전달된다.
-         $('#alertlist').html(data);
-      },
-      error: function(){
-         alert('오류');
-      }
-   });
-}
 </script>
 <meta charset="UTF-8">
     <!-- Favicon -->

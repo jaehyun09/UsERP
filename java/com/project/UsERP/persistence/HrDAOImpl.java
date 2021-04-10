@@ -115,7 +115,7 @@ public class HrDAOImpl implements HrDAO {
 	
 	// 김은희 - 인사카드 상세페이지 조회
 	@Override
-	public EmployeeVO hrCardDetail(int emp_code) {
+	public EmployeeVO hrCardDetail(String emp_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.hrCardDetail", emp_code);
 	}
 	
@@ -127,7 +127,7 @@ public class HrDAOImpl implements HrDAO {
 	
 	// 김은희 - 인사 카드 사번 중복확인
 	@Override
-	public int codeCheck(int emp_code) {
+	public int codeCheck(String emp_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.codeCheck", emp_code);
 	}
 	
