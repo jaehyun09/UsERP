@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.UsERP.service.AdminService;
+import com.project.UsERP.service.HrService;
 import com.project.UsERP.service.WaService;
 
 @Controller
@@ -23,6 +25,10 @@ public class UserpController {
 
 	@Autowired
 	WaService waService;
+	
+	@Autowired
+	HrService hrService; 
+	
 
 	@RequestMapping("/")
 	public String main(HttpServletRequest req, Model model) {
@@ -77,13 +83,28 @@ public class UserpController {
 		return "signinPro";
 	}
 
-	// 조명재 - 내 정보 수정
+	// 김은희 - 내 정보 수정
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest req, Model model) {
 		logger.info("url: 내 정보 수정");
+		
+		hrService.depList(req, model);
+		hrService.hrCodePosList(req, model);
+		// hrService.hrCardDetail(req, model);
 
 		return "mypage";
 	}
+	
+	// 김은희 - 내 정보 수정 처리
+	@RequestMapping("/mypageUpdateAction")
+	public String mypageUpdateAction(	MultipartHttpServletRequest req, Model model) {
+		logger.info("url: 내 정보 수정 처리");
+		
+		service.mypageUpdateAction(req, model);
+		
+		return "mypageUpdateAction";
+	}
+	
 
 	// 강재현 - 알림
 	@RequestMapping("/alertList")
@@ -93,9 +114,11 @@ public class UserpController {
 		service.accsAlertList(req, model);
 		// 물류 알림
 		service.logsAlertList(req, model);
-		// 급여 알림 
+		// 급여 알림
 		service.ssAlertList(req, model);
-		
+		// 나머지 알림
+		service.stAlertList(req, model);
+
 		return "alert";
 	}
 
@@ -105,7 +128,7 @@ public class UserpController {
 		logger.info("url: 알림 삭제");
 		// 알림 삭제
 		service.alertUpdate(req, model);
-		
+
 		return "alertAction";
 	}
 

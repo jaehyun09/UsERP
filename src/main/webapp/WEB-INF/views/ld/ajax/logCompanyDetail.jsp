@@ -33,10 +33,10 @@
 				</tr>
 				<tr>
 					<th>구분</th>
-					<c:if test="${compInfo.com_type == 10}">
+					<c:if test="${compInfo.com_type == 200}">
 						<td>구매거래처</td>
 					</c:if>
-					<c:if test="${compInfo.com_type == 20}">
+					<c:if test="${compInfo.com_type == 100}">
 						<td>판매거래처</td>
 					</c:if>
 				</tr>

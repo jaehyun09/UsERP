@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 
 import com.project.UsERP.persistence.LdDAO;
 import com.project.UsERP.persistence.PdDAO;
+import com.project.UsERP.persistence.StDAO;
 import com.project.UsERP.vo.AccountStatementVO;
+import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -27,6 +29,9 @@ public class PdServiceImpl implements PdService {
 
 	@Autowired
 	LdDAO lddao;
+	
+	@Autowired
+	StDAO stdao;
 
 	// 최유성 - 기초등록
 	@Override
@@ -160,6 +165,16 @@ public class PdServiceImpl implements PdService {
 		System.out.println(vo + "vo");
 		int insertCnt = pddao.insertBuyStatement(vo);
 
+		if (insertCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("전표 등록되었습니다.");
+			vo1.setDep_code(300);
+
+			int insert1Cnt = stdao.insertAcAlert(vo1);
+			model.addAttribute("insert1Cnt", insert1Cnt);
+		}
+		
 		model.addAttribute("insertCnt", insertCnt);
 
 	}
@@ -239,16 +254,15 @@ public class PdServiceImpl implements PdService {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("accs_code", accs_code);
-		map.put("ware_code", ware_code); // 양품창고 번호 1001
+		map.put("ware_code", ware_code); // 양품창고 번호
 		map.put("pro_code", pro_code);
 
-		int sto_code = Integer.parseInt(pddao.getStock(map).toString());
-		; // 상품에 대한 재고코드가 존재하는지 가지고 온다
+		int sto_code = Integer.parseInt(pddao.getStock(map).toString()); // 상품에 대한 재고코드가 존재하는지 가지고 온다
 
 		System.out.println("sto_code:" + sto_code);
 
 		vo.setSto_code(sto_code); // vo에 재고코드를 넣어준다 //값이 0일수도 있어서 decode 함수 이용
-
+		vo.setLogs_shortage(0);
 		insertCnt = pddao.logsPdInsert(vo); // 화면에서 넘어온 값들과 상태코드를 물류전표에 인서트 시켜 준다
 
 		AccountStatementVO avo = new AccountStatementVO();
@@ -258,9 +272,18 @@ public class PdServiceImpl implements PdService {
 		if (insertCnt == 1) {
 			updateCnt = pddao.updatestatement(avo); // 입고 전표 등록시 회계전표 상태코드 변화
 		}
+		
+		if (insertCnt == 1) {
+			AlertVO vo1 = new AlertVO();
+			vo1.setAlert_state(0);
+			vo1.setAlert_content("입고 전표 등록되었습니다.");
+			vo1.setDep_code(300);
+
+			int insert1Cnt = stdao.insertLgAlert(vo1);
+			model.addAttribute("insert1Cnt", insert1Cnt);
+		}
 
 		model.addAttribute("insertCnt1", insertCnt);
 		model.addAttribute("updateCnt", updateCnt);
 	}
-
 }

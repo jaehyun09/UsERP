@@ -356,11 +356,11 @@ function content4(code) {
 						                                            	<th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
 												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
 												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처</th>
-												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
+												                        <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th> -->
 												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
 												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">승인일</th>
 												                        <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
-												                        <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">승인일</th> -->
 						                                             </tr>
 						                                          </thead>
 						                                          <tbody>
@@ -373,20 +373,21 @@ function content4(code) {
 																				onclick="content4(${list.logs_code})">${list.logs_code}</a></td>
 													                     <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
 													                     <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
-													                     <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+													                     <%-- <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td> --%>
 													                     <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 													                     <td class="py-3 middle" style="vertical-align:middle">
 													                     		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 													                     </td>
-													                     <c:if test="${list.logs_state == 2}">
-													                     	<td class="py-3 middle" style="vertical-align:middle">승인완료</td>
+													                     <%-- <c:if test="${list.logs_state == 3}">
+													                     	<td class="py-3 middle" style="vertical-align:middle">재고부족</td>
 													                     </c:if>
 													                     <c:if test="${list.logs_state == 1}">
-													                     	<td class="py-3 middle" style="vertical-align:middle">출고준비완료</td>
-													                     </c:if>
-													                     <%-- <td class="py-3 middle" style="vertical-align:middle">
+													                     	<td class="py-3 middle" style="vertical-align:middle">승인</td>
+													                     </c:if> --%>
+													                     <td class="py-3 middle" style="vertical-align:middle">
 													                     		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
-													                     </td> --%>
+													                     </td>
+													                     <td class="py-3 middle" style="vertical-align:middle">승인완료</td>
 											                  		 </tr>
 											                  		 </c:forEach>
 						                                          </tbody>
@@ -409,13 +410,14 @@ function content4(code) {
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처</th>
-	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
+	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">판매수량</th>
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">재고수량</th>
-	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th>
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">부족수량</th> -->
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
 	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">수정일</th> -->
+	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">승인일</th> -->
+	                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
 	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">상태</th> -->
 	                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2"></th> -->
 	                                                </tr>
@@ -430,14 +432,18 @@ function content4(code) {
 															onclick="content3(${list.logs_code})">${list.logs_code}</a></td>	                                                    
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
-	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+	                                                   <%-- <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.stock.sto_quantity}</td>
-	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_shortage}</td>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_shortage}</td> --%>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 	                                                   <td class="py-3 middle" style="vertical-align:middle">
 	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
 	                                                   </td>
+	                                                   <%-- <td class="py-3 middle" style="vertical-align:middle">
+	                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
+	                                                   </td> --%>
+	                                                   <td class="py-3 middle" style="vertical-align:middle">대기중</td>
 	                                                </tr>
 	                                                </c:forEach>
 	                                             </tbody>
@@ -485,11 +491,12 @@ function content4(code) {
 						                                               		 <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
 						                                           			 <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
 						                                               		 <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
+						                                                     <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th> -->
 						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
 						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
 						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
-						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">입고일</th>
+						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">승인일</th>
+						                                                     <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
 						                                                   </tr>
 						                                                </thead>
 						                                                <tbody>
@@ -502,7 +509,7 @@ function content4(code) {
 																					onclick="content2(${list.logs_code})">${list.logs_code}</a></td>	    
 							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
 							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
-							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+							                                                      <%-- <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td> --%>
 							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
 							                                                      <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 							                                                      <td class="py-3 middle" style="vertical-align:middle">
@@ -510,7 +517,8 @@ function content4(code) {
 							                                                      </td>
 							                                                      <td class="py-3">
 							                                                      		<fmt:formatDate value="${list.logs_update_date}" pattern="yyyy-MM-dd" />
-							                                                      </td>                                                      
+							                                                      </td>
+							                                                      <td class="py-3 middle" style="vertical-align:middle">승인완료</td>
 							                                                   </tr>
 						                                                   </c:forEach>
 						                                                </tbody>
@@ -534,10 +542,11 @@ function content4(code) {
 						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">전표번호</th>
 						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">상품명</th>
 						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
-						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th>
+						                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2">구매수량</th> -->
 						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">창고명</th>
 						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">담당자명</th>
 						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">등록일</th>
+						                                                   <th class="font-weight-semi-bold border-top-0 py-3 con2">승인상태</th>
 						                                                   <!-- <th class="font-weight-semi-bold border-top-0 py-3 con2"></th> -->
 						                                                </tr>
 						                                             </thead>
@@ -551,12 +560,14 @@ function content4(code) {
 																				onclick="content1(${list.logs_code})">${list.logs_code}</a></td>
 						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.product.pro_name}</td>
 						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.company.com_name}</td>
-						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td>
+						                                                   <%-- <td class="py-3 middle" style="vertical-align:middle">${list.logs_quantity}</td> --%>
 						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.warehouse.ware_name}</td>
 						                                                   <td class="py-3 middle" style="vertical-align:middle">${list.employee.emp_name}</td>
 						                                                   <td class="py-3 middle" style="vertical-align:middle">
 						                                                   		<fmt:formatDate value="${list.logs_reg_date}" pattern="yyyy-MM-dd" />
+						                                                   		
 						                                                   </td>
+						                                                   <td class="py-3 middle" style="vertical-align:middle">대기중</td>
 						                                                </tr>
 						                                                </c:forEach>
 						                                             </tbody>

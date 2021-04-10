@@ -30,6 +30,12 @@
 			<id property="logs_code" column="logs_code" />
 			<result property="logs_type" column="logs_type" />
 			<result property="logs_shortage" column="logs_shortage" />
+			<result property="logs_state" column="logs_state" />
+			<association property="product"
+			javaType="com.project.UsERP.vo.ProductVO">
+			<id property="pro_code" column="pro_code" />
+			<result property="pro_name" column="pro_name" />
+		</association>
 		</association>
 		<association property="salarystatement"
 			javaType="com.project.UsERP.vo.SalaryStatementVO">
@@ -63,6 +69,11 @@
 		SELECT * FROM employee WHERE emp_code = #{emp_code}
 	</select>
 	
+	<!-- 김은희 - 내 정보 수정 처리 -->
+	<update id="mypageUpdateAction" parameterType="java.util.Map">
+		UPDATE employee SET emp_photo=#{emp_photo}, emp_jumin=#{emp_jumin}, emp_address=#{emp_address}, emp_tel=#{emp_tel}, emp_phone=#{emp_phone}, emp_email=#{emp_email}, emp_port_no=#{emp_port_no}, emp_account=#{emp_account}, hr_code=#{hr_code}, dep_code=#{dep_code}, emp_authority=#{emp_authority}, emp_bank=#{emp_bank}, emp_cos=#{emp_cos} WHERE emp_code=#{emp_code}
+	</update>
+	
 	<!-- 조명재 - 비밀번호를 생성한다 -->
 	<update id="signinPro" parameterType="String">
 		UPDATE employee SET emp_pwd = #{emp_pwd}, emp_enabled = 1 WHERE emp_code = #{emp_code}
@@ -80,10 +91,11 @@
 	
 	<!-- 강재현 - 알림 -->
 	<select id="logsAlertList" resultMap="AlertMap">
-		SELECT a.*, d.dep_name, l.logs_type
-		    FROM alert a, department d, logistics_statement l
+		SELECT a.*, d.dep_name, l.logs_type, l.logs_state, l.logs_shortage, p.pro_name
+		    FROM alert a, department d, logistics_statement l, product p
 		    WHERE a.dep_code = d.dep_code
 		    AND a.logs_code = l.logs_code
+            AND l.pro_code = p.pro_code
 		    AND alert_state = 0
 		    ORDER BY alert_code DESC
 	</select>
@@ -98,9 +110,23 @@
 		    ORDER BY alert_code DESC   
 	</select>
 	
+	<!-- 강재현 - 알림 -->
+	<select id="stAlertList" resultMap="AlertMap">
+		SELECT a.*, d.dep_name
+		    FROM alert a, department d
+		    WHERE a.dep_code = d.dep_code
+		    AND alert_state = 0
+		    ORDER BY alert_code DESC 
+	</select>
+	
 	<!-- 강재현 - 알림 업데이트 -->
 	<update id="alertUpdate" parameterType="com.project.UsERP.vo.AlertVO">
 		UPDATE alert SET alert_state=#{alert_state}
 			WHERE alert_code = #{alert_code}
 	</update>
+	
+	<!-- 알림 갯수 -->
+	<select id="getCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM alert WHERE alert_state = 0
+	</select>
 </mapper>	

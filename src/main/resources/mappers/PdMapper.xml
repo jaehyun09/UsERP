@@ -316,7 +316,7 @@
 			logs_code,logs_type,logs_reg_date,logs_update_date,logs_state,logs_quantity,
 			logs_shortage,com_code,sto_code,pro_code,emp_code,ware_code)
 		VALUES(logs_seq.nextval,#{logs_type},sysdate,null,#{logs_state},#{logs_quantity},
-				null,#{com_code},decode(#{sto_code},0,null,#{sto_code},#{sto_code}),#{pro_code},#{emp_code},#{ware_code})
+				#{logs_shortage},#{com_code},decode(#{sto_code},0,null,#{sto_code},#{sto_code}),#{pro_code},#{emp_code},#{ware_code})
 	</insert>
 	
 	<!-- 최유성 입고 전표 등록시 회계전표 상태코드 변화 -->
