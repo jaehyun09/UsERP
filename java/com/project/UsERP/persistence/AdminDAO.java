@@ -1,6 +1,7 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.UsERP.vo.AlertVO;
 import com.project.UsERP.vo.EmployeeVO;
@@ -20,7 +21,7 @@ public interface AdminDAO {
 	public EmployeeVO getUsersInfo(String emp_code);
 
 	// 조명재 - 비밀번호를 생성한다
-	public int signinPro(String emp_code, String emp_pwd);
+	public int signinPro(Map<String, Object> map);
 
 	// 강재현 - 알림 리스트
 	public List<AlertVO> accsAlertList();

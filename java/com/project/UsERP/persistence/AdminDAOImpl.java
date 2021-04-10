@@ -1,6 +1,7 @@
 package com.project.UsERP.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +55,9 @@ public class AdminDAOImpl implements AdminDAO {
 
 	// 조명재 - 비밀번호를 생성한다
 	@Override
-	public int signinPro(String emp_code, String emp_pwd) {
+	public int signinPro(Map<String, Object> map) {
 		AdminDAO dao = sqlSession.getMapper(AdminDAO.class);
-		return dao.signinPro(emp_code, emp_pwd);
+		return dao.signinPro(map);
 	}
 
 	// 강재현 - 알림 리스트
