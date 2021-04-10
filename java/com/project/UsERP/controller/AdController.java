@@ -1,5 +1,7 @@
 package com.project.UsERP.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -9,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.UsERP.persistence.AdDAO;
 import com.project.UsERP.service.AdServiceImpl;
+import com.project.UsERP.vo.AccountStatementVO;
+import com.project.UsERP.vo.SalaryStatementVO;
 
 // 회계 관리
 @Controller
@@ -19,6 +24,9 @@ public class AdController {
 
 	@Autowired
 	AdServiceImpl adservice;
+	
+	@Autowired
+	AdDAO addao;
 
 	// 이재홍 & 강재현 - 기초 등록 
 	@RequestMapping("/adBasicReg")
@@ -69,12 +77,18 @@ public class AdController {
 	public String adReport(HttpServletRequest req, Model model) {
 		logger.info("url: 회계 보고서");
 		
-		// 강재현 : 재무상태표
+		
+		
+		List<AccountStatementVO> list = addao.statementList();
+		List<SalaryStatementVO> list1 = addao.salarystatementList();
+		if(list.size() > 0 && list1.size() > 0) {
+			
+		// 강재현 : 재무상태표	
 		adservice.get12(req, model);
 		
-		// 이재홍 : 손익계산서 
+		// 이재홍 : 손익계산서 		
 		adservice.sum(req, model);
-		
+		}
 		return "ad/adReport";
 	}
 

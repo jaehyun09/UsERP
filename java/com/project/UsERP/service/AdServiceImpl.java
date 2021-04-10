@@ -43,6 +43,7 @@ public class AdServiceImpl implements AdService {
 	// 강재현 - 회계보고서 - 재무상태표
 	@Override
 	public void get12(HttpServletRequest req, Model model) {
+		
 		int get1 = addao.get1();
 		int get2 = addao.get2();
 		int get3 = addao.get3();
