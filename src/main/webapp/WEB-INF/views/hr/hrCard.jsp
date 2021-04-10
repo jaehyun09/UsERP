@@ -387,17 +387,17 @@ function addressSearch() {
                            <th class="text-white table-bordered tap py-3 con2" colspan="3"> 인사카드 </th>
                         </tr>
                         <tr>
-                           <th style="vertical-align:middle">* 사진</th>
+                           <th style="vertical-align:middle">사진</th>
                            <td><input id="file" type="file" name="emp_photo"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사번</th>
-                           <td><input type="text" class="form-control" name="emp_code"></td>
+                           <td><input type="text" class="form-control" name="emp_code" maxlength="5"></td>
                            <td><input class="btn btn-outline-info" name="dupChk" type="button" value="중복확인" onclick="confirmCode();"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사원명</th>
-                           <td> <input type="text" class="form-control" name="emp_name"></td>
+                           <td> <input type="text" class="form-control" name="emp_name" maxlength="10"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle"> * 부서명 </th>
@@ -446,11 +446,11 @@ function addressSearch() {
                         </tr>
                         <tr>                                    
                             <th style="vertical-align:middle">근속연수</th>
-                            <td><input type="text" name="emp_cos" class="form-control"></td>
+                            <td><input type="text" name="emp_cos" class="form-control" maxlength="5"></td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle"> * 주민등록번호 </th>
-                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력"></td>
+                           <td><input type="text" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력" maxlength="13"></td>
                         </tr>
                          <tr>
                      <th style="vertical-align:middle">* 주소</th>
@@ -477,11 +477,11 @@ function addressSearch() {
                   </tr> 
                       <tr>
                               <th style="vertical-align:middle">전화번호</th>
-                              <td><input type="tel" name="emp_tel" class="form-control"></td>
+                              <td><input type="tel" name="emp_tel" class="form-control" maxlength="13"></td>
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">* 휴대전화</th>
-                              <td><input type="tel" name="emp_phone" class="form-control"></td>
+                              <td><input type="tel" name="emp_phone" class="form-control" maxlength="15"></td>
                            </tr>
                            <tr>                                    
                               <th style="vertical-align:middle">* 이메일</th>
@@ -489,7 +489,7 @@ function addressSearch() {
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">여권번호</th>
-                              <td><input type="text" name="emp_port_no" class="form-control"></td>
+                              <td><input type="text" name="emp_port_no" class="form-control" maxlength="30"></td>
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">* 은행</th>
@@ -509,7 +509,7 @@ function addressSearch() {
                            </tr>
                            <tr>
                               <th style="vertical-align:middle">* 급여계좌</th>
-                              <td><input type="text" name="emp_account" class="form-control"></td>
+                              <td><input type="text" name="emp_account" class="form-control" maxlength="30"></td>
                            </tr>
                      </table>
                   

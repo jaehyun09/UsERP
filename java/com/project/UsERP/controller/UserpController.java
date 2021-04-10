@@ -90,7 +90,7 @@ public class UserpController {
 		
 		hrService.depList(req, model);
 		hrService.hrCodePosList(req, model);
-		// hrService.hrCardDetail(req, model);
+		service.myPageDetail(req, model);
 
 		return "mypage";
 	}

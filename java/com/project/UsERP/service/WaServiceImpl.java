@@ -58,7 +58,6 @@ public class WaServiceImpl implements WaService {
 	@Override
 	public void waAppInsert(HttpServletRequest req, Model model) {
 		String emp_code = req.getParameter("emp_code");
-		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
 		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
 		String wr_va_start = req.getParameter("wr_va_start");
 		String wr_va_end = req.getParameter("wr_va_end");
@@ -66,7 +65,6 @@ public class WaServiceImpl implements WaService {
 		
 		WorkRecordVO vo = new WorkRecordVO();
 		
-		vo.setDep_code(dep_code);
 		vo.setHr_code(hr_code);
 		vo.setWr_state(0); // 상태 - 0: 미승인
 		vo.setWr_va_reason(wr_va_reason);
@@ -232,6 +230,8 @@ public class WaServiceImpl implements WaService {
 		
 		model.addAttribute("deleteCnt", deleteCnt);
 	}
+	
+	
 	
 	
 

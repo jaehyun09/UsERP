@@ -13,6 +13,9 @@ public interface AdminService {
 	// 조명재 - 사원확인 - 사원확인 전송 클릭
 	public void signinPro(HttpServletRequest req, Model model);
 	
+	// 김은희 - 내 정보 수정 페이지
+	public void myPageDetail(HttpServletRequest req, Model model);
+	
 	// 김은희 - 내 정보 수정 처리
 	public void mypageUpdateAction(MultipartHttpServletRequest req, Model model);
 

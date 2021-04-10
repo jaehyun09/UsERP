@@ -251,16 +251,7 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">부서명</th>
-															<td>	 
-															<div class="form-group">
-															     <select name="dep_code" class="form-control" id="exampleFormControlSelect1" style="font-size:20px">
-															       <option value="0">부서 선택</option>
-								                                <c:forEach var="vo" items="${list3}">
-								                                   <option value="${vo.dep_code}">${vo.dep_name}</option>
-								                                  </c:forEach>
-								                                </select>
-															   </div>
-															 </td>
+															<td><input type="text" class="form-control" name="dep_name" style="font-size:20px" readonly></td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle"> 근태 유형</th>
