@@ -103,10 +103,8 @@ public class AdminServiceImpl implements AdminService {
 		String emp_name = req.getParameter("emp_name");
 		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
 		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
-		String emp_hire_date = req.getParameter("emp_hire_date");
 		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
 		String emp_jumin = req.getParameter("emp_jumin");
-  
 		String address = "";
 		String addcode = req.getParameter("addcode");
 		String add1 = req.getParameter("add1");
@@ -119,7 +117,6 @@ public class AdminServiceImpl implements AdminService {
 		String emp_port_no = req.getParameter("emp_port_no");
 		String emp_account = req.getParameter("emp_account");
 		String emp_bank = req.getParameter("emp_bank");
-		String emp_authority = req.getParameter("emp_authority");
 		
 		try {
 			// null값과 공백 방지
@@ -145,14 +142,11 @@ public class AdminServiceImpl implements AdminService {
 			vo.setEmp_bank(emp_bank);
 			vo.setEmp_account(emp_account);
 			vo.setDep_code(dep_code);
-			vo.setEmp_authority(emp_authority);
+		
 			
-			Map<String, Object> map = new HashMap<String, Object>();
 			
-			map.put("vo",vo);
-			map.put("emp_hire_date",emp_hire_date);
 			
-			int updateCnt = dao.mypageUpdateAction(map);
+			int updateCnt = dao.mypageUpdateAction(vo);
 			
 			model.addAttribute("updateCnt", updateCnt);
 				

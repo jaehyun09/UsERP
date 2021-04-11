@@ -45,40 +45,39 @@
       </association>
    </resultMap>
 
-	<resultMap id="SalsMap" type="com.project.UsERP.vo.SalaryStatementVO">
-		<id property="ss_code" column="ss_code" />
-		<result property="ss_total_sal" column="ss_total_sal" />
-		<result property="ss_state" column="ss_state" />
-		<result property="ss_reg_date" column="ss_reg_date" />
-		<result property="ss_sal_date" column="ss_sal_date" />
-		<result property="sal_code" column="sal_code" />
-		<result property="emp_code" column="emp_code" />
-		<result property="dep_code" column="dep_code" />
-		<result property="hr_code" column="hr_code" />
-		<association property="employee"
-			javaType="com.project.UsERP.vo.EmployeeVO">
-			<id property="emp_code" column="emp_code" />
-			<result property="emp_name" column="emp_name" />
-			<result property="dep_code" column="dep_code" />
-		</association>	
-		<association property="department"
-			javaType="com.project.UsERP.vo.DepartmentVO">
-			<id property="dep_code" column="dep_code" />
-			<result property="dep_name" column="dep_name" />
-		</association>	
-		<association property="hrCode"
-			javaType="com.project.UsERP.vo.HrCodeVO">
-			<id property="hr_code" column="hr_code" />
-			<result property="hr_code_name" column="hr_code_name" />
-		</association>
+	<resultMap id="salaryStatementMap" type="com.project.UsERP.vo.SalaryStatementVO">
+		<id     property="ss_code"			column="ss_code"/>
+		<result property="ss_total_sal"		column="ss_total_sal"/>
+		<result property="ss_reg_date"		column="ss_reg_date"/>
+		<result property="ss_sal_date"		column="ss_sal_date"/>
+		<result property="ss_state"			column="ss_state"/>
 		<association property="salary" javaType="com.project.UsERP.vo.SalaryVO">
-         <id      property="sal_code"      column="sal_code"/>  
-         <result property="sal_basic"   column="sal_basic"/>
-         <result property="sal_night"   column="sal_night"/>
-         <result property="sal_over"      column="sal_over"/>
-         <result property="sal_cos"      column="sal_cos"/>
-         <result property="sal_or"      column="sal_or"/>
-      </association>
+			<id		property="sal_code"		column="sal_code"/>  
+			<result property="sal_basic"	column="sal_basic"/>
+			<result property="sal_over"		column="sal_over"/>
+			<result property="sal_bonus"	column="sal_bonus"/>
+			<result property="sal_meal"		column="sal_meal"/>
+			<result property="sal_vehicle"	column="sal_vehicle"/>
+			<result property="sal_worktax"	column="sal_worktax"/>
+			<result property="sal_resident"	column="sal_resident"/>
+			<result property="sal_hire"		column="sal_hire"/>
+			<result property="sal_pension"	column="sal_pension"/>
+			<result property="sal_health"	column="sal_health"/>
+		</association>
+		<association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
+			<id		property="emp_code"		column="emp_code"/>  
+			<result property="emp_name"		column="emp_name"/>
+			<result property="hr_code"		column="hr_code"/>
+			<result property="dep_code"		column="dep_code"/>
+		</association>
+		<association property="hrCode" javaType="com.project.UsERP.vo.HrCodeVO">
+			<id		property="hr_code"		column="hr_code"/>  
+			<result property="hr_code_name"	column="hr_code_name"/>
+		</association>
+		<association property="department" javaType="com.project.UsERP.vo.DepartmentVO">
+			<id		property="dep_code"		column="dep_code"/>  
+			<result property="dep_name"		column="dep_name"/>
+		</association>
 	</resultMap>
 
 	<!-- 강재현 - 회계보고서 - 재무상태표 상품 -->
@@ -172,23 +171,26 @@
 	</update>
 
 	<!-- 강재현 - 전표 관리 - 급여 전표 -->
-	<select id="salarystatementList" resultMap="SalsMap">
-		SELECT e.emp_name, s.*, h.hr_code_name, d.dep_name
-		    FROM employee e, salary_statement s, hr_code h, department d
-		    WHERE s.emp_code = e.emp_code
-		    AND s.hr_code = h.hr_code
-		    AND s.dep_code = d.dep_code
-		    ORDER BY ss_code DESC
+	<select id="salarystatementList" resultMap="salaryStatementMap">
+		SELECT * 
+			FROM salary_statement ss, salary s, employee e, hr_code h, department d
+			WHERE ss.sal_code = s.sal_code
+			AND ss.emp_code = e.emp_code
+			AND e.hr_code = h.hr_code
+			AND e.dep_code = d.dep_code
+			ORDER BY ss_code DESC
 	</select>
 
 	<!-- 강재현 - 전표 관리 - 급여 전표 상세 페이지 -->
-	<select id="getsaStamentDetail" resultMap="SalsMap">
-		SELECT s.*, e.emp_name, d.dep_name, ss.*
-			FROM salary_statement s,employee e, department d, salary ss
-			WHERE s.emp_code = e.emp_code
-			AND s.dep_code = d.dep_code
-			AND s.sal_code = ss.sal_code
+	<select id="getsaStamentDetail" resultMap="salaryStatementMap">
+		SELECT ss.*, s.*, e.*, h.*, d.* 
+			FROM salary_statement ss, salary s, employee e, hr_code h, department d
+			WHERE ss.sal_code = s.sal_code
+			AND ss.emp_code = e.emp_code
+			AND e.hr_code = h.hr_code
+			AND e.dep_code = d.dep_code
 			AND ss_code = #{ss_code}
+			ORDER BY ss_code DESC
 	</select>
 	
 	<!-- 강재현 - 전표 관리 - 급여 전표 (승인 & 미승인) -->

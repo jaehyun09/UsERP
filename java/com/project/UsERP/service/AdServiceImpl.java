@@ -130,6 +130,7 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public void sacontent(HttpServletRequest req, Model model) {
 		int ss_code = Integer.parseInt(req.getParameter("ss_code"));
+		System.out.println(ss_code + "dkdkdk");
 		SalaryStatementVO list = addao.getsaStamentDetail(ss_code);
 		model.addAttribute("sccontent", list);
 

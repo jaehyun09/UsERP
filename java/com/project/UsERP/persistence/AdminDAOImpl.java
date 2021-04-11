@@ -58,8 +58,8 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	// 김은희 - 내 정보 수정 처리
 	@Override
-	public int mypageUpdateAction(Map<String, Object> map) {
-		return sqlSession.update("com.project.UsERP.persistence.AdminDAO.mypageUpdateAction", map);
+	public int mypageUpdateAction(EmployeeVO vo) {
+		return sqlSession.update("com.project.UsERP.persistence.AdminDAO.mypageUpdateAction", vo);
 	}
 
 	// 조명재 - 비밀번호를 생성한다

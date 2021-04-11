@@ -23,7 +23,7 @@ public interface AdminDAO {
 	public EmployeeVO myPageDetail(String emp_code);
 	
 	// 김은희 - 내 정보 수정 처리
-	public int mypageUpdateAction(Map<String, Object> map);
+	public int mypageUpdateAction(EmployeeVO vo);
 
 	// 조명재 - 비밀번호를 생성한다
 	public int signinPro(Map<String, Object> map);
