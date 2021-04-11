@@ -74,8 +74,8 @@
 	</select>
 	
 	<!-- 김은희 - 내 정보 수정 처리 -->
-	<update id="mypageUpdateAction" parameterType="java.util.Map">
-		UPDATE employee SET emp_photo=#{emp_photo}, emp_jumin=#{emp_jumin}, emp_address=#{emp_address}, emp_tel=#{emp_tel}, emp_phone=#{emp_phone}, emp_email=#{emp_email}, emp_port_no=#{emp_port_no}, emp_account=#{emp_account}, hr_code=#{hr_code}, dep_code=#{dep_code}, emp_authority=#{emp_authority}, emp_bank=#{emp_bank}, emp_cos=#{emp_cos} WHERE emp_code=#{emp_code}
+	<update id="mypageUpdateAction" parameterType="com.project.UsERP.vo.EmployeeVO">
+		UPDATE employee SET emp_photo=#{emp_photo, jdbcType=VARCHAR}, emp_jumin=#{emp_jumin}, emp_address=#{emp_address}, emp_tel=#{emp_tel}, emp_phone=#{emp_phone}, emp_email=#{emp_email}, emp_port_no=#{emp_port_no}, emp_account=#{emp_account}, hr_code=#{hr_code}, dep_code=#{dep_code}, emp_bank=#{emp_bank}, emp_cos=#{emp_cos} WHERE emp_code=#{emp_code}
 	</update>
 	
 	<!-- 조명재 - 비밀번호를 생성한다 -->

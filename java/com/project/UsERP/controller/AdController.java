@@ -141,7 +141,7 @@ public class AdController {
 	public String content1(HttpServletRequest req, Model model) {
 		logger.info("url: 전표 관리 - 급여 전표 승인 + 미승인 상세페이지");
 
-//		adservice.sacontent(req, model);
+		adservice.sacontent(req, model);
 
 		return "ad/ajax/page2";
 	}

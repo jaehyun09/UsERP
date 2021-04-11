@@ -191,11 +191,20 @@
 		</dependency>
 		<!-- JSONArray - JSONObject 설정 종료 -->
 		
+		<!-- Firebase -->
 		<dependency>
   			<groupId>com.google.firebase</groupId>
 			<artifactId>firebase-admin</artifactId>	
 			<version>6.7.0</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>com.google.auto.value</groupId>
+		    <artifactId>auto-value</artifactId>
+		    <version>1.6.5</version>
+		    <scope>provided</scope>
+		</dependency>
+		<!-- Firebase 설정 끝 -->
 		
 		<!-- Test -->
 		<dependency>
