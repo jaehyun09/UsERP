@@ -439,7 +439,7 @@ function addressSearch() {
                      <th style="vertical-align:middle">* 주소</th>
                      <td>
                         <input type="text" name="addcode" id="sample6_postcode"
-                        placeholder=" 우편번호" class="form-control" size=8 style="padding: 3px;"></td> 
+                        placeholder=" 우편번호" class="form-control" size=8></td> 
                         <td><input type="button" onclick="addressSearch();" class="btn btn-outline-info" value="주소찾기">
                      </td>
                   <tr>

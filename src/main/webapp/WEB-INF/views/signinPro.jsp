@@ -6,7 +6,7 @@
 	<c:if test="${enabled == 1}">
 		<script type="text/javascript">
 			alert("이미 사원 확인이 완료되었습니다. \n로그인 화면으로 이동합니다.");
-			window.location="${path}/main";
+			window.location="main";
 		</script>
 	</c:if>
 	<c:if test="${enabled == 0 && updateCnt == 0}}">
@@ -17,8 +17,9 @@
 	</c:if>	
 	<c:if test="${updateCnt == 1}">
 		<script type="text/javascript">
-			alert(${emp_name} + "님 환영합니다.");
-			window.location="${path}/main";
+			var emp_name = ${emp_name};
+			alert(emp_name + "님 환영합니다.");
+			window.location="main";
 		</script>
 	</c:if>
 </body>

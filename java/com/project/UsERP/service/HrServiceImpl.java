@@ -241,7 +241,7 @@ public class HrServiceImpl implements HrService {
 		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
 		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
 		String emp_hire_date = req.getParameter("emp_hire_date");
-		long emp_cos = Integer.parseInt(req.getParameter("emp_cos"));
+		long emp_cos = Integer.parseInt(req.getParameter("emp_cos") == null ? "0" : req.getParameter("emp_cos"));
 		String emp_jumin = req.getParameter("emp_jumin");
   
 		String address = "";
