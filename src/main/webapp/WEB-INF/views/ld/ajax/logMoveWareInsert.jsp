@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     <script src="${project}js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
+    function changeProduct() {
+    	var logscode = document.getElementById("logscode").options[document.getElementById("logscode").selectedIndex].id;
+    	
+    	document.getElementById("prod").value = logscode; 
+    }
+    
     
     /* 현 재고 수량 리턴 AJAX */
     $(function() {
@@ -78,12 +84,12 @@
              	<td class="font-weight-semi-bold border-top-0 py-2 text-dark" 
              		colspan="2"style="vertical-align: middle;"><b>전표번호</b></td>
                 <td class="py-2" colspan="2">
-                	<select class="custom-select custom-select-lg" name="logscode">
+                	<select class="custom-select custom-select-lg" id="logscode" name="logscode" onchange="changeProduct()">
                 	<c:if test="${empty logsCodeVo}"><option value="0"> 전표 없음  </option></c:if>
                 	<c:forEach var="logsCodeVo" items="${logsCodeVo}">
                 		<c:choose>
 	                		<c:when test="${logsCodeVo.logs_code != 0}">
-								<option value="${logsCodeVo.logs_code}">${logsCodeVo.logs_code}</option>
+								<option id="${logsCodeVo.pro_code}" value="${logsCodeVo.logs_code}">${logsCodeVo.logs_code}</option>
 	                		</c:when>
                 		</c:choose>
                 	</c:forEach>

@@ -198,6 +198,7 @@ public class LdController {
 		ldservice.selectProduct(req, model);
 		ldservice.logsCodeShortList(req, model);
 		
+		
 		return "ld/ajax/logMoveWareInsert";
 	}
 	

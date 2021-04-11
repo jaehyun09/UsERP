@@ -8,7 +8,7 @@
 	<!-- Mybatis 설정 시작 -->
 	<!-- 커넥션 풀 -->
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/test14"/>
+		<property name="jndiName" value="java:comp/env/jdbc/test15"/>
 		<property name="resourceRef" value="true"/>
 	</bean>
 	
