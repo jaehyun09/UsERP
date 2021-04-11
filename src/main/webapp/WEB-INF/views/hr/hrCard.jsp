@@ -8,7 +8,23 @@
     <title>Users | Graindashboard UI Kit</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
-
+function hrCardDetail(code) {
+	   
+	   var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=" + code;
+	   
+	   $.ajax({
+	      type:"POST",
+	     data:param,
+	     url:'hrCardDetail',
+	      success: function(data){ 
+	         $('#hrCardDetail').html(data);
+	      },
+	      error: function(){
+	         alert('오류');
+	      }
+	   });
+	}
+	
 function addressSearch() {
       new daum.Postcode(
             {
@@ -318,7 +334,7 @@ function addressSearch() {
                                   <div class="input-group-append">
                                     <i class="gd-search icon-text icon-text-sm"></i>
                                   </div>
-                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text">
+                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
                                 </div>
                                 <br>
                                 <!-- 검색창 끝 -->   
@@ -512,7 +528,7 @@ function addressSearch() {
                                   <div class="input-group-append">
                                     <i class="gd-search icon-text icon-text-sm"></i>
                                   </div>
-                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text">
+                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
                                 </div>
                                 <!-- 검색창 끝 -->   
                                    
@@ -548,7 +564,7 @@ function addressSearch() {
                                   <div class="input-group-append">
                                     <i class="gd-search icon-text icon-text-sm"></i>
                                   </div>
-                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text">
+                                  <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
                                 </div>
                                 <!-- 검색창 끝 -->   
                                    

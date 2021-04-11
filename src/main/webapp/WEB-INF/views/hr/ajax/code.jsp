@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<iframe src="http://localhost:3000/Hrcodeadd" width="1000" height="450">
+<iframe src="http://localhost:3000/Hrcodeadd" width="1260" height="450">
 		                                    
 </iframe>
 </body>

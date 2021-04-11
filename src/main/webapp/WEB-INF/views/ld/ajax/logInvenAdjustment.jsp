@@ -112,44 +112,6 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<!-- 페이지 넘버 이동 -->
-		<div class="card-footer d-block d-md-flex align-items-center d-print-none">
-            <!-- <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div> -->
-            <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination">
-             <ul class="pagination justify-content-end font-weight-semi-bold mb-0">
-              <c:if test="${cnt > 0}">
-              	<c:if test="${startPage > pageBlock}">
-               <li class="page-item">				
-               	<a id="datatablePaginationPrev" class="page-link" href="ldInventoryControl?pageNum=${startPage - pageBlock}" 
-               			aria-label="Previous" onclick="logInvenAdjustment()">
-               	<i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				
-               </li>
-              	</c:if>
-              	
-              	<c:forEach var="i" begin="${startPage}" end="${endPage}">
-              		<c:if test="${i == currentPage}">
-		                 <li class="page-item d-none d-md-block">
-		                 	<a id="datatablePaginationPage0" class="page-link active" href="ldInventoryControl?pageNum=${i}" onclick="logInvenAdjustment()">${i}</a>
-		                 </li>
-              		</c:if>
-              		<c:if test="${i != currentPage}">
-		                 <li class="page-item d-none d-md-block">
-		                 	<a id="datatablePaginationPage0" class="page-link" href="ldInventoryControl?pageNum=${i}">${i}</a>
-		                 </li>
-              		</c:if>
-              	</c:forEach>
-               
-              	<c:if test="${pageCnt > endPage}">
-	                <li class="page-item">
-	                	<a id="datatablePaginationNext" class="page-link" href="ldInventoryControl?pageNum=${startPage + pageBlock}" aria-label="Next">
-	                	<i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				
-	                </li>
-              	</c:if>
-             	</c:if>
-             </ul>
-            </nav>
-        </div>
-		<!-- 페이지 넘버 이동 끝 -->
 		</div>
 		
 		<!-- 신규등록 -->

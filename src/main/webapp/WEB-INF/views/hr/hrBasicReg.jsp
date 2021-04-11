@@ -353,13 +353,13 @@ function hrRegDetail(code) {
                                        <tbody>
                                           <c:forEach var="vo" items="${list}" >
                                           <tr>
+                                             <td class="py-3">${vo.hcg_code}
+                                             </td>
                                              <td class="py-3"><a class="text-dark con2" style="font-size:22px" data-toggle="collapse"
                                                                   href="#multiCollapseExample1" role="button"
                                                                   aria-expanded="false"
                                                                   aria-controls="multiCollapseExample1"
-                                                                  onclick="hrRegDetail(${vo.hcg_code})">${vo.hcg_code}</a>
-                                             </td>
-                                             <td class="py-3">${vo.hcg_name}</td>
+                                                                  onclick="hrRegDetail(${vo.hcg_code})">${vo.hcg_name}</a></td>
                                             <c:if test="${vo.hcg_state == 1}">
 	                                       	 <td class="py-3">사용</td>
 	                                       	</c:if>

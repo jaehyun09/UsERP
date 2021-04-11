@@ -22,40 +22,40 @@
 <body>
 
 <main>
-	<table class="table table-bordered bg-white text-dark ass2 th20">
+	<table class="table table-bordered bg-white center text-dark ass2 th20">
 			<tbody>
 				<tr class="text-white con center">
 					<th colspan="2">${compInfo.com_name}</th>
 				</tr>
 				<tr>
-					<th>NO.</th>
-					<td>${compInfo.com_code}</td>
+					<th style="vertical-align: middle">NO.</th>
+					<td style="vertical-align: middle">${compInfo.com_code}</td>
 				</tr>
 				<tr>
-					<th>구분</th>
+					<th style="vertical-align: middle">구분</th>
 					<c:if test="${compInfo.com_type == 200}">
-						<td>구매거래처</td>
+						<td style="vertical-align: middle">구매거래처</td>
 					</c:if>
 					<c:if test="${compInfo.com_type == 100}">
-						<td>판매거래처</td>
+						<td style="vertical-align: middle">판매거래처</td>
 					</c:if>
 				</tr>
 				<tr>
-					<th>대표자명</th>
-					<td>${compInfo.com_ceo_name}</td>
+					<th style="vertical-align: middle">대표자명</th>
+					<td style="vertical-align: middle">${compInfo.com_ceo_name}</td>
 				</tr>
 				<tr>
-					<th>사업자번호</th>
-					<td>${compInfo.com_reg_no}</td>
+					<th style="vertical-align: middle">사업자번호</th>
+					<td style="vertical-align: middle">${compInfo.com_reg_no}</td>
 
 				</tr>
 				<tr>
-					<th>주소</th>
-					<td>${compInfo.com_address}</td>
+					<th style="vertical-align: middle">주소</th>
+					<td style="vertical-align: middle"> ${compInfo.com_address}</td>
 				</tr>
 				<tr>
-					<th>등록일</th>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${compInfo.com_reg_date}"/></td>
+					<th style="vertical-align: middle">등록일</th>
+					<td style="vertical-align: middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${compInfo.com_reg_date}"/></td>
 				</tr>
 			</tbody>
 		</table><br><br><br>

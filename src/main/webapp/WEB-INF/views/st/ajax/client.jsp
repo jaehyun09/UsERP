@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<iframe src="http://localhost:3000/Cllientadd" width="1095" height="550">
+<iframe src="http://localhost:3000/Cllientadd" width="1260" height="490">
 		                                    
 </iframe>
 </body>

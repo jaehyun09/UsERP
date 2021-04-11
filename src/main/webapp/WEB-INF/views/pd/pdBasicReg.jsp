@@ -55,24 +55,6 @@ function content(code) {
    });
 }
 
-/* 상품 상세페이지 */
-function content2(code) {
-	
-	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&pro_code=" + code;
-	
-   $.ajax({
-      type:"POST",
-	  data:param,
-	  url:'pdproContent',
-      success: function(data){ 
-         $('#content2').html(data);
-      },
-      error: function(){
-         alert('오류');
-      }
-   });
-}
-
 </script> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -429,8 +411,7 @@ function content2(code) {
 																	<a class="text-dark con2" data-toggle="collapse" style="font-size:22px"
 																	   href="#multiCollapseExample2" role="button"
 																	   aria-expanded="false"
-																	   aria-controls="multiCollapseExample2"
-																	   onclick="content2(${product.pro_code})">${product.pro_code}</a>
+																	   aria-controls="multiCollapseExample2">${product.pro_code}</a>
 																</td>
                                                 <td class="py-3" style="vertical-align:middle">${product.pro_name}</td>
                                                 <td class="py-3" style="vertical-align: middle"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_pur_price}"/></td>

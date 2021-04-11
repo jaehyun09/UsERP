@@ -150,7 +150,7 @@
 			<tr>
 				<td class="py-3" colspan="2" style="vertical-align: middle;"><b>수량</b></td>
 				<td class="py-3" colspan="2">
-					<input class="form-control form-control-icon-text" id="amount" name="amount" placeholder="수량" type="text">
+					<input class="form-control form-control-icon-text" id="amount" name="amount" placeholder="수량" type="text" style="font-size:20px">
 				</td>
 			</tr>
 			<tr>

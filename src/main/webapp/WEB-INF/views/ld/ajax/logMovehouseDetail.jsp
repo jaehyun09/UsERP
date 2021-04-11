@@ -30,7 +30,7 @@
 	<input type = "hidden" name = "warecode" value = "${vo.ware_code}">
 	<input type = "hidden" name = "empcode" value = "${vo.emp_code}">
 	<input type = "hidden" name = "shortage" value = "${vo.logs_shortage}">
-       <table class="table table-bordered bg-white text-dark ass2 th20">
+       <table class="table table-bordered bg-white center text-dark ass2 th20">
                <tr class="text-white con center">
                   <th colspan="2">재고 이동 승인</th>
                </tr>

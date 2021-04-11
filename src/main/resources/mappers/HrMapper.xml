@@ -209,7 +209,7 @@
 	</select>
 	
 	<!-- 김은희 - 인사카드 상세페이지 조회 -->
-	<select id="hrCardDetail" resultMap="hrCardMap">
+	<select id="hrCardDetail" resultMap="hrCardMap" parameterType="String">
 		SELECT e.emp_code, e.emp_name, d.dep_name, c.hr_code_name, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
 				e.emp_tel, e.emp_phone, e.emp_email, e.emp_bank, e.emp_account 
 		  FROM employee e, department d, hr_code c 
@@ -232,20 +232,20 @@
  	
 	<!-- 조명재 - 휴직자 조회 -->
 	<select id="hrLeaveList" resultMap="appointHistoryMap">
-		SELECT * 
-		  FROM appoint_history a, employee e 
-		 WHERE a.emp_code = e.emp_code 
-		   AND e.dep_code = 600 
-		 ORDER BY a.ap_date DESC
+		SELECT a.*, d.dep_name, e.emp_name FROM appoint_history a, department d, employee e
+			WHERE a.emp_code = e.emp_code
+			AND e. dep_code = d.dep_code
+			AND a.ap_cur_dep='휴직'
+			ORDER BY a.ap_date DESC
 	</select>
 	
 	<!-- 조명재 - 퇴직자 조회 -->
 	<select id="hrRetireList" resultMap="appointHistoryMap">
-		SELECT * 
-		  FROM appoint_history a, employee e 
-		 WHERE a.emp_code = e.emp_code 
-		   AND e.dep_code = 700 
-		 ORDER BY a.ap_date DESC
+		SELECT a.*, d.dep_name, e.emp_name FROM appoint_history a, department d, employee e
+			WHERE a.emp_code = e.emp_code
+			AND e. dep_code = d.dep_code
+			AND a.ap_cur_dep='퇴직'
+			ORDER BY a.ap_date DESC
 	</select>
 	
 	<!-- 조명재 - 급여 내역 -->

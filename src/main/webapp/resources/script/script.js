@@ -11,7 +11,7 @@ function signinCheck() {
 		$("input[name='emp_pwd']").focus();
 		return false;
 	} else if(!$("input[name='re_emp_pwd']").val()) {
-		alert("비밀번호를 입력하세요.");
+		alert("비밀번호 확인을 입력하세요.");
 		$("input[name='re_emp_pwd']").focus();
 		return false;
 	} else if($("input[name='emp_pwd']").val() != $("input[name='re_emp_pwd']").val()) {

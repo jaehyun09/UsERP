@@ -185,7 +185,7 @@
                          	<div class="input-group-append">
                              <i class="gd-search icon-text icon-text-sm" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i>
                            	</div>
-                           	<input class="form-control form-control-icon-text" placeholder="상품명 검색" id="proname" name="proname" type="text" >
+                           	<input class="form-control form-control-icon-text" placeholder="상품명 검색" id="proname" name="proname" type="text" style="font-size:20px">
                          </div>
 					</td>
 				</tr>

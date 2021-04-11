@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<iframe src="http://localhost:3000/Warehouseadd" width="1095" height="400">
+<iframe src="http://localhost:3000/Warehouseadd" width="1260" height="430">
 		                                    
 </iframe>
 </body>

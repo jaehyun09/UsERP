@@ -92,9 +92,9 @@ public class AdminServiceImpl implements AdminService {
 	public void mypageUpdateAction(MultipartHttpServletRequest req, Model model) {
 		
 		// * 경로 바꿔주세요
-		// String uploadPath = "C:\\Dev76\\workspace\\upload\\";
+		 String uploadPath = "C:\\Dev76\\workspace\\upload\\";
 		
-		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images\\";
+//		String uploadPath = "C:\\eclipse-workspace\\UsERP\\src\\main\\webapp\\resources\\images\\";
 		
 		MultipartFile image = req.getFile("emp_photo");
 		String emp_photo = image.getOriginalFilename();

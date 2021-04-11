@@ -223,11 +223,8 @@
 												<div class="form-group">
 													<label for="emp_pwd">비밀번호</label> <input id="emp_pwd"
 														type="password" class="form-control" name="emp_pwd">
-													<div class="text-right">
-														<a href="password-reset.html" class="small"> 비밀번호 찾기 </a>
-													</div>
 												</div>
-
+												<br>
 												<div class="form-group no-margin">
 													<input class="btn btn-primary btn-block" type="submit"
 														value="로그인">

@@ -18,23 +18,6 @@
     <link rel="stylesheet" href="${project}css/graindashboard.css">
     
 <script type="text/javascript">
-/* 입고 내역 상셍페이지 */
-function content1(code) {
-	
-	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=${sessionScope.mem_id}&logs_code=" + code;
-	
-   $.ajax({
-      type:"POST",
-	  data:param,
-	  url:'pdRecStatusAjax',
-      success: function(data){ 
-         $('#content1').html(data);
-      },
-      error: function(){
-         alert('오류');
-      }
-   });
-}
 
 /* 입고 전표 등록 */
 function content2(code) {

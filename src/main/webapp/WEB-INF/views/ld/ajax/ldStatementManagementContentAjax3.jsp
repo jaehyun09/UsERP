@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div>
-	<table class="table table-bordered bg-white text-dark ass2 th20">
+	<table class="table table-bordered center bg-white text-dark ass2 th20">
 		<tbody>
 		   <tr class="text-white con center">
 		      <th colspan="2" style="width:20%;">물류 전표</th>
