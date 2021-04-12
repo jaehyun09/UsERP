@@ -264,7 +264,7 @@ public class HrServiceImpl implements HrService {
 				emp_photo = "avatar.jpg";
 			}
 		
-			image.transferTo(new File(uploadPath + image));
+			image.transferTo(new File(uploadPath + emp_photo));
 			
 			EmployeeVO vo = new EmployeeVO();
 			

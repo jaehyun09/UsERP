@@ -69,6 +69,27 @@ function addressSearch() {
                }
             }).open();
    }
+
+	$(function() {
+		$("#filename").on('change', function(){
+			readURL(this);
+		});
+	});
+	
+	function readURL(input) {
+		if(input.files && input.files[0]) {
+			var reader = new FileReader();
+			
+			reader.onload = function (e) {
+				$('#preImage').attr('src', e.target.result);
+			}
+			
+			reader.readAsDataURL(input.files[0]);
+		} else {
+			$('#preImage').attr('src', 'https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image');
+		}
+	}
+	
 </script>
    
    
@@ -383,11 +404,14 @@ function addressSearch() {
                      <input type="hidden" name="hiddenEmp_code" value="0">
                      <table class="table bg-white text-dark center ass2" style="text-align:center">
                         <tr>
-                           <th class="text-white table-bordered tap py-3 con2" colspan="3"> 인사카드 </th>
+                           <th class="text-white table-bordered tap py-3 con2" colspan="3"> 인사카드 등록</th>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">사진</th>
-                           <td><input id="file" type="file" name="emp_photo"></td>
+                           <td align="left">
+				 			<img id="preImage" width="150px" height="150px" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image"/>
+                           	<input id="filename" type="file" accept="image/*" name="emp_photo" onchange="setThumbnail(event);">
+                           </td>
                         </tr>
                         <tr>
                            <th style="vertical-align:middle">* 사번</th>

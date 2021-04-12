@@ -235,13 +235,13 @@
 											</form>
 										</c:if>
 										<c:if test="${sessionScope.mem_id != null}">
-                           ${sessionScope.mem_name}님 환영합니다.
+                           <center><strong>${sessionScope.mem_name}</strong>님 환영합니다.</center>
                         </c:if>
 									</div>
 								</div>
 								<footer class="footer mt-3">
 									<div class="container-fluid">
-										<div class="footer-content text-center small">
+										<div class="footer-content text-center small center">
 											<span class="text-muted">&copy; 2021. Team UsERP. all
 												rights reserved.</span>
 										</div>
