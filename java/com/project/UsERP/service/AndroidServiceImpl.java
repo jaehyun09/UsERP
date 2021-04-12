@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.project.UsERP.persistence.AndroidDAO;
+import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.EmployeeVO;
 
 @Service
@@ -45,4 +46,14 @@ public class AndroidServiceImpl implements AndroidService {
 		return map;
 	}
 	
-}
+	// 이재홍 - 손익계산서
+	// @Override
+	// public AccountStatementVO calculation(HttpServletRequest req) {
+		
+		// return 
+		
+	}
+
+	
+	
+

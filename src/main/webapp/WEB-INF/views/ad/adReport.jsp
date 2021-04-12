@@ -341,7 +341,6 @@
 															<td class="py-3"><b>매출원가</b></td>
 															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sum1}" /></td>
 														<tr>
-															
 															<td class="py-3"><b>매출총이익</b></td>
 															<td class="py-3"><fmt:formatNumber type="number" maxFractionDigits="3" value="${sum - sum1}" /></td>
 														</tr>

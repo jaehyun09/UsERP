@@ -115,7 +115,7 @@
 			FROM account_statement
 			WHERE accs_type = 2
 	        OR accs_type = 1
-	        OR accs_state = 1
+	        OR accs_state =	 1
 	</select>
 	
 	<!-- 이재홍 - 회계보고서 - 손익계산서 매출원가 -->

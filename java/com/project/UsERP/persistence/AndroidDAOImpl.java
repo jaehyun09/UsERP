@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.EmployeeVO;
 
 @Repository
@@ -18,5 +19,13 @@ public class AndroidDAOImpl implements AndroidDAO {
 		AndroidDAO dao = sqlSession.getMapper(AndroidDAO.class);
 		return dao.getEmpInfo(emp_code);
 	}
+	
+	// 이재홍 - 손익계산서
+	@Override
+	public AccountStatementVO getIncome() {
+		AndroidDAO dao = sqlSession.getMapper(AndroidDAO.class);
+		return dao.getIncome();
+	}
+	
 	
 }
