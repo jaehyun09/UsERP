@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.google.firebase.messaging.FirebaseMessagingException;
+
 public interface AdService {
 
 	// 이재홍 - 기초 등록 - 계좌 리스트
@@ -37,7 +39,7 @@ public interface AdService {
 	public void sacontent(HttpServletRequest req, Model model);
 
 	// 강재현 - 전표 관리 - 급여 전표 (승인)
-	public void sastatmentAction(HttpServletRequest req, Model model);
+	public void sastatmentAction(HttpServletRequest req, Model model)  throws FirebaseMessagingException;
 
 	// 강재현 - 전표 관리 - 급여 전표 (미승인)
 	public void sastatmentdelAction(HttpServletRequest req, Model model);

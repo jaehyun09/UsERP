@@ -1,15 +1,26 @@
 package com.project.UsERP.service;
 
+import java.io.FileInputStream;
 import java.sql.Timestamp;
-
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.client.RestTemplate;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.firebase.messaging.FirebaseMessagingException;
 import com.project.UsERP.persistence.AdDAO;
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
@@ -138,7 +149,7 @@ public class AdServiceImpl implements AdService {
 
 	// 강재현 - 전표 관리 - 급여 전표 (승인)
 	@Override
-	public void sastatmentAction(HttpServletRequest req, Model model) {
+	public void sastatmentAction(HttpServletRequest req, Model model) throws FirebaseMessagingException {
 		int ss_code = Integer.parseInt(req.getParameter("ss_code"));
 		System.out.println("ss_code : " + ss_code);
 		SalaryStatementVO vo = new SalaryStatementVO();
@@ -146,9 +157,59 @@ public class AdServiceImpl implements AdService {
 		vo.setSs_sal_date(new Timestamp(System.currentTimeMillis()));
 		vo.setSs_code(ss_code);
 		int updateCnt = addao.saupdatestatment(vo);
+		
+		try {
 
+			// 경로에 따라서 줘라
+			String path = "/Users/dani/workspace11/UsERP/src/main/webapp/resources/google/userp-88ec6-firebase-adminsdk-vry15-2ff62ee2af.json";
+			String MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
+			String[] SCOPES = { MESSAGING_SCOPE };
+			System.out.print(MESSAGING_SCOPE);
+			GoogleCredential googleCredential = GoogleCredential.fromStream(new FileInputStream(path))
+					.createScoped(Arrays.asList(SCOPES));
+			googleCredential.refreshToken();
 
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("content-type", MediaType.APPLICATION_JSON_VALUE);
+			headers.add("Authorization", "Bearer " + googleCredential.getAccessToken());
 
+			Map<String, Object> notification = new HashMap<>();
+			notification.put("body", "급여어어어");
+			notification.put("title", "돈들어왔따따");
+			
+			// dT-Osj9QRPSsToMrJXDiVh:APA91bGconETyEiDkizy2SlLNDAeA0secdFWrF6wNcxUjy8HQV6FbuCAblxItkl_8rDIANI9IIN9Oa7nIWCCvFmQZpnukNFMRTMSscoBtExK7e7aJf5ii_2hsLCcvZss36MteHaf9UxW
+			Map<String, Object> message = new HashMap<>(); // dpZ2EI32TMi9htt_dJAELC:APA91bGdKUoO0R7U8Ae7XlPtQPC5I2qtFo2Zhgo8GfpWg6cwTFxkaBGKBjZZbuIQa5KRaHPZJuk4zqlXioxPwC2DO7KtrMh5L9IAr9JMtrcdA_6HM7PG1ArNpGQj9fmccxggVG4ifibN
+			// 기기별 토큰 주입
+			message.put("token",
+					"dpZ2EI32TMi9htt_dJAELC:APA91bGdKUoO0R7U8Ae7XlPtQPC5I2qtFo2Zhgo8GfpWg6cwTFxkaBGKBjZZbuIQa5KRaHPZJuk4zqlXioxPwC2DO7KtrMh5L9IAr9JMtrcdA_6HM7PG1ArNpGQj9fmccxggVG4ifibN");
+			message.put("notification", notification);
+			
+			Map<String, Object> jsonParams = new HashMap<>();
+			jsonParams.put("message", message);
+
+			HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(jsonParams, headers);
+			RestTemplate rt = new RestTemplate();
+
+			// Firebase 프로젝트 ID별 삽입
+			ResponseEntity<String> res = rt.exchange("https://fcm.googleapis.com/v1/projects/userp-88ec6/messages:send",
+					HttpMethod.POST, httpEntity, String.class);
+
+//	            if (res.getStatusCode() != HttpStatus.OK) {
+//	                log.debug("FCM-Exception");
+//	                log.debug(res.getStatusCode().toString());
+//	                log.debug(res.getHeaders().toString());
+//	                log.debug(res.getBody().toString());
+//	                
+//	            } else {
+//	                log.debug(res.getStatusCode().toString());
+//	                log.debug(res.getHeaders().toString());
+//	                log.debug(res.getBody().toLowerCase());
+//	                
+//	            }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
 		model.addAttribute("num", ss_code);
 		model.addAttribute("updateCnt", updateCnt);
 

@@ -191,20 +191,48 @@
 		</dependency>
 		<!-- JSONArray - JSONObject 설정 종료 -->
 		
-		<!-- Firebase -->
-		<dependency>
-  			<groupId>com.google.firebase</groupId>
-			<artifactId>firebase-admin</artifactId>	
-			<version>6.7.0</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>com.google.auto.value</groupId>
-		    <artifactId>auto-value</artifactId>
-		    <version>1.6.5</version>
-		    <scope>provided</scope>
-		</dependency>
-		<!-- Firebase 설정 끝 -->
+		<!-- FCM 설정 -->
+      <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>6.5.0</version>
+      </dependency>
+      <dependency>
+       <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>1.7.5</version>
+      </dependency>
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>1.7.5</version>
+      </dependency>
+      <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>1.26.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client</artifactId>
+            <version>1.26.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client</artifactId>
+            <version>1.26.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson2</artifactId>
+            <version>1.26.0</version>
+        </dependency>  
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.0.1-jre</version>
+        </dependency>
+      <!-- FCM 설정 종료 -->
 		
 		<!-- Test -->
 		<dependency>

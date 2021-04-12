@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.firebase.messaging.FirebaseMessagingException;
 import com.project.UsERP.service.AndroidService;
 
 @Controller
@@ -32,4 +33,14 @@ public class AndroidController {
 		return map;
 	}
 	
+	// button
+	@RequestMapping("button")
+	public String button() throws FirebaseMessagingException {
+		logger.info("url: 안드로이드 알림");
+		
+		service.asFcmTest();
+		
+		return "main";
+	}
+
 }

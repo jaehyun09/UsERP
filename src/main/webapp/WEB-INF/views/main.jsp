@@ -238,8 +238,9 @@
 											</form>
 										</c:if>
 										<c:if test="${sessionScope.mem_id != null}">
-                           ${sessionScope.mem_name}님 환영합니다.
-                        </c:if>
+                        				   ${sessionScope.mem_name}님 환영합니다.
+                        				</c:if>
+                        					<button type="button" onclick="location.href='${path}/button'" class="btn btn-outline-info">알림버튼</button>
 									</div>
 								</div>
 								<footer class="footer mt-3">
