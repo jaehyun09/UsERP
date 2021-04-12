@@ -8,6 +8,41 @@ function CardCheck() {
 		return false;
 	}
 	
+	if($("select[name='dep_code']").val() == "0") {
+		alert("부서를 선택하세요.");
+		
+		$("select[name='dep_code'] > option)").focus();
+		return false;
+	}
+	
+	if(document.hrCardform.emp_code.value.length == 0 ) {
+		alert("사번을 입력하세요.");
+		
+		document.hrCardform.emp_code.focus();
+		return false;
+	}
+	
+	if(document.hrCardform.emp_code.value.length == 0 ) {
+		alert("사번을 입력하세요.");
+		
+		document.hrCardform.emp_code.focus();
+		return false;
+	}
+	
+	if(document.hrCardform.emp_code.value.length == 0 ) {
+		alert("사번을 입력하세요.");
+		
+		document.hrCardform.emp_code.focus();
+		return false;
+	}
+	
+	if(document.hrCardform.emp_code.value.length == 0 ) {
+		alert("사번을 입력하세요.");
+		
+		document.hrCardform.emp_code.focus();
+		return false;
+	}
+	
 	if(!document.hrCardform.emp_name.value) {
 		alert("사원명을 입력하세요.");
 		document.hrCardform.emp_name.focus();
