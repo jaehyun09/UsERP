@@ -271,7 +271,7 @@
 													<tr>
 														<th>* 주민등록번호</th>
 														<td>
-															<input type="password" class="form-control" name="emp_jumin" placeholder="'-'없이 숫자만 입력">
+															<input type="password" class="form-control" name="emp_jumin" placeholder="- 없이 숫자만 입력">
 														</td>
 													</tr>
 												</table>

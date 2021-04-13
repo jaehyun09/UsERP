@@ -33,14 +33,19 @@ public class UserpController {
 	@RequestMapping("/")
 	public String main(HttpServletRequest req, Model model) {
 		logger.info("url: 메인 화면");
+		
+		service.weatherWidget(req, model);
 
 		return "main";
 	}
 
 	// 강재현 - 메인 화면
+	// 김은희 - 파이썬 날씨 정보 위젯 
 	@RequestMapping("/main")
 	public String main2(HttpServletRequest req, Model model) {
 		logger.info("url: 메인 화면");
+		
+		service.weatherWidget(req, model);
 
 		return "main";
 	}
@@ -104,5 +109,6 @@ public class UserpController {
 		
 		return "mypageUpdateAction";
 	}
+	
 
 }

@@ -18,5 +18,7 @@ public interface AdminService {
 	
 	// 김은희 - 내 정보 수정 처리
 	public void mypageUpdateAction(MultipartHttpServletRequest req, Model model);
-
+	
+	// 김은희 - 파이썬 날씨 정보 위젯 
+	public void weatherWidget(HttpServletRequest req, Model model);
 }

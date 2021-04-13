@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="${project}css/graindashboard.css">
 </head>
 
+<!-- 파이썬 css -->
+<link rel="stylesheet" href="${path}/resources/weather.css">
+
 <body class="has-sidebar has-fixed-sidebar-and-header">
 <jsp:include page="./common/header.jsp"/>
 	<main class="main">
@@ -211,7 +214,7 @@
 										<c:if test="${sessionScope.mem_id == null}">
 											<h4 class="card-title">로그인</h4>
 
-											<form action="loginPro" method="post" name="mainform"
+											<form action="main" method="post" name="mainform"
 												onsubmit="return mainCheck();">
 												<input type="hidden" name="${_csrf.parameterName}"
 													value="${_csrf.token}">
@@ -235,10 +238,20 @@
 											</form>
 										</c:if>
 										<c:if test="${sessionScope.mem_id != null}">
-                           <center><strong>${sessionScope.mem_name}</strong>님 환영합니다.</center>
-                        </c:if>
+                          	 				<center>
+                           						<strong><span class="h4">${sessionScope.mem_name}</span></strong>님 환영합니다.
+                           					</center><br>
+                      						
+                      						<!-- 김은희 - 파이썬 날씨 정보 위젯 -->
+		                                   	<center>
+		                                   		<div style="width:410px; height:300px; ">
+													${weatherWidget}
+												</div>
+	                        				</center>
+                        				</c:if>
 									</div>
 								</div>
+								
 								<footer class="footer mt-3">
 									<div class="container-fluid">
 										<div class="footer-content text-center small center">

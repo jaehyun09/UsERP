@@ -192,7 +192,7 @@
 	
 	<!-- 김은희 - 인사카드 조회 -->
 	<select id="hrCardList" resultMap="hrCardMap">
-		SELECT e.emp_code, d.dep_name, c.hr_code_name, e.emp_name, e.emp_hire_date
+		SELECT e.emp_photo, e.emp_code, d.dep_name, c.hr_code_name, e.emp_name, e.emp_hire_date
 		  FROM employee e, department d, hr_code c
 		 WHERE e.dep_code = d.dep_code
 		 AND e.hr_code = c.hr_code 
@@ -210,12 +210,21 @@
 	
 	<!-- 김은희 - 인사카드 상세페이지 조회 -->
 	<select id="hrCardDetail" resultMap="hrCardMap" parameterType="String">
-		SELECT e.emp_code, e.emp_name, d.dep_name, c.hr_code_name, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
+		SELECT e.emp_photo, e.emp_code, e.emp_name, d.dep_name, c.hr_code_name, e.emp_hire_date, e.emp_cos, e.emp_jumin, e.emp_address,
 				e.emp_tel, e.emp_phone, e.emp_email, e.emp_bank, e.emp_account 
 		  FROM employee e, department d, hr_code c 
 		 WHERE e.dep_code = d.dep_code 
 		   AND e.hr_code = c.hr_code 
 		   AND emp_code = #{emp_code}
+	</select>
+	
+	<!-- 조명재 - 인사카드 등록 부서 목록 조회 -->
+	<select id="notdepList" resultType="com.project.UsERP.vo.DepartmentVO">
+		SELECT * 
+			FROM department 
+			WHERE dep_name NOT LIKE '%'||'휴직'||'%'
+			AND dep_name NOT LIKE '%'||'퇴직'||'%'
+			ORDER BY dep_code 
 	</select>
 	
 	<!-- 김은희 - 인사카드 등록 -->

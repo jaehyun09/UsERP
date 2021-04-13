@@ -55,7 +55,7 @@
 		   </tr>
 	   </tbody>
 	</table>
-	<button class="btn btn-outline-info" type="button" onclick="setConfirm('${emp_code}', '${vo.emp_name}', '${vo.department.dep_name}');">확인</button>
+	<button class="btn btn-outline-info" type="button" onclick="setConfirm('${emp_code}', '${vo.emp_name}', '${vo.department.dep_name}','${vo.department.dep_code}');">확인</button>
 </c:if>
 </form>
 </div>

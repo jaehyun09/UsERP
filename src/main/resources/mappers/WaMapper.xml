@@ -83,7 +83,7 @@
 	
 	<!-- 김은희 - 근태 신청 사번확인  -->
  	<select id="empComfirm" parameterType="String" resultMap="empMap">
- 		SELECT e.emp_code, e.emp_name, d.dep_name
+ 		SELECT e.emp_code, e.emp_name, d.dep_name, d.dep_code
  		  FROM employee e, department d
  		 WHERE e.dep_code = d.dep_code
  		   AND e.emp_code = #{emp_code}

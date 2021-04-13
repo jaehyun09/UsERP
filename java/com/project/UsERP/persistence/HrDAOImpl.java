@@ -25,13 +25,13 @@ public class HrDAOImpl implements HrDAO {
 	public List<HrCodeGroupVO> hrCgList() {
 		return sqlSession.selectList("com.project.UsERP.persistence.HrDAO.hrCgList");
 	}
-	
+
 	// 김은희 - 인사 코드 그룹 조회 상세페이지
 	@Override
 	public List<HrCodeVO> hrRegDetail(int hcg_code) {
 		return sqlSession.selectList("com.project.UsERP.persistence.HrDAO.hrRegDetail", hcg_code);
 	}
-	
+
 	// 김은희 - 인사 코드 조회
 	@Override
 	public List<HrCodeVO> hrCList() {
@@ -44,15 +44,14 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.depList();
 	}
-	
-	
+
 	// 조명재 - 인사 코드 조회 - 직급
 	@Override
 	public List<HrCodeVO> hrCodePosList() {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrCodePosList();
 	}
-	
+
 	// 김은희 - 인사 코드 등록
 	@Override
 	public int hrCodeInsert(HrCodeVO vo) {
@@ -64,73 +63,80 @@ public class HrDAOImpl implements HrDAO {
 	public int hrCodeCheck(int hr_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.hrCodeCheck", hr_code);
 	}
-	
+
 	// 조명재 - 인사 발령 목록 갯수
 	@Override
 	public int getAppointmentCnt() {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.getAppointmentCnt();
 	}
-	
+
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령 조회
 	@Override
 	public List<AppointHistoryVO> appointmentList(Map<String, Object> map) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.appointmentList(map);
 	}
-	
+
 	// 조명재 - 인사 발령(중메뉴) - 사원번호 확인
 	@Override
 	public EmployeeVO hrConfirmAppoint(String emp_code) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrConfirmAppoint(emp_code);
 	}
-	
+
 	// 조명재 - 인사 발령(중메뉴) - 현재 부서를 반환한다
 	@Override
 	public String getDepName(int dep_code) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.getDepName(dep_code);
 	}
-	
+
 	// 조명재 - 인사 발령(중메뉴) - 현재 직급을 반환한다
 	@Override
 	public String getCodeName(int hr_code) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.getCodeName(hr_code);
 	}
-	
+
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령
 	@Override
 	public int hrAppointmentPro(AppointHistoryVO vo) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrAppointmentPro(vo);
 	}
-	
+
 	// 김은희 - 인사카드 조회
 	@Override
 	public List<EmployeeVO> hrCardList() {
 		return sqlSession.selectList("com.project.UsERP.persistence.HrDAO.hrCardList");
 	}
-	
+
 	// 김은희 - 인사카드 상세페이지 조회
 	@Override
 	public EmployeeVO hrCardDetail(String emp_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.hrCardDetail", emp_code);
 	}
-	
+
+	// 조명재 - 휴직 퇴직 부서 조회
+	@Override
+	public List<DepartmentVO> notdepList() {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.notdepList();
+	}
+
 	// 김은희 - 인사카드 등록
 	@Override
 	public int hrCardInsert(Map<String, Object> map) {
 		return sqlSession.insert("com.project.UsERP.persistence.HrDAO.hrCardInsert", map);
 	}
-	
+
 	// 김은희 - 인사 카드 사번 중복확인
 	@Override
 	public int codeCheck(String emp_code) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.codeCheck", emp_code);
 	}
-	
+
 	// 김은희 - 인사 코드명 중복확인
 	@Override
 	public int hrConfirmHrName(String hr_code_name) {
@@ -143,40 +149,40 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrLeaveList();
 	}
-	
+
 	// 조명재 - 퇴직자 조회
 	@Override
 	public List<AppointHistoryVO> hrRetireList() {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrRetireList();
 	}
-	
+
 	// 조명재 - 급여 내역
 	@Override
 	public List<SalaryStatementVO> hrSalaryList() {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrSalaryList();
 	}
-	
+
 	// 조명재 - 야근 시간을 반환한다
 	@Override
 	public int getOverTimes(Map<String, Object> map) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.getOverTimes(map);
 	}
-	
+
 	// 조명재 - 급여 세부사항 등록
 	@Override
 	public int salaryDetailIns(Map<String, Object> map) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.salaryDetailIns(map);
 	}
-	
+
 	// 조명재 - 급여 전표 등록
 	@Override
 	public int salaryStatement(Map<String, Object> map) {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.salaryStatement(map);
 	}
-	
+
 }

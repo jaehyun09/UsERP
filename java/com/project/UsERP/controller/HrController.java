@@ -139,6 +139,7 @@ public class HrController {
 		hrService.hrCardList(req, model);
 		hrService.hrLeaveList(req, model);
 		hrService.hrRetireList(req, model);
+		hrService.notdepList(req, model);
 		
 		return "hr/hrCard";
 	}

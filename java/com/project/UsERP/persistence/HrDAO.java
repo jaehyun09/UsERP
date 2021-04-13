@@ -63,6 +63,9 @@ public interface HrDAO {
 	// 김은희 - 인사카드 상세페이지 조회
 	public EmployeeVO hrCardDetail(String emp_code);
 	
+	// 조명재 - 휴직 퇴직 부서 조회
+	public List<DepartmentVO> notdepList();
+	
 	// 김은희 - 인사카드 등록
 	public int hrCardInsert(Map<String, Object> map);
 	

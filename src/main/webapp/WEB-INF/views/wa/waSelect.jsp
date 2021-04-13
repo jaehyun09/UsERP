@@ -15,7 +15,7 @@
 		
 			if( id == "null") {
 				alert ("로그인 후 다시 시도하세요.");
-			} else {
+			} else  {
 				location.href='${path}/waStartClick';
 			}
 			
@@ -37,14 +37,13 @@
 		// 김은희 - 야근 버튼 클릭시
 	    function confirmNight() {
 			var id = '<%=(String) session.getAttribute("mem_id")%>';
-		
+			var select = document.getElementById('cm_night_time');
+			var nightTime = select.options[select.selectedIndex].value;
 			if( id == "null") {
 				alert ("로그인 후 다시 시도하세요.");
-			} else {
-				var select = document.getElementById('cm_night_time');
-				var nightTime = select.options[select.selectedIndex].value;
-				
-				
+			} else if(nightTime == 0){
+				alert("시간을 선택해주세요");
+			}else {
 				location.href='${path}/waNightClick?cm_night_time='+ nightTime;
 				
 			}
@@ -345,7 +344,11 @@
 											      	<td class="py-3">${vo.employee.emp_code}</td>
 											      	<td class="py-3">${vo.employee.emp_name}</td>
 													<td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_start}"/></td>
-											        <td class="py-3"><fmt:formatDate pattern="HH:mm" value="${vo.cm_end}"/></td>
+											        <td class="py-3">
+												        <c:if test="${vo.cm_night_time == 0}">
+												        	<fmt:formatDate pattern="HH:mm" value="${vo.cm_end}"/>
+												        </c:if>
+											        </td>
 											      <c:if test="${vo.cm_night_time == 1}">
 											        <td class="py-3">19:00</td>
 											      </c:if>
@@ -363,6 +366,9 @@
 											      </c:if>
 											      <c:if test="${vo.cm_night_time == 6}">
 											        <td class="py-3">24:00</td>
+											      </c:if>
+											      <c:if test="${vo.cm_night_time == 0}">
+											        <td class="py-3"></td>
 											      </c:if>
 											      </tr>
 											      </c:forEach>

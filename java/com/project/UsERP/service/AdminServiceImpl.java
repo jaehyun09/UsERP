@@ -1,7 +1,10 @@
 package com.project.UsERP.service;
 
+import java.io.BufferedReader;
 import java.io.File;
-
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,7 +72,7 @@ public class AdminServiceImpl implements AdminService {
 			
 			updateCnt = dao.signinPro(map);
 		}
-		
+		System.out.println("updateCnt : " + updateCnt);
 		model.addAttribute("enabled", enabled);
 		model.addAttribute("updateCnt", updateCnt);
 		model.addAttribute("emp_name", vo.getEmp_name());
@@ -155,5 +158,53 @@ public class AdminServiceImpl implements AdminService {
 		}
 				
 	}
+	
+	// 김은희 - 파이썬 날씨 정보 위젯 
+	@Override
+	public void weatherWidget(HttpServletRequest req, Model model) {
+		
+          ProcessBuilder pb = new ProcessBuilder("python", "C:/Dev76/workspace_python/source/weather.py");
+          Process p = null;
+          
+          try {
+             p = pb.start();
+             
+          } catch (IOException e) {
+             e.printStackTrace();
+             
+          } BufferedReader br;
+          
+       try {
+          br = new BufferedReader(new InputStreamReader(p.getInputStream(),"euc-kr"));
+          String line = "";
+          StringBuilder sb = new StringBuilder();
+          
+          try {
+             while((line =br.readLine()) != null) {
+                sb.append(line + "\n");  // 출력
+             }
+             
+          } catch (IOException e1) {
+             e1.printStackTrace();
+          }
+          
+          String weatherWidget = sb.toString();
+          System.out.println(weatherWidget);
+          model.addAttribute("weatherWidget", weatherWidget);   
+          
+          try {
+             br.close();
+             
+          } catch (IOException e) {
+             e.printStackTrace();
+          }
+          
+       } catch (UnsupportedEncodingException e2) {
+          e2.printStackTrace();
+          
+       }
+	
+	
+    }
 
 }

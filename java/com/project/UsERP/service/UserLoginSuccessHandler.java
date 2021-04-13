@@ -73,7 +73,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		request.getSession().setAttribute("grade", gradeCnt);
 		request.getSession().setAttribute("mem_name", vo2.getEmp_name());
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/main.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/main");
 
 		rd.forward(request, response);
 	}

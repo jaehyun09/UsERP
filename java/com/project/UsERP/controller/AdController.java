@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.firebase.messaging.FirebaseMessagingException;
 import com.project.UsERP.persistence.AdDAO;
 import com.project.UsERP.service.AdServiceImpl;
 import com.project.UsERP.vo.AccountStatementVO;
@@ -148,7 +149,7 @@ public class AdController {
 
 	// 강재현 - 전표 관리 - 급여 전표 승인
 	@RequestMapping("/saappr")
-	public String saappr(HttpServletRequest req, Model model) {
+	public String saappr(HttpServletRequest req, Model model) throws FirebaseMessagingException {
 		logger.info("url: 전표 관리 - 급여 전표 승인");
 
 		adservice.sastatmentAction(req, model);

@@ -58,10 +58,17 @@ public class WaServiceImpl implements WaService {
 	@Override
 	public void waAppInsert(HttpServletRequest req, Model model) {
 		String emp_code = req.getParameter("emp_code");
+		System.out.println("emp_code : " + emp_code);
 		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
+		System.out.println("hr_code : " + hr_code);
 		String wr_va_start = req.getParameter("wr_va_start");
+		System.out.println("wr_va_start : " + wr_va_start);
 		String wr_va_end = req.getParameter("wr_va_end");
+		System.out.println("wr_va_end : " + wr_va_end);
 		String wr_va_reason = req.getParameter("wr_va_reason");
+		System.out.println("wr_va_reason : " + wr_va_reason);
+		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
+		System.out.println("dep_code : " + dep_code);
 		
 		WorkRecordVO vo = new WorkRecordVO();
 		
@@ -69,6 +76,8 @@ public class WaServiceImpl implements WaService {
 		vo.setWr_state(0); // 상태 - 0: 미승인
 		vo.setWr_va_reason(wr_va_reason);
 		vo.setEmp_code(emp_code);
+		vo.setDep_code(dep_code);
+		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		

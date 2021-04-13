@@ -283,9 +283,19 @@
 												        <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
 														<td class="py-3">${vo.emp_code}</td>
 														<td class="py-3">${vo.employee.emp_name}</td>
-														<td class="py-3">${vo.ap_cur_dep}</td>
+														<td class="py-3">
+														<c:if test="${vo.ap_cur_dep == '0'}">
+															- 
+														</c:if>
+														<c:if test="${vo.ap_cur_dep != '0'}">
+															${vo.ap_cur_dep}
+														</c:if>
+														</td>
 														<td class="py-3">${vo.ap_cur_position}</td>
-														<td class="py-3">${vo.ap_pre_dep}</td>
+														<td class="py-3">${vo.ap_pre_dep}
+														
+														
+														</td>
 														<td class="py-3">${vo.ap_pre_position}</td>
 												      </tr>
 												    </c:forEach>

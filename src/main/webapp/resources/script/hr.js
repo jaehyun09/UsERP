@@ -216,10 +216,11 @@ function confirmCodeCheck() {
 }
 
 // 김은희 - 사원 확인 완료, 이름과 부서명 넘겨주기
-function setConfirm(emp_code, emp_name, dep_name) {
+function setConfirm(emp_code, emp_name, dep_name, dep_code) {
 	opener.document.waForm.emp_code.value=emp_code; 
 	opener.document.waForm.emp_name.value=emp_name; 
 	opener.document.waForm.dep_name.value=dep_name; 
+	opener.document.waForm.dep_code.value=dep_code; 
 	opener.document.waForm.hiddenEmp_code.value=1; 
 	self.close();
 }

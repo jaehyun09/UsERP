@@ -251,7 +251,9 @@
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">부서명</th>
-															<td><input type="text" class="form-control" name="dep_name" style="font-size:20px" readonly></td>
+															<td><input type="text" class="form-control" name="dep_name" style="font-size:20px" readonly>
+																<input type="hidden" class="form-control" name="dep_code" >
+															</td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle"> 근태 유형</th>

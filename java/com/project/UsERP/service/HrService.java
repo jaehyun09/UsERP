@@ -43,6 +43,9 @@ public interface HrService {
 	// 김은희 - 인사카드 상세페이지 조회
 	public void hrCardDetail(HttpServletRequest req, Model model); 
 	
+	// 조명재 - 휴직 퇴직 부서 조회
+	public void notdepList(HttpServletRequest req, Model model);
+	
 	// 김은희 - 인사카드 등록
 	public void hrCardInsert(MultipartHttpServletRequest req, Model model);
 	

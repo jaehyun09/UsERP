@@ -34,7 +34,7 @@
 		
 		<!-- 로그인폼 -->
 		<security:form-login login-page="/main"
-			login-processing-url="/loginPro"
+			login-processing-url="/main"
 			authentication-success-handler-ref="userLoginSuccessHandler"
 			authentication-failure-handler-ref="userLoginFailureHandler"
 			username-parameter="emp_code" password-parameter="emp_pwd"/>
