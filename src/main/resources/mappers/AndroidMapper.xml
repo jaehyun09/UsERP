@@ -126,7 +126,7 @@
 	
 	<!-- 김민수 - 재고수불부를 반환한다. -->
 	<select id="getSupplyList" resultMap="supplyVOMap">
-	SELECT ss.stsu_reg_date, ss.stsu_type, ss.stsu_amount, ss.stsu_quantity, p.pro_code, p.pro_name
+	SELECT TO_CHAR(ss.stsu_reg_date,'yyyy-MM-dd') as stsu_content, ss.stsu_type, ss.stsu_amount, ss.stsu_quantity, p.pro_code, p.pro_name
 	FROM stock_supply ss, product p
 	WHERE ss.pro_code = p.pro_code 
 	ORDER BY ss.stsu_reg_date
@@ -149,7 +149,7 @@
    
    <!-- 김은희 - 인사카드조회 -->
    <select id="getEmployeeInfo" resultMap="hrCardMap">
-       SELECT e.emp_code, d.dep_name, c.hr_code_name, e.emp_name, e.emp_hire_date
+       SELECT e.emp_code, d.dep_name, c.hr_code_name, e.emp_name, TO_CHAR(e.emp_hire_date, 'yyyy-mm-dd') as emp_address 
          FROM employee e, department d, hr_code c
         WHERE e.dep_code = d.dep_code
           AND e.hr_code = c.hr_code 
