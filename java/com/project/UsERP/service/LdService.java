@@ -1,8 +1,13 @@
 package com.project.UsERP.service;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+
+import com.project.UsERP.vo.StockSupplyVO;
 
 public interface LdService {
 	
@@ -71,4 +76,5 @@ public interface LdService {
 	
 	// 김민수 - 입출고 내역 조회
 	public void shiRecList(HttpServletRequest req, Model model);
+	
 }

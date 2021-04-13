@@ -986,5 +986,6 @@ public class LdServiceImpl implements LdService {
 	      
 	      model.addAttribute("updateCnt", updateCnt);
 	   }
+
 }
 
