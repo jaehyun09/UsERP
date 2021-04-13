@@ -3,6 +3,8 @@ package com.project.UsERP.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -94,6 +96,13 @@ public class AndroidServiceImpl implements AndroidService {
       String get4 = String.valueOf(dao.get4()); //재무상태표 외상매입금
 
       String get5 = String.valueOf(10000000 + dao.get1() + dao.get2());
+      
+      get1 = get1.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+      get2 = get2.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+      get3 = get3.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+      get4 = get4.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+      get5 = get5.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+      
       // 웹에서 안드로이드로 전달할 값
       Map<String, String> map = new HashMap<String, String>();
       
@@ -117,6 +126,12 @@ public class AndroidServiceImpl implements AndroidService {
       String sum3 = String.valueOf(dao.sum() - dao.sum1());
       //영업 이익
       String sum4 = String.valueOf(dao.sum() - dao.sum1() - dao.sum2());
+      
+      sum = sum.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+      sum1 = sum1.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+      sum2 = sum2.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+      sum3 = sum3.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+      sum4 = sum4.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
       
       // 웹에서 안드로이드로 전달할 값
       Map<String, String> map = new HashMap<String, String>();
