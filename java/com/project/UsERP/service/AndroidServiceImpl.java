@@ -93,6 +93,7 @@ public class AndroidServiceImpl implements AndroidService {
       String get3 = String.valueOf(dao.get3()); //
       String get4 = String.valueOf(dao.get4()); //재무상태표 외상매입금
 
+      String get5 = String.valueOf(10000000 + dao.get1() + dao.get2());
       // 웹에서 안드로이드로 전달할 값
       Map<String, String> map = new HashMap<String, String>();
       
@@ -100,6 +101,7 @@ public class AndroidServiceImpl implements AndroidService {
       map.put("get2",get2); //재무상태표 외상매출금
       map.put("get3",get3);
       map.put("get4",get4); //재무상태표 외상매입금
+      map.put("get5", get5);
       
       return map;
    }
