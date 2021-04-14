@@ -1,7 +1,6 @@
 package com.project.UsERP.service;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -366,7 +365,7 @@ public class HrServiceImpl implements HrService {
 		int selectCnt = 0;
 		if (vo != null) selectCnt = 1;
 
-		if (selectCnt == 1) {
+		if(selectCnt == 1) {
 			// 부서, 직급
 			String dep_name = hrDao.getDepName(vo.getDep_code());
 			String hr_code_name = hrDao.getCodeName(vo.getHr_code());
@@ -374,42 +373,36 @@ public class HrServiceImpl implements HrService {
 			// 기본 급여
 			int hourlyWage = 8720;
 			switch (vo.getHr_code()) {
-			case 101:
-				hourlyWage = (int) (hourlyWage * 0.2194);
-				break;
-			case 102:
-				hourlyWage = (int) (hourlyWage * 0.1874);
-				break;
-			case 103:
-				hourlyWage = (int) (hourlyWage * 0.1600);
-				break;
-			case 104:
-				hourlyWage = (int) (hourlyWage * 0.1371);
-				break;
-			case 105:
-				hourlyWage = (int) (hourlyWage * 0.1188);
-				break;
-			default:
-				hourlyWage = 8720;
+				case 101: hourlyWage = (int) (hourlyWage * 0.2194);
+					break;
+				case 102: hourlyWage = (int) (hourlyWage * 0.1874);
+					break;
+				case 103: hourlyWage = (int) (hourlyWage * 0.1600);
+					break;
+				case 104: hourlyWage = (int) (hourlyWage * 0.1371);
+					break;
+				case 105: hourlyWage = (int) (hourlyWage * 0.1188);
+					break;
+				default: hourlyWage = 8720;
 			}
 			int sal_basic = hourlyWage * 209 * 10;
 			
+			// 초과근로 수당
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("emp_code", vo.getEmp_code());
+			map.put("pay_month", pay_month);
 			
-			
-//			if() {
-				// 초과근로 수당
-				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("emp_code", vo.getEmp_code());
-				map.put("pay_month", pay_month);
-	
+			selectCnt += hrDao.getOverCnt(map);
+			if(selectCnt >= 2) {
 				int overTimes = hrDao.getOverTimes(map);
 				int sal_over = (int) (overTimes * hourlyWage * 10 * 1.5);
-//			}
+				
+				model.addAttribute("sal_over", sal_over);
+			}
 			
 			model.addAttribute("dep_name", dep_name);
 			model.addAttribute("hr_code_name", hr_code_name);
 			model.addAttribute("sal_basic", sal_basic);
-			model.addAttribute("sal_over", sal_over);
 
 		}
 
@@ -423,14 +416,11 @@ public class HrServiceImpl implements HrService {
 	@Override
 	public void hrSalaryInsert(HttpServletRequest req, Model model) {
 		String emp_code = req.getParameter("emp_code");
-		System.out.println("emp_code" + emp_code);
 		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
-		System.out.println("dep_code" + dep_code);
 		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
-		System.out.println("hr_code" + hr_code);
 
 		int sal_basic = Integer.parseInt(req.getParameter("sal_basic"));
-		int sal_over = Integer.parseInt(req.getParameter("sal_over").equals(null) ? "0" : req.getParameter("sal_over"));
+		int sal_over = Integer.parseInt(req.getParameter("sal_over").equals("") ? "0" : req.getParameter("sal_over"));
 		int sal_bonus = Integer.parseInt(req.getParameter("sal_bonus"));
 		int sal_meal = Integer.parseInt(req.getParameter("sal_meal"));
 		int sal_vehicle = Integer.parseInt(req.getParameter("sal_vehicle"));

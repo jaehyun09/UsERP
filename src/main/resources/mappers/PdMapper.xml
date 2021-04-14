@@ -152,9 +152,7 @@
    </insert>
    
    
-   	<!-- 최유성 추가~~~~~ 테스트입니다~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-   
-   <!-- 최유성 - 리절트맵 --><!-- resultType = "com.project.UsERP.vo.LogisticsStatementVO" -->
+   <!-- 최유성 - 리절트맵 -->
 	<resultMap id="pdStockOrder" type="com.project.UsERP.vo.LogisticsStatementVO">
 		<id       property="logs_code"   column="logs_code"/>
 		<result   property="logs_type"      column="logs_type"/>

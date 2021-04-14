@@ -99,7 +99,6 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public void acstatmentAction(HttpServletRequest req, Model model) {
 		int accs_code = Integer.parseInt(req.getParameter("accs_code"));
-		System.out.println("accs_code : " + accs_code);
 		AccountStatementVO vo = new AccountStatementVO();
 		vo.setAccs_state(1);
 		vo.setAccs_update_date(new Timestamp(System.currentTimeMillis()));
@@ -118,7 +117,6 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public void acstatmentdelAction(HttpServletRequest req, Model model) {
 		int accs_code = Integer.parseInt(req.getParameter("accs_code"));
-		System.out.println("accs_code : " + accs_code);
 		AccountStatementVO vo = new AccountStatementVO();
 		vo.setAccs_state(-1);
 		vo.setAccs_update_date(new Timestamp(System.currentTimeMillis()));
@@ -141,7 +139,6 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public void sacontent(HttpServletRequest req, Model model) {
 		int ss_code = Integer.parseInt(req.getParameter("ss_code"));
-		System.out.println(ss_code + "dkdkdk");
 		SalaryStatementVO list = addao.getsaStamentDetail(ss_code);
 		model.addAttribute("sccontent", list);
 
@@ -151,20 +148,18 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public void sastatmentAction(HttpServletRequest req, Model model) throws FirebaseMessagingException {
 		int ss_code = Integer.parseInt(req.getParameter("ss_code"));
-		System.out.println("ss_code : " + ss_code);
 		SalaryStatementVO vo = new SalaryStatementVO();
 		vo.setSs_state(1);
 		vo.setSs_sal_date(new Timestamp(System.currentTimeMillis()));
 		vo.setSs_code(ss_code);
 		int updateCnt = addao.saupdatestatment(vo);
-		
+
 		try {
 
-			// 경로에 따라서 줘라
 			String path = "C:\\Dev76\\workspace\\UsERP\\src\\main\\webapp\\resources\\google\\userp-88ec6-firebase-adminsdk-vry15-2ff62ee2af.json";
 			String MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
 			String[] SCOPES = { MESSAGING_SCOPE };
-			System.out.print(MESSAGING_SCOPE);
+
 			GoogleCredential googleCredential = GoogleCredential.fromStream(new FileInputStream(path))
 					.createScoped(Arrays.asList(SCOPES));
 			googleCredential.refreshToken();
@@ -177,9 +172,8 @@ public class AdServiceImpl implements AdService {
 			notification.put("title", "월급이 지급되었습니다.");
 			notification.put("body", "즐거운하루되세요.");
 			
-			// dT-Osj9QRPSsToMrJXDiVh:APA91bGconETyEiDkizy2SlLNDAeA0secdFWrF6wNcxUjy8HQV6FbuCAblxItkl_8rDIANI9IIN9Oa7nIWCCvFmQZpnukNFMRTMSscoBtExK7e7aJf5ii_2hsLCcvZss36MteHaf9UxW
-			Map<String, Object> message = new HashMap<>(); // dpZ2EI32TMi9htt_dJAELC:APA91bGdKUoO0R7U8Ae7XlPtQPC5I2qtFo2Zhgo8GfpWg6cwTFxkaBGKBjZZbuIQa5KRaHPZJuk4zqlXioxPwC2DO7KtrMh5L9IAr9JMtrcdA_6HM7PG1ArNpGQj9fmccxggVG4ifibN
-			// 기기별 토큰 주입
+			Map<String, Object> message = new HashMap<>(); 
+
 			message.put("token",
 					"eSeWGb4MQS27LWK7ZmgLuC:APA91bHXMpuPIeA8TWubP9xZTIx9KGKrlOaj-aFofjtc12LhQ5dhV2Oe_Qg0cE51aKb9HwXvKM_XRPHzgte6bj_OgaANmBOwgjgzRLPw6s5TN4FDZurWEzGmYVcjlZ6MbcKj7nFRuocm");
 			message.put("notification", notification);
@@ -190,7 +184,6 @@ public class AdServiceImpl implements AdService {
 			HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(jsonParams, headers);
 			RestTemplate rt = new RestTemplate();
 
-			// Firebase 프로젝트 ID별 삽입
 			ResponseEntity<String> res = rt.exchange("https://fcm.googleapis.com/v1/projects/userp-88ec6/messages:send",
 					HttpMethod.POST, httpEntity, String.class);
 
@@ -220,13 +213,12 @@ public class AdServiceImpl implements AdService {
 	public void sastatmentdelAction(HttpServletRequest req, Model model) {
 
 		int ss_code = Integer.parseInt(req.getParameter("ss_code"));
-		System.out.println("ss_code : " + ss_code);
+	
 		SalaryStatementVO vo = new SalaryStatementVO();
 		vo.setSs_state(-1);
 		vo.setSs_sal_date(new Timestamp(System.currentTimeMillis()));
 		vo.setSs_code(ss_code);
 		int deleteCnt = addao.saupdatestatment(vo);
-
 
 		model.addAttribute("num", ss_code);
 		model.addAttribute("deleteCnt", deleteCnt);

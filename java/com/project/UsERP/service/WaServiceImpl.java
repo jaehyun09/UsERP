@@ -1,5 +1,6 @@
 package com.project.UsERP.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,17 +59,11 @@ public class WaServiceImpl implements WaService {
 	@Override
 	public void waAppInsert(HttpServletRequest req, Model model) {
 		String emp_code = req.getParameter("emp_code");
-		System.out.println("emp_code : " + emp_code);
 		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
-		System.out.println("hr_code : " + hr_code);
 		String wr_va_start = req.getParameter("wr_va_start");
-		System.out.println("wr_va_start : " + wr_va_start);
 		String wr_va_end = req.getParameter("wr_va_end");
-		System.out.println("wr_va_end : " + wr_va_end);
 		String wr_va_reason = req.getParameter("wr_va_reason");
-		System.out.println("wr_va_reason : " + wr_va_reason);
 		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
-		System.out.println("dep_code : " + dep_code);
 		
 		WorkRecordVO vo = new WorkRecordVO();
 		
@@ -123,13 +118,18 @@ public class WaServiceImpl implements WaService {
 		int insertCnt = 0;
 		
 		String emp_code = (String)req.getSession().getAttribute("mem_id");
+		
 		Date date = new Date();
+		//SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		//String date2 = fmt.format(date);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("emp_code",emp_code);
 		map.put("date",date);
 		
+		//int selectCnt = waDao.getcmdate(map);
+		//if(selectCnt == 1) 
 		insertCnt = waDao.waStartClick(map);
 		
 		model.addAttribute("insertCnt", insertCnt);

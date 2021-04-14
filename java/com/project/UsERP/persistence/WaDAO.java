@@ -49,4 +49,7 @@ public interface WaDAO {
 	// 김은희 - 근태 신청 철회 처리
 	public int waDeleteAction(String emp_code);
 	
+	// 김은희 - 출근신청 비교하기
+	public int getcmdate(Map<String, Object> map);
+	
 }

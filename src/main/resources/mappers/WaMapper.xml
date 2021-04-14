@@ -95,6 +95,14 @@
      		VALUES (wr_seq.nextval, default, TO_DATE(#{wr_va_start},'YY-MM-DD'), TO_DATE(#{wr_va_end},'YY-MM-DD'), #{vo.wr_va_reason}, #{vo.wr_state}, #{vo.emp_code}, #{vo.hr_code}, #{vo.dep_code})
  	</insert>
  	
+ 	<!--  -->
+ 	<select id="getcmdate" resultType="int" parameterType="java.util.Map">
+ 		SELECT COUNT(*) 
+ 		FROM commute 
+ 		WHERE TO_CHAR('cm_date', 'yyyy-MM-dd') = #{date}
+ 		  AND emp_code = #{emp_code}
+ 	</select>
+ 	
  	<!-- 김은희 - 출근 버튼 클릭 -->
  	<insert id="waStartClick" parameterType="java.util.Map" >
  		INSERT INTO commute (cm_code, cm_date, cm_start, emp_code)

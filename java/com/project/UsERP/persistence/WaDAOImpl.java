@@ -94,8 +94,11 @@ public class WaDAOImpl implements WaDAO {
 		return sqlSession.delete("com.project.UsERP.persistence.WaDAO.waDeleteAction", emp_code);
 	}
 	
-	
-	
+	// 김은희 - 출근신청 비교하기 
+	@Override
+	public int getcmdate(Map<String, Object> map) {
+		return sqlSession.update("com.project.UsERP.persistence.WaDAO.getcmdate", map);
+	}
 	
 	
 	

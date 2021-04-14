@@ -163,6 +163,13 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrSalaryList();
 	}
+	
+	// 조명재 - 야근 유무를 확인한다
+	@Override
+	public int getOverCnt(Map<String, Object> map) {
+		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
+		return hrDao.getOverCnt(map);
+	}
 
 	// 조명재 - 야근 시간을 반환한다
 	@Override
@@ -184,5 +191,5 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.salaryStatement(map);
 	}
-
+	
 }

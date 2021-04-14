@@ -74,7 +74,6 @@
 		   <result   property="pro_code"  column="pro_code"/>
 		</association>
     </resultMap>
-	<!-- 리절트맵 나중에 stockOutOrder-->
 	
 	<!-- 김민수 - 재고수불부VO resultMap -->
 	<resultMap id="supplyVOMap" type="com.project.UsERP.vo.StockSupplyVO" >
@@ -382,7 +381,7 @@
 		    )
 	</select>
 	
-	<!-- 최유성 -  입고 미승인 전표 - resultt="stockOrder" -->
+	<!-- 최유성 -  입고 미승인 전표 -->
 	<select id = "stockInOrder1" resultMap="stockOrder">
 		SELECT * 
 		  FROM logistics_statement l
@@ -416,7 +415,6 @@
 		 order by logs_code desc
 	</select> 
 	
-	<!-- 변경변경 - 상태코드 -->
 	<!-- 최유성 - 출고 미승인 전표 -->
 	<select id = "stockOutOrder1" resultMap="stockOrder">
 		SELECT * 
@@ -436,7 +434,6 @@
 		 order by logs_code desc
 	</select>
 	
-	<!-- 변경변경 - 상태코드 -->
 	<!-- 최유성 - 출고 승인 전표 -->
 	<select id = "stockOutOrder2" resultMap="stockOrder">
 		SELECT * 
@@ -494,12 +491,10 @@
 		VALUES (stsu_seq.nextval,sysdate,1,#{stsu_quantity},#{stsu_amount},'입고',null,'양품창고',#{sto_code},#{pro_code},#{emp_code})
 	</insert><!-- 나중에 수정해야 함...!!!!!!!!!!! 마지막 사원코드는 세션아이디로? -->
 	
-	<!-- 변경변경 -->
-	<!-- 최유성 - 출고 준비 완료로 상태 업데이트 --> <!-- 수정 : 출고 승인으로 변경하자... 2를 1(승인:출고준비완료)로 변경했다 -->
+	<!-- 최유성 - 출고 준비 완료로 상태 업데이트 -->
 	<update id = "stockOutReady" parameterType="java.util.Map">
 		UPDATE logistics_statement SET logs_state = 1,logs_update_date=sysdate, sto_code=#{sto_code}, ware_code=#{ware_code} where logs_code = #{logs_code} and logs_type =6 
 	</update> 
-	<!-- 변경변경완료 -->
 	
 	<!-- 최유성 - 출고대기창고 관련  해당 상품에 대한 재고코드 및 재고수량 가져오기 -->
 	<select id = "outReadyStockSelect" resultType="com.project.UsERP.vo.StockVO" parameterType="int">
@@ -515,7 +510,7 @@
 	<insert id = "outReadystockSupplyInsert" parameterType="java.util.Map">
 		INSERT INTO stock_supply(stsu_code, stsu_reg_date, stsu_type, stsu_quantity, stsu_amount, stsu_content, stsu_startwh, stsu_arrivewh, sto_code, pro_code, emp_code)
 		VALUES (stsu_seq.nextval,sysdate,3,#{stsu_quantity},#{stsu_amount},'출고준비','양품창고','출고대기창고',#{sto_code},#{pro_code},#{emp_code})
-	</insert><!-- 나중에 수정해야 함...!!!!!!!!!!! 마지막 사원코드는 세션아이디로? -->
+	</insert>
 	
 	<!-- 최유성 - 출고 승인 버튼 클릭 - 출고준비완료로 상태 업데이트시 해당상품에 대한 출고대기창고에 재고코드가 존재하지 않으면 해당 재고 등록 -->
 	<insert id="outStockInsert" parameterType="java.util.Map">

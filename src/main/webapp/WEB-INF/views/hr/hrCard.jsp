@@ -459,6 +459,7 @@ function addressSearch() {
                                      <option value="ROLE_PD">구매팀</option>
                                      <option value="ROLE_LD">물류팀</option>
                                      <option value="ROLE_AD">회계팀</option>
+                                     <option value="ROLE_USER">인턴</option>
                                    </select>
                                 </div>
                              </td>

@@ -44,7 +44,7 @@
 		    <button type="submit" class="btn btn-outline-info">확인</button>&nbsp;&nbsp;
 		    <button type="reset" class="btn btn-outline-info" onclick="self.close()">취소</button>
 		</c:if>
-		<c:if test="${selectCnt == 1}">
+		<c:if test="${selectCnt != 0}">
 			<table class="table bg-white text-dark center ass2">
 				<thead class="text-white table-bordered tap font-weight-semi-bold border-top-0 ass2">
 					<tr>

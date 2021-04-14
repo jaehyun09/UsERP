@@ -72,7 +72,6 @@ public class AdminServiceImpl implements AdminService {
 			
 			updateCnt = dao.signinPro(map);
 		}
-		System.out.println("updateCnt : " + updateCnt);
 		model.addAttribute("enabled", enabled);
 		model.addAttribute("updateCnt", updateCnt);
 		model.addAttribute("emp_name", vo.getEmp_name());
@@ -189,7 +188,6 @@ public class AdminServiceImpl implements AdminService {
           }
           
           String weatherWidget = sb.toString();
-          System.out.println(weatherWidget);
           model.addAttribute("weatherWidget", weatherWidget);   
           
           try {

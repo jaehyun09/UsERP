@@ -37,10 +37,8 @@ public class PdServiceImpl implements PdService {
 	@Override
 	public void pdBasicReg(HttpServletRequest req, Model model) {
 
-		// 구매 거래처 목록
 		List<CompanyVO> company = pddao.pdCompanySelect();
 
-		// 상품 목록
 		List<ProductVO> product = pddao.pdProductSelect();
 
 		model.addAttribute("company", company);
@@ -162,7 +160,6 @@ public class PdServiceImpl implements PdService {
 		vo.setEmp_code(req.getParameter("emp_code"));
 		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
 		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
-		System.out.println(vo + "vo");
 		int insertCnt = pddao.insertBuyStatement(vo);
 
 		model.addAttribute("insertCnt", insertCnt);
@@ -206,7 +203,6 @@ public class PdServiceImpl implements PdService {
 		vo.setEmp_code(req.getParameter("emp_code"));
 		vo.setPro_code(Integer.parseInt(req.getParameter("pro_code")));
 		vo.setCom_code(Integer.parseInt(req.getParameter("com_code")));
-		System.out.println(vo + "vo");
 		int insertCnt = pddao.insertBuyStatement(vo);
 
 		if(insertCnt == 1) {
@@ -226,13 +222,9 @@ public class PdServiceImpl implements PdService {
 	@Override
 	public void pdRecStatus(HttpServletRequest req, Model model) {
 
-		// 입고 내역
 		List<LogisticsStatementVO> SIlist = pddao.pdStockInOrder();
 
-		// 회계전표 승인내역
 		List<AccountStatementVO> AList = pddao.AccountStatement();
-
-		// 입고 전표등록
 
 		model.addAttribute("SIlist", SIlist);
 		model.addAttribute("AList", AList);
@@ -242,10 +234,9 @@ public class PdServiceImpl implements PdService {
 	@Override
 	public void pdRecStatusAjax(HttpServletRequest req, Model model) {
 
-		int logs_code = Integer.parseInt(req.getParameter("logs_code")); // 물류전표번호
-		System.out.println("logs_code:" + logs_code);
+		int logs_code = Integer.parseInt(req.getParameter("logs_code")); 
 
-		LogisticsStatementVO vo = lddao.getLdDetail(logs_code); // where절에 전표번호 넣어서 거래처와 상품 정보들 가져오기
+		LogisticsStatementVO vo = lddao.getLdDetail(logs_code);
 
 		model.addAttribute("vo", vo);
 	}
@@ -254,13 +245,11 @@ public class PdServiceImpl implements PdService {
 	@Override
 	public void pdRecStatusAjax2(HttpServletRequest req, Model model) {
 
-		int accs_code = Integer.parseInt(req.getParameter("accs_code")); // 회계전표번호
-		System.out.println("accs_code:" + accs_code);
+		int accs_code = Integer.parseInt(req.getParameter("accs_code")); 
 
-		String emp_code = req.getParameter("emp_code"); // 세션 아이디
-		System.out.println("emp_code:" + emp_code);
+		String emp_code = req.getParameter("emp_code"); 
 
-		String emp_name = pddao.getEmpName(emp_code); // 담당자 이름
+		String emp_name = pddao.getEmpName(emp_code); 
 
 		AccountStatementVO vo = pddao.getAccountStatement(accs_code);
 
@@ -271,14 +260,14 @@ public class PdServiceImpl implements PdService {
 	// 최유성 - 입고 전표 등록(insert)
 	@Override
 	public void logsPdInsert(HttpServletRequest req, Model model) {
-		String emp_code = req.getParameter("emp_code"); // 사원번호
-		int logs_quantity = Integer.parseInt(req.getParameter("logs_quantity")); // 구매수량
-		int pro_code = Integer.parseInt(req.getParameter("pro_code")); // 상품코드
-		int com_code = Integer.parseInt(req.getParameter("com_code")); // 거래채코드
-		int accs_code = Integer.parseInt(req.getParameter("accs_code")); // 회계전표번호
+		String emp_code = req.getParameter("emp_code"); 
+		int logs_quantity = Integer.parseInt(req.getParameter("logs_quantity")); 
+		int pro_code = Integer.parseInt(req.getParameter("pro_code")); 
+		int com_code = Integer.parseInt(req.getParameter("com_code")); 
+		int accs_code = Integer.parseInt(req.getParameter("accs_code")); 
 
-		int insertCnt = 0; // 물류전표 등록 확인용 cnt
-		int updateCnt = 0; // 회계전표 업데이트 확인용 cnt
+		int insertCnt = 0; 
+		int updateCnt = 0; 
 
 		LogisticsStatementVO vo = new LogisticsStatementVO();
 
@@ -289,31 +278,28 @@ public class PdServiceImpl implements PdService {
 		vo.setPro_code(pro_code);
 		vo.setCom_code(com_code);
 
-		// 창고번호 불러오기
-		int ware_code = pddao.getWareCode(1); // 창고타입 양품(1)을 넣어서 해당 창고 번호를 가져온다
-		vo.setWare_code(ware_code); // vo에 가져온 창고번호를 넣어준다
+		int ware_code = pddao.getWareCode(1);
+		vo.setWare_code(ware_code);
 
-		System.out.println("pro_code:" + pro_code);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("accs_code", accs_code);
-		map.put("ware_code", ware_code); // 양품창고 번호
+		map.put("ware_code", ware_code); 
 		map.put("pro_code", pro_code);
 
-		int sto_code = Integer.parseInt(pddao.getStock(map).toString()); // 상품에 대한 재고코드가 존재하는지 가지고 온다
+		int sto_code = Integer.parseInt(pddao.getStock(map).toString()); 
 
-		System.out.println("sto_code:" + sto_code);
 
-		vo.setSto_code(sto_code); // vo에 재고코드를 넣어준다 //값이 0일수도 있어서 decode 함수 이용
+		vo.setSto_code(sto_code); 
 		vo.setLogs_shortage(0);
-		insertCnt = pddao.logsPdInsert(vo); // 화면에서 넘어온 값들과 상태코드를 물류전표에 인서트 시켜 준다
+		insertCnt = pddao.logsPdInsert(vo); 
 
 		AccountStatementVO avo = new AccountStatementVO();
 		avo.setAccs_state(3);
 		avo.setAccs_code(accs_code);
 
 		if (insertCnt == 1) {
-			updateCnt = pddao.updatestatement(avo); // 입고 전표 등록시 회계전표 상태코드 변화
+			updateCnt = pddao.updatestatement(avo); 
 
 		}
 

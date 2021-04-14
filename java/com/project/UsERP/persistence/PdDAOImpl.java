@@ -108,8 +108,6 @@ public class PdDAOImpl implements PdDAO {
 	// 최유성 - 입고 현황 - 상품에 대한 재고코드가 존재하는지 가지고 온다
 	@Override
 	public Object getStock(Map<String, Object> map) {
-		// return
-		// sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.getStock",map);
 
 		Object selectCnt = sqlSession.selectOne("com.project.UsERP.persistence.PdDAO.getStock", map);
 
