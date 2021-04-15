@@ -233,7 +233,7 @@
 														value="로그인">
 												</div>
 												<div class="text-center mt-3 small">
-													사원 확인하셨나요?&nbsp;&nbsp;&nbsp;<a href="${path}/signin">사원확인</a>
+													사원 인증하셨나요?&nbsp;&nbsp;&nbsp;<a href="${path}/signin">사원인증</a>
 												</div>
 											</form>
 										</c:if>

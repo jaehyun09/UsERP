@@ -29,7 +29,27 @@
                         <li class="list-inline-item mx-2"><a class="link-muted" href="#"><i class="gd-github"></i></a></li>
                     </ul>
                 </div>
-
+			  <script>
+			  window.addEventListener("message", function (event) {
+			      if (event.data.hasOwnProperty("frameSize")) {
+			          const size = event.data.frameSize;
+			          document.getElementById("uipath-chatbot-iframe").style.height = size.height;
+			          document.getElementById("uipath-chatbot-iframe").style.width = size.width;
+			      }
+			  });
+			</script>
+			<iframe src="https://chatbot.uipath.com/web-channel?connectionId=3320a4f5-a034-4f82-b5ad-b5373f46d6b6"
+			  id="uipath-chatbot-iframe"
+			  style="
+			      z-index: 9999;
+			      position: fixed;
+			      bottom: 0;
+			      right: 0;
+			      height: 112px;
+			      width: 120px;
+			      border: 0;">
+			</iframe>
+				
                 <div class="col-lg text-center text-lg-right">
                     &copy; 2021. Team UsERP. all rights reserved.
                 </div>
