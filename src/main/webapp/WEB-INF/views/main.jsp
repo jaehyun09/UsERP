@@ -199,9 +199,18 @@
 			<c:if test="${msg != null}">
 				<script type="text/javascript">
 		       		alert("${msg}");
+		        </script>		       
+			</c:if>
+			<c:if test="${remsg1 != null}">
+				<script type="text/javascript">
+		       		alert("사원번호 또는 비밀번호를 잘못 입력하셨습니다. \n확인 후 다시 시도해 주십시오.");
 		        </script>
 			</c:if>
-
+			<c:if test="${remsg2 != null}">
+				<script type="text/javascript">
+		       		alert("등록되지 않은 계정입니다. \n사원 인증해주세요. ");
+		        </script>
+			</c:if>
 			<div class="py-4 px-3 px-md-4">
 				<div class="card mb-3 mb-md-4">
 

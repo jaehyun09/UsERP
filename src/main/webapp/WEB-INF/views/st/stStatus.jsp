@@ -363,6 +363,7 @@
                                              
                                           <td style="vertical-align: middle;">
                                                         <select class="form-control" id="accs_type" name="accs_type"  style="font-size:20px">
+                                                          <option >선택하세요.</option>
                                                           <option value="1">판매전표</option>
                                                           <option value="2">채권전표</option>
                                                         </select>
@@ -372,6 +373,7 @@
                                           <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>거래처명</b></td>
                                           <td class="font-weight-semi-bold border-top-0 py-2"
                                              colspan="2"><select class="form-control" id="com_code" name="com_code" style="font-size:20px">
+                                             				<option value="0">거래처 선택하세요.</option>
 		                                             		<c:forEach var="company" items="${company}">
 		                                                          <option value="${company.com_code}">${company.com_name}</option>
 		                                                    </c:forEach>
@@ -382,6 +384,7 @@
                                              <td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>상품명</b></td>
                                              <td class="py-3" colspan="2">
                                              	<select class="form-control" id="pro_code" name="pro_code" style="font-size:20px" onchange="changeProduct()">
+		                                             <option value="0">상품 선택하세요.</option>
 		                                             <c:forEach var="product" items="${product}">
 		                                             	<option id="${product.pro_sal_price}" value="${product.pro_code}">
 		                                             		${product.pro_name}

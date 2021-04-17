@@ -21,6 +21,7 @@ public class EmployeeVO {
 	private String emp_port_no;		// 여권번호
 	private String emp_bank;		// 급여은행
 	private String emp_account;		// 급여계좌
+	private Date emp_date;
 	private int hr_code;			// 인사코드
 	private int dep_code;			// 부서코드
 	HrCodeVO hrCode;
@@ -121,6 +122,12 @@ public class EmployeeVO {
 	}
 	public void setEmp_account(String emp_account) {
 		this.emp_account = emp_account;
+	}
+	public Date getEmp_date() {
+		return emp_date;
+	}
+	public void setEmp_date(Date emp_date) {
+		this.emp_date = emp_date;
 	}
 	public int getHr_code() {
 		return hr_code;

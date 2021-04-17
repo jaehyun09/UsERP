@@ -47,11 +47,13 @@
 		<result property="emp_port_no"  column="emp_port_no" />
 		<result property="emp_bank"  column="emp_bank" />
 		<result property="emp_account"  column="emp_account" />
-		<result property="dep_code"  column="dep_code" />
+		<result property="emp_date"  column="emp_date" />
+		<result property="dep_code"  column="dep_code" /> 
 		<result property="hr_code"  column="hr_code" />
 		<association property="department" javaType="com.project.UsERP.vo.DepartmentVO">
 			<id      property="dep_code"   column="dep_code" />  
 			<result property="dep_name" column="dep_name" />
+			<result property="dep_type"  column="dep_type" />
 			<result property="dep_state"  column="dep_state" />
 		</association> 
 		<association property="hrCode" javaType="com.project.UsERP.vo.HrCodeVO">
@@ -64,7 +66,7 @@
 	
 	<resultMap id="appointHistoryMap" type="com.project.UsERP.vo.AppointHistoryVO">
 		<id     property="ap_code"		column="ap_code"/>  
-		<result property="ap_date"		column="ap_date"/>
+		<result property="ap_date"		column="ap_date"/>		
 		<result property="ap_cur_dep"	column="ap_cur_dep"/>
 		<result property="ap_cur_position" column="ap_cur_position"/>
 		<result property="ap_pre_dep"	column="ap_pre_dep"/>
@@ -73,6 +75,14 @@
 		<association property="employee" javaType="com.project.UsERP.vo.EmployeeVO">
 			<id		property="emp_code" column="emp_code"/>  
 			<result property="emp_name" column="emp_name"/>
+			<association property="department" javaType="com.project.UsERP.vo.DepartmentVO">
+			<id		property="dep_code" column="dep_code"/>  
+			<result property="dep_name" column="dep_name"/>
+			</association>
+			<association property="hrCode" javaType="com.project.UsERP.vo.HrCodeVO">
+			<id		property="hr_code" column="hr_code"/>  
+			<result property="hr_code_name" column="hr_code_name"/>
+			</association>
 		</association>
 	</resultMap>
 	
@@ -153,19 +163,13 @@
 	</select>
 	
 	<!-- 조명재 - 인사 발령(중메뉴) - 인사 발령 조회 -->
-	<select id="appointmentList" parameterType="java.util.Map" resultMap="appointHistoryMap">
-		<![CDATA[
-			SELECT * 
-			FROM(SELECT ap_code, ap_date, ap_cur_dep, ap_cur_position, ap_pre_dep, ap_pre_position, emp_code, emp_name, rownum rNum 
-				FROM(SELECT a.*, e.emp_name 
-						FROM appoint_history a, employee e 
-						WHERE a.emp_code = e.emp_code 
-						ORDER BY ap_date DESC
-					)
-				)
-			WHERE rNum >= #{start} 
-			AND rNum <= #{end}
-		]]>
+	<select id="appointmentList" resultMap="appointHistoryMap">
+		SELECT a.*, e.emp_name, d.dep_name, h.hr_code_name
+   			FROM appoint_history a, department d, employee e, hr_code h
+    		WHERE a.emp_code = e.emp_code
+    		AND e. dep_code = d.dep_code
+       	 	AND e. hr_code = h.hr_code
+    		ORDER BY a.ap_date DESC
 	</select>
 	
 	<!-- 조명재 - 인사 발령(중메뉴) - 사원번호 확인 -->
@@ -185,10 +189,20 @@
 	
 	<!-- 조명재 - 인사 발령(중메뉴) - 인사 발령 -->
 	<insert id="hrAppointmentPro" parameterType="com.project.UsERP.vo.AppointHistoryVO">
-		INSERT INTO appoint_history(ap_code, ap_date, ap_cur_dep, ap_cur_position, 
-			ap_pre_dep, ap_pre_position, emp_code)
-		VALUES (ap_seq.nextval, DEFAULT, #{ap_cur_dep}, #{ap_cur_position}, #{ap_pre_dep}, #{ap_pre_position}, #{emp_code})
+		INSERT INTO appoint_history(ap_code, ap_date, ap_cur_dep, ap_pre_dep, ap_cur_position, ap_pre_position, emp_code)
+		VALUES (ap_seq.nextval, DEFAULT, #{ap_cur_dep}, #{ap_pre_dep}, #{ap_cur_position},  #{ap_pre_position}, #{emp_code})
 	</insert>
+	
+	<!-- 조명재 - 인사 발령 - 직급 업데이트 -->
+	<update id="hrUpdate"
+		parameterType="com.project.UsERP.vo.AppointHistoryVO">
+		UPDATE employee SET hr_code=#{hr_code} WHERE emp_code = #{emp_code}
+	</update>
+	<!-- 조명재 - 인사 발령 - 직급 업데이트 -->
+	<update id="depUpdate"
+		parameterType="com.project.UsERP.vo.AppointHistoryVO">
+		UPDATE employee SET dep_code=#{dep_code}, emp_date=#{emp_date}, emp_authority = #{emp_authority} WHERE emp_code = #{emp_code}
+	</update>
 	
 	<!-- 김은희 - 인사카드 조회 -->
 	<select id="hrCardList" resultMap="hrCardMap">
@@ -220,11 +234,10 @@
 	
 	<!-- 조명재 - 인사카드 등록 부서 목록 조회 -->
 	<select id="notdepList" resultType="com.project.UsERP.vo.DepartmentVO">
-		SELECT * 
-			FROM department 
-			WHERE dep_name NOT LIKE '%'||'휴직'||'%'
-			AND dep_name NOT LIKE '%'||'퇴직'||'%'
-			ORDER BY dep_code 
+		SELECT *
+			FROM department
+		    WHERE dep_type =1
+		    OR dep_type = 2 
 	</select>
 	
 	<!-- 김은희 - 인사카드 등록 -->
@@ -240,21 +253,33 @@
  	</select>
  	
 	<!-- 조명재 - 휴직자 조회 -->
-	<select id="hrLeaveList" resultMap="appointHistoryMap">
-		SELECT a.*, d.dep_name, e.emp_name FROM appoint_history a, department d, employee e
-			WHERE a.emp_code = e.emp_code
-			AND e. dep_code = d.dep_code
-			AND a.ap_cur_dep='휴직'
-			ORDER BY a.ap_date DESC
+	<select id="hrLeaveList" resultMap="hrCardMap"> 
+		SELECT e.emp_name, e.emp_date, e.emp_code, d.dep_name, h.hr_code_name
+    		FROM department d, employee e, hr_code h
+    		WHERE e. dep_code = d.dep_code
+      	 	AND e. hr_code = h.hr_code
+      	  	AND d.dep_type=3
+    		ORDER BY e.emp_date DESC
+	</select>
+		
+	<!-- 조명재 - 퇴직자 조회 -->
+	<select id="hrRetireList" resultMap="hrCardMap">
+		SELECT e.emp_name, e.emp_date, e.emp_code, d.dep_name, h.hr_code_name
+    		FROM department d, employee e, hr_code h
+    		WHERE e. dep_code = d.dep_code
+      	 	AND e. hr_code = h.hr_code
+      	  	AND d.dep_type=4
+    		ORDER BY e.emp_date DESC
 	</select>
 	
-	<!-- 조명재 - 퇴직자 조회 -->
-	<select id="hrRetireList" resultMap="appointHistoryMap">
-		SELECT a.*, d.dep_name, e.emp_name FROM appoint_history a, department d, employee e
-			WHERE a.emp_code = e.emp_code
-			AND e. dep_code = d.dep_code
-			AND a.ap_cur_dep='퇴직'
-			ORDER BY a.ap_date DESC
+	<!-- 조명재 - 퇴직자 & 휴직자 조회 상세페이지 -->
+	<select id="getLeReDetail" resultMap="hrCardMap" parameterType="String"> 
+		SELECT e.emp_code, e.emp_name, e.emp_date, d.dep_name, h.hr_code_name
+    		FROM department d, employee e, hr_code h
+    		WHERE e. dep_code = d.dep_code
+        	AND e. hr_code = h.hr_code
+        	AND e.emp_code = #{emp_code}
+    		ORDER BY e.emp_date DESC
 	</select>
 	
 	<!-- 조명재 - 급여 내역 -->

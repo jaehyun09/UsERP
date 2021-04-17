@@ -115,24 +115,48 @@ public class WaServiceImpl implements WaService {
 		
 	*/
 		
-		int insertCnt = 0;
+//		int insertCnt = 0;
+//		
+//		String emp_code = (String)req.getSession().getAttribute("mem_id");
+//		
+//		Date date = new Date();
+//		//SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+//		//String date2 = fmt.format(date);
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		
+//		map.put("emp_code",emp_code);
+//		map.put("date",date);
+//		
+//		//int selectCnt = waDao.getcmdate(map);
+//		//if(selectCnt == 1) 
+//		insertCnt = waDao.waStartClick(map);
+//		
+//		model.addAttribute("insertCnt", insertCnt);
 		
-		String emp_code = (String)req.getSession().getAttribute("mem_id");
-		
-		Date date = new Date();
-		//SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
-		//String date2 = fmt.format(date);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("emp_code",emp_code);
-		map.put("date",date);
-		
-		//int selectCnt = waDao.getcmdate(map);
-		//if(selectCnt == 1) 
-		insertCnt = waDao.waStartClick(map);
-		
-		model.addAttribute("insertCnt", insertCnt);
+		 int selectCnt = 0;
+	      int insertCnt = 0;
+	      
+	      String emp_code = (String)req.getSession().getAttribute("mem_id");
+	      
+	      Date date = new Date();
+	      
+	      Map<String, Object> map = new HashMap<String, Object>();
+	      
+	      map.put("emp_code",emp_code);
+	      map.put("date",date);
+	      
+	      CommuteVO vo = waDao.waEndSelect(emp_code);
+	      
+	      if(vo != null) selectCnt = 1;
+	      
+	      if(selectCnt == 0) {
+	         insertCnt = waDao.waStartClick(map);
+	      }
+	      
+	      model.addAttribute("insertCnt", insertCnt);
+	      model.addAttribute("selectCnt", selectCnt);
+
 	}
 	
 	// 김은희 - 퇴근 처리

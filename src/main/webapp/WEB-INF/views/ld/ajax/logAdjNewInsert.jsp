@@ -36,13 +36,14 @@ $('#amount').change(function() {
 	var quantity = parseInt($('#quantity').val());
 	var quan = quantity + amount;
 	
-	if(amount < quantity) {
+	if(quan < 0) {
 		alert('재고수량을 초과하였습니다.');
 		$('#amount').val('');
 		$('#amount').focus();
 	} else {
 		$('#quantity').val(quan);
-	}
+	} 
+
 });
 
 /* 입력 값 없이 submit 할 경우 포커스 및 sumbit안타기 */
@@ -64,21 +65,21 @@ function adjCheck() {
 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 	<table class="table bg-white text-dark center ass2" style="text-align:center">
 	    <tr>
-			<td class="font-weight-semi-bold border-top-0 py-3 text-dark"
+			<td class="font-weight-semi-bold border-top-0 py-2 text-dark"
 			colspan="2" style="vertical-align: middle;">상품명</td>
-			<td class="font-weight-semi-bold border-top-0 py-3"
+			<td class="font-weight-semi-bold border-top-0 py-2"
 				colspan="2">
 				<select class="custom-select custom-select-lg" id="prod" name="prod">
-	               	<c:forEach var="prolist" items="${selprolist}">
-						<option value="${prolist.pro_code}">${prolist.pro_name}</option>
+	               	<c:forEach var="prolist" items="${prolist}">
+						<option value="${prolist.pro_code}">${prolist.product.pro_name}</option>
 	               	</c:forEach>
 				</select>
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="py-3 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
-			<td class="py-3" colspan="2">
+			<td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>창고명</b></td>
+			<td class="py-2" colspan="2">
 				<select class="custom-select custom-select-lg" id="wareh" name="arrivewh">
 					<c:forEach var="ware" items="${selectware}">
 					<c:if test="${ware.ware_type == 1}">
@@ -95,24 +96,24 @@ function adjCheck() {
 			</td>
 		</tr>
 		<tr>
-			<td class="py-3" colspan="2" style="vertical-align: middle;"><b>조정 재고</b></td>
-			<td class="py-3" colspan="2">
+			<td class="py-2" colspan="2" style="vertical-align: middle;"><b>조정 재고</b></td>
+			<td class="py-2" colspan="2">
 				<input class="form-control form-control-icon-text" type="text" id="amount" name="amount" onKeyup="calculation()" placeholder="조정 재고">
 			</td>
 		</tr>
 		
 		<tr>
-			<td class="py-3" colspan="2" style="vertical-align: middle; "><b>조정 후 재고</b></td>
-			<td class="py-3" colspan="2">
+			<td class="py-2" colspan="2" style="vertical-align: middle; "><b>조정 후 재고</b></td>
+			<td class="py-2" colspan="2">
 				<input class="form-control form-control-icon-text" type="text" id="quantity" name="quantity" readonly>
 			</td>
 		</tr>
 		<tr>
-			<td class="py-3" colspan="2" style="vertical-align: middle; "><b>담당자</b></td>
-	        <td class="py-3" colspan="2" style="vertical-align: middle; text-align:left;">
-				<input class="form-control form-control-icon-text" type="hidden" name="empid" style="font-size:25px" value="${sessionScope.mem_id}" readonly>
-				${sessionScope.mem_name}
-			</td>
+	        <td class="py-2 text-dark" colspan="2"style="vertical-align: middle;"><b>담당자</b></td>
+			<td class="py-2" colspan="2" style="vertical-align: middle; text-align:left;">
+		       <input class="form-control form-control-icon-text" type="hidden" name="empid" value="${sessionScope.mem_id}">
+		       ${sessionScope.mem_name}
+		    </td>
 	  	</tr>
 	</tbody>
 	</table>

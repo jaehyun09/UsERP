@@ -126,6 +126,7 @@
 						<td class="font-weight-semi-bold border-top-0 py-2"
 						colspan="2">
 							<select class="custom-select custom-select-lg" id="selectStock" onchange="stockAdjustList()">
+								<option>선택하세요. </option>
 								<option value="1">재고 조정</option>
 								<option value="2">재고 이동</option>
 							</select>

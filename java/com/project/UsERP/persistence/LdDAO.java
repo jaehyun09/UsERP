@@ -177,4 +177,7 @@ public interface LdDAO {
 	
 	// 구매팀 요청 보내기 
 	public int logsupdate(LogisticsStatementVO vo);
+	
+	// 김민수 - 재고 조정 재고현황 상품명 가져오기
+	  public List<StockVO> proStateName();
 }

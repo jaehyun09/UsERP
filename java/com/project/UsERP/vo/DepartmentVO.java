@@ -6,6 +6,7 @@ public class DepartmentVO {
 	private int dep_code;		// 부서코드
 	private String dep_name;	// 부서명
 	private int dep_state;		// 상태
+	private int dep_type;		// 부서유형
 	
 	public int getDep_code() {
 		return dep_code;
@@ -30,5 +31,14 @@ public class DepartmentVO {
 	public void setDep_state(int dep_state) {
 		this.dep_state = dep_state;
 	}
+
+	public int getDep_type() {
+		return dep_type;
+	}
+
+	public void setDep_type(int dep_type) {
+		this.dep_type = dep_type;
+	}
+	
 	
 }
