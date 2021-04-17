@@ -445,6 +445,8 @@ public class HrServiceImpl implements HrService {
 			// 기본 급여
 			int hourlyWage = 8720;
 			switch (vo.getHr_code()) {
+				case 100: hourlyWage = (int) (hourlyWage * 0.2469);
+					break;
 				case 101: hourlyWage = (int) (hourlyWage * 0.2194);
 					break;
 				case 102: hourlyWage = (int) (hourlyWage * 0.1874);
@@ -455,7 +457,7 @@ public class HrServiceImpl implements HrService {
 					break;
 				case 105: hourlyWage = (int) (hourlyWage * 0.1188);
 					break;
-				default: hourlyWage = 8720;
+				default: hourlyWage = (int) (hourlyWage * 0.1000);
 			}
 			int sal_basic = hourlyWage * 209 * 10;
 			
