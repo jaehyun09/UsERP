@@ -90,6 +90,40 @@ function addressSearch() {
 		}
 	}
 	
+	
+	function onLeaveDetail(code) {
+		
+		var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=" + code;
+		
+	   $.ajax({
+	      type:"POST",
+		  data:param,
+		  url:'onLeaveDetail',
+	      success: function(data){ 
+	         $('#onleave').html(data);
+	      },
+	      error: function(){
+	         alert('오류');
+	      }
+	   });
+	} 
+	
+function retiredDetail(code) {
+		
+	var param = "&${_csrf.parameterName}=${_csrf.token}&emp_code=" + code;
+		
+	$.ajax({
+	    type:"POST",
+		data:param,
+		url:'retiredDetail',
+	    success: function(data){ 
+	      $('#retired').html(data);
+	    },
+	    error: function(){
+	      alert('오류');
+	    }
+	});
+} 
 </script>
    
    
@@ -452,10 +486,10 @@ function addressSearch() {
                            <th style="vertical-align:middle">* 권한</th>
                            <td><div class="form-group">
                                    <select name="emp_authority" class="form-control" id="exampleFormControlSelect1">
-                                       <option value="0">권한 선택</option>
+                                     <option value="0">권한 선택</option>
                                      <option value="ROLE_ADMIN">관리자</option>
-                                     <option value="ROLE_ST">판매팀</option>
                                      <option value="ROLE_HR">인사팀</option>
+                                     <option value="ROLE_ST">판매팀</option>
                                      <option value="ROLE_PD">구매팀</option>
                                      <option value="ROLE_LD">물류팀</option>
                                      <option value="ROLE_AD">회계팀</option>
@@ -556,9 +590,15 @@ function addressSearch() {
                                   <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
                                 </div>
                                 <!-- 검색창 끝 -->   
-                                   
                                  <br>
-                              
+                                 <div class="row">
+									<div class="col">
+										<div class="collapse multi-collapse"
+											id="multiCollapseExample2">
+											<div id="onleave"></div>
+										</div>
+									</div>
+								</div>	
                                     <table class="table table-striped bg-white text-dark center ass2">
                                        <thead>
                                           <tr class="text-white table-bordered tap">
@@ -572,11 +612,18 @@ function addressSearch() {
                                        <tbody>
                                           <c:forEach var="vo" items="${list7}">
                                           <tr>
-                                             <td class="py-3">${vo.emp_code}</td>
-                                             <td class="py-3">${vo.ap_cur_dep}</td>
-                                             <td class="py-3">${vo.ap_cur_position}</td>
-                                             <td class="py-3">${vo.employee.emp_name}</td>
-                                             <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
+                                             <td>
+                                                	<a class="text-dark con2"
+														data-toggle="collapse" style="font-size:22px"
+														href="#multiCollapseExample2" role="button"
+														aria-expanded="false"
+														aria-controls="multiCollapseExample2"
+														onclick="onLeaveDetail(${vo.emp_code})">${vo.emp_code}</a>
+                                                </td>
+                                             <td class="py-3">${vo.department.dep_name}</td>
+                                             <td class="py-3">${vo.hrCode.hr_code_name}</td>
+                                             <td class="py-3">${vo.emp_name}</td>
+                                             <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.emp_date}"/></td>
                                           </tr>
                                         </c:forEach>
                                        </tbody>
@@ -592,8 +639,15 @@ function addressSearch() {
                                   <input class="form-control form-control-icon-text" placeholder="사원명/사번 검색" type="text" style="font-size:20px">
                                 </div>
                                 <!-- 검색창 끝 -->   
-                                   
                                  <br>
+                                 <div class="row">
+									<div class="col">
+										<div class="collapse multi-collapse"
+											id="multiCollapseExample3">
+											<div id="retired"></div>
+										</div>
+									</div>
+								</div>	
                                  <form>
                                     <table class="table table-striped bg-white text-dark center ass2">
                                        <thead>
@@ -608,17 +662,26 @@ function addressSearch() {
                                        <tbody>
                                           <c:forEach var="vo" items="${list8}">
                                             <tr>
-                                               <td class="py-3">${vo.emp_code}</td>
-                                               <td class="py-3">${vo.ap_cur_dep}</td>
-                                               <td class="py-3">${vo.ap_cur_position}</td>
-                                               <td class="py-3">${vo.employee.emp_name}</td>
-                                               <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
+                                                <td>
+                                                	<a class="text-dark con2"
+														data-toggle="collapse" style="font-size:22px"
+														href="#multiCollapseExample3" role="button"
+														aria-expanded="false"
+														aria-controls="multiCollapseExample3"
+														onclick="retiredDetail(${vo.emp_code})">${vo.emp_code}</a>
+                                                </td>
+                                                
+                                             	<td class="py-3">${vo.department.dep_name}</td>
+                                            	<td class="py-3">${vo.hrCode.hr_code_name}</td>
+                                            	<td class="py-3">${vo.emp_name}</td>
+                                            	<td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.emp_date}"/></td>
                                             </tr>
                                          </c:forEach>
                                        </tbody>
                                     </table>
                                     </form>
                                     </div>
+                                   
                                     <br>
                               </div>
                               <!-- End Tab Content -->

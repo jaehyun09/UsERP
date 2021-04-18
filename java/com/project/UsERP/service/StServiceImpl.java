@@ -183,7 +183,6 @@ public class StServiceImpl implements StService {
 		model.addAttribute("account", account);
 	}
 
-
 	@Override
 	public void insertLogsStatement(HttpServletRequest req, Model model) {
 		LogisticsStatementVO vo = new LogisticsStatementVO();

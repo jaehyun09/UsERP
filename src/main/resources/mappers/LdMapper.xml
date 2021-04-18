@@ -554,5 +554,11 @@
 			WHERE logs_code = #{logs_code}
 	</update>
    
+   	<!-- 김민수 - 재고 조정 재고현황 상품명 가져오기 -->
+   <select id="proStateName" resultMap="stockVOMap">
+      SELECT DISTINCT s.pro_code, p.pro_name
+      FROM stock s, product p
+      WHERE s.pro_code = p.pro_code
+   </select>
    
 </mapper>

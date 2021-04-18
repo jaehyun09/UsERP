@@ -283,15 +283,18 @@
 												        <td class="py-3"><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.ap_date}"/></td>
 														<td class="py-3">${vo.emp_code}</td>
 														<td class="py-3">${vo.employee.emp_name}</td>
-														<td class="py-3">
-														<c:if test="${vo.ap_cur_dep == '0'}">
+														<td class="py-3">${vo.ap_cur_dep}</td>
+														<td class="py-3">${vo.ap_cur_position}</td>
+														
+														
+														<%-- <c:if test="${vo.ap_cur_dep == '0'}">
 															- 
 														</c:if>
 														<c:if test="${vo.ap_cur_dep != '0'}">
 															${vo.ap_cur_dep}
 														</c:if>
 														</td>
-														<td class="py-3">${vo.ap_cur_position}</td>
+														<td class="py-3">${vo.ap_cur_position}</td> --%>
 														<td class="py-3">${vo.ap_pre_dep}
 														
 														
@@ -365,14 +368,14 @@
 															<th style="vertical-align: middle">발령 부서</th>
 															<td>	 
 															<div class="form-group">
-															     <select name="ap_cur_dep" class="form-control" id="exampleFormControlSelect1">
+															     <select name="dep_code" class="form-control" id="exampleFormControlSelect1">
 															     	<option value="0">부서 선택</option>
 															    	<c:forEach var="vo" items="${list3}">
-														       			<option value="${vo.dep_name}">${vo.dep_name}</option>
+														       			<option value="${vo.dep_code}">${vo.dep_name}</option>
 														       		</c:forEach>
 															     </select>
-															   </div>
-															 </td>
+															</div>
+															</td>
 														</tr>
 														<tr>
 															<th style="vertical-align: middle">현재 직급</th>
@@ -382,10 +385,10 @@
 															<th style="vertical-align: middle">발령 후 직급</th>
 															<td>	 
 															<div class="form-group">
-															     <select name="ap_cur_position" class="form-control" id="exampleFormControlSelect1">
+															     <select name="hr_code" class="form-control" id="exampleFormControlSelect1">
 															     	<option value="0">직급 선택</option>
 															     	<c:forEach var="vo" items="${list4}">
-														       			<option value="${vo.hr_code_name}">${vo.hr_code_name}</option>
+														       			<option value="${vo.hr_code}">${vo.hr_code_name}</option>
 														       		</c:forEach>
 															     </select>
 															   </div>

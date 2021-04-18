@@ -1,6 +1,8 @@
 package com.project.UsERP.service;
 
 import java.io.File;
+
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -207,20 +209,68 @@ public class HrServiceImpl implements HrService {
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령
 	@Override
 	public void hrAppointmentPro(HttpServletRequest req, Model model) {
-		String ap_cur_dep = req.getParameter("ap_cur_dep");
-		String ap_cur_position = req.getParameter("ap_cur_position");
+		// String ap_cur_dep = req.getParameter("ap_cur_dep");
+		// String ap_cur_position = req.getParameter("ap_cur_position");
+		int dep_code = Integer.parseInt(req.getParameter("dep_code"));
 		String ap_pre_dep = req.getParameter("ap_pre_dep");
+		int hr_code = Integer.parseInt(req.getParameter("hr_code"));
 		String ap_pre_position = req.getParameter("ap_pre_position");
 		String emp_code = req.getParameter("emp_code");
 
+		String dep_name = hrDao.getDepName(dep_code);
+		String hr_code_name = hrDao.getCodeName(hr_code);
+		
 		AppointHistoryVO vo = new AppointHistoryVO();
-		vo.setAp_cur_dep(ap_cur_dep);
-		vo.setAp_cur_position(ap_cur_position);
+		
+		if(dep_code == 0) {
+			vo.setAp_cur_dep(ap_pre_dep);
+		}  else {
+			vo.setAp_cur_dep(dep_name);
+		}
+		if(hr_code == 0) {
+			vo.setAp_cur_position(ap_pre_position);
+		} else {
+			vo.setAp_cur_position(hr_code_name);
+		}
 		vo.setAp_pre_dep(ap_pre_dep);
 		vo.setAp_pre_position(ap_pre_position);
 		vo.setEmp_code(emp_code);
 
+		String emp_authority = "ROLE_USER";
+		switch(dep_code) {
+			case 100 : emp_authority = "ROLE_ADMIN";
+				break;
+			case 200 : emp_authority = "ROLE_HR";
+				break;
+			case 300 : emp_authority = "ROLE_ST";
+				break;
+			case 400 : emp_authority = "ROLE_PD";
+				break;
+			case 500 : emp_authority = "ROLE_LD";
+				break;
+			case 600 : emp_authority = "ROLE_AD";
+				break;
+		} 
+		
+		
 		int insertCnt = hrDao.hrAppointmentPro(vo);
+		if(insertCnt == 1) {
+			EmployeeVO vo1 = new EmployeeVO();
+			if(dep_code != 0) {
+				vo1.setEmp_code(emp_code);
+				vo1.setDep_code(dep_code);
+				vo1.setEmp_authority(emp_authority);
+				vo1.setEmp_date(new Timestamp(System.currentTimeMillis()));
+				hrDao.depUpdate(vo1);
+				
+			}
+			if(hr_code != 0) {
+				vo1.setEmp_code(emp_code);
+				vo1.setHr_code(hr_code);			 
+				hrDao.hrUpdate(vo1);			
+			}
+			
+		}
 
 		model.addAttribute("insertCnt", insertCnt);
 	}
@@ -326,6 +376,17 @@ public class HrServiceImpl implements HrService {
 
 		model.addAttribute("list7", list7);
 	}
+	
+	// 조명재 - 휴직자 조회 상세페이지 onLeaveDetail
+	@Override
+	public void onLeaveDetail(HttpServletRequest req, Model model) {
+		String emp_code = req.getParameter("emp_code");
+
+		EmployeeVO list = hrDao.getLeReDetail(emp_code);
+
+		model.addAttribute("onLeave", list);
+
+	}
 
 	// 조명재 - 퇴직자 조회
 	@Override
@@ -333,6 +394,17 @@ public class HrServiceImpl implements HrService {
 		List<AppointHistoryVO> list8 = hrDao.hrRetireList();
 
 		model.addAttribute("list8", list8);
+	}
+	
+	// 조명재 - 퇴직자 조회 상세페이지 retiredDetail
+	@Override
+	public void retiredDetail(HttpServletRequest req, Model model) {
+		String emp_code = req.getParameter("emp_code");
+
+		EmployeeVO list = hrDao.getLeReDetail(emp_code);
+
+		model.addAttribute("retired", list);
+
 	}
 
 	// 김은희 - 인사 코드 그룹 조회 상세페이지
@@ -373,6 +445,8 @@ public class HrServiceImpl implements HrService {
 			// 기본 급여
 			int hourlyWage = 8720;
 			switch (vo.getHr_code()) {
+				case 100: hourlyWage = (int) (hourlyWage * 0.2469);
+					break;
 				case 101: hourlyWage = (int) (hourlyWage * 0.2194);
 					break;
 				case 102: hourlyWage = (int) (hourlyWage * 0.1874);
@@ -383,7 +457,7 @@ public class HrServiceImpl implements HrService {
 					break;
 				case 105: hourlyWage = (int) (hourlyWage * 0.1188);
 					break;
-				default: hourlyWage = 8720;
+				default: hourlyWage = (int) (hourlyWage * 0.1000);
 			}
 			int sal_basic = hourlyWage * 209 * 10;
 			

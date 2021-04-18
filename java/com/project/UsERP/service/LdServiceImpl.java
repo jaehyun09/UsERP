@@ -1,11 +1,5 @@
 package com.project.UsERP.service;
 
-import java.sql.Timestamp;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +12,6 @@ import org.springframework.ui.Model;
 
 import com.project.UsERP.persistence.LdDAO;
 import com.project.UsERP.persistence.PdDAO;
-import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.CompanyVO;
 import com.project.UsERP.vo.LogisticsStatementVO;
 import com.project.UsERP.vo.ProductVO;
@@ -300,7 +293,7 @@ public class LdServiceImpl implements LdService {
 	@Override
 	public void selectProduct(HttpServletRequest req, Model model) {
 		List<ProductVO> list = lddao.selectProduct();
-		
+
 		model.addAttribute("selprolist", list);
 	}
 
@@ -658,13 +651,13 @@ public class LdServiceImpl implements LdService {
 	@Override
 	public void stockInAction(HttpServletRequest req, Model model) {
 
-		String emp_code = req.getParameter("emp_code"); 
+		String emp_code = req.getParameter("emp_code");
 
 		int logs_code = Integer.parseInt(req.getParameter("logs_code"));
 		int sto_code = Integer.parseInt(req.getParameter("sto_code"));
-		int logs_quantity = Integer.parseInt(req.getParameter("logs_quantity")); 
-		int ware_code = Integer.parseInt(req.getParameter("ware_code")); 
-		int pro_code = Integer.parseInt(req.getParameter("pro_code")); 
+		int logs_quantity = Integer.parseInt(req.getParameter("logs_quantity"));
+		int ware_code = Integer.parseInt(req.getParameter("ware_code"));
+		int pro_code = Integer.parseInt(req.getParameter("pro_code"));
 
 		int updateCnt = lddao.stockInAction(logs_code);
 
@@ -678,7 +671,7 @@ public class LdServiceImpl implements LdService {
 
 				int stockInsertCnt = lddao.stockInsert(map);
 
-				if (stockInsertCnt == 1) { 
+				if (stockInsertCnt == 1) {
 
 					Map<String, Object> scsmap = new HashMap<String, Object>();
 					scsmap.put("ware_code", ware_code);
@@ -709,13 +702,13 @@ public class LdServiceImpl implements LdService {
 				}
 
 			} else {
-				int retrunStoQuantity = lddao.retrunStoQuantity(sto_code); 
+				int retrunStoQuantity = lddao.retrunStoQuantity(sto_code);
 
-				int sto_quantity = logs_quantity + retrunStoQuantity; 
+				int sto_quantity = logs_quantity + retrunStoQuantity;
 
 				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("sto_code", sto_code); 
-				map.put("sto_quantity", sto_quantity); 
+				map.put("sto_code", sto_code);
+				map.put("sto_quantity", sto_quantity);
 				map.put("ware_code", ware_code);
 				map.put("pro_code", pro_code);
 
@@ -748,27 +741,27 @@ public class LdServiceImpl implements LdService {
 		int sto_code = Integer.parseInt(req.getParameter("sto_code"));
 		int logs_quantity = Integer.parseInt(req.getParameter("logs_quantity"));
 		int logs_shortage = Integer.parseInt(req.getParameter("logs_shortage"));
-		int ware_code = Integer.parseInt(req.getParameter("ware_code")); 
-		int pro_code = Integer.parseInt(req.getParameter("pro_code")); 
-		String emp_code = req.getParameter("emp_code"); 
+		int ware_code = Integer.parseInt(req.getParameter("ware_code"));
+		int pro_code = Integer.parseInt(req.getParameter("pro_code"));
+		String emp_code = req.getParameter("emp_code");
 
 		int updateCnt = 0;
 
-		int retrunStoQuantity = lddao.retrunStoQuantity(sto_code); 
+		int retrunStoQuantity = lddao.retrunStoQuantity(sto_code);
 
-		int sto_quantity = retrunStoQuantity - logs_quantity; 
+		int sto_quantity = retrunStoQuantity - logs_quantity;
 
-		if (sto_quantity < 0) { 
+		if (sto_quantity < 0) {
 			sto_quantity = 0;
 		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("sto_code", sto_code); 
-		map.put("sto_quantity", sto_quantity); 
+		map.put("sto_code", sto_code);
+		map.put("sto_quantity", sto_quantity);
 		map.put("ware_code", ware_code);
 		map.put("pro_code", pro_code);
 
-		int stockUpdateCnt = lddao.stockUpdate(map); 
+		int stockUpdateCnt = lddao.stockUpdate(map);
 
 		if (stockUpdateCnt == 1) {
 
@@ -776,19 +769,19 @@ public class LdServiceImpl implements LdService {
 
 			Map<String, Object> wmap = new HashMap<String, Object>();
 			wmap.put("pro_code", pro_code);
-			wmap.put("ware_code", outReadyWareCode); 
+			wmap.put("ware_code", outReadyWareCode);
 
 			StockVO vo = lddao.outReadyStockSelect(wmap);
 
-			if (vo != null) { 
+			if (vo != null) {
 
 				int outReadyStoCode = vo.getSto_code();
 				int outReadyStoQuantity = vo.getSto_quantity();
 				outReadyWareCode = vo.getWare_code();
 
-				int sto_quantity2 = 0; 
+				int sto_quantity2 = 0;
 
-				if (logs_shortage > 0) { 
+				if (logs_shortage > 0) {
 
 					sto_quantity2 = outReadyStoQuantity + retrunStoQuantity;
 
@@ -800,31 +793,31 @@ public class LdServiceImpl implements LdService {
 
 				Map<String, Object> map2 = new HashMap<String, Object>();
 				map2.put("sto_code", outReadyStoCode);
-				map2.put("sto_quantity", sto_quantity2); 
+				map2.put("sto_quantity", sto_quantity2);
 				map2.put("ware_code", outReadyWareCode);
 				map2.put("pro_code", pro_code);
 
-				int stockUpdateCnt2 = lddao.stockUpdate(map2); 
+				int stockUpdateCnt2 = lddao.stockUpdate(map2);
 
-				if (stockUpdateCnt2 == 1) { 
+				if (stockUpdateCnt2 == 1) {
 
 					Map<String, Object> map3 = new HashMap<String, Object>();
 					map3.put("sto_code", outReadyStoCode);
 
-					if (logs_shortage > 0) { 
+					if (logs_shortage > 0) {
 						sto_quantity2 = 0;
 
-						logs_quantity = retrunStoQuantity; 
+						logs_quantity = retrunStoQuantity;
 					} else {
-						sto_quantity2 = retrunStoQuantity - logs_quantity; 
+						sto_quantity2 = retrunStoQuantity - logs_quantity;
 					}
 
-					map3.put("stsu_quantity", sto_quantity2); 
+					map3.put("stsu_quantity", sto_quantity2);
 					map3.put("stsu_amount", logs_quantity);
 					map3.put("ware_code", ware_code);
 					map3.put("pro_code", pro_code);
 
-					map3.put("emp_code", emp_code); 
+					map3.put("emp_code", emp_code);
 
 					int outReadystockSupplyCnt = lddao.outReadystockSupplyInsert(map3);
 
@@ -833,21 +826,21 @@ public class LdServiceImpl implements LdService {
 						Map<String, Object> map4 = new HashMap<String, Object>();
 
 						map4.put("logs_code", logs_code);
-						map4.put("sto_code", outReadyStoCode); 
-						map4.put("ware_code", outReadyWareCode); 
+						map4.put("sto_code", outReadyStoCode);
+						map4.put("ware_code", outReadyWareCode);
 
 						updateCnt = lddao.stockOutReady(map4);
 					}
 				}
 
-			} else { 
+			} else {
 
-				int getWareCode = pddao.getWareCode(3); 
+				int getWareCode = pddao.getWareCode(3);
 
 				int modifyStoQuantity = logs_quantity;
 
-				if (logs_shortage > 0) { 
-					modifyStoQuantity = retrunStoQuantity; 
+				if (logs_shortage > 0) {
+					modifyStoQuantity = retrunStoQuantity;
 				}
 
 				Map<String, Object> map4 = new HashMap<String, Object>();
@@ -857,7 +850,7 @@ public class LdServiceImpl implements LdService {
 
 				int outStockInsertCnt = lddao.outStockInsert(map4);
 
-				if (outStockInsertCnt == 1) { 
+				if (outStockInsertCnt == 1) {
 
 					Map<String, Object> scsmap2 = new HashMap<String, Object>();
 					scsmap2.put("ware_code", getWareCode);
@@ -871,8 +864,8 @@ public class LdServiceImpl implements LdService {
 					Map<String, Object> map2 = new HashMap<String, Object>();
 					map2.put("sto_code", newStoCode);
 
-					if (logs_shortage > 0) { 
-						logs_quantity = 0; 
+					if (logs_shortage > 0) {
+						logs_quantity = 0;
 					} else {
 						logs_quantity = retrunStoQuantity - logs_quantity;
 					}
@@ -883,7 +876,7 @@ public class LdServiceImpl implements LdService {
 					map2.put("pro_code", pro_code);
 
 					map2.put("emp_code", emp_code);
-					
+
 					int outReadystockSupplyCnt = lddao.outReadystockSupplyInsert(map2);
 
 					if (outReadystockSupplyCnt == 1) {
@@ -899,7 +892,7 @@ public class LdServiceImpl implements LdService {
 
 							Map<String, Object> map5 = new HashMap<String, Object>();
 
-							map5.put("logs_code", logs_code); 
+							map5.put("logs_code", logs_code);
 							map5.put("sto_code", newStoCode);
 							map5.put("ware_code", getWareCode);
 
@@ -911,7 +904,7 @@ public class LdServiceImpl implements LdService {
 			}
 		}
 
-		int logs_quantity3 = Integer.parseInt(req.getParameter("logs_quantity")); 
+		int logs_quantity3 = Integer.parseInt(req.getParameter("logs_quantity"));
 
 		if (logs_shortage > 0) {
 
@@ -937,5 +930,13 @@ public class LdServiceImpl implements LdService {
 
 		model.addAttribute("num", logs_code);
 		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	// 김민수 - 재고 조정 재고현황 상품명 가져오기
+	@Override
+	public void proStateName(HttpServletRequest req, Model model) {
+		List<StockVO> list = lddao.proStateName();
+
+		model.addAttribute("prolist", list);
 	}
 }

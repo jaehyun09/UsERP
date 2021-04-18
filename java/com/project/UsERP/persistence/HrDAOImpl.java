@@ -106,6 +106,18 @@ public class HrDAOImpl implements HrDAO {
 		return hrDao.hrAppointmentPro(vo);
 	}
 
+	// 조명재 - 인사 발령 -
+	@Override
+	public int hrUpdate(EmployeeVO vo1) {
+		return sqlSession.update("com.project.UsERP.persistence.HrDAO.hrUpdate", vo1);
+	}
+
+	// 조명재 - 인사 발령 -
+	@Override
+	public int depUpdate(EmployeeVO vo1) {
+		return sqlSession.update("com.project.UsERP.persistence.HrDAO.depUpdate", vo1);
+	}
+	
 	// 김은희 - 인사카드 조회
 	@Override
 	public List<EmployeeVO> hrCardList() {
@@ -149,12 +161,18 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrLeaveList();
 	}
-
+	
 	// 조명재 - 퇴직자 조회
 	@Override
 	public List<AppointHistoryVO> hrRetireList() {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrRetireList();
+	}
+	
+	// 조명재 - 퇴직자 & 휴직자 조회 상세페이지
+	@Override	
+	public EmployeeVO getLeReDetail(String emp_code) {
+		return sqlSession.selectOne("com.project.UsERP.persistence.HrDAO.getLeReDetail", emp_code);
 	}
 
 	// 조명재 - 급여 내역
@@ -163,7 +181,7 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.hrSalaryList();
 	}
-	
+
 	// 조명재 - 야근 유무를 확인한다
 	@Override
 	public int getOverCnt(Map<String, Object> map) {
@@ -191,5 +209,5 @@ public class HrDAOImpl implements HrDAO {
 		HrDAO hrDao = sqlSession.getMapper(HrDAO.class);
 		return hrDao.salaryStatement(map);
 	}
-	
+
 }

@@ -1,7 +1,5 @@
 package com.project.UsERP.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.google.firebase.messaging.FirebaseMessagingException;
 import com.project.UsERP.persistence.AdDAO;
 import com.project.UsERP.service.AdServiceImpl;
-import com.project.UsERP.vo.AccountStatementVO;
-import com.project.UsERP.vo.SalaryStatementVO;
 
 // 회계 관리
 @Controller
@@ -78,9 +74,9 @@ public class AdController {
 	public String adReport(HttpServletRequest req, Model model) {
 		logger.info("url: 회계 보고서");
 		
-		List<AccountStatementVO> list = addao.statementList();
-		List<SalaryStatementVO> list1 = addao.salarystatementList();
-		if(list.size() > 0 && list1.size() > 0) {			
+		//List<AccountStatementVO> list = addao.statementList();
+		//List<SalaryStatementVO> list1 = addao.salarystatementList();
+		//if(list.size() > 0 && list1.size() > 0) {			
 			// 강재현 : 재무상태표	
 //			adservice.get12(req, model);
 			
@@ -89,7 +85,7 @@ public class AdController {
 			
 			// 조명재 : 기대 수익율
 			adservice.expProfit(req, model);
-		}
+//		}
 		return "ad/adReport";
 	}
 

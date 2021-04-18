@@ -57,6 +57,11 @@ public interface HrDAO {
 	// 조명재 - 인사 발령(중메뉴) - 인사 발령
 	public int hrAppointmentPro(AppointHistoryVO vo);
 	
+	// 조명재 - 인사 발령 - 
+	public int hrUpdate(EmployeeVO vo1);
+	// 조명재 - 인사 발령 - 
+	public int depUpdate(EmployeeVO vo1);
+	
 	// 김은희 - 인사카드 조회
 	public List<EmployeeVO> hrCardList();
 
@@ -74,9 +79,12 @@ public interface HrDAO {
 
 	// 조명재 - 휴직자 조회
 	public List<AppointHistoryVO> hrLeaveList();
-
+	
 	// 조명재 - 퇴직자 조회
 	public List<AppointHistoryVO> hrRetireList();
+	
+	// 조명재 - 퇴직자 & 휴직자 조회 상세페이지
+	public EmployeeVO getLeReDetail(String emp_code);
 	
 	// 조명재 - 급여 내역
 	public List<SalaryStatementVO> hrSalaryList();

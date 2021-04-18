@@ -44,10 +44,10 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler {
 			System.out.println(pwd);
 			System.out.println(passwordEncoder.matches(strPwd, pwd));
 			
-			if(!passwordEncoder.matches(strPwd, pwd)) request.setAttribute("msg", "등록되지 않은 계정이거나, 사원번호 또는 비밀번호를 잘못 입력하셨습니다. \n확인 후 다시 시도해 주십시오.");
+			if(!passwordEncoder.matches(strPwd, pwd)) request.setAttribute("remsg1", "등록되지 않은 계정이거나, 사원번호 또는 비밀번호를 잘못 입력하셨습니다. \n확인 후 다시 시도해 주십시오.");
 			
 		}	else {
-			request.setAttribute("msg", "등록되지 않은 계정이거나, 사원번호 또는 비밀번호를 잘못 입력하셨습니다. \n확인 후 다시 시도해 주십시오.");
+			request.setAttribute("remsg2", "등록되지 않은 계정이거나, 사원번호 또는 비밀번호를 잘못 입력하셨습니다. \n확인 후 다시 시도해 주십시오.");
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/main.jsp");
