@@ -49,4 +49,7 @@ public interface AdService {
 
 	// 이재홍 - 전표 관리 - 채권/채무 상세페이지
 	public void bdContent(HttpServletRequest req, Model model);
+	
+	// 조명재 - 회계 관리 - 회계보고서 - 기대 수익률
+	public void expProfit(HttpServletRequest req, Model model);
 }

@@ -82,10 +82,13 @@ public class AdController {
 		List<SalaryStatementVO> list1 = addao.salarystatementList();
 		if(list.size() > 0 && list1.size() > 0) {			
 			// 강재현 : 재무상태표	
-			adservice.get12(req, model);
+//			adservice.get12(req, model);
 			
 			// 이재홍 : 손익계산서 		
 			adservice.sum(req, model);
+			
+			// 조명재 : 기대 수익율
+			adservice.expProfit(req, model);
 		}
 		return "ad/adReport";
 	}
@@ -188,6 +191,5 @@ public class AdController {
 
 		return "ad/ajax/bondDebPage";
 	}
-	
 	
 }

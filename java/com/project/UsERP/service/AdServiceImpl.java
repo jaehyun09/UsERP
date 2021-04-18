@@ -1,6 +1,11 @@
 package com.project.UsERP.service;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -242,4 +247,48 @@ public class AdServiceImpl implements AdService {
 
 		model.addAttribute("bdContent", list);
 	}
+	
+	// 조명재 - 회계 관리 - 회계보고서 - 기대 수익률
+	@Override
+	public void expProfit(HttpServletRequest req, Model model) {
+		ProcessBuilder pb = new ProcessBuilder("python", "C:/Dev76/workspace_python/tensorflow/result.py");
+		Process p = null;
+		try {
+			p = pb.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(p.getInputStream(), "euc-kr"));
+			String line = "";
+			
+			StringBuilder sb = new StringBuilder();
+			try {
+				while((line = br.readLine()) != null) {
+					sb.append(line + "\n");
+				}
+				String result = sb.toString();
+				
+				System.out.println(result);
+				
+				int start = result.indexOf("result: [[");
+				int end = result.indexOf("]]");
+				
+				System.out.println("result : " + result.substring(start + 10, end));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
