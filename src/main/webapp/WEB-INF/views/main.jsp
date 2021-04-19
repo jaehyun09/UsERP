@@ -208,7 +208,7 @@
 			</c:if>
 			<c:if test="${remsg2 != null}">
 				<script type="text/javascript">
-		       		alert("사원 인증이 필요한 계정입니다. \n사원 인증해주세요.");
+		       		alert("등록되지 않은 사원이거나, 사원번호 또는 비밀번호를 잘못 입력하셨습니다. \n확인 후 다시 시도해 주십시오.");
 		        </script>
 			</c:if>
 			<div class="py-4 px-3 px-md-4">
