@@ -313,19 +313,17 @@
                                           <tr>
                                              <th class="font-weight-semi-bold border-top-0 py-3">과목</th>
                                              <th class="font-weight-semi-bold border-top-0 py-3"
-                                                colspan="2">금액</th>
+                                                >금액</th>
                                              <th class="font-weight-semi-bold border-top-0 py-3">과목</th>
                                              <th class="font-weight-semi-bold border-top-0 py-3"
-                                                colspan="2">금액</th>
+                                                >금액</th>
                                           </tr>
                                        </thead>
                                        <tbody>
                                           <tr>
                                              <td class="py-3"><b>보통예금</b></td>
-                                             <td class="py-3"></td>
                                              <td class="py-3">10,000,000</td>
                                              <td class="py-3"><b>외상매입금</b></td>
-                                             <td class="py-3"></td>
                                              <td class="py-3">
                                                 <c:if test="${get4 != 0}">   
                                                    <fmt:formatNumber type="number" maxFractionDigits="3" value="${get4}" />
@@ -334,7 +332,6 @@
                                           </tr>
                                           <tr>
                                              <td class="py-3"><b>외상매출금</b></td>
-                                             <td class="py-3"></td>
                                              <td class="py-3">
                                              <c:if test="${get2 != 0}">   
                                                 <fmt:formatNumber type="number" maxFractionDigits="3" value="${get2}" />
@@ -342,27 +339,21 @@
                                              </td>
                                              <td class="py-3"><b>지급어음</b></td>
                                              <td class="py-3"></td>
-                                             <td class="py-3"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3"><b>받을어음</b></td>
                                              <td class="py-3"></td>
-                                             <td class="py-3"></td>
                                              <td class="py-3"><b>미지급금</b></td>
-                                             <td class="py-3"></td>
                                              <td class="py-3"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3"><b>미수금</b></td>
                                              <td class="py-3"></td>
-                                             <td class="py-3"></td>
                                              <td class="py-3"><b>예수금</b></td>
-                                             <td class="py-3"></td>
                                              <td class="py-3"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3"><b>상품</b></td>
-                                             <td class="py-3"></td>
                                              <td class="py-3">
                                                 <c:if test="${get1 != 0}">
                                                    <fmt:formatNumber type="number" maxFractionDigits="3" value="${get1}" />
@@ -370,22 +361,19 @@
                                              </td>   
                                              <td class="py-3"><b>자본금</b></td>
                                              <td class="py-3"></td>
-                                             <td class="py-3"></td>
                                           </tr>
                                           <tr>
                                              <td class="py-3"><b>자산총계</b></td>
-                                             <td class="py-3"></td>
                                              <td class="py-3">
                                                 <c:if test="${get1 + get2 != 0}">
-                                                   <fmt:formatNumber type="number" maxFractionDigits="3" value="${100000000 + get1 + get2}" />
+                                                   <fmt:formatNumber type="number" maxFractionDigits="3" value="${100000000 + get1 + get2 }" />
                                                 </c:if>
                                              </td>
                                              <td class="py-3"><b>부채와 자본총계</b></td>
-                                             <td class="py-3"></td>
-                                             <td class="py-3">
-                                             <c:if test="${get4 != 0}">   
-                                                <fmt:formatNumber type="number" maxFractionDigits="3" value="${get4}" />
-                                             </c:if>
+                                             <td class="py-3"> 
+                                             	<c:if test="${get4 != 0}"> 
+                                                	<fmt:formatNumber type="number" maxFractionDigits="3" value="${get4 + 10000000 + 23400000}" />
+                                              	</c:if>
                                              </td>
                                           </tr>
                                        </tbody>

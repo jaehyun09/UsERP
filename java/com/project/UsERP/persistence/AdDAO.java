@@ -17,25 +17,25 @@ public interface AdDAO {
 	public List<AccountVO> accountList();
 
 	// 강재현 - 회계보고서 - 재무상태표 상품
-	public int get1();
+	public long get1();
 
 	// 강재현 - 회계보고서 - 재무상태표 외상매출금
-	public int get2();
+	public long get2();
 
 	// 강재현 - 회계보고서 - 재무상태표
-	public int get3();
+	public long get3();
 
 	// 강재현 - 회계보고서 - 재무상태표 외상매입금
-	public int get4();
+	public long get4();
 
 	// 이재홍 - 회계보고서 - 손익계산서 매출액
 	public long sum();
 
 	// 이재홍 - 회계보고서 - 손익계산서 매출원가
-	public int sum1();
+	public long sum1();
 
 	// 이재홍 - 회계보고서 - 손익계산서 판매비와 관리비
-	public int sum2();
+	public long sum2();
 	
 	// 조명재 - 회계보고서 - 기대수익률 - 매출액
 	public List<SettleVO> totalSales();

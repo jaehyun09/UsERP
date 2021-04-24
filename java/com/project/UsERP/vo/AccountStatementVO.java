@@ -13,7 +13,7 @@ public class AccountStatementVO {
 	private Date accs_reg_date; 	// 발행일
 	private Date accs_rpm_date;		// 상환일
 	private Date accs_update_date; 	// 최근수정일자
-	private int accs_sum;			// 총액
+	private long accs_sum;			// 총액
 	private int accs_state;			// 승인상태
 	private String emp_code;		// 사원번호
 	private int bank_code;			// 계좌코드
@@ -74,10 +74,10 @@ public class AccountStatementVO {
 	public void setAccs_update_date(Date accs_update_date) {
 		this.accs_update_date = accs_update_date;
 	}
-	public int getAccs_sum() {
+	public long getAccs_sum() {
 		return accs_sum;
 	}
-	public void setAccs_sum(int accs_sum) {
+	public void setAccs_sum(long accs_sum) {
 		this.accs_sum = accs_sum;
 	}
 	public int getAccs_state() {

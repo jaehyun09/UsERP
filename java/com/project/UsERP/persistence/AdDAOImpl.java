@@ -34,7 +34,7 @@ public class AdDAOImpl implements AdDAO {
 
 	// 강재현 - 회계보고서 - 재무상태표 상품
 	@Override
-	public int get1() {
+	public long get1() {
 		AdDAO dao = sqlSession.getMapper(AdDAO.class);
 		return dao.get1();
 		// return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.get1");
@@ -42,19 +42,19 @@ public class AdDAOImpl implements AdDAO {
 
 	// 강재현 - 회계보고서 - 재무상태표 외상매출금
 	@Override
-	public int get2() {
+	public long get2() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.get2");
 	}
 
 	// 강재현 - 회계보고서 - 재무상태표
 	@Override
-	public int get3() {
+	public long get3() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.get3");
 	}
 
 	// 강재현 - 회계보고서 - 재무상태표 외상매입금
 	@Override
-	public int get4() {
+	public long get4() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.get4");
 	}
 
@@ -66,13 +66,13 @@ public class AdDAOImpl implements AdDAO {
 
 	// 이재홍 : 회계보고서 - 손익계산서 매출원가
 	@Override
-	public int sum1() {
+	public long sum1() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.sum1");
 	}
 
 	// 이재홍 - 회계보고서 - 손익계산서 판매비와 관리비
 	@Override
-	public int sum2() {
+	public long sum2() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.sum2");
 	}
 

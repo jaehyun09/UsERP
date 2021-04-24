@@ -60,10 +60,23 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public void get12(HttpServletRequest req, Model model) {
 		
-		int get1 = addao.get1();
-		int get2 = addao.get2();
-		int get3 = addao.get3();
-		int get4 = addao.get4();
+		
+		long get1 = addao.get1();
+		if(get1 == 0) {
+			model.addAttribute("get1", get1);
+		} 
+		long get2 = addao.get2();
+		if(get2 == 0) {
+			model.addAttribute("get2", get2);
+		} 
+		long get3 = addao.get3();
+		if(get3 == 0) {
+			model.addAttribute("get3", get3);
+		} 
+		long get4 = addao.get4();
+		if(get4 == 0) {
+			model.addAttribute("get4", get4);
+		} 
 		model.addAttribute("get1", get1);
 		model.addAttribute("get2", get2);
 		model.addAttribute("get3", get3);
@@ -74,8 +87,8 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public void sum(HttpServletRequest req, Model model) {
 		long sum = addao.sum();
-		int sum1 = addao.sum1();
-		int sum2 = addao.sum2();
+		long sum1 = addao.sum1();
+		long sum2 = addao.sum2();
 		model.addAttribute("sum", sum);
 		model.addAttribute("sum1", sum1);
 		model.addAttribute("sum2", sum2);

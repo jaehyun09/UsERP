@@ -81,28 +81,28 @@
 	</resultMap>
 
 	<!-- 강재현 - 회계보고서 - 재무상태표 상품 -->
-	<select id="get1" resultType="int">
-		SELECT NVL(sum(accs_sum)), 0) ss1
+	<select id="get1" resultType="long">
+		SELECT NVL(sum(accs_sum), 0) ss1
 		FROM account_statement
 		WHERE accs_type = 1
 	</select>
 	
 	<!-- 강재현 - 회계보고서 - 재무상태표 외상매출금 -->
-	<select id="get2" resultType="int">
+	<select id="get2" resultType="long">
 		SELECT NVL(sum(accs_sum), 0) ss2
 		FROM account_statement
 		WHERE accs_type = 2
 	</select>
 	
 	<!-- 강재현 - 회계보고서 - 재무상태표  -->
-	<select id="get3" resultType="int">
+	<select id="get3" resultType="long">
 		SELECT NVL(sum(accs_sum), 0) ss3
 		FROM account_statement
 		WHERE accs_type = 3
 	</select>
 	
 	<!-- 강재현 - 회계보고서 - 재무상태표 외상매입금 -->
-	<select id="get4" resultType="int">
+	<select id="get4" resultType="long">
 		SELECT NVL(sum(accs_sum), 0) ss4
 		FROM account_statement
 		WHERE accs_type = 4
@@ -118,7 +118,7 @@
 	</select>
 	
 	<!-- 이재홍 - 회계보고서 - 손익계산서 매출원가 -->
-	<select id="sum1" resultType="int">
+	<select id="sum1" resultType="long">
 		SELECT NVL(sum(p.pro_pur_price * a.accs_quantity), 0) 
 		    FROM account_statement a, product p
 		    WHERE a.pro_code = p.pro_code
@@ -126,7 +126,7 @@
 	</select>
 	
 	<!-- 이재홍 - 회계보고서 - 손익계산서 판매비와 관리비 -->
-	<select id="sum2" resultType="int">
+	<select id="sum2" resultType="long">
 		SELECT NVL(sum(ss_total_sal), 0)
 		FROM salary_statement
 		WHERE ss_state = 1
