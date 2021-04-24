@@ -2,12 +2,11 @@ package com.project.UsERP.persistence;
 
 import java.util.List;
 
-
-
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
 import com.project.UsERP.vo.BankVO;
 import com.project.UsERP.vo.SalaryStatementVO;
+import com.project.UsERP.vo.SettleVO;
 
 public interface AdDAO {
 
@@ -30,13 +29,25 @@ public interface AdDAO {
 	public int get4();
 
 	// 이재홍 - 회계보고서 - 손익계산서 매출액
-	public int sum();
+	public long sum();
 
 	// 이재홍 - 회계보고서 - 손익계산서 매출원가
 	public int sum1();
 
 	// 이재홍 - 회계보고서 - 손익계산서 판매비와 관리비
 	public int sum2();
+	
+	// 조명재 - 회계보고서 - 기대수익률 - 매출액
+	public List<SettleVO> totalSales();
+
+	// 조명재 - 회계보고서 - 기대수익률 - 매출원가
+	public List<SettleVO> costOfSales();
+	
+	// 조명재 - 회계보고서 - 기대수익률 - 판관비
+	public List<SettleVO> costOfManagement();
+	
+	// 조명재 - 회계보고서 - 기대수익률 - 예측월
+	public String getNextMonth();
 
 	// 강재현 - 전표 관리 - 회계 전표
 	public List<AccountStatementVO> statementList();

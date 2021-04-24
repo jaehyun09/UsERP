@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -31,6 +30,7 @@ import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
 import com.project.UsERP.vo.BankVO;
 import com.project.UsERP.vo.SalaryStatementVO;
+import com.project.UsERP.vo.SettleVO;
 
 @Service
 public class AdServiceImpl implements AdService {
@@ -73,12 +73,74 @@ public class AdServiceImpl implements AdService {
 	// 이재홍 - 회계보고서 - 손익계산서
 	@Override
 	public void sum(HttpServletRequest req, Model model) {
-		int sum = addao.sum();
+		long sum = addao.sum();
 		int sum1 = addao.sum1();
 		int sum2 = addao.sum2();
 		model.addAttribute("sum", sum);
 		model.addAttribute("sum1", sum1);
 		model.addAttribute("sum2", sum2);
+	}
+	
+	// 조명재 - 회계 관리 - 회계보고서 - 기대 수익률
+	@Override
+	public List<SettleVO> expProfit(HttpServletRequest req, Model model) {
+		ProcessBuilder pb = new ProcessBuilder("python", "C:/Dev76/workspace_python/tensorflow/result.py");
+		Process p = null;
+		try {
+			p = pb.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		int expProfit = 0;
+		
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(p.getInputStream(), "euc-kr"));
+			String line = "";
+			
+			StringBuilder sb = new StringBuilder();
+			try {
+				while((line = br.readLine()) != null) {
+					sb.append(line + "\n");
+				}
+				String result = sb.toString();
+				
+				int start = result.indexOf("[[");
+				int end = result.indexOf(".]]");
+				expProfit = Integer.parseInt(result.substring(start + 2, end));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		List<SettleVO> totalSales = addao.totalSales();
+		List<SettleVO> costOfSales = addao.costOfSales();
+		List<SettleVO> costOfManagement = addao.costOfManagement();
+		
+		if(totalSales != null && costOfSales != null && costOfManagement != null) {
+			for(int i=0; i<totalSales.size(); i++) {
+				totalSales.get(i).setSum(totalSales.get(i).getSum() - costOfSales.get(i).getSum() - costOfManagement.get(i).getSum());
+			}
+			
+			String nextMonth = addao.getNextMonth();
+			
+			SettleVO vo = new SettleVO();
+			vo.setSalesdate(nextMonth);
+			vo.setSum(expProfit);
+			
+			totalSales.add(vo);
+		}
+		
+		return totalSales;
 	}
 
 	// 강재현 - 전표 관리 - 회계 전표 리스트
@@ -246,49 +308,6 @@ public class AdServiceImpl implements AdService {
 		AccountStatementVO list = addao.bdStatementDetail(num);
 
 		model.addAttribute("bdContent", list);
-	}
-	
-	// 조명재 - 회계 관리 - 회계보고서 - 기대 수익률
-	@Override
-	public void expProfit(HttpServletRequest req, Model model) {
-		ProcessBuilder pb = new ProcessBuilder("python", "C:/Dev76/workspace_python/tensorflow/result.py");
-		Process p = null;
-		try {
-			p = pb.start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new InputStreamReader(p.getInputStream(), "euc-kr"));
-			String line = "";
-			
-			StringBuilder sb = new StringBuilder();
-			try {
-				while((line = br.readLine()) != null) {
-					sb.append(line + "\n");
-				}
-				String result = sb.toString();
-				
-				System.out.println(result);
-				
-				int start = result.indexOf("result: [[");
-				int end = result.indexOf("]]");
-				
-				System.out.println("result : " + result.substring(start + 10, end));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			try {
-				br.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
 	}
 	
 }

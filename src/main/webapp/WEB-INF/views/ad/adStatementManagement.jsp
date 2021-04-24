@@ -679,7 +679,7 @@ function debtContent(code) {
                                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">거래처명</th>
                                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">금액</th>
                                                             <th class="font-weight-semi-bold border-top-0 py-3 con2">발행일</th>
-                                                            <th class="font-weight-semi-bold border-top-0 py-3 con2">반환일</th>
+                                                            <th class="font-weight-semi-bold border-top-0 py-3 con2">상환일</th>
                                                          </tr>
                                                       </thead>
                                                       <tbody>

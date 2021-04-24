@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.firebase.messaging.FirebaseMessagingException;
 import com.project.UsERP.persistence.AdDAO;
 import com.project.UsERP.service.AdServiceImpl;
 import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.SalaryStatementVO;
+import com.project.UsERP.vo.SettleVO;
 
 // 회계 관리
 @Controller
@@ -82,15 +84,21 @@ public class AdController {
 		List<SalaryStatementVO> list1 = addao.salarystatementList();
 		if(list.size() > 0 && list1.size() > 0) {			
 			// 강재현 : 재무상태표	
-			//adservice.get12(req, model);
+//			adservice.get12(req, model);
 			
 			// 이재홍 : 손익계산서 		
-			//adservice.sum(req, model);
-			
-			// 조명재 : 기대 수익율
-			//adservice.expProfit(req, model);
+			adservice.sum(req, model);
 		}
 		return "ad/adReport";
+	}
+	
+	// 조명재 - 회계보고서 - 기대 수익률
+	@ResponseBody
+	@RequestMapping("/expProfit")
+	public List<SettleVO> expProfit(HttpServletRequest req, Model model) {
+		logger.info("url: 기대 수익률");
+		
+		return adservice.expProfit(req, model);
 	}
 
 	// 강재현 & 이재홍 - 전표 관리

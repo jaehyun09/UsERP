@@ -1,10 +1,13 @@
 package com.project.UsERP.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
 import com.google.firebase.messaging.FirebaseMessagingException;
+import com.project.UsERP.vo.SettleVO;
 
 public interface AdService {
 
@@ -19,6 +22,9 @@ public interface AdService {
 
 	// 이재홍 - 회계보고서 - 손익계산서
 	public void sum(HttpServletRequest req, Model model);
+	
+	// 조명재 - 회계 관리 - 회계보고서 - 기대 수익률
+	public List<SettleVO> expProfit(HttpServletRequest req, Model model);
 
 	// 강재현 - 전표 관리 - 회계 전표 리스트
 	public void statementList(HttpServletRequest req, Model model);
@@ -50,6 +56,4 @@ public interface AdService {
 	// 이재홍 - 전표 관리 - 채권/채무 상세페이지
 	public void bdContent(HttpServletRequest req, Model model);
 	
-	// 조명재 - 회계 관리 - 회계보고서 - 기대 수익률
-	public void expProfit(HttpServletRequest req, Model model);
 }

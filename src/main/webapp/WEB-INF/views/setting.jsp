@@ -7,6 +7,7 @@
 <c:set var="path" value="/UsERP"/>
 <c:set var="project" value="/UsERP/resources/graindashboard/" />
 <c:set var="spath" value="/UsERP/resources/script/" />
+<c:set var="today" value="<%=new java.util.Date()%>" />
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 

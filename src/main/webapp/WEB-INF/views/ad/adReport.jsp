@@ -17,6 +17,55 @@
 <link rel="stylesheet" href="${project}css/board.css">
 <!-- Template -->
 <link rel="stylesheet" href="${project}css/graindashboard.css">
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+	function profit() {
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(expProfit);
+		
+		function expProfit() {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/expProfit?${_csrf.parameterName}=${_csrf.token}",
+				type: "post",
+				dataType: "json",
+				success: function(result) {
+					
+					var data = new google.visualization.DataTable([]);
+					
+					data.addColumn('string', '일자');
+					data.addColumn('number', '월별 영업이익');
+					
+					for(var i=0; i<result.length; i++) {
+						data.addRow([result[i].salesdate, result[i].sum]);
+					}
+					
+					var expProfit = result[result.length - 1].sum;
+					expProfit = expProfit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					
+					var options = {
+						title: '익월 예상 영업이익 : ' + expProfit + '원',
+						hAxis: {
+							title: 'Date'
+						},
+						vAxis: {
+							title: 'Profit',
+							minValue: 0
+						},
+						width: '100%',
+						height: 600
+					};
+					
+					var chart = new google.visualization.ComboChart(document.getElementById("chart"));
+					chart.draw(data, options);
+				},
+				error: function() {
+					alert("데이터 조회가 원활하지 않습니다. \n잠시 후 다시 시도해 주십시오.");
+				}
+			});
+		}
+	}
+</script>
 </head>
 
 <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -407,13 +456,18 @@
                                        </tbody>
                                     </table>
                                     </div>
-                                 </div>
-                                 <div class="tab-pane fade p-4" id="pills-html-2"
-                                             role="tabpanel" aria-labelledby="pills-html-tab-2">
-                                                기대기대기대기대기대
-                                         </div>
-                              </div>
-                              <!-- End Tab Content -->
+                                  </div>
+								<div class="tab-pane fade p-4" id="pills-html-2" role="tabpanel" aria-labelledby="pills-html-tab-2">
+									<span class="text-dark" role="button" onclick="profit()" style="cursor:pointer">
+										<fmt:formatDate value="${today}" pattern="yyyy년 MM월" /> 기준 (단위 : 원)
+									</span>
+									<br><br>
+									<div class="bg-white">
+										<div id="chart"></div>
+									</div>
+								</div>
+							</div>
+                            <!-- End Tab Content -->
                            </div>
                         </div>
                      </div>

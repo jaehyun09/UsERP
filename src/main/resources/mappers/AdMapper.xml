@@ -82,35 +82,35 @@
 
 	<!-- 강재현 - 회계보고서 - 재무상태표 상품 -->
 	<select id="get1" resultType="int">
-		SELECT sum(accs_sum) ss1
+		SELECT NVL(sum(accs_sum)), 0) ss1
 		FROM account_statement
-		WHERE accs_type=1
+		WHERE accs_type = 1
 	</select>
 	
 	<!-- 강재현 - 회계보고서 - 재무상태표 외상매출금 -->
 	<select id="get2" resultType="int">
-		SELECT sum(accs_sum) ss2
+		SELECT NVL(sum(accs_sum), 0) ss2
 		FROM account_statement
-		WHERE accs_type=2
+		WHERE accs_type = 2
 	</select>
 	
 	<!-- 강재현 - 회계보고서 - 재무상태표  -->
 	<select id="get3" resultType="int">
-		SELECT sum(accs_sum) ss3
+		SELECT NVL(sum(accs_sum), 0) ss3
 		FROM account_statement
-		WHERE accs_type=3
+		WHERE accs_type = 3
 	</select>
 	
 	<!-- 강재현 - 회계보고서 - 재무상태표 외상매입금 -->
 	<select id="get4" resultType="int">
-		SELECT sum(accs_sum) ss4
+		SELECT NVL(sum(accs_sum), 0) ss4
 		FROM account_statement
 		WHERE accs_type = 4
 	</select>
 	
 	<!-- 이재홍 - 회계보고서 - 손익계산서 매출액 -->
-	<select id="sum" resultType="int">
-		SELECT sum(accs_sum)
+	<select id="sum" resultType="long">
+		SELECT NVL(sum(accs_sum), 0)
 			FROM account_statement
 			WHERE accs_type = 2
 	        OR accs_type = 1
@@ -119,7 +119,7 @@
 	
 	<!-- 이재홍 - 회계보고서 - 손익계산서 매출원가 -->
 	<select id="sum1" resultType="int">
-		SELECT sum(p.pro_sal_price * a.accs_quantity) 
+		SELECT NVL(sum(p.pro_pur_price * a.accs_quantity), 0) 
 		    FROM account_statement a, product p
 		    WHERE a.pro_code = p.pro_code
 		    AND a.accs_state = 1
@@ -127,9 +127,74 @@
 	
 	<!-- 이재홍 - 회계보고서 - 손익계산서 판매비와 관리비 -->
 	<select id="sum2" resultType="int">
-		SELECT sum(ss_total_sal)
+		SELECT NVL(sum(ss_total_sal), 0)
 		FROM salary_statement
 		WHERE ss_state = 1
+	</select>
+	
+	<!-- 조명재 - 회계보고서 - 매출액 -->
+	<select id="totalSales" resultType="com.project.UsERP.vo.SettleVO">
+		<![CDATA[
+			SELECT NVL(TO_CHAR(b.dt, 'YYYY-MM'), ' ') salesdate, NVL(TRUNC(SUM(a.sum)), 0) sum 
+			FROM (SELECT TO_CHAR(accs_update_date, 'YYYY-MM-DD') salesdate, SUM(accs_sum) sum
+			    FROM account_statement
+			    WHERE accs_type IN (1, 2)
+			    AND accs_state = 1
+			    GROUP BY TO_CHAR(accs_update_date, 'YYYY-MM-DD') 
+			    ) a
+			RIGHT JOIN (SELECT TRUNC(add_months(sysdate, -35), 'MM') - 1 + LEVEL dt
+			    FROM dual
+			    CONNECT BY LEVEL <= (sysdate - TRUNC(add_months(sysdate, -35), 'MM')) + 1
+			    ) b
+			ON TO_CHAR(b.dt, 'YYYY-MM-DD') = a.salesdate
+			GROUP BY TO_CHAR(b.dt, 'YYYY-MM')
+			ORDER BY TO_CHAR(b.dt, 'YYYY-MM')
+		]]>
+	</select>
+	
+	<!-- 조명재 - 회계보고서 - 매출원가 -->
+	<select id="costOfSales" resultType="com.project.UsERP.vo.SettleVO">
+		<![CDATA[
+			SELECT NVL(TO_CHAR(b.dt, 'YYYY-MM'), ' ') salesdate, NVL(TRUNC(SUM(a.sum)), 0) sum 
+			FROM (SELECT TO_CHAR(accs_update_date, 'YYYY-MM-DD') salesdate, SUM(p.pro_pur_price * a.accs_quantity) sum
+			    FROM account_statement a, product p
+			    WHERE a.pro_code = p.pro_code
+			    AND a.accs_state = 1
+			    GROUP BY TO_CHAR(accs_update_date, 'YYYY-MM-DD') 
+			    ) a
+			RIGHT JOIN (SELECT TRUNC(add_months(sysdate, -35), 'MM') - 1 + LEVEL dt
+			    FROM dual
+			    CONNECT BY LEVEL <= (sysdate - TRUNC(add_months(sysdate, -35), 'MM')) + 1
+			    ) b
+			ON TO_CHAR(b.dt, 'YYYY-MM-DD') = a.salesdate
+			GROUP BY TO_CHAR(b.dt, 'YYYY-MM')
+			ORDER BY TO_CHAR(b.dt, 'YYYY-MM')
+		]]>
+	</select>
+	
+	<!-- 조명재 - 회계보고서 - 판관비 -->
+	<select id="costOfManagement" resultType="com.project.UsERP.vo.SettleVO">
+		<![CDATA[
+			SELECT NVL(TO_CHAR(b.dt, 'YYYY-MM'), ' ') salesdate, NVL(TRUNC(SUM(a.sum)), 0) sum 
+			FROM (SELECT TO_CHAR(ss_sal_date, 'YYYY-MM-DD') salesdate, SUM(ss_total_sal) sum
+			    FROM salary_statement
+			    WHERE ss_state = 1
+			    GROUP BY TO_CHAR(ss_sal_date, 'YYYY-MM-DD') 
+			    ) a
+			RIGHT JOIN (SELECT TRUNC(add_months(sysdate, -35), 'MM') - 1 + LEVEL dt
+			    FROM dual
+			    CONNECT BY LEVEL <= (sysdate - TRUNC(add_months(sysdate, -35), 'MM')) + 1
+			    ) b
+			    
+			ON TO_CHAR(b.dt, 'YYYY-MM-DD') = a.salesdate
+			GROUP BY TO_CHAR(b.dt, 'YYYY-MM')
+			ORDER BY TO_CHAR(b.dt, 'YYYY-MM')
+		]]>
+	</select>
+	
+	<!-- 조명재 - 회계보고서 - 예측월 -->
+	<select id="getNextMonth" resultType="String">
+		SELECT TO_CHAR(ADD_MONTHS(sysdate, 1), 'YYYY-MM') FROM dual
 	</select>
 
 	<!-- 이재홍 - 기초 등록 - 계좌 관리 - 계좌 리스트 -->

@@ -12,6 +12,7 @@ import com.project.UsERP.vo.AccountStatementVO;
 import com.project.UsERP.vo.AccountVO;
 import com.project.UsERP.vo.BankVO;
 import com.project.UsERP.vo.SalaryStatementVO;
+import com.project.UsERP.vo.SettleVO;
 
 @Repository
 public class AdDAOImpl implements AdDAO {
@@ -59,7 +60,7 @@ public class AdDAOImpl implements AdDAO {
 
 	// 이재홍 : 회계보고서 - 손익계산서 매출액
 	@Override
-	public int sum() {
+	public long sum() {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.sum");
 	}
 
@@ -75,6 +76,33 @@ public class AdDAOImpl implements AdDAO {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.sum2");
 	}
 
+	// 조명재 - 회계보고서 - 기대수익률 - 매출액
+	@Override
+	public List<SettleVO> totalSales() {
+		AdDAO dao = sqlSession.getMapper(AdDAO.class);
+		return dao.totalSales();
+	}
+	
+	// 조명재 - 회계보고서 - 기대수익률 - 매출원가
+	@Override
+	public List<SettleVO> costOfSales() {
+		AdDAO dao = sqlSession.getMapper(AdDAO.class);
+		return dao.costOfSales();
+	}
+	
+	// 조명재 - 회계보고서 - 기대수익률 - 판관비
+	@Override
+	public List<SettleVO> costOfManagement() {
+		AdDAO dao = sqlSession.getMapper(AdDAO.class);
+		return dao.costOfManagement();
+	}
+	
+	// 조명재 - 회계보고서 - 기대수익률 - 예측월
+	public String getNextMonth() {
+		AdDAO dao = sqlSession.getMapper(AdDAO.class);
+		return dao.getNextMonth();
+	}
+	
 	// 강재현 - 전표 관리 - 회계 전표
 	@Override
 	public List<AccountStatementVO> statementList() {
@@ -122,5 +150,5 @@ public class AdDAOImpl implements AdDAO {
 	public AccountStatementVO bdStatementDetail(int num) {
 		return sqlSession.selectOne("com.project.UsERP.persistence.AdDAO.bdStatementDetail", num);
 	}
-
+	
 }
